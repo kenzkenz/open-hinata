@@ -11,7 +11,6 @@ import { transformExtent } from 'ol/proj.js'
 import LayerGroup from 'ol/layer/Group';
 import mw5 from './mw/mw5'
 import mw20 from './mw/mw20'
-// import mw5center from './mw/mw5center'
 const mapsStr = ['map01','map02','map03','map04'];
 const transformE = extent => {
   return transformExtent(extent,'EPSG:4326','EPSG:3857');
@@ -589,8 +588,7 @@ const layers =
       children: [
         { text: '海面上昇シミュ5Mdem', data: { id: 'flood5m', layer: flood5Obj, opacity: 1, summary: floodSumm, component: {name: 'flood5m', values:[]}} },
         { text: '海面上昇シミュ10Mdem', data: { id: 'flood10m', layer: flood10Obj, opacity: 1, summary: floodSumm, component: {name: 'flood10m', values:[]}} },
-      ]},
-    // { text: 'ssssss', data: { id: 999, layer: mw5centerObj, opacity: 1, summary: '' } }
+      ]}
   ];
 export const Layers = layers;
 
