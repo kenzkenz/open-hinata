@@ -44,7 +44,7 @@ export function initMap (vm) {
       const map = evt.map;
       const option = {
         layerFilter: function (layer) {
-          return layer.get('name') === 'Mw5center';
+          return layer.get('name') === 'Mw5center' || layer.get('name') === 'Mw20center';
         }
       };
       const feature = map.forEachFeatureAtPixel(evt.pixel,
@@ -63,7 +63,7 @@ export function initMap (vm) {
       const map = evt.map;
       const option = {
         layerFilter: function (layer) {
-          return layer.get('name') === 'Mw5center';
+          return layer.get('name') === 'Mw5center' || layer.get('name') === 'Mw20center';
         }
       };
       const feature = map.forEachFeatureAtPixel(evt.pixel,

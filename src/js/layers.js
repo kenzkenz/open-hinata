@@ -408,7 +408,8 @@ for (let i of mapsStr) {
 const cs10mSumm = '';
 // CS立体図10Mここまで-----------------------------------------------------------------------
 // 日本版mapwarper５万分の１ここから------------------------------------------------------
-
+// 5万分の1,20万分の1の共用コンストラクタなど
+// 共用スタイル
 const style = new Style({
   fill: new Fill({
     color: 'rgba(255, 255, 255, 0.6)'
@@ -428,6 +429,18 @@ const style = new Style({
     })
   })
 });
+// タイル
+function Mapwarper (url,bbox) {
+  this.source = new XYZ({
+    url: url,
+    minZoom: 1,
+    maxZoom: 18
+  });
+  this.extent = transformE(bbox);
+  // クリックしたとときにextentを操作するため元のextentを保存しておく。
+  this.extent2 = transformE(bbox)
+}
+// 地区名
 function Mw5center () {
   this.name = 'Mw5center';
   this.source = new VectorSource({
@@ -440,30 +453,17 @@ function Mw5center () {
     return style;
   }
 }
-
-// 5万分の1,20万分の1の共用コンストラクタ
-function Mapwarper (url,bbox) {
-  this.source = new XYZ({
-    url: url,
-    minZoom: 1,
-    maxZoom: 18
-  });
-  this.extent = transformE(bbox);
-  // クリックしたとときにextentを操作するため元のextentを保存しておく。
-  this.extent2 = transformE(bbox)
-}
 export const mw5Obj = {};
 for (let i of mapsStr) {
   const layerGroup = [];
   const length =  mw5.length;
-  const features = [];
+  // const features = [];
   for (let j = 0; j < length; j++) {
     const id = mw5[j].id;
     const url = 'https://mapwarper.h-gis.jp/maps/tile/' + id + '/{z}/{x}/{y}.png';
     const bbox = mw5[j].extent;
     const layer = new TileLayer(new Mapwarper(url,bbox));
     layerGroup.push(layer)
-    // console.log(mw5[j])
     // ------------------------------------------------------
 /*
     const extent = mw5[j].extent
@@ -497,7 +497,6 @@ for (let i of mapsStr) {
     }
     features.push(feature)
     */
-
   }
   /*
   const geojson = {
@@ -515,11 +514,20 @@ for (let i of mapsStr) {
 }
 const mw5Summ = '';
 
-// console.log(mw5center);
-
-
 // 日本版mapwarper５万分の１ここまで------------------------------------------------------
 // 日本版mapwarper20万分の１ここから------------------------------------------------------
+// 地区名
+function Mw20center () {
+  this.name = 'Mw20center';
+  this.source = new VectorSource({
+    url:'https://kenzkenz.xsrv.jp/aaa/geojson/mw20center.geojson',
+    format: new GeoJSON()
+  });
+  this.style = function(feature) {
+    style.getText().setText(feature.get('title') );
+    return style;
+  }
+}
 export const mw20Obj = {};
 for (let i of mapsStr) {
   const layerGroup = [];
@@ -531,6 +539,9 @@ for (let i of mapsStr) {
     const layer = new TileLayer(new Mapwarper(url,bbox));
     layerGroup.push(layer)
   }
+  const mw20centerLayer = new VectorLayer(new Mw20center());
+  layerGroup.push(mw20centerLayer);
+
   mw20Obj[i] = new LayerGroup({
     layers: layerGroup
   })
