@@ -22,6 +22,24 @@ function flood(pixels, data) {
     if (height <= data.level) {
       let sinsui = - height + data.level;
 
+      if (sinsui >= 20) {
+        pixel[0] = 187; pixel[1] = 0; pixel[2] = 187; pixel[3] = 122
+      } else if (sinsui >= 10) {
+        pixel[0] = 228; pixel[1] = 0; pixel[2] = 142; pixel[3] = 135
+      } else if (sinsui >= 5) {
+        pixel[0] = 255; pixel[1] = 0; pixel[2] = 0; pixel[3] = 145
+      } else if (sinsui >= 3) {
+        pixel[0] = 255; pixel[1] = 13; pixel[2] = 13; pixel[3] = 179
+      } else if (sinsui >= 1) {
+        pixel[0] = 255; pixel[1] = 125; pixel[2] = 45; pixel[3] = 179
+      } else if (sinsui >= 0.5) {
+        pixel[0] = 236; pixel[1] = 169; pixel[2] = 0; pixel[3] = 166
+      } else if (sinsui >= 0.3) {
+        pixel[0] = 232; pixel[1] = 226; pixel[2] = 8; pixel[3] = 166
+      } else {
+        pixel[0] = 255;pixel[1] = 255;pixel[2] = 0;pixel[3] = 179
+      }
+      /*
       if (sinsui >= 10) {
         pixel[0] = 255;
         pixel[1] = 25;
@@ -62,12 +80,14 @@ function flood(pixels, data) {
         pixel[0] = 255;
         pixel[1] = 229;
         pixel[2] = 229
-      } else {
+      } else  {
         pixel[0] = 255;
         pixel[1] = 255;
         pixel[2] = 0
       }
       pixel[3] = 180
+      */
+
       /*
       let opacity = sinsui * 20;
       if (opacity>200) opacity = 200;
@@ -122,7 +142,13 @@ for (let i of mapsStr) {
     event.data.level = Number($('#' + i  + " .flood-range5m").val());
   });
 }
-const floodSumm = 'zoom12以上で表示';
+let floodSumm = '<div style="background:rgb(220,122,220);font-size: x-small;color: white;padding-left: 1em;">20m～</div>';
+floodSumm += '<div style="background:rgb(242,133,201);font-size: x-small;color: white;padding-left: 1em;">10m～20m</div>';
+floodSumm += '<div style="background:rgb(255,145,145);font-size: x-small;color: white;padding-left: 1em;">5m～10m</div>';
+floodSumm += '<div style="background:rgb(255,183,183);font-size: x-small;color: black;padding-left: 1em;">3m～5m</div>';
+floodSumm += '<div style="background:rgb(255,216,192);font-size: x-small;color: black;padding-left: 1em;">0.5m～3m</div>';
+floodSumm += '<div style="background:rgb(247,245,169);font-size: x-small;color: black;padding-left: 1em;">～0.5m</div>';
+
 
 // オープンストリートマップ------------------------------------------------------------------------
 function Osm () {
@@ -548,6 +574,21 @@ for (let i of mapsStr) {
 const mw20Summ = '';
 // 日本版mapwarper20万分の１ここまで------------------------------------------------------
 
+// 洪水浸水想定-------------------------------------------------------------------------------
+function Shinsuishin () {
+  this.source = new XYZ({
+    url: 'https://disaportaldata.gsi.go.jp/raster/01_flood_l2_shinsuishin/{z}/{x}/{y}.png',
+    minZoom: 1,
+    maxZoom: 17
+  })
+}
+const shinsuishinObj = {};
+for (let i of mapsStr) {
+  shinsuishinObj[i] = new TileLayer(new Shinsuishin())
+}
+const shinsuishinSumm = '';
+// 洪水浸水想定ここまで------------------------------------------------------------------------
+
 // ここにレイヤーを全部書く。クリックするとストアのlayerListに追加されていく-------------------------
 const layers =
   [
@@ -588,7 +629,8 @@ const layers =
       children: [
         { text: '海面上昇シミュ5Mdem', data: { id: 'flood5m', layer: flood5Obj, opacity: 1, summary: floodSumm, component: {name: 'flood5m', values:[]}} },
         { text: '海面上昇シミュ10Mdem', data: { id: 'flood10m', layer: flood10Obj, opacity: 1, summary: floodSumm, component: {name: 'flood10m', values:[]}} },
-      ]}
+      ]},
+    { text: '洪水浸水想定', data: { id: 'shinsuishin', layer: shinsuishinObj, opacity: 1, summary: shinsuishinSumm } }
   ];
 export const Layers = layers;
 

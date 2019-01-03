@@ -5,9 +5,9 @@
             <div class="info-content-div">
                 <p v-html="item.title"></p><hr>
                 <p v-html="item.summary"></p><hr>
-                <b-form-radio-group v-model="s_selected5m" :options="options" @change="floodChange5m"/>
+                <b-form-radio-group v-model="s_selected5m" :options="options" @change="floodChange5m" />
                 <input type="range" min="0" :max="floodMax5m" :step="seaLevelStep5m" class="flood-range5m" v-model.number="s_seaLevel5m" @input="flood5m" />
-                <div style="text-align: center;">海抜{{ s_seaLevel5m.toFixed(1) }}メートル</div>
+                <div style="text-align: center;">{{ s_seaLevel5m.toFixed(1) }}m上昇した場合</div>
             </div>
         </div>
         <!--海面上昇シミュレーション10m-->
@@ -17,7 +17,7 @@
                 <p v-html="item.summary"></p><hr>
                 <b-form-radio-group v-model="s_selected10m" :options="options" @change="floodChange10m"/>
                 <input type="range" min="0" :max="floodMax10m" :step="seaLevelStep10m" class="flood-range10m" v-model.number="s_seaLevel10m" @input="flood10m" />
-                <div style="text-align: center;">海抜{{ s_seaLevel10m.toFixed(1) }}メートル</div>
+                <div style="text-align: center;">{{ s_seaLevel10m.toFixed(1) }}m上昇した場合</div>
             </div>
         </div>
     </div>
@@ -34,11 +34,11 @@
         seaLevelStep5m: 0.5,
         seaLevelStep10m: 0.5,
         options: [
-          { text: 'max 25m 0.1m刻み', value: '25' },
-          { text: 'max 100m 0.5m刻み', value: '100' },
-          { text: 'max 500m 0.5m刻み', value: '500' },
-          { text: 'max 1000m 0.5m刻み', value: '1000' },
-          { text: 'max 3800m 0.5m刻み', value: '3800' }
+          { text: 'max 25m　', value: '25' },
+          { text: 'max 100m　', value: '100' },
+          { text: 'max 500m', value: '500' },
+          { text: 'max 1000m', value: '1000' },
+          { text: 'max 3800m', value: '3800' }
         ],
         floodMax5m: '100',
         floodMax10m: '100'
@@ -98,8 +98,10 @@
           this.floodMax5m = val;
           if (val === '25') {
             this.seaLevelStep5m = 0.1
-          } else {
+          } else if (val === '100') {
             this.seaLevelStep5m = 0.5
+          } else {
+            this.seaLevelStep5m = 1
           }
           this.storeUpdate('5m')
         })
@@ -110,8 +112,10 @@
           this.floodMax10m = val;
           if (val === '25') {
             this.seaLevelStep10m = 0.1
-          } else {
+          } else if (val === '100') {
             this.seaLevelStep10m = 0.5
+          } else {
+            this.seaLevelStep5m = 1
           }
           this.storeUpdate('10m')
         })
