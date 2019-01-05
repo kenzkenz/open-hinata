@@ -3,6 +3,51 @@ import { transform } from 'ol/proj.js'
 import * as Layers from '../js/layers'
 export function permalinkEventSet () {
   // 起動時の処理------------------------------------------------------------------------------
+  // value.layerはオブジェクトになっており、map01から04が入っている。
+  store.commit('base/unshiftLayerList', {
+    value: {
+      id: 1,
+      title: '標準地図',
+      layer: Layers.Layers[1].children[0].data.layer,
+      opacity: 1,
+      summary: Layers.Layers[1].children[0].data.summary,
+      component: ''
+    },
+    mapName: 'map01'
+  });
+  store.commit('base/unshiftLayerList', {
+    value: {
+      id: 2,
+      title: '淡色地図',
+      layer: Layers.Layers[1].children[1].data.layer,
+      opacity: 1,
+      summary: Layers.Layers[1].children[1].data.summary,
+      component: ''
+    },
+    mapName: 'map02'
+  });
+  store.commit('base/unshiftLayerList', {
+    value: {
+      id: 4,
+      title: '色別標高図',
+      layer: Layers.Layers[1].children[3].data.layer,
+      opacity: 1,
+      summary: Layers.Layers[1].children[3].data.summary,
+      component: ''
+    },
+    mapName: 'map03'
+  });
+  store.commit('base/unshiftLayerList', {
+    value: {
+      id: 5,
+      title: '全国最新写真',
+      layer: Layers.Layers[1].children[4].data.layer,
+      opacity: 1,
+      summary: Layers.Layers[1].children[4].data.summary,
+      component: ''
+    },
+    mapName: 'map04'
+  });
   if (window.location.hash !== '') {
      const hash = decodeURIComponent(window.location.hash.replace('#', ''));
      // 場所、ズームを復帰
@@ -17,7 +62,8 @@ export function permalinkEventSet () {
      // パラメータで復帰
      // まずパラメータをオブジェクトにする
      const obj = {};
-     if (hash.split('?')[1]){
+     // console.log((hash.split('?')[1]))
+     if (hash.split('?')[1]) {
        const parameter = hash.split('?')[1].split('&');
        for (let i of parameter) {
          obj[i.split('=')[0]] = i.split('=')[1];

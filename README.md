@@ -32,13 +32,8 @@ ken ochiai
 vuexを使用しています。
 複数のコンポーネントから参照する可能性のある変数はstore(vuex)に設置しています。
 自コンポーネントだけで済む変数は極力コンポーネントに置いています。
-## URLにパラメータがないとき、初期起動時の動き
-store.jsのlayerListsに従ってレイヤーを作成します。
-store.jsのlayerListsはlayers.jsのlayersを参照しています。
-## URLにパラメータがあるときの動き
-pemalink.jsのpermalinkEventSetが作動して初期設定のレイヤーを削除します。その後にパラメータに従ってレイヤーを作成していきます。
-## 起動時にレイヤーリスト下段を作成
-起動時にレイヤーリスト下段（背景ダイアログの下段）を作成します。layerListsはlayers.jsのlayersに従ってリストを作っていきます。
-## レイヤーリスト下段をクリックしたとき
-クリックするとstoreにあるlayerListsにレイヤーの情報を追加します。追加されるとLayer.vueに仕掛けているwatchが動作してOLのレイヤーを操作します。
+## 起動時の処理
+App.vueのmountedに一連の処理を置いています。
+## レイヤー追加の処理
+レイヤーリスト下段をクリックするとstoreにあるlayerListsにレイヤーの情報を追加します。追加されるとLayer.vueのmountedに仕掛けているwatchが動作してOLのレイヤーを操作します。
 

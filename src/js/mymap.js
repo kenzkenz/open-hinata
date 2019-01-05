@@ -15,10 +15,14 @@ let legoFilter = null;
 export function initMap (vm) {
   // マップ作製ループ用の配列を作成
   const maps = [
-    {mapName: 'map01', map:store.state.base.map01, layer:store.state.base.layerLists.map01[0].layer},
-    {mapName: 'map02', map:store.state.base.map02, layer:store.state.base.layerLists.map02[0].layer},
-    {mapName: 'map03', map:store.state.base.map03, layer:store.state.base.layerLists.map03[0].layer},
-    {mapName: 'map04', map:store.state.base.map04, layer:store.state.base.layerLists.map04[0].layer}
+    // {mapName: 'map01', map:store.state.base.map01, layer:store.state.base.layerLists.map01[0].layer},
+    // {mapName: 'map02', map:store.state.base.map02, layer:store.state.base.layerLists.map02[0].layer},
+    // {mapName: 'map03', map:store.state.base.map03, layer:store.state.base.layerLists.map03[0].layer},
+    // {mapName: 'map04', map:store.state.base.map04, layer:store.state.base.layerLists.map04[0].layer}
+    {mapName: 'map01', map:store.state.base.map01},
+    {mapName: 'map02', map:store.state.base.map02},
+    {mapName: 'map03', map:store.state.base.map03},
+    {mapName: 'map04', map:store.state.base.map04}
   ];
   const view01 = new View({
     center: fromLonLat([140.097, 37.856]),
@@ -31,7 +35,7 @@ export function initMap (vm) {
       interactions: defaultInteractions().extend([
         new DragRotateAndZoom()
       ]),
-      layers: [maps[i].layer],
+      // layers: [maps[i].layer],
       target: mapName,
       view: view01
     });
@@ -181,14 +185,15 @@ export function resize () {
 }
 
 export function watchLayer (map, thisName, newLayerList,oldLayerList) {
+  //[0]はレイヤーリスト。[1]はlength
   // 逆ループ
   let myZindex = 0;
-  for (let i = newLayerList.value.length - 1; i >= 0; i--) {
+  for (let i = newLayerList[0].length - 1; i >= 0; i--) {
     // リストクリックによる追加したレイヤーで リストの先頭で リストの増加があったとき
-    const layer = newLayerList.value[i].layer;
-    if (newLayerList.value[i].addFlg) {
+    const layer = newLayerList[0][i].layer;
+    if (newLayerList[0][i].addFlg) {
       if (i === 0 ) {
-        if (newLayerList.length > oldLayerList.length) {
+        if (newLayerList[1] > oldLayerList[1]) {
           const oldCenter = map.getView().getCenter();
           const center = layer.getProperties().center;
           if (center) {
@@ -225,7 +230,7 @@ export function watchLayer (map, thisName, newLayerList,oldLayerList) {
     layer['myZindex'] = myZindex++;
     map.removeLayer(layer);
     map.addLayer(layer);
-    layer.setOpacity(newLayerList.value[i].opacity)
+    layer.setOpacity(newLayerList[0][i].opacity)
   }
 }
 

@@ -152,28 +152,30 @@
       }
     },
     mounted () {
-      JqueryFunction();
       this.$nextTick(function () {
-        // 縦バウンス無効化https://github.com/lazd/iNoBounce
-        Inobounce();
-        // map初期化
+        // ①map初期化-----------------------------
         MyMap.initMap(this);
-        // パーマリンク
+        // ②パーマリンク------------------------------
         Permalink.permalinkEventSet();
+        // ③画面分割-------------------------------
         this.splitMap2();
-        // リサイズ
+        // ④リサイズ---------------------------------
         const resize = () => {
           if (window.innerWidth < 700) {
             this.btnSize = 'sm'
           } else {
             this.btnSize = ''
           }
-          // 画面分割
           this.splitMap2()
         };
         resize();
-        window.onresize =  () => resize()
-      })
+        window.onresize =  () => resize();
+        // ⑤縦バウンス無効化----------------------
+        // https://github.com/lazd/iNoBounce
+        Inobounce();
+      });
+
+      JqueryFunction();//削除予定
     }
   }
 </script>

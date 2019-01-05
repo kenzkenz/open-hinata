@@ -86,13 +86,25 @@
         set (value) { this.$store.commit('base/updateNotification', value) }
       }
     },
-    watch: {
-      // ストアを監視。レイヤーを追加したとき・順番を変えたときに動く
-      s_layerListWatch : function (newLayerList,oldLayerList) {
-        const map = this.$store.state.base.maps[this.mapName];
-        if (map) MyMap.watchLayer(map, this.mapName, newLayerList,oldLayerList);
-        permalink.moveEnd()
-      }
+    // watch: {
+    //   // ストアを監視。レイヤーを追加したとき・順番を変えたときに動く
+    //   s_layerListWatch : function (newLayerList,oldLayerList) {
+    //     const map = this.$store.state.base.maps[this.mapName];
+    //     if (map) MyMap.watchLayer(map, this.mapName, newLayerList,oldLayerList);
+    //     permalink.moveEnd()
+    //   }
+    // },
+    mounted () {
+      this.$watch(
+        // 2つの値を評価させる
+        () => [this.$store.getters['base/layerList'](this.mapName), this.$store.getters['base/layerList'](this.mapName).length],
+        (newLayerList,oldLayerList) => {
+          //newLayerList,oldLayerListは配列になっている。
+          const map = this.$store.state.base.maps[this.mapName];
+          if (map) MyMap.watchLayer(map, this.mapName, newLayerList,oldLayerList);
+          permalink.moveEnd()
+        }
+      )
     }
   }
 </script>

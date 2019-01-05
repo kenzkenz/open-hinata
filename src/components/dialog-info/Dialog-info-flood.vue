@@ -5,6 +5,13 @@
             <div class="info-content-div">
                 <p v-html="item.title"></p><hr>
                 <p v-html="item.summary"></p><hr>
+                <div style="position: absolute;left:260px;"><chrome-picker v-show="colorsShowFlg" v-model="s_colors" @input="colorChange5m"/></div>
+                <div  @click="colorsShow('m20')" :style="style('m20')">20m～</div>
+                <div @click="colorsShow('m10')" :style="style('m10')">10m～20m</div>
+                <div @click="colorsShow('m5')" :style="style('m5')">5m～10m</div>
+                <div @click="colorsShow('m3')" :style="style('m3')">3m～5m</div>
+                <div @click="colorsShow('m0')" :style="style('m0')">0.5m～3m</div>
+                <div @click="colorsShow('m00')" :style="style('m00')">～0.5m</div>
                 <b-form-radio-group v-model="s_selected5m" :options="options" @change="floodChange5m" />
                 <input type="range" min="0" :max="floodMax5m" :step="seaLevelStep5m" class="flood-range5m" v-model.number="s_seaLevel5m" @input="flood5m" />
                 <div style="text-align: center;">{{ s_seaLevel5m.toFixed(1) }}m上昇した場合</div>
@@ -15,6 +22,13 @@
             <div class="info-content-div">
                 <p v-html="item.title"></p><hr>
                 <p v-html="item.summary"></p><hr>
+                <div style="position: absolute;left:260px;"><chrome-picker v-show="colorsShowFlg" v-model="s_colors" @input="colorChange10m"/></div>
+                <div  @click="colorsShow('m20')" :style="style('m20')">20m～</div>
+                <div @click="colorsShow('m10')" :style="style('m10')">10m～20m</div>
+                <div @click="colorsShow('m5')" :style="style('m5')">5m～10m</div>
+                <div @click="colorsShow('m3')" :style="style('m3')">3m～5m</div>
+                <div @click="colorsShow('m0')" :style="style('m0')">0.5m～3m</div>
+                <div @click="colorsShow('m00')" :style="style('m00')">～0.5m</div>
                 <b-form-radio-group v-model="s_selected10m" :options="options" @change="floodChange10m"/>
                 <input type="range" min="0" :max="floodMax10m" :step="seaLevelStep10m" class="flood-range10m" v-model.number="s_seaLevel10m" @input="flood10m" />
                 <div style="text-align: center;">{{ s_seaLevel10m.toFixed(1) }}m上昇した場合</div>
@@ -26,11 +40,17 @@
 <script>
   import * as Layers from '../../js/layers'
   import * as permalink from '../../js/permalink'
+  import { Chrome } from 'vue-color'
   export default {
     name: "flood",
     props: ['mapName', 'item'],
+    components: {
+      'chrome-picker': Chrome
+    },
     data () {
       return {
+        colorsShowFlg: false,
+        colorM: 'm20',
         seaLevelStep5m: 0.5,
         seaLevelStep10m: 0.5,
         options: [
@@ -45,6 +65,15 @@
       }
     },
     computed: {
+      s_colors: {
+        get() {
+          return this.$store.state.info.colors[this.colorM]
+        },
+        set(value) {
+          this.$store.commit('info/updateColors', {colorM:this.colorM, value:value})
+        }
+      },
+
       s_seaLevel5m: {
         get() { return this.$store.state.info.seaLevel5m[this.mapName] },
         set(value) {
@@ -71,6 +100,45 @@
       }
     },
     methods: {
+
+      style (colorM) {
+        let rgba;
+        if (this.colorM === colorM) {
+          rgba = this.s_colors;
+        } else {
+          rgba = this.$store.state.info.colors[colorM]
+        }
+        return {
+          background: 'rgba(' + rgba.r + ',' + rgba.g + ',' + rgba.b + ',' + rgba.a + ')',
+          'font-size': 'x-small',
+          color: 'black',
+          'padding-left': '1em',
+          cursor: 'pointer'
+        }
+      },
+
+      colorChange5m () {
+        Layers.flood5Obj['map01'].getSource().changed();
+        Layers.flood5Obj['map02'].getSource().changed();
+        Layers.flood5Obj['map03'].getSource().changed();
+        Layers.flood5Obj['map04'].getSource().changed()
+      },
+      colorChange10m () {
+        Layers.flood10Obj['map01'].getSource().changed();
+        Layers.flood10Obj['map02'].getSource().changed();
+        Layers.flood10Obj['map03'].getSource().changed();
+        Layers.flood10Obj['map04'].getSource().changed()
+      },
+      colorsShow (cororM) {
+        if (this.colorM === cororM) {
+          this.colorsShowFlg = !this.colorsShowFlg;
+        } else {
+          this.colorsShowFlg = true;
+        }
+
+        this.colorM = cororM;
+
+      },
       // 海面上昇シミュレーション
       storeUpdate (dem) {
         let lebel; let selected;

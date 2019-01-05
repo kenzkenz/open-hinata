@@ -1,7 +1,6 @@
 import 'babel-polyfill'
 import Vue from 'vue'
 import Vuex from 'vuex'
-import * as Layers from '../js/layers'
 Vue.use(Vuex);
 
 const moduleBase = {
@@ -9,10 +8,10 @@ const moduleBase = {
   state: {
     maps: {map01: null, map02: null, map03: null, map04: null},
     layerLists: {
-      map01: [{id: 1, title: '標準地図', layer: Layers.Layers[1].children[0].data.layer['map01'], opacity: 1, summary:Layers.Layers[1].children[0].data.summary}],
-      map02: [{id: 2, title: '淡色地図', layer: Layers.Layers[1].children[1].data.layer['map02'], opacity: 1, summary:Layers.Layers[1].children[1].data.summary}],
-      map03: [{id: 4, title: '色別標高図', layer: Layers.Layers[1].children[3].data.layer['map03'], opacity: 1, summary:Layers.Layers[1].children[3].data.summary}],
-      map04: [{id: 5, title: '全国最新写真', layer: Layers.Layers[1].children[4].data.layer['map04'], opacity: 1, summary:Layers.Layers[1].children[4].data.summary}]
+      map01: [],
+      map02: [],
+      map03: [],
+      map04: []
     },
     dialogs: {
       menuDialog: {style: {top: '56px', left: '10px', 'z-index': 1, height: 'auto', 'min-width': '300px', display: 'none'}},
@@ -136,11 +135,22 @@ const moduleInfo = {
       map02: 10,
       map03: 10,
       map04: 10
+    },
+    colors: {
+      m20: {r: 187,g: 0,b:187,a:122/255 },
+      m10: {r: 228,g: 0,b:142,a:135/255 },
+      m5: {r: 255,g: 0,b:0,a:145/255 },
+      m3: {r: 255,g: 13,b:13,a:179/255 },
+      m0: {r: 255,g: 125,b:45,a:179/255 },
+      m00: {r: 232,g: 226,b:8,a:166/255 }
     }
   },
   getters: {
   },
   mutations: {
+    updateColors (state,payload) {
+      state.colors[payload.colorM] = payload.value.rgba
+    },
     update (state,payload) {
       let variable;
       switch (payload.name) {

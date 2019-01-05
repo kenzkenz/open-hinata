@@ -1,3 +1,4 @@
+import store from './store'
 import TileLayer from 'ol/layer/Tile'
 import VectorLayer from 'ol/layer/Vector';
 import ImageLaye from 'ol/layer/Image'
@@ -21,7 +22,22 @@ function flood(pixels, data) {
     var height = (pixel[0] * 256 * 256 + pixel[1] * 256 + pixel[2]) / 100;
     if (height <= data.level) {
       let sinsui = - height + data.level;
+      const c = data.colors;
+      if (sinsui >= 20) {
+        pixel[0] = c.m20.r; pixel[1] = c.m20.g; pixel[2] = c.m20.b; pixel[3] = c.m20.a*255
+      } else if (sinsui >= 10) {
+        pixel[0] = c.m10.r; pixel[1] = c.m10.g; pixel[2] = c.m10.b; pixel[3] = c.m10.a*255
+      } else if (sinsui >= 5) {
+        pixel[0] = c.m5.r; pixel[1] = c.m5.g; pixel[2] = c.m5.b; pixel[3] = c.m5.a*255
+      } else if (sinsui >= 3) {
+        pixel[0] = c.m3.r; pixel[1] = c.m3.g; pixel[2] = c.m3.b; pixel[3] = c.m3.a*255
+      } else if (sinsui >= 0.5) {
+        pixel[0] = c.m0.r; pixel[1] = c.m0.g; pixel[2] = c.m0.b; pixel[3] = c.m0.a*255
+      } else {
+        pixel[0] = c.m00.r; pixel[1] = c.m00.g; pixel[2] = c.m00.b; pixel[3] = c.m00.a*255
+      }
 
+/*
       if (sinsui >= 20) {
         pixel[0] = 187; pixel[1] = 0; pixel[2] = 187; pixel[3] = 122
       } else if (sinsui >= 10) {
@@ -39,54 +55,8 @@ function flood(pixels, data) {
       } else {
         pixel[0] = 255;pixel[1] = 255;pixel[2] = 0;pixel[3] = 179
       }
-      /*
-      if (sinsui >= 10) {
-        pixel[0] = 255;
-        pixel[1] = 25;
-        pixel[2] = 25
-      } else if (sinsui >= 9) {
-        pixel[0] = 255;
-        pixel[1] = 25;
-        pixel[2] = 25
-      } else if (sinsui >= 8) {
-        pixel[0] = 255;
-        pixel[1] = 25;
-        pixel[2] = 25
-      } else if (sinsui >= 7) {
-        pixel[0] = 255;
-        pixel[1] = 76;
-        pixel[2] = 76
-      } else if (sinsui >= 6) {
-        pixel[0] = 255;
-        pixel[1] = 102;
-        pixel[2] = 102
-      } else if (sinsui >= 5) {
-        pixel[0] = 255;
-        pixel[1] = 127;
-        pixel[2] = 127
-      } else if (sinsui >= 4) {
-        pixel[0] = 255;
-        pixel[1] = 153;
-        pixel[2] = 153
-      } else if (sinsui >= 3) {
-        pixel[0] = 255;
-        pixel[1] = 178;
-        pixel[2] = 178
-      } else if (sinsui >= 2) {
-        pixel[0] = 255;
-        pixel[1] = 204;
-        pixel[2] = 204
-      } else if (sinsui >= 1) {
-        pixel[0] = 255;
-        pixel[1] = 229;
-        pixel[2] = 229
-      } else  {
-        pixel[0] = 255;
-        pixel[1] = 255;
-        pixel[2] = 0
-      }
-      pixel[3] = 180
-      */
+*/
+
 
       /*
       let opacity = sinsui * 20;
@@ -119,6 +89,7 @@ for (let i of mapsStr) {
   flood10Obj[i] = new ImageLaye(new Dem10());
   flood10Obj[i].getSource().on('beforeoperations', function(event) {
     event.data.level = Number($('#' + i  + " .flood-range10m").val());
+    event.data.colors = store.state.info.colors;
   });
 }
 //dem5---------------------------------------------------------------------------------
@@ -140,15 +111,11 @@ for (let i of mapsStr) {
   flood5Obj[i] = new ImageLaye(new Dem5());
   flood5Obj[i].getSource().on('beforeoperations', function(event) {
     event.data.level = Number($('#' + i  + " .flood-range5m").val());
+    event.data.colors = store.state.info.colors;
   });
 }
-let floodSumm = '<div style="background:rgb(220,122,220);font-size: x-small;color: white;padding-left: 1em;">20m～</div>';
-floodSumm += '<div style="background:rgb(242,133,201);font-size: x-small;color: white;padding-left: 1em;">10m～20m</div>';
-floodSumm += '<div style="background:rgb(255,145,145);font-size: x-small;color: white;padding-left: 1em;">5m～10m</div>';
-floodSumm += '<div style="background:rgb(255,183,183);font-size: x-small;color: black;padding-left: 1em;">3m～5m</div>';
-floodSumm += '<div style="background:rgb(255,216,192);font-size: x-small;color: black;padding-left: 1em;">0.5m～3m</div>';
-floodSumm += '<div style="background:rgb(247,245,169);font-size: x-small;color: black;padding-left: 1em;">～0.5m</div>';
 
+let floodSumm = '';
 
 // オープンストリートマップ------------------------------------------------------------------------
 function Osm () {
