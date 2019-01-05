@@ -15,10 +15,10 @@ const moduleBase = {
     },
     dialogs: {
       menuDialog: {style: {top: '56px', left: '10px', 'z-index': 1, height: 'auto', 'min-width': '300px', display: 'none'}},
-      map01: {style: {top: '56px', left:'30px', 'z-index': 1, height: 'auto', 'min-width': '250px', display: 'none'}},
-      map02: {style: {top: '56px', left:'30px', 'z-index': 1, height: 'auto', 'min-width': '250px', display: 'none'}},
-      map03: {style: {top: '56px', left:'30px', 'z-index': 1, height: 'auto', 'min-width': '250px', display: 'none'}},
-      map04: {style: {top: '56px', left:'30px', 'z-index': 1, height: 'auto', 'min-width': '250px', display: 'none'}},
+      map01: {style: {top: '56px', left:'10px', 'z-index': 1, height: 'auto', 'min-width': '250px', display: 'none'}},
+      map02: {style: {top: '56px', left:'10px', 'z-index': 1, height: 'auto', 'min-width': '250px', display: 'none'}},
+      map03: {style: {top: '56px', left:'10px', 'z-index': 1, height: 'auto', 'min-width': '250px', display: 'none'}},
+      map04: {style: {top: '56px', left:'10px', 'z-index': 1, height: 'auto', 'min-width': '250px', display: 'none'}},
     },
     dialogsInfo: {
       map01: [],

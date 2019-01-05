@@ -73,7 +73,6 @@
           this.$store.commit('info/updateColors', {colorM:this.colorM, value:value})
         }
       },
-
       s_seaLevel5m: {
         get() { return this.$store.state.info.seaLevel5m[this.mapName] },
         set(value) {
@@ -100,23 +99,28 @@
       }
     },
     methods: {
-
       style (colorM) {
-        let rgba;
+        let rgba; let border;
         if (this.colorM === colorM) {
           rgba = this.s_colors;
+          if (this.colorsShowFlg) {
+            border = '1px solid black'
+          } else {
+            border = 'none'
+          }
         } else {
-          rgba = this.$store.state.info.colors[colorM]
+          rgba = this.$store.state.info.colors[colorM];
+          border = 'none'
         }
         return {
           background: 'rgba(' + rgba.r + ',' + rgba.g + ',' + rgba.b + ',' + rgba.a + ')',
+          border: border,
           'font-size': 'x-small',
           color: 'black',
           'padding-left': '1em',
           cursor: 'pointer'
         }
       },
-
       colorChange5m () {
         Layers.flood5Obj['map01'].getSource().changed();
         Layers.flood5Obj['map02'].getSource().changed();
@@ -135,9 +139,7 @@
         } else {
           this.colorsShowFlg = true;
         }
-
         this.colorM = cororM;
-
       },
       // 海面上昇シミュレーション
       storeUpdate (dem) {
