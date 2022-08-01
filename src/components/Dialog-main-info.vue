@@ -2,8 +2,8 @@
     <v-dialog :dialog="S_mainInfoDialog">
         <div :style="contentSize">
           <p>製作者＝kenzkenz</p>
-          <p><a href="https://github.com/kenzkenz/open-hinata" target="_blank" >github</a></p>
-          <p><a href="https://twitter.com/kenzkenz" target="_blank">twitter</a></p>
+          <p><a href="https://github.com/kenzkenz/open-hinata" target="_blank" >github</a> です。</p>
+          <p><a href="https://twitter.com/kenzkenz" target="_blank">twitter</a>です。</p>
         </div>
     </v-dialog>
 </template>
