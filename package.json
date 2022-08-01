@@ -1,0 +1,58 @@
+{
+  "name": "open-hinata",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build",
+    "lint": "vue-cli-service lint"
+  },
+  "dependencies": {
+    "@fortawesome/fontawesome-free": "^6.1.1",
+    "axios": "^0.27.2",
+    "babel-polyfill": "^6.26.0",
+    "bootstrap-vue": "^2.0.0-rc.11",
+    "d3": "^7.6.1",
+    "liquor-tree": "^0.2.47",
+    "ol": "^5.3.0",
+    "ol-ext": "^3.2.28",
+    "vue": "^2.5.21",
+    "vue-color": "^2.7.0",
+    "vue-snotify": "^3.2.1",
+    "vuedraggable": "^2.17.0",
+    "vuex": "^3.0.1"
+  },
+  "devDependencies": {
+    "@vue/cli-plugin-babel": "^3.2.2",
+    "@vue/cli-plugin-eslint": "^3.2.2",
+    "@vue/cli-service": "^3.2.3",
+    "babel-eslint": "^10.0.1",
+    "eslint": "^5.12.0",
+    "eslint-plugin-vue": "^5.1.0",
+    "vue-template-compiler": "^2.5.21"
+  },
+  "eslintConfig": {
+    "root": true,
+    "env": {
+      "node": true
+    },
+    "extends": [
+      "plugin:vue/essential",
+      "eslint:recommended"
+    ],
+    "rules": {},
+    "parserOptions": {
+      "parser": "babel-eslint"
+    }
+  },
+  "postcss": {
+    "plugins": {
+      "autoprefixer": {}
+    }
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not ie <= 8"
+  ]
+}
