@@ -2,7 +2,7 @@
     <v-dialog :dialog="S_mainInfoDialog">
         <div :style="contentSize">
           <p>製作者＝kenzkenz</p>
-          <p><a href="https://github.com/code4miyazaki/open-hinata/tree/new" target="_blank" >github</a>の「new」ブランチで開発しています。</p>
+          <p><a href="https://github.com/kenzkenz/open-hinata" target="_blank" >github</a></p>
           <p><a href="https://twitter.com/kenzkenz" target="_blank">twitter</a></p>
         </div>
     </v-dialog>
