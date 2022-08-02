@@ -110,3 +110,16 @@ export function popUpKeizoku(rgba) {
   }
   store.commit('base/popUpContUpdate',cont)
   }
+//----------------------------------------------------------------------------------------
+export function popUpDosya(rgba) {
+  const r = rgba[0]
+  const g = rgba[1]
+  const b = rgba[2]
+  let cont
+  if(r===230 && g===200 && b===50) {
+    cont = "土砂災害の危険性：土石流警戒区域(指定済)（山腹が崩壊して生じた土石等又は渓流の土石等が水と一体となって流下する自然現象）"
+  }else if(r===165 && g===0 && b===33) {
+    cont = "土砂災害の危険性：土石流特別警戒区域(指定済)（山腹が崩壊して生じた土石等又は渓流の土石等が水と一体となって流下する自然現象）"
+  }
+  store.commit('base/popUpContUpdate',cont)
+}

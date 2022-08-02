@@ -134,7 +134,8 @@ export function initMap (vm) {
       });
       const tgtLayers = layers.filter(el => el.get('name')==='shinsuishin'
         || el.get('name')==='tunami'
-        || el.get('name')==='keizoku');
+        || el.get('name')==='keizoku'
+        || el.get('name')==='dosya');
       if (tgtLayers.length>0) {
         document.querySelector('#' + mapName + ' .ol-viewport').style.cursor = "pointer"
       }
@@ -146,7 +147,8 @@ export function initMap (vm) {
       const layers0 = map.getLayers().getArray();
       const hazardLayers = layers0.filter(el => el.get('name')==='shinsuishin'
         || el.get('name')==='tunami'
-        || el.get('name')==='keizoku');
+        || el.get('name')==='keizoku'
+        || el.get('name')==='dosya');
       if (hazardLayers.length===0) return
       //-------------------------------------------------------------------------
       const pixel = (map).getPixelFromCoordinate(evt.coordinate);
@@ -168,6 +170,9 @@ export function initMap (vm) {
             break;
           case 'keizoku':
             PopUp.popUpKeizoku(object.rgba)
+            break;
+          case 'dosya':
+            PopUp.popUpDosya(object.rgba)
             break;
           default:
         }
