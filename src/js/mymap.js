@@ -13,7 +13,6 @@ import Notification from './notification'
 import * as Layers from './layers'
 import * as PopUp from './popup'
 import {defaults as defaultInteractions, DragRotateAndZoom} from 'ol/interaction';
-import {popUpKeizoku, popUpShinsuishin, popUpTunami} from "./popup";
 let maxZndex = 0;
 let legoFilter = null;
 export function initMap (vm) {
@@ -42,7 +41,7 @@ export function initMap (vm) {
         },
       },
     });
-    closer.onclick = function () {
+    closer.onclick = () => {
       overlay[i].setPosition(undefined);
       closer.blur();
       return false;
@@ -162,13 +161,13 @@ export function initMap (vm) {
       layersObj.forEach(object =>{
         switch (object.layer.get('name')){
           case 'shinsuishin':
-            popUpShinsuishin(object.rgba)
+            PopUp.popUpShinsuishin(object.rgba)
             break;
           case 'tunami':
-            popUpTunami(object.rgba)
+            PopUp.popUpTunami(object.rgba)
             break;
           case 'keizoku':
-            popUpKeizoku(object.rgba)
+            PopUp.popUpKeizoku(object.rgba)
             break;
           default:
         }
@@ -318,7 +317,7 @@ export function initMap (vm) {
     const getElevation = (event) =>{
       let z = map.getView().getZoom()
       if(z>13) z=13;
-      // const coord = event.coordinate　こっちにするとマウスの標高を取得する。
+      // const coord = event.coordinateこっちにするとマウスの標高を取得する。
       const coord =map.getView().getCenter()
       const R = 6378137;// 地球の半径(m);
       const x = ( 0.5 + coord[ 0 ] / ( 2 * R * Math.PI ) ) * Math.pow( 2, z );
@@ -334,12 +333,16 @@ export function initMap (vm) {
         }
       } );
     }
+    const win = window.navigator.userAgent.includes('Win')
     map.on('moveend', function (event) {
-      // vm.zoom[mapName] = 'zoom=' + String(Math.floor(map.getView().getZoom() * 100) / 100)
-      getElevation(event)
+      if (win) {
+        getElevation(event)
+      } else {
+        vm.zoom[mapName] = 'zoom=' + String(Math.floor(map.getView().getZoom() * 100) / 100)
+      }
     });
     map.on("pointermove",function(event){
-      getElevation(event)
+      if (win) getElevation(event)
     });
     // ****************
     // 産総研さん作成の関数
