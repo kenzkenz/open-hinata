@@ -1,0 +1,1003 @@
+
+$ ssh root@10.152.181.44
+
+/Users/ochiaikenji/.nodebrew/node/v8.5.0/bin/npm -> /Users/ochiaikenji/.nodebrew/node/v8.5.0/lib/node_modules/npm/bin/npm-cli.js
+/Users/ochiaikenji/.nodebrew/node/v8.5.0/bin/npx -> /Users/ochiaikenji/.nodebrew/node/v8.5.0/lib/node_modules/npm/bin/npx-cli.js
+
+
+cd /volumes/My\ Passport\ for\ Mac
+
+----------------------------------------------------------------------------------------
+$ tippecanoe -pk -f -z9 -y AREA -y JINKO -S15 -o zenkoku9.mbtiles zenkoku.geojson
+
+$ mb-util --image_format=pbf zenkoku9.mbtiles zenkokutile9
+
+$ cd zenkokutile9
+
+$ gzip -d -v -r -S .pbf *
+
+$ find . -type f -exec mv -v '{}' '{}'.mvt \;
+-------------------------------------------------------------------------------------------
+$ tippecanoe -pk -f -z9 -S15 -ab -o youtotiikiall9.mbtiles youtotiikiall.geojson
+
+$ mb-util --image_format=pbf youtotiikiall9.mbtiles youtotiikitile9
+
+$ cd youtotiikitile9
+$ gzip -d -v -r -S .pbf *
+$ find . -type f -exec mv -v '{}' '{}'.mvt \;
+-------------------------------------------------------------------------------------------
+$ tippecanoe -pk -f -Z10 -z12 -S15 -ab -o 500mesh.mbtiles 500meshMerge.geojson
+
+$ mb-util --image_format=pbf 500mesh.mbtiles 500meshtile
+
+$ cd 500meshtile
+$ gzip -d -v -r -S .pbf *
+$ find . -type f -exec mv -v '{}' '{}'.mvt \;
+-------------------------------------------------------------------------------------------
+$ tippecanoe -pk -f
+
+$ mb-util --image_format=pbf 500meshAdd.mbtiles 500meshtileAdd
+
+$ cd 500meshtileAdd
+$ gzip -d -v -r -S .pbf *
+$ find . -type f -exec mv -v '{}' '{}'.mvt \;
+-------------------------------------------------------------------------------------------
+$ tippecanoe -pk -f -Z8 -z9 -S15 -ab -o 500meshAdd9.mbtiles 500meshMergeAdd.geojson
+
+$ mb-util --image_format=pbf 500meshAdd9.mbtiles 500meshtileAdd9
+
+$ cd 500meshtileAdd9
+$ gzip -d -v -r -S .pbf *
+$ find . -type f -exec mv -v '{}' '{}'.mvt \;
+-------------------------------------------------------------------------------------------
+$ tippecanoe -pk -f -Z12 -z15 -S15 -ab -o 500meshAdd12.mbtiles 500meshMergeAdd.geojson
+
+$ mb-util --image_format=pbf 500meshAdd12.mbtiles 500meshtileAdd12
+
+$ cd 500meshtileAdd12
+$ gzip -d -v -r -S .pbf *
+$ find . -type f -exec mv -v '{}' '{}'.mvt \;
+-------------------------------------------------------------------------------------------
+$ tippecanoe -pk -f -Z6 -z9 -S15 -ab -o 1000meshAdd.mbtiles 1000meshMergeAdd.geojson
+
+$ mb-util --image_format=pbf 1000meshAdd.mbtiles 1000meshtileAdd
+
+$ cd 1000meshtileAdd
+$ gzip -d -v -r -S .pbf *
+$ find . -type f -exec mv -v '{}' '{}'.mvt \;
+-------------------------------------------------------------------------------------------
+$ tippecanoe -pk -f -Z10 -z11 -S15 -ab -o 1000meshAdd10.mbtiles 1000meshMergeAdd.geojson
+
+$ mb-util --image_format=pbf 1000meshAdd10.mbtiles 1000meshtileAdd10
+
+$ cd 1000meshtileAdd10
+$ gzip -d -v -r -S .pbf *
+$ find . -type f -exec mv -v '{}' '{}'.mvt \;
+-------------------------------------------------------------------------------------------
+$ tippecanoe -pk -f -z11 -S15 -ab -ac -o 1000meshAdd11.mbtiles 1000meshMergeAdd2.geojson
+
+$ mb-util --image_format=pbf 1000meshAdd11.mbtiles 1000meshtileAdd11
+
+$ cd 1000meshtileAdd11
+$ gzip -d -v -r -S .pbf *
+$ find . -type f -exec mv -v '{}' '{}'.mvt \;
+-------------------------------------------------------------------------------------------
+$ tippecanoe -pk -f -z11 -S30 -ab -y KEY_CODE -y T000847003 -y T000847006 -y T000847009 -y T000847012 -y T000847015 -y T000847018 -y T000847021 -y T000847024 -o 1000meshAdd11.mbtiles 1000meshMergeAdd2.geojson
+
+$ mb-util --image_format=pbf 1000meshAdd11.mbtiles 1000meshtileAdd11
+
+$ cd 1000meshtileAdd11
+$ gzip -d -v -r -S .pbf *
+$ find . -type f -exec mv -v '{}' '{}'.mvt \;
+-------------------------------------------------------------------------------------------
+$ tippecanoe -pk -f -z13 -S15 -ab -ac -o dozyouzu.mbtiles dozyouzu.geojson
+
+$ mb-util --image_format=pbf dozyouzu.mbtiles dozyouzutile
+
+$ cd dozyouzutile
+$ gzip -d -v -r -S .pbf *
+$ find . -type f -exec mv -v '{}' '{}'.mvt \;
+-------------------------------------------------------------------------------------------
+$ tippecanoe -pk -f -Z14 -z15 -S15 -ab -ac -o dozyouzu14.mbtiles dozyouzu.geojson
+
+$ mb-util --image_format=pbf dozyouzu14.mbtiles dozyouzutile14
+
+$ cd dozyouzutile14
+$ gzip -d -v -r -S .pbf *
+$ find . -type f -exec mv -v '{}' '{}'.mvt \;
+-------------------------------------------------------------------------------------------
+$ tippecanoe -pk -f -z13 -S15 -ab -ac -o veg.mbtiles veg.geojson
+
+$ mb-util --image_format=pbf veg.mbtiles vegtile
+
+$ cd vegtile
+$ gzip -d -v -r -S .pbf *
+$ find . -type f -exec mv -v '{}' '{}'.mvt \;
+--------------------------------------------------------------------------------------------
+tippecanoe --projection=EPSG:3857 -pk -f -Z12 -z13 -S15 -ab -ac -o veg12.mbtiles veg.geojson
+
+$ mb-util --image_format=pbf veg12.mbtiles vegtile12
+
+$ cd vegtile12
+$ gzip -d -v -r -S .pbf *
+$ find . -type f -exec mv -v '{}' '{}'.mvt \;
+--------------------------------------------------------------------------------------------
+tippecanoe --projection=EPSG:3857 -pk -f -Z9 -z13 -S15 -ab -o veg13.mbtiles veg.geojson
+
+$ mb-util --image_format=pbf veg13.mbtiles vegtile13
+
+$ cd vegtile13
+$ gzip -d -v -r -S .pbf *
+$ find . -type f -exec mv -v '{}' '{}'.mvt \;
+--------------------------------------------------------------------------------------------
+tippecanoe -P -an -y DAI_N -y SYOKU_C -y SYOKU_N -y HANREI_N -s EPSG:3857 -f -z10 -S15 -ab -o veg10.mbtiles veg.geojson
+
+$ mb-util --image_format=pbf veg10.mbtiles vegtile10
+
+$ cd vegtile10
+$ gzip -d -v -r -S .pbf *
+$ find . -type f -exec mv -v '{}' '{}'.mvt \;
+--------------------------------------------------------------------------------------------
+tippecanoe -P -pk -s EPSG:3857 -f -Z14 -z15 -S15 -ab -o veg14.mbtiles veg.geojson
+
+$ mb-util --image_format=pbf veg14.mbtiles vegtile14
+
+$ cd vegtile14
+$ gzip -d -v -r -S .pbf *
+$ find . -type f -exec mv -v '{}' '{}'.mvt \;
+-------------------------------------------------------------------------------------------
+$ tippecanoe -P -Z1 -z15 -pk -ab -S10 -f -o dozyouzuFinished.mbtiles dozyouzu.geojson
+
+$ mb-util --image_format=pbf dozyouzuFinished.mbtiles dozyouzuFinishedTile
+
+$ cd dozyouzuFinishedTile
+$ gzip -d -v -r -S .pbf *
+$ find . -type f -exec mv -v '{}' '{}'.mvt \;
+
+-------------------------------------------------------------------------------------------
+$ tippecanoe -P -Z1 -z15 -pk -r0.5 -ag -f -o bunkazai.mbtiles bunkazai.geojson
+
+$ mb-util --image_format=pbf bunkazai.mbtiles bunkazaiTile
+
+$ cd bunkazaiTile
+$ gzip -d -v -r -S .pbf *
+$ find . -type f -exec mv -v '{}' '{}'.mvt \;
+-------------------------------------------------------------------------------------------
+$ tippecanoe -P -Z10 -z15 -pk -S10 -f -o 05toti.mbtiles 05toti.geojson
+
+$ mb-util --image_format=pbf 05toti.mbtiles 05totiTile
+
+$ cd 05totiTile
+$ gzip -d -v -r -S .pbf *
+$ find . -type f -exec mv -v '{}' '{}'.mvt \;
+-------------------------------------------------------------------------------------------
+$ tippecanoe -P -Z1 -z15 -pk -f -o kumamoto.mbtiles kumamoto.geojson
+
+$ mb-util --image_format=pbf kumamoto.mbtiles kumamotoTile
+
+$ cd 05totiTile
+$ gzip -d -v -r -S .pbf *
+$ find . -type f -exec mv -v '{}' '{}'.mvt \;
+-------------------------------------------------------------------------------------------
+$ tippecanoe -P -Z12 -z15 -pk -S10 -f -o 05merge.mbtiles 05merge.geojson
+
+$ mb-util --image_format=pbf 05merge.mbtiles 05mergeTile
+
+$ cd 05mergeTile
+$ gzip -d -v -r -S .pbf *
+$ find . -type f -exec mv -v '{}' '{}'.mvt \;
+-------------------------------------------------------------------------------------------
+$ tippecanoe -P -Z12 -z15 -pk -S10 -f -o 05merge3000.mbtiles merge30002.geojson
+
+$ mb-util --image_format=pbf 05merge3000.mbtiles 05mergeTile3000
+
+$ cd 05mergeTile3000
+$ gzip -d -v -r -S .pbf *
+$ find . -type f -exec mv -v '{}' '{}'.mvt \;
+-------------------------------------------------------------------------------------------
+$ tippecanoe -P -Z12 -z15 -pk -S10 -f -o 05merge4000.mbtiles merge40002.geojson
+
+$ mb-util --image_format=pbf 05merge4000.mbtiles 05mergeTile4000
+
+$ cd 05mergeTile4000
+$ gzip -d -v -r -S .pbf *
+$ find . -type f -exec mv -v '{}' '{}'.mvt \;
+-------------------------------------------------------------------------------------------
+$ tippecanoe -P -Z12 -z15 -pk -S10 -f -o 05merge5000.mbtiles merge50002.geojson
+
+$ mb-util --image_format=pbf 05merge5000.mbtiles 05mergeTile5000
+
+$ cd 05mergeTile5000
+$ gzip -d -v -r -S .pbf *
+$ find . -type f -exec mv -v '{}' '{}'.mvt \;
+-------------------------------------------------------------------------------------------
+$ tippecanoe -P -Z12 -z15 -pk -S10 -f -o 05merge6000.mbtiles merge60002.geojson
+
+$ mb-util --image_format=pbf 05merge6000.mbtiles 05mergeTile6000
+
+$ cd 05mergeTile6000
+$ gzip -d -v -r -S .pbf *
+$ find . -type f -exec mv -v '{}' '{}'.mvt \;
+-------------------------------------------------------------------------------------------
+$ tippecanoe -P -Z1 -z15 -pk -S15 -ab -f -o keizaisensas.mbtiles keizaisensas.geojson
+
+$ mb-util --image_format=pbf keizaisensas.mbtiles keizaisensasTile
+
+$ cd keizaisensasTile
+$ gzip -d -v -r -S .pbf *
+$ find . -type f -exec mv -v '{}' '{}'.mvt \;
+-------------------------------------------------------------------------------------------
+$ tippecanoe -P -Z1 -z13 -pk -f -o tositiiki.mbtiles tositiiki.geojson
+
+$ mb-util --image_format=pbf tositiiki.mbtiles tositiikiTile
+
+$ cd tositiikiTile
+$ gzip -d -v -r -S .pbf *
+$ find . -type f -exec mv -v '{}' '{}'.mvt \;
+-------------------------------------------------------------------------------------------
+$ tippecanoe -P -Z1 -z16 -pk -rg -f -o kumamoto.mbtiles mix.geojson
+
+$ mb-util --image_format=pbf kumamoto.mbtiles kumamotoTile
+
+$ cd kumamotoTile
+$ gzip -d -v -r -S .pbf *
+$ find . -type f -exec mv -v '{}' '{}'.mvt \;
+-------------------------------------------------------------------------------------------
+ポイントを極力表示するオプション-rg
+$ tippecanoe -Z1 -z17 -pk -rg -f -o kumamoto17.mbtiles mix2.geojson
+
+$ mb-util --image_format=pbf kumamoto17.mbtiles kumamotoTile17
+
+$ cd kumamotoTile17
+$ gzip -d -v -r -S .pbf *
+$ find . -type f -exec mv -v '{}' '{}'.mvt \;
+-------------------------------------------------------------------------------------------
+ポイントを極力表示するオプション-rg
+$ tippecanoe -Z1 -z15 -pk -rg -f -o zenkokuiseki2.mbtiles zenkokuiseki2.geojson
+
+$ mb-util --image_format=pbf zenkokuiseki2.mbtiles zenkokuiseki2Tile
+
+$ cd zenkokuiseki2Tile
+$ gzip -d -v -r -S .pbf *
+$ find . -type f -exec mv -v '{}' '{}'.mvt \;
+-------------------------------------------------------------------------------------------
+$ tippecanoe -Z1 -z17 -pk -f -o gunmaiseki.mbtiles gunmaiseki.geojson
+
+$ mb-util --image_format=pbf gunmaiseki.mbtiles gunmaisekiTile
+
+$ cd gunmaisekiTile
+$ gzip -d -v -r -S .pbf *
+$ find . -type f -exec mv -v '{}' '{}'.mvt \;
+-------------------------------------------------------------------------------------------
+ポイントを極力表示するオプション-rg
+$ tippecanoe -Z1 -z15 -pk -rg -f -o hakubutukan.mbtiles hakubutukan.geojson
+
+$ mb-util --image_format=pbf hakubutukan.mbtiles hakubutukanTile
+
+$ cd hakubutukanTile
+$ gzip -d -v -r -S .pbf *
+$ find . -type f -exec mv -v '{}' '{}'.mvt \;
+-------------------------------------------------------------------------------------------
+ポイントを極力表示するオプション-rg
+$ tippecanoe -Z1 -z15 -pk -rg -f -o bunkatyoudb.mbtiles bunkatyoudb.geojson
+
+$ mb-util --image_format=pbf bunkatyoudb.mbtiles bunkatyoudbTile
+
+cd bunkatyoudbTile
+gzip -d -v -r -S .pbf *
+find . -type f -exec mv -v '{}' '{}'.mvt \;
+-------------------------------------------------------------------------------------------
+ポイントを極力表示するオプション-rg
+$ tippecanoe -Z1 -z15 -pk -rg -f -o bunkatyoudb.mbtiles bunkatyoudb.geojson
+
+$ mb-util --image_format=pbf bunkatyoudb.mbtiles bunkatyoudbTile
+
+cd bunkatyoudbTile
+gzip -d -v -r -S .pbf *
+find . -type f -exec mv -v '{}' '{}'.mvt \;
+-------------------------------------------------------------------------------------------
+ポイントを極力表示するオプション-rg
+$ tippecanoe -Z1 -z15 -pk -rg -f -o rindou.mbtiles rindousagyoudou.geojson
+
+$ mb-util --image_format=pbf rindou.mbtiles rindouTile
+
+cd rindouTile
+gzip -d -v -r -S .pbf *
+find . -type f -exec mv -v '{}' '{}'.mvt \;
+-------------------------------------------------------------------------------------------
+ポイントを極力表示するオプション-rg
+tippecanoe -Z1 -z15 -pk -rg -f -o yayoi.mbtiles yayoi2.geojson
+
+mb-util --image_format=pbf yayoi.mbtiles yayoiTile
+
+cd yayoiile
+gzip -d -v -r -S .pbf *
+find . -type f -exec mv -v '{}' '{}'.mvt \;
+-------------------------------------------------------------------------------------------
+ポイントを極力表示するオプション-rg
+tippecanoe -Z1 -z15 -pk -rg -f -o syougakkoukuall.mbtiles syougakkoukuall.geojson
+
+mb-util --image_format=pbf syougakkoukuall.mbtiles syougakkoukuallTile
+
+cd syougakkoukuallTile
+gzip -d -v -r -S .pbf *
+find . -type f -exec mv -v '{}' '{}'.mvt \;
+-------------------------------------------------------------------------------------------
+ポイントを極力表示するオプション-rg
+tippecanoe -Z1 -z15 -pk -rg -f -o tyuugokkouku.mbtiles tyuugokkouku.geojson
+
+mb-util --image_format=pbf tyuugokkouku.mbtiles tyuugokkoukuTile
+
+cd tyuugokkoukuTile
+gzip -d -v -r -S .pbf *
+find . -type f -exec mv -v '{}' '{}'.mvt \;
+-------------------------------------------------------------------------------------------
+ポイントを極力表示するオプション-rg
+tippecanoe -Z1 -z15 -pk -rg -f -o iryouken.mbtiles iryouken.geojson
+
+mb-util --image_format=pbf iryouken.mbtiles iryoukenTile
+
+cd iryoukenTile
+gzip -d -v -r -S .pbf *
+find . -type f -exec mv -v '{}' '{}'.mvt \;
+-------------------------------------------------------------------------------------------
+tippecanoe -Z1 -z15 -pk -f -o senkyoku.mbtiles senkyoku.geojson
+
+mb-util --image_format=pbf senkyoku.mbtiles senkyokuTile
+
+cd senkyokuTile
+gzip -d -v -r -S .pbf *
+find . -type f -exec mv -v '{}' '{}'.mvt \;
+-------------------------------------------------------------------------------------------
+tippecanoe -P -Z1 -z15 -pk -S10 -f -o h17kokusei.mbtiles h17kokusei.geojson
+
+mb-util --image_format=pbf h17kokusei.mbtiles h17kokuseiTile
+
+cd h17kokuseiTile
+gzip -d -v -r -S .pbf *
+find . -type f -exec mv -v '{}' '{}'.mvt \;
+-------------------------------------------------------------------------------------------
+tippecanoe -P -Z1 -z15 -pk -S10 -f -o h22kokusei.mbtiles h22kokusei.geojson
+
+mb-util --image_format=pbf h22kokusei.mbtiles h22kokuseiTile
+
+cd h22kokuseiTile
+gzip -d -v -r -S .pbf *
+find . -type f -exec mv -v '{}' '{}'.mvt \;
+-------------------------------------------------------------------------------------------
+tippecanoe -P -Z1 -z15 -pk -pf -S10 -f -o 500meshjinkou.mbtiles 500meshjinkou.geojson
+
+mb-util --image_format=pbf 500meshjinkou.mbtiles 500meshjinkouTile
+
+cd 500meshjinkouTile
+gzip -d -v -r -S .pbf *
+find . -type f -exec mv -v '{}' '{}'.mvt \;
+-------------------------------------------------------------------------------------------
+tippecanoe -P -Z1 -z15 -pk -pf -S10 -f -o h07_500mesh_jinkou.mbtiles h07_500mesh_jinkou.geojson
+
+mb-util --image_format=pbf h07_500mesh_jinkou.mbtiles h07_500mesh_jinkouTile
+
+cd h07_500mesh_jinkouTile
+gzip -d -v -r -S .pbf *
+find . -type f -exec mv -v '{}' '{}'.mvt \;
+-------------------------------------------------------------------------------------------
+tippecanoe -P -Z1 -z15 -pk -pf -S10 -f -o h17toh27_500mesh_jinkou.mbtiles h17toh27_500mesh_jinkou.geojson
+
+mb-util --image_format=pbf h17toh27_500mesh_jinkou.mbtiles h17toh27_500mesh_jinkouTile
+
+cd h17toh27_500mesh_jinkouTile
+gzip -d -v -r -S .pbf *
+find . -type f -exec mv -v '{}' '{}'.mvt \;
+-------------------------------------------------------------------------------------------
+tippecanoe -P -Z1 -z15 -pk -pf -S10 -f -o 500mesh_jinkou.mbtiles 500mesh_jinkou.geojson
+
+mb-util --image_format=pbf 500mesh_jinkou.mbtiles 500mesh_jinkouTile
+
+cd 500mesh_jinkouTile
+gzip -d -v -r -S .pbf *
+find . -type f -exec mv -v '{}' '{}'.mvt \;
+-------------------------------------------------------------------------------------------
+tippecanoe -P -Z1 -z15 -pk -pf -S10 -f -o 26keizai_census_bunrui.mbtiles 26keizai_census_bunrui.geojson
+
+mb-util --image_format=pbf 26keizai_census_bunrui.mbtiles 26keizai_census_bunruiTile
+
+cd 26keizai_census_bunruiTile
+gzip -d -v -r -S .pbf *
+find . -type f -exec mv -v '{}' '{}'.mvt \;
+-------------------------------------------------------------------------------------------
+tippecanoe -P -Z1 -z15 -pk -pf -S10 -f -o 500mesh_jinkou_plus.mbtiles 500mesh_jinkou_plus.geojson
+
+
+
+
+mb-util --image_format=pbf 500mesh_jinkou_plus.mbtiles 500mesh_jinkou_plusTile
+
+cd 500mesh_jinkou_plusTile
+gzip -d -v -r -S .pbf *
+find . -type f -exec mv -v '{}' '{}'.mvt \;
+-------------------------------------------------------------------------------------------
+ポイントを極力表示するオプション-rg
+tippecanoe -Z1 -z15 -pk -rg -f -o fukushi.mbtiles fukushi.geojson
+
+mb-util --image_format=pbf fukushi.mbtiles fukushiTile
+
+cd fukushiTile
+gzip -d -v -r -S .pbf *
+find . -type f -exec mv -v '{}' '{}'.mvt \;
+-------------------------------------------------------------------------------------------
+tippecanoe -P -Z1 -z19 -pk -pf -S10 -f -o tunamimiyazaki.mbtiles tunamimiyazaki.geojson
+
+mb-util --image_format=pbf tunamimiyazaki.mbtiles tunamimiyazakiTile
+
+cd tunamimiyazakiTile
+gzip -d -v -r -S .pbf *
+find . -type f -exec mv -v '{}' '{}'.mvt \;
+-------------------------------------------------------------------------------------------
+tippecanoe -y level -P -Z1 -z19 -pk -pf -S10 -f -o 01wakkanai.mbtiles 01wakkanai.geojson
+
+mb-util --image_format=pbf 01wakkanai.mbtiles 01wakkanaiTile
+
+cd 01wakkanaiTile
+gzip -d -v -r -S .pbf *
+find . -type f -exec mv -v '{}' '{}'.mvt \;
+-------------------------------------------------------------------------------------------
+tippecanoe -y level  -y MAX_SIN -P -Z1 -z19 -pk -pf -S10 -f -o 01wakkanai2.mbtiles 01wakkanai2.geojson
+
+mb-util --image_format=pbf 01wakkanai2.mbtiles 01wakkanai2Tile
+
+cd 01wakkanai2Tile
+gzip -d -v -r -S .pbf *
+-------------------------------------------------------------------------------------------
+tippecanoe -P -Z1 -z14 -pk -pf -S20 -f -o shicyousonplus.mbtiles shicyousonplus.geojson
+
+mb-util --image_format=pbf shicyousonplus.mbtiles shicyousonplusTile
+
+cd shicyousonplusTile
+gzip -d -v -r -S .pbf *
+find . -type f -exec mv -v '{}' '{}'.mvt \;
+-------------------------------------------------------------------------------------------
+tippecanoe -P -Z1 -z14 -pk -pf -S15 -f -o shicyouson_genekiritu.mbtiles shicyouson_genekiritu.geojson
+
+mb-util --image_format=pbf shicyouson_genekiritu.mbtiles shicyouson_genekirituTile
+
+cd shicyouson_genekirituTile
+gzip -d -v -r -S .pbf *
+find . -type f -exec mv -v '{}' '{}'.mvt \;
+-------------------------------------------------------------------------------------------
+tippecanoe -P -Z1 -z14 -pk -pf -S15 -f -o zaiseisuii.mbtiles zaiseisuii.geojson
+
+mb-util --image_format=pbf zaiseisuii.mbtiles zaiseisuiiTile
+
+cd zaiseisuiiTile
+gzip -d -v -r -S .pbf *
+find . -type f -exec mv -v '{}' '{}'.mvt \;
+-------------------------------------------------------------------------------------------
+tippecanoe -P -Z1 -z13 -pk -pf -S15 -f -o syougyou500m.mbtiles syougyou500m.geojson
+
+mb-util --image_format=pbf syougyou500m.mbtiles syougyou500mTile
+
+cd syougyou500mTile
+gzip -d -v -r -S .pbf *
+find . -type f -exec mv -v '{}' '{}'.mvt \;
+-------------------------------------------------------------------------------------------
+tippecanoe -P -Z1 -z13 -pk -pf -S15 -f -o 1kMeshSangyou.mbtiles 1kMeshSangyou.geojson
+
+mb-util --image_format=pbf 1kMeshSangyou.mbtiles 1kMeshSangyouTile
+
+cd 1kMeshSangyouTile
+gzip -d -v -r -S .pbf *
+find . -type f -exec mv -v '{}' '{}'.mvt \;
+-------------------------------------------------------------------------------------------
+tippecanoe -P -Z1 -z13 -pk -pf -S15 -f -o 1kMeshGyoutai.mbtiles 1kMeshGyoutai.geojson
+
+mb-util --image_format=pbf 1kMeshGyoutai.mbtiles 1kMeshGyoutaiTile
+
+cd 1kMeshGyoutaiTile
+gzip -d -v -r -S .pbf *
+find . -type f -exec mv -v '{}' '{}'.mvt \;
+-------------------------------------------------------------------------------------------
+tippecanoe -P -Z1 -z13 -pk -pf -S15 -f -o 1kMeshKibo.mbtiles 1kMeshKibo.geojson
+
+mb-util --image_format=pbf 1kMeshKibo.mbtiles 1kMeshKiboTile
+
+cd 1kMeshKiboTile
+gzip -d -v -r -S .pbf *
+find . -type f -exec mv -v '{}' '{}'.mvt \;
+-------------------------------------------------------------------------------------------
+tippecanoe -P -Z1 -z13 -pk -pf -S15 -f -o 1kMeshSangyou2.mbtiles 1kMeshSangyou2.geojson
+
+mb-util --image_format=pbf 1kMeshSangyou2.mbtiles 1kMeshSangyou2Tile
+
+cd 1kMeshSangyou2Tile
+gzip -d -v -r -S .pbf *
+find . -type f -exec mv -v '{}' '{}'.mvt \;
+-------------------------------------------------------------------------------------------
+tippecanoe -P -Z1 -z13 -pk -pf -S15 -f -o suiki1kmesh.mbtiles suiki1kmesh.geojson
+
+mb-util --image_format=pbf suiki1kmesh.mbtiles suiki1kmeshTile
+
+cd suiki1kmeshTile
+gzip -d -v -r -S .pbf *
+find . -type f -exec mv -v '{}' '{}'.mvt \;
+-------------------------------------------------------------------------------------------
+tippecanoe -P -Z1 -z13 -pk -pf -S15 -rg -f -o hinanzyo.mbtiles hinanzyo.geojson
+
+mb-util --image_format=pbf hinanzyo.mbtiles hinanzyoTile
+
+cd hinanzyoTile
+gzip -d -v -r -S .pbf *
+find . -type f -exec mv -v '{}' '{}'.mvt \;
+-------------------------------------------------------------------------------------------
+tippecanoe -P -Z1 -z13 -pk -pf -S15 -rg -f -o keikanchiku.mbtiles keikanchiku.geojson
+
+mb-util --image_format=pbf keikanchiku.mbtiles keikanchikuTile
+
+cd keikanchikuTile
+gzip -d -v -r -S .pbf *
+find . -type f -exec mv -v '{}' '{}'.mvt \;
+-------------------------------------------------------------------------------------------
+tippecanoe -P -Z1 -z15 -pk -pf -S15 -rg -f -o hinanzyo.mbtiles hinanzyo2.geojson
+
+mb-util --image_format=pbf hinanzyo.mbtiles hinanzyoTile
+
+cd hinanzyoTile
+gzip -d -v -r -S .pbf *
+find . -type f -exec mv -v '{}' '{}'.mvt \;
+-------------------------------------------------------------------------------------------
+tippecanoe -P -Z1 -z15 -pk -pf -rg -f -o kaigansen.mbtiles kaigansen.geojson
+
+mb-util --image_format=pbf kaigansen.mbtiles kaigansenTile
+
+cd kaigansenTile
+gzip -d -v -r -S .pbf *
+find . -type f -exec mv -v '{}' '{}'.mvt \;
+-------------------------------------------------------------------------------------------
+tippecanoe -P -Z1 -z15 -pk -pf -rg -f -o rinhankai.mbtiles rinhankai.geojson
+
+mb-util --image_format=pbf rinhankai.mbtiles rinhankaiTile
+
+cd rinhankaiTile
+gzip -d -v -r -S .pbf *
+find . -type f -exec mv -v '{}' '{}'.mvt \;
+-------------------------------------------------------------------------------------------
+tippecanoe -P -Z1 -z15 -pk -pf -rg -f -o lightmesh.mbtiles lightmesh.geojson
+
+mb-util --image_format=pbf lightmesh.mbtiles lightmeshTile
+
+cd lightmeshTile
+gzip -d -v -r -S .pbf *
+find . -type f -exec mv -v '{}' '{}'.mvt \;
+-------------------------------------------------------------------------------------------
+tippecanoe -P -Z1 -z13 -pk -pf -rg -f -o lightmesh2.mbtiles lightmesh2.geojson
+
+mb-util --image_format=pbf lightmesh2.mbtiles lightmesh2Tile
+
+cd lightmesh2Tile
+gzip -d -v -r -S .pbf *
+find . -type f -exec mv -v '{}' '{}'.mvt \;
+-------------------------------------------------------------------------------------------
+tippecanoe -P -Z1 -z15 -pk -pf -rg -f -o lightmesh.mbtiles lightmesh2.geojson
+
+mb-util --image_format=pbf lightmesh.mbtiles lightmeshTile
+
+cd lightmeshTile
+gzip -d -v -r -S .pbf *
+find . -type f -exec mv -v '{}' '{}'.mvt \;
+-------------------------------------------------------------------------------------------
+tippecanoe -P -Z1 -z8 -pk -pf -rg -f -o lightmesh7.mbtiles lightmesh7dissolve.geojson
+
+mb-util --image_format=pbf lightmesh7.mbtiles lightmesh7Tile
+
+cd lightmesh7Tile
+gzip -d -v -r -S .pbf *
+find . -type f -exec mv -v '{}' '{}'.mvt \;
+-------------------------------------------------------------------------------------------
+tippecanoe -P -Z1 -z15 -pk -pf -rg -f -o iryou.mbtiles iryou.geojson
+
+mb-util --image_format=pbf iryou.mbtiles iryouTile
+
+cd iryouTile
+gzip -d -v -r -S .pbf *
+find . -type f -exec mv -v '{}' '{}'.mvt \;
+-------------------------------------------------------------------------------------------
+tippecanoe -P -Z1 -z13 -pk -pf -S15 -f -o tuukin.mbtiles tuukin.geojson
+
+mb-util --image_format=pbf tuukin.mbtiles tuukinTile
+
+cd tuukinTile
+gzip -d -v -r -S .pbf *
+find . -type f -exec mv -v '{}' '{}'.mvt \;
+-------------------------------------------------------------------------------------------
+tippecanoe -P -Z1 -z13 -pk -pf -S20 -f -o tuukin2.mbtiles tuukin.geojson
+
+mb-util --image_format=pbf tuukin2.mbtiles tuukin2Tile
+
+cd tuukin2Tile
+gzip -d -v -r -S .pbf *
+find . -type f -exec mv -v '{}' '{}'.mvt \;
+-------------------------------------------------------------------------------------------
+tippecanoe -P -Z1 -z13 -pk -pf -S17 -f -o tuukin.mbtiles tuukin.geojson
+
+mb-util --image_format=pbf tuukin.mbtiles tuukinTile
+
+cd tuukinTile
+gzip -d -v -r -S .pbf *
+https://mapwarper.h-gis.jp/api/v1/maps/47
+-------------------------------------------------------------------------------------------
+tippecanoe -P -Z1 -z13 -pk -pf -S17 -f -o tuukin2.mbtiles tuukin.geojson
+
+mb-util --image_format=pbf tuukin2.mbtiles tuukin2Tile
+
+cd tuukin2Tile
+gzip -d -v -r -S .pbf *
+find . -type f -exec mv -v '{}' '{}'.mvt \;
+-------------------------------------------------------------------------------------------
+tippecanoe -P -Z1 -z13 -pk -pf -S20 -f -o h27syouchiiki.mbtiles h27syouchiiki.geojson
+
+mb-util --image_format=pbf h27syouchiiki.mbtiles h27syouchiikiTile
+
+cd h27syouchiikiTile
+gzip -d -v -r -S .pbf *
+find . -type f -exec mv -v '{}' '{}'.mvt \;
+-------------------------------------------------------------------------------------------
+tippecanoe -P -Z1 -z8 -pk -pf -S10 -rg -f -o aster.mbtiles aster.geojson
+
+mb-util --image_format=pbf aster.mbtiles asterTile
+
+cd asterTile
+gzip -d -v -r -S .pbf *
+find . -type f -exec mv -v '{}' '{}'.mvt \;
+-------------------------------------------------------------------------------------------
+tippecanoe -P -Z1 -z13 -pk -pf -S10 -rg -f -o aster_dissolve.mbtiles aster_dissolve.geojson
+
+mb-util --image_format=pbf aster_dissolve.mbtiles aster_dissolveTile
+
+cd aster_dissolveTile
+gzip -d -v -r -S .pbf *
+find . -type f -exec mv -v '{}' '{}'.mvt \;
+-------------------------------------------------------------------------------------------
+tippecanoe -P -Z1 -z13 -pk -pf -rg -f -o aster_dissolve.mbtiles aster_dissolve.geojson
+
+mb-util --image_format=pbf aster_dissolve.mbtiles aster_dissolveTile
+
+cd aster_dissolveTile
+gzip -d -v -r -S .pbf *
+find . -type f -exec mv -v '{}' '{}'.mvt \;
+-------------------------------------------------------------------------------------------
+tippecanoe -P -Z10 -z14 -pk -pf -rg -f -o aster.mbtiles aster.geojson
+
+mb-util --image_format=pbf aster.mbtiles asterTile
+
+cd asterTile
+gzip -d -v -r -S .pbf *
+find . -type f -exec mv -v '{}' '{}'.mvt \;
+-------------------------------------------------------------------------------------------
+tippecanoe -P -Z1 -z15 -pk -pf -rg -f -o oyodogawa_ugan.mbtiles oyodogawa_ugan.geojson
+
+mb-util --image_format=pbf oyodogawa_ugan.mbtiles oyodogawa_uganTile
+
+cd oyodogawa_uganTile
+gzip -d -v -r -S .pbf *
+find . -type f -exec mv -v '{}' '{}'.mvt \;
+-------------------------------------------------------------------------------------------
+tippecanoe --projection=EPSG:4326 -P -Z1 -z15 -pk -pf -rg -ag -f -o ziko.mbtiles ziko842.geojson
+
+mb-util --image_format=pbf ziko.mbtiles zikoTile
+
+cd zikoTile
+gzip -d -v -r -S .pbf *
+find . -type f -exec mv -v '{}' '{}'.mvt \;
+-------------------------------------------------------------------------------------------
+tippecanoe -P -Z1 -z15 -pk -pf -rg -S15 -f -o railloadandstation.mbtiles railloadandstation.geojson
+
+mb-util --image_format=pbf railloadandstation.mbtiles railloadandstationTile
+
+cd railloadandstationTile
+gzip -d -v -r -S .pbf *
+find . -type f -exec mv -v '{}' '{}'.mvt \;
+-------------------------------------------------------------------------------------------
+tippecanoe -P -Z1 -z15 -pk -pf -rg -S10 -f -o oyodogawa_ugan.mbtiles oyodogawa_ugan.geojson
+
+mb-util --image_format=pbf oyodogawa_ugan.mbtiles oyodogawa_uganTile
+
+cd oyodogawa_uganTile
+gzip -d -v -r -S .pbf *
+find . -type f -exec mv -v '{}' '{}'.mvt \;
+-------------------------------------------------------------------------------------------
+tippecanoe -P -Z1 -z15 -pk -pf -rg -S10 -f -o rinpan.mbtiles rinpan.geojson
+
+mb-util --image_format=pbf rinpan.mbtiles rinpanTile
+
+cd rinpanTile
+gzip -d -v -r -S .pbf *
+find . -type f -exec mv -v '{}' '{}'.mvt \;
+-------------------------------------------------------------------------------------------
+tippecanoe -P -Z1 -z15 -pk -pf -rg -S10 -f -o syouhankigou.mbtiles syouhankigou.geojson
+
+mb-util --image_format=pbf syouhankigou.mbtiles syouhankigouTile
+
+cd syouhankigouTile
+gzip -d -v -r -S .pbf *
+find . -type f -exec mv -v '{}' '{}'.mvt \;
+-------------------------------------------------------------------------------------------
+tippecanoe -P -Z1 -z15 -pk -pf -rg -S10 -f -o miyazakishinrin.mbtiles miyazakishinrin.geojson
+
+mb-util --image_format=pbf miyazakishinrin.mbtiles miyazakishinrinTile
+
+cd miyazakishinrinTile
+gzip -d -v -r -S .pbf *
+find . -type f -exec mv -v '{}' '{}'.mvt \;
+-------------------------------------------------------------------------------------------
+tippecanoe -P -Z1 -z15 -pk -pf -rg -S10 -f -o shinrin208.mbtiles shinrin208.geojson
+
+mb-util --image_format=pbf shinrin208.mbtiles shinrin208Tile
+
+cd shinrin208Tile
+gzip -d -v -r -S .pbf *
+find . -type f -exec mv -v '{}' '{}'.mvt \;
+-------------------------------------------------------------------------------------------
+tippecanoe -P -Z1 -z15 -pk -pf -rg -S10 -f -o shinrin209.mbtiles shinrin209.geojson
+
+mb-util --image_format=pbf shinrin209.mbtiles shinrin209Tile
+
+cd shinrin209Tile
+gzip -d -v -r -S .pbf *
+find . -type f -exec mv -v '{}' '{}'.mvt \;
+-------------------------------------------------------------------------------------------
+tippecanoe -P -Z1 -z15 -pk -pf -rg -S10 -f -o shinrin210.mbtiles shinrin210.geojson
+
+mb-util --image_format=pbf shinrin210.mbtiles shinrin210Tile
+
+cd shinrin210Tile
+gzip -d -v -r -S .pbf *
+find . -type f -exec mv -v '{}' '{}'.mvt \;
+-------------------------------------------------------------------------------------------
+tippecanoe -P -Z1 -z15 -pk -pf -rg -S10 -f -o s05a.mbtiles s05a.geojson
+
+mb-util --image_format=pbf s05a.mbtiles s05aTile
+
+cd s05aTile
+gzip -d -v -r -S .pbf *
+find . -type f -exec mv -v '{}' '{}'.mvt \;
+-------------------------------------------------------------------------------------------
+tippecanoe -P -Z1 -z13 -pk -pf -rg -S15 -f -o s05b.mbtiles s05b.geojson
+
+mb-util --image_format=pbf s05b.mbtiles s05bTile
+
+cd s05bTile
+gzip -d -v -r -S .pbf *
+find . -type f -exec mv -v '{}' '{}'.mvt \;
+
+
+
+
+
+-------------------------------------------------------------------------------------------
+tippecanoe -P -Z1 -z13 -pk -pf -rg -S15 -f -o s05mix.mbtiles s05mix.geojson
+
+mb-util --image_format=pbf s05mix.mbtiles s05mixTile
+
+cd s05mixTile
+gzip -d -v -r -S .pbf *
+find . -type f -exec mv -v '{}' '{}'.mvt \;
+
+-------------------------------------------------------------------------------------------
+tippecanoe -P -Z1 -z15 -pk -pf -rg -S10 -f -o merge250.mbtiles merge250.geojson
+
+mb-util --image_format=pbf merge250.mbtiles merge250Tile
+
+cd merge250Tile
+gzip -d -v -r -S .pbf *
+find . -type f -exec mv -v '{}' '{}'.mvt \;
+-------------------------------------------------------------------------------------------
+tippecanoe -P -Z1 -z15 -pk -pf -rg -S10 -f -o h22merge.mbtiles h22merge.geojson
+
+mb-util --image_format=pbf h22merge.mbtiles h22mergeTile
+
+cd h22mergeTile
+gzip -d -v -r -S .pbf *
+find . -type f -exec mv -v '{}' '{}'.mvt \;
+-------------------------------------------------------------------------------------------
+tippecanoe -y level  -y MAX_SIN -P -Z1 -z15 -pk -pf -S10 -f -o 4326merge.mbtiles 4326merge.geojson
+
+mb-util --image_format=pbf 4326merge.mbtiles 4326mergeTile
+
+cd 4326mergeTile
+gzip -d -v -r -S .pbf *
+find . -type f -exec mv -v '{}' '{}'.mvt \;
+
+13でドロップ
+
+
+-------------------------------------------------------------------------------------------
+tippecanoe -y level -P -Z1 -z15 -pk -pf -S10 -f -o 4326mergedisolve.mbtiles 4326mergedisolve.geojson
+
+mb-util --image_format=pbf 4326mergedisolve.mbtiles 4326mergedisolveTile
+
+cd 4326mergedisolveTile
+gzip -d -v -r -S .pbf *
+find . -type f -exec mv -v '{}' '{}'.mvt \;
+-------------------------------------------------------------------------------------------
+tippecanoe -y max -P -Z1 -z15 -pk -pf -S10 -f -o taiheiyoumerge.mbtiles taiheiyou.geojson
+
+mb-util --image_format=pbf taiheiyoumerge.mbtiles taiheiyoumergeTile
+
+cd taiheiyoumergeTile
+gzip -d -v -r -S .pbf *
+find . -type f -exec mv -v '{}' '{}'.mvt \;
+-------------------------------------------------------------------------------------------
+tippecanoe -y level -P -Z1 -z15 -pk -pf -S10 -f -o taiheiyoudisolve.mbtiles taiheiyouD.geojson
+
+mb-util --image_format=pbf taiheiyoudisolve.mbtiles taiheiyoudisolveTile
+
+cd taiheiyoudisolveTile
+gzip -d -v -r -S .pbf *
+find . -type f -exec mv -v '{}' '{}'.mvt \;
+
+-------------------------------------------------------------------------------------------
+tippecanoe -P -Z1 -z15 -pk -pf -rg -S10 -f -o 500suikei.mbtiles 500suikei.geojson
+
+mb-util --image_format=pbf 500suikei.mbtiles 500suikeiTile
+
+cd 500suikeiTile
+gzip -d -v -r -S .pbf *
+find . -type f -exec mv -v '{}' '{}'.mvt \;
+-------------------------------------------------------------------------------------------
+tippecanoe -P -Z1 -z15 -pk -pf -rg -S10 -f -o h-minyuu.mbtiles h-minyuu.geojson
+
+mb-util --image_format=pbf h-minyuu.mbtiles h-minyuuTile
+
+cd h-minyuuTile
+gzip -d -v -r -S .pbf *
+find . -type f -exec mv -v '{}' '{}'.mvt \;
+-------------------------------------------------------------------------------------------
+tippecanoe -P -Z1 -z12 -pk -pf -rg -S10 -f -o h-minyuu-zyu1.mbtiles h-minyuu-zyu1.geojson
+
+mb-util --image_format=pbf h-minyuu-zyu1.mbtiles h-minyuu-zyu1Tile
+
+cd h-minyuu-zyu1Tile
+gzip -d -v -r -S .pbf *
+find . -type f -exec mv -v '{}' '{}'.mvt \;
+-------------------------------------------------------------------------------------------
+tippecanoe -an -ac -Z1 -z12 -S10 -f -o h-minyuuAn.mbtiles h-minyuu.geojson
+
+mb-util --image_format=pbf h-minyuuAn.mbtiles h-minyuuAnTile
+
+cd h-minyuuAnTile
+gzip -d -v -r -S .pbf *
+find . -type f -exec mv -v '{}' '{}'.mvt \;
+-------------------------------------------------------------------------------------------
+tippecanoe -an -ac -Z1 -z15 -S10 -f -o h-douyuu.mbtiles h-douyuu.geojson
+
+mb-util --image_format=pbf h-douyuu.mbtiles h-douyuuTile
+
+cd h-douyuuTile
+gzip -d -v -r -S .pbf *
+find . -type f -exec mv -v '{}' '{}'.mvt \;
+-------------------------------------------------------------------------------------------
+tippecanoe -an -ac -Z1 -z15 -S10 -f -o did.mbtiles did.geojson
+
+mb-util --image_format=pbf did.mbtiles didTile
+
+cd didTile
+gzip -d -v -r -S .pbf *
+find . -type f -exec mv -v '{}' '{}'.mvt \;
+
+
+-------------------------------------------------------------------------------------------
+tippecanoe -an -ac -Z1 -z5 -S10 -f -o worldmerge.mbtiles worldmerge.geojson
+
+mb-util --image_format=pbf worldmerge.mbtiles worldmergeTile
+
+cd worldmergeTile
+gzip -d -v -r -S .pbf *
+find . -type f -exec mv -v '{}' '{}'.mvt \;
+
+
+
+-------------------------------------------------------------------------------------------
+tippecanoe -an -ac  -pk -pf -Z1 -z15 -S10 -f -o h27syouchiiki.mbtiles h27syouchiiki.geojson
+
+mb-util --image_format=pbf h27syouchiiki.mbtiles h27syouchiikiTile
+
+cd h27syouchiikiTile
+gzip -d -v -r -S .pbf *
+find . -type f -exec mv -v '{}' '{}'.mvt \;
+
+
+-------------------------------------------------------------------------------------------
+cd /volumes/My\ Passport\ for\ Mac
+
+
+tippecanoe -an -ac  -pk -pf -Z1 -z15 -S10 -f -o 45miyazaki.mbtiles 45miyazaki.geojson
+
+mb-util --image_format=pbf 45miyazaki.mbtiles 45miyazakiTile
+
+cd 45miyazakiTile
+gzip -d -v -r -S .pbf *
+find . -type f -exec mv -v '{}' '{}'.mvt \;
+
+https://kenzkenz.github.io/100m45miyazaki/{z}/{x}/{y}.mvt
+-------------------------------------------------------------------------------------------
+tippecanoe -an -ac  -pk -pf -Z1 -z15 -S10 -f -o 8kyuusyuu.mbtiles 8kyuusyuu.geojson
+
+mb-util --image_format=pbf 8kyuusyuu.mbtiles 8kyuusyuuTile
+
+cd 8kyuusyuuTile
+gzip -d -v -r -S .pbf *
+find . -type f -exec mv -v '{}' '{}'.mvt \;
+
+https://kenzkenz.github.io/100mesh8kyuusyuu/{z}/{x}/{y}.mvt
+-------------------------------------------------------------------------------------------
+tippecanoe -an -ac  -pk -pf -Z1 -z15 -S10 -f -o merged.mbtiles merged.geojson
+
+mb-util --image_format=pbf merged.mbtiles mergedTile
+
+cd mergedTile
+gzip -d -v -r -S .pbf *
+find . -type f -exec mv -v '{}' '{}'.mvt \;
+
+https://kenzkenz.github.io/100mesh8kyuusyuu/{z}/{x}/{y}.mvt
+
+
+
+
+-------------------------------------------------------------------------------------------
+tippecanoe -an -ac  -pk -pf -Z1 -z15 -S10 -f -o 100mmesh.mbtiles 100mmesh.geojson
+
+mb-util --image_format=pbf 100mmesh.mbtiles 100mmeshTile
+
+cd 100mmeshTile
+gzip -d -v -r -S .pbf *
+find . -type f -exec mv -v '{}' '{}'.mvt \;
+
+https://kenzkenz.github.io/100mmesh/{z}/{x}/{y}.mvt
+
+
+-------------------------------------------------------------------------------------------
+tippecanoe -an -ac  -pk -pf -Z1 -z15 -S10 -f -o tunami.mbtiles tunami.geojson
+
+mb-util --image_format=pbf tunami.mbtiles tunamiTile
+
+cd tunamiTile
+gzip -d -v -r -S .pbf *
+find . -type f -exec mv -v '{}' '{}'.mvt \;
+
+https://kenzkenz.github.io/100mmesh/{z}/{x}/{y}.mvt
+
+-------------------------------------------------------------------------------------------
+tippecanoe -an -ac  -pk -pf -Z1 -z15 -S10 -f -o tunamiyuugou.mbtiles tunamiyuugou.geojson
+
+mb-util --image_format=pbf tunamiyuugou.mbtiles tunamiyuugouTile
+
+cd tunamiyuugouTile
+gzip -d -v -r -S .pbf *
+find . -type f -exec mv -v '{}' '{}'.mvt \;
+-------------------------------------------------------------------------------------------
+tippecanoe -an -ac -Z1 -z15 -S10 -f -o minyuurin2017.mbtiles minyuurin2017.geojson
+
+mb-util --image_format=pbf minyuurin2017.mbtiles minyuurin2017Tile
+
+cd minyuurin2017Tile
+gzip -d -v -r -S .pbf *
+find . -type f -exec mv -v '{}' '{}'.mvt \;
+-------------------------------------------------------------------------------------------
+tippecanoe -an -ac -Z1 -z12 -S10 -f -o minyuurin2017d.mbtiles minyuurin2017d.geojson
+
+mb-util --image_format=pbf minyuurin2017d.mbtiles minyuurin2017dTile
+
+cd minyuurin2017dTile
+gzip -d -v -r -S .pbf *
+find . -type f -exec mv -v '{}' '{}'.mvt \;
+-------------------------------------------------------------------------------------------
+tippecanoe -an -ac  -pk -pf -Z1 -z15 -S10 -f -o kyuusui.mbtiles kyuusui.geojson
+
+mb-util --image_format=pbf kyuusui.mbtiles kyuusuiTile
+
+cd kyuusuiTile
+gzip -d -v -r -S .pbf *
+find . -type f -exec mv -v '{}' '{}'.mvt \;
+
+
+
+
