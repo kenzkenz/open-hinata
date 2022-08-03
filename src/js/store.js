@@ -60,18 +60,20 @@ const moduleBase = {
     }
   },
   mutations: {
+    //------------------------------------------------------------------------------------
     popUpContReset(state) {
       state.popUpCont = ''
     },
+    //------------------------------------------------------------------------------------
     popUpContUpdate(state,payload) {
       if (!state.popUpCont) {
         state.popUpCont = state.popUpCont + payload
       } else {
-        state.popUpCont = state.popUpCont + '<br>' + payload
+        state.popUpCont = state.popUpCont + '<hr>' + payload
       }
     },
     //------------------------------------------------------------------------------------
-    updateFirstFlg (state,payload) {
+    updateFirstFlg (state, payload) {
       state.firstFlg = payload
     },
     // マップを登録------------------------------------------------------------------------------
