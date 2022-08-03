@@ -135,9 +135,15 @@ export function initMap (vm) {
       const tgtLayers = layers.filter(el => el.get('name')==='shinsuishin'
         || el.get('name')==='tunami'
         || el.get('name')==='keizoku'
+        || el.get('name')==='doseki'
+        || el.get('name')==='kyuukeisya'
+        || el.get('name')==='zisuberi'
+        || el.get('name')==='nadare'
         || el.get('name')==='dosya');
       if (tgtLayers.length>0) {
-        document.querySelector('#' + mapName + ' .ol-viewport').style.cursor = "pointer"
+        if (map.getView().getZoom() > 11) {
+          document.querySelector('#' + mapName + ' .ol-viewport').style.cursor = "pointer"
+        }
       }
     });
     // シングルクリック------------------------------------------------------------------------------------
@@ -148,7 +154,12 @@ export function initMap (vm) {
       const hazardLayers = layers0.filter(el => el.get('name')==='shinsuishin'
         || el.get('name')==='tunami'
         || el.get('name')==='keizoku'
-        || el.get('name')==='dosya');
+        || el.get('name')==='doseki'
+        || el.get('name')==='kyuukeisya'
+        || el.get('name')==='zisuberi'
+        || el.get('name')==='nadare'
+        || el.get('name')==='dosya'
+        || el.get('name')==='dosyaSaigai');
       if (hazardLayers.length===0) return
       //-------------------------------------------------------------------------
       const pixel = (map).getPixelFromCoordinate(evt.coordinate);
@@ -161,6 +172,7 @@ export function initMap (vm) {
         });
       })
       layersObj.forEach(object =>{
+        console.log(object.layer.get('name'))
         switch (object.layer.get('name')){
           case 'shinsuishin':
             PopUp.popUpShinsuishin(object.rgba)
@@ -173,6 +185,18 @@ export function initMap (vm) {
             break;
           case 'dosya':
             PopUp.popUpDosya(object.rgba)
+            break;
+          case 'doseki':
+            PopUp.popUpDoseki(object.rgba)
+            break;
+          case 'kyuukeisya':
+            PopUp.popUpKyuukeisyai(object.rgba)
+            break;
+          case 'zisuberi':
+            PopUp.popUpZisuberi(object.rgba)
+            break;
+          case 'nadare':
+            PopUp.popUpNadare(object.rgba)
             break;
           default:
         }

@@ -123,3 +123,47 @@ export function popUpDosya(rgba) {
   }
   store.commit('base/popUpContUpdate',cont)
 }
+//----------------------------------------------------------------------------------------
+export function popUpDoseki(rgba) {
+  const r = rgba[0]
+  const g = rgba[1]
+  const b = rgba[2]
+  let cont
+  if(r===245 && g===153 && b===101) {
+    cont = "土砂災害の危険性：土石流危険渓流（土石流の発生の危険性があり、人家等に被害を与えるおそれがある渓流）"
+ }
+  store.commit('base/popUpContUpdate',cont)
+}
+//----------------------------------------------------------------------------------------
+export function popUpKyuukeisyai(rgba) {
+  const r = rgba[0]
+  const g = rgba[1]
+  const b = rgba[2]
+  let cont
+  if(r===224 && g===224 && b===254) {
+    cont = "土砂災害の危険性：急傾斜地崩壊危険箇所（傾斜度30°かつ高さ5m以上の急傾斜地で人家等に被害を与えるおそれのある箇所）"
+  }
+  store.commit('base/popUpContUpdate',cont)
+}
+//----------------------------------------------------------------------------------------
+export function popUpZisuberi(rgba) {
+  const r = rgba[0]
+  const g = rgba[1]
+  const b = rgba[2]
+  let cont
+  if(r===255 && g===235 && b===223) {
+    cont = "土砂災害の危険性：地すべり危険箇所（地すべりが発生している又は地すべりが発生するおそれがある区域のうち、人家等に被害を与えるおそれのある箇所）"
+  }
+  store.commit('base/popUpContUpdate',cont)
+}
+//----------------------------------------------------------------------------------------
+export function popUpNadare(rgba) {
+  const r = rgba[0]
+  const g = rgba[1]
+  const b = rgba[2]
+  let cont
+  if(r===255 && g===255 && b===101) {
+    cont = "土砂災害の危険性：雪崩危険箇所（雪崩災害のおそれがある地域において、雪崩により人家等に被害を与えるおそれのある箇所）"
+  }
+  store.commit('base/popUpContUpdate',cont)
+}

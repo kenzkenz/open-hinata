@@ -1670,6 +1670,82 @@ for (let i of mapsStr) {
   dosyaObj[i] = new TileLayer(new Dosya())
 }
 const dosyaSumm =  '<a href="https://kenzkenz.xsrv.jp/open-hinata/img/dosha_keikai.png" target="_blank" ><img width="600" src="https://kenzkenz.xsrv.jp/open-hinata/img/dosha_keikai.png"></a>  ';
+// 土石流危険渓流-------------------------------------------------------------------------------
+function Doseki () {
+  this.name = 'doseki'
+  this.source = new XYZ({
+    url: 'https://disaportaldata.gsi.go.jp/raster/05_dosekiryukikenkeiryu/{z}/{x}/{y}.png',
+    crossOrigin: 'Anonymous',
+    minZoom: 1,
+    maxZoom: 17
+  })
+}
+const dosekiObj = {};
+for (let i of mapsStr) {
+  dosekiObj[i] = new TileLayer(new Doseki())
+}
+const dosekiSumm =   '<img width="300" src="https://kenzkenz.xsrv.jp/open-hinata/img/dosha_kiken.png">';
+// 急傾斜地崩壊危険箇所-------------------------------------------------------------------------------
+function Kyuukeisya () {
+  this.name = 'kyuukeisya'
+  this.source = new XYZ({
+    url: 'https://disaportaldata.gsi.go.jp/raster/05_kyukeisyachihoukai/{z}/{x}/{y}.png',
+    crossOrigin: 'Anonymous',
+    minZoom: 1,
+    maxZoom: 17
+  })
+}
+const kyuukeisyaObj = {};
+for (let i of mapsStr) {
+  kyuukeisyaObj[i] = new TileLayer(new Kyuukeisya())
+}
+const kyuukeisyaSumm =   '<img width="300" src="https://kenzkenz.xsrv.jp/open-hinata/img/dosha_kiken.png">';
+// 地すべり危険箇所-------------------------------------------------------------------------------
+function Zisuberi () {
+  this.name = 'zisuberi'
+  this.source = new XYZ({
+    url: 'https://disaportaldata.gsi.go.jp/raster/05_jisuberikikenkasyo/{z}/{x}/{y}.png',
+    crossOrigin: 'Anonymous',
+    minZoom: 1,
+    maxZoom: 17
+  })
+}
+const zisuberiObj = {};
+for (let i of mapsStr) {
+  zisuberiObj[i] = new TileLayer(new Zisuberi())
+}
+const zisuberiSumm =   '<img width="300" src="https://kenzkenz.xsrv.jp/open-hinata/img/dosha_kiken.png">';
+// 雪崩危険箇所-------------------------------------------------------------------------------
+function Nadare () {
+  this.name = 'nadare'
+  this.source = new XYZ({
+    url: 'https://disaportaldata.gsi.go.jp/raster/05_nadarekikenkasyo/{z}/{x}/{y}.png',
+    crossOrigin: 'Anonymous',
+    minZoom: 1,
+    maxZoom: 17
+  })
+}
+const nadareObj = {};
+for (let i of mapsStr) {
+  nadareObj[i] = new TileLayer(new Nadare())
+}
+const nadareSumm =   '<img width="300" src="https://kenzkenz.xsrv.jp/open-hinata/img/dosha_kiken.png">';
+//----------------------------------------------------------------------------
+const dosyaSaigaiObj = {};
+for (let i of mapsStr) {
+  dosyaSaigaiObj[i] = new LayerGroup({
+    layers: [
+      nadareObj[i],
+      zisuberiObj[i],
+      kyuukeisyaObj[i],
+      dosekiObj[i],
+      dosyaObj[i],
+      ]
+  })
+}
+for (let i of mapsStr) {
+  dosyaSaigaiObj[i].values_['name'] = 'dosyaSaigai'
+}
 // 宮崎市ハザードマップ-------------------------------------------------------------------------------
 function MiyazakisiHm () {
   this.source = new XYZ({
@@ -1842,7 +1918,15 @@ const layers =
         { text: '洪水浸水想定', data: { id: 'shinsuishin', layer: shinsuishinObj, opacity: 1, summary: shinsuishinSumm } },
         { text: '津波浸水想定', data: { id: 'tunami', layer: tsunamiObj, opacity: 1, summary: tunamiSumm } },
         { text: '浸水継続時間(想定最大規模)', data: { id: 'keizoku', layer: keizokuObj, opacity: 1, summary: keizokuSumm } },
-        { text: '土砂災害警戒区域(土石流)', data: { id: 'dosya', layer: dosyaObj, opacity: 1, summary: dosyaSumm } },
+        { text: '土砂災害',
+          children: [
+            { text: '<i class="fa-solid fa-layer-group"></i>土砂災害全て', data: { id: 'dosyasaigai', layer: dosyaSaigaiObj, opacity: 1} },
+            { text: '土砂災害警戒区域(土石流)', data: { id: 'dosya', layer: dosyaObj, opacity: 1, summary: dosyaSumm } },
+            { text: '土石流危険渓流', data: { id: 'doseki', layer: dosekiObj, opacity: 1, summary: dosekiSumm } },
+            { text: '急傾斜地崩壊危険箇所', data: { id: 'kyuukeisya', layer: kyuukeisyaObj, opacity: 1, summary: kyuukeisyaSumm } },
+            { text: '地すべり危険箇所', data: { id: 'zisuberi', layer: zisuberiObj, opacity: 1, summary: zisuberiSumm } },
+            { text: '雪崩危険箇所', data: { id: 'nadare', layer: nadareObj, opacity: 1, summary: nadareSumm } },
+         ]},
         { text: '宮崎市洪水ﾊｻﾞｰﾄﾞﾏｯﾌﾟ', data: { id: 'miyazakisiHm', layer: miyazakisiHmObj, opacity: 1, zoom: 13, center: [131.42054548436312, 31.907339493919977], summary: miyazakisiHmSumm } },
         { text: '都城市洪水ﾊｻﾞｰﾄﾞﾏｯﾌﾟ', data: { id: 'miyakonozyousiHm', layer: miyakonozyousiHmObj, opacity: 1, zoom: 13, center: [131.07797970576192, 31.78882205640913], summary: miyakonozyousiHmSumm } },
         { text: '日向市防災ﾊｻﾞｰﾄﾞﾏｯﾌﾟ', data: { id: 'hyuugasiHm', layer: hyuugasiHmObj, opacity: 1, zoom: 13, center: [131.6400086045909, 32.395198966795306], summary: hyuugasiHmSumm } }
