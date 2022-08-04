@@ -1,5 +1,5 @@
 import store from './store'
-export function popUp(layers,features,overlay,evt,content) {
+export function popUp(map,layers,features,overlay,evt,content) {
   let cont
   const coordinate = evt.coordinate;
   switch (layers[0].get('name') ) {
@@ -33,11 +33,11 @@ export function popUp(layers,features,overlay,evt,content) {
        break;
      // 夜の明かり
     case 'japanLight':
-      cont = '明るさレベル＝' +  features[0].properties_.light
+      if(map.getView().getZoom()>7) cont = '明るさレベル＝' +  features[0].properties_.light
       break
   }
   content.innerHTML = cont
-  if (cont) overlay.setPosition(coordinate);
+  if (cont && cont !== undefined) overlay.setPosition(coordinate);
 }
 //----------------------------------------------------------------------------------------
 export function popUpShinsuishin(rgba) {

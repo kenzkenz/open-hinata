@@ -261,7 +261,7 @@ export function initMap (vm) {
         layers.push(layer);
       });
       if(features.length){
-        PopUp.popUp(layers,features,overlay[i],evt,content)
+        PopUp.popUp(map,layers,features,overlay[i],evt,content)
       }
     })
   //------------------------------------------------------------------------------------------------------
