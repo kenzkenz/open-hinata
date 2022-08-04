@@ -1612,6 +1612,7 @@ const kotizu00Summ = SSK
 // 洪水浸水想定-------------------------------------------------------------------------------
 function Shinsuishin () {
   this.name = 'shinsuishin'
+  this.pointer = true
   this.source = new XYZ({
     url: 'https://disaportaldata.gsi.go.jp/raster/01_flood_l2_shinsuishin/{z}/{x}/{y}.png',
     crossOrigin: 'Anonymous',
@@ -1627,6 +1628,7 @@ const shinsuishinSumm = '<img src="https://kenzkenz.xsrv.jp/open-hinata/img/shin
 // 津波浸水想定-------------------------------------------------------------------------------
 function Tsunami () {
   this.name = 'tunami'
+  this.pointer = true
   this.source = new XYZ({
     url: 'https://disaportaldata.gsi.go.jp/raster/04_tsunami_newlegend_data/{z}/{x}/{y}.png',
     // url: 'https://disaportaldata.gsi.go.jp/raster/04_tsunami_oldlegend/{z}/{x}/{y}.png',
@@ -1643,6 +1645,7 @@ const tunamiSumm =  '<img src="https://kenzkenz.xsrv.jp/open-hinata/img/tsunami_
 // 津波浸水想定-------------------------------------------------------------------------------
 function Keizoku () {
   this.name = 'keizoku'
+  this.pointer = true
   this.source = new XYZ({
     url: 'https://disaportaldata.gsi.go.jp/raster/01_flood_l2_keizoku_kuni_data/{z}/{x}/{y}.png',
     crossOrigin: 'Anonymous',
@@ -1658,6 +1661,7 @@ const keizokuSumm =  '<img src="https://kenzkenz.xsrv.jp/open-hinata/img/shinsui
 // 土砂災害警戒区域（土石流-------------------------------------------------------------------------------
 function Dosya () {
   this.name = 'dosya'
+  this.pointer = true
   this.source = new XYZ({
     url: 'https://disaportaldata.gsi.go.jp/raster/05_dosekiryukeikaikuiki/{z}/{x}/{y}.png',
     crossOrigin: 'Anonymous',
@@ -1673,6 +1677,7 @@ const dosyaSumm =  '<a href="https://kenzkenz.xsrv.jp/open-hinata/img/dosha_keik
 // 土石流危険渓流-------------------------------------------------------------------------------
 function Doseki () {
   this.name = 'doseki'
+  this.pointer = true
   this.source = new XYZ({
     url: 'https://disaportaldata.gsi.go.jp/raster/05_dosekiryukikenkeiryu/{z}/{x}/{y}.png',
     crossOrigin: 'Anonymous',
@@ -1688,6 +1693,7 @@ const dosekiSumm =   '<img width="300" src="https://kenzkenz.xsrv.jp/open-hinata
 // 急傾斜地崩壊危険箇所-------------------------------------------------------------------------------
 function Kyuukeisya () {
   this.name = 'kyuukeisya'
+  this.pointer = true
   this.source = new XYZ({
     url: 'https://disaportaldata.gsi.go.jp/raster/05_kyukeisyachihoukai/{z}/{x}/{y}.png',
     crossOrigin: 'Anonymous',
@@ -1703,6 +1709,7 @@ const kyuukeisyaSumm =   '<img width="300" src="https://kenzkenz.xsrv.jp/open-hi
 // 地すべり危険箇所-------------------------------------------------------------------------------
 function Zisuberi () {
   this.name = 'zisuberi'
+  this.pointer = true
   this.source = new XYZ({
     url: 'https://disaportaldata.gsi.go.jp/raster/05_jisuberikikenkasyo/{z}/{x}/{y}.png',
     crossOrigin: 'Anonymous',
@@ -1718,6 +1725,7 @@ const zisuberiSumm =   '<img width="300" src="https://kenzkenz.xsrv.jp/open-hina
 // 雪崩危険箇所-------------------------------------------------------------------------------
 function Nadare () {
   this.name = 'nadare'
+  this.pointer = true
   this.source = new XYZ({
     url: 'https://disaportaldata.gsi.go.jp/raster/05_nadarekikenkasyo/{z}/{x}/{y}.png',
     crossOrigin: 'Anonymous',
@@ -1745,6 +1753,7 @@ for (let i of mapsStr) {
 }
 for (let i of mapsStr) {
   dosyaSaigaiObj[i].values_['name'] = 'dosyaSaigai'
+  dosyaSaigaiObj[i].values_['pointer'] = true
 }
 // 宮崎市ハザードマップ-------------------------------------------------------------------------------
 function MiyazakisiHm () {

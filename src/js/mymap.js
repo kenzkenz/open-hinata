@@ -132,16 +132,9 @@ export function initMap (vm) {
       (map).forEachLayerAtPixel(pixel,function(layer){
         layers.push(layer);
       });
-      const tgtLayers = layers.filter(el => el.get('name')==='shinsuishin'
-        || el.get('name')==='tunami'
-        || el.get('name')==='keizoku'
-        || el.get('name')==='doseki'
-        || el.get('name')==='kyuukeisya'
-        || el.get('name')==='zisuberi'
-        || el.get('name')==='nadare'
-        || el.get('name')==='dosya');
+      const tgtLayers = layers.filter(el => el.get('pointer'));
       if (tgtLayers.length>0) {
-        if (map.getView().getZoom() >= 11) {
+        if (map.getView().getZoom() >= 10) {
           document.querySelector('#' + mapName + ' .ol-viewport').style.cursor = "pointer"
         }
       }
@@ -151,15 +144,7 @@ export function initMap (vm) {
     map.on('singleclick', function (evt) {
       //処理を早くするため抜ける。
       const layers0 = map.getLayers().getArray();
-      const hazardLayers = layers0.filter(el => el.get('name')==='shinsuishin'
-        || el.get('name')==='tunami'
-        || el.get('name')==='keizoku'
-        || el.get('name')==='doseki'
-        || el.get('name')==='kyuukeisya'
-        || el.get('name')==='zisuberi'
-        || el.get('name')==='nadare'
-        || el.get('name')==='dosya'
-        || el.get('name')==='dosyaSaigai');
+      const hazardLayers = layers0.filter(el => el.get('pointer'));
       if (hazardLayers.length===0) return
       //-------------------------------------------------------------------------
       const pixel = (map).getPixelFromCoordinate(evt.coordinate);
@@ -220,9 +205,7 @@ export function initMap (vm) {
 
       //  洪水浸水想定と重ねるときは動作させない
       const layers0 = map.getLayers().getArray();
-      const hazardLayers = layers0.filter(el => el.get('name')==='shinsuishin'
-        || el.get('name')==='tunami'
-        || el.get('name')==='keizoku');
+      const hazardLayers = layers0.filter(el => el.get('pointer'));
       if (hazardLayers.length>0) return
       // ここまで
 
@@ -271,9 +254,7 @@ export function initMap (vm) {
       const map = evt.map;
       //  洪水浸水想定と重ねるときは動作させない
       const layers0 = map.getLayers().getArray();
-      const hazardLayers = layers0.filter(el => el.get('name')==='shinsuishin'
-                                                                    || el.get('name')==='tunami'
-                                                                    || el.get('name')==='keizoku');
+      const hazardLayers = layers0.filter(el => el.get('pointer'));
       if (hazardLayers.length>0) return
       // ここまで
       const option = {
