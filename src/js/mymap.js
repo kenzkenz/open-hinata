@@ -141,7 +141,7 @@ export function initMap (vm) {
         || el.get('name')==='nadare'
         || el.get('name')==='dosya');
       if (tgtLayers.length>0) {
-        if (map.getView().getZoom() > 11) {
+        if (map.getView().getZoom() >= 11) {
           document.querySelector('#' + mapName + ' .ol-viewport').style.cursor = "pointer"
         }
       }
