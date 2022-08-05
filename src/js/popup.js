@@ -22,8 +22,8 @@ export function popUp(map,layers,features,overlay,evt,content) {
       if(features[0].properties_.A32_001) {
         cont = '市区町村コード＝' + features[0].properties_.A32_001 + '<br>' +
                     '設置主体=' + features[0].properties_.A32_002 + '<br>' +
-                    '名称＝' + features[0].properties_.A32_004 + '<br>' +
-                    '所在地＝' + features[0].properties_.A32_005 + '<br>'
+                    '名称＝' + features[0].properties_.A32_003 + '<br>' +
+                    '所在地＝' + features[0].properties_.A32_004 + '<br>'
       } else {
         cont = '市区町村コード＝' + features[0].properties_.A32_006 + '<br>' +
                     '設置主体=' + features[0].properties_.A32_007 + '<br>' +

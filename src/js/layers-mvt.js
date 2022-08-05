@@ -28,14 +28,15 @@ function syougakkoukuStyleFunction(feature, resolution) {
   const geoType = feature.getGeometry().getType();
   let text = "";
   if(resolution<38.22){
-    if(prop["A27_004"]) {
-      text = prop["A27_004"];
+    if(prop["A27_003"]) {
+      text = prop["A27_003"];
     }else{
-      text = prop["A32_004"];
+      text = prop["A32_003"];
     }
   }
   let rgb
   let rgba
+  console.log(prop["id"])
   if(prop["A27_005"]) {
     rgb = d3.rgb(d3syougakkoukuColor(Number(prop["id"])));
     rgba = "rgba(" + rgb.r + "," + rgb.g + "," + rgb.b + ",0.7)";
@@ -110,8 +111,8 @@ function Tyuugakkouku(){
   this.source = new VectorTileSource({
     format: new MVT(),
     maxZoom:15,
-    // url: "https://mtile.pref.miyazaki.lg.jp/tile/mvt//tyuugakkouku/{z}/{x}/{y}.mvt"
-    url: "https://kenzkenz.xsrv.jp/mvt/tyuugakkouku2/{z}/{x}/{y}.mvt"
+    url: "https://mtile.pref.miyazaki.lg.jp/tile/mvt//tyuugakkouku/{z}/{x}/{y}.mvt"
+    // url: "https://kenzkenz.xsrv.jp/mvt/tyuugakkouku2/{z}/{x}/{y}.mvt"
   });
   this.style = syougakkoukuStyleFunction;
 }
