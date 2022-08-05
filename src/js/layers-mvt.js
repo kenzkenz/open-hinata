@@ -111,8 +111,8 @@ function Tyuugakkouku(){
   this.source = new VectorTileSource({
     format: new MVT(),
     maxZoom:15,
-    url: "https://mtile.pref.miyazaki.lg.jp/tile/mvt//tyuugakkouku/{z}/{x}/{y}.mvt"
-    // url: "https://kenzkenz.xsrv.jp/mvt/tyuugakkouku2/{z}/{x}/{y}.mvt"
+    // url: "https://mtile.pref.miyazaki.lg.jp/tile/mvt//tyuugakkouku/{z}/{x}/{y}.mvt"
+    url: "https://kenzkenz.xsrv.jp/mvt/tyuugakkouku2/{z}/{x}/{y}.mvt"
   });
   this.style = syougakkoukuStyleFunction;
 }
