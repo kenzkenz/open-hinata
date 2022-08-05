@@ -65,7 +65,7 @@
         const myToken = '032704dc9764ff62c36ef2aff9464eb50e89b4fe';
         // const target = 'https://kenzkenz.xsrv.jp/aaa/#8/140.1/37.86%3FS%3D1%26L%3D%5B%5B%7B%22id%22%3A1%2C%22o%22%3A1%7D%5D%2C%5B%7B%22id%22%3A2%2C%22o%22%3A1%7D%5D%2C%5B%7B%22id%22%3A4%2C%22o%22%3A1%7D%5D%2C%5B%7B%22id%22%3A5%2C%22o%22%3A1%7D%5D%5D'
         const target = window.location.href;
-          axios.get(url, {
+        axios.get(url, {
           params: {
             "access_token":myToken,
             "longUrl":target

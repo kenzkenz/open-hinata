@@ -60,6 +60,7 @@
   import * as Permalink from '../js/permalink'
   import Inobounce from '../js/inobounce'
   import * as MyMap from '../js/mymap'
+  import axios from 'axios'
   export default {
     name: 'App',
     components: {
@@ -191,6 +192,33 @@
     },
     mounted () {
       this.$nextTick(function () {
+        const eStatApiId = '63bd852098e1a13aeea70ed78cba31f9f3918d2f';
+        const statId = '0000020201';
+        const cat01 = 'A1101'
+        const limit = 100000;
+        axios({
+          method: 'get',
+          // url: 'https://api.e-stat.go.jp/rest/3.0/app/json/getStatsData',
+
+          url: 'https://api.e-stat.go.jp/rest/3.0/app/json/getMetaInfo',
+
+          params: {
+            metaGetFlg: 'N',
+            cntGetFlg: 'N',
+            sectionHeaderFlg: '1',
+            // statsDataId: statId,
+            // cdCat01: cat01,
+            limit: limit,
+            appId: eStatApiId
+          }
+        }).then(response => {
+          console.log(response)
+        })
+
+
+
+
+
         // ①map初期化-----------------------------
         MyMap.initMap(this);
         // ②パーマリンク------------------------------
