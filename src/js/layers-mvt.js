@@ -36,7 +36,7 @@ function syougakkoukuStyleFunction(feature, resolution) {
   }
   let rgb
   let rgba
-  console.log(prop["id"])
+  // console.log(prop["id"])
   if(prop["A27_005"]) {
     rgb = d3.rgb(d3syougakkoukuColor(Number(prop["id"])));
     rgba = "rgba(" + rgb.r + "," + rgb.g + "," + rgb.b + ",0.7)";
@@ -48,7 +48,7 @@ function syougakkoukuStyleFunction(feature, resolution) {
   switch (geoType){
     case "MultiPoint":
     case "Point":
-      if(resolution>305) break;
+      // if(resolution>305) break;
       style = new Style({
         image: new Circle({
           radius:3,
