@@ -325,7 +325,7 @@ find . -type f -exec mv -v '{}' '{}'.mvt \;
 -------------------------------------------------------------------------------------------
 ポイントを極力表示するオプション-rg
 tippecanoe -Z1 -z15 -pk -rg -f -o tyuugokkouku.mbtiles tyuugokkouku.geojson
-
+tippecanoe -Z1 -z15 -pk -rg -f -e tyuugokkoukuTile tyuugokkouku.geojson
 mb-util --image_format=pbf tyuugokkouku.mbtiles tyuugokkoukuTile
 
 cd tyuugokkoukuTile
