@@ -236,6 +236,11 @@ export function initMap (vm) {
 //--------------------------------------------------------------------------------
 // ポップアップ用
     map.on('singleclick', function (evt) {
+
+      const layers0 = map.getLayers().getArray();
+      const hazardLayers = layers0.filter(el => el.get('pointer'));
+      if (hazardLayers.length>0) return
+
       const pixel = (map).getPixelFromCoordinate(evt.coordinate);
       const features = [];
       const layers = [];
