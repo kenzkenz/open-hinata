@@ -18,6 +18,7 @@ import Crop from 'ol-ext/filter/Crop'
 import Mask from 'ol-ext/filter/Mask'
 import  * as MaskDep from './mask-dep'
 import  * as LayersMvt from './layers-mvt'
+import {suiroObj} from "./layers-mvt";
 const mapsStr = ['map01','map02','map03','map04'];
 const transformE = extent => {
   return transformExtent(extent,'EPSG:4326','EPSG:3857');
@@ -1931,6 +1932,8 @@ const layers =
           ]},
       ]},
     { text: '夜の明かり', data: { id: "japanLight", layer: LayersMvt.japanLightObj, opacity: 1, summary: LayersMvt.japanLightSumm } },
+    { text: '河川中心線', data: { id: "suiro", layer: LayersMvt.suiroObj, opacity: 1, summary: LayersMvt.suiroSumm } },
+
     // { text: '小学校区', data: { id: "syougakkouku", layer: LayersMvt.syougakkoukuObj, opacity: 1, summary: LayersMvt.syougakkoukuSumm } },
     // { text: '中学校区', data: { id: "tyuugakkouku", layer: LayersMvt.tyuugakkoukuObj, opacity: 1, summary: LayersMvt.tyuugakkoukuSumm } },
     { text: '人口集中地区',
