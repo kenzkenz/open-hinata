@@ -1916,9 +1916,13 @@ const layers =
     { text: '夜の明かり', data: { id: "japanLight", layer: LayersMvt.japanLightObj, opacity: 1, summary: LayersMvt.japanLightSumm } },
     // { text: '小学校区', data: { id: "syougakkouku", layer: LayersMvt.syougakkoukuObj, opacity: 1, summary: LayersMvt.syougakkoukuSumm } },
     // { text: '中学校区', data: { id: "tyuugakkouku", layer: LayersMvt.tyuugakkoukuObj, opacity: 1, summary: LayersMvt.tyuugakkoukuSumm } },
-    { text: '人口集中地区', data: { id: "didmvt", layer: LayersMvt.didmvtObj, opacity: 1, summary: LayersMvt.didmvtSumm } },
+    { text: '人口集中地区',
+      children: [
+        { text: 'H27人口集中地区', data: { id: "didmvt", layer: LayersMvt.didH27Obj, opacity: 1, summary: LayersMvt.didH27Summ } },
+        { text: 'H22人口集中地区', data: { id: "didH22", layer: LayersMvt.didH22Obj, opacity: 1, summary: LayersMvt.didH22Summ } },
+        { text: 'S35人口集中地区', data: { id: "didS35", layer: LayersMvt.didS35Obj, opacity: 1, summary: LayersMvt.didS35Summ } },
 
-
+      ]},
     { text: '海面上昇シミュ',
       children: [
         { text: '海面上昇シミュ5Mdem', data: { id: 'flood5m', layer: flood5Obj, opacity: 1, summary: floodSumm, component: {name: 'flood5m', values:[]}} },

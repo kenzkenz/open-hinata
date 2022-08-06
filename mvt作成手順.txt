@@ -875,15 +875,23 @@ cd h-douyuuTile
 gzip -d -v -r -S .pbf *
 find . -type f -exec mv -v '{}' '{}'.mvt \;
 -------------------------------------------------------------------------------------------
-tippecanoe -an -ac -Z1 -z15 -S10 -f -o did.mbtiles did.geojson
-
 tippecanoe -an -ac -Z1 -z15 -S10 -f -e DIDh27Tile DIDh27.geojson
 
 cd DIDh27Tile
 gzip -d -v -r -S .pbf *
 find . -type f -exec mv -v '{}' '{}'.mvt \;
+-------------------------------------------------------------------------------------------
+tippecanoe -an -ac -Z1 -z13 -S10 -f -e DIDh22Tile DIDh22.geojson
 
+cd DIDh22Tile
+gzip -d -v -r -S .pbf *
+find . -type f -exec mv -v '{}' '{}'.mvt \;
+-------------------------------------------------------------------------------------------
+tippecanoe -an -ac -Z1 -z13 -S10 -f -e DIDs35Tile DIDs35.geojson
 
+cd DIDs35Tile
+gzip -d -v -r -S .pbf *
+find . -type f -exec mv -v '{}' '{}'.mvt \;
 -------------------------------------------------------------------------------------------
 tippecanoe -an -ac -Z1 -z5 -S10 -f -o worldmerge.mbtiles worldmerge.geojson
 

@@ -39,7 +39,11 @@ export function popUp(map,layers,features,overlay,evt,content) {
       break
     case 'didh27':
       cont = '人口=' + prop.人口.toLocaleString() + '人'
-
+      break
+    case 'dids35':
+    case 'didh22':
+      cont = '人口=' + Number(prop.A16_005).toLocaleString() + '人'
+      break
   }
   content.innerHTML = cont
   if (cont && cont !== undefined) overlay.setPosition(coordinate);

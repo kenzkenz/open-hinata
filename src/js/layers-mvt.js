@@ -214,7 +214,7 @@ function japanLightStyleFunction () {
   };
 }
 // DID地区------------------------------------------
-function DidMvt(){
+function DidH27(){
   this.name="didh27";
   this.source = new VectorTileSource({
     overlaps:false,
@@ -225,21 +225,64 @@ function DidMvt(){
     url: "https://kenzkenz.github.io/didh27/{z}/{x}/{y}.mvt"
     // url: "https://kenzkenz.xsrv.jp/mvt/didh27/{z}/{x}/{y}.mvt"
   });
-  this.style = didmvtStyleFunction();
+  this.style = didmvtStyleFunction(27);
 }
-export  const didmvtObj = {};
+export  const didH27Obj = {};
 for (let i of mapsStr) {
-  didmvtObj[i] = new VectorTileLayer(new DidMvt())
+  didH27Obj[i] = new VectorTileLayer(new DidH27())
 }
-export const didmvtSumm = "H27の人口集中地区です。<br>出典＝国土数値情報"
+export const didH27Summ = "H27の人口集中地区です。<br>出典＝国土数値情報"
+// h22人口集中地区---------------------------------------
+function DidH22(){
+  this.name="didh22";
+  this.source = new VectorTileSource({
+    overlaps:false,
+    transition:0,
+    format: new MVT(),
+    crossOrigin: 'Anonymous',
+    maxZoom:13,
+    url: "https://kenzkenz.github.io/didh22/{z}/{x}/{y}.mvt"
+  });
+  this.style = didmvtStyleFunction(22);
+}
+export  const didH22Obj = {};
+for (let i of mapsStr) {
+  didH22Obj[i] = new VectorTileLayer(new DidH22())
+}
+export const didH22Summ = "H22の人口集中地区です。<br>出典＝国土数値情報"
+// s35人口集中地区---------------------------------------
+function DidS35(){
+  this.name="dids35";
+  this.source = new VectorTileSource({
+    overlaps:false,
+    transition:0,
+    format: new MVT(),
+    crossOrigin: 'Anonymous',
+    maxZoom:13,
+    url: "https://kenzkenz.github.io/dids35/{z}/{x}/{y}.mvt"
+  });
+  this.style = didmvtStyleFunction(35);
+}
+export  const didS35Obj = {};
+for (let i of mapsStr) {
+  didS35Obj[i] = new VectorTileLayer(new DidS35())
+}
+export const didS35Summ = "s35の人口集中地区です。<br>出典＝国土数値情報"
 // -------------------------------------------------------------
- function didmvtStyleFunction () {
+ function didmvtStyleFunction (year) {
   return function (feature, resolution) {
     const prop = feature.getProperties();
     const zoom = getZoom(resolution);
     const rgba = "rgba(75,0,130,0.5)";
     const styles = [];
-    const text = String(prop["人口"].toLocaleString())+"人";
+    let text
+    console.log(prop)
+    if (year === 27) {
+      text = Number(prop["人口"]).toLocaleString()+"人";
+    } else {
+      text = Number(prop["A16_005"]).toLocaleString()+"人";
+    }
+
 
     const fillStyle = new Style({
       fill: new Fill({
