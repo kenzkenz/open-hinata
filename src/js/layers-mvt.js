@@ -221,9 +221,9 @@ function DidMvt(){
     transition:0,
     format: new MVT(),
     crossOrigin: 'Anonymous',
-    maxZoom:15,
-    // url: "https://kenzkenz.github.io/did/{z}/{x}/{y}.mvt"
-    url: "https://kenzkenz.xsrv.jp/mvt/didh27/{z}/{x}/{y}.mvt"
+    maxZoom:13,
+    url: "https://kenzkenz.github.io/didh27/{z}/{x}/{y}.mvt"
+    // url: "https://kenzkenz.xsrv.jp/mvt/didh27/{z}/{x}/{y}.mvt"
   });
   this.style = didmvtStyleFunction();
 }
@@ -231,23 +231,23 @@ export  const didmvtObj = {};
 for (let i of mapsStr) {
   didmvtObj[i] = new VectorTileLayer(new DidMvt())
 }
-export const didmvtSumm = ""
+export const didmvtSumm = "H27の人口集中地区です。<br>出典＝国土数値情報"
 // -------------------------------------------------------------
  function didmvtStyleFunction () {
   return function (feature, resolution) {
-    var prop = feature.getProperties();
-    var zoom = getZoom(resolution);
-    var rgba = "rgba(75,0,130,0.5)";
-    var styles = [];
-    var text = String(prop["人口"].toLocaleString())+"人";
+    const prop = feature.getProperties();
+    const zoom = getZoom(resolution);
+    const rgba = "rgba(75,0,130,0.5)";
+    const styles = [];
+    const text = String(prop["人口"].toLocaleString())+"人";
 
-    var fillStyle = new Style({
+    const fillStyle = new Style({
       fill: new Fill({
         color: rgba
       })
     });
     function strokeStyle1(width){
-      var strokeStyle0 = new Style({
+      const strokeStyle0 = new Style({
         stroke: new Stroke({
           color: "white",
           width: width
@@ -255,7 +255,7 @@ export const didmvtSumm = ""
       });
       return strokeStyle0;
     }
-    var textStyle = new Style({
+    const textStyle = new Style({
       text: new Text({
         font: "10px sans-serif",
         text: text,
