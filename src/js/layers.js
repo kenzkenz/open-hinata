@@ -1642,7 +1642,7 @@ for (let i of mapsStr) {
   tsunamiObj[i] = new TileLayer(new Tsunami())
 }
 const tunamiSumm =  '<img src="https://kenzkenz.xsrv.jp/open-hinata/img/tsunami_newlegend.png">';
-// 津波浸水想定-------------------------------------------------------------------------------
+// 浸水継続-------------------------------------------------------------------------------
 function Keizoku () {
   this.name = 'keizoku'
   this.pointer = true
@@ -1658,6 +1658,23 @@ for (let i of mapsStr) {
   keizokuObj[i] = new TileLayer(new Keizoku())
 }
 const keizokuSumm =  '<img src="https://kenzkenz.xsrv.jp/open-hinata/img/shinsui_legend_l2_keizoku.png">';
+// 高潮-------------------------------------------------------------------------------
+function Takasio () {
+  this.name = 'takasio'
+  this.pointer = true
+  this.source = new XYZ({
+    url: 'https://disaportaldata.gsi.go.jp/raster/03_hightide_l2_shinsuishin_data/{z}/{x}/{y}.png',
+    crossOrigin: 'Anonymous',
+    minZoom: 1,
+    maxZoom: 17
+  })
+}
+const takasioObj = {};
+for (let i of mapsStr) {
+  takasioObj[i] = new TileLayer(new Takasio())
+}
+const takasioSumm =  '<img src="https://kenzkenz.xsrv.jp/open-hinata/img/shinsui_legend_l2_keizoku.png">';
+
 // 土砂災害警戒区域（土石流-------------------------------------------------------------------------------
 function Dosya () {
   this.name = 'dosya'
@@ -1933,6 +1950,8 @@ const layers =
         { text: '洪水浸水想定', data: { id: 'shinsuishin', layer: shinsuishinObj, opacity: 1, summary: shinsuishinSumm } },
         { text: '津波浸水想定', data: { id: 'tunami', layer: tsunamiObj, opacity: 1, summary: tunamiSumm } },
         { text: '浸水継続時間(想定最大規模)', data: { id: 'keizoku', layer: keizokuObj, opacity: 1, summary: keizokuSumm } },
+        { text: '高潮浸水想定', data: { id: 'takasio', layer: takasioObj, opacity: 1, summary: takasioSumm } },
+
         { text: '土砂災害',
           children: [
             { text: '<i class="fa-solid fa-layer-group"></i>土砂災害全て', data: { id: 'dosyasaigai', layer: dosyaSaigaiObj, opacity: 1} },

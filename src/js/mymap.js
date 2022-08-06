@@ -168,6 +168,9 @@ export function initMap (vm) {
           case 'keizoku':
             PopUp.popUpKeizoku(object.rgba)
             break;
+          case 'takasio':
+            PopUp.popUpTakasio(object.rgba)
+            break;
           case 'dosya':
             PopUp.popUpDosya(object.rgba)
             break;
