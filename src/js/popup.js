@@ -40,6 +40,9 @@ export function popUp(map,layers,features,overlay,evt,content) {
     case 'didh27':
       cont = '人口=' + prop.人口.toLocaleString() + '人'
       break
+    case 'didh02':
+    case 'dids55':
+    case 'dids45':
     case 'dids35':
     case 'didh22':
       cont = '人口=' + Number(prop.A16_005).toLocaleString() + '人'

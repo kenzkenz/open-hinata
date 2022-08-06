@@ -268,6 +268,61 @@ for (let i of mapsStr) {
   didS35Obj[i] = new VectorTileLayer(new DidS35())
 }
 export const didS35Summ = "s35の人口集中地区です。<br>出典＝<a href='https://nlftp.mlit.go.jp/ksj/' target='_blank'>国土数値情報</a>"
+// s45人口集中地区---------------------------------------
+function DidS45(){
+  this.name="dids45";
+  this.source = new VectorTileSource({
+    overlaps:false,
+    transition:0,
+    format: new MVT(),
+    crossOrigin: 'Anonymous',
+    maxZoom:13,
+    url: "https://kenzkenz.github.io/dids45/{z}/{x}/{y}.mvt"
+  });
+  this.style = didmvtStyleFunction(45);
+}
+export  const didS45Obj = {};
+for (let i of mapsStr) {
+  didS45Obj[i] = new VectorTileLayer(new DidS45())
+}
+export const didS45Summ = "s45の人口集中地区です。<br>出典＝<a href='https://nlftp.mlit.go.jp/ksj/' target='_blank'>国土数値情報</a>"
+// s55人口集中地区---------------------------------------
+function DidS55(){
+  this.name="dids55";
+  this.source = new VectorTileSource({
+    overlaps:false,
+    transition:0,
+    format: new MVT(),
+    crossOrigin: 'Anonymous',
+    maxZoom:13,
+    url: "https://kenzkenz.github.io/dids55/{z}/{x}/{y}.mvt"
+  });
+  this.style = didmvtStyleFunction(55);
+}
+export  const didS55Obj = {};
+for (let i of mapsStr) {
+  didS55Obj[i] = new VectorTileLayer(new DidS55())
+}
+export const didS55Summ = "s55の人口集中地区です。<br>出典＝<a href='https://nlftp.mlit.go.jp/ksj/' target='_blank'>国土数値情報</a>"
+// h02人口集中地区---------------------------------------
+function DidH02(){
+  this.name="didh02";
+  this.source = new VectorTileSource({
+    overlaps:false,
+    transition:0,
+    format: new MVT(),
+    crossOrigin: 'Anonymous',
+    maxZoom:13,
+    url: "https://kenzkenz.github.io/didh02/{z}/{x}/{y}.mvt"
+  });
+  this.style = didmvtStyleFunction(2);
+}
+export  const didH02Obj = {};
+for (let i of mapsStr) {
+  didH02Obj[i] = new VectorTileLayer(new DidH02())
+}
+export const didH02Summ = "h02の人口集中地区です。<br>出典＝<a href='https://nlftp.mlit.go.jp/ksj/' target='_blank'>国土数値情報</a>"
+
 // -------------------------------------------------------------
  function didmvtStyleFunction (year) {
   return function (feature, resolution) {
