@@ -282,8 +282,6 @@ export const didS35Summ = "s35の人口集中地区です。<br>出典＝国土�
     } else {
       text = Number(prop["A16_005"]).toLocaleString()+"人";
     }
-
-
     const fillStyle = new Style({
       fill: new Fill({
         color: rgba
@@ -328,7 +326,7 @@ export const didS35Summ = "s35の人口集中地区です。<br>出典＝国土�
 
 function Suiro() {
   this.name = "suiro";
-  this.style = suiroStyleFunction;
+  this.style = suiroStyleFunction();
   this.source = new VectorTileSource({
     format: new MVT(),
     maxZoom: 14,
@@ -341,46 +339,48 @@ for (let i of mapsStr) {
 }
 export const suiroSumm = ""
 // ------------------------------------
-function suiroStyleFunction(feature, resolution) {
-  var prop = feature.getProperties();
-  var rivCtg = prop["rivCtg"];
-  var type = prop["type"];
-  var strokeColor = "dodgerblue";
-  var strokeWidth = 1;
-  var lineDash = [];
-  switch (rivCtg) {
-    case "一級河川":
-      strokeColor = "mediumblue";
-      strokeWidth = 2;
-      lineDash = [1];
-      break;
-    case "二級河川":
-      strokeColor = "blue";
-      strokeWidth = 2;
-      lineDash = [1];
-      break;
-    default:
+function suiroStyleFunction() {
+  return function (feature, resolution) {
+    const prop = feature.getProperties();
+    const rivCtg = prop["rivCtg"];
+    const type = prop["type"];
+    let strokeColor = "dodgerblue";
+    let strokeWidth = 1;
+    let lineDash = [];
+    switch (rivCtg) {
+      case "一級河川":
+        strokeColor = "mediumblue";
+        strokeWidth = 2;
+        lineDash = [1];
+        break;
+      case "二級河川":
+        strokeColor = "blue";
+        strokeWidth = 2;
+        lineDash = [1];
+        break;
+      default:
+    }
+    switch (type) {
+      case "人工水路（地下）":
+        strokeColor = "red";
+        strokeWidth = 2;
+        lineDash = [2, 4];
+        break;
+      case "人工水路（空間）":
+        strokeColor = "red";
+        strokeWidth = 2;
+        lineDash = [1];
+        break;
+      default:
+    }
+    if (resolution > 611.50) strokeWidth = 1;
+    const style = new Style({
+      stroke: new Stroke({
+        color: strokeColor,
+        width: strokeWidth,
+        lineDash: lineDash
+      })
+    });
+    return style;
   }
-  switch (type) {
-    case "人工水路（地下）":
-      strokeColor = "red";
-      strokeWidth = 2;
-      lineDash = [2, 4];
-      break;
-    case "人工水路（空間）":
-      strokeColor = "red";
-      strokeWidth = 2;
-      lineDash = [1];
-      break;
-    default:
-  }
-  if (resolution > 611.50) strokeWidth = 1;
-  var style = new Style({
-    stroke: new Stroke({
-      color: strokeColor,
-      width: strokeWidth,
-      lineDash: lineDash
-    })
-  });
-  return style;
 }

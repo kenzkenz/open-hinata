@@ -44,6 +44,9 @@ export function popUp(map,layers,features,overlay,evt,content) {
     case 'didh22':
       cont = '人口=' + Number(prop.A16_005).toLocaleString() + '人'
       break
+    case 'suiro':
+      cont = '区　分＝' + prop.rivCtg + '<br>タイプ＝' + prop.type
+      break
   }
   content.innerHTML = cont
   if (cont && cont !== undefined) overlay.setPosition(coordinate);
