@@ -20,7 +20,7 @@ for (let i of mapsStr) {
   syougakkoukuObj[i] = new VectorTileLayer(new Syougakkouku())
 }
 export const syougakkoukuSumm = "<a href='http://nlftp.mlit.go.jp/ksj/gml/datalist/KsjTmplt-A27-v2_1.html' target='_blank'>国土数値情報　小学校区データ</a>";
-
+// ----------------------------------------------------------------------
 const d3syougakkoukuColor = d3.scaleOrdinal(d3.schemeCategory10);
 const d3tyuugakkoukuColor = d3.scaleOrdinal(d3.schemeCategory10);
 function syougakkoukuStyleFunction(feature, resolution) {
@@ -231,7 +231,7 @@ export  const didH27Obj = {};
 for (let i of mapsStr) {
   didH27Obj[i] = new VectorTileLayer(new DidH27())
 }
-export const didH27Summ = "H27の人口集中地区です。<br>出典＝国土数値情報"
+export const didH27Summ = "H27の人口集中地区です。<br>出典＝<a href='https://nlftp.mlit.go.jp/ksj/' target='_blank'>国土数値情報</a>"
 // h22人口集中地区---------------------------------------
 function DidH22(){
   this.name="didh22";
@@ -249,7 +249,7 @@ export  const didH22Obj = {};
 for (let i of mapsStr) {
   didH22Obj[i] = new VectorTileLayer(new DidH22())
 }
-export const didH22Summ = "H22の人口集中地区です。<br>出典＝国土数値情報"
+export const didH22Summ = "H22の人口集中地区です。<br>出典＝<a href='https://nlftp.mlit.go.jp/ksj/' target='_blank'>国土数値情報</a>"
 // s35人口集中地区---------------------------------------
 function DidS35(){
   this.name="dids35";
@@ -267,7 +267,7 @@ export  const didS35Obj = {};
 for (let i of mapsStr) {
   didS35Obj[i] = new VectorTileLayer(new DidS35())
 }
-export const didS35Summ = "s35の人口集中地区です。<br>出典＝国土数値情報"
+export const didS35Summ = "s35の人口集中地区です。<br>出典＝<a href='https://nlftp.mlit.go.jp/ksj/' target='_blank'>国土数値情報</a>"
 // -------------------------------------------------------------
  function didmvtStyleFunction (year) {
   return function (feature, resolution) {
@@ -276,7 +276,6 @@ export const didS35Summ = "s35の人口集中地区です。<br>出典＝国土�
     const rgba = "rgba(75,0,130,0.5)";
     const styles = [];
     let text
-    console.log(prop)
     if (year === 27) {
       text = Number(prop["人口"]).toLocaleString()+"人";
     } else {
