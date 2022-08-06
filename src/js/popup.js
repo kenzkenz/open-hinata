@@ -126,21 +126,21 @@ export function popUpTakasio(rgba) {
   const b = rgba[2]
   let cont
   if(r===255 && g===255 && b===179) {
-    cont = "津波浸水深　0.3m未満"
+    cont = "高潮浸水深　0.3m未満"
   }else if(r===247 && g===245 && b===169) {
-    cont = "津波浸水深　0.3~0.5m"
+    cont = "高潮浸水深　0.3~0.5m"
   }else if(r===248 && g===225 && b===166) {
-    cont = "津波浸水深　0.5~1.0m"
+    cont = "高潮浸水深　0.5~1.0m"
   }else if(r===255 && g===216 && b===192) {
-    cont = "津波浸水深　1.0~3.0m"
+    cont = "高潮浸水深　1.0~3.0m"
   }else if(r===255 && g===183 && b===183) {
-    cont = "津波浸水深　3.0~5.0m"
+    cont = "高潮浸水深　3.0~5.0m"
   }else if(r===255 && g===145 && b===145) {
-    cont = "津波浸水深　5.0~10.0m"
+    cont = "高潮浸水深　5.0~10.0m"
   }else if(r===242 && g===133 && b===201) {
-    cont = "津波浸水深　10.0~20.0m"
+    cont = "高潮浸水深　10.0~20.0m"
   }else if(r===220 && g===122 && b===220) {
-    cont = "津波浸水深　20.0m以上"
+    cont = "高潮浸水深　20.0m以上"
   }
   store.commit('base/popUpContUpdate',cont)
 }

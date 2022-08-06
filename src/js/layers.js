@@ -1673,7 +1673,7 @@ const takasioObj = {};
 for (let i of mapsStr) {
   takasioObj[i] = new TileLayer(new Takasio())
 }
-const takasioSumm =  '<img src="https://kenzkenz.xsrv.jp/open-hinata/img/shinsui_legend_l2_keizoku.png">';
+const takasioSumm =  '<img src="https://kenzkenz.xsrv.jp/open-hinata/img/tsunami_newlegend.png">';
 
 // 土砂災害警戒区域（土石流-------------------------------------------------------------------------------
 function Dosya () {
