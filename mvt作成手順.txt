@@ -877,9 +877,9 @@ find . -type f -exec mv -v '{}' '{}'.mvt \;
 -------------------------------------------------------------------------------------------
 tippecanoe -an -ac -Z1 -z15 -S10 -f -o did.mbtiles did.geojson
 
-mb-util --image_format=pbf did.mbtiles didTile
+tippecanoe -an -ac -Z1 -z15 -S10 -f -e DIDh27Tile DIDh27.geojson
 
-cd didTile
+cd DIDh27Tile
 gzip -d -v -r -S .pbf *
 find . -type f -exec mv -v '{}' '{}'.mvt \;
 

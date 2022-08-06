@@ -48,7 +48,7 @@ function syougakkoukuStyleFunction(feature, resolution) {
   switch (geoType){
     case "MultiPoint":
     case "Point":
-      // if(resolution>305) break;
+      if(resolution>305) break;
       style = new Style({
         image: new Circle({
           radius:3,
@@ -111,8 +111,8 @@ function Tyuugakkouku(){
   this.source = new VectorTileSource({
     format: new MVT(),
     maxZoom:15,
-    // url: "https://mtile.pref.miyazaki.lg.jp/tile/mvt//tyuugakkouku/{z}/{x}/{y}.mvt"
-    url: "https://kenzkenz.xsrv.jp/mvt/tyuugakkouku2/{z}/{x}/{y}.mvt"
+    url: "https://mtile.pref.miyazaki.lg.jp/tile/mvt//tyuugakkouku/{z}/{x}/{y}.mvt"
+    // url: "https://kenzkenz.xsrv.jp/mvt/tyuugakkouku2/{z}/{x}/{y}.mvt"
   });
   this.style = syougakkoukuStyleFunction;
 }
@@ -212,4 +212,73 @@ function japanLightStyleFunction () {
     }
     return styles;
   };
+}
+// DID地区------------------------------------------
+function DidMvt(){
+  this.name="didh27";
+  this.source = new VectorTileSource({
+    overlaps:false,
+    transition:0,
+    format: new MVT(),
+    crossOrigin: 'Anonymous',
+    maxZoom:15,
+    // url: "https://kenzkenz.github.io/did/{z}/{x}/{y}.mvt"
+    url: "https://kenzkenz.xsrv.jp/mvt/didh27/{z}/{x}/{y}.mvt"
+  });
+  this.style = didmvtStyleFunction();
+}
+export  const didmvtObj = {};
+for (let i of mapsStr) {
+  didmvtObj[i] = new VectorTileLayer(new DidMvt())
+}
+export const didmvtSumm = ""
+// -------------------------------------------------------------
+ function didmvtStyleFunction () {
+  return function (feature, resolution) {
+    var prop = feature.getProperties();
+    var zoom = getZoom(resolution);
+    var rgba = "rgba(75,0,130,0.5)";
+    var styles = [];
+    var text = String(prop["人口"].toLocaleString())+"人";
+
+    var fillStyle = new Style({
+      fill: new Fill({
+        color: rgba
+      })
+    });
+    function strokeStyle1(width){
+      var strokeStyle0 = new Style({
+        stroke: new Stroke({
+          color: "white",
+          width: width
+        })
+      });
+      return strokeStyle0;
+    }
+    var textStyle = new Style({
+      text: new Text({
+        font: "10px sans-serif",
+        text: text,
+        //offsetY: 10,
+        stroke: new Stroke({
+          color: "white",
+          width: 3
+        }),
+        overflow:true,
+        exceedLength:true,
+        placement:"point"
+      })
+    });
+    styles.push(fillStyle);
+    if(zoom>=15) {
+      styles.push(strokeStyle1(3.0));
+    }else if(zoom>=12) {
+      styles.push(strokeStyle1(2));
+    }else if(zoom>=11) {
+      styles.push(strokeStyle1(1));
+    }
+    if(zoom>=11) styles.push(textStyle);
+
+    return styles;
+  }
 }

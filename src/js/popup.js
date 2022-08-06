@@ -2,39 +2,44 @@ import store from './store'
 export function popUp(map,layers,features,overlay,evt,content) {
   let cont
   const coordinate = evt.coordinate;
+  console.log(layers[0].get('name'))
+  const prop = features[0].getProperties();
   switch (layers[0].get('name') ) {
     // 小学校区
     case 'syougakkouku':
       if(features[0].properties_.A27_001) {
-        cont = '市区町村コード＝' + features[0].properties_.A27_001 + '<br>' +
-                    '設置主体=' + features[0].properties_.A27_002+ '<br>' +
-                    '名称＝' + features[0].properties_.A27_003+ '<br>' +
-                    '所在地＝' + features[0].properties_.A27_004+ '<br>'
+        cont = '市区町村コード＝' + prop.A27_001 + '<br>' +
+                    '設置主体=' + prop.A27_002+ '<br>' +
+                    '名称＝' + prop.A27_003+ '<br>' +
+                    '所在地＝' + prop.A27_004+ '<br>'
       } else {
-        cont = '市区町村コード＝' + features[0].properties_.A27_005 + '<br>' +
-                    '設置主体=' + features[0].properties_.A27_006+ '<br>' +
-                    '名称＝' + features[0].properties_.A27_007+ '<br>' +
-                    '所在地＝' + features[0].properties_.A27_008+ '<br>'
+        cont = '市区町村コード＝' + prop.A27_005 + '<br>' +
+                    '設置主体=' + prop.A27_006+ '<br>' +
+                    '名称＝' + prop.A27_007+ '<br>' +
+                    '所在地＝' + prop.A27_008+ '<br>'
       }
       break;
     // 中学校区
     case 'tyuugakkouku' :
-      if(features[0].properties_.A32_001) {
-        cont = '市区町村コード＝' + features[0].properties_.A32_001 + '<br>' +
-                    '設置主体=' + features[0].properties_.A32_002 + '<br>' +
-                    '名称＝' + features[0].properties_.A32_003 + '<br>' +
-                    '所在地＝' + features[0].properties_.A32_004 + '<br>'
+      if(prop.A32_001) {
+        cont = '市区町村コード＝' + prop.A32_001 + '<br>' +
+                    '設置主体=' + prop.A32_002 + '<br>' +
+                    '名称＝' + prop.A32_003 + '<br>' +
+                    '所在地＝' + prop.A32_004 + '<br>'
       } else {
-        cont = '市区町村コード＝' + features[0].properties_.A32_006 + '<br>' +
-                    '設置主体=' + features[0].properties_.A32_007 + '<br>' +
-                    '名称＝' + features[0].properties_.A32_008 + '<br>' +
-                    '所在地＝' + features[0].properties_.A32_009 + '<br>'
+        cont = '市区町村コード＝' + prop.A32_006 + '<br>' +
+                    '設置主体=' + prop.A32_007 + '<br>' +
+                    '名称＝' + prop.A32_008 + '<br>' +
+                    '所在地＝' + prop.A32_009 + '<br>'
       }
        break;
      // 夜の明かり
     case 'japanLight':
-      if(map.getView().getZoom()>7) cont = '明るさレベル＝' +  features[0].properties_.light
+      if(map.getView().getZoom()>7) cont = '明るさレベル＝' +  prop.light
       break
+    case 'didh27':
+      cont = '人口=' + prop.人口.toLocaleString() + '人'
+
   }
   content.innerHTML = cont
   if (cont && cont !== undefined) overlay.setPosition(coordinate);
