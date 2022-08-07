@@ -1940,7 +1940,10 @@ const layers =
       children: [
         { text: 'H27人口集中地区', data: { id: "didmvt", layer: LayersMvt.didH27Obj, opacity: 1, summary: LayersMvt.didH27Summ } },
         { text: 'H22人口集中地区', data: { id: "didH22", layer: LayersMvt.didH22Obj, opacity: 1, summary: LayersMvt.didH22Summ } },
+        { text: 'H17人口集中地区', data: { id: "didH17", layer: LayersMvt.didH17Obj, opacity: 1, summary: LayersMvt.didH17Summ } },
         { text: 'H12人口集中地区', data: { id: "didH12", layer: LayersMvt.didH12Obj, opacity: 1, summary: LayersMvt.didH12Summ } },
+        { text: 'H07人口集中地区', data: { id: "didH07", layer: LayersMvt.didH07Obj, opacity: 1, summary: LayersMvt.didH07Summ } },
+
         { text: 'H02人口集中地区', data: { id: "didH02", layer: LayersMvt.didH02Obj, opacity: 1, summary: LayersMvt.didH02Summ } },
         { text: 'S55人口集中地区', data: { id: "didS55", layer: LayersMvt.didS55Obj, opacity: 1, summary: LayersMvt.didS55Summ } },
         { text: 'S45人口集中地区', data: { id: "didS45", layer: LayersMvt.didS45Obj, opacity: 1, summary: LayersMvt.didS45Summ } },

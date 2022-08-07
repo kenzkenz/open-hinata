@@ -322,6 +322,25 @@ for (let i of mapsStr) {
   didH02Obj[i] = new VectorTileLayer(new DidH02())
 }
 export const didH02Summ = "h02の人口集中地区です。<br>出典＝<a href='https://nlftp.mlit.go.jp/ksj/' target='_blank'>国土数値情報</a>"
+// h02人口集中地区---------------------------------------
+function DidH07(){
+  this.name="didh07";
+  this.source = new VectorTileSource({
+    overlaps:false,
+    transition:0,
+    format: new MVT(),
+    crossOrigin: 'Anonymous',
+    maxZoom:13,
+    url: "https://kenzkenz.github.io/didh07/{z}/{x}/{y}.mvt"
+  });
+  this.style = didmvtStyleFunction(2);
+}
+export  const didH07Obj = {};
+for (let i of mapsStr) {
+  didH07Obj[i] = new VectorTileLayer(new DidH07())
+}
+export const didH07Summ = "h07の人口集中地区です。<br>出典＝<a href='https://nlftp.mlit.go.jp/ksj/' target='_blank'>国土数値情報</a>"
+
 // h12人口集中地区---------------------------------------
 function DidH12(){
   this.name="didh12";
@@ -340,6 +359,24 @@ for (let i of mapsStr) {
   didH12Obj[i] = new VectorTileLayer(new DidH12())
 }
 export const didH12Summ = "h12の人口集中地区です。<br>出典＝<a href='https://nlftp.mlit.go.jp/ksj/' target='_blank'>国土数値情報</a>"
+// h17人口集中地区---------------------------------------
+function DidH17(){
+  this.name="didh17";
+  this.source = new VectorTileSource({
+    overlaps:false,
+    transition:0,
+    format: new MVT(),
+    crossOrigin: 'Anonymous',
+    maxZoom:13,
+    url: "https://kenzkenz.github.io/didh17/{z}/{x}/{y}.mvt"
+  });
+  this.style = didmvtStyleFunction(2);
+}
+export  const didH17Obj = {};
+for (let i of mapsStr) {
+  didH17Obj[i] = new VectorTileLayer(new DidH17())
+}
+export const didH17Summ = "h17の人口集中地区です。<br>出典＝<a href='https://nlftp.mlit.go.jp/ksj/' target='_blank'>国土数値情報</a>"
 
 // -------------------------------------------------------------
  function didmvtStyleFunction (year) {
