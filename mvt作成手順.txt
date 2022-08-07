@@ -911,6 +911,12 @@ cd tile
 gzip -d -v -r -S .pbf *
 find . -type f -exec mv -v '{}' '{}'.mvt \;
 -------------------------------------------------------------------------------------------
+tippecanoe -an -ac -Z1 -z13 -S10 -f -e tile DIDh12.geojson
+
+cd tile
+gzip -d -v -r -S .pbf *
+find . -type f -exec mv -v '{}' '{}'.mvt \;
+-------------------------------------------------------------------------------------------
 tippecanoe -an -ac -Z1 -z5 -S10 -f -o worldmerge.mbtiles worldmerge.geojson
 
 mb-util --image_format=pbf worldmerge.mbtiles worldmergeTile

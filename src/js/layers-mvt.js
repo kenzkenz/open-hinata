@@ -322,6 +322,24 @@ for (let i of mapsStr) {
   didH02Obj[i] = new VectorTileLayer(new DidH02())
 }
 export const didH02Summ = "h02の人口集中地区です。<br>出典＝<a href='https://nlftp.mlit.go.jp/ksj/' target='_blank'>国土数値情報</a>"
+// h12人口集中地区---------------------------------------
+function DidH12(){
+  this.name="didh12";
+  this.source = new VectorTileSource({
+    overlaps:false,
+    transition:0,
+    format: new MVT(),
+    crossOrigin: 'Anonymous',
+    maxZoom:13,
+    url: "https://kenzkenz.github.io/didh12/{z}/{x}/{y}.mvt"
+  });
+  this.style = didmvtStyleFunction(2);
+}
+export  const didH12Obj = {};
+for (let i of mapsStr) {
+  didH12Obj[i] = new VectorTileLayer(new DidH12())
+}
+export const didH12Summ = "h12の人口集中地区です。<br>出典＝<a href='https://nlftp.mlit.go.jp/ksj/' target='_blank'>国土数値情報</a>"
 
 // -------------------------------------------------------------
  function didmvtStyleFunction (year) {
