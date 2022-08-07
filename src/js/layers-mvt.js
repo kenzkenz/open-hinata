@@ -268,6 +268,25 @@ for (let i of mapsStr) {
   didS35Obj[i] = new VectorTileLayer(new DidS35())
 }
 export const didS35Summ = "s35の人口集中地区です。<br>出典＝<a href='https://nlftp.mlit.go.jp/ksj/' target='_blank'>国土数値情報</a>"
+// s40人口集中地区---------------------------------------
+function DidS40(){
+  this.name="dids40";
+  this.source = new VectorTileSource({
+    overlaps:false,
+    transition:0,
+    format: new MVT(),
+    crossOrigin: 'Anonymous',
+    maxZoom:13,
+    url: "https://kenzkenz.github.io/dids40/{z}/{x}/{y}.mvt"
+  });
+  this.style = didmvtStyleFunction(40);
+}
+export  const didS40Obj = {};
+for (let i of mapsStr) {
+  didS40Obj[i] = new VectorTileLayer(new DidS40())
+}
+export const didS40Summ = "s40の人口集中地区です。<br>出典＝<a href='https://nlftp.mlit.go.jp/ksj/' target='_blank'>国土数値情報</a>"
+
 // s45人口集中地区---------------------------------------
 function DidS45(){
   this.name="dids45";
@@ -286,6 +305,25 @@ for (let i of mapsStr) {
   didS45Obj[i] = new VectorTileLayer(new DidS45())
 }
 export const didS45Summ = "s45の人口集中地区です。<br>出典＝<a href='https://nlftp.mlit.go.jp/ksj/' target='_blank'>国土数値情報</a>"
+// s50人口集中地区---------------------------------------
+function DidS50(){
+  this.name="dids50";
+  this.source = new VectorTileSource({
+    overlaps:false,
+    transition:0,
+    format: new MVT(),
+    crossOrigin: 'Anonymous',
+    maxZoom:13,
+    url: "https://kenzkenz.github.io/dids50/{z}/{x}/{y}.mvt"
+  });
+  this.style = didmvtStyleFunction(55);
+}
+export  const didS50Obj = {};
+for (let i of mapsStr) {
+  didS50Obj[i] = new VectorTileLayer(new DidS50())
+}
+export const didS50Summ = "s50の人口集中地区です。<br>出典＝<a href='https://nlftp.mlit.go.jp/ksj/' target='_blank'>国土数値情報</a>"
+
 // s55人口集中地区---------------------------------------
 function DidS55(){
   this.name="dids55";
@@ -304,6 +342,25 @@ for (let i of mapsStr) {
   didS55Obj[i] = new VectorTileLayer(new DidS55())
 }
 export const didS55Summ = "s55の人口集中地区です。<br>出典＝<a href='https://nlftp.mlit.go.jp/ksj/' target='_blank'>国土数値情報</a>"
+// s60人口集中地区---------------------------------------
+function DidS60(){
+  this.name="dids60";
+  this.source = new VectorTileSource({
+    overlaps:false,
+    transition:0,
+    format: new MVT(),
+    crossOrigin: 'Anonymous',
+    maxZoom:13,
+    url: "https://kenzkenz.github.io/dids60/{z}/{x}/{y}.mvt"
+  });
+  this.style = didmvtStyleFunction(60);
+}
+export  const didS60Obj = {};
+for (let i of mapsStr) {
+  didS60Obj[i] = new VectorTileLayer(new DidS60())
+}
+export const didS60Summ = "s60の人口集中地区です。<br>出典＝<a href='https://nlftp.mlit.go.jp/ksj/' target='_blank'>国土数値情報</a>"
+
 // h02人口集中地区---------------------------------------
 function DidH02(){
   this.name="didh02";

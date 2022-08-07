@@ -1943,10 +1943,12 @@ const layers =
         { text: 'H17人口集中地区', data: { id: "didH17", layer: LayersMvt.didH17Obj, opacity: 1, summary: LayersMvt.didH17Summ } },
         { text: 'H12人口集中地区', data: { id: "didH12", layer: LayersMvt.didH12Obj, opacity: 1, summary: LayersMvt.didH12Summ } },
         { text: 'H07人口集中地区', data: { id: "didH07", layer: LayersMvt.didH07Obj, opacity: 1, summary: LayersMvt.didH07Summ } },
-
         { text: 'H02人口集中地区', data: { id: "didH02", layer: LayersMvt.didH02Obj, opacity: 1, summary: LayersMvt.didH02Summ } },
+        { text: 'S60人口集中地区', data: { id: "didS60", layer: LayersMvt.didS60Obj, opacity: 1, summary: LayersMvt.didS60Summ } },
         { text: 'S55人口集中地区', data: { id: "didS55", layer: LayersMvt.didS55Obj, opacity: 1, summary: LayersMvt.didS55Summ } },
+        { text: 'S50人口集中地区', data: { id: "didS50", layer: LayersMvt.didS50Obj, opacity: 1, summary: LayersMvt.didS50Summ } },
         { text: 'S45人口集中地区', data: { id: "didS45", layer: LayersMvt.didS45Obj, opacity: 1, summary: LayersMvt.didS45Summ } },
+        { text: 'S40人口集中地区', data: { id: "didS40", layer: LayersMvt.didS40Obj, opacity: 1, summary: LayersMvt.didS40Summ } },
         { text: 'S35人口集中地区', data: { id: "didS35", layer: LayersMvt.didS35Obj, opacity: 1, summary: LayersMvt.didS35Summ } },
 
       ]},
