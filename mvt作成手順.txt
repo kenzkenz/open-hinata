@@ -905,7 +905,7 @@ cd tile
 gzip -d -v -r -S .pbf *
 find . -type f -exec mv -v '{}' '{}'.mvt \;
 -------------------------------------------------------------------------------------------
-tippecanoe -an -ac -Z1 -z13 -S10 -f -e tile DIDs40.geojson
+tippecanoe -an -ac -Z1 -z13 -S10 -f -e tile hinan.geojson
 
 cd tile
 gzip -d -v -r -S .pbf *

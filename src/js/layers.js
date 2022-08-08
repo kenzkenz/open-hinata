@@ -1625,7 +1625,7 @@ const shinsuishinObj = {};
 for (let i of mapsStr) {
   shinsuishinObj[i] = new TileLayer(new Shinsuishin())
 }
-const shinsuishinSumm = '<img src="https://kenzkenz.xsrv.jp/open-hinata/img/shinsui_legend2-1.png">';
+const shinsuishinSumm = '出典：<br><a href="https://disaportal.gsi.go.jp/hazardmap/copyright/opendata.html" target="_blank">ハザードマップポータルサイト</a><br> <img src="https://kenzkenz.xsrv.jp/open-hinata/img/shinsui_legend2-1.png">';
 // 津波浸水想定-------------------------------------------------------------------------------
 function Tsunami () {
   this.name = 'tunami'
@@ -1642,7 +1642,7 @@ const tsunamiObj = {};
 for (let i of mapsStr) {
   tsunamiObj[i] = new TileLayer(new Tsunami())
 }
-const tunamiSumm =  '<img src="https://kenzkenz.xsrv.jp/open-hinata/img/tsunami_newlegend.png">';
+const tunamiSumm =  '出典：<br><a href="https://disaportal.gsi.go.jp/hazardmap/copyright/opendata.html" target="_blank">ハザードマップポータルサイト</a><br><img src="https://kenzkenz.xsrv.jp/open-hinata/img/tsunami_newlegend.png">';
 // 浸水継続-------------------------------------------------------------------------------
 function Keizoku () {
   this.name = 'keizoku'
@@ -1658,7 +1658,7 @@ const keizokuObj = {};
 for (let i of mapsStr) {
   keizokuObj[i] = new TileLayer(new Keizoku())
 }
-const keizokuSumm =  '<img src="https://kenzkenz.xsrv.jp/open-hinata/img/shinsui_legend_l2_keizoku.png">';
+const keizokuSumm =  '出典：<br><a href="https://disaportal.gsi.go.jp/hazardmap/copyright/opendata.html" target="_blank">ハザードマップポータルサイト</a><br><img src="https://kenzkenz.xsrv.jp/open-hinata/img/shinsui_legend_l2_keizoku.png">';
 // 高潮-------------------------------------------------------------------------------
 function Takasio () {
   this.name = 'takasio'
@@ -1674,7 +1674,7 @@ const takasioObj = {};
 for (let i of mapsStr) {
   takasioObj[i] = new TileLayer(new Takasio())
 }
-const takasioSumm =  '<img src="https://kenzkenz.xsrv.jp/open-hinata/img/tsunami_newlegend.png">';
+const takasioSumm =  '出典：<br><a href="https://disaportal.gsi.go.jp/hazardmap/copyright/opendata.html" target="_blank">ハザードマップポータルサイト</a><br><img src="https://kenzkenz.xsrv.jp/open-hinata/img/tsunami_newlegend.png">';
 
 // 土砂災害警戒区域（土石流-------------------------------------------------------------------------------
 function Dosya () {
@@ -1691,7 +1691,7 @@ const dosyaObj = {};
 for (let i of mapsStr) {
   dosyaObj[i] = new TileLayer(new Dosya())
 }
-const dosyaSumm =  '<a href="https://kenzkenz.xsrv.jp/open-hinata/img/dosha_keikai.png" target="_blank" ><img width="600" src="https://kenzkenz.xsrv.jp/open-hinata/img/dosha_keikai.png"></a>  ';
+const dosyaSumm =  '出典：<br><a href="https://disaportal.gsi.go.jp/hazardmap/copyright/opendata.html" target="_blank">ハザードマップポータルサイト</a><br><a href="https://kenzkenz.xsrv.jp/open-hinata/img/dosha_keikai.png" target="_blank" ><img width="600" src="https://kenzkenz.xsrv.jp/open-hinata/img/dosha_keikai.png"></a>  ';
 // 土石流危険渓流-------------------------------------------------------------------------------
 function Doseki () {
   this.name = 'doseki'
@@ -1707,7 +1707,7 @@ const dosekiObj = {};
 for (let i of mapsStr) {
   dosekiObj[i] = new TileLayer(new Doseki())
 }
-const dosekiSumm =   '<img width="300" src="https://kenzkenz.xsrv.jp/open-hinata/img/dosha_kiken.png">';
+const dosekiSumm =   '出典：<br><a href="https://disaportal.gsi.go.jp/hazardmap/copyright/opendata.html" target="_blank">ハザードマップポータルサイト</a><br><img width="300" src="https://kenzkenz.xsrv.jp/open-hinata/img/dosha_kiken.png">';
 // 急傾斜地崩壊危険箇所-------------------------------------------------------------------------------
 function Kyuukeisya () {
   this.name = 'kyuukeisya'
@@ -1723,7 +1723,7 @@ const kyuukeisyaObj = {};
 for (let i of mapsStr) {
   kyuukeisyaObj[i] = new TileLayer(new Kyuukeisya())
 }
-const kyuukeisyaSumm =   '<img width="300" src="https://kenzkenz.xsrv.jp/open-hinata/img/dosha_kiken.png">';
+const kyuukeisyaSumm =   '出典：<br><a href="https://disaportal.gsi.go.jp/hazardmap/copyright/opendata.html" target="_blank">ハザードマップポータルサイト</a><br><img width="300" src="https://kenzkenz.xsrv.jp/open-hinata/img/dosha_kiken.png">';
 // 地すべり危険箇所-------------------------------------------------------------------------------
 function Zisuberi () {
   this.name = 'zisuberi'
@@ -1739,7 +1739,7 @@ const zisuberiObj = {};
 for (let i of mapsStr) {
   zisuberiObj[i] = new TileLayer(new Zisuberi())
 }
-const zisuberiSumm =   '<img width="300" src="https://kenzkenz.xsrv.jp/open-hinata/img/dosha_kiken.png">';
+const zisuberiSumm =   '出典：<br><a href="https://disaportal.gsi.go.jp/hazardmap/copyright/opendata.html" target="_blank">ハザードマップポータルサイト</a><br><img width="300" src="https://kenzkenz.xsrv.jp/open-hinata/img/dosha_kiken.png">';
 // 雪崩危険箇所-------------------------------------------------------------------------------
 function Nadare () {
   this.name = 'nadare'
@@ -1755,7 +1755,7 @@ const nadareObj = {};
 for (let i of mapsStr) {
   nadareObj[i] = new TileLayer(new Nadare())
 }
-const nadareSumm =   '<img width="300" src="https://kenzkenz.xsrv.jp/open-hinata/img/dosha_kiken.png">';
+const nadareSumm =   '出典：<br><a href="https://disaportal.gsi.go.jp/hazardmap/copyright/opendata.html" target="_blank">ハザードマップポータルサイト</a><br><img width="300" src="https://kenzkenz.xsrv.jp/open-hinata/img/dosha_kiken.png">';
 //----------------------------------------------------------------------------
 const dosyaSaigaiObj = {};
 for (let i of mapsStr) {
@@ -1773,6 +1773,8 @@ for (let i of mapsStr) {
   dosyaSaigaiObj[i].values_['name'] = 'dosyaSaigai'
   dosyaSaigaiObj[i].values_['pointer'] = true
 }
+const dosyaSaigaiSumm =   '出典：<br><a href="https://disaportal.gsi.go.jp/hazardmap/copyright/opendata.html" target="_blank">ハザードマップポータルサイト</a>';
+
 // 宮崎市ハザードマップ-------------------------------------------------------------------------------
 function MiyazakisiHm () {
   this.source = new XYZ({
@@ -1934,8 +1936,8 @@ const layers =
     { text: '夜の明かり', data: { id: "japanLight", layer: LayersMvt.japanLightObj, opacity: 1, summary: LayersMvt.japanLightSumm } },
     { text: '河川中心線', data: { id: "suiro", layer: LayersMvt.suiroObj, opacity: 1, summary: LayersMvt.suiroSumm } },
 
-    // { text: '小学校区', data: { id: "syougakkouku", layer: LayersMvt.syougakkoukuObj, opacity: 1, summary: LayersMvt.syougakkoukuSumm } },
-    // { text: '中学校区', data: { id: "tyuugakkouku", layer: LayersMvt.tyuugakkoukuObj, opacity: 1, summary: LayersMvt.tyuugakkoukuSumm } },
+    { text: '小学校区', data: { id: "syougakkouku", layer: LayersMvt.syougakkoukuObj, opacity: 1, summary: LayersMvt.syougakkoukuSumm } },
+    { text: '中学校区', data: { id: "tyuugakkouku", layer: LayersMvt.tyuugakkoukuObj, opacity: 1, summary: LayersMvt.tyuugakkoukuSumm } },
     { text: '人口集中地区',
       children: [
         { text: 'H27人口集中地区', data: { id: "didmvt", layer: LayersMvt.didH27Obj, opacity: 1, summary: LayersMvt.didH27Summ } },
@@ -1966,7 +1968,7 @@ const layers =
 
         { text: '土砂災害',
           children: [
-            { text: '<i class="fa-solid fa-layer-group"></i>土砂災害全て', data: { id: 'dosyasaigai', layer: dosyaSaigaiObj, opacity: 1} },
+            { text: '<i class="fa-solid fa-layer-group"></i>土砂災害全て', data: { id: 'dosyasaigai', layer: dosyaSaigaiObj, opacity: 1,summary:dosyaSaigaiSumm} },
             { text: '土砂災害警戒区域(土石流)', data: { id: 'dosya', layer: dosyaObj, opacity: 1, summary: dosyaSumm } },
             { text: '土石流危険渓流', data: { id: 'doseki', layer: dosekiObj, opacity: 1, summary: dosekiSumm } },
             { text: '急傾斜地崩壊危険箇所', data: { id: 'kyuukeisya', layer: kyuukeisyaObj, opacity: 1, summary: kyuukeisyaSumm } },
