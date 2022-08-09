@@ -56,6 +56,14 @@ export function popUp(map,layers,features,overlay,evt,content) {
     case 'suiro':
       cont = '区　分＝' + prop.rivCtg + '<br>タイプ＝' + prop.type
       break
+    case 'hinan':
+      if (prop.P20_005 !== -1) {
+        cont = prop.P20_002 + '<br>収容人数：' + prop.P20_005 + '人'
+      } else {
+        cont = prop.P20_002
+      }
+      console.log(prop)
+      break
   }
   content.innerHTML = cont
   if (cont && cont !== undefined) overlay.setPosition(coordinate);

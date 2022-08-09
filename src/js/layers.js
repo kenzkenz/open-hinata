@@ -18,7 +18,7 @@ import Crop from 'ol-ext/filter/Crop'
 import Mask from 'ol-ext/filter/Mask'
 import  * as MaskDep from './mask-dep'
 import  * as LayersMvt from './layers-mvt'
-import {suiroObj} from "./layers-mvt";
+import {hinanObj, suiroObj} from "./layers-mvt";
 const mapsStr = ['map01','map02','map03','map04'];
 const transformE = extent => {
   return transformExtent(extent,'EPSG:4326','EPSG:3857');
@@ -1773,7 +1773,7 @@ for (let i of mapsStr) {
   dosyaSaigaiObj[i].values_['name'] = 'dosyaSaigai'
   dosyaSaigaiObj[i].values_['pointer'] = true
 }
-const dosyaSaigaiSumm =   '出典：<br><a href="https://disaportal.gsi.go.jp/hazardmap/copyright/opendata.html" target="_blank">ハザードマップポータルサイト</a>';
+const dosyaSaigaiSumm = '出典：<br><a href="https://disaportal.gsi.go.jp/hazardmap/copyright/opendata.html" target="_blank">ハザードマップポータルサイト</a>';
 
 // 宮崎市ハザードマップ-------------------------------------------------------------------------------
 function MiyazakisiHm () {
@@ -1977,7 +1977,9 @@ const layers =
          ]},
         { text: '宮崎市洪水ﾊｻﾞｰﾄﾞﾏｯﾌﾟ', data: { id: 'miyazakisiHm', layer: miyazakisiHmObj, opacity: 1, zoom: 13, center: [131.42054548436312, 31.907339493919977], summary: miyazakisiHmSumm } },
         { text: '都城市洪水ﾊｻﾞｰﾄﾞﾏｯﾌﾟ', data: { id: 'miyakonozyousiHm', layer: miyakonozyousiHmObj, opacity: 1, zoom: 13, center: [131.07797970576192, 31.78882205640913], summary: miyakonozyousiHmSumm } },
-        { text: '日向市防災ﾊｻﾞｰﾄﾞﾏｯﾌﾟ', data: { id: 'hyuugasiHm', layer: hyuugasiHmObj, opacity: 1, zoom: 13, center: [131.6400086045909, 32.395198966795306], summary: hyuugasiHmSumm } }
+        { text: '日向市防災ﾊｻﾞｰﾄﾞﾏｯﾌﾟ', data: { id: 'hyuugasiHm', layer: hyuugasiHmObj, opacity: 1, zoom: 13, center: [131.6400086045909, 32.395198966795306], summary: hyuugasiHmSumm } },
+        { text: '避難施設', data: { id: 'hinan', layer: LayersMvt.hinanObj, opacity: 1, summary: LayersMvt.hinanSumm } }
+
       ]}
   ];
 export const Layers = layers;

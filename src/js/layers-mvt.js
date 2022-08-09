@@ -550,3 +550,59 @@ function suiroStyleFunction() {
     return style;
   }
 }
+function Hinan() {
+  this.name = "hinan";
+  this.style = hinanStyleFunction();
+  this.source = new VectorTileSource({
+    format: new MVT(),
+    maxZoom: 13,
+    url: "https://kenzkenz.github.io/hinan/{z}/{x}/{y}.mvt"
+  });
+}
+export  const hinanObj = {};
+for (let i of mapsStr) {
+  hinanObj[i] = new VectorTileLayer(new Hinan())
+}
+export const hinanSumm = '出典：<a href="https://nlftp.mlit.go.jp/ksj/index.html" target="_blank">国土数値情報</a>'
+// --------------------------------------------------
+function hinanStyleFunction () {
+  return function(feature, resolution) {
+    const zoom = getZoom(resolution);
+    const prop = feature.getProperties();
+    const styles = [];
+    const circleStyle = new Style({
+      image: new Circle({
+        radius: 8,
+        fill: new Fill({
+          color: "red"
+        }),
+        stroke: new Stroke({
+          color: "white",
+          width: 1
+        })
+      })
+    })
+    const textStyle = new Style({
+          text: new Text({
+            font: "14px sans-serif",
+            text: prop.P20_002,
+            placement:"point",
+            offsetY:10,
+            fill: new Fill({
+              color: "black"
+            }),
+            stroke: new Stroke({
+              color: "white",
+              width: 3
+            }),
+            exceedLength:true
+          })
+        });
+    styles.push(circleStyle);
+    if(zoom>=15) {
+      styles.push(textStyle);
+    }
+    // console.log(prop)
+    return styles;
+  };
+}
