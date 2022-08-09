@@ -555,7 +555,7 @@ function Hinan() {
   this.style = hinanStyleFunction();
   this.source = new VectorTileSource({
     format: new MVT(),
-    maxZoom: 13,
+    maxZoom: 15,
     url: "https://kenzkenz.github.io/hinan/{z}/{x}/{y}.mvt"
   });
 }
