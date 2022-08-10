@@ -11,6 +11,7 @@
                     <b-button id='menu-btn' v-if="mapName === 'map01'" class='olbtn' :size="btnSize" @click="openDialog(s_dialogs['menuDialog'])" style="margin-right:5px;"><i class="fa-solid fa-bars"></i></b-button>
                     <b-button id='split-map-btn' v-if="mapName === 'map01'" class='olbtn' :size="btnSize" @click="splitMap" style="margin-right:5px;"><i class="fa-solid fa-table-columns"></i></b-button>
                     <b-button class='olbtn' :size="btnSize" @click="openDialog(s_dialogs[mapName])">背景</b-button>
+                    <b-button class='olbtn' :size="btnSize" @click="openDialog(s_dialogs['toukei'])" style="margin-left:5px;">統計</b-button>
                   <b-popover v-if='toolTip'
                                content="画面を分割します。"
                                target="split-map-btn"
@@ -33,6 +34,7 @@
                 <v-dialog-info :mapName=mapName />
                 <v-dialog-menu v-if="mapName === 'map01'"/>
                 <v-dialog-main-info v-if="mapName === 'map01'"/>
+                <v-dialog-toukei :mapName=mapName />
                 <div class="zoom-div">{{ zoom[mapName] }}</div>
             </div>
         </transition>
@@ -57,6 +59,7 @@
   import DialogMenu from './Dialog-menu'
   import DialogLayer from './Dialog-layer'
   import DialogMainInfo from './Dialog-main-info'
+  import DialogToukei from './Dialog-toukei.vue'
   import * as Permalink from '../js/permalink'
   import Inobounce from '../js/inobounce'
   import * as MyMap from '../js/mymap'
@@ -66,7 +69,8 @@
     components: {
       'v-dialog-layer': DialogLayer,
       'v-dialog-menu': DialogMenu,
-      'v-dialog-main-info': DialogMainInfo
+      'v-dialog-main-info': DialogMainInfo,
+      'v-dialog-toukei': DialogToukei
     },
     data () {
       return {
