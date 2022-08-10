@@ -58,9 +58,9 @@ export function popUp(map,layers,features,overlay,evt,content) {
       break
     case 'hinan':
       if (prop.P20_005 !== -1) {
-        cont = prop.P20_002 + '<br>収容人数：' + prop.P20_005 + '人'
+        cont = prop.P20_002 + '<br>' + prop.P20_003 + '<br>収容人数：' + prop.P20_005 + '人'
       } else {
-        cont = prop.P20_002
+        cont = prop.P20_002 + '<br>' + prop.P20_003
       }
       console.log(prop)
       break
