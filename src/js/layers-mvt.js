@@ -11,7 +11,8 @@ function Syougakkouku(){
   this.source = new VectorTileSource({
     format: new MVT(),
     maxZoom:15,
-    url: "https://mtile.pref.miyazaki.lg.jp/tile/mvt/syougakkouku/{z}/{x}/{y}.mvt"
+    // url: "https://mtile.pref.miyazaki.lg.jp/tile/mvt/syougakkouku/{z}/{x}/{y}.mvt"
+    url: "https://kenzkenz.github.io/syougaku/{z}/{x}/{y}.mvt"
   });
   this.style = syougakkoukuStyleFunction;
 }
@@ -26,14 +27,8 @@ const d3tyuugakkoukuColor = d3.scaleOrdinal(d3.schemeCategory10);
 function syougakkoukuStyleFunction(feature, resolution) {
   const prop = feature.getProperties();
   const geoType = feature.getGeometry().getType();
-  let text = "";
-  if(resolution<38.22){
-    if(prop["A27_003"]) {
-      text = prop["A27_003"];
-    }else{
-      text = prop["A32_003"];
-    }
-  }
+  const zoom = getZoom(resolution);
+  const text = prop["P29_004"];
   let rgb
   let rgba
   // console.log(prop["id"])
@@ -48,7 +43,7 @@ function syougakkoukuStyleFunction(feature, resolution) {
   switch (geoType){
     case "MultiPoint":
     case "Point":
-      if(resolution>305) break;
+      if(zoom<12) break;
       style = new Style({
         image: new Circle({
           radius:3,
@@ -73,7 +68,7 @@ function syougakkoukuStyleFunction(feature, resolution) {
       break;
     case "Polygon":
     case "MultiPolygon":
-      if(resolution<76) {
+      if(zoom>9) {
          style = new Style({
           fill: new Fill({
             color:rgba
@@ -81,14 +76,6 @@ function syougakkoukuStyleFunction(feature, resolution) {
           stroke: new Stroke({
             color: "gray",
             width: 1
-          }),
-          text: new Text({
-            font: "8px sans-serif",
-            text: text,
-            stroke: new Stroke({
-              color: "white",
-              width: 3
-            })
           }),
           zIndex: 0
         });
@@ -111,8 +98,8 @@ function Tyuugakkouku(){
   this.source = new VectorTileSource({
     format: new MVT(),
     maxZoom:15,
-    url: "https://mtile.pref.miyazaki.lg.jp/tile/mvt//tyuugakkouku/{z}/{x}/{y}.mvt"
-    // url: "https://kenzkenz.xsrv.jp/mvt/tyuugakkouku2/{z}/{x}/{y}.mvt"
+    // url: "https://mtile.pref.miyazaki.lg.jp/tile/mvt//tyuugakkouku/{z}/{x}/{y}.mvt"
+    url: "https://kenzkenz.github.io/tyuugaku/{z}/{x}/{y}.mvt"
   });
   this.style = syougakkoukuStyleFunction;
 }
