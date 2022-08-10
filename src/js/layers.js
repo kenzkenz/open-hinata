@@ -234,6 +234,66 @@ for (let i of mapsStr) {
   kagosimasiOrtObj[i] = new TileLayer(new KagosimasiOrt())
 }
 const kagosimasiOrtSumm = '<a href="https://www.city.kagoshima.lg.jp/ict/opendata.html" target="_blank">鹿児島市オープンデータ</a>';
+
+// 2010年の航空写真-------------------------------------------------------------------------------
+function Sp10 () {
+  this.source = new XYZ({
+    url: 'https://cyberjapandata.gsi.go.jp/xyz/nendophoto2010/{z}/{x}/{y}.png',
+    crossOrigin: 'Anonymous',
+    minZoom: 10,
+    maxZoom: 17
+  })
+}
+const sp10Obj = {};
+for (let i of mapsStr) {
+  sp10Obj[i] = new TileLayer(new Sp10())
+}
+const sp10Summ = '国土地理院作成のタイルです。<a href="https://maps.gsi.go.jp/development/ichiran.html" target="_blank">リンク</a>';
+
+// 87~90年の航空写真-------------------------------------------------------------------------------
+function Sp87 () {
+  this.source = new XYZ({
+    url: 'https://cyberjapandata.gsi.go.jp/xyz/gazo4/{z}/{x}/{y}.jpg',
+    crossOrigin: 'Anonymous',
+    minZoom: 10,
+    maxZoom: 17
+  })
+}
+const sp87Obj = {};
+for (let i of mapsStr) {
+  sp87Obj[i] = new TileLayer(new Sp87())
+}
+const sp87Summ = '国土地理院作成のタイルです。<a href="https://maps.gsi.go.jp/development/ichiran.html" target="_blank">リンク</a>';
+
+// 84~86年の航空写真-------------------------------------------------------------------------------
+function Sp84 () {
+  this.source = new XYZ({
+    url: 'https://cyberjapandata.gsi.go.jp/xyz/gazo3/{z}/{x}/{y}.jpg',
+    crossOrigin: 'Anonymous',
+    minZoom: 10,
+    maxZoom: 17
+  })
+}
+const sp84Obj = {};
+for (let i of mapsStr) {
+  sp84Obj[i] = new TileLayer(new Sp84())
+}
+const sp84Summ = '国土地理院作成のタイルです。<a href="https://maps.gsi.go.jp/development/ichiran.html" target="_blank">リンク</a>';
+
+// ７9~83年の航空写真-------------------------------------------------------------------------------
+function Sp79 () {
+  this.source = new XYZ({
+    url: 'https://cyberjapandata.gsi.go.jp/xyz/gazo2/{z}/{x}/{y}.jpg',
+    crossOrigin: 'Anonymous',
+    minZoom: 10,
+    maxZoom: 17
+  })
+}
+const sp79Obj = {};
+for (let i of mapsStr) {
+  sp79Obj[i] = new TileLayer(new Sp79())
+}
+const sp79Summ = '国土地理院作成のタイルです。<a href="https://maps.gsi.go.jp/development/ichiran.html" target="_blank">リンク</a>';
 // ７４~７８年の航空写真-------------------------------------------------------------------------------
 function Sp74 () {
   this.source = new XYZ({
@@ -1838,7 +1898,11 @@ const layers =
       ]},
     { text: '過去の航空写真',
       children: [
-        { text: '74~78年航空写真', data: { id: 'sp74', layer: sp74Obj, opacity: 1, summary: sp74Summ } },
+        // { text: '2010年航空写真', data: { id: 'sp10', layer: sp10Obj, opacity: 1, summary: sp10Summ } },
+        { text: '87~90年航空写真', data: { id: 'sp87', layer: sp87Obj, opacity: 1, summary: sp87Summ } },
+        { text: '84~86年航空写真', data: { id: 'sp84', layer: sp84Obj, opacity: 1, summary: sp84Summ } },
+        { text: '79~83年航空写真', data: { id: 'sp79', layer: sp79Obj, opacity: 1, summary: sp79Summ } },
+        { text: '74~78年航空写真(全国)', data: { id: 'sp74', layer: sp74Obj, opacity: 1, summary: sp74Summ } },
         { text: '61~64年航空写真', data: { id: 'sp61', layer: sp61Obj, opacity: 1, summary: sp61Summ } }
       ]},
     { text: '立体図等',
