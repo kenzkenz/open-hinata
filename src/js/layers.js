@@ -2002,6 +2002,7 @@ const layers =
     { text: '小中学校区',
       children: [
         { text: 'H22小学校区', data: { id: "syougakkoukuH22", layer: LayersMvt.syougakkoukuH22Obj, opacity: 1, summary: LayersMvt.syougakkoukuH22Summ } },
+        { text: 'H28小学校区', data: { id: "syougakkoukuH28", layer: LayersMvt.syougakkoukuH28Obj, opacity: 1, summary: LayersMvt.syougakkoukuH28Summ } },
         { text: 'R03小学校区', data: { id: "syougakkouku", layer: LayersMvt.syougakkoukuObj, opacity: 1, summary: LayersMvt.syougakkoukuSumm } },
         { text: 'R03中学校区', data: { id: "tyuugakkouku", layer: LayersMvt.tyuugakkoukuObj, opacity: 1, summary: LayersMvt.tyuugakkoukuSumm } },
     ]},

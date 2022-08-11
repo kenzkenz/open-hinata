@@ -6,6 +6,7 @@ export function popUp(map,layers,features,overlay,evt,content) {
   const prop = features[0].getProperties();
   switch (layers[0].get('name') ) {
     // 小学校区
+    case 'syougakkoukuH28':
     case 'syougakkoukuH22':
       console.log(prop)
       if(prop.A27_001) {

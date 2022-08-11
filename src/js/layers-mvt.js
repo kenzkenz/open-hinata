@@ -4,6 +4,21 @@ import VectorTileLayer from "ol/layer/VectorTile";
 import * as d3 from "d3";
 import {Fill, Stroke, Style, Text, Circle} from "ol/style";
 const mapsStr = ['map01','map02','map03','map04'];
+//H28小学校区------------------------------------------------------------------------------------------------
+function SyougakkoukuH28(){
+  this.name = 'syougakkoukuH28'
+  this.source = new VectorTileSource({
+    format: new MVT(),
+    maxZoom:15,
+    url: "https://kenzkenz.github.io/h28syougaku/{z}/{x}/{y}.mvt"
+  });
+  this.style = syougakkoukuStyleFunction(28);
+}
+export  const syougakkoukuH28Obj = {};
+for (let i of mapsStr) {
+  syougakkoukuH28Obj[i] = new VectorTileLayer(new SyougakkoukuH28())
+}
+export const syougakkoukuH28Summ = "<a href='http://nlftp.mlit.go.jp/ksj/gml/datalist/KsjTmplt-A27-v2_1.html' target='_blank'>国土数値情報　小学校区データ</a>";
 
 //H22小学校区------------------------------------------------------------------------------------------------
 function SyougakkoukuH22(){
@@ -47,7 +62,7 @@ function syougakkoukuStyleFunction(year) {
     const geoType = feature.getGeometry().getType();
     const zoom = getZoom(resolution);
     let text = ''
-    if (year === 22) {
+    if (year === 22 || year === 28) {
       text = prop["A27_003"];
     } else {
       text = prop["P29_004"];
