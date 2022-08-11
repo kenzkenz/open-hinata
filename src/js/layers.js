@@ -2001,11 +2001,19 @@ const layers =
     { text: '河川中心線', data: { id: "suiro", layer: LayersMvt.suiroObj, opacity: 1, summary: LayersMvt.suiroSumm } },
     { text: '小中学校区',
       children: [
-        { text: 'H22小学校区', data: { id: "syougakkoukuH22", layer: LayersMvt.syougakkoukuH22Obj, opacity: 1, summary: LayersMvt.syougakkoukuH22Summ } },
-        { text: 'H28小学校区', data: { id: "syougakkoukuH28", layer: LayersMvt.syougakkoukuH28Obj, opacity: 1, summary: LayersMvt.syougakkoukuH28Summ } },
-        { text: 'R03小学校区', data: { id: "syougakkouku", layer: LayersMvt.syougakkoukuObj, opacity: 1, summary: LayersMvt.syougakkoukuSumm } },
-        { text: 'R03中学校区', data: { id: "tyuugakkouku", layer: LayersMvt.tyuugakkoukuObj, opacity: 1, summary: LayersMvt.tyuugakkoukuSumm } },
-    ]},
+        { text: '小学校区',
+          children: [
+            { text: 'H22小学校区', data: { id: "syougakkoukuH22", layer: LayersMvt.syougakkoukuH22Obj, opacity: 1, summary: LayersMvt.syougakkoukuH22Summ } },
+            { text: 'H28小学校区', data: { id: "syougakkoukuH28", layer: LayersMvt.syougakkoukuH28Obj, opacity: 1, summary: LayersMvt.syougakkoukuH28Summ } },
+            { text: 'R03小学校区', data: { id: "syougakkouku", layer: LayersMvt.syougakkoukuObj, opacity: 1, summary: LayersMvt.syougakkoukuSumm } },
+          ]},
+        { text: '中学校区',
+          children: [
+            { text: 'H25中学校区', data: { id: "tyuugakkoukuH25", layer: LayersMvt.tyuugakkoukuH25Obj, opacity: 1, summary: LayersMvt.tyuugakkoukuH25Summ } },
+            { text: 'H28中学校区', data: { id: "tyuugakkoukuH28", layer: LayersMvt.tyuugakkoukuH28Obj, opacity: 1, summary: LayersMvt.tyuugakkoukuH28Summ } },
+            { text: 'R03中学校区', data: { id: "tyuugakkouku", layer: LayersMvt.tyuugakkoukuObj, opacity: 1, summary: LayersMvt.tyuugakkoukuSumm } },
+            ]},
+      ]},
     { text: '人口集中地区',
       children: [
         { text: 'H27人口集中地区', data: { id: "didmvt", layer: LayersMvt.didH27Obj, opacity: 1, summary: LayersMvt.didH27Summ } },

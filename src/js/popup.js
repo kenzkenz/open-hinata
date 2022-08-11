@@ -37,17 +37,43 @@ export function popUp(map,layers,features,overlay,evt,content) {
     // 中学校区
     case 'tyuugakkouku' :
       console.log(prop)
+        console.log(222)
       if(prop.A32_001) {
         cont = '市区町村コード＝' + prop.A32_001 + '<br>' +
                     '設置主体=' + prop.A32_002 + '<br>' +
                     '名称＝' + prop.A32_004 + '<br>' +
-                    '所在地＝' + prop.A32_005 + '<br>'
+                    '所在地＝' + prop.A32_005
       } else {
         cont = '市区町村コード＝' + prop.P29_001 + '<br>' +
                     '名称＝' + prop.P29_004 + '<br>' +
                     '所在地＝' + prop.P29_005 + '<br>'
       }
+      break;
+    case 'tyuugakkoukuH25' :
+      console.log(prop)
+      if(prop.A32_001) {
+        cont = '市区町村コード＝' + prop.A32_001 + '<br>' +
+            '設置主体=' + prop.A32_002 + '<br>' +
+            '名称＝' + prop.A32_003
+      } else {
+        cont = '市区町村コード＝' + prop.P29_001 + '<br>' +
+            '名称＝' + prop.P29_005 + '<br>' +
+            '所在地＝' + prop.P29_006 + '<br>'
+      }
        break;
+    case 'tyuugakkoukuH28' :
+      console.log(prop)
+      if(prop.A32_001) {
+        cont = '市区町村コード＝' + prop.A32_001 + '<br>' +
+            '設置主体=' + prop.A32_002 + '<br>' +
+            '名称＝' + prop.A32_003
+      } else {
+        cont = '市区町村コード＝' + prop.A32_006 + '<br>' +
+            '設置主体=' + prop.A32_007 + '<br>' +
+            '名称＝' + prop.A32_008 + '<br>' +
+            '所在地＝' + prop.A32_009 + '<br>'
+      }
+      break;
      // 夜の明かり
     case 'japanLight':
       if(map.getView().getZoom()>7) cont = '明るさレベル＝' +  prop.light

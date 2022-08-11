@@ -64,8 +64,10 @@ function syougakkoukuStyleFunction(year) {
     let text = ''
     if (year === 22 || year === 28) {
       text = prop["A27_003"];
+    } else if (year === 280) {
+      text = prop["A32_003"]
     } else {
-      text = prop["P29_004"];
+      text = prop["P29_005"];
     }
     let rgb
     let rgba
@@ -131,6 +133,38 @@ function syougakkoukuStyleFunction(year) {
     return style;
   }
 }
+//h28中学校区---------------------------------------------------------------------------------------
+function TyuugakkoukuH28(){
+  this.name = 'tyuugakkoukuH28'
+  this.source = new VectorTileSource({
+    format: new MVT(),
+    maxZoom:15,
+    url: "https://kenzkenz.github.io/h28tyuugaku/{z}/{x}/{y}.mvt"
+  });
+  this.style = syougakkoukuStyleFunction(280);
+}
+export  const tyuugakkoukuH28Obj = {};
+for (let i of mapsStr) {
+  tyuugakkoukuH28Obj[i] = new VectorTileLayer(new TyuugakkoukuH28())
+}
+export const tyuugakkoukuH28Summ = "<a href='http://nlftp.mlit.go.jp/ksj/gml/datalist/KsjTmplt-A32-v2_0.html' target='_blank'>国土数値情報　中学校区データ</a>";
+
+//h25中学校区---------------------------------------------------------------------------------------
+function TyuugakkoukuH25(){
+  this.name = 'tyuugakkoukuH25'
+  this.source = new VectorTileSource({
+    format: new MVT(),
+    maxZoom:15,
+    url: "https://kenzkenz.github.io/h25tyuugaku/{z}/{x}/{y}.mvt"
+  });
+  this.style = syougakkoukuStyleFunction(250);
+}
+export  const tyuugakkoukuH25Obj = {};
+for (let i of mapsStr) {
+  tyuugakkoukuH25Obj[i] = new VectorTileLayer(new TyuugakkoukuH25())
+}
+export const tyuugakkoukuH25Summ = "<a href='http://nlftp.mlit.go.jp/ksj/gml/datalist/KsjTmplt-A32-v2_0.html' target='_blank'>国土数値情報　中学校区データ</a>";
+
 //中学校区---------------------------------------------------------------------------------------
 function Tyuugakkouku(){
   this.name = 'tyuugakkouku'
