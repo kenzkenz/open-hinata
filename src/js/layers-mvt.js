@@ -5,6 +5,23 @@ import * as d3 from "d3";
 import {Fill, Stroke, Style, Text, Circle} from "ol/style";
 const mapsStr = ['map01','map02','map03','map04'];
 
+//H22小学校区------------------------------------------------------------------------------------------------
+function SyougakkoukuH22(){
+  this.name = 'syougakkoukuH22'
+  this.source = new VectorTileSource({
+    format: new MVT(),
+    maxZoom:15,
+    // url: "https://mtile.pref.miyazaki.lg.jp/tile/mvt/syougakkouku/{z}/{x}/{y}.mvt"
+    url: "https://kenzkenz.github.io/h22syougaku/{z}/{x}/{y}.mvt"
+  });
+  this.style = syougakkoukuStyleFunction(22);
+}
+export  const syougakkoukuH22Obj = {};
+for (let i of mapsStr) {
+  syougakkoukuH22Obj[i] = new VectorTileLayer(new SyougakkoukuH22())
+}
+export const syougakkoukuH22Summ = "<a href='http://nlftp.mlit.go.jp/ksj/gml/datalist/KsjTmplt-A27-v2_1.html' target='_blank'>国土数値情報　小学校区データ</a>";
+
 //小学校区------------------------------------------------------------------------------------------------
 function Syougakkouku(){
   this.name = 'syougakkouku'
@@ -14,7 +31,7 @@ function Syougakkouku(){
     // url: "https://mtile.pref.miyazaki.lg.jp/tile/mvt/syougakkouku/{z}/{x}/{y}.mvt"
     url: "https://kenzkenz.github.io/syougaku/{z}/{x}/{y}.mvt"
   });
-  this.style = syougakkoukuStyleFunction;
+  this.style = syougakkoukuStyleFunction();
 }
 export  const syougakkoukuObj = {};
 for (let i of mapsStr) {
@@ -24,73 +41,80 @@ export const syougakkoukuSumm = "<a href='http://nlftp.mlit.go.jp/ksj/gml/datali
 // ----------------------------------------------------------------------
 const d3syougakkoukuColor = d3.scaleOrdinal(d3.schemeCategory10);
 const d3tyuugakkoukuColor = d3.scaleOrdinal(d3.schemeCategory10);
-function syougakkoukuStyleFunction(feature, resolution) {
-  const prop = feature.getProperties();
-  const geoType = feature.getGeometry().getType();
-  const zoom = getZoom(resolution);
-  const text = prop["P29_004"];
-  let rgb
-  let rgba
-  // console.log(prop["id"])
-  if(prop["A27_005"]) {
-    rgb = d3.rgb(d3syougakkoukuColor(Number(prop["id"])));
-    rgba = "rgba(" + rgb.r + "," + rgb.g + "," + rgb.b + ",0.7)";
-  }else{
-    rgb = d3.rgb(d3tyuugakkoukuColor(Number(prop["id"])));
-    rgba = "rgba(" + rgb.r + "," + rgb.g + "," + rgb.b + ",0.7)";
-  }
-  let style
-  switch (geoType){
-    case "MultiPoint":
-    case "Point":
-      if(zoom<12) break;
-      style = new Style({
-        image: new Circle({
-          radius:3,
-          fill: new Fill({
-            color:"black"
+function syougakkoukuStyleFunction(year) {
+  return function (feature, resolution) {
+    const prop = feature.getProperties();
+    const geoType = feature.getGeometry().getType();
+    const zoom = getZoom(resolution);
+    let text = ''
+    if (year === 22) {
+      text = prop["A27_003"];
+    } else {
+      text = prop["P29_004"];
+    }
+    let rgb
+    let rgba
+    // console.log(prop["id"])
+    if (prop["A27_005"]) {
+      rgb = d3.rgb(d3syougakkoukuColor(Number(prop["id"])));
+      rgba = "rgba(" + rgb.r + "," + rgb.g + "," + rgb.b + ",0.7)";
+    } else {
+      rgb = d3.rgb(d3tyuugakkoukuColor(Number(prop["id"])));
+      rgba = "rgba(" + rgb.r + "," + rgb.g + "," + rgb.b + ",0.7)";
+    }
+    let style
+    switch (geoType) {
+      case "MultiPoint":
+      case "Point":
+        if (zoom < 12) break;
+        style = new Style({
+          image: new Circle({
+            radius: 3,
+            fill: new Fill({
+              color: "black"
+            }),
+            stroke: new Stroke({
+              color: "white",
+              width: 1
+            })
           }),
-          stroke: new Stroke({
-            color: "white",
-            width: 1
+          text: new Text({
+            font: "8px sans-serif",
+            text: text,
+            offsetY: 10,
+            stroke: new Stroke({
+              color: "white",
+              width: 3
+            })
           })
-        }),
-        text: new Text({
-          font: "8px sans-serif",
-          text: text,
-          offsetY:10,
-          stroke: new Stroke({
-            color: "white",
-            width: 3
-          })
-        })
-      });
-      break;
-    case "Polygon":
-    case "MultiPolygon":
-      if(zoom>9) {
-         style = new Style({
-          fill: new Fill({
-            color:rgba
-          }),
-          stroke: new Stroke({
-            color: "gray",
-            width: 1
-          }),
-          zIndex: 0
         });
-      }else{
-         style = new Style({
-          fill: new Fill({
-            color:rgba
-          }),
-          zIndex: 0
-        });
-      }
-      break;
-    default:
+        break;
+      case "Polygon":
+      case "MultiPolygon":
+        if (zoom > 9) {
+          style = new Style({
+            fill: new Fill({
+              color: rgba
+            }),
+            stroke: new Stroke({
+              color: "gray",
+              width: 1
+            }),
+            zIndex: 0
+          });
+        } else {
+          style = new Style({
+            fill: new Fill({
+              color: rgba
+            }),
+            zIndex: 0
+          });
+        }
+        break;
+      default:
+    }
+    return style;
   }
-  return style;
 }
 //中学校区---------------------------------------------------------------------------------------
 function Tyuugakkouku(){
@@ -101,7 +125,7 @@ function Tyuugakkouku(){
     // url: "https://mtile.pref.miyazaki.lg.jp/tile/mvt//tyuugakkouku/{z}/{x}/{y}.mvt"
     url: "https://kenzkenz.github.io/tyuugaku/{z}/{x}/{y}.mvt"
   });
-  this.style = syougakkoukuStyleFunction;
+  this.style = syougakkoukuStyleFunction();
 }
 export  const tyuugakkoukuObj = {};
 for (let i of mapsStr) {

@@ -1999,9 +1999,12 @@ const layers =
       ]},
     { text: '夜の明かり', data: { id: "japanLight", layer: LayersMvt.japanLightObj, opacity: 1, summary: LayersMvt.japanLightSumm } },
     { text: '河川中心線', data: { id: "suiro", layer: LayersMvt.suiroObj, opacity: 1, summary: LayersMvt.suiroSumm } },
-
-    { text: 'R03小学校区', data: { id: "syougakkouku", layer: LayersMvt.syougakkoukuObj, opacity: 1, summary: LayersMvt.syougakkoukuSumm } },
-    { text: 'R03中学校区', data: { id: "tyuugakkouku", layer: LayersMvt.tyuugakkoukuObj, opacity: 1, summary: LayersMvt.tyuugakkoukuSumm } },
+    { text: '小中学校区',
+      children: [
+        { text: 'H22小学校区', data: { id: "syougakkoukuH22", layer: LayersMvt.syougakkoukuH22Obj, opacity: 1, summary: LayersMvt.syougakkoukuH22Summ } },
+        { text: 'R03小学校区', data: { id: "syougakkouku", layer: LayersMvt.syougakkoukuObj, opacity: 1, summary: LayersMvt.syougakkoukuSumm } },
+        { text: 'R03中学校区', data: { id: "tyuugakkouku", layer: LayersMvt.tyuugakkoukuObj, opacity: 1, summary: LayersMvt.tyuugakkoukuSumm } },
+    ]},
     { text: '人口集中地区',
       children: [
         { text: 'H27人口集中地区', data: { id: "didmvt", layer: LayersMvt.didH27Obj, opacity: 1, summary: LayersMvt.didH27Summ } },
