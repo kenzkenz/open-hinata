@@ -84,6 +84,24 @@ export function popUp(map,layers,features,overlay,evt,content) {
           '建ぺい率＝' + prop.A29_006 + '<br>' +
           '容積率＝' + prop.A29_007 + '<br>'
       break;
+    case 'tosiH30' :
+      console.log(prop)
+      // const layerNo =prop.layer_no
+      switch (prop.layer_no) {
+        case 1://都市地域
+          cont = "都市地域";
+          break;
+        case 2://市街化区域
+          cont = "市街化区域";
+          break;
+        case 3://市街化調整区域
+          cont = "市街化調整区域";
+          break;
+        case 4://その他用途地域
+          cont = "その他用途地域";
+          break;
+      }
+      break;
      // 夜の明かり
     case 'japanLight':
       if(map.getView().getZoom()>7) cont = '明るさレベル＝' +  prop.light

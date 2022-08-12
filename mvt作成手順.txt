@@ -225,11 +225,9 @@ $ cd keizaisensasTile
 $ gzip -d -v -r -S .pbf *
 $ find . -type f -exec mv -v '{}' '{}'.mvt \;
 -------------------------------------------------------------------------------------------
-$ tippecanoe -P -Z1 -z13 -pk -f -o tositiiki.mbtiles tositiiki.geojson
+$ tippecanoe -P -Z1 -z13 -pk -f -e tile tosi.geojson
 
-$ mb-util --image_format=pbf tositiiki.mbtiles tositiikiTile
-
-$ cd tositiikiTile
+$ cd tile
 $ gzip -d -v -r -S .pbf *
 $ find . -type f -exec mv -v '{}' '{}'.mvt \;
 -------------------------------------------------------------------------------------------
