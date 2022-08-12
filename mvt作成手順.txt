@@ -18,11 +18,9 @@ $ gzip -d -v -r -S .pbf *
 
 $ find . -type f -exec mv -v '{}' '{}'.mvt \;
 -------------------------------------------------------------------------------------------
-$ tippecanoe -pk -f -z9 -S15 -ab -o youtotiikiall9.mbtiles youtotiikiall.geojson
+$ tippecanoe -pk -f -z13 -S15 -ab -e tile youto.geojson
 
-$ mb-util --image_format=pbf youtotiikiall9.mbtiles youtotiikitile9
-
-$ cd youtotiikitile9
+$ cd tile
 $ gzip -d -v -r -S .pbf *
 $ find . -type f -exec mv -v '{}' '{}'.mvt \;
 -------------------------------------------------------------------------------------------
