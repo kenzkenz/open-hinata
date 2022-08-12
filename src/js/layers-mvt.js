@@ -666,3 +666,82 @@ function hinanStyleFunction () {
     return styles;
   };
 }
+//用途地域------------------------------------------------------------------------------------------------
+function YoutoR01(){
+  this.name = 'youtoR01'
+  this.source = new VectorTileSource({
+    format: new MVT(),
+    maxZoom:15,
+    url: "https://kenzkenz.github.io/youto_r01/{z}/{x}/{y}.mvt"
+  });
+  this.style = youtotiikiStyleFunction();
+}
+export  const youtoR01Obj = {};
+for (let i of mapsStr) {
+  youtoR01Obj[i] = new VectorTileLayer(new YoutoR01())
+}
+export const youtoR01Summ = "<a href='http://nlftp.mlit.go.jp/ksj/gml/datalist/KsjTmplt-A27-v2_1.html' target='_blank'>国土数値情報　小学校区データ</a>";
+//------------------------------------------------------
+function youtotiikiStyleFunction() {
+  return function (feature, resolution) {
+    var prop = feature.getProperties();
+    var cate = prop["A29_004"];
+    var rgba = "rgba(0,0,0,0)";
+    switch (cate) {
+      case 1://第一種低層住居専用地域
+        rgba = "rgba(51,204,153,0.8)";
+        break;
+      case 2://第二種低層住居専用地域
+        rgba = "rgba(0,153,102,0.8)";
+        break;
+      case 3://第一種中高層住居専用地域
+        rgba = "rgba(102,204,102,0.8)";
+        break;
+      case 4://第二種中高層住居専用地域
+        rgba = "rgba(204,255,153,0.8)";
+        break;
+      case 5://第一種住居地域
+        rgba = "rgba(255,255,153,0.8)";
+        break;
+      case 6://第二種住居地域
+        rgba = "rgba(255,204,153,0.8)";
+        break;
+      case 7://準住居地域
+        rgba = "rgba(255,204,102,0.8)";
+        break;
+      case 8://近隣商業地域
+        rgba = "rgba(255,153,204,0.8)";
+        break;
+      case 9://商業地域
+        rgba = "rgba(255,102,153,0.8)";
+        break;
+      case 10://準工業地域
+        rgba = "rgba(204,153,255,0.8)";
+        break;
+      case 11://工業地域
+        rgba = "rgba(204,255,255,0.8)";
+        break;
+      case 12://工業専用地域
+        rgba = "rgba(102,204,255,0.8)";
+        break;
+      case 99://
+        rgba = "rgba(0,0,0,0.1)";
+        break;
+    }
+    var style;
+    if (resolution < 125.87) {
+      style = new Style({
+        fill: new Fill({color: rgba}),
+        stroke: new Stroke({
+          color: "darkgray",
+          width: 1
+        })
+      });
+    } else {
+      style = new Style({
+        fill: new Fill({color: rgba})
+      });
+    }
+    return style;
+  }
+}
