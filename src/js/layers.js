@@ -1999,8 +1999,11 @@ const layers =
       ]},
     { text: '夜の明かり', data: { id: "japanLight", layer: LayersMvt.japanLightObj, opacity: 1, summary: LayersMvt.japanLightSumm } },
     { text: '河川中心線', data: { id: "suiro", layer: LayersMvt.suiroObj, opacity: 1, summary: LayersMvt.suiroSumm } },
-    { text: 'R01用途地域', data: { id: "youtoR01", layer: LayersMvt.youtoR01Obj, opacity: 1, summary: LayersMvt.youtoR01Summ } },
-
+    { text: '用途地域',
+      children: [
+        { text: 'H23用途地域', data: { id: "youtoH23", layer: LayersMvt.youtoH23Obj, opacity: 1, summary: LayersMvt.youtoH23Summ } },
+        { text: 'R01用途地域', data: { id: "youtoR01", layer: LayersMvt.youtoR01Obj, opacity: 1, summary: LayersMvt.youtoR01Summ } },
+    ]},
     { text: '小中学校区',
       children: [
         { text: '小学校区',

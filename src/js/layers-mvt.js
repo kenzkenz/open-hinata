@@ -666,7 +666,23 @@ function hinanStyleFunction () {
     return styles;
   };
 }
-//用途地域------------------------------------------------------------------------------------------------
+//H23用途地域------------------------------------------------------------------------------------------------
+function YoutoH23(){
+  this.name = 'youtoH23'
+  this.source = new VectorTileSource({
+    format: new MVT(),
+    maxZoom:15,
+    url: "https://kenzkenz.github.io/youto_h23/{z}/{x}/{y}.mvt"
+  });
+  this.style = youtotiikiStyleFunction();
+}
+export  const youtoH23Obj = {};
+for (let i of mapsStr) {
+  youtoH23Obj[i] = new VectorTileLayer(new YoutoH23())
+}
+export const youtoH23Summ = "<a href='https://nlftp.mlit.go.jp/ksj/gml/datalist/KsjTmplt-A29-v2_1.html' target='_blank'>国土数値情報　用途地域</a>";
+
+//R01用途地域------------------------------------------------------------------------------------------------
 function YoutoR01(){
   this.name = 'youtoR01'
   this.source = new VectorTileSource({
@@ -680,7 +696,7 @@ export  const youtoR01Obj = {};
 for (let i of mapsStr) {
   youtoR01Obj[i] = new VectorTileLayer(new YoutoR01())
 }
-export const youtoR01Summ = "<a href='http://nlftp.mlit.go.jp/ksj/gml/datalist/KsjTmplt-A27-v2_1.html' target='_blank'>国土数値情報　小学校区データ</a>";
+export const youtoR01Summ = "<a href='https://nlftp.mlit.go.jp/ksj/gml/datalist/KsjTmplt-A29-v2_1.html' target='_blank'>国土数値情報　用途地域</a>";
 //------------------------------------------------------
 function youtotiikiStyleFunction() {
   return function (feature, resolution) {

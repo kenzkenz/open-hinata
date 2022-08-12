@@ -74,6 +74,7 @@ export function popUp(map,layers,features,overlay,evt,content) {
             '所在地＝' + prop.A32_009 + '<br>'
       }
       break;
+    case 'youtoH23' :
     case 'youtoR01' :
       console.log(prop)
       cont = '都道府県名＝' + prop.A29_002 + '<br>' +
