@@ -1877,6 +1877,21 @@ for (let i of mapsStr) {
   hyuugasiHmObj[i] = new TileLayer(new HyuugasiHm())
 }
 const hyuugasiHmSumm = '';
+// シームレス地質図-------------------------------------------------------------------------------
+function seamless () {
+  this.name = 'seamless'
+  this.source = new XYZ({
+    url: 'https://gbank.gsj.jp/seamless/v2/api/1.2/tiles/{z}/{y}/{x}.png',
+    crossOrigin: 'Anonymous',
+    minZoom: 5,
+    maxZoom: 13
+  })
+}
+const seamlessObj = {};
+for (let i of mapsStr) {
+  seamlessObj[i] = new TileLayer(new seamless())
+}
+const seamlessSumm = '';
 // ここにレイヤーを全部書く。クリックするとストアのlayerListに追加されていく-------------------------
 const layers =
   [
@@ -1907,6 +1922,7 @@ const layers =
       ]},
     { text: '立体図等',
       children: [
+        { text: 'シームレス地質図', data: { id: 'seamless', layer: seamlessObj, opacity: 1, summary: seamlessSumm } },
         { text: '川だけ地形地図', data: { id: 'kawadake', layer: kawadakeObj, opacity: 1, summary: kawadakeSumm } },
         { text: '川と流域地図', data: { id: 'ryuuiki', layer: ryuuikiObj, opacity: 1, summary: ryuuikiSumm } },
         { text: 'エコリス植生図', data: { id: 'ecoris', layer: ecorisObj, opacity: 1, summary: ecorisSumm } },

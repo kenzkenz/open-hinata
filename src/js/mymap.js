@@ -236,6 +236,14 @@ export function initMap (vm) {
         }
       }
     })
+    //--------------------------------------------------------------------------------
+// シームレス地質図ポップアップ用
+    map.on('singleclick', function (evt) {
+      const layers0 = map.getLayers().getArray();
+      const seamlessLayer = layers0.find(el => el.get('name') === 'seamless');
+      console.log(seamlessLayer)
+      if (seamlessLayer) PopUp.popupSeamless(overlay[i],evt,content)
+    })
 //--------------------------------------------------------------------------------
 // ポップアップ用
     map.on('singleclick', function (evt) {

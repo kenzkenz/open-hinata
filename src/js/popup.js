@@ -1,9 +1,14 @@
 import store from './store'
+import { transform, fromLonLat } from 'ol/proj.js'
+import axios from 'axios'
 export function popUp(map,layers,features,overlay,evt,content) {
   let cont
   const coordinate = evt.coordinate;
   console.log(layers[0].get('name'))
   const prop = features[0].getProperties();
+
+
+
   switch (layers[0].get('name') ) {
     // 小学校区
     case 'syougakkoukuH28':
@@ -156,6 +161,32 @@ export function popUp(map,layers,features,overlay,evt,content) {
   }
   content.innerHTML = cont
   if (cont && cont !== undefined) overlay.setPosition(coordinate);
+}
+//----------------------------------------------------------------------------------------
+export function popupSeamless(overlay,evt,content) {
+  const coordinate = evt.coordinate;
+  const coord4326 = transform(coordinate, "EPSG:3857", "EPSG:4326");
+  const point = coord4326[1] + "," + coord4326[0];
+  console.log("https://gbank.gsj.jp/seamless/v2/api/1.2/legend.json/?point=" + point);
+  const url = 'https://gbank.gsj.jp/seamless/v2/api/1.2/legend.json'
+  axios.get(url, {
+    params: {
+      point:point
+    }
+  }) .then(function (response) {
+    console.log(response.data)
+    const cont =
+        '形成時代 = ' + response.data["formationAge_ja"] +
+        '<hr>グループ = '+ response.data["group_ja"] +
+        '<hr>岩相 = ' + response.data["lithology_ja"]
+    content.innerHTML = cont
+
+    if (response.data.symbol) {
+      overlay.setPosition(coordinate)
+    } else {
+      overlay.setPosition(undefined);
+    }
+  });
 }
 //----------------------------------------------------------------------------------------
 export function popUpShinsuishin(rgba) {
