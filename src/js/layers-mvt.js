@@ -846,6 +846,22 @@ function tositiikiStyleFunction(year) {
     return style;
   }
 }
+//S45過疎地域------------------------------------------------------------------------------------------------
+function KasoS45(){
+  this.name = 'kasoS45'
+  this.source = new VectorTileSource({
+    format: new MVT(),
+    maxZoom:15,
+    url: "https://kenzkenz.github.io/kaso_s45/{z}/{x}/{y}.mvt"
+  });
+  this.style = kasoStyleFunction();
+}
+export  const kasoS45Obj = {};
+for (let i of mapsStr) {
+  kasoS45Obj[i] = new VectorTileLayer(new KasoS45())
+}
+export const kasoS45Summ = "<a href='https://nlftp.mlit.go.jp/ksj/gml/datalist/KsjTmplt-A29-v2_1.html' target='_blank'>国土数値情報　用途地域</a>";
+
 //H29過疎地域------------------------------------------------------------------------------------------------
 function KasoH29(){
   this.name = 'kasoH29'
@@ -867,18 +883,19 @@ function kasoStyleFunction() {
     const prop = feature.getProperties();
     let rgba = "black"
     switch (prop.A17_009) {
-      case 1://市街化区域
+      case '01':
+      case 1://過疎市町村
         rgba = "rgba(40,152,53,0.7)";
         break;
+      case '02':
       case 2://過疎地域とみなされる市町村
         rgba = "rgba(239,255,3,0.7)"
         break;
+      case '03':
       case 3://過疎地域とみなされる区域
         rgba = "rgba(0,0,109,0.7)"
         break;
     }
-
-
     const style = new Style({
         fill: new Fill({
           color: rgba

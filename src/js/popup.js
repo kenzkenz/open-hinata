@@ -123,15 +123,19 @@ export function popUp(map,layers,features,overlay,evt,content) {
           break;
       }
       break;
+    case 'kasoS45' :
     case 'kasoH29' :
       console.log(prop)
       switch (prop.A17_009) {
+        case '01':
         case 1:
           cont = "過疎市町村";
           break;
+        case '02':
         case 2:
           cont = "過疎地域とみなされる市町村";
           break;
+        case '03':
         case 3:
           cont = "過疎地域とみなされる区域";
           break;
