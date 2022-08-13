@@ -761,6 +761,22 @@ function youtotiikiStyleFunction() {
     return style;
   }
 }
+//H18都市地域------------------------------------------------------------------------------------------------
+function TosiH18(){
+  this.name = 'tosiH18'
+  this.source = new VectorTileSource({
+    format: new MVT(),
+    maxZoom:13,
+    url: "https://kenzkenz.github.io/tosi_h18/{z}/{x}/{y}.mvt"
+  });
+  this.style = tositiikiStyleFunction(18);
+}
+export  const tosiH18Obj = {};
+for (let i of mapsStr) {
+  tosiH18Obj[i] = new VectorTileLayer(new TosiH18())
+}
+export const tosiH18Summ = "<a href='https://nlftp.mlit.go.jp/ksj/gml/datalist/KsjTmplt-A29-v2_1.html' target='_blank'>国土数値情報　用途地域</a>";
+
 //H30都市地域------------------------------------------------------------------------------------------------
 function TosiH30(){
   this.name = 'tosiH30'
@@ -777,24 +793,33 @@ for (let i of mapsStr) {
 }
 export const tosiH30Summ = "<a href='https://nlftp.mlit.go.jp/ksj/gml/datalist/KsjTmplt-A29-v2_1.html' target='_blank'>国土数値情報　用途地域</a>";
 //--------------------------------------
-function tositiikiStyleFunction() {
+function tositiikiStyleFunction(year) {
   return function (feature, resolution) {
     const prop = feature.getProperties();
-    const layerNo = prop["layer_no"];
+    let layerNo
+    if (year === 18) {
+      layerNo = prop["A09_003"];
+    } else {
+      layerNo = prop["layer_no"];
+    }
     let rgba = "black";
     let zindex = 0;
     switch (layerNo) {
-      case 1://都市地域
+      case '1':
+      case 1://市街化区域
         rgba = "rgba(40,152,53,0.7)";
         break;
-      case 2://市街化区域
+      case '2':
+      case 2://市街化調整区域
         rgba = "rgba(239,255,3,0.7)";
         zindex = 1;
         break;
-      case 3://市街化調整区域
+      case '3':
+      case 3://その他用途地域
         rgba = "rgba(126,219,109,0.7)";
         break;
-      case 4://その他用途地域
+      case '4':
+      case 4://用途未設定
         rgba = "rgba(253,191,111,0.7)";
         break;
     }

@@ -2001,6 +2001,7 @@ const layers =
     { text: '河川中心線', data: { id: "suiro", layer: LayersMvt.suiroObj, opacity: 1, summary: LayersMvt.suiroSumm } },
     { text: '都市地域',
       children: [
+        // { text: 'H18都市地域', data: { id: "tosiH18", layer: LayersMvt.tosiH18Obj, opacity: 1, summary: LayersMvt.tosiH18Summ } },
         { text: 'H30都市地域', data: { id: "tosiH30", layer: LayersMvt.tosiH30Obj, opacity: 1, summary: LayersMvt.tosiH30Summ } },
       ]},
     { text: '用途地域',

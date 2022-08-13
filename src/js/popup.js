@@ -88,17 +88,37 @@ export function popUp(map,layers,features,overlay,evt,content) {
       console.log(prop)
       // const layerNo =prop.layer_no
       switch (prop.layer_no) {
-        case 1://都市地域
-          cont = "都市地域";
-          break;
-        case 2://市街化区域
+        case 1://市街化区域
           cont = "市街化区域";
           break;
-        case 3://市街化調整区域
+        case 2://市街化調整区域
           cont = "市街化調整区域";
           break;
-        case 4://その他用途地域
+        case 3://その他用途地域
           cont = "その他用途地域";
+          break;
+        case 4://用途未設定
+          cont = "用途未設定";
+          break;
+      }
+    case 'tosiH18' :
+      console.log(prop)
+      // const layerNo =prop.layer_no
+      switch (prop.A09_003) {
+        // case '1'://都市地域
+        //   cont = "都市地域";
+        //   break;
+        case '1'://市街化区域
+          cont = "市街化区域";
+          break;
+        case '2'://市街化調整区域
+          cont = "市街化調整区域";
+          break;
+        case '3'://その他用途地域
+          cont = "その他用途地域";
+          break;
+        case '4':
+          cont = "用途未設定";
           break;
       }
       break;
