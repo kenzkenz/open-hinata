@@ -1920,7 +1920,7 @@ const layers =
         { text: '74~78年航空写真(全国)', data: { id: 'sp74', layer: sp74Obj, opacity: 1, summary: sp74Summ } },
         { text: '61~64年航空写真', data: { id: 'sp61', layer: sp61Obj, opacity: 1, summary: sp61Summ } }
       ]},
-    { text: '立体図等',
+    { text: '立体図、地質図等',
       children: [
         { text: 'シームレス地質図', data: { id: 'seamless', layer: seamlessObj, opacity: 1, summary: seamlessSumm } },
         { text: '川だけ地形地図', data: { id: 'kawadake', layer: kawadakeObj, opacity: 1, summary: kawadakeSumm } },
@@ -2015,6 +2015,8 @@ const layers =
       ]},
     { text: '夜の明かり', data: { id: "japanLight", layer: LayersMvt.japanLightObj, opacity: 1, summary: LayersMvt.japanLightSumm } },
     { text: '河川中心線', data: { id: "suiro", layer: LayersMvt.suiroObj, opacity: 1, summary: LayersMvt.suiroSumm } },
+    { text: 'H29過疎地域', data: { id: "kasoH29", layer: LayersMvt.kasoH29Obj, opacity: 1, summary: LayersMvt.kasoH29Summ } },
+
     { text: '都市地域',
       children: [
         // { text: 'H18都市地域', data: { id: "tosiH18", layer: LayersMvt.tosiH18Obj, opacity: 1, summary: LayersMvt.tosiH18Summ } },

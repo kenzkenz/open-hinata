@@ -108,11 +108,7 @@ export function popUp(map,layers,features,overlay,evt,content) {
       }
     case 'tosiH18' :
       console.log(prop)
-      // const layerNo =prop.layer_no
       switch (prop.A09_003) {
-        // case '1'://都市地域
-        //   cont = "都市地域";
-        //   break;
         case '1'://市街化区域
           cont = "市街化区域";
           break;
@@ -126,6 +122,21 @@ export function popUp(map,layers,features,overlay,evt,content) {
           cont = "用途未設定";
           break;
       }
+      break;
+    case 'kasoH29' :
+      console.log(prop)
+      switch (prop.A17_009) {
+        case 1:
+          cont = "過疎市町村";
+          break;
+        case 2:
+          cont = "過疎地域とみなされる市町村";
+          break;
+        case 3:
+          cont = "過疎地域とみなされる区域";
+          break;
+      }
+      cont = cont + '<hr>' + prop.A17_006
       break;
      // 夜の明かり
     case 'japanLight':
