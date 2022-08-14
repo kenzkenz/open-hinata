@@ -1880,6 +1880,7 @@ const hyuugasiHmSumm = '';
 // シームレス地質図-------------------------------------------------------------------------------
 function seamless () {
   this.name = 'seamless'
+  this.pointer = true
   this.source = new XYZ({
     url: 'https://gbank.gsj.jp/seamless/v2/api/1.2/tiles/{z}/{y}/{x}.png',
     crossOrigin: 'Anonymous',

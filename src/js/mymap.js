@@ -134,9 +134,9 @@ export function initMap (vm) {
       });
       const tgtLayers = layers.filter(el => el.get('pointer'));
       if (tgtLayers.length>0) {
-        if (map.getView().getZoom() >= 10) {
+        // if (map.getView().getZoom() >= 10) {
           document.querySelector('#' + mapName + ' .ol-viewport').style.cursor = "pointer"
-        }
+        // }
       }
     });
     // シングルクリック------------------------------------------------------------------------------------
@@ -361,14 +361,15 @@ export function initMap (vm) {
     }
     const win = window.navigator.userAgent.includes('Win')
     map.on('moveend', function (event) {
-      if (win) {
+      // if (win) {
         getElevation(event)
-      } else {
-        vm.zoom[mapName] = 'zoom=' + String(Math.floor(map.getView().getZoom() * 100) / 100)
-      }
+      // } else {
+      //   vm.zoom[mapName] = 'zoom=' + String(Math.floor(map.getView().getZoom() * 100) / 100)
+      // }
     });
     map.on("pointermove",function(event){
-      if (win) getElevation(event)
+      // if (win)
+        getElevation(event)
     });
     // ****************
     // 産総研さん作成の関数
