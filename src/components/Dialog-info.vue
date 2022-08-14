@@ -14,15 +14,21 @@
             <v-flood :item="item" :mapName="mapName" v-else-if="item.component.name === 'flood5m'" />
             <!--海面上昇シミュレーション10m-->
             <v-flood :item="item" :mapName="mapName" v-else-if="item.component.name === 'flood10m'"/>
+
+            <v-seamless :item="item" :mapName="mapName" v-else-if="item.component.name === 'seamless'"/>
+
+
         </div>
     </div>
 </template>
 
 <script>
   import DialogInfoFlood from './dialog-info/Dialog-info-flood'
+  import DialogInfoSeamless from "@/components/dialog-info/Dialog-info-seamless";
   export default {
     name: "v-dialog-info",
     components: {
+      'v-seamless':DialogInfoSeamless,
       'v-flood': DialogInfoFlood
     },
     props: ['mapName'],

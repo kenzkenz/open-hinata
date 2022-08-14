@@ -6,9 +6,6 @@ export function popUp(map,layers,features,overlay,evt,content) {
   const coordinate = evt.coordinate;
   console.log(layers[0].get('name'))
   const prop = features[0].getProperties();
-
-
-
   switch (layers[0].get('name') ) {
     // 小学校区
     case 'syougakkoukuH28':
