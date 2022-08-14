@@ -671,7 +671,7 @@ function YoutoH23(){
   this.name = 'youtoH23'
   this.source = new VectorTileSource({
     format: new MVT(),
-    maxZoom:15,
+    maxZoom:13,
     url: "https://kenzkenz.github.io/youto_h23/{z}/{x}/{y}.mvt"
   });
   this.style = youtotiikiStyleFunction();
@@ -687,7 +687,7 @@ function YoutoR01(){
   this.name = 'youtoR01'
   this.source = new VectorTileSource({
     format: new MVT(),
-    maxZoom:15,
+    maxZoom:13,
     url: "https://kenzkenz.github.io/youto_r01/{z}/{x}/{y}.mvt"
   });
   this.style = youtotiikiStyleFunction();
@@ -775,14 +775,14 @@ export  const tosiH18Obj = {};
 for (let i of mapsStr) {
   tosiH18Obj[i] = new VectorTileLayer(new TosiH18())
 }
-export const tosiH18Summ = "<a href='https://nlftp.mlit.go.jp/ksj/gml/datalist/KsjTmplt-A29-v2_1.html' target='_blank'>国土数値情報　用途地域</a>";
+export const tosiH18Summ = "https://nlftp.mlit.go.jp/ksj/gml/datalist/KsjTmplt-A09.html' target='_blank'>国土数値情報　都市地域</a>";
 
 //H30都市地域------------------------------------------------------------------------------------------------
 function TosiH30(){
   this.name = 'tosiH30'
   this.source = new VectorTileSource({
     format: new MVT(),
-    maxZoom:15,
+    maxZoom:13,
     url: "https://kenzkenz.github.io/tosi_h30/{z}/{x}/{y}.mvt"
   });
   this.style = tositiikiStyleFunction();
@@ -791,7 +791,7 @@ export  const tosiH30Obj = {};
 for (let i of mapsStr) {
   tosiH30Obj[i] = new VectorTileLayer(new TosiH30())
 }
-export const tosiH30Summ = "<a href='https://nlftp.mlit.go.jp/ksj/gml/datalist/KsjTmplt-A29-v2_1.html' target='_blank'>国土数値情報　用途地域</a>";
+export const tosiH30Summ = "<a href='https://nlftp.mlit.go.jp/ksj/gml/datalist/KsjTmplt-A09.html' target='_blank'>国土数値情報　都市地域</a>";
 //--------------------------------------
 function tositiikiStyleFunction(year) {
   return function (feature, resolution) {
@@ -851,7 +851,7 @@ function KasoS45(){
   this.name = 'kasoS45'
   this.source = new VectorTileSource({
     format: new MVT(),
-    maxZoom:15,
+    maxZoom:13,
     url: "https://kenzkenz.github.io/kaso_s45/{z}/{x}/{y}.mvt"
   });
   this.style = kasoStyleFunction();
@@ -860,14 +860,29 @@ export  const kasoS45Obj = {};
 for (let i of mapsStr) {
   kasoS45Obj[i] = new VectorTileLayer(new KasoS45())
 }
-export const kasoS45Summ = "<a href='https://nlftp.mlit.go.jp/ksj/gml/datalist/KsjTmplt-A29-v2_1.html' target='_blank'>国土数値情報　用途地域</a>";
+export const kasoS45Summ = "<a href='https://nlftp.mlit.go.jp/ksj/gml/datalist/KsjTmplt-A17-v4_0.html' target='_blank'>国土数値情報　過疎地域</a>";
+//S60過疎地域------------------------------------------------------------------------------------------------
+function KasoS60(){
+  this.name = 'kasoS60'
+  this.source = new VectorTileSource({
+    format: new MVT(),
+    maxZoom:13,
+    url: "https://kenzkenz.github.io/kaso_s60/{z}/{x}/{y}.mvt"
+  });
+  this.style = kasoStyleFunction();
+}
+export  const kasoS60Obj = {};
+for (let i of mapsStr) {
+  kasoS60Obj[i] = new VectorTileLayer(new KasoS60())
+}
+export const kasoS60Summ = "<a href='https://nlftp.mlit.go.jp/ksj/gml/datalist/KsjTmplt-A17-v4_0.html' target='_blank'>国土数値情報　過疎地域</a>";
 
 //H29過疎地域------------------------------------------------------------------------------------------------
 function KasoH29(){
   this.name = 'kasoH29'
   this.source = new VectorTileSource({
     format: new MVT(),
-    maxZoom:15,
+    maxZoom:13,
     url: "https://kenzkenz.github.io/kaso_h29/{z}/{x}/{y}.mvt"
   });
   this.style = kasoStyleFunction();
@@ -876,7 +891,7 @@ export  const kasoH29Obj = {};
 for (let i of mapsStr) {
   kasoH29Obj[i] = new VectorTileLayer(new KasoH29())
 }
-export const kasoH29Summ = "<a href='https://nlftp.mlit.go.jp/ksj/gml/datalist/KsjTmplt-A29-v2_1.html' target='_blank'>国土数値情報　用途地域</a>";
+export const kasoH29Summ = "<a href='https://nlftp.mlit.go.jp/ksj/gml/datalist/KsjTmplt-A17-v4_0.html' target='_blank'>国土数値情報　過疎地域</a>";
 //--------------------------------------
 function kasoStyleFunction() {
   return function (feature, resolution) {

@@ -124,6 +124,7 @@ export function popUp(map,layers,features,overlay,evt,content) {
       }
       break;
     case 'kasoS45' :
+    case 'kasoS60' :
     case 'kasoH29' :
       console.log(prop)
       switch (prop.A17_009) {

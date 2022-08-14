@@ -2018,6 +2018,7 @@ const layers =
     { text: '過疎地域',
       children: [
         { text: 'S45過疎地域', data: { id: "kasoS45", layer: LayersMvt.kasoS45Obj, opacity: 1, summary: LayersMvt.kasoS45Summ } },
+        { text: 'S60過疎地域', data: { id: "kasoS60", layer: LayersMvt.kasoS60Obj, opacity: 1, summary: LayersMvt.kasoS60Summ } },
         { text: 'H29過疎地域', data: { id: "kasoH29", layer: LayersMvt.kasoH29Obj, opacity: 1, summary: LayersMvt.kasoH29Summ } },
     ]},
     { text: '都市地域',
