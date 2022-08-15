@@ -1,39 +1,69 @@
 <template>
   <div>
-    <p v-html="contents"></p>
+   <div id="group-name-div">
+     地質で検索
+      <li v-for="item in groupName" :id="item.id">
+        <input type="radio" name="gloupName"
+               :id="item.name"
+               v-model="choosed"
+               :value="item.name"
+               @click = aaa(item.colorArr)>
+        <label :for="item.name">{{ item.name }}</label>
+      </li>
+     <br>
+     時代で検索
+     <li v-for="item in formationAge" :id="item.id">
+       <input type="radio" name="formationAge"
+              :id="item.ageName"
+              :value="item.ageName"
+              @click = aaa(item.colorArr)>
+       <label :for="item.ageName">{{ item.ageName }}</label>
+     </li>
+   </div>
+<!--    <b-button class='olbtn' :size="btnSize" @click="reset">リセット</b-button>-->
   </div>
 </template>
-
 <script>
-
-
 import axios from "axios";
-
+import * as Layers from '../../js/layers'
 export default {
   name: "Dialog-info-seamless",
+  props: ['mapName'],
   data () {
     return {
-      contents:'test2'
+      btnSize: 'sm',
+      choosed:'全て表示',
+      groupName:[],
+      formationAge:[]
     }
   },
   computed: {
 
   },
   methods: {
-
+    aaa(colorArr){
+      console.log(this.mapName)
+      console.log(colorArr)
+      this.$store.commit('base/updateColorsArr',colorArr);
+      Layers.seamlessObj[this.mapName].getSource().changed()
+    },
+    reset(){
+      this.$store.commit('base/updateColorsArr',[]);
+      Layers.seamlessObj[this.mapName].getSource().changed()
+    }
   },
   mounted ()  {
-
     this.$nextTick(function () {
       const vm = this;
       var groupArr = [];
       var colorArr = null;
       var colorArr2 = null;
       var formationAgeArr = [];
+      let id = 1
+      let id2 = 100
       const url = 'https://gbank.gsj.jp/seamless/v2/api/1.0/legend.json'
       axios.get(url, {
       }) .then(function (response) {
-        console.log(response.data)
         bbb(response.data)
       })
       // 配列内に存在するかを調べる関数
@@ -56,16 +86,19 @@ export default {
         return true;
       }
       function bbb(json) {
-        console.log(json);
         var group = [];
         var formationAge = [];
-        var colorArr = [];
+        let colorArr = [];
         for(var i = 0; i <json.length; i++){
           PushArray(group, json[i]["group_ja"]);
           PushArray(formationAge, json[i]["formationAge_ja"].split(" ")[0]);
         }
-        var content = "<div style='border: solid 1px #ddd;float: left'>";
-        content += "地質で抽出";
+        id++
+        vm.groupName.push({
+          "id":id,
+          "name":'全て表示',
+          "colorArr":[]
+        });
         for(var i = 0; i <group.length; i++){
           colorArr = [];
           var groupName = group[i];
@@ -76,21 +109,13 @@ export default {
               )
             }
           }
-          groupArr.push({
-            "groupname":groupName,
-            "color":colorArr
+          vm.groupName.push({
+            "id":id,
+            "name":groupName,
+            "colorArr":colorArr
           });
-          content += "<div style='width:100px;'>";
-          // var gId = "seamless-legend-check-" + groupName + "-" + mapName;
-          var gId = "seamless-legend-check-" + groupName + "-";
-          content += "<input type='checkbox' class='seamless-legend-check seamless-legend-check-group' id='" + gId + "' value='" + groupName + "'>";
-          content += "<label for='" + gId + "'>" + group[i] + "</label>";
-          content += "</div>";
         }
-        content += "</div>";
-
-        content += "<div style='border: solid 1px #ddd;margin-left: 5px;float: left'>";
-        content += "時代で抽出";
+        // content += "時代で抽出";
         for(var i = 0; i <formationAge.length; i++){
           colorArr = [];
           var formationAgeName = formationAge[i];
@@ -106,25 +131,15 @@ export default {
             "formationAgename":formationAgeName,
             "color":colorArr
           });
-          content += "<div style='width:100px;'>";
-          // var fId = "seamless-legend-check-" + formationAgeName + "-" + mapName;
-          var fId = "seamless-legend-check-" + formationAgeName + "-";
-          content += "<input type='checkbox' class='seamless-legend-check seamless-legend-check-formationAge' id='" + fId + "' value='" + formationAgeName + "'>";
-          content += "<label for='" + fId + "'>" + formationAgeName + "</label>";
-          content += "</div>";
+          id2++
+          vm.formationAge.push({
+            "id":id2,
+            "ageName":formationAgeName,
+            "cocolorArrlor":colorArr
+          });
         }
-        content += "</div>";
-        content += "<br style='clear:both;'>";
-        content += "<div style='margin-top: 10px;'>";
-        content += "<button type='button' class='btn btn-xxs btn-primary seamless-legend-clear'>リセット</button>";
-        content += "</div>";
-        console.log(vm.contents)
-        vm.contents=content
       }
-
-
-
-
+      console.log(vm.formationAge)
     })
   },
   watch: {
@@ -134,5 +149,16 @@ export default {
 </script>
 
 <style scoped>
+.olbtn{
+  background-color: rgba(0,60,136,0.5);
+}
+li {
+  list-style-type: none;
+}
+#group-name-div{
+  margin: 10px;
+  border: 1px solid grey;
+  padding: 10px;
+}
 
 </style>

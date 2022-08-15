@@ -87,12 +87,63 @@ export const flood5Obj = {};
 for (let i of mapsStr) {
   flood5Obj[i] = new ImageLaye(new Dem5());
   flood5Obj[i].getSource().on('beforeoperations', function(event) {
+    console.log(event.data)
     event.data.level = Number(document.querySelector('#' + i  + " .flood-range5m").value);
     event.data.colors = store.state.info.colors;
+    console.log(event.data)
   });
 }
 
 let floodSumm = '';
+
+// シームレス地質図-------------------------------------------------------------------------------
+const sources =new XYZ({
+  url: 'https://gbank.gsj.jp/seamless/v2/api/1.2/tiles/{z}/{y}/{x}.png',
+  crossOrigin: 'Anonymous',
+  minZoom: 5,
+  maxZoom: 13,
+})
+function seamless () {
+  this.name = 'seamless'
+  this.pointer = true
+  this.source = new RasterSource({
+    sources:[sources],
+    operation:operationFunc()
+  })
+}
+export const seamlessObj = {};
+for (let i of mapsStr) {
+  seamlessObj[i] = new ImageLaye(new seamless())
+  seamlessObj[i].getSource().on('beforeoperations', function(event) {
+  if (store.state.base.colorsArr.length===0) {
+
+  }else{
+    event.data.colorArr = store.state.base.colorsArr
+  }
+
+
+  });
+}
+const seamlessSumm = '';
+function operationFunc () {
+  return function (pixels, data) {
+    var pixel = pixels[0];
+    if (pixel[3]) {
+      var colorArr = data.colorArr;
+      if (colorArr) {
+        var pixel00 = pixel[0] + "/" + pixel[1] + "/" + pixel[2];
+        if (colorArr.indexOf(pixel00) >= 0) {
+          // 存在する
+        } else {
+          pixel[3] = 0;
+        }
+      } else {
+        return pixel;
+      }
+    }
+    return pixel;
+  }
+};
 
 // オープンストリートマップ------------------------------------------------------------------------
 function Osm () {
@@ -1877,22 +1928,11 @@ for (let i of mapsStr) {
   hyuugasiHmObj[i] = new TileLayer(new HyuugasiHm())
 }
 const hyuugasiHmSumm = '';
-// シームレス地質図-------------------------------------------------------------------------------
-function seamless () {
-  this.name = 'seamless'
-  this.pointer = true
-  this.source = new XYZ({
-    url: 'https://gbank.gsj.jp/seamless/v2/api/1.2/tiles/{z}/{y}/{x}.png',
-    crossOrigin: 'Anonymous',
-    minZoom: 5,
-    maxZoom: 13
-  })
-}
-const seamlessObj = {};
-for (let i of mapsStr) {
-  seamlessObj[i] = new TileLayer(new seamless())
-}
-const seamlessSumm = '';
+
+
+
+
+
 // ここにレイヤーを全部書く。クリックするとストアのlayerListに追加されていく-------------------------
 const layers =
   [

@@ -25,7 +25,7 @@
                 <div style="text-align: center;">{{ s_seaLevel10m.toFixed(1) }}m上昇した場合</div>
                 <p v-html="item.summary"></p><hr>
                 <div style="position: absolute;left:260px;"><chrome-picker v-show="colorsShowFlg" v-model="s_colors" @input="colorChange10m"/></div>
-                <div  @click="colorsShow('m20')" :style="style('m20')">20m～</div>
+                <div @click="colorsShow('m20')" :style="style('m20')">20m～</div>
                 <div @click="colorsShow('m10')" :style="style('m10')">10m～20m</div>
                 <div @click="colorsShow('m5')" :style="style('m5')">5m～10m</div>
                 <div @click="colorsShow('m3')" :style="style('m3')">3m～5m</div>
