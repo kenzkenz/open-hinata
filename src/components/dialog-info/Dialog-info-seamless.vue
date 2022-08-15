@@ -55,9 +55,6 @@ export default {
   mounted ()  {
     this.$nextTick(function () {
       const vm = this;
-      var groupArr = [];
-      var colorArr = null;
-      var colorArr2 = null;
       var formationAgeArr = [];
       let id = 1
       let id2 = 100
@@ -135,7 +132,7 @@ export default {
           vm.formationAge.push({
             "id":id2,
             "ageName":formationAgeName,
-            "cocolorArrlor":colorArr
+            "colorArr":colorArr
           });
         }
       }
