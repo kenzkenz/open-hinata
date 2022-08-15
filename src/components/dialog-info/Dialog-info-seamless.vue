@@ -13,7 +13,7 @@
      <br>
      時代で検索
      <li v-for="item in formationAge" :id="item.id">
-       <input type="radio" name="formationAge"
+       <input type="radio" name="gloupName"
               :id="item.ageName"
               :value="item.ageName"
               @click = aaa(item.colorArr)>
@@ -124,10 +124,6 @@ export default {
               )
             }
           }
-          formationAgeArr.push({
-            "formationAgename":formationAgeName,
-            "color":colorArr
-          });
           id2++
           vm.formationAge.push({
             "id":id2,
