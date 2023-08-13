@@ -117,16 +117,25 @@
             vm.mapSize['map03'] = {top: 0, left: 0, width: 0, height: 0};
             vm.mapSize['map04'] = {top: 0, left: 0, width: 0, height: 0};
             break;
-          // 2画面（縦２画面）
+          // 2画面
           case 2:
-            vm.synchDivFlg = true;
-            vm.mapFlg['map02'] = true; vm.mapFlg['map03'] = false; vm.mapFlg['map04'] = false;
-            vm.mapSize['map01'] = {top: 0, left: 0, width: '50%', height: height};
-            vm.mapSize['map02'] = {top: 0, left: '50%', width: '50%', height: height};
-            vm.mapSize['map03'] = {top: 0, left: 0, width: 0, height: 0};
-            vm.mapSize['map04'] = {top: 0, left: 0, width: 0, height: 0};
+            if (window.innerWidth > 600) {// 横２画面
+              vm.synchDivFlg = true;
+              vm.mapFlg['map02'] = true; vm.mapFlg['map03'] = false; vm.mapFlg['map04'] = false;
+              vm.mapSize['map01'] = {top: 0, left: 0, width: '50%', height: height};
+              vm.mapSize['map02'] = {top: 0, left: '50%', width: '50%', height: height};
+              vm.mapSize['map03'] = {top: 0, left: 0, width: 0, height: 0};
+              vm.mapSize['map04'] = {top: 0, left: 0, width: 0, height: 0};
+            } else { // 縦2画面
+              vm.synchDivFlg = true;
+              vm.mapFlg['map02'] = true; vm.mapFlg['map03'] = false; vm.mapFlg['map04'] = false;
+              vm.mapSize['map01'] = {top: 0, left: 0, width: '100%', height: height2};
+              vm.mapSize['map02'] = {top: '50%', left: 0, width: '100%', height: height2};
+              vm.mapSize['map03'] = {top: 0, left: 0, width: 0, height: 0};
+              vm.mapSize['map04'] = {top: 0, left: 0, width: 0, height: 0};
+            }
             break;
-          // 2画面（横２画面）
+          // 2画面（縦２画面）
           // case 3:
           //   vm.synchDivFlg = true;
           //   vm.mapFlg['map02'] = true; vm.mapFlg['map03'] = false; vm.mapFlg['map04'] = false;
@@ -198,7 +207,10 @@
           this.splitMap2()
         };
         resize();
-        window.onresize =  () => resize();
+        window.onresize =  () => {
+          this.splitMap2()
+          resize()
+        };
         // ⑤縦バウンス無効化----------------------
         // https://github.com/lazd/iNoBounce
         Inobounce();
