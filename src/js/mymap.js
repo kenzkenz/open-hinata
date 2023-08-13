@@ -154,9 +154,9 @@ export function initMap (vm) {
         // フィーチャーにマウスがあたったとき
         map.on("pointermove",function(evt){
             //少しでも処理を早めるためにMw5レイヤーがあったら抜ける。-----------
-            const layers00 = evt.map.getLayers().getArray();
-            let mw5 = layers00.find(el => el.get('mw'));
-            if (mw5) return //ここで抜ける
+            // const layers00 = evt.map.getLayers().getArray();
+            // let mw5 = layers00.find(el => el.get('mw'));
+            // if (mw5) return //ここで抜ける
             //----------------------------------------------------------
             document.querySelector('#' + mapName + ' .ol-viewport').style.cursor = "default"
             const map = evt.map;
@@ -178,12 +178,16 @@ export function initMap (vm) {
             const pixel = (map).getPixelFromCoordinate(evt.coordinate);
             const layers = [];
             // マウスがあたった箇所のレイヤーを複数取得する
-            try {
-                (map).forEachLayerAtPixel(pixel,function(layer){
-                    layers.push(layer);
-                });
-            } catch (error) {}
-
+            //少しでも処理を早めるためにMw5レイヤーがあったら抜ける。-----------
+            const layers00 = evt.map.getLayers().getArray();
+            let mw5 = layers00.find(el => el.get('mw'));
+            if (!mw5) {
+                try {
+                    (map).forEachLayerAtPixel(pixel,function(layer){
+                        layers.push(layer);
+                    });
+                } catch (error) {}
+            }
             const tgtLayers = layers.filter(el => el.get('pointer'));
             if (tgtLayers.length>0) {
                 // if (map.getView().getZoom() >= 10) {
