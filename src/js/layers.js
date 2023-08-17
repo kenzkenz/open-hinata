@@ -667,7 +667,7 @@ for (let i of mapsStr) {
 const hyougoCsSumm = '<a href="https://web.pref.hyogo.lg.jp/kk26/hyogo-geo.html" target="_blank">全国初「全県土分の高精度3次元データ」の公開について</a>';
 
 // 兵庫県CS立体図50cm ----------------------------------------------------------------------------
-function HyougoCsTest () {
+function HyougoCs50 () {
   this.extent = transformE([134.2669714033038, 34.17797854803047,135.47241581374712, 35.783161768341444])
   this.source = new XYZ({
     url: 'https://kenzkenz.xsrv.jp/tile/hyougo/cs50cm/{z}/{x}/{-y}.png',
@@ -676,11 +676,30 @@ function HyougoCsTest () {
     maxZoom: 19
   });
 }
-const hyougoCsTestObj = {};
+const hyougoCs50Obj = {};
 for (let i of mapsStr) {
-  hyougoCsTestObj[i] = new TileLayer(new HyougoCsTest())
+  hyougoCs50Obj[i] = new TileLayer(new HyougoCs50())
 }
-const hyougoCsSummTest = '';
+const hyougoCs50Summ = '';
+
+
+// 兵庫県CS立体図50cmTest ----------------------------------------------------------------------------
+function HyougoCsTest2 () {
+  this.extent = transformE([134.2669714033038, 34.17797854803047,135.47241581374712, 35.783161768341444])
+  this.source = new XYZ({
+    url: 'https://kenzkenz.xsrv.jp/tile/hyougo/test/{z}/{x}/{-y}.png',
+    crossOrigin: 'Anonymous',
+    minZoom: 1,
+    maxZoom: 19
+  });
+}
+const hyougoCsTest2Obj = {};
+for (let i of mapsStr) {
+  hyougoCsTest2Obj[i] = new TileLayer(new HyougoCsTest2())
+}
+const hyougoCsSummTest2 = '';
+
+
 
 // 長野県CS立体図----------------------------------------------------------------------------
 function NaganoCs () {
@@ -810,7 +829,7 @@ for (let i of mapsStr) {
   cs00Obj[i] = new LayerGroup({
     layers: [
       gihuCsObj[i],
-      hyougoCsTestObj[i],
+      hyougoCs50Obj[i],
       naganoCsObj[i],
       sizuokaCsObj[i],
       hiroshimaCsObj[i],
@@ -7774,7 +7793,9 @@ const layers =
 
         { text: '岐阜県CS立体図', data: { id: 'gcs', layer: gihuCsObj, opacity: 1, zoom:9, center:[137.03491577372932, 35.871742161031975], summary: gihuCsSumm } },
         { text: '兵庫県CS立体図', data: { id: 'hyougocs', layer: hyougoCsObj, opacity: 1, zoom:9, center:[134.8428381533734, 35.05148520051671], summary: hyougoCsSumm } },
-        { text: '兵庫県CS立体図50cm', data: { id: 'hyougocs50cm', layer: hyougoCsTestObj, opacity: 1, zoom:9, center:[134.8428381533734, 35.05148520051671], summary: hyougoCsSummTest } },
+        { text: '兵庫県CS立体図50cm', data: { id: 'hyougocs50cm', layer: hyougoCs50Obj, opacity: 1, zoom:9, center:[134.8428381533734, 35.05148520051671], summary: hyougoCs50Summ } },
+        // { text: '兵庫県CS立体図50cmTest', data: { id: 'hyougocs50cmTest', layer: hyougoCsTest2Obj, opacity: 1, zoom:9, center:[134.8428381533734, 35.05148520051671], summary: hyougoCsSummTest2 } },
+
         { text: '長野県CS立体図', data: { id: 'naganocs', layer: naganoCsObj, opacity: 1, zoom:9, center:[138.14880751631608, 36.19749617538284], summary: naganoCsSumm } },
         { text: '静岡県CS立体図', data: { id: 'sizuokacs', layer: sizuokaCsObj, opacity: 1, zoom:9, center:[138.26385867875933, 35.01475223050842], summary: sizuokaCsSumm } },
         { text: '広島県CS立体図', data: { id: 'hiroshimacs', layer: hiroshimaCsObj, opacity: 1, zoom:9, center:[132.77140492854667, 34.41276234214364], summary: hiroshimaCsSumm } },

@@ -105,6 +105,7 @@
       // 分割その２
       splitMap2 () {
         const vm = this;
+        const isPortrait = window.matchMedia("(orientation: portrait)").matches
         const height = window.innerHeight + 'px';
         const height2 = window.innerHeight / 2 + 'px';
         switch (this.s_splitFlg) {
@@ -119,20 +120,30 @@
             break;
           // 2画面
           case 2:
-            if (window.innerWidth > 600) {// 横２画面
+            if (window.innerWidth > 850) {// 横２画面
               vm.synchDivFlg = true;
               vm.mapFlg['map02'] = true; vm.mapFlg['map03'] = false; vm.mapFlg['map04'] = false;
               vm.mapSize['map01'] = {top: 0, left: 0, width: '50%', height: height};
               vm.mapSize['map02'] = {top: 0, left: '50%', width: '50%', height: height};
               vm.mapSize['map03'] = {top: 0, left: 0, width: 0, height: 0};
               vm.mapSize['map04'] = {top: 0, left: 0, width: 0, height: 0};
-            } else { // 縦2画面
-              vm.synchDivFlg = true;
-              vm.mapFlg['map02'] = true; vm.mapFlg['map03'] = false; vm.mapFlg['map04'] = false;
-              vm.mapSize['map01'] = {top: 0, left: 0, width: '100%', height: height2};
-              vm.mapSize['map02'] = {top: '50%', left: 0, width: '100%', height: height2};
-              vm.mapSize['map03'] = {top: 0, left: 0, width: 0, height: 0};
-              vm.mapSize['map04'] = {top: 0, left: 0, width: 0, height: 0};
+            } else { // 縦2画面or横2画面
+              // alert(window.innerWidth)
+              if (isPortrait) { // 縦2画面
+                vm.synchDivFlg = true;
+                vm.mapFlg['map02'] = true; vm.mapFlg['map03'] = false; vm.mapFlg['map04'] = false;
+                vm.mapSize['map01'] = {top: 0, left: 0, width: '100%', height: height2};
+                vm.mapSize['map02'] = {top: '50%', left: 0, width: '100%', height: height2};
+                vm.mapSize['map03'] = {top: 0, left: 0, width: 0, height: 0};
+                vm.mapSize['map04'] = {top: 0, left: 0, width: 0, height: 0};
+              } else {
+                vm.synchDivFlg = true;
+                vm.mapFlg['map02'] = true; vm.mapFlg['map03'] = false; vm.mapFlg['map04'] = false;
+                vm.mapSize['map01'] = {top: 0, left: 0, width: '50%', height: height};
+                vm.mapSize['map02'] = {top: 0, left: '50%', width: '50%', height: height};
+                vm.mapSize['map03'] = {top: 0, left: 0, width: 0, height: 0};
+                vm.mapSize['map04'] = {top: 0, left: 0, width: 0, height: 0};
+              }
             }
             break;
           // 2画面（縦２画面）
@@ -194,12 +205,13 @@
         // ②パーマリンク------------------------------
         Permalink.permalinkEventSet();
         // ③画面分割-------------------------------
-        this.splitMap2();
+        // this.splitMap2();
         // ④リサイズ---------------------------------
         const resize = () => {
           if (window.innerWidth < 1000) {
             this.btnSize = 'sm'
             this.toolTip = false
+            // alert(window.innerWidth)
           } else {
             this.btnSize = ''
             this.toolTip = true
@@ -208,9 +220,17 @@
         };
         resize();
         window.onresize =  () => {
-          this.splitMap2()
-          resize()
+          // this.splitMap2()
+          setTimeout(function(){
+            resize()
+          }, 50);
         };
+        window.addEventListener("orientationchange", function() {
+          /* 向き切り替え時の処理 */
+          setTimeout(function(){
+            resize()
+          }, 50);
+        });
         // ⑤縦バウンス無効化----------------------
         // https://github.com/lazd/iNoBounce
         Inobounce();
