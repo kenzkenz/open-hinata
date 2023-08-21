@@ -414,7 +414,9 @@ export function popUp(map,layers,features,overlay,evt,content) {
       }
       cont = '<div style=width:300px>分類名=' + landFormName + '<hr>' +
              '成り立ち=' + naritachi + '<hr>' +
-             'リスク=' + risk + '</div>'
+             'リスク=' + risk + '<hr>' +
+             streetView +
+             '</div>'
       break
     case 'densyou':
       console.log(prop.geometry.extent_[0])
