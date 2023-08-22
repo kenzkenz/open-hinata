@@ -2548,14 +2548,14 @@ function chyouzyuuStyleFunction() {
     const zoom = getZoom(resolution);
     const prop = feature.getProperties();
     const styles = [];
-    const rgb = 'green'
+    const rgb = 'rgba(0,255,0,0.5)'
     const polygonStyle = new Style({
       fill: new Fill({
         color: rgb
       }),
       stroke: new Stroke({
         color: "black",
-        width: 2
+        width: 1
       })
     });
     const text = prop.A15_001
