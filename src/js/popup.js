@@ -572,6 +572,7 @@ export function popUp(map,layers,features,overlay,evt,content) {
           '重文指定年月日=' + prop.重文指定年月日 + '<hr>' +
           '都道府県=' + prop.都道府県 + '<hr>' +
           '所在地=' + prop.所在地 + '<hr>' +
+          streetView +
           '</div>'
       break
     case 'toyamamaibun':
