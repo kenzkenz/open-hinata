@@ -3081,7 +3081,7 @@ function Sizentikei0(name,minzoom,maxzoom,url){
 }
 export  const sizentikei0Obj = {};
 for (let i of mapsStr) {
-  sizentikei0Obj[i] = new VectorTileLayer(new Sizentikei0('sizentikei2',1,13,"https://maps.gsi.go.jp/xyz/experimental_landformclassification1/{z}/{x}/{y}.geojson"))
+  sizentikei0Obj[i] = new VectorTileLayer(new Sizentikei0('sizentikei2',1,16,"https://maps.gsi.go.jp/xyz/experimental_landformclassification1/{z}/{x}/{y}.geojson"))
 }
 // 詳細版
 function Sizentikei(name,minzoom,maxzoom,url,zIndex){
@@ -3103,7 +3103,7 @@ function Sizentikei(name,minzoom,maxzoom,url,zIndex){
 }
 const sizentikeiObj1 = new VectorTileLayer(new Sizentikei('sizentikei3',1,13,"https://maps.gsi.go.jp/xyz/experimental_landformclassification3/{z}/{x}/{y}.geojson",1001))
 // const sizentikeiObj1 = new VectorTileLayer(new Sizentikei('sizentikei3',1,18,"https://maps.gsi.go.jp/xyz/experimental_landformclassification1/{z}/{x}/{y}.geojson",1001))
-const sizentikeiObj2 = new VectorTileLayer(new Sizentikei('sizentikei4',1,14,"https://maps.gsi.go.jp/xyz/experimental_landformclassification1/{z}/{x}/{y}.geojson",1002))
+const sizentikeiObj2 = new VectorTileLayer(new Sizentikei('sizentikei4',1,16,"https://maps.gsi.go.jp/xyz/experimental_landformclassification1/{z}/{x}/{y}.geojson",1002))
 export const sizentikeiObj = {}
 for (let i of mapsStr) {
   sizentikeiObj[i] = new LayerGroup({
