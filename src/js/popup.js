@@ -1712,3 +1712,26 @@ export function popUpJisin(rgba) {
   }
   store.commit('base/popUpContUpdate', cont)
 }
+//----------------------------------------------------------------------------------------
+export function popUpMorido(rgba,coordinate) {
+  const lonLat = transform([coordinate[0],coordinate[1]], "EPSG:3857", "EPSG:4326")
+  const lon = lonLat[0]
+  const lat = lonLat[1]
+  const streetView = '<a href="https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=' + lat + ',' + lon + '&hl=ja" target="_blank">Street Viewを開く</a></div>'
+  const r = rgba[0]
+  const g = rgba[1]
+  const b = rgba[2]
+  let cont
+  if (r === 155 && g === 255 && b === 155) {
+    cont = "<div style=width:200px>盛土区分＝谷埋め型</div>"
+  } else if (r === 155 && g === 155 && b === 255) {
+    cont = "<div style=width:200px>盛土区分＝腹付け型</div>"
+  } else if (r === 254 && g === 229 && b === 149) {
+    cont = "<div style=width:200px>高い 3%〜6%</div>"
+  } else if (r === 254 && g === 254 && b === 189) {
+    cont = "<div style=width:200px>やや高い 0.1%〜3%</div>"
+  }
+  cont += streetView
+  store.commit('base/popUpContUpdate', cont)
+}
+

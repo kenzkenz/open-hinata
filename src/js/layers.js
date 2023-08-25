@@ -2345,19 +2345,19 @@ const dosyaSaigaiSumm = '出典：<br><a href="https://disaportal.gsi.go.jp/haza
 // 大規模盛土造成地-------------------------------------------------------------------------------
 function Morido () {
   this.name = 'morido'
-  // this.pointer = true
+  this.pointer = true
   this.source = new XYZ({
     url: 'https://disaportaldata.gsi.go.jp/raster/daikiboumoritsuzouseichi/{z}/{x}/{y}.png',
     crossOrigin: 'Anonymous',
     minZoom: 1,
-    maxZoom: 17
+    maxZoom: 15
   })
 }
 const moridoObj = {};
 for (let i of mapsStr) {
   moridoObj[i] = new TileLayer(new Morido())
 }
-const moridoSumm =   '出典：<br><a href="https://disaportal.gsi.go.jp/hazardmap/copyright/opendata.html" target="_blank">ハザードマップポータルサイト</a><br><img width="300" src="https://kenzkenz.xsrv.jp/open-hinata/img/dosha_kiken.png">';
+const moridoSumm =   '出典：<br><a href="https://disaportal.gsi.go.jp/hazardmap/copyright/opendata.html" target="_blank">ハザードマップポータルサイト</a>';
 
 // 液状化危険度分布図（北海道）-------------------------------------------------------------------------------
 function Ekizyouka01 () {

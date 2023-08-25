@@ -425,6 +425,9 @@ export function initMap (vm) {
                     case 'jisin':
                         getColor0(evt,'https://maps.gsi.go.jp/xyz/jishindo_yosoku/',PopUp.popUpJisin,15)
                         break;
+                    case 'morido':
+                        getColor0(evt,'https://disaportaldata.gsi.go.jp/raster/daikiboumoritsuzouseichi/',PopUp.popUpMorido,15)
+                        break;
                     default:
                 }
             });
