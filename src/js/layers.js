@@ -2350,7 +2350,7 @@ function Morido () {
     url: 'https://disaportaldata.gsi.go.jp/raster/daikiboumoritsuzouseichi/{z}/{x}/{y}.png',
     crossOrigin: 'Anonymous',
     minZoom: 1,
-    maxZoom: 15
+    maxZoom: 16
   })
 }
 const moridoObj = {};
