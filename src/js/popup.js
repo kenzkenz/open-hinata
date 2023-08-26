@@ -880,7 +880,25 @@ export function popUpTameike(rgba) {
   }
   store.commit('base/popUpContUpdate',cont)
 }
-
+//----------------------------------------------------------------------------------------
+export function popUpEkizyouka(rgba) {
+  const r = rgba[0]
+  const g = rgba[1]
+  const b = rgba[2]
+  let cont
+  if(r===200 && g===0 && b===255) {
+    cont = "<div style=width:200px>埋立地や旧河道</div>"
+  }else if(r===255 && g===40 && b===0) {
+    cont = "<div style=width:200px>干拓地や自然堤防など</div>"
+  }else if(r===255 && g===170 && b===0) {
+    cont = "<div style=width:200px>緩勾配の谷底低地、緩勾配の扇状地など</div>"
+  }else if(r===255 && g===245 && b===0) {
+    cont = "<div style=width:200px>急勾配の谷底低地、急勾配の扇状地など</div>"
+  }else if(r===200 && g===200 && b===203) {
+    cont = "<div style=width:200px>山地や丘陵など</div>"
+  }
+  store.commit('base/popUpContUpdate',cont)
+}
 //----------------------------------------------------------------------------------------
 export function popUpEkizyouka01(rgba) {
   const r = rgba[0]

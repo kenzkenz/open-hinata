@@ -2358,6 +2358,22 @@ for (let i of mapsStr) {
   moridoObj[i] = new TileLayer(new Morido())
 }
 const moridoSumm =   '出典：<br><a href="https://disaportal.gsi.go.jp/hazardmap/copyright/opendata.html" target="_blank">ハザードマップポータルサイト</a>';
+// 地形区分に基づく液状化の発生傾向図-------------------------------------------------------------------------------
+function Ekizyouka () {
+  this.name = 'ekizyouka'
+  this.pointer = true
+  this.source = new XYZ({
+    url: 'https://disaportal.gsi.go.jp/raster/08_03_ekijoka_zenkoku/{z}/{x}/{y}.png',
+    crossOrigin: 'Anonymous',
+    minZoom: 1,
+    maxZoom: 15
+  })
+}
+const ekizyoukaObj = {};
+for (let i of mapsStr) {
+  ekizyoukaObj[i] = new TileLayer(new Ekizyouka())
+}
+// const ekizyoukaSumm =   '出典：<br><a href="https://disaportal.gsi.go.jp/hazardmap/copyright/opendata.html" target="_blank">ハザードマップポータルサイト</a>';
 
 // 液状化危険度分布図（北海道）-------------------------------------------------------------------------------
 function Ekizyouka01 () {
@@ -8569,6 +8585,7 @@ const layers =
         { text: '家屋倒壊等氾濫想定区域（氾濫流）', data: { id: 'toukai', layer: toukaiObj, opacity: 1, summary: toukaiSumm } },
 
         { text: '筑後川浸水推定図2023/7/11', data: { id: 'sinsuisuitei', layer: sinsuisuiteiObj, center:[130.61658037551376, 33.34398451546858], zoom:13, opacity: 1, summary: stdSumm } },
+        { text: '地形区分に基づく液状化の発生傾向図', data: { id: 'ekizyouka', layer: ekizyoukaObj, opacity: 1, summary: ekizyoukaSumm } },
 
         { text: '液状化危険度分布図',
           children: [
