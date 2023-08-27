@@ -437,7 +437,7 @@ export function initMap (vm) {
                         getColor0(evt,'https://disaportaldata.gsi.go.jp/raster/daikiboumoritsuzouseichi/',PopUp.popUpMorido,15)
                         break;
                     case 'dojyou':
-                        getColor0(evt,'https://soil-inventory.rad.naro.go.jp/tile/figure/',PopUp.popUpDojyou)
+                        getColor0(evt,'https://soil-inventory.rad.naro.go.jp/tile/figure/',PopUp.popUpDojyou,12)
                         break;
                     default:
                 }

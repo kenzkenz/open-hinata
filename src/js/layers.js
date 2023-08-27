@@ -7761,15 +7761,16 @@ function Dojyou () {
   this.source = new XYZ({
     url: 'https://soil-inventory.rad.naro.go.jp/tile/figure/{z}/{x}/{y}.png',
     crossOrigin: 'Anonymous',
-    minZoom: 2,
-    maxZoom: 17
+    minZoom: 6,
+    maxZoom: 12
   })
+  this.useInterimTilesOnError = false
 }
 const dojyouObj = {};
 for (let i of mapsStr) {
   dojyouObj[i] = new TileLayer(new Dojyou())
 }
-const dojyouSumm = '出典：<br><a href="" target="_blank"></a>';
+const dojyouSumm = '出典：<br><a href="https://soil-inventory.rad.naro.go.jp/figure.html" target="_blank">日本土壌インベントリー</a>';
 
 
 // ここにレイヤーを全部書く。クリックするとストアのlayerListに追加されていく-------------------------
