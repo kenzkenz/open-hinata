@@ -230,7 +230,12 @@ export function initMap (vm) {
             layersObj.forEach(object =>{
                 console.log(object.layer.get('name'))
                 const getColor0 =  (event,server,popup,zoom) =>{
-                    const z = zoom
+                    let z
+                    if (zoom) {
+                        z= zoom
+                    } else {
+                        z = Math.floor(map.getView().getZoom());
+                    }
                     const coord = event.coordinate
                     const R = 6378137;// 地球の半径(m);
                     const x = ( 0.5 + coord[ 0 ] / ( 2 * R * Math.PI ) ) * Math.pow( 2, z );
@@ -430,6 +435,9 @@ export function initMap (vm) {
                         break;
                     case 'morido':
                         getColor0(evt,'https://disaportaldata.gsi.go.jp/raster/daikiboumoritsuzouseichi/',PopUp.popUpMorido,15)
+                        break;
+                    case 'dojyou':
+                        getColor0(evt,'https://soil-inventory.rad.naro.go.jp/tile/figure/',PopUp.popUpDojyou)
                         break;
                     default:
                 }

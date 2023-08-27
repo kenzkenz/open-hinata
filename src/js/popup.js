@@ -1752,4 +1752,270 @@ export function popUpMorido(rgba,coordinate) {
   cont += streetView
   store.commit('base/popUpContUpdate', cont)
 }
-
+//----------------------------------------------------------------------------------------
+export function popUpDojyou(rgba) {
+  const r = rgba[0]
+  const g = rgba[1]
+  const b = rgba[2]
+  let cont
+  if (r === 130 && g === 69 && b === 0) {
+    cont = "<div style=width:300px;font-size:small>" +
+           "土壌分類名：<a href='https://soil-inventory.rad.naro.go.jp/explain/D6.html' target='_blank'>淡色アロフェン質黒ボク土</a>" +
+           "<br>土壌分類記号：D6h2" +
+           "<br>表層の有機物含量は低く、土色は淡いアロフェン質黒ボク土。" +
+           "</div>"
+  } else if (r === 3 && g === 15 && b === 255) {
+    cont = "<div style=width:300px;font-size:small>" +
+        "土壌分類名：<a href='https://soil-inventory.rad.naro.go.jp/explain/F2.html' target='_blank'>グライ低地土</a>" +
+        "<br>土壌分類記号：F2" +
+        "<br>低地土大群の中で、最も地下水位が高く、年間を通じてほとんど水に飽和されたグライ層が50cm以内に出てくる土壌。" +
+        "</div>"
+  } else if (r === 6 && g === 112 && b === 255) {
+    cont = "<div style=width:300px;font-size:small>" +
+        "土壌分類名：<a href='https://soil-inventory.rad.naro.go.jp/explain/F1.html' target='_blank'>下層褐色低地水田土</a>" +
+        "<br>土壌分類記号：F1b3" +
+        "<br>土壌表面から75cm以内に厚さ15cm以上の黄褐色の層（乾いた条件下で生成）の上端が現れる低地水田土。" +
+        "</div>"
+  } else if (r === 5 && g === 15 && b === 255) {
+    cont = "<div style=width:300px;font-size:small>" +
+        "土壌分類名：<a href='https://soil-inventory.rad.naro.go.jp/explain/F2.html' target='_blank'>還元型グライ低地土</a>" +
+        "<br>土壌分類記号：F2a1" +
+        "<br>土壌表面から25cm以深のグライ層に「含む」以上の斑鉄がないグライ低地土。" +
+        "</div>"
+  } else if (r === 242 && g === 220 && b === 175) {
+    cont = "<div style=width:300px;font-size:small>" +
+        "土壌分類名：<a href='https://soil-inventory.rad.naro.go.jp/explain/J2.html' target='_blank'>普通砂質未熟土</a>" +
+        "<br>土壌分類記号：J2z1" +
+        "<br>典型的な砂質未熟土。" +
+        "</div>"
+  } else if (r === 9 && g === 15 && b === 255) {
+    cont = "<div style=width:300px;font-size:small>" +
+        "土壌分類名：<a href='https://soil-inventory.rad.naro.go.jp/explain/F2.html' target='_blank'>表層灰色グライ低地土</a>" +
+        "<br>土壌分類記号：F2a6" +
+        "<br>土壌表面から25-50cmの間にグライ層よりも酸化的な「地下水湿性特徴」が現れるグライ低地土。" +
+        "</div>"
+  } else if (r === 0 && g === 3 && b === 168) {
+    cont = "<div style=width:300px;font-size:small>" +
+        "土壌分類名：<a href='https://soil-inventory.rad.naro.go.jp/explain/F3.html' target='_blank'>灰色低地土</a>" +
+        "<br>土壌分類記号：F3" +
+        "<br>中間的な湿性状態の沖積地の土壌。" +
+        "</div>"
+  } else if (r === 128 && g === 69 && b === 0) {
+    cont = "<div style=width:300px;font-size:small>" +
+        "土壌分類名：<a href='https://soil-inventory.rad.naro.go.jp/explain/D6.html' target='_blank'>淡色アロフェン質黒ボク土</a>" +
+        "<br>土壌分類記号：D6h2" +
+        "<br>表層の有機物含量は低く、土色は淡いアロフェン質黒ボク土。" +
+        "</div>"
+  } else if (r === 4 && g === 169 && b === 230) {
+    cont = "<div style=width:300px;font-size:small>" +
+        "土壌分類名：<a href='https://soil-inventory.rad.naro.go.jp/explain/F5.html' target='_blank'>普通未熟低地土</a>" +
+        "<br>土壌分類記号：F5z1" +
+        "<br>典型的な未熟低地土。" +
+        "</div>"
+  } else if (r === 212 && g === 135 && b === 64) {
+    cont = "<div style=width:300px;font-size:small>" +
+        "土壌分類名：<a href='https://soil-inventory.rad.naro.go.jp/explain/D4.html' target='_blank'>普通褐色黒ボク土</a>" +
+        "<br>土壌分類記号：D4z1" +
+        "<br>典型的な褐色黒ボク土。。" +
+        "</div>"
+  } else if (r === 48 && g === 140 && b === 34) {
+    cont = "<div style=width:300px;font-size:small>" +
+        "土壌分類名：<a href='https://soil-inventory.rad.naro.go.jp/explain/I1.html' target='_blank'>ばん土質褐色森林土</a>" +
+        "<br>土壌分類記号：I1k2" +
+        "<br>土壌表面から50cm以内にリン酸吸収係数1000mg P2O5/100g以上（リン酸保持量60％以上）の層が25cm以上ある褐色森林土。" +
+        "</div>"
+  } else if (r === 124 && g === 69 && b === 0) {
+    cont = "<div style=width:300px;font-size:small>" +
+        "土壌分類名：<a href='https://soil-inventory.rad.naro.go.jp/explain/D6.html' target='_blank'>普通アロフェン質黒ボク土</a>" +
+        "<br>土壌分類記号：D6z1" +
+        "<br>典型的なアロフェン質黒ボク土。" +
+        "</div>"
+  } else if (r === 10 && g === 112 && b === 255) {
+    cont = "<div style=width:300px;font-size:small>" +
+        "土壌分類名：<a href='https://soil-inventory.rad.naro.go.jp/explain/F1.html' target='_blank'>普通低地水田土</a>" +
+        "<br>土壌分類記号：F1z1" +
+        "<br>典型的な低地水田土。" +
+        "</div>"
+  } else if (r === 245 && g === 255 && b === 0) {
+    cont = "<div style=width:300px;font-size:small>" +
+        "土壌分類名：<a href='https://soil-inventory.rad.naro.go.jp/explain/J4.html' target='_blank'>普通陸成未熟土</a>" +
+        "<br>土壌分類記号：J4z1" +
+        "<br>典型的な陸成未熟土。" +
+        "</div>"
+  } else if (r === 6 && g === 0 && b === 0) {
+    cont = "<div style=width:300px;font-size:small>" +
+        "土壌分類名：<a href='https://soil-inventory.rad.naro.go.jp/explain/B.html' target='_blank'>低位泥炭土</a>" +
+        "<br>土土壌分類記号：B1e3" +
+        "<br>高位泥炭物質、中間泥炭物質以外の泥炭物質からなる泥炭土。" +
+        "</div>"
+  } else if (r === 255 && g === 255 && b === 254) {
+    cont = "<div style=width:300px;font-size:small>" +
+        "土壌分類名：<a href='https://soil-inventory.rad.naro.go.jp/explain/Z1.html' target='_blank'>岩石地</a>" +
+        "<br>土壌分類記号：Z1" +
+        "<br>岩石地。" +
+        "</div>"
+  } else if (r === 255 && g === 255 && b === 255) {
+    cont = "<div style=width:300px;font-size:small>" +
+        "土壌分類名：その他" +
+        "<br>土壌分類記号：Z4" +
+        "<br>不明。" +
+        "</div>"
+  } else if (r === 243 && g === 115 && b === 223) {
+    cont = "<div style=width:300px;font-size:small>" +
+        "土壌分類名：<a href='https://soil-inventory.rad.naro.go.jp/explain/G2.html' target='_blank'>赤色風化変質赤黄色土</a>" +
+        "<br>土壌分類記号：G2k1" +
+        "<br>湿状態の土色が赤色の「粘土集積層」をもつ風化変質赤黄色土。" +
+        "</div>"
+  } else if (r === 239 && g === 115 && b === 223) {
+    cont = "<div style=width:300px;font-size:small>" +
+        "土壌分類名：<a href='https://soil-inventory.rad.naro.go.jp/explain/G2.html' target='_blank'>普通風化変質赤黄色土</a>" +
+        "<br>土壌分類記号：G2z1" +
+        "<br>典型的な風化変質赤黄色土。" +
+        "</div>"
+  } else if (r === 241 && g === 0 && b === 0) {
+    cont = "<div style=width:300px;font-size:small>" +
+        "土壌分類名：<a href='https://soil-inventory.rad.naro.go.jp/explain/G1.html' target='_blank'>普通粘土集積赤黄色土</a>" +
+        "<br>土壌分類記号：G1z1" +
+        "<br>典型的な粘土集積赤黄色土。" +
+        "</div>"
+  } else if (r === 243 && g === 0 && b === 0) {
+    cont = "<div style=width:300px;font-size:small>" +
+        "土壌分類名：<a href='https://soil-inventory.rad.naro.go.jp/explain/G1.html' target='_blank'>赤色粘土集積赤黄色土</a>" +
+        "<br>土壌分類記号：G1k1" +
+        "<br>湿状態の土色が赤色の「粘土集積層」をもつ粘土集積赤黄色土。" +
+        "</div>"
+  } else if (r === 14 && g === 3 && b === 168) {
+    cont = "<div style=width:300px;font-size:small>" +
+        "土壌分類名：<a href='https://soil-inventory.rad.naro.go.jp/explain/F3.html' target='_blank'>普通灰色低地土</a>" +
+        "<br>土壌分類記号：F3z1" +
+        "<br>典型的な灰色低地土。" +
+        "</div>"
+  } else if (r === 247 && g === 163 && b === 77) {
+    cont = "<div style=width:300px;font-size:small>" +
+        "土壌分類名：<a href='https://soil-inventory.rad.naro.go.jp/explain/D1.html' target='_blank'>普通未熟黒ボク土</a>" +
+        "<br>土壌分類記号：D1z1" +
+        "<br>典型的な未熟黒ボク土。" +
+        "</div>"
+  } else if (r === 52 && g === 140 && b === 34) {
+    cont = "<div style=width:300px;font-size:small>" +
+        "土壌分類名：<a href='https://soil-inventory.rad.naro.go.jp/explain/I1.html' target='_blank'>普通褐色森林土</a>" +
+        "<br>土壌分類記号：I1z1" +
+        "<br>典型的な褐色森林土。" +
+        "</div>"
+  } else if (r === 42 && g === 140 && b === 34) {
+    cont = "<div style=width:300px;font-size:small>" +
+        "土壌分類名：<a href='https://soil-inventory.rad.naro.go.jp/explain/I1.html' target='_blank'>腐植質褐色森林土</a>" +
+        "<br>土壌分類記号：I1h3" +
+        "<br>「腐植質表層」または「多腐植質表層」をもつ褐色森林土。" +
+        "</div>"
+  } else if (r === 0 && g === 112 && b === 255) {
+    cont = "<div style=width:300px;font-size:small>" +
+        "土壌分類名：<a href='https://soil-inventory.rad.naro.go.jp/explain/F1.html' target='_blank'>低地水田土</a>" +
+        "<br>土壌分類記号：F1" +
+        "<br>元々地下水の影響が無いか弱いところに水田を作ったため、鉄集積層が出来たり、灰色化した特徴的な断面をもつようになった低地の土壌。" +
+        "</div>"
+  } else if (r === 0 && g === 132 && b === 168) {
+    cont = "<div style=width:300px;font-size:small>" +
+        "土壌分類名：<a href='https://soil-inventory.rad.naro.go.jp/explain/F4.html' target='_blank'>褐色低地土</a>" +
+        "<br>土壌分類記号：F4" +
+        "<br>沖積低地の中では最も乾いた土地にある、黄褐色の次表層を持つ土壌。" +
+        "</div>"
+  } else if (r === 215 && g === 181 && b === 141) {
+    cont = "<div style=width:300px;font-size:small>" +
+        "土壌分類名：<a href='https://soil-inventory.rad.naro.go.jp/explain/J1.html' target='_blank'>普通火山放出物未熟土</a>" +
+        "<br>土壌分類記号：J1z1" +
+        "<br>典型的な火山放出物未熟土。" +
+        "</div>"
+  } else if (r === 165 && g === 255 && b === 115) {
+    cont = "<div style=width:300px;font-size:small>" +
+        "土壌分類名：<a href='https://soil-inventory.rad.naro.go.jp/explain/H2.html' target='_blank'>地下水型疑似グライ土</a>" +
+        "<br>土壌分類記号：H2a4" +
+        "<br>土壌表面から50-75cmに、厚さ10cm以上の「地下水湿性特徴」または「グライ特徴」を示す層の上端が現れる疑似グライ土。" +
+        "</div>"
+  } else if (r === 210 && g === 204 && b === 0) {
+    cont = "<div style=width:300px;font-size:small>" +
+        "土壌分類名：<a href='https://soil-inventory.rad.naro.go.jp/explain/H2.html' target='_blank'>普通固結岩屑土</a>" +
+        "<br>土壌分類記号：J3z1" +
+        "<br>典型的な固結岩屑土。" +
+        "</div>"
+  } else if (r === 7 && g === 15 && b === 255) {
+    cont = "<div style=width:300px;font-size:small>" +
+        "土壌分類名：<a href='https://soil-inventory.rad.naro.go.jp/explain/F2.html' target='_blank'>斑鉄型グライ低地土</a>" +
+        "<br>土壌分類記号：F2a2" +
+        "<br>土壌表面から25cm以深のグライ層に「含む」以上の斑鉄があるグライ低地土。還元型グライ低地土よりもやや酸化的である。" +
+        "</div>"
+  } else if (r === 119 && g === 0 && b === 76) {
+    cont = "<div style=width:300px;font-size:small>" +
+        "土壌分類名：<a href='https://soil-inventory.rad.naro.go.jp/explain/E1.html' target='_blank'>岩盤質粘土集積石灰性暗赤色土</a>" +
+        "<br>土壌分類記号：E1j4p1" +
+        "<br>土壌表面から60cm以内に岩盤が現れる粘土集積石灰性暗赤色土。" +
+        "</div>"
+  } else if (r === 251 && g === 255 && b === 0) {
+    cont = "<div style=width:300px;font-size:small>" +
+        "土壌分類名：<a href='https://soil-inventory.rad.naro.go.jp/explain/J4.html' target='_blank'>石灰質陸成未熟土</a>" +
+        "<br>土壌分類記号：J4f2" +
+        "<br>土壌表面から20-50cmの間で炭酸カルシウム換算で2.0％以上の炭酸塩を含む陸成未熟土。" +
+        "</div>"
+  } else if (r === 255 && g === 163 && b === 77) {
+    cont = "<div style=width:300px;font-size:small>" +
+        "土壌分類名：<a href='https://soil-inventory.rad.naro.go.jp/explain/D1.html' target='_blank'>未熟黒ボク土</a>" +
+        "<br>土壌分類記号：D1" +
+        "<br>堆積した火山放出物が、ある程度の土壌化作用を受け、リン酸を固定する性質や有機物の集積（全炭素で3％以上）を示しはじめた段階の土壌。" +
+        "</div>"
+  } else if (r === 76 && g === 0 && b === 115) {
+    cont = "<div style=width:300px;font-size:small>" +
+        "土壌分類名：<a href='https://soil-inventory.rad.naro.go.jp/explain/C1.html' target='_blank'>ポドゾル</a>" +
+        "<br>土壌分類記号：C1" +
+        "<br>漂白した層と腐植または鉄・アルミニウムが集積した層の層序をもつ土壌。" +
+        "</div>"
+  } else if (r === 78 && g === 0 && b === 115) {
+    cont = "<div style=width:300px;font-size:small>" +
+        "土壌分類名：<a href='https://soil-inventory.rad.naro.go.jp/explain/C1.html' target='_blank'>湿性ポドゾル</a>" +
+        "<br>土壌分類記号：C1a3" +
+        "<br>土壌表面から75cm以内に「地下水湿性特徴」を示す層または「グライ層」の上端が現れるポドゾル。" +
+        "</div>"
+  } else if (r === 86 && g === 0 && b === 115) {
+    cont = "<div style=width:300px;font-size:small>" +
+        "土壌分類名：<a href='https://soil-inventory.rad.naro.go.jp/explain/C1.html' target='_blank'>普通ポドゾル</a>" +
+        "<br>土壌分類記号：C1z1" +
+        "<br>典型的なポドゾル。" +
+        "</div>"
+  } else if (r === 2 && g === 0 && b === 0) {
+    cont = "<div style=width:300px;font-size:small>" +
+        "土壌分類名：<a href='https://soil-inventory.rad.naro.go.jp/explain/B.html' target='_blank'>高位泥炭土</a>" +
+        "<br>土壌分類記号：B1e1" +
+        "<br>ミズゴケ類、ホロムイスゲ、ツルコケモモ、ミカズキグサ類、ホロムイソウを合わせた割合（面積）が最も多い泥炭物質からなる泥炭土。" +
+        "</div>"
+  } else if (r === 141 && g === 90 && b === 68) {
+    cont = "<div style=width:300px;font-size:small>" +
+        "土壌分類名：<a href='https://soil-inventory.rad.naro.go.jp/explain/D5.html' target='_blank'>厚層非アロフェン質黒ボク土</a>" +
+        "<br>土壌分類記号：D5h1" +
+        "<br>表層に有機物を多く含み、かつ、層の厚さが50cmを超える「腐植質表層」または「多腐植質表層」をもつ非アロフェン質黒ボク土。" +
+        "</div>"
+  } else if (r === 241 && g === 115 && b === 223) {
+    cont = "<div style=width:300px;font-size:small>" +
+        "土壌分類名：<a href='https://soil-inventory.rad.naro.go.jp/explain/G2.html' target='_blank'>ばん土質風化変質赤黄色土</a>" +
+        "<br>土壌分類記号：G2k2" +
+        "<br>土壌表面から50cm以内にリン酸吸収係数1000mg P2O5/100g以上（リン酸保持量60％以上）の層が25cm以上ある風化変質赤黄色土。" +
+        "</div>"
+  } else if (r === 213 && g === 78 && b === 55) {
+    cont = "<div style=width:300px;font-size:small>" +
+        "土壌分類名：<a href='https://soil-inventory.rad.naro.go.jp/explain/D3.html' target='_blank'>厚層多湿黒ボク土</a>" +
+        "<br>土壌分類記号：D3h1" +
+        "<br>表層に有機物を多く含み、かつ、層の厚さが50cmを超える「腐植質表層」または「多腐植質表層」をもつ多湿黒ボク土。" +
+        "</div>"
+  } else if (r === 172 && g === 0 && b === 132) {
+    cont = "<div style=width:300px;font-size:small>" +
+        "土壌分類名：<a href='https://soil-inventory.rad.naro.go.jp/explain/E2.html' target='_blank'>普通酸性暗赤色土</a>" +
+        "<br>土壌分類記号：E2z1" +
+        "<br>典型的な酸性暗赤色土。" +
+        "</div>"
+  } else if (r === 215 && g === 78 && b === 55) {
+    cont = "<div style=width:300px;font-size:small>" +
+        "土壌分類名：<a href='https://soil-inventory.rad.naro.go.jp/explain/D3.html' target='_blank'>普通多湿黒ボク土</a>" +
+        "<br>土壌分類記号：D3z1" +
+        "<br>典型的な多湿黒ボク土。" +
+        "</div>"
+  }
+  store.commit('base/popUpContUpdate', cont)
+}
