@@ -2196,6 +2196,12 @@ export function popUpDojyou(rgba) {
         "<br>土壌分類記号：H2h3" +
         "<br>「腐植質表層」または「多腐植質表層」をもつ疑似グライ土。" +
         "</div>"
+  } else if (r === 115 && g === 0 && b === 76) {
+    cont = "<div style=width:300px;font-size:small>" +
+        "土壌分類名：<a href='https://soil-inventory.rad.naro.go.jp/explain/E1.html' target='_blank'>石灰性暗赤色土</a>" +
+        "<br>土壌分類記号：E1" +
+        "<br>石灰岩など石灰質の母材から出来た土壌。" +
+        "</div>"
   }
   store.commit('base/popUpContUpdate', cont)
 }
