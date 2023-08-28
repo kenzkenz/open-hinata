@@ -2190,6 +2190,12 @@ export function popUpDojyou(rgba) {
         "<br>土壌分類記号：G1" +
         "<br>「粘土集積層」をもつ赤黄色土。" +
         "</div>"
+  } else if (r === 171 && g === 255 && b === 115) {
+    cont = "<div style=width:300px;font-size:small>" +
+        "土壌分類名：<a href='https://soil-inventory.rad.naro.go.jp/explain/H2.html' target='_blank'>腐植質疑似グライ土</a>" +
+        "<br>土壌分類記号：H2h3" +
+        "<br>「腐植質表層」または「多腐植質表層」をもつ疑似グライ土。" +
+        "</div>"
   }
   store.commit('base/popUpContUpdate', cont)
 }
