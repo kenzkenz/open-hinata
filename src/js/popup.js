@@ -1816,7 +1816,7 @@ export function popUpDojyou(rgba) {
     cont = "<div style=width:300px;font-size:small>" +
         "土壌分類名：<a href='https://soil-inventory.rad.naro.go.jp/explain/D4.html' target='_blank'>普通褐色黒ボク土</a>" +
         "<br>土壌分類記号：D4z1" +
-        "<br>典型的な褐色黒ボク土。。" +
+        "<br>典型的な褐色黒ボク土。" +
         "</div>"
   } else if (r === 48 && g === 140 && b === 34) {
     cont = "<div style=width:300px;font-size:small>" +
@@ -2201,6 +2201,12 @@ export function popUpDojyou(rgba) {
         "土壌分類名：<a href='https://soil-inventory.rad.naro.go.jp/explain/E1.html' target='_blank'>石灰性暗赤色土</a>" +
         "<br>土壌分類記号：E1" +
         "<br>石灰岩など石灰質の母材から出来た土壌。" +
+        "</div>"
+  } else if (r === 8 && g === 0 && b === 0) {
+    cont = "<div style=width:300px;font-size:small>" +
+        "土壌分類名：<a href='https://soil-inventory.rad.naro.go.jp/explain/B.html' target='_blank'>腐朽質泥炭土</a>" +
+        "<br>土壌分類記号：B1e4" +
+        "<br>土壌表面から50cmまでの「泥炭物質」からなる層のうち、「腐朽質泥炭物質」の割合が最も多い泥炭土。" +
         "</div>"
   }
   store.commit('base/popUpContUpdate', cont)
