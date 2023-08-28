@@ -2226,6 +2226,12 @@ export function popUpDojyou(rgba) {
         "<br>土壌分類記号：F1a3" +
         "<br>土壌表面から75cm以内にグライ層よりも酸化的な「地下水湿性特徴」が現れる低地水田土。" +
         "</div>"
+  } else if (r === 44 && g === 140 && b === 34) {
+    cont = "<div style=width:300px;font-size:small>" +
+        "土壌分類名：<a href='https://soil-inventory.rad.naro.go.jp/explain/I1.html' target='_blank'>腐植質褐色森林土</a>" +
+        "<br>土壌分類記号：I1h3" +
+        "<br>「腐植質表層」または「多腐植質表層」をもつ褐色森林土。" +
+        "</div>"
   }
   store.commit('base/popUpContUpdate', cont)
 }
