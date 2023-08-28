@@ -2166,6 +2166,12 @@ export function popUpDojyou(rgba) {
         "<br>土壌分類記号：H1c3" +
         "<br>「水田逆グライ層」をもつ停滞水グライ土。" +
         "</div>"
+  } else if (r === 173 && g === 255 && b === 115) {
+    cont = "<div style=width:300px;font-size:small>" +
+        "土壌分類名：<a href='https://soil-inventory.rad.naro.go.jp/explain/H2.html' target='_blank'>普通疑似グライ土</a>" +
+        "<br>土壌分類記号：H2z1" +
+        "<br>典型的な疑似グライ土。" +
+        "</div>"
   }
   store.commit('base/popUpContUpdate', cont)
 }
