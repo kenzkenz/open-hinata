@@ -2178,6 +2178,18 @@ export function popUpDojyou(rgba) {
         "<br>土壌分類記号：F4c1" +
         "<br>作土下方まで灰色化し斑鉄をもつ褐色低地土。" +
         "</div>"
+  } else if (r === 253 && g === 0 && b === 0) {
+    cont = "<div style=width:300px;font-size:small>" +
+        "土壌分類名：<a href='https://soil-inventory.rad.naro.go.jp/explain/G1.html' target='_blank'>湿性粘土集積赤黄色土</a>" +
+        "<br>土壌分類記号：G1a3" +
+        "<br>土壌表面から50-75cmに「地下水湿性特徴」を示す層の上端が現れる粘土集積赤黄色土。" +
+        "</div>"
+  } else if (r === 255 && g === 0 && b === 0) {
+    cont = "<div style=width:300px;font-size:small>" +
+        "土壌分類名：<a href='https://soil-inventory.rad.naro.go.jp/explain/G1.html' target='_blank'>粘土集積赤黄色土</a>" +
+        "<br>土壌分類記号：G1" +
+        "<br>「粘土集積層」をもつ赤黄色土。" +
+        "</div>"
   }
   store.commit('base/popUpContUpdate', cont)
 }
