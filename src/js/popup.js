@@ -2172,6 +2172,12 @@ export function popUpDojyou(rgba) {
         "<br>土壌分類記号：H2z1" +
         "<br>典型的な疑似グライ土。" +
         "</div>"
+  } else if (r === 4 && g === 132 && b === 168) {
+    cont = "<div style=width:300px;font-size:small>" +
+        "土壌分類名：<a href='https://soil-inventory.rad.naro.go.jp/explain/F4.html' target='_blank'>水田化褐色低地土</a>" +
+        "<br>土壌分類記号：F4c1" +
+        "<br>作土下方まで灰色化し斑鉄をもつ褐色低地土。" +
+        "</div>"
   }
   store.commit('base/popUpContUpdate', cont)
 }
