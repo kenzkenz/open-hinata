@@ -2208,6 +2208,18 @@ export function popUpDojyou(rgba) {
         "<br>土壌分類記号：B1e4" +
         "<br>土壌表面から50cmまでの「泥炭物質」からなる層のうち、「腐朽質泥炭物質」の割合が最も多い泥炭土。" +
         "</div>"
+  } else if (r === 117 && g === 0 && b === 76) {
+    cont = "<div style=width:300px;font-size:small>" +
+        "土壌分類名：<a href='https://soil-inventory.rad.naro.go.jp/explain/E1.html' target='_blank'>粘土集積石灰性暗赤色土</a>" +
+        "<br>土壌分類記号：E1j4" +
+        "<br>「粘土集積層」をもつ石灰性暗赤色土。" +
+        "</div>"
+  } else if (r === 247 && g === 255 && b === 0) {
+    cont = "<div style=width:300px;font-size:small>" +
+        "土壌分類名：<a href='https://soil-inventory.rad.naro.go.jp/explain/J4.html' target='_blank'>軟岩型陸成未熟土</a>" +
+        "<br>土壌分類記号：J4f4" +
+        "<br>礫または岩盤がコテ、シャベルで削れる陸成未熟土。" +
+        "</div>"
   }
   store.commit('base/popUpContUpdate', cont)
 }
