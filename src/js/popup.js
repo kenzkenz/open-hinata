@@ -2154,6 +2154,12 @@ export function popUpDojyou(rgba) {
         "<br>土壌分類記号：D1h4" +
         "<br>過去に表層であった層で、かつ、有機物が蓄積した「埋没腐植層」の上端が土壌表面から50cm以内に現れる未熟黒ボク土。" +
         "</div>"
+  } else if (r === 40 && g === 140 && b === 34) {
+    cont = "<div style=width:300px;font-size:small>" +
+        "土壌分類名：<a href='https://soil-inventory.rad.naro.go.jp/explain/I1.html' target='_blank'>下層赤黄色褐色森林土</a>" +
+        "<br>土壌分類記号：I1d4" +
+        "<br>土壌表面から75cm以内に「赤黄色特徴」を示す「風化変質層」または「粘土集積層」をもつ褐色森林土。" +
+        "</div>"
   }
   store.commit('base/popUpContUpdate', cont)
 }
