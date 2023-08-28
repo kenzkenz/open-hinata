@@ -2220,6 +2220,12 @@ export function popUpDojyou(rgba) {
         "<br>土壌分類記号：J4f4" +
         "<br>礫または岩盤がコテ、シャベルで削れる陸成未熟土。" +
         "</div>"
+  } else if (r === 2 && g === 112 && b === 255) {
+    cont = "<div style=width:300px;font-size:small>" +
+        "土壌分類名：<a href='https://soil-inventory.rad.naro.go.jp/explain/F1.html' target='_blank'>湿性低地水田土</a>" +
+        "<br>土壌分類記号：F1a3" +
+        "<br>土壌表面から75cm以内にグライ層よりも酸化的な「地下水湿性特徴」が現れる低地水田土。" +
+        "</div>"
   }
   store.commit('base/popUpContUpdate', cont)
 }
