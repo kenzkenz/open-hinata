@@ -2256,6 +2256,18 @@ export function popUpDojyou(rgba) {
         "<br>土壌分類記号：J1a3" +
         "<br>土壌表面から50cm以内に「グライ特徴」または「地下水湿性特徴」を示す層の上端が現れる火山放出物未熟土。" +
         "</div>"
+  } else if (r === 0 && g === 0 && b === 1) {
+    cont = "<div style=width:300px;font-size:small>" +
+        "土壌分類名：<a href='https://soil-inventory.rad.naro.go.jp/explain/B.html' target='_blank'>泥炭土</a>" +
+        "<br>土壌分類記号：B1" +
+        "<br>湿生植物の遺体が、過湿のため分解を免れ厚く堆積した土壌。" +
+        "</div>"
+  } else if (r === 209 && g === 78 && b === 55) {
+    cont = "<div style=width:300px;font-size:small>" +
+        "土壌分類名：<a href='https://soil-inventory.rad.naro.go.jp/explain/D3.html' target='_blank'>下層低地多湿黒ボク土</a>" +
+        "<br>土壌分類記号：D3d2" +
+        "<br>土壌表面から75cm以内に積算して25cm以上の河川氾濫堆積物（沖積堆積物）からなる層をもつ多湿黒ボク土。" +
+        "</div>"
   }
   store.commit('base/popUpContUpdate', cont)
 }
