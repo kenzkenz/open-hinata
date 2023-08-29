@@ -2244,6 +2244,12 @@ export function popUpDojyou(rgba) {
         "<br>土壌分類記号：B1e2" +
         "<br>ヌマガヤ、ワタスゲ、ヤチヤナギ、アカエゾマツを合わせた割合（面積）が最も多い泥炭物質からなる泥炭土。" +
         "</div>"
+  } else if (r === 207 && g === 78 && b === 55) {
+    cont = "<div style=width:300px;font-size:small>" +
+        "土壌分類名：<a href='https://soil-inventory.rad.naro.go.jp/explain/D3.html' target='_blank'>下層台地多湿黒ボク土</a>" +
+        "<br>土壌分類記号：D3d1" +
+        "<br>土壌表面から50cm以内に黒ボク土とは異なる台地土壌の上端が現れる多湿黒ボク土。" +
+        "</div>"
   }
   store.commit('base/popUpContUpdate', cont)
 }
