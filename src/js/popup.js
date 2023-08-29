@@ -2232,6 +2232,12 @@ export function popUpDojyou(rgba) {
         "<br>土壌分類記号：I1h3" +
         "<br>「腐植質表層」または「多腐植質表層」をもつ褐色森林土。" +
         "</div>"
+  } else if (r === 245 && g === 115 && b === 223) {
+    cont = "<div style=width:300px;font-size:small>" +
+        "土壌分類名：<a href='https://soil-inventory.rad.naro.go.jp/explain/G2.html' target='_blank'>灰白化風化変質赤黄色土</a>" +
+        "<br>土壌分類記号：G2j5" +
+        "<br>「漂白層」をもつ風化変質赤黄色土。" +
+        "</div>"
   }
   store.commit('base/popUpContUpdate', cont)
 }
