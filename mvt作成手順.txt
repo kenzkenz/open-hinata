@@ -334,6 +334,11 @@ tippecanoe -rg -Z1 -z15 -pk -e tile okayama.geojson
 gzip -d -v -r -S .pbf *
 find . -type f -exec mv -v '{}' '{}'.mvt \;
 -------------------------------------------------------------------------------------------
+tippecanoe -rg -Z1 -z13 -pk -e tile senkyoku2022.geojson
+tile
+gzip -d -v -r -S .pbf *
+find . -type f -exec mv -v '{}' '{}'.mvt \;
+-------------------------------------------------------------------------------------------
 tippecanoe -rg -Z1 -z17 -pk -e tile merged2.geojson
 tile
 gzip -d -v -r -S .pbf *

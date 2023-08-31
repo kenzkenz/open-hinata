@@ -4337,7 +4337,7 @@ export const nihonisanObj = {};
 for (let i of mapsStr) {
   nihonisanObj[i] = new VectorLayer(new Nihonisan())
 }
-
+// 日本遺産ヒートマップ------------------------------------------------------
 function NihonisanHeatmap () {
   this.useInterimTilesOnError = false
   this.name = 'nihonisanheatmap'
@@ -4352,4 +4352,37 @@ export const nihonisanheatmapSumm = "<a href='https://japan-heritage.bunka.go.jp
 export const nihonisanheatmapObj = {};
 for (let i of mapsStr) {
   nihonisanheatmapObj[i] = new Heatmap(new NihonisanHeatmap())
+}
+// 選挙区---------------------------------------------------------------
+function senkyoku2022() {
+  this.name = "senkyoku";
+  this.style = senkyokuStyleFunction();
+  this.source = new VectorTileSource({
+    format: new MVT(),
+    maxZoom: 13,
+    url: "https://kenzkenz.github.io/senkyoku2022/{z}/{x}/{y}.mvt"
+  });
+}
+export const senkyokuSumm = "<a href='https://nszw.jp/index.php/opendata?fbclid=IwAR2-LZqgPYEPuhAmfqFMKaghuOyAGdNLBPN4mUOhhciep8ZNsUIUnrr4V5E' target='_blank'>地域・交通データ研究所</a>"
+export  const senkyoku2022Obj = {};
+for (let i of mapsStr) {
+  senkyoku2022Obj[i] = new VectorTileLayer(new senkyoku2022())
+}
+//------------------------------------------
+const senkyokuColor = d3.scaleOrdinal(d3.schemeCategory10);
+function senkyokuStyleFunction() {
+  return function (feature, resolution) {
+    const prop = feature.getProperties();
+    const rgb = senkyokuColor(prop.ken)
+    const style = new Style({
+      fill: new Fill({
+        color: rgb
+      }),
+      stroke: new Stroke({
+        color: "black",
+        width: 1
+      }),
+    });
+    return style;
+  }
 }

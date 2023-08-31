@@ -665,6 +665,11 @@ export function popUp(map,layers,features,overlay,evt,content) {
           streetView +
           '</div>'
       break
+    case 'senkyoku':
+      cont = '<div style=width:150px;>' +
+          '選挙区=' + prop.kuname +
+          '</div>'
+      break
   }
   content.innerHTML = cont
   if (cont && cont !== undefined) overlay.setPosition(coordinate);
