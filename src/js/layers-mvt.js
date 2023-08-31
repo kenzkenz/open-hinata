@@ -4421,7 +4421,7 @@ function yubinkuColorStyleFunction() {
     const textStyle = new Style({
       text: new Text({
         font: "12px sans-serif",
-        text: prop.fullcode + '\n' + prop.name,
+        text: prop.fullcode + '\n\n' + prop.name,
         offsetY: 12,
         fill:  new Fill({
           color:"black"
