@@ -670,6 +670,15 @@ export function popUp(map,layers,features,overlay,evt,content) {
           '選挙区=' + prop.kuname +
           '</div>'
       break
+    case 'yubinku':
+      cont = '<div style=width:200px;>' +
+          '郵便番号=' + prop.fullcode + '<br>' +
+          '郵便区名=' + prop.name + '<br>' +
+          '郵便区名=' + prop.yomi + '<br>' +
+          '都道府県=' + prop.ken + '<br>' +
+          '地域=' + prop.area +
+          '</div>'
+      break
   }
   content.innerHTML = cont
   if (cont && cont !== undefined) overlay.setPosition(coordinate);

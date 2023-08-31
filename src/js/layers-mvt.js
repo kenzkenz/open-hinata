@@ -4386,3 +4386,36 @@ function senkyokuStyleFunction() {
     return style;
   }
 }
+// 郵便区---------------------------------------------------------------
+function Yubinnku () {
+  this.useInterimTilesOnError = false
+  this.name = 'yubinku'
+  this.source = new VectorSource({
+    url:'https://kenzkenz.xsrv.jp/open-hinata/geojson/yubinku_edit.geojson',
+    format: new GeoJSON()
+  });
+  this.style = yubinkuColorStyleFunction('name')
+}
+export const yubinkuSumm = "<a href='https://hanishina.github.io/maps/yubindata.html' target='_blank'>郵便番号境界データ</a>"
+export const yubinkuObj = {};
+for (let i of mapsStr) {
+  yubinkuObj[i] = new VectorLayer(new Yubinnku())
+}
+//------------------------------------------
+const yubinkuColor = d3.scaleOrdinal(d3.schemeCategory10);
+function yubinkuColorStyleFunction() {
+  return function (feature, resolution) {
+    const prop = feature.getProperties();
+    const rgb = yubinkuColor(prop.ken)
+    const style = new Style({
+      fill: new Fill({
+        color: rgb
+      }),
+      stroke: new Stroke({
+        color: "black",
+        width: 1
+      }),
+    });
+    return style;
+  }
+}

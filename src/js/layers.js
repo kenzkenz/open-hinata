@@ -8448,6 +8448,9 @@ const layers =
     ]},
     { text: '各種地域',
       children: [
+        { text: '選挙区（20022年）', data: { id: "senkyoku2022", layer: LayersMvt.senkyoku2022Obj, opacity: 1, summary: LayersMvt.senkyokuSumm} },
+        { text: '区域調整版郵便区', data: { id: "yubinku", layer: LayersMvt.yubinkuObj, opacity: 1, summary: LayersMvt.yubinkuSumm} },
+
         { text: '鳥獣保護区', data: { id: "chyouzyuuh27", layer: LayersMvt.chyouzyuuH27Obj, opacity: 1, summary: LayersMvt.chyouzyuuH27Summ } },
         { text: '農業地域', data: { id: "nouhyouh27", layer: LayersMvt.nougyouH27Obj, opacity: 1, summary: LayersMvt.nougyouH27Summ } },
         { text: '農業集落境界', data: { id: "kyoukai", layer: LayersMvt.kyoukaiObj, opacity: 1, summary: LayersMvt.kyoukaiSumm } },
@@ -8715,7 +8718,6 @@ const layers =
     { text: 'その他',
       children: [
         { text: 'ラスタータイルtest', data: { id: "dokuji", layer: dokujiObj, opacity: 1, summary: LayersMvt.busSumm, component: {name: 'dokuji', values:[]}} },
-        { text: '選挙区（20022年）', data: { id: "senkyoku2022", layer: LayersMvt.senkyoku2022Obj, opacity: 1, summary: LayersMvt.senkyokuSumm} },
 
         { text: '日本土壌インベントリー', data: { id: "dojyou", layer: dojyouObj, opacity: 1, summary: dojyouSumm } },
         { text: 'バスルートと停留所', data: { id: "bus", layer: LayersMvt.bus0Obj, opacity: 1, summary: LayersMvt.busSumm} },
