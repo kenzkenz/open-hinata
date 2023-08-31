@@ -4407,7 +4407,9 @@ function yubinkuColorStyleFunction() {
   return function (feature, resolution) {
     const prop = feature.getProperties();
     const rgb = yubinkuColor(prop.ken)
-    const style = new Style({
+    const zoom = getZoom(resolution);
+    const styles = []
+    const fillStyle = new Style({
       fill: new Fill({
         color: rgb
       }),
@@ -4416,6 +4418,23 @@ function yubinkuColorStyleFunction() {
         width: 1
       }),
     });
-    return style;
+    const textStyle = new Style({
+      text: new Text({
+        font: "12px sans-serif",
+        text: prop.fullcode,
+        offsetY: 12,
+        fill:  new Fill({
+          color:"black"
+        }),
+        stroke: new Stroke({
+          color: "white",
+          width: 3
+        }),
+        zIndex: 9
+      })
+    })
+    styles.push(fillStyle)
+    if (zoom>=11) styles.push(textStyle)
+    return styles;
   }
 }
