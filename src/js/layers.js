@@ -7692,7 +7692,7 @@ for (let i of mapsStr) {
     ]
   })
 }
-const tokyokasaiSumm = '出典：<br><a href="https://mapwarper.h-gis.jp/" target="_blank">日本版MapWarper</a>';
+const tokyokasaiSumm = '出典：<br><a href="https://mapwarper.h-gis.jp/layers/34" target="_blank">日本版MapWarper</a>';
 // OpenTopoMap------------------------------------------------------------------------------------
 function Otm () {
   this.source = new XYZ({
