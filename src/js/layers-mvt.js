@@ -4391,7 +4391,7 @@ function Yubinnku () {
   this.useInterimTilesOnError = false
   this.name = 'yubinku'
   this.source = new VectorSource({
-    url:'https://kenzkenz.xsrv.jp/open-hinata/geojson/yubinku_edit.geojson',
+    url:'https://kenzkenz.xsrv.jp/open-hinata/geojson/yubinku_editmini.geojson',
     format: new GeoJSON()
   });
   this.style = yubinkuColorStyleFunction('name')
