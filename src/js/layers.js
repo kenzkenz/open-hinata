@@ -715,7 +715,7 @@ for (let i of mapsStr) {
 }
 const tamainyouSumm = '<a href="https://www.geospatial.jp/ckan/dataset/tokyopc-tama-2023/resource/e0b49600-9394-4416-99eb-be766eb33006" target="_blank">G空間情報センター</a>';
 
-// 東京都多摩地域赤色立体図 ----------------------------------------------------------------------------
+// 東京都多摩地域赤色立体地図 ----------------------------------------------------------------------------
 function Tamared () {
   this.extent = transformE([138.9259, 35.90926,139.6112, 35.46722])
   this.source = new XYZ({
