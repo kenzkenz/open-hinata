@@ -715,6 +715,22 @@ for (let i of mapsStr) {
 }
 const tamainyouSumm = '<a href="https://www.geospatial.jp/ckan/dataset/tokyopc-tama-2023/resource/e0b49600-9394-4416-99eb-be766eb33006" target="_blank">G空間情報センター</a>';
 
+// 東京都多摩地域赤色立体図 ----------------------------------------------------------------------------
+function Tamared () {
+  this.extent = transformE([138.9259, 35.90926,139.6112, 35.46722])
+  this.source = new XYZ({
+    url: 'https://kenzkenz2.xsrv.jp/tokyo/tamasekisyoku/{z}/{x}/{-y}.png',
+    crossOrigin: 'Anonymous',
+    minZoom: 1,
+    maxZoom: 17
+  });
+}
+const tamaredObj = {};
+for (let i of mapsStr) {
+  tamaredObj[i] = new TileLayer(new Tamared())
+}
+const tamaredSumm = '<a href="https://www.geospatial.jp/ckan/dataset/tokyopc-tama-2023/resource/b3f13db5-bfdb-4d94-91bd-0b0f617bc37e" target="_blank">G空間情報センター</a>';
+
 // 長野県CS立体図----------------------------------------------------------------------------
 function NaganoCs () {
   this.extent = transformE([137.34924687267085, 35.181791181300085,138.7683143113627, 37.14523688239089])
@@ -7844,6 +7860,7 @@ const layers =
         // { text: '日本CS立体図', data: { id: 'jcs', layer: nihonCsObj, opacity: 1, summary: nihonCsSumm } },
         // { text: '全国CS立体図10m', data: { id: 'cs10', layer: cs10mObj, opacity: 1, summary: cs10mSumm } },
         { text: '東京都多摩地域陰陽図', data: { id: 'tamainyou', layer: tamainyouObj, opacity: 1, zoom:11, center:[139.25439119338986, 35.6997080831123], summary: tamainyouSumm } },
+        { text: '東京都多摩地域陰赤色立体地図', data: { id: 'tamared', layer: tamaredObj, opacity: 1, zoom:11, center:[139.25439119338986, 35.6997080831123], summary: tamaredSumm } },
 
         { text: 'CS立体図全部', data: { id: 'cs00', layer: cs00Obj, opacity: 1, summary: tamainyouSumm } },
         { text: '岐阜県CS立体図', data: { id: 'gcs', layer: gihuCsObj, opacity: 1, zoom:9, center:[137.03491577372932, 35.871742161031975], summary: gihuCsSumm } },
