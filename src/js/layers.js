@@ -722,7 +722,7 @@ function Tamared () {
     url: 'https://kenzkenz2.xsrv.jp/tokyo/tamasekisyoku/{z}/{x}/{-y}.png',
     crossOrigin: 'Anonymous',
     minZoom: 1,
-    maxZoom: 17
+    maxZoom: 18
   });
 }
 const tamaredObj = {};
