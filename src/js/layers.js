@@ -709,11 +709,115 @@ function Tamainyou () {
     maxZoom: 18
   });
 }
-const tamainyouObj = {};
+const tamainyou00Obj = {};
 for (let i of mapsStr) {
-  tamainyouObj[i] = new TileLayer(new Tamainyou())
+  tamainyou00Obj[i] = new TileLayer(new Tamainyou())
 }
 const tamainyouSumm = '<a href="https://www.geospatial.jp/ckan/dataset/tokyopc-tama-2023/resource/e0b49600-9394-4416-99eb-be766eb33006" target="_blank">G空間情報センター</a>';
+//------
+function Toushonyou01 () {
+  this.extent = transformE([139.3291, 34.80158, 139.4594, 34.67136])
+  this.source = new XYZ({
+    url: 'https://kenzkenz2.xsrv.jp/tokyo/tousyoinyou01/{z}/{x}/{-y}.png',
+    crossOrigin: 'Anonymous',
+    minZoom: 1,
+    maxZoom: 18
+  });
+}
+const tousyoinyou01Obj = {};
+for (let i of mapsStr) {
+  tousyoinyou01Obj[i] = new TileLayer(new Toushonyou01())
+}
+//------
+function Toushonyou02 () {
+  this.extent = transformE([138.9873, 34.5704, 139.3528, 34.16614])
+  this.source = new XYZ({
+    url: 'https://kenzkenz2.xsrv.jp/tokyo/tousyoinyou02/{z}/{x}/{-y}.png',
+    crossOrigin: 'Anonymous',
+    minZoom: 1,
+    maxZoom: 18
+  });
+}
+const tousyoinyou02Obj = {};
+for (let i of mapsStr) {
+  tousyoinyou02Obj[i] = new TileLayer(new Toushonyou02())
+}
+//------
+function Toushonyou03 () {
+  this.extent = transformE([139.4534, 34.13815, 139.5832, 34.03666])
+  this.source = new XYZ({
+    url: 'https://kenzkenz2.xsrv.jp/tokyo/tousyoinyou03/{z}/{x}/{-y}.png',
+    crossOrigin: 'Anonymous',
+    minZoom: 1,
+    maxZoom: 18
+  });
+}
+const tousyoinyou03Obj = {};
+for (let i of mapsStr) {
+  tousyoinyou03Obj[i] = new TileLayer(new Toushonyou03())
+}
+//------
+function Toushonyou04 () {
+  this.extent = transformE([139.5721, 33.90441, 139.6372, 33.84859])
+  this.source = new XYZ({
+    url: 'https://kenzkenz2.xsrv.jp/tokyo/tousyoinyou04/{z}/{x}/{-y}.png',
+    crossOrigin: 'Anonymous',
+    minZoom: 1,
+    maxZoom: 18
+  });
+}
+const tousyoinyou04Obj = {};
+for (let i of mapsStr) {
+  tousyoinyou04Obj[i] = new TileLayer(new Toushonyou04())
+}
+//------
+function Toushonyou05 () {
+  this.extent = transformE([139.6562, 33.16488, 139.8692, 33.03760])
+  this.source = new XYZ({
+    url: 'https://kenzkenz2.xsrv.jp/tokyo/tousyoinyou05/{z}/{x}/{-y}.png',
+    crossOrigin: 'Anonymous',
+    minZoom: 1,
+    maxZoom: 18
+  });
+}
+const tousyoinyou05Obj = {};
+for (let i of mapsStr) {
+  tousyoinyou05Obj[i] = new TileLayer(new Toushonyou05())
+}
+//------
+function Toushonyou06 () {
+  this.extent = transformE([139.7514, 32.47644, 139.7881, 32.43893])
+  this.source = new XYZ({
+    url: 'https://kenzkenz2.xsrv.jp/tokyo/tousyoinyou06/{z}/{x}/{-y}.png',
+    crossOrigin: 'Anonymous',
+    minZoom: 1,
+    maxZoom: 18
+  });
+}
+const tousyoinyou06Obj = {};
+for (let i of mapsStr) {
+  tousyoinyou06Obj[i] = new TileLayer(new Toushonyou06())
+}
+//----------------------
+const tamainyouObj = {};
+for (let i of mapsStr) {
+  tamainyouObj[i] = new LayerGroup({
+    layers: [
+      tamainyou00Obj[i],
+      tousyoinyou01Obj[i],
+      tousyoinyou02Obj[i],
+      tousyoinyou03Obj[i],
+      tousyoinyou04Obj[i],
+      tousyoinyou05Obj[i],
+      tousyoinyou06Obj[i],
+    ]
+  })
+}
+
+
+
+
+
 
 // 東京都多摩地域赤色立体地図 ----------------------------------------------------------------------------
 function Tamared () {
@@ -7859,8 +7963,10 @@ const layers =
         { text: 'エコリス植生図', data: { id: 'ecoris', layer: ecorisObj, opacity: 1, summary: ecorisSumm } },
         // { text: '日本CS立体図', data: { id: 'jcs', layer: nihonCsObj, opacity: 1, summary: nihonCsSumm } },
         // { text: '全国CS立体図10m', data: { id: 'cs10', layer: cs10mObj, opacity: 1, summary: cs10mSumm } },
-        { text: '東京都多摩地域陰陽図', data: { id: 'tamainyou', layer: tamainyouObj, opacity: 1, zoom:11, center:[139.25439119338986, 35.6997080831123], summary: tamainyouSumm } },
+        { text: '東京都陰陽図', data: { id: 'tamainyou', layer: tamainyouObj, opacity: 1, zoom:11, center:[139.25439119338986, 35.6997080831123], summary: tamainyouSumm } },
         { text: '東京都多摩地域赤色立体地図', data: { id: 'tamared', layer: tamaredObj, opacity: 1, zoom:11, center:[139.25439119338986, 35.6997080831123], summary: tamaredSumm } },
+
+
 
         { text: 'CS立体図全部', data: { id: 'cs00', layer: cs00Obj, opacity: 1, summary: tamainyouSumm } },
         { text: '岐阜県CS立体図', data: { id: 'gcs', layer: gihuCsObj, opacity: 1, zoom:9, center:[137.03491577372932, 35.871742161031975], summary: gihuCsSumm } },
