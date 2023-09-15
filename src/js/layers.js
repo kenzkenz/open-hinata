@@ -829,11 +829,116 @@ function Tamared () {
     maxZoom: 18
   });
 }
-const tamaredObj = {};
+const tamared00Obj = {};
 for (let i of mapsStr) {
-  tamaredObj[i] = new TileLayer(new Tamared())
+  tamared00Obj[i] = new TileLayer(new Tamared())
 }
 const tamaredSumm = '<a href="https://www.geospatial.jp/ckan/dataset/tokyopc-tama-2023/resource/b3f13db5-bfdb-4d94-91bd-0b0f617bc37e" target="_blank">G空間情報センター</a>';
+
+
+//------
+function Toushosekisyoku01 () {
+  this.extent = transformE([139.3291, 34.80158, 139.4594, 34.67136])
+  this.source = new XYZ({
+    url: 'https://kenzkenz2.xsrv.jp/tokyo/tousyosekisyoku01/{z}/{x}/{-y}.png',
+    crossOrigin: 'Anonymous',
+    minZoom: 1,
+    maxZoom: 18
+  });
+}
+const tousyosekisyoku01Obj = {};
+for (let i of mapsStr) {
+  tousyosekisyoku01Obj[i] = new TileLayer(new Toushosekisyoku01())
+}
+//------
+function Toushosekisyoku02 () {
+  this.extent = transformE([138.9873, 34.5704, 139.3528, 34.16614])
+  this.source = new XYZ({
+    url: 'https://kenzkenz2.xsrv.jp/tokyo/tousyosekisyoku02/{z}/{x}/{-y}.png',
+    crossOrigin: 'Anonymous',
+    minZoom: 1,
+    maxZoom: 18
+  });
+}
+const tousyosekisyoku02Obj = {};
+for (let i of mapsStr) {
+  tousyosekisyoku02Obj[i] = new TileLayer(new Toushosekisyoku02())
+}
+//------
+function Toushosekisyoku03 () {
+  this.extent = transformE([139.4534, 34.13815, 139.5832, 34.03666])
+  this.source = new XYZ({
+    url: 'https://kenzkenz2.xsrv.jp/tokyo/tousyosekisyoku03/{z}/{x}/{-y}.png',
+    crossOrigin: 'Anonymous',
+    minZoom: 1,
+    maxZoom: 18
+  });
+}
+const tousyosekisyoku03Obj = {};
+for (let i of mapsStr) {
+  tousyosekisyoku03Obj[i] = new TileLayer(new Toushosekisyoku03())
+}
+//------
+function Toushosekisyoku04 () {
+  this.extent = transformE([139.5721, 33.90441, 139.6372, 33.84859])
+  this.source = new XYZ({
+    url: 'https://kenzkenz2.xsrv.jp/tokyo/tousyosekisyoku04/{z}/{x}/{-y}.png',
+    crossOrigin: 'Anonymous',
+    minZoom: 1,
+    maxZoom: 18
+  });
+}
+const tousyosekisyoku04Obj = {};
+for (let i of mapsStr) {
+  tousyosekisyoku04Obj[i] = new TileLayer(new Toushosekisyoku04())
+}
+//------
+function Toushosekisyoku05 () {
+  this.extent = transformE([139.6562, 33.16488, 139.8692, 33.03760])
+  this.source = new XYZ({
+    url: 'https://kenzkenz2.xsrv.jp/tokyo/tousyosekisyoku05/{z}/{x}/{-y}.png',
+    crossOrigin: 'Anonymous',
+    minZoom: 1,
+    maxZoom: 18
+  });
+}
+const tousyosekisyoku05Obj = {};
+for (let i of mapsStr) {
+  tousyosekisyoku05Obj[i] = new TileLayer(new Toushosekisyoku05())
+}
+//------
+function Toushosekisyoku06 () {
+  this.extent = transformE([139.7514, 32.47644, 139.7881, 32.43893])
+  this.source = new XYZ({
+    url: 'https://kenzkenz2.xsrv.jp/tokyo/tousyosekisyoku06/{z}/{x}/{-y}.png',
+    crossOrigin: 'Anonymous',
+    minZoom: 1,
+    maxZoom: 18
+  });
+}
+const tousyosekisyoku06Obj = {};
+for (let i of mapsStr) {
+  tousyosekisyoku06Obj[i] = new TileLayer(new Toushosekisyoku06())
+}
+//----------------------
+const tamaredObj = {};
+for (let i of mapsStr) {
+  tamaredObj[i] = new LayerGroup({
+    layers: [
+      tamared00Obj[i],
+      tousyosekisyoku01Obj[i],
+      tousyosekisyoku02Obj[i],
+      tousyosekisyoku03Obj[i],
+      tousyosekisyoku04Obj[i],
+      tousyosekisyoku05Obj[i],
+      tousyosekisyoku06Obj[i],
+    ]
+  })
+}
+
+
+
+
 
 // 長野県CS立体図----------------------------------------------------------------------------
 function NaganoCs () {
@@ -7964,7 +8069,7 @@ const layers =
         // { text: '日本CS立体図', data: { id: 'jcs', layer: nihonCsObj, opacity: 1, summary: nihonCsSumm } },
         // { text: '全国CS立体図10m', data: { id: 'cs10', layer: cs10mObj, opacity: 1, summary: cs10mSumm } },
         { text: '東京都陰陽図', data: { id: 'tamainyou', layer: tamainyouObj, opacity: 1, zoom:11, center:[139.25439119338986, 35.6997080831123], summary: tamainyouSumm } },
-        { text: '東京都多摩地域赤色立体地図', data: { id: 'tamared', layer: tamaredObj, opacity: 1, zoom:11, center:[139.25439119338986, 35.6997080831123], summary: tamaredSumm } },
+        { text: '東京都赤色立体地図', data: { id: 'tamared', layer: tamaredObj, opacity: 1, zoom:11, center:[139.25439119338986, 35.6997080831123], summary: tamaredSumm } },
 
 
 
