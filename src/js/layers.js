@@ -276,6 +276,8 @@ for (let i of mapsStr) {
 }
 // 明治期の低湿地---------------------------------------------------------------------------------
 function Sitti () {
+  this.name = 'sitti'
+  this.pointer = true
   this.source = new XYZ({
     url: 'https://cyberjapandata.gsi.go.jp/xyz/swale/{z}/{x}/{y}.png',
     crossOrigin: 'Anonymous',

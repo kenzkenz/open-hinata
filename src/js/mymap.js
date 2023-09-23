@@ -23,6 +23,7 @@ let legoFilter = null;
 import DragAndDrop from 'ol/interaction/DragAndDrop.js';
 import {GPX, GeoJSON, IGC, KML, TopoJSON} from 'ol/format.js';
 import {standardFunction} from "@/js/layers-mvt";
+import {popUpTisitu} from "./popup";
 export function initMap (vm) {
     // マップ作製ループ用の配列を作成
     const maps = [
@@ -438,6 +439,9 @@ export function initMap (vm) {
                         break;
                     case 'dojyou':
                         getColor0(evt,'https://soil-inventory.rad.naro.go.jp/tile/figure/',PopUp.popUpDojyou,12)
+                        break;
+                    case 'sitti':
+                        getColor0(evt,'https://cyberjapandata.gsi.go.jp/xyz/swale/',PopUp.popUpTisitu,16)
                         break;
                     default:
                 }
