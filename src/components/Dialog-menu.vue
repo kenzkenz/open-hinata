@@ -83,6 +83,7 @@
             .then(function (response) {
               console.log(response)
               vm.shortUrlText = 'https://kenzkenz.xsrv.jp/open-hinata/#' + response.data.urlid
+              // vm.shortUrlText = 'http://localhost:8080/#' + response.data.urlid
             })
             .catch(function (error) {
               console.log(error);

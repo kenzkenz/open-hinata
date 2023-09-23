@@ -33,6 +33,7 @@
     methods: {
       onNodeSelected: function (node) {
         if (node.children.length === 0) {
+          console.log(node.data.text)
           this.$store.commit('base/unshiftLayerList', {
             value: {
               id: node.data.id,

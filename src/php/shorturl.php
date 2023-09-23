@@ -1,7 +1,5 @@
 <?php
-// 接続
 require_once "pwd.php";
-
 /**
  * ランダム文字列生成 (英数字)
  * $length: 生成する文字数
@@ -14,7 +12,6 @@ function makeRandStr($length) {
     }
     return $r_str;
 }
-
 $urlid = $_GET["urlid"];
 $parameters = $_GET["parameters"];
 if (!$urlid) {
@@ -53,7 +50,6 @@ if (!$urlid) {
         //一致データなし
 //    $response = array('error' => 'nodata');
     }
-
 }
 echo json_encode($response);
 ?>

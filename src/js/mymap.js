@@ -832,6 +832,20 @@ export function resize () {
 }
 
 export function watchLayer (map, thisName, newLayerList,oldLayerList) {
+    console.log(newLayerList[0][0].title)
+    const layer = newLayerList[0][0].title
+    const ua = navigator.userAgent
+    const width = window.screen.width;
+    const height = window.screen.height;
+    console.log(width + ' x ' + height)
+    axios
+        .get('https://kenzkenz.xsrv.jp/open-hinata/php/layer.php',{
+            params: {
+                layer: layer,
+                screen: width + ' x ' + height,
+                ua: ua
+            }
+        })
     // store.commit('base/updateFirstFlg')
     //[0]はレイヤーリスト。[1]はlength
     // 逆ループ

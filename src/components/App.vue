@@ -200,6 +200,7 @@
     },
     mounted () {
       this.$nextTick(function () {
+
         // ①map初期化-----------------------------
         MyMap.initMap(this);
         // ②パーマリンク------------------------------
@@ -218,9 +219,11 @@
           }
           this.splitMap2()
         };
-        resize();
+        setTimeout(function(){
+        resize()
+          resize()
+        }, 300);
         window.onresize =  () => {
-          // this.splitMap2()
           setTimeout(function(){
             resize()
           }, 50);

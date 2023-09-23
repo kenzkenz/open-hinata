@@ -58,6 +58,7 @@ export function permalinkEventSet () {
       urlid =  parts[0]
       console.log(urlid)
     }
+    store.commit('base/updateSplitFlg',2)
     axios
         .get('https://kenzkenz.xsrv.jp/open-hinata/php/shorturl.php',{
           params: {
@@ -71,9 +72,9 @@ export function permalinkEventSet () {
           if (isNaN(parts[0])) {
             if (parameters) {
               hash = decodeURIComponent(parameters.replace('#', ''));
+              aaa()
             }
           }
-          aaa()
         })
         .catch(function (error) {
           console.log(error);
@@ -81,12 +82,8 @@ export function permalinkEventSet () {
         .finally(function () {
         });
 
-
-
-    // const hash = decodeURIComponent(parameters.replace('#', ''));
-
-
-    function aaa () {
+    function aaa(){
+      // const hash = decodeURIComponent(window.location.hash.replace('#', ''));
       // 場所、ズームを復帰
       const parts = hash.split('/');
       const map = store.state.base.maps.map01;
@@ -145,34 +142,34 @@ export function permalinkEventSet () {
                         mapName: mapName
                       });
                       // レイヤーに設定項目があるとき
-                      if (node.data.component) {
-                        store.commit('base/incrDialogMaxZindex');
-                        store.state.base.dialogs[mapName].style.display = 'block';
-                        const top = store.state.base.dialogs[mapName].style.top;
-                        // $('#map01' + ' .dialog-div')の長さがわかればいい。それぞれに必要なし
-                        document.querySelector('#map01' + ' .dialog-div').style.display = 'block';
-                        const left = Number(store.state.base.dialogs[mapName].style.left.replace(/px/,"")) + document.querySelector('#map01' + ' .dialog-div').clientWidth + 96 + 'px';
-                        const infoDialog =
-                            {
-                              id: node.data.id,
-                              multipli: node.data.multipli,
-                              check: node.data.check,
-                              title: node.text,
-                              summary: node.data.summary,
-                              component: node.data.component,
-                              style: {
-                                display: 'block',
-                                top: top,
-                                left: left,
-                                'z-index': store.state.base.dialogMaxZindex
-                              }
-                            };
-                        store.commit('base/pushDialogsInfo', {mapName: mapName, dialog: infoDialog});
-                        const c = urlLayerListArr[i][j].c;
-                        for (let k=0; k<c.values.length;k++) {
-                          store.commit('info/update', {name: c.name, mapName: mapName, value: c.values[k], order: k})
-                        }
-                      }
+                      // if (node.data.component) {
+                      //   store.commit('base/incrDialogMaxZindex');
+                      //   store.state.base.dialogs[mapName].style.display = 'block';
+                      //   const top = store.state.base.dialogs[mapName].style.top;
+                      //   // $('#map01' + ' .dialog-div')の長さがわかればいい。それぞれに必要なし
+                      //   document.querySelector('#map01' + ' .dialog-div').style.display = 'block';
+                      //   const left = Number(store.state.base.dialogs[mapName].style.left.replace(/px/,"")) + document.querySelector('#map01' + ' .dialog-div').clientWidth + 96 + 'px';
+                      //   const infoDialog =
+                      //       {
+                      //         id: node.data.id,
+                      //         multipli: node.data.multipli,
+                      //         check: node.data.check,
+                      //         title: node.text,
+                      //         summary: node.data.summary,
+                      //         component: node.data.component,
+                      //         style: {
+                      //           display: 'block',
+                      //           top: top,
+                      //           left: left,
+                      //           'z-index': store.state.base.dialogMaxZindex
+                      //         }
+                      //       };
+                      //   store.commit('base/pushDialogsInfo', {mapName: mapName, dialog: infoDialog});
+                      //   const c = urlLayerListArr[i][j].c;
+                      //   for (let k=0; k<c.values.length;k++) {
+                      //     store.commit('info/update', {name: c.name, mapName: mapName, value: c.values[k], order: k})
+                      //   }
+                      // }
                       // レイヤーに設定項目があるとき。ここまで
                     }
                   }
@@ -183,8 +180,9 @@ export function permalinkEventSet () {
           }
         }
       }
-    }
-    // aaa ()
+    }//
+    aaa()
+
   }
   // マップ移動時イベント------------------------------------------------------------------------
   store.state.base.maps.map01.on('moveend', moveEnd)
@@ -196,15 +194,15 @@ export function moveEnd () {
   const center = map.getView().getCenter();
   const center4326 = transform(center,'EPSG:3857','EPSG:4326');
   const hash = '#' +
-    zoom + '/' +
-    Math.round(center4326[0] * 100000) / 100000 + '/' +
-    Math.round(center4326[1] * 100000) / 100000;
+      zoom + '/' +
+      Math.round(center4326[0] * 100000) / 100000 + '/' +
+      Math.round(center4326[1] * 100000) / 100000;
   let parameter = '?S=' + store.state.base.splitFlg;
   parameter += '&L=' + store.getters['base/layerLists'];
   // console.log(store.getters['base/layerLists'])
   // parameterだけエンコードする。起動時にwindow.location.hashでハッシュ値を取得するため
   // console.log(parameter)
-  parameter = encodeURIComponent(parameter);
+  parameter = encodeURIComponent(parameter); // エンコード
   const state = {
     zoom: zoom,
     center: center4326
