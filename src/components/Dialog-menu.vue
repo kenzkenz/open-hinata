@@ -17,6 +17,10 @@
                 <b-form-select v-model="selected" :options="options" style="width: 60px;margin-left: 10px;"/>
             </div>
             <hr>
+            <div>
+              <b-button :pressed.sync="myToggle2" class='olbtn' :size="btnSize">{{ myToggle2 ? '中心十字ON' : '中心十字OFF' }}</b-button>
+            </div>
+            <hr>
              住所
             <input type='text' @input="onInput" v-model="address" placeholder="住所検索します。" style="width: 200px;">
             <hr>
@@ -31,6 +35,7 @@
   import axios from 'axios'
   import * as MyMap from '../js/mymap'
   import {transform} from "ol/proj";
+  import Target from "ol-ext/control/Target";
     export default {
     name: "Menu",
     data () {
@@ -40,6 +45,7 @@
         btnSize: 'sm',
         shortUrlText: '',
         myToggle: false,
+        myToggle2: true,
         selected: 20,
         options: [
           { value: '20', text: '20' },
@@ -71,27 +77,27 @@
         window.location.reload(true);
       },
       // 短縮URL作成----------------------------------------------------------------------------
+      // shortUrl () {
+      //   const vm = this;
+      //   const parameters = window.location.hash
+      //   axios
+      //       .get('https://kenzkenz.xsrv.jp/open-hinata/php/shorturl.php',{
+      //         params: {
+      //           parameters: parameters
+      //         }
+      //       })
+      //       .then(function (response) {
+      //         console.log(response)
+      //         vm.shortUrlText = 'https://kenzkenz.xsrv.jp/open-hinata/#' + response.data.urlid
+      //         // vm.shortUrlText = 'http://localhost:8080/#' + response.data.urlid
+      //       })
+      //       .catch(function (error) {
+      //         console.log(error);
+      //       })
+      //       .finally(function () {
+      //       });
+      // },
       shortUrl () {
-        const vm = this;
-        const parameters = window.location.hash
-        axios
-            .get('https://kenzkenz.xsrv.jp/open-hinata/php/shorturl.php',{
-              params: {
-                parameters: parameters
-              }
-            })
-            .then(function (response) {
-              console.log(response)
-              vm.shortUrlText = 'https://kenzkenz.xsrv.jp/open-hinata/#' + response.data.urlid
-              // vm.shortUrlText = 'http://localhost:8080/#' + response.data.urlid
-            })
-            .catch(function (error) {
-              console.log(error);
-            })
-            .finally(function () {
-            });
-      },
-      shortUrlBK () {
         const vm = this;
         //const target = 'https://kenzkenz.xsrv.jp/aaa/#8/140.1/37.86%3FS%3D1%26L%3D%5B%5B%7B%22id%22%3A1%2C%22o%22%3A1%7D%5D%2C%5B%7B%22id%22%3A2%2C%22o%22%3A1%7D%5D%2C%5B%7B%22id%22%3A4%2C%22o%22%3A1%7D%5D%2C%5B%7B%22id%22%3A5%2C%22o%22%3A1%7D%5D%5D'
         const target = window.location.href;
@@ -155,6 +161,32 @@
           MyMap.lego('map01', this.selected)
         } else {
           MyMap.legoRemove('map01', this.selected)
+        }
+      });
+      this.$watch(function () {
+        return [this.myToggle2]
+      }, function () {
+        const mapsStr = ['map01','map02','map03','map04']
+        if (this.myToggle2) {
+          console.log('on')
+          mapsStr.forEach(value => {
+            const map = this.$store.state.base.maps[value]
+            const centerTarget = new Target({composite: 'difference'})
+            map.addControl(centerTarget);
+          })
+        } else {
+          console.log('off')
+          mapsStr.forEach(value => {
+            const map = this.$store.state.base.maps[value]
+            const targets = map.getControls().array_
+            const targetsMap = targets.map(value => {
+              return value
+            });
+            targetsMap.forEach(target => {
+              if (target.constructor.name === 'ol_control_Target')
+                map.removeControl(target)
+            })
+          })
         }
       });
     }

@@ -841,13 +841,15 @@ export function watchLayer (map, thisName, newLayerList,oldLayerList) {
     const ua = navigator.userAgent
     const width = window.screen.width;
     const height = window.screen.height;
-    console.log(width + ' x ' + height)
+    const referrer = document.referrer
+    console.log(referrer)
     axios
         .get('https://kenzkenz.xsrv.jp/open-hinata/php/layer.php',{
             params: {
                 layer: layer,
                 screen: width + ' x ' + height,
-                ua: ua
+                ua: ua,
+                referrer:referrer
             }
         })
     // store.commit('base/updateFirstFlg')

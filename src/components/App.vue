@@ -219,10 +219,9 @@
           }
           this.splitMap2()
         };
-        setTimeout(function(){
-        resize()
+        // setTimeout(function(){
           resize()
-        }, 300);
+        // }, 300);
         window.onresize =  () => {
           setTimeout(function(){
             resize()

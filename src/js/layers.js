@@ -682,24 +682,100 @@ const hyougoCs50Obj = {};
 for (let i of mapsStr) {
   hyougoCs50Obj[i] = new TileLayer(new HyougoCs50())
 }
-const hyougoCs50Summ = '';
-
-
-// 兵庫県CS立体図50cmTest ----------------------------------------------------------------------------
-function HyougoCsTest2 () {
+const hyougoCs50Summ = '<a href="https://web.pref.hyogo.lg.jp/kk26/hyogo-geo.html" target="_blank">全国初「全県土分の高精度3次元データ」の公開について</a>';
+// 兵庫県CS立体図50cm2 ----------------------------------------------------------------------------
+function HyougoCs50c2 () {
   this.extent = transformE([134.2669714033038, 34.17797854803047,135.47241581374712, 35.783161768341444])
   this.source = new XYZ({
-    url: 'https://kenzkenz.xsrv.jp/tile/hyougo/test/{z}/{x}/{-y}.png',
+    url: 'https://rinya-hyogo.geospatial.jp/2023/rinya/tile/csmap/{z}/{x}/{y}.png',
     crossOrigin: 'Anonymous',
-    minZoom: 1,
-    maxZoom: 19
+    minZoom: 8,
+    maxZoom: 18
   });
 }
-const hyougoCsTest2Obj = {};
+const hyougoCs50c2Obj = {};
 for (let i of mapsStr) {
-  hyougoCsTest2Obj[i] = new TileLayer(new HyougoCsTest2())
+  hyougoCs50c2Obj[i] = new TileLayer(new HyougoCs50c2())
 }
-const hyougoCsSummTest2 = '';
+const hyougoCs50c2Summ = '<a href="https://www.geospatial.jp/ckan/dataset/csmap_hyogo" target="_blank">G空間情報センター</a>';
+// 兵庫県レーザ林相図 ----------------------------------------------------------------------------
+function HyougoRinsou () {
+  this.extent = transformE([134.2669714033038, 34.17797854803047,135.47241581374712, 35.783161768341444])
+  this.source = new XYZ({
+    url: 'https://rinya-hyogo.geospatial.jp/2023/rinya/tile/ls_standtype/{z}/{x}/{y}.png',
+    crossOrigin: 'Anonymous',
+    minZoom: 8,
+    maxZoom: 18
+  });
+}
+const hyougoRinsouObj = {};
+for (let i of mapsStr) {
+  hyougoRinsouObj[i] = new TileLayer(new HyougoRinsou())
+}
+const hyougoRinsouSumm = '<a href="https://www.geospatial.jp/ckan/dataset/ls_standtype_hyogo" target="_blank">G空間情報センター</a>';
+// 栃木県CS立体図 ----------------------------------------------------------------------------
+function TochigiCs () {
+  this.extent = transformE([139.1989, 37.2099, 140.4764, 36.14784])
+  this.source = new XYZ({
+    url: 'https://rinya-tochigi.geospatial.jp/2023/rinya/tile/csmap/{z}/{x}/{y}.png',
+    crossOrigin: 'Anonymous',
+    minZoom: 8,
+    maxZoom: 18
+  });
+}
+const tochigicsObj = {};
+for (let i of mapsStr) {
+  tochigicsObj[i] = new TileLayer(new TochigiCs())
+}
+const tochigicsSumm = '<a href="https://www.geospatial.jp/ckan/dataset/csmap_tochigi" target="_blank">G空間情報センター</a>';
+// 栃木県レーザ林相図 ----------------------------------------------------------------------------
+function TochigiRinsou () {
+  this.extent = transformE([139.1989, 37.2099, 140.4764, 36.14784])
+  this.source = new XYZ({
+    url: 'https://rinya-tochigi.geospatial.jp/2023/rinya/tile/ls_standtype/{z}/{x}/{y}.png',
+    crossOrigin: 'Anonymous',
+    minZoom: 8,
+    maxZoom: 18
+  });
+}
+const tochigiRinsouObj = {};
+for (let i of mapsStr) {
+  tochigiRinsouObj[i] = new TileLayer(new TochigiRinsou())
+}
+const tochigiRinsouSumm = '<a href="https://www.geospatial.jp/ckan/dataset/ls_standtype_tochigi" target="_blank">G空間情報センター</a>';
+
+
+// 高知県CS立体図 ----------------------------------------------------------------------------
+function KochiCs () {
+  this.extent = transformE([132.2401, 33.86599, 134.553, 32.6287])
+  this.source = new XYZ({
+    url: 'https://rinya-kochi.geospatial.jp/2023/rinya/tile/csmap/{z}/{x}/{y}.png',
+    crossOrigin: 'Anonymous',
+    minZoom: 8,
+    maxZoom: 18
+  });
+}
+const kochiCsObj = {};
+for (let i of mapsStr) {
+  kochiCsObj[i] = new TileLayer(new KochiCs())
+}
+const kochiCsSumm = '<a href="https://www.geospatial.jp/ckan/dataset/csmap_kochi" target="_blank">G空間情報センター</a>';
+// 高知県レーザ林相図 ----------------------------------------------------------------------------
+function KochiRinsou () {
+  this.extent = transformE([132.2401, 33.86599, 134.553, 32.6287])
+  this.source = new XYZ({
+    url: 'https://rinya-kochi.geospatial.jp/2023/rinya/tile/ls_standtype/{z}/{x}/{y}.png',
+    crossOrigin: 'Anonymous',
+    minZoom: 8,
+    maxZoom: 18
+  });
+}
+const kochiRinsouObj = {};
+for (let i of mapsStr) {
+  kochiRinsouObj[i] = new TileLayer(new KochiRinsou())
+}
+const kochiRinsouSumm = '<a href="https://www.geospatial.jp/ckan/dataset/ls_standtype_kochi" target="_blank">G空間情報センター</a>';
+
 
 // 東京都多摩地域陰陽図 ----------------------------------------------------------------------------
 function Tamainyou () {
@@ -1050,27 +1126,29 @@ for (let i of mapsStr) {
 }
 const ehimeCsSumm = '出典：<a href="https://www2.ffpri.go.jp/soilmap/index.html" target="_blank">森林総研・森林土壌デジタルマップ</a>'
 // 高知県CS立体図----------------------------------------------------------------------------
-function KochiCs () {
-  // this.extent = transformE([132.0778, 34.37512,134.2125, 32.83277])
-  this.source = new XYZ({
-    url: 'https://www2.ffpri.go.jp/soilmap/tile/cs_kochi/{z}/{x}/{y}.png',
-    // crossOrigin: 'Anonymous',
-    minZoom: 1,
-    maxZoom: 17
-  });
-}
-const kochiCsObj = {};
-for (let i of mapsStr) {
-  kochiCsObj[i] = new TileLayer(new KochiCs())
-}
-const kochiCsSumm = '出典：<a href="https://www2.ffpri.go.jp/soilmap/index.html" target="_blank">森林総研・森林土壌デジタルマップ</a>'
+// function KochiCs () {
+//   // this.extent = transformE([132.0778, 34.37512,134.2125, 32.83277])
+//   this.source = new XYZ({
+//     url: 'https://www2.ffpri.go.jp/soilmap/tile/cs_kochi/{z}/{x}/{y}.png',
+//     // crossOrigin: 'Anonymous',
+//     minZoom: 1,
+//     maxZoom: 17
+//   });
+// }
+// const kochiCsObj = {};
+// for (let i of mapsStr) {
+//   kochiCsObj[i] = new TileLayer(new KochiCs())
+// }
+// const kochiCsSumm = '出典：<a href="https://www2.ffpri.go.jp/soilmap/index.html" target="_blank">森林総研・森林土壌デジタルマップ</a>'
 
 const cs00Obj = {}
 for (let i of mapsStr) {
   cs00Obj[i] = new LayerGroup({
     layers: [
+      tochigicsObj[i],
       gihuCsObj[i],
-      hyougoCs50Obj[i],
+      // hyougoCs50Obj[i],
+      hyougoCs50c2Obj[i],
       naganoCsObj[i],
       sizuokaCsObj[i],
       hiroshimaCsObj[i],
@@ -8076,10 +8154,12 @@ const layers =
 
 
         { text: 'CS立体図全部', data: { id: 'cs00', layer: cs00Obj, opacity: 1, summary: tamainyouSumm } },
+        { text: '栃木県CS立体図', data: { id: 'tochigcs', layer: tochigicsObj, opacity: 1, zoom:10, center:[139.7261306915493, 36.67065922020146], summary: tochigicsSumm } },
+
         { text: '岐阜県CS立体図', data: { id: 'gcs', layer: gihuCsObj, opacity: 1, zoom:9, center:[137.03491577372932, 35.871742161031975], summary: gihuCsSumm } },
-        { text: '兵庫県CS立体図', data: { id: 'hyougocs', layer: hyougoCsObj, opacity: 1, zoom:9, center:[134.8428381533734, 35.05148520051671], summary: hyougoCsSumm } },
-        { text: '兵庫県CS立体図50cm', data: { id: 'hyougocs50cm', layer: hyougoCs50Obj, opacity: 1, zoom:9, center:[134.8428381533734, 35.05148520051671], summary: hyougoCs50Summ } },
-        { text: '兵庫県CS立体図50cmTest', data: { id: 'hyougocs50cmTest', layer: hyougoCsTest2Obj, opacity: 1, zoom:9, center:[134.8428381533734, 35.05148520051671], summary: hyougoCsSummTest2 } },
+        { text: '兵庫県CS立体図2010〜2018', data: { id: 'hyougocs', layer: hyougoCsObj, opacity: 1, zoom:9, center:[134.8428381533734, 35.05148520051671], summary: hyougoCsSumm } },
+        // { text: '兵庫県CS立体図50cm', data: { id: 'hyougocs50cm', layer: hyougoCs50Obj, opacity: 1, zoom:9, center:[134.8428381533734, 35.05148520051671], summary: hyougoCs50Summ } },
+        { text: '兵庫県CS立体図50cm', data: { id: 'hyougocs50cm2', layer: hyougoCs50c2Obj, opacity: 1, zoom:9, center:[134.8428381533734, 35.05148520051671], summary: hyougoCs50c2Summ } },
 
         { text: '長野県CS立体図', data: { id: 'naganocs', layer: naganoCsObj, opacity: 1, zoom:9, center:[138.14880751631608, 36.19749617538284], summary: naganoCsSumm } },
         { text: '静岡県CS立体図', data: { id: 'sizuokacs', layer: sizuokaCsObj, opacity: 1, zoom:9, center:[138.26385867875933, 35.01475223050842], summary: sizuokaCsSumm } },
@@ -8089,6 +8169,11 @@ const layers =
         { text: '愛媛県CS立体図', data: { id: 'ehimeocs', layer: ehimeCsObj, opacity: 1, zoom:9, center:[132.77042984962463, 33.49503407703915], summary: ehimeCsSumm } },
         { text: '高知県CS立体図', data: { id: 'kochiocs', layer: kochiCsObj, opacity: 1, zoom:9, center:[133.00989747047424, 33.4075764357881], summary: kochiCsSumm } },
         { text: '熊本県・大分県CS立体図', data: { id: 'kumamotocs', layer: kumamotoCsObj, opacity: 1, zoom:9, center:[131.08264176666347, 32.86696607176184], summary: kumamotoCsSumm } },
+        { text: '栃木県レーザ林相図', data: { id: 'tochigirinsou', layer: tochigiRinsouObj, opacity: 1, zoom:10, center:[139.7261306915493, 36.67065922020146], summary: tochigiRinsouSumm } },
+
+        { text: '兵庫県レーザ林相図', data: { id: 'hyougorinsou', layer: hyougoRinsouObj, opacity: 1, zoom:9, center:[134.8428381533734, 35.05148520051671], summary: hyougoRinsouSumm } },
+        { text: '高知県レーザ林相図', data: { id: 'kochirinsou', layer: kochiRinsouObj, opacity: 1, zoom:9, center:[133.00989747047424, 33.4075764357881], summary: kochiRinsouSumm } },
+
         { text: '都市圏活断層図', data: { id: 'katudansou', layer: katudansouObj, opacity: 1, summary: katudansouSumm } }
       ]},
     { text: '古地図',
@@ -8101,7 +8186,6 @@ const layers =
         { text: 'Shinsen zoho Kyo oezu.', data: { id: 'kyo', layer: kyoObj, opacity: 1, zoom: 13, center: [135.75815091851297, 35.007713081235536], summary: kyoSumm } },
         { text: '明治東京全図明治9年', data: { id: 'meijitokyo', layer: meijitokyoObj, opacity: 1, zoom: 13, center: [139.7613472707328, 35.674408991579426], summary: meijitokyoSumm } },
         { text: '承応年間飫肥城下図(宮崎県)', data: { id: 'obi', layer: obiObj, opacity: 1, zoom: 15, center: [131.3502,31.6289], summary: obiSumm } },
-
         { text: '東西蝦夷山川地理取調図', data: { id: 'ezosansen', layer: ezosansenObj, opacity: 1, zoom: 8, center: [142.6944008210318, 43.241646716680606], summary: ezosansenSumm } },
         { text: '東西蝦夷山川地理取調図2', data: { id: 'ezosansen2', layer: ezosansen2Obj, opacity: 1, zoom: 8, center: [142.6944008210318, 43.241646716680606], summary: ezosansenSumm2 } },
         { text: '大正13,14年古地図',
@@ -8959,7 +9043,9 @@ const layers =
         { text: '富山県埋蔵文化財', data: { id: "toyamamaibun", layer: LayersMvt.toyamamaibunObj, opacity: 1, summary: LayersMvt.toyamamaibunSumm } },
         { text: '岡山県埋蔵文化財', data: { id: "okayamamai", layer: LayersMvt.okayamamaiiObj, opacity: 1, summary: LayersMvt.okayamamaiSumm } },
         { text: '熊本県遺跡', data: { id: "kumamotomai", layer: LayersMvt.kumamotomaiObj, opacity: 1, summary: LayersMvt.kumamotomaiSumm } },
-       ]},
+        { text: '土木学会選奨土木遺産', data: { id: "dobokuisan", layer: LayersMvt.dobokuisanObj, opacity: 1, summary: LayersMvt.dobokuisanSumm } },
+
+      ]},
     { text: 'その他',
       children: [
         { text: 'ラスタータイルtest', data: { id: "dokuji", layer: dokujiObj, opacity: 1, summary: LayersMvt.busSumm, component: {name: 'dokuji', values:[]}} },

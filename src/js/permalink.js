@@ -97,8 +97,8 @@ export function permalinkEventSet () {
                     store.commit('base/unshiftLayerList', {
                       value: {
                         id: node.data.id,
+                        multipli: urlLayerListArr[i][j].m,
                         check: urlLayerListArr[i][j].ck,
-                        // check: false,
                         title: node.text,
                         layer: node.data.layer,
                         opacity: urlLayerListArr[i][j].o,
@@ -113,11 +113,13 @@ export function permalinkEventSet () {
                       store.state.base.dialogs[mapName].style.display = 'block';
                       const top = store.state.base.dialogs[mapName].style.top;
                       // $('#map01' + ' .dialog-div')の長さがわかればいい。それぞれに必要なし
-                      document.querySelector('#map01' + ' .dialog-div').style.display = 'block';
-                      const left = Number(store.state.base.dialogs[mapName].style.left.replace(/px/,"")) + document.querySelector('#map01' + ' .dialog-div').clientWidth + 100 + 'px';
+                      // document.querySelector('#map01' + ' .dialog-div').style.display = 'block';
+                      // const left = Number(store.state.base.dialogs[mapName].style.left.replace(/px/,"")) + document.querySelector('#map01' + ' .dialog-div').clientWidth + 96 + 'px';
+                      const left = '355px'
                       const infoDialog =
                           {
                             id: node.data.id,
+                            multipli: node.data.multipli,
                             check: node.data.check,
                             title: node.text,
                             summary: node.data.summary,

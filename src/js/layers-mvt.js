@@ -4337,6 +4337,21 @@ export const nihonisanObj = {};
 for (let i of mapsStr) {
   nihonisanObj[i] = new VectorLayer(new Nihonisan())
 }
+// 土木学会選奨土木遺産------------------------------------------------------
+function Dobokuisan () {
+  this.useInterimTilesOnError = false
+  this.name = 'dobokuisan'
+  this.source = new VectorSource({
+    url:'https://kenzkenz.xsrv.jp/open-hinata/geojson/dobokuisan.geojson',
+    format: new GeoJSON()
+  });
+  this.style = standardFunction('構造物名')
+}
+export const dobokuisanSumm = "<a href='https://note.com/htahathata/n/n2bd5e7877f93' target='_blank'>土木学会選奨土木遺産</a>"
+export const dobokuisanObj = {};
+for (let i of mapsStr) {
+  dobokuisanObj[i] = new VectorLayer(new Dobokuisan())
+}
 // 日本遺産ヒートマップ------------------------------------------------------
 function NihonisanHeatmap () {
   this.useInterimTilesOnError = false
