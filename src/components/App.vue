@@ -88,6 +88,7 @@
     },
     methods: {
       home() {
+        MyMap.history ('説明画面へ')
         window.open('https://kenzkenz.xsrv.jp/open-hinata/open-hinata.html')
       },
       // レイヤーのダイアログを開く------------------------------------------------------------------
@@ -98,6 +99,7 @@
       },
       // 分割-------------------------------------------------------------------------------------
       splitMap () {
+        MyMap.history ('分割')
         this.$store.commit('base/incrSplitFlg');
         this.splitMap2();
         Permalink.moveEnd()

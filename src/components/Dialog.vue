@@ -20,6 +20,7 @@
 <script>
   import store from "@/js/store";
   import * as Layers from '../js/layers'
+  import * as MyMap from '../js/mymap'
   export default {
     name: 'Dialog',
     props: ['dialog','reset','mapName'],
@@ -30,6 +31,7 @@
     // },
     methods: {
       resetBtn () {
+        MyMap.history ('リセット2')
         const map = store.state.base.maps[this.mapName];
         const result = this.s_layerList.filter((el) => el.id === 2);
         const removeResult = this.s_layerList.filter((el) => el.id !== 2);

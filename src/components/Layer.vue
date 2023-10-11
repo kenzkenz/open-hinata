@@ -56,18 +56,22 @@
         });
       },
       opacityChange (item) {
+        MyMap.history ('透過')
         MyMap.opacityChange(item);
         permalink.moveEnd()
       },
       checkLayer (item) {
+        MyMap.history ('不可視')
         MyMap.checkLayer(item, this.s_layerList, this.mapName);
         permalink.moveEnd()
       },
       multipliLayer (item) {
+        MyMap.history ('合成')
         MyMap.multipliLayer(item, this.s_layerList, this.mapName);
         permalink.moveEnd()
       },
       removeLayer (item) {
+        MyMap.history ('リセット3')
         MyMap.removeLayer(item, this.s_layerList, this.mapName)
       },
       infoOpen (e,item) {

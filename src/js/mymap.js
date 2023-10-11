@@ -835,9 +835,7 @@ export function resize () {
     store.state.base.maps.map04.updateSize()
 }
 
-export function watchLayer (map, thisName, newLayerList,oldLayerList) {
-    console.log(newLayerList[0][0].title)
-    const layer = newLayerList[0][0].title
+export function history (layer) {
     const ua = navigator.userAgent
     const width = window.screen.width;
     const height = window.screen.height;
@@ -852,6 +850,12 @@ export function watchLayer (map, thisName, newLayerList,oldLayerList) {
                 referrer:referrer
             }
         })
+}
+
+export function watchLayer (map, thisName, newLayerList,oldLayerList) {
+    console.log(newLayerList[0][0].title)
+    const layer = newLayerList[0][0].title
+    history (layer)
     // store.commit('base/updateFirstFlg')
     //[0]はレイヤーリスト。[1]はlength
     // 逆ループ

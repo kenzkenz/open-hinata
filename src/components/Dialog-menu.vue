@@ -36,6 +36,7 @@
   import * as MyMap from '../js/mymap'
   import {transform} from "ol/proj";
   import Target from "ol-ext/control/Target";
+  import ol_control_Target from "ol-ext/control/Target";
     export default {
     name: "Menu",
     data () {
@@ -61,10 +62,12 @@
     },
     methods: {
       onInput() {
+        MyMap.history (this.address)
         MyMap.addressSerch('map01',this.address)
       },
       // リセット------------------------------------------------------------------------------------
       reset01() {
+        MyMap.history ('リセット')
         let url = window.location.href.split("#")[0];
         // url = url + "?"
         console.log(url)
@@ -98,6 +101,7 @@
       //       });
       // },
       shortUrl () {
+        MyMap.history ('短縮URL')
         const vm = this;
         //const target = 'https://kenzkenz.xsrv.jp/aaa/#8/140.1/37.86%3FS%3D1%26L%3D%5B%5B%7B%22id%22%3A1%2C%22o%22%3A1%7D%5D%2C%5B%7B%22id%22%3A2%2C%22o%22%3A1%7D%5D%2C%5B%7B%22id%22%3A4%2C%22o%22%3A1%7D%5D%2C%5B%7B%22id%22%3A5%2C%22o%22%3A1%7D%5D%5D'
         const target = window.location.href;
@@ -126,7 +130,7 @@
       },
       toPng(){
         // MyMap.ChangeFilter('map01','grayscale')
-
+        MyMap.history ('PNGダウンロード')
         const map = this.$store.state.base.maps['map01']
         const targetArr = []
         const targets = map.getControls().array_
@@ -157,6 +161,7 @@
       this.$watch(function () {
         return [this.myToggle, this.selected]
       }, function () {
+        MyMap.history ('ブロックonoff')
         if (this.myToggle) {
           MyMap.lego('map01', this.selected)
         } else {
@@ -167,11 +172,14 @@
         return [this.myToggle2]
       }, function () {
         const mapsStr = ['map01','map02','map03','map04']
+        // const map = this.$store.state.base.maps['map04']
+        MyMap.history ('中心十字onoff')
         if (this.myToggle2) {
           console.log('on')
           mapsStr.forEach(value => {
             const map = this.$store.state.base.maps[value]
             const centerTarget = new Target({composite: 'difference'})
+            // centerTarget.ol_uid = "18657"
             map.addControl(centerTarget);
           })
         } else {
@@ -183,10 +191,15 @@
               return value
             });
             targetsMap.forEach(target => {
-              if (target.constructor.name === 'ol_control_Target')
+              // console.log(target.constructor.name)
+              // console.log(target instanceof ol_control_Target)
+              // if (target.constructor.name === 'ol_control_Target')
+              if (target instanceof ol_control_Target){
                 map.removeControl(target)
+              }
             })
           })
+
         }
       });
     }
