@@ -644,6 +644,7 @@ export function popUp(map,layers,features,overlay,evt,content) {
             '</div>'
       }
       break
+    case 'chimei':
     case 'dobokuisan':
     case 'draganddrop':
       cont = '<div style=width:300px;max-height:500px;overflow:scroll; font-size:small;>'

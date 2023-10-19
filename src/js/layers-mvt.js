@@ -15,6 +15,8 @@ import Icon from 'ol/style/Icon.js';
 import VectorSource from "ol/source/Vector";
 import VectorLayer from "ol/layer/Vector";
 import {Heatmap } from 'ol/layer.js';
+import MVTFormat from 'ol/format/MVT';
+
 const transformE = extent => {
   return transformExtent(extent,'EPSG:4326','EPSG:3857')
 };
@@ -4452,4 +4454,45 @@ function yubinkuColorStyleFunction() {
     if (zoom>=11) styles.push(textStyle)
     return styles;
   }
+}
+
+
+// 地名---------------------------------------------------------------
+function chimei() {
+  this.useInterimTilesOnError = false
+  this.name = 'chimei'
+  this.source = new VectorTileSource({
+    format: new MVT(),
+    maxZoom: 13,
+    url: "https://kenzkenz.github.io/chimei/{z}/{x}/{y}.mvt"
+  });
+  this.style = standardFunction('名称');
+}
+export const chimeiSumm = "<a href='https://geoshape.ex.nii.ac.jp/nrct/' target='_blank'>日本歴史地名大系</a>"
+export const chimeiObj = {};
+for (let i of mapsStr) {
+  chimeiObj[i] = new VectorTileLayer(new chimei())
+}
+
+
+
+
+
+
+
+// テスト---------------------------------------------------------------
+function Test() {
+  this.name = "senkyoku";
+  this.style = senkyokuStyleFunction();
+  this.source = new VectorTileSource({
+    format: new MVTFormat(),
+    maxZoom: 13,
+    url: "https://rinya-hyogo.geospatial.jp/2023/rinya/tile/tree_species/{z}/{x}/{y}.pbf"
+    // url:'https://cyberjapandata.gsi.go.jp/xyz/experimental_bvmap/{z}/{x}/{y}.pbf'
+  });
+}
+export const testSumm = "<a href='' target='_blank'></a>"
+export  const testObj = {};
+for (let i of mapsStr) {
+  testObj[i] = new VectorTileLayer(new Test())
 }

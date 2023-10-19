@@ -8782,6 +8782,8 @@ const layers =
     { text: '市町村、郡',
       children: [
         // { text: '幕末の郡(国で色分け)', data: { id: "gunbakumatu", layer: LayersMvt.gunbakumatuObj, opacity: 1, summary: LayersMvt.gunSumm } },
+        { text: '地名test', data: { id: "chimei", layer: LayersMvt.chimeiObj, opacity: 1, summary: LayersMvt.chimeiSumm } },
+
         { text: '明治中期の郡(県で色分け)', data: { id: "gun", layer: LayersMvt.gunObj, opacity: 1, summary: LayersMvt.gunSumm } },
         { text: '明治中期の郡(国で色分け)', data: { id: "gunkuni", layer: LayersMvt.gunkuniObj, opacity: 1, summary: LayersMvt.gunSumm } },
         { text: 'T09市町村', data: { id: "cityT9", layer: LayersMvt.cityT9Obj, opacity: 1, summary: LayersMvt.cityT9Summ } },
@@ -9068,6 +9070,8 @@ const layers =
     { text: 'その他',
       children: [
         { text: 'ラスタータイルtest', data: { id: "dokuji", layer: dokujiObj, opacity: 1, summary: LayersMvt.busSumm, component: {name: 'dokuji', values:[]}} },
+        { text: ' test', data: { id: "test", layer: LayersMvt.testObj, opacity: 1, summary: LayersMvt.testSumm} },
+
 
         { text: '日本土壌インベントリー', data: { id: "dojyou", layer: dojyouObj, opacity: 1, summary: dojyouSumm } },
         { text: 'バスルートと停留所', data: { id: "bus", layer: LayersMvt.bus0Obj, opacity: 1, summary: LayersMvt.busSumm} },

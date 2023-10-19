@@ -70,6 +70,7 @@ const moduleBase = {
         layerListArr2.push(layerList2)
       }
       // console.log(layerListArr2);
+      // console.log(JSON.stringify(layerListArr2))
       return JSON.stringify(layerListArr2)
       // return layerListArr2
     }
