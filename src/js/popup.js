@@ -647,10 +647,11 @@ export function popUp(map,layers,features,overlay,evt,content) {
     case 'chimei':
     case 'dobokuisan':
     case 'draganddrop':
-      cont = '<div style=width:300px;max-height:500px;overflow:scroll; font-size:small;>'
+      cont = '<div style=width:300px;max-height:500px;overflow:scroll;font-size:small;>'
       Object.keys(prop).forEach(function(key) {
         if (key !== 'geometry') {
-          cont += key + '=' + prop[key] + '<hr>'
+          // cont += key + '=' + prop[key] + '<hr>'
+          cont += key + '=' + prop[key] + '<br>'
         }
       })
       cont += streetView +'<div>'
