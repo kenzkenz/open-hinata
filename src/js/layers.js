@@ -1562,6 +1562,22 @@ for (let i of mapsStr) {
   sizuokaCsObj[i] = new TileLayer(new SizuokaCs())
 }
 const sizuokaCsSumm = '<a href="https://www.geospatial.jp/ckan/dataset/shizuokakencsmap2" target="_blank">G空間情報センター</a>'
+// 静岡県CS立体図50cm----------------------------------------------------------------------------
+function SizuokaCs50cm () {
+  this.extent = transformE([137.47545,34.59443,139.1504,35.64359])
+  this.source = new XYZ({
+    url: 'https://kenzkenz2.xsrv.jp/sizuoka2/{z}/{x}/{y}.png',
+    crossOrigin: 'Anonymous',
+    minZoom: 1,
+    maxZoom: 18
+  });
+}
+const sizuokaCs2Obj = {};
+for (let i of mapsStr) {
+  sizuokaCs2Obj[i] = new TileLayer(new SizuokaCs50cm())
+}
+const sizuokaCs2Summ = '<a href="https://www.geospatial.jp/ckan/dataset/shizuoka-2023-csmap" target="_blank">G空間情報センター</a>'
+
 // 広島県CS立体図----------------------------------------------------------------------------
 function HiroshimaCs () {
   this.extent = transformE([132.1650338172913, 34.69661995103654,133.3746349811554, 34.03206918961159])
@@ -1664,7 +1680,7 @@ for (let i of mapsStr) {
       // hyougoCs50Obj[i],
       hyougoCs50c2Obj[i],
       naganoCsObj[i],
-      sizuokaCsObj[i],
+      sizuokaCs2Obj[i],
       hiroshimaCsObj[i],
       okayamaCsObj[i],
       fukushimaCsObj[i],
@@ -8680,7 +8696,7 @@ const layers =
         { text: '兵庫県CS立体図50cm', data: { id: 'hyougocs50cm2', layer: hyougoCs50c2Obj, opacity: 1, zoom:9, center:[134.8428381533734, 35.05148520051671], summary: hyougoCs50c2Summ } },
 
         { text: '長野県CS立体図', data: { id: 'naganocs', layer: naganoCsObj, opacity: 1, zoom:9, center:[138.14880751631608, 36.19749617538284], summary: naganoCsSumm } },
-        { text: '静岡県CS立体図', data: { id: 'sizuokacs', layer: sizuokaCsObj, opacity: 1, zoom:9, center:[138.26385867875933, 35.01475223050842], summary: sizuokaCsSumm } },
+        { text: '静岡県CS立体図', data: { id: 'sizuokacs2', layer: sizuokaCs2Obj, opacity: 1, zoom:9, center:[138.26385867875933, 35.01475223050842], summary: sizuokaCs2Summ } },
         { text: '広島県CS立体図', data: { id: 'hiroshimacs', layer: hiroshimaCsObj, opacity: 1, zoom:9, center:[132.77140492854667, 34.41276234214364], summary: hiroshimaCsSumm } },
         { text: '岡山県CS立体図', data: { id: 'okayamacs', layer: okayamaCsObj, opacity: 1, zoom:9, center:[133.5767769813538, 34.736393137403084], summary: okayamaCsSumm } },
         { text: '福島県CS立体図', data: { id: 'fukushimacs', layer: fukushimaCsObj, opacity: 1, zoom:9, center:[140.6180906295776, 37.49835474973223], summary: fukushimaCsSumm } },
