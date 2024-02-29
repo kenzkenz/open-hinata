@@ -163,7 +163,7 @@ export function moveEnd () {
       Math.round(center4326[1] * 100000) / 100000;
   let parameter = '?S=' + store.state.base.splitFlg;
   parameter += '&L=' + store.getters['base/layerLists'];
-  console.log(parameter)
+  // console.log(parameter)
   // console.log(parameter.replace(/,/g,encodeURIComponent(",")))
   // parameter = parameter.replace(/,/g,encodeURIComponent(","))
   // parameterだけエンコードする。起動時にwindow.location.hashでハッシュ値を取得するため

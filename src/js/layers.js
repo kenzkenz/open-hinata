@@ -1529,6 +1529,21 @@ for (let i of mapsStr) {
 }
 const notoCsSumm = '<a href="https://www.ffpri.affrc.go.jp/press/2022/20220928/index.html\n" target="_blank">森林総合研究所</a>';
 
+// 能登西部赤色立体図 ----------------------------------------------------------------------------
+function NotoSeibu () {
+  this.extent = transformE([136.6591, 37.46178 ,137.19235, 36.91536])
+  this.source = new XYZ({
+    url: 'https://kenzkenz3.xsrv.jp/notoseibu/{z}/{x}/{y}.png',
+    crossOrigin: 'Anonymous',
+    minZoom: 1,
+    maxZoom: 18
+  });
+}
+const notoSeibuObj = {};
+for (let i of mapsStr) {
+  notoSeibuObj[i] = new TileLayer(new NotoSeibu())
+}
+const notoSeubuSumm = '<a href="https://www.geospatial.jp/ckan/dataset/2024-notowest-mtopo" target="_blank">G空間情報センター</a>';
 
 
 
@@ -1692,6 +1707,443 @@ for (let i of mapsStr) {
     ]
   })
 }
+
+// 兵庫県遺跡----------------------------------------------------------------------------
+function Mayasanjyou () {
+  // this.extent = transformE([137.47545,34.59443,139.1504,35.64359])
+  this.source = new XYZ({
+    url: 'https://kenzkenz3.xsrv.jp/hyougoiseki/mayasanjyou/{z}/{x}/{y}.png',
+    crossOrigin: 'Anonymous',
+    minZoom: 1,
+    maxZoom: 20
+  });
+}
+const mayasanjyouObj = {};
+for (let i of mapsStr) {
+  mayasanjyouObj[i] = new TileLayer(new Mayasanjyou())
+}
+const hyougoIsekiSumm = '<a href="https://www.geospatial.jp/ckan/dataset/2021-2022-hyogo-shiseki" target="_blank">G空間情報センター</a>'
+
+function Yamashitajyou () {
+  // this.extent = transformE([137.47545,34.59443,139.1504,35.64359])
+  this.source = new XYZ({
+    url: 'https://kenzkenz3.xsrv.jp/hyougoiseki/yamashitajyou/{z}/{x}/{y}.png',
+    crossOrigin: 'Anonymous',
+    minZoom: 1,
+    maxZoom: 20
+  });
+}
+const yamashitajyouObj = {};
+for (let i of mapsStr) {
+  yamashitajyouObj[i] = new TileLayer(new Yamashitajyou())
+}
+
+function Arikoyamajyou () {
+  // this.extent = transformE([137.47545,34.59443,139.1504,35.64359])
+  this.source = new XYZ({
+    url: 'https://kenzkenz3.xsrv.jp/hyougoiseki/arikoyamajyou/{z}/{x}/{y}.png',
+    crossOrigin: 'Anonymous',
+    minZoom: 1,
+    maxZoom: 20
+  });
+}
+const arikoyamajyouObj = {};
+for (let i of mapsStr) {
+  arikoyamajyouObj[i] = new TileLayer(new Arikoyamajyou())
+}
+
+function Yagijyou () {
+  // this.extent = transformE([137.47545,34.59443,139.1504,35.64359])
+  this.source = new XYZ({
+    url: 'https://kenzkenz3.xsrv.jp/hyougoiseki/yagijyou/{z}/{x}/{y}.png',
+    crossOrigin: 'Anonymous',
+    minZoom: 1,
+    maxZoom: 20
+  });
+}
+const yagijyouObj = {};
+for (let i of mapsStr) {
+  yagijyouObj[i] = new TileLayer(new Yagijyou())
+}
+
+function Konosumiyamajyou () {
+  // this.extent = transformE([137.47545,34.59443,139.1504,35.64359])
+  this.source = new XYZ({
+    url: 'https://kenzkenz3.xsrv.jp/hyougoiseki/konosumiyamajyou/{z}/{x}/{y}.png',
+    crossOrigin: 'Anonymous',
+    minZoom: 1,
+    maxZoom: 20
+  });
+}
+const konosumiyamaObj = {};
+for (let i of mapsStr) {
+  konosumiyamaObj[i] = new TileLayer(new Konosumiyamajyou())
+}
+
+function Iwaojyou () {
+  // this.extent = transformE([137.47545,34.59443,139.1504,35.64359])
+  this.source = new XYZ({
+    url: 'https://kenzkenz3.xsrv.jp/hyougoiseki/iwaojyou/{z}/{x}/{y}.png',
+    crossOrigin: 'Anonymous',
+    minZoom: 1,
+    maxZoom: 20
+  });
+}
+const iwaojyouObj = {};
+for (let i of mapsStr) {
+  iwaojyouObj[i] = new TileLayer(new Iwaojyou())
+}
+
+function Kuroijyou () {
+  // this.extent = transformE([137.47545,34.59443,139.1504,35.64359])
+  this.source = new XYZ({
+    url: 'https://kenzkenz3.xsrv.jp/hyougoiseki/kuroijyou/{z}/{x}/{y}.png',
+    crossOrigin: 'Anonymous',
+    minZoom: 1,
+    maxZoom: 20
+  });
+}
+const kuroijyouObj = {};
+for (let i of mapsStr) {
+  kuroijyouObj[i] = new TileLayer(new Kuroijyou())
+}
+
+function Sasayamajyou () {
+  // this.extent = transformE([137.47545,34.59443,139.1504,35.64359])
+  this.source = new XYZ({
+    url: 'https://kenzkenz3.xsrv.jp/hyougoiseki/sasayamajyou/{z}/{x}/{y}.png',
+    crossOrigin: 'Anonymous',
+    minZoom: 1,
+    maxZoom: 20
+  });
+}
+const sasayamajyouObj = {};
+for (let i of mapsStr) {
+  sasayamajyouObj[i] = new TileLayer(new Sasayamajyou())
+}
+
+function Yakamijyou () {
+  // this.extent = transformE([137.47545,34.59443,139.1504,35.64359])
+  this.source = new XYZ({
+    url: 'https://kenzkenz3.xsrv.jp/hyougoiseki/yakamijyou/{z}/{x}/{y}.png',
+    crossOrigin: 'Anonymous',
+    minZoom: 1,
+    maxZoom: 20
+  });
+}
+const yakamijyouObj = {};
+for (let i of mapsStr) {
+  yakamijyouObj[i] = new TileLayer(new Yakamijyou())
+}
+
+function Sumotojyou () {
+  // this.extent = transformE([137.47545,34.59443,139.1504,35.64359])
+  this.source = new XYZ({
+    url: 'https://kenzkenz3.xsrv.jp/hyougoiseki/sumotojyou/{z}/{x}/{y}.png',
+    crossOrigin: 'Anonymous',
+    minZoom: 1,
+    maxZoom: 20
+  });
+}
+const sumotojyouObj = {};
+for (let i of mapsStr) {
+  sumotojyouObj[i] = new TileLayer(new Sumotojyou())
+}
+
+function Shirasujyou () {
+  // this.extent = transformE([137.47545,34.59443,139.1504,35.64359])
+  this.source = new XYZ({
+    url: 'https://kenzkenz3.xsrv.jp/hyougoiseki/shirasujyou/{z}/{x}/{y}.png',
+    crossOrigin: 'Anonymous',
+    minZoom: 1,
+    maxZoom: 20
+  });
+}
+const shirasujyouObj = {};
+for (let i of mapsStr) {
+  shirasujyouObj[i] = new TileLayer(new Shirasujyou())
+}
+
+function Yurakojyou () {
+  // this.extent = transformE([137.47545,34.59443,139.1504,35.64359])
+  this.source = new XYZ({
+    url: 'https://kenzkenz3.xsrv.jp/hyougoiseki/yurakojyou/{z}/{x}/{y}.png',
+    crossOrigin: 'Anonymous',
+    minZoom: 1,
+    maxZoom: 20
+  });
+}
+const yurakojyouuObj = {};
+for (let i of mapsStr) {
+  yurakojyouuObj[i] = new TileLayer(new Yurakojyou())
+}
+
+function Takenokuchijyou () {
+  // this.extent = transformE([137.47545,34.59443,139.1504,35.64359])
+  this.source = new XYZ({
+    url: 'https://kenzkenz3.xsrv.jp/hyougoiseki/takenokuchijyou/{z}/{x}/{y}.png',
+    crossOrigin: 'Anonymous',
+    minZoom: 1,
+    maxZoom: 20
+  });
+}
+const takenokuchiObj = {};
+for (let i of mapsStr) {
+  takenokuchiObj[i] = new TileLayer(new Takenokuchijyou())
+}
+
+function Takedajyou () {
+  // this.extent = transformE([137.47545,34.59443,139.1504,35.64359])
+  this.source = new XYZ({
+    url: 'https://kenzkenz3.xsrv.jp/hyougoiseki/takedajyou/{z}/{x}/{y}.png',
+    crossOrigin: 'Anonymous',
+    minZoom: 1,
+    maxZoom: 20
+  });
+}
+const takedajyouObj = {};
+for (let i of mapsStr) {
+  takedajyouObj[i] = new TileLayer(new Takedajyou())
+}
+
+function Ariokajyou () {
+  // this.extent = transformE([137.47545,34.59443,139.1504,35.64359])
+  this.source = new XYZ({
+    url: 'https://kenzkenz3.xsrv.jp/hyougoiseki/ariokajyou/{z}/{x}/{y}.png',
+    crossOrigin: 'Anonymous',
+    minZoom: 1,
+    maxZoom: 20
+  });
+}
+const ariokajyouObj = {};
+for (let i of mapsStr) {
+  ariokajyouObj[i] = new TileLayer(new Ariokajyou())
+}
+
+function Kanjyousanjyou () {
+  // this.extent = transformE([137.47545,34.59443,139.1504,35.64359])
+  this.source = new XYZ({
+    url: 'https://kenzkenz3.xsrv.jp/hyougoiseki/kanjyousanjyou/{z}/{x}/{y}.png',
+    crossOrigin: 'Anonymous',
+    minZoom: 1,
+    maxZoom: 20
+  });
+}
+const kanjyousanjyouObj = {};
+for (let i of mapsStr) {
+  kanjyousanjyouObj[i] = new TileLayer(new Kanjyousanjyou())
+}
+
+function Keirousanjyou () {
+  // this.extent = transformE([137.47545,34.59443,139.1504,35.64359])
+  this.source = new XYZ({
+    url: 'https://kenzkenz3.xsrv.jp/hyougoiseki/keirousanjyou/{z}/{x}/{y}.png',
+    crossOrigin: 'Anonymous',
+    minZoom: 1,
+    maxZoom: 20
+  });
+}
+const keirousanjyouObj = {};
+for (let i of mapsStr) {
+  keirousanjyouObj[i] = new TileLayer(new Keirousanjyou())
+}
+
+function Mikijyou () {
+  // this.extent = transformE([137.47545,34.59443,139.1504,35.64359])
+  this.source = new XYZ({
+    url: 'https://kenzkenz3.xsrv.jp/hyougoiseki/mikijyou/{z}/{x}/{y}.png',
+    crossOrigin: 'Anonymous',
+    minZoom: 1,
+    maxZoom: 20
+  });
+}
+const mikijyouObj = {};
+for (let i of mapsStr) {
+  mikijyouObj[i] = new TileLayer(new Mikijyou())
+}
+
+function Sasanomarujyou () {
+  // this.extent = transformE([137.47545,34.59443,139.1504,35.64359])
+  this.source = new XYZ({
+    url: 'https://kenzkenz3.xsrv.jp/hyougoiseki/sasanomarujyou/{z}/{x}/{y}.png',
+    crossOrigin: 'Anonymous',
+    minZoom: 1,
+    maxZoom: 20
+  });
+}
+const sasanomarujyouObj = {};
+for (let i of mapsStr) {
+  sasanomarujyouObj[i] = new TileLayer(new Sasanomarujyou())
+}
+
+function Kodanijyou () {
+  // this.extent = transformE([137.47545,34.59443,139.1504,35.64359])
+  this.source = new XYZ({
+    url: 'https://kenzkenz3.xsrv.jp/hyougoiseki/kodanijyou/{z}/{x}/{y}.png',
+    crossOrigin: 'Anonymous',
+    minZoom: 1,
+    maxZoom: 20
+  });
+}
+const kodanijyouObj = {};
+for (let i of mapsStr) {
+  kodanijyouObj[i] = new TileLayer(new Kodanijyou())
+}
+
+function Koudukijyou () {
+  // this.extent = transformE([137.47545,34.59443,139.1504,35.64359])
+  this.source = new XYZ({
+    url: 'https://kenzkenz3.xsrv.jp/hyougoiseki/koudukijyou/{z}/{x}/{y}.png',
+    crossOrigin: 'Anonymous',
+    minZoom: 1,
+    maxZoom: 20
+  });
+}
+const koudukijyouObj = {};
+for (let i of mapsStr) {
+  koudukijyouObj[i] = new TileLayer(new Koudukijyou())
+}
+
+function Kinoyamajyou () {
+  // this.extent = transformE([137.47545,34.59443,139.1504,35.64359])
+  this.source = new XYZ({
+    url: 'https://kenzkenz3.xsrv.jp/hyougoiseki/kinoyamajyou/{z}/{x}/{y}.png',
+    crossOrigin: 'Anonymous',
+    minZoom: 1,
+    maxZoom: 20
+  });
+}
+const kinoyamajyouObj = {};
+for (let i of mapsStr) {
+  kinoyamajyouObj[i] = new TileLayer(new Kinoyamajyou())
+}
+
+function Niisanjyou () {
+  // this.extent = transformE([137.47545,34.59443,139.1504,35.64359])
+  this.source = new XYZ({
+    url: 'https://kenzkenz3.xsrv.jp/hyougoiseki/niisanjyou/{z}/{x}/{y}.png',
+    crossOrigin: 'Anonymous',
+    minZoom: 1,
+    maxZoom: 20
+  });
+}
+const niisanjyouObj = {};
+for (let i of mapsStr) {
+  niisanjyouObj[i] = new TileLayer(new Niisanjyou())
+}
+
+function Akooujyou () {
+  // this.extent = transformE([137.47545,34.59443,139.1504,35.64359])
+  this.source = new XYZ({
+    url: 'https://kenzkenz3.xsrv.jp/hyougoiseki/akoujyou/{z}/{x}/{y}.png',
+    crossOrigin: 'Anonymous',
+    minZoom: 1,
+    maxZoom: 20
+  });
+}
+const akoujyouObj = {};
+for (let i of mapsStr) {
+  akoujyouObj[i] = new TileLayer(new Akooujyou())
+}
+
+function Oshiojyou () {
+  // this.extent = transformE([137.47545,34.59443,139.1504,35.64359])
+  this.source = new XYZ({
+    url: 'https://kenzkenz3.xsrv.jp/hyougoiseki/oshiojyou/{z}/{x}/{y}.png',
+    crossOrigin: 'Anonymous',
+    minZoom: 1,
+    maxZoom: 20
+  });
+}
+const oshiojyouObj = {};
+for (let i of mapsStr) {
+  oshiojyouObj[i] = new TileLayer(new Oshiojyou())
+}
+
+function Tyuudousisanjyou () {
+  // this.extent = transformE([137.47545,34.59443,139.1504,35.64359])
+  this.source = new XYZ({
+    url: 'https://kenzkenz3.xsrv.jp/hyougoiseki/tyuudoushisanjyou/{z}/{x}/{y}.png',
+    crossOrigin: 'Anonymous',
+    minZoom: 1,
+    maxZoom: 20
+  });
+}
+const tyuudousisanjyouObj = {};
+for (let i of mapsStr) {
+  tyuudousisanjyouObj[i] = new TileLayer(new Tyuudousisanjyou())
+}
+
+function Takakurayamajyou () {
+  // this.extent = transformE([137.47545,34.59443,139.1504,35.64359])
+  this.source = new XYZ({
+    url: 'https://kenzkenz3.xsrv.jp/hyougoiseki/takakurayamajyou/{z}/{x}/{y}.png',
+    crossOrigin: 'Anonymous',
+    minZoom: 1,
+    maxZoom: 20
+  });
+}
+const takakurayamajyouObj = {};
+for (let i of mapsStr) {
+  takakurayamajyouObj[i] = new TileLayer(new Takakurayamajyou())
+}
+
+function Shirohatajyou () {
+  // this.extent = transformE([137.47545,34.59443,139.1504,35.64359])
+  this.source = new XYZ({
+    url: 'https://kenzkenz3.xsrv.jp/hyougoiseki/shirohatajyou/{z}/{x}/{y}.png',
+    crossOrigin: 'Anonymous',
+    minZoom: 1,
+    maxZoom: 20
+  });
+}
+const shirohatajyouObj = {};
+for (let i of mapsStr) {
+  shirohatajyouObj[i] = new TileLayer(new Shirohatajyou())
+}
+
+function Himejijyou () {
+  // this.extent = transformE([137.47545,34.59443,139.1504,35.64359])
+  this.source = new XYZ({
+    url: 'https://kenzkenz3.xsrv.jp/hyougoiseki/himejijyou/{z}/{x}/{y}.png',
+    crossOrigin: 'Anonymous',
+    minZoom: 1,
+    maxZoom: 20
+  });
+}
+const himejijyouObj = {};
+for (let i of mapsStr) {
+  himejijyouObj[i] = new TileLayer(new Himejijyou())
+}
+
+function Akashijyou () {
+  // this.extent = transformE([137.47545,34.59443,139.1504,35.64359])
+  this.source = new XYZ({
+    url: 'https://kenzkenz3.xsrv.jp/hyougoiseki/akashijyou/{z}/{x}/{y}.png',
+    crossOrigin: 'Anonymous',
+    minZoom: 1,
+    maxZoom: 20
+  });
+}
+const akashijyouObj = {};
+for (let i of mapsStr) {
+  akashijyouObj[i] = new TileLayer(new Akashijyou())
+}
+
+function Rikanjyou () {
+  // this.extent = transformE([137.47545,34.59443,139.1504,35.64359])
+  this.source = new XYZ({
+    url: 'https://kenzkenz3.xsrv.jp/hyougoiseki/rikanjyou/{z}/{x}/{y}.png',
+    crossOrigin: 'Anonymous',
+    minZoom: 1,
+    maxZoom: 20
+  });
+}
+const rikanjyouObj = {};
+for (let i of mapsStr) {
+  rikanjyouObj[i] = new TileLayer(new Rikanjyou())
+}
+
 
 // 日本CS立体図------------------------------------------------------------------------------
 function NihonCs () {
@@ -1964,17 +2416,13 @@ export const mw5Obj = {}
 for (let i of mapsStr) {
   const layerGroup = []
   const length =  mw5.length
+  console.log(mw5.length)
+  // const length =  1100
   for (let j = 0; j < length; j++) {
     const id = mw5[j].id
     const url = 'https://mapwarper.h-gis.jp/maps/tile/' + id + '/{z}/{x}/{y}.png'
     const bbox = mw5[j].extent
     const layer = new TileLayer(new Mapwarper(url,bbox))
-    // layer.on("precompose", function(evt){
-    //   evt.context.globalCompositeOperation = 'multiply';
-    // });
-    // layer.on("postcompose", function(evt){
-    //   evt.context.globalCompositeOperation = "source-over";
-    // });
     layerGroup.push(layer)
   }
   const mw5centerLayer = new VectorLayer(new Mw5center())
@@ -8705,8 +9153,42 @@ const layers =
         { text: '熊本県・大分県CS立体図', data: { id: 'kumamotocs', layer: kumamotoCsObj, opacity: 1, zoom:9, center:[131.08264176666347, 32.86696607176184], summary: kumamotoCsSumm } },
         { text: '大阪府CS立体図', data: { id: 'osakacs', layer: osakaCsObj, opacity: 1, zoom:9, center:[135.5167507309548, 34.68490347466543], summary: osakaSumm } },
         { text: '能登CS立体図', data: { id: 'notocs', layer: notoCsObj, opacity: 1, zoom:9, center:[136.9312018478913, 37.22961765479215], summary: notoCsSumm } },
+        { text: '能登西部赤色立体地図', data: { id: 'notoseibu', layer: notoSeibuObj, opacity: 1, zoom:9, center:[136.9312018478913, 37.22961765479215], summary: notoSeubuSumm } },
+        { text: '兵庫県遺跡立体図',
+          children: [
+            { text: '摩耶山城', data: { id: 'mayasanjyou', layer: mayasanjyouObj, opacity: 1, zoom:17, center:[135.20985199593505, 34.72741190512792], summary: hyougoIsekiSumm } },
+            { text: '山下城', data: { id: 'yamasitajyou', layer: yamashitajyouObj, opacity: 1, zoom:17, center:[135.4093350403387, 34.900789307859384], summary: hyougoIsekiSumm } },
+            { text: '有子山城', data: { id: 'arikoyamajyou', layer: arikoyamajyouObj, opacity: 1, zoom:17, center:[134.87834538212564, 35.45526548044384], summary: hyougoIsekiSumm } },
+            { text: '八木城', data: { id: 'yagijyou', layer: yagijyouObj, opacity: 1, zoom:17, center:[134.71133629505152, 35.389083335934004], summary: hyougoIsekiSumm } },
+            { text: '此隅山城', data: { id: 'konosumiyamajyou', layer: konosumiyamaObj, opacity: 1, zoom:17, center:[134.87248539581336, 35.487058618648106], summary: hyougoIsekiSumm } },
+            { text: '岩尾城', data: { id: 'iwaojyou', layer: iwaojyouObj, opacity: 1, zoom:17, center:[134.97477380615132, 35.09959197988046], summary: hyougoIsekiSumm } },
+            { text: '黒井城', data: { id: 'kuroijyou', layer: kuroijyouObj, opacity: 1, zoom:17, center:[135.104463141811, 35.17901861202279], summary: hyougoIsekiSumm } },
+            { text: '篠山城', data: { id: 'sasayamajyou', layer: sasayamajyouObj, opacity: 1, zoom:17, center:[135.2176231845597, 35.07313601425689], summary: hyougoIsekiSumm } },
+            { text: '八上城', data: { id: 'yakamijyou', layer: yakamijyouObj, opacity: 1, zoom:17, center:[135.2552485425144, 35.06204731412491], summary: hyougoIsekiSumm } },
+            { text: '洲本城', data: { id: 'sumotojyou', layer: sumotojyouObj, opacity: 1, zoom:17, center:[134.90319944266878, 34.337478918073074], summary: hyougoIsekiSumm } },
+            { text: '白巣城', data: { id: 'shirasujyou', layer: shirasujyouObj, opacity: 1, zoom:17, center:[134.8259033029899, 34.38150414125458], summary: hyougoIsekiSumm } },
+            { text: '由良古城', data: { id: 'yurakojyou', layer: yurakojyouuObj, opacity: 1, zoom:17, center:[134.9480666440312, 34.2959981627496], summary: hyougoIsekiSumm } },
+            { text: '炬口城', data: { id: 'takenokuchijyou', layer: takenokuchiObj, opacity: 1, zoom:17, center:[134.38215989768594, 34.90699836775525], summary: hyougoIsekiSumm } },
+            { text: '竹田城・観音寺山城', data: { id: 'takedajyou', layer: takedajyouObj, opacity: 1, zoom:17, center:[134.82901156539475, 35.30050695947483], summary: hyougoIsekiSumm } },
+            { text: '有岡城', data: { id: 'ariokajyou', layer: ariokajyouObj, opacity: 1, zoom:17, center:[135.42095254641023, 34.78123344214727], summary: hyougoIsekiSumm } },
+            { text: '感状山城', data: { id: 'kanjyousanjyou', layer: kanjyousanjyouObj, opacity: 1, zoom:17, center:[134.45129592319765, 34.88099338453634], summary: hyougoIsekiSumm } },
+            { text: '鶏籠山城（龍野古城）', data: { id: 'keirousanjyou', layer: keirousanjyouObj, opacity: 1, zoom:17, center:[134.54521904569506, 34.87164477770631], summary: hyougoIsekiSumm } },
+            { text: '三木城', data: { id: 'mikijyou', layer: mikijyouObj, opacity: 1, zoom:17, center:[134.98743099511933, 34.79910988651466], summary: hyougoIsekiSumm } },
+            { text: '篠の丸城', data: { id: 'sasanomarujyou', layer: sasanomarujyouObj, opacity: 1, zoom:17, center:[134.53574276742006, 35.01356494052959], summary: hyougoIsekiSumm } },
+            { text: '小谷城', data: { id: 'kodanijyou', layer: kodanijyouObj, opacity: 1, zoom:17, center:[134.8319333497427, 34.945512107423895], summary: hyougoIsekiSumm } },
+            { text: '上月城', data: { id: 'koudukijyou', layer: koudukijyouObj, opacity: 1, zoom:17, center:[134.32357851200157, 34.97535169002647], summary: hyougoIsekiSumm } },
+            { text: '城山城', data: { id: 'kinoyamajyou', layer: kinoyamajyouObj, opacity: 1, zoom:17, center:[134.52762221800918, 34.89462795246601], summary: hyougoIsekiSumm } },
+            { text: '仁井山城', data: { id: 'niisanjyou', layer: niisanjyouObj, opacity: 1, zoom:17, center:[134.33284507693375, 34.9790563824087], summary: hyougoIsekiSumm } },
+            { text: '赤穂城', data: { id: 'akoujyou', layer: akoujyouObj, opacity: 1, zoom:17, center:[134.3888453601225, 34.74598150175633], summary: hyougoIsekiSumm } },
+            { text: '置塩城', data: { id: 'oshiojyou', layer: oshiojyouObj, opacity: 1, zoom:17, center:[134.6830576345791, 34.92332845324563], summary: hyougoIsekiSumm } },
+            { text: '中道子山城', data: { id: 'tyuudousisanjyou', layer: tyuudousisanjyouObj, opacity: 1, zoom:17, center:[134.85475696735378, 34.83149611922066], summary: hyougoIsekiSumm } },
+            { text: '播磨高倉山城', data: { id: 'takakurayamajyou', layer: takakurayamajyouObj, opacity: 1, zoom:17, center:[134.355514070868, 34.978895498696204], summary: hyougoIsekiSumm } },
+            { text: '白旗城', data: { id: 'shirohatajyou', layer: shirohatajyouObj, opacity: 1, zoom:17, center:[134.38063468592168, 34.90809762405915], summary: hyougoIsekiSumm } },
+            { text: '姫路城', data: { id: 'himejijyou', layer: himejijyouObj, opacity: 1, zoom:17, center:[134.69313061573334, 34.83893632057601], summary: hyougoIsekiSumm } },
+            { text: '明石城', data: { id: 'akashijyou', layer: akashijyouObj, opacity: 1, zoom:17, center:[134.9927713856956, 34.65286024595012], summary: hyougoIsekiSumm } },
+            { text: '利神城', data: { id: 'rikanjyou', layer: rikanjyouObj, opacity: 1, zoom:17, center:[134.37733576935972, 35.04615261130358], summary: hyougoIsekiSumm } },
 
-
+          ]},
         { text: '栃木県レーザ林相図', data: { id: 'tochigirinsou', layer: tochigiRinsouObj, opacity: 1, zoom:10, center:[139.7261306915493, 36.67065922020146], summary: tochigiRinsouSumm } },
         { text: '兵庫県レーザ林相図', data: { id: 'hyougorinsou', layer: hyougoRinsouObj, opacity: 1, zoom:9, center:[134.8428381533734, 35.05148520051671], summary: hyougoRinsouSumm } },
         { text: '高知県レーザ林相図', data: { id: 'kochirinsou', layer: kochiRinsouObj, opacity: 1, zoom:9, center:[133.00989747047424, 33.4075764357881], summary: kochiRinsouSumm } },
