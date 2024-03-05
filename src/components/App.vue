@@ -7,6 +7,8 @@
                 <a href="#" :id="popupCloser[mapName]" class="ol-popup-closer"></a>
                 <div :id="popupContent[mapName]"></div>
               </div>
+              <div class="center-target">
+              </div>
                 <div class="top-left-div">
                     <b-button v-if="mapName === 'map01'" class='olbtn' :size="btnSize" @click="openDialog(s_dialogs['menuDialog'])" style="margin-right:5px;"><i class="fa-solid fa-bars"></i></b-button>
                     <b-button v-if="mapName === 'map01'" class='olbtn' :size="btnSize" @click="home" style="margin-right:5px;"><i class="fa-solid fa-house"></i></b-button>
@@ -305,6 +307,21 @@
         -ms-user-select: none;
         user-select: none;
         /*cursor: grab;*/
+    }
+    .center-target{
+      position: absolute;
+      background-image:url('https://kenzkenz.xsrv.jp/open-hinata/img/target0.gif');             /* 画像のURLを指定       */
+      background-repeat:  no-repeat;                /* 画像の繰り返しを指定  */
+      width:24px;                                   /* 横幅のサイズを指定    */
+      height:24pX;
+      pointer-events: none;
+      top: calc(50% - 12px);
+      left: calc(50% - 12px);;
+      z-index: 1;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
     }
     #lock{
         position: absolute;

@@ -174,31 +174,32 @@
         const mapsStr = ['map01','map02','map03','map04']
         // const map = this.$store.state.base.maps['map04']
         MyMap.history ('中心十字onoff')
+        const target = document.querySelector(".center-target");
         if (this.myToggle2) {
           console.log('on')
-          mapsStr.forEach(value => {
-            const map = this.$store.state.base.maps[value]
-            const centerTarget = new Target({composite: 'difference'})
-            // centerTarget.ol_uid = "18657"
-            map.addControl(centerTarget);
-          })
+          target.style.display = 'block';
+          // mapsStr.forEach(value => {
+          //   const map = this.$store.state.base.maps[value]
+          //   const centerTarget = new Target({composite: 'difference'})
+          //   // centerTarget.ol_uid = "18657"
+          //   map.addControl(centerTarget);
+          // })
         } else {
           console.log('off')
-          mapsStr.forEach(value => {
-            const map = this.$store.state.base.maps[value]
-            const targets = map.getControls().array_
-            const targetsMap = targets.map(value => {
-              return value
-            });
-            targetsMap.forEach(target => {
-              // console.log(target.constructor.name)
-              // console.log(target instanceof ol_control_Target)
-              // if (target.constructor.name === 'ol_control_Target')
-              if (target instanceof ol_control_Target){
-                map.removeControl(target)
-              }
-            })
-          })
+          target.style.display = 'none';
+
+          // mapsStr.forEach(value => {
+          //   const map = this.$store.state.base.maps[value]
+          //   const targets = map.getControls().array_
+          //   const targetsMap = targets.map(value => {
+          //     return value
+          //   });
+          //   targetsMap.forEach(target => {
+          //     if (target instanceof ol_control_Target){
+          //       map.removeControl(target)
+          //     }
+          //   })
+          // })
 
         }
       });

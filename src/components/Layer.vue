@@ -56,7 +56,7 @@
         });
       },
       opacityChange (item) {
-        MyMap.history ('透過')
+        MyMap.history ('透過-' + item.title)
         MyMap.opacityChange(item);
         permalink.moveEnd()
       },

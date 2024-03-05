@@ -26,7 +26,13 @@ const transformE = extent => {
 function flood(pixels, data) {
   const pixel = pixels[0]
   if (pixel[3]) {
-    const height = (pixel[0] * 256 * 256 + pixel[1] * 256 + pixel[2]) / 100
+    let height = (pixel[0] * 256 * 256 + pixel[1] * 256 + pixel[2]) / 100
+    // 167770.68
+    // 167767.95
+    if (height > 9000) {
+      // height = -(height / 100000)
+      height = 0
+    }
     if (height <= data.level) {
       let sinsui = - height + data.level
       const c = data.colors
@@ -40,8 +46,9 @@ function flood(pixels, data) {
         pixel[0] = c.m3.r; pixel[1] = c.m3.g; pixel[2] = c.m3.b; pixel[3] = c.m3.a*255
       } else if (sinsui >= 0.5) {
         pixel[0] = c.m0.r; pixel[1] = c.m0.g; pixel[2] = c.m0.b; pixel[3] = c.m0.a*255
-      } else {
+      } else if (sinsui >= 0.0) {
         pixel[0] = c.m00.r; pixel[1] = c.m00.g; pixel[2] = c.m00.b; pixel[3] = c.m00.a*255
+        // console.log((pixel[0] * 256 * 256 + pixel[1] * 256 + pixel[2]) / 100)
       }
     } else {
       pixel[3] = 0
@@ -50,8 +57,11 @@ function flood(pixels, data) {
   return pixel
 }
 //dem10---------------------------------------------------------------------------------
+// const url = 'https://cyberjapandata.gsi.go.jp/xyz/dem_png/{z}/{x}/{y}.png'
+const url = 'https://tiles.gsj.jp/tiles/elev/land/{z}/{y}/{x}.png'
 const elevation10 = new XYZ({
-  url:'https://cyberjapandata.gsi.go.jp/xyz/dem_png/{z}/{x}/{y}.png',
+  url:url,
+  // maxZoom:14,
   maxZoom:14,
   crossOrigin:'anonymous'
 });
@@ -60,6 +70,7 @@ function Dem10 () {
     sources:[elevation10],
     operation:flood
   })
+  this.maxResolution = 19.109258
 }
 export const flood10Obj = {}
 for (let i of mapsStr) {
@@ -69,6 +80,41 @@ for (let i of mapsStr) {
     event.data.colors = store.state.info.colors
   });
 }
+//----------------------------
+const elevation102 = new XYZ({
+  url:url,
+  maxZoom:11,
+  crossOrigin:'anonymous'
+});
+function Dem102 () {
+  this.source = new RasterSource({
+    sources:[elevation102],
+    operation:flood
+  })
+  this.minResolution = 19.109258
+  // this.minResolution = 19.109257
+  // this.minResolution = 9.554629
+}
+export const flood102Obj = {}
+for (let i of mapsStr) {
+  flood102Obj[i] = new ImageLaye(new Dem102())
+  flood102Obj[i].getSource().on('beforeoperations', function(event) {
+    event.data.level = Number(document.querySelector('#' + i  + " .flood-range10m").value)
+    event.data.colors = store.state.info.colors
+  });
+}
+
+// -------------
+const flood100Obj = {};
+for (let i of mapsStr) {
+  flood100Obj[i] = new LayerGroup({
+    layers: [
+      flood10Obj[i],
+      flood102Obj[i],
+    ]
+  })
+}
+
 //dem5---------------------------------------------------------------------------------
 const elevation5 = new XYZ({
   url:'https://cyberjapandata.gsi.go.jp/xyz/dem5a_png/{z}/{x}/{y}.png',
@@ -99,6 +145,7 @@ let floodSumm = ''
 // シームレス地質図-------------------------------------------------------------------------------
 const sources =new XYZ({
   url: 'https://gbank.gsj.jp/seamless/v2/api/1.2/tiles/{z}/{y}/{x}.png?layer=glf',
+  // 地理院10mdemは下記
   // url: 'https://gbank.gsj.jp/seamless/v2/api/1.2/tiles/{z}/{y}/{x}.png',
   crossOrigin: 'Anonymous',
   minZoom: 5,
@@ -172,9 +219,10 @@ for (let i of mapsStr) {
 const stdSumm = '国土地理院作成のタイルです。<br><a href="https://maps.gsi.go.jp/development/ichiran.html" target="_blank">リンク</a>'
 // 淡色地図------------------------------------------------------------------------------------
 function Pale () {
+  this.classNam = 'paler'
   this.source = new XYZ({
     url: 'https://cyberjapandata.gsi.go.jp/xyz/pale/{z}/{x}/{y}.png',
-    crossOrigin: 'Anonymous',
+    crossOrigin: 'anonymous',
     minZoom: 2,
     maxZoom: 18
   })
@@ -2416,8 +2464,6 @@ export const mw5Obj = {}
 for (let i of mapsStr) {
   const layerGroup = []
   const length =  mw5.length
-  console.log(mw5.length)
-  // const length =  1100
   for (let j = 0; j < length; j++) {
     const id = mw5[j].id
     const url = 'https://mapwarper.h-gis.jp/maps/tile/' + id + '/{z}/{x}/{y}.png'
@@ -3434,9 +3480,10 @@ const kotizu00Summ = SSK
 function Shinsuishin () {
   this.name = 'shinsuishin'
   this.pointer = true
+  this.classNam = 'shinsuishin'
   this.source = new XYZ({
     url: 'https://disaportaldata.gsi.go.jp/raster/01_flood_l2_shinsuishin/{z}/{x}/{y}.png',
-    crossOrigin: 'Anonymous',
+    crossOrigin: 'anonymous',
     minZoom: 2,
     maxZoom: 17
   })
@@ -9168,7 +9215,7 @@ const layers =
             { text: '洲本城', data: { id: 'sumotojyou', layer: sumotojyouObj, opacity: 1, zoom:17, center:[134.90319944266878, 34.337478918073074], summary: hyougoIsekiSumm } },
             { text: '白巣城', data: { id: 'shirasujyou', layer: shirasujyouObj, opacity: 1, zoom:17, center:[134.8259033029899, 34.38150414125458], summary: hyougoIsekiSumm } },
             { text: '由良古城', data: { id: 'yurakojyou', layer: yurakojyouuObj, opacity: 1, zoom:17, center:[134.9480666440312, 34.2959981627496], summary: hyougoIsekiSumm } },
-            { text: '炬口城', data: { id: 'takenokuchijyou', layer: takenokuchiObj, opacity: 1, zoom:17, center:[134.38215989768594, 34.90699836775525], summary: hyougoIsekiSumm } },
+            // { text: '炬口城', data: { id: 'takenokuchijyou', layer: takenokuchiObj, opacity: 1, zoom:17, center:[134.38215989768594, 34.90699836775525], summary: hyougoIsekiSumm } },
             { text: '竹田城・観音寺山城', data: { id: 'takedajyou', layer: takedajyouObj, opacity: 1, zoom:17, center:[134.82901156539475, 35.30050695947483], summary: hyougoIsekiSumm } },
             { text: '有岡城', data: { id: 'ariokajyou', layer: ariokajyouObj, opacity: 1, zoom:17, center:[135.42095254641023, 34.78123344214727], summary: hyougoIsekiSumm } },
             { text: '感状山城', data: { id: 'kanjyousanjyou', layer: kanjyousanjyouObj, opacity: 1, zoom:17, center:[134.45129592319765, 34.88099338453634], summary: hyougoIsekiSumm } },
@@ -9948,8 +9995,8 @@ const layers =
       ]},
     { text: '海面上昇シミュレーション　　　　　',
       children: [
-        { text: '海面上昇シミュ5Mdem', data: { id: 'flood5m', layer: flood5Obj, opacity: 1, summary: floodSumm, component: {name: 'flood5m', values:[]}} },
-        { text: '海面上昇シミュ10Mdem', data: { id: 'flood10m', layer: flood10Obj, opacity: 1, summary: floodSumm, component: {name: 'flood10m', values:[]}} },
+        // { text: '海面上昇シミュ5Mdem', data: { id: 'flood5m', layer: flood5Obj, opacity: 1, summary: floodSumm, component: {name: 'flood5m', values:[]}} },
+        { text: '海面上昇シミュ', data: { id: 'flood10m', layer: flood100Obj, opacity: 1, summary: floodSumm, component: {name: 'flood10m', values:[]}} },
       ]},
     { text: 'ハザードマップ',
       children: [

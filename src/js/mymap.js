@@ -11,7 +11,7 @@ import Target from 'ol-ext/control/Target'
 import Colorize from 'ol-ext/filter/Colorize'
 import Synchronize from 'ol-ext/interaction/Synchronize'
 import Lego from 'ol-ext/filter/Lego'
-import Notification from './notification'
+import Notification from 'ol-ext/control/Notification'
 import * as Layers from './layers'
 import * as PopUp from './popup'
 import {defaults as defaultInteractions, DragRotateAndZoom} from 'ol/interaction';
@@ -69,8 +69,8 @@ export function initMap (vm) {
         // マップをストアに登録
         store.commit('base/setMap', {mapName: maps[i].mapName, map});
         // コントロール追加---------------------------------------------------------------------------
-        const centerTarget = new Target({composite: 'difference'})
-        map.addControl(centerTarget);
+        // const centerTarget = new Target({composite: 'difference'})
+        // map.addControl(centerTarget);
         // map.removeControl(centerTarget)
         map.addControl(new ScaleLine());
         const notification = new Notification();
@@ -160,41 +160,46 @@ export function initMap (vm) {
             // if (mw5) return //ここで抜ける
             //----------------------------------------------------------
             document.querySelector('#' + mapName + ' .ol-viewport').style.cursor = "default"
-            const map = evt.map;
+            // const map = evt.map;
             // const option = {
             //   layerFilter: function (layer) {
             //     return layer.get('name') === 'Mw5center' || layer.get('name') === 'Mw20center';
             //   }
             // };
-            const feature = map.forEachFeatureAtPixel(evt.pixel,
-                function(feature) {
-                    return feature;
-                });
-            // },option);
-            if (feature) {
-                document.querySelector('#' + mapName + ' .ol-viewport').style.cursor = "pointer"
-            }
-            //   //----------------------------------
-            //   // 特定のラスターでカーソルを変える
-            const pixel = (map).getPixelFromCoordinate(evt.coordinate);
-            const layers = [];
+            // const feature = map.forEachFeatureAtPixel(evt.pixel,
+            //     function(feature) {
+            //         return feature;
+            //     });
+            // // },option);
+            // if (feature) {
+            //     document.querySelector('#' + mapName + ' .ol-viewport').style.cursor = "pointer"
+            // }
+            // //   //----------------------------------
+            // //   // 特定のラスターでカーソルを変える
+            // const pixel = (map).getPixelFromCoordinate(evt.coordinate);
+            // const layers = [];
             // マウスがあたった箇所のレイヤーを複数取得する
             //少しでも処理を早めるためにMw5レイヤーがあったら抜ける。-----------
-            const layers00 = evt.map.getLayers().getArray();
-            let mw5 = layers00.find(el => el.get('mw'));
-            if (!mw5) {
-                try {
-                    (map).forEachLayerAtPixel(pixel,function(layer){
-                        layers.push(layer);
-                    });
-                } catch (error) {}
-            }
-            const tgtLayers = layers.filter(el => el.get('pointer'));
-            if (tgtLayers.length>0) {
-                // if (map.getView().getZoom() >= 10) {
-                document.querySelector('#' + mapName + ' .ol-viewport').style.cursor = "pointer"
-                // }
-            }
+            // const layers00 = evt.map.getLayers().getArray();
+            // let mw5 = layers00.find(el => el.get('mw'));
+            // if (!mw5) {
+            //     try {
+            //         (map).forEachLayerAtPixel(evt.pixel,function(layer){
+            //             layers.push(layer);
+            //         });
+            //     } catch (error) {}
+            // }
+            // // const tgtLayers = layers.filter(el => el.get('pointer'));
+            // const tgtLayers = layers.filter(function(item) {
+            //     // console.log(item.get('pointer'))
+            //     return item.get('pointer');
+            // });
+            // console.log(tgtLayers.length)
+
+            // forEachLayerAtPixelのbugでうまく動かないので以下をコメントアウト
+            // if (tgtLayers.length>0) {
+            //     document.querySelector('#' + mapName + ' .ol-viewport').style.cursor = "pointer"
+            // }
         });
         // シングルクリック------------------------------------------------------------------------------------
         // 洪水,津波,継続用-----------------------------------------------------------------
@@ -243,7 +248,7 @@ export function initMap (vm) {
                     const y = ( 0.5 - coord[ 1 ] / ( 2 * R * Math.PI ) ) * Math.pow( 2, z );
                     const e = event;
                     // const server = 'https://disaportaldata.gsi.go.jp/raster/01_flood_l2_shinsuishin/'
-                    document.querySelector('#' + mapName + ' .ol-viewport').style.cursor = "wait"
+                    // document.querySelector('#' + mapName + ' .ol-viewport').style.cursor = "wait"
                     getColor( x, y, z, server,   function( rgb ) {
                         const coordinate = evt.coordinate;
                         popup(rgb,coordinate)
@@ -254,7 +259,7 @@ export function initMap (vm) {
                         } else {
                             overlay[i].setPosition(coordinate);
                         }
-                        document.querySelector('#' + mapName + ' .ol-viewport').style.cursor = "default"
+                        // document.querySelector('#' + mapName + ' .ol-viewport').style.cursor = "default"
                     } );
                 }
                 switch (object.layer.get('name')){
@@ -689,7 +694,8 @@ export function initMap (vm) {
         // ****************
         function getElev( rx, ry, z, then ) {
             // const elevServer = 'https://gsj-seamless.jp/labs/elev2/elev/'
-            const elevServer = 'https://tiles.gsj.jp/tiles/elev/mixed/'
+            // const elevServer = 'https://tiles.gsj.jp/tiles/elev/mixed/'
+            const elevServer = 'https://tiles.gsj.jp/tiles/elev/land/'
             const x = Math.floor( rx )				// タイルX座標
             const y = Math.floor( ry )				// タイルY座標
             const i = ( rx - x ) * 256			// タイル内i座標
@@ -891,17 +897,17 @@ export function watchLayer (map, thisName, newLayerList,oldLayerList) {
             const gLayers = layer.values_.layers.array_;
             for (let j in gLayers) {
                 if (newLayerList[0][i].multipli===false || newLayerList[0][i].multipli===undefined){
-                    gLayers[j].on("precompose", function(evt){
+                    gLayers[j].on("prerender", function(evt){
                         evt.context.globalCompositeOperation = 'source-over';
                     });
-                    gLayers[j].on("postcompose", function(evt){
+                    gLayers[j].on("postrender", function(evt){
                         evt.context.globalCompositeOperation = '';
                     });
                 } else {
-                    gLayers[j].on("precompose", function(evt){
+                    gLayers[j].on("prerender", function(evt){
                         evt.context.globalCompositeOperation = 'multiply';
                     });
-                    gLayers[j].on("postcompose", function(evt){
+                    gLayers[j].on("postrender", function(evt){
                         evt.context.globalCompositeOperation = 'source-over';
                     });
                 }
@@ -909,17 +915,17 @@ export function watchLayer (map, thisName, newLayerList,oldLayerList) {
         }
 
         if (newLayerList[0][i].multipli===false || newLayerList[0][i].multipli===undefined) {
-            layer.on("precompose", function(evt){
+            layer.on("prerender", function(evt){
                 evt.context.globalCompositeOperation = 'source-over';
             });
-            layer.on("postcompose", function(evt){
+            layer.on("postrender", function(evt){
                 evt.context.globalCompositeOperation = '';
             });
         }else{
-            layer.on("precompose", function(evt){
+            layer.on("prerender", function(evt){
                 evt.context.globalCompositeOperation = 'multiply';
             });
-            layer.on("postcompose", function(evt){
+            layer.on("postrender", function(evt){
                 evt.context.globalCompositeOperation = 'source-over';
             });
         }
@@ -962,17 +968,17 @@ export function multipliLayer (item, layerList, name) {
         const gLayers = item.layer.values_.layers.array_;
         for (let i in gLayers) {
             if (item.multipli===false) {
-                gLayers[i].on("precompose", function(evt){
+                gLayers[i].on("prerender", function(evt){
                     evt.context.globalCompositeOperation = 'source-over';
                 });
-                gLayers[i].on("postcompose", function(evt){
+                gLayers[i].on("postrender", function(evt){
                     evt.context.globalCompositeOperation = '';
                 });
             }else{
-                gLayers[i].on("precompose", function(evt){
+                gLayers[i].on("prerender", function(evt){
                     evt.context.globalCompositeOperation = 'multiply';
                 });
-                gLayers[i].on("postcompose", function(evt){
+                gLayers[i].on("postrender", function(evt){
                     evt.context.globalCompositeOperation = 'source-over';
                 });
             }
@@ -980,17 +986,17 @@ export function multipliLayer (item, layerList, name) {
     }
 
     if (item.multipli===false) {
-        item.layer.on("precompose", function(evt){
+        item.layer.on("prerender", function(evt){
             evt.context.globalCompositeOperation = 'source-over';
         });
-        item.layer.on("postcompose", function(evt){
+        item.layer.on("postrender", function(evt){
             evt.context.globalCompositeOperation = '';
         });
     }else{
-        item.layer.on("precompose", function(evt){
+        item.layer.on("prerender", function(evt){
             evt.context.globalCompositeOperation = 'multiply';
         });
-        item.layer.on("postcompose", function(evt){
+        item.layer.on("postrender", function(evt){
             evt.context.globalCompositeOperation = 'source-over';
         });
     }

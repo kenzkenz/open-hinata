@@ -110,12 +110,14 @@ export function permalinkEventSet () {
                     // レイヤーに設定項目があるとき
                     if (node.data.component) {
                       store.commit('base/incrDialogMaxZindex');
-                      store.state.base.dialogs[mapName].style.display = 'block';
+                      // レイヤーダイアログを開く時は下記１行を使う。
+                      // store.state.base.dialogs[mapName].style.display = 'block';
                       const top = store.state.base.dialogs[mapName].style.top;
                       // $('#map01' + ' .dialog-div')の長さがわかればいい。それぞれに必要なし
                       // document.querySelector('#map01' + ' .dialog-div').style.display = 'block';
                       // const left = Number(store.state.base.dialogs[mapName].style.left.replace(/px/,"")) + document.querySelector('#map01' + ' .dialog-div').clientWidth + 96 + 'px';
-                      const left = '355px'
+                      // const left = '355px'
+                      const left = '10px'
                       const infoDialog =
                           {
                             id: node.data.id,

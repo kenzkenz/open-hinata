@@ -41,6 +41,8 @@
   import * as Layers from '../../js/layers'
   import * as permalink from '../../js/permalink'
   import { Chrome } from 'vue-color'
+  import * as MyMap from '../../js/mymap'
+
   export default {
     name: "flood",
     props: ['mapName', 'item'],
@@ -58,7 +60,8 @@
           { text: 'max 100m　', value: '100' },
           { text: 'max 500m', value: '500' },
           { text: 'max 1000m', value: '1000' },
-          { text: 'max 3800m', value: '3800' }
+          { text: 'max 3800m', value: '3800' },
+          { text: 'max 9000m', value: '9000' }
         ],
         floodMax5m: '100',
         floodMax10m: '100'
@@ -132,6 +135,12 @@
         Layers.flood10Obj['map02'].getSource().changed();
         Layers.flood10Obj['map03'].getSource().changed();
         Layers.flood10Obj['map04'].getSource().changed()
+
+        Layers.flood102Obj['map01'].getSource().changed();
+        Layers.flood102Obj['map02'].getSource().changed();
+        Layers.flood102Obj['map03'].getSource().changed();
+        Layers.flood102Obj['map04'].getSource().changed()
+
       },
       colorsShow (cororM) {
         if (this.colorM === cororM) {
@@ -155,11 +164,15 @@
         permalink.moveEnd();
       },
       flood5m () {
+        MyMap.history ('海面上昇5mdem')
         Layers.flood5Obj[this.mapName].getSource().changed();
         this.storeUpdate('5m')
       },
       flood10m () {
+        MyMap.history ('海面上昇10mdem')
         Layers.flood10Obj[this.mapName].getSource().changed();
+        Layers.flood102Obj[this.mapName].getSource().changed();
+
         this.storeUpdate('10m')
       },
       floodChange5m () {
@@ -195,6 +208,7 @@
       this.$nextTick(function () {
         Layers.flood5Obj[this.mapName].getSource().changed();
         Layers.flood10Obj[this.mapName].getSource().changed();
+        Layers.flood102Obj[this.mapName].getSource().changed();
         this.storeUpdate('5m');
         this.storeUpdate('10m')
       })
