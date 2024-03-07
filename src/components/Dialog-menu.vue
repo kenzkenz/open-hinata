@@ -13,9 +13,14 @@
             </div>
             <hr>
             <div>
-                <b-button :pressed.sync="myToggle" class='olbtn' :size="btnSize">{{ myToggle ? 'ブロックOFF' : 'ブロックON' }}</b-button>
-                <b-form-select v-model="selected" :options="options" style="width: 60px;margin-left: 10px;"/>
+              <b-button class='olbtn' :size="btnSize" @click="shortUrlBitly">短縮URL作成(Bitly)</b-button>
+              <div class="shortUrl-div">{{ shortUrlTextBitly }}</div>
             </div>
+
+<!--            <div>-->
+<!--                <b-button :pressed.sync="myToggle" class='olbtn' :size="btnSize">{{ myToggle ? 'ブロックOFF' : 'ブロックON' }}</b-button>-->
+<!--                <b-form-select v-model="selected" :options="options" style="width: 60px;margin-left: 10px;"/>-->
+<!--            </div>-->
             <hr>
             <div>
               <b-button :pressed.sync="myToggle2" class='olbtn' :size="btnSize">{{ myToggle2 ? '中心十字ON' : '中心十字OFF' }}</b-button>
@@ -45,6 +50,7 @@
         menuContentSize: {'height': 'auto','margin': '10px', 'overflow': 'auto', 'user-select': 'text'},
         btnSize: 'sm',
         shortUrlText: '',
+        shortUrlTextBitly: '',
         myToggle: false,
         myToggle2: true,
         selected: 20,
@@ -80,27 +86,33 @@
         window.location.reload(true);
       },
       // 短縮URL作成----------------------------------------------------------------------------
-      // shortUrl () {
-      //   const vm = this;
-      //   const parameters = window.location.hash
-      //   axios
-      //       .get('https://kenzkenz.xsrv.jp/open-hinata/php/shorturl.php',{
-      //         params: {
-      //           parameters: parameters
-      //         }
-      //       })
-      //       .then(function (response) {
-      //         console.log(response)
-      //         vm.shortUrlText = 'https://kenzkenz.xsrv.jp/open-hinata/#' + response.data.urlid
-      //         // vm.shortUrlText = 'http://localhost:8080/#' + response.data.urlid
-      //       })
-      //       .catch(function (error) {
-      //         console.log(error);
-      //       })
-      //       .finally(function () {
-      //       });
-      // },
       shortUrl () {
+        const vm = this;
+        const parameters = decodeURIComponent(window.location.hash)
+        axios
+            .get('https://kenzkenz.xsrv.jp/open-hinata/php/shorturl.php',{
+              params: {
+                parameters: parameters
+              }
+            })
+            .then(function (response) {
+              console.log(response)
+              let host
+              if (window.location.host.indexOf('localhost') !== -1) {
+                host = 'http://localhost:8080/#'
+              } else {
+                host = 'https://kenzkenz.xsrv.jp/open-hinata/#'
+              }
+              // vm.shortUrlText = 'https://kenzkenz.xsrv.jp/open-hinata/#' + response.data.urlid
+              vm.shortUrlText = host + response.data.urlid
+            })
+            .catch(function (error) {
+              console.log(error);
+            })
+            .finally(function () {
+            });
+      },
+      shortUrlBitly () {
         MyMap.history ('短縮URL')
         const vm = this;
         // let target = 'https://kenzkenz.xsrv.jp/open-hinata/#11.213333333333333/135.39004/34.87765%3FS%3D1%26L%3D%5B%5B%7B%22id%22%3A%22nihonisan%22%2C%22ck%22%3Atrue%2C%22o%22%3A1%7D%2C%7B%22id%22%3A%22flood10m%22%2C%22ck%22%3Atrue%2C%22o%22%3A1%2C%22c%22%3A%7B%22name%22%3A%22flood10m%22%2C%22values%22%3A%5B56%2C100%5D%7D%7D%2C%7B%22id%22%3A%22sizen%22%2C%22m%22%3Atrue%2C%22ck%22%3Atrue%2C%22o%22%3A1%7D%2C%7B%22id%22%3A%22inei%22%2C%22m%22%3Atrue%2C%22ck%22%3Atrue%2C%22o%22%3A1%7D%2C%7B%22id%22%3A2%2C%22ck%22%3Atrue%2C%22o%22%3A1%2C%22c%22%3A%22%22%7D%5D%2C%5B%7B%22id%22%3A2%2C%22ck%22%3Atrue%2C%22o%22%3A1%2C%22c%22%3A%22%22%7D%5D%2C%5B%7B%22id%22%3A2%2C%22ck%22%3Atrue%2C%22o%22%3A1%2C%22c%22%3A%22%22%7D%5D%2C%5B%7B%22id%22%3A2%2C%22ck%22%3Atrue%2C%22o%22%3A1%2C%22c%22%3A%22%22%7D%5D%5D'
@@ -123,7 +135,7 @@
             };
             const res = await axios.post(url, params, options);
             console.log(res.data.link);
-            vm.shortUrlText = res.data.link
+            vm.shortUrlTextBitly = res.data.link
           } catch (error) {
             console.log(error.response.body);
           }

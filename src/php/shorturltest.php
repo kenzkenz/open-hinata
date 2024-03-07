@@ -15,6 +15,7 @@ function makeRandStr($length) {
 $urlid = $_GET["urlid"];
 $parameters = $_GET["parameters"];
 //$parameters = $_POST["parameters"];
+echo $parameters;
 if (!$urlid) {
     try {
         $mysql = "INSERT INTO shorturl(id,parameters) values (?,?)";
@@ -52,5 +53,6 @@ if (!$urlid) {
 //    $response = array('error' => 'nodata');
     }
 }
+//echo $parameters;
 echo json_encode($response);
 ?>

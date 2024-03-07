@@ -49,6 +49,7 @@
   import * as Permalink from '../js/permalink'
   import Inobounce from '../js/inobounce'
   import * as MyMap from '../js/mymap'
+  import axios from "axios";
   export default {
     name: 'App',
     components: {
@@ -204,42 +205,114 @@
     },
     mounted () {
       this.$nextTick(function () {
+        // http://localhost:8080/#Ldd6
+        // http://localhost:8080/#yweq
+        const vm = this
+        const hash = window.location.hash.replace('#','')
+        const zoomParameter = Number(hash.split('/')[0])
+        let urlid
+        if (isNaN(zoomParameter)) {
+          urlid = hash
+        } else {
+          urlid = 999
+        }
+        axios
+            .get('https://kenzkenz.xsrv.jp/open-hinata/php/shorturl.php',{
+              params: {
+                urlid: urlid
+              }
+            })
+            .then(function (response) {
+              console.log(window.location.host.indexOf('localhost'))
+              let host
+              if (window.location.host.indexOf('localhost') !== -1) {
+                host = 'http://localhost:8080/'
+              } else {
+                host = 'https://kenzkenz.xsrv.jp/open-hinata/'
+              }
+              if (response.data) {
+                const url = host + response.data
+                window.location.replace(url)
+              }
+              // ①map初期化-----------------------------
+              MyMap.initMap(vm);
+              // ②パーマリンク------------------------------
+              Permalink.permalinkEventSet();
+              // ③画面分割-------------------------------
+              // this.splitMap2();
+              // ④リサイズ---------------------------------
+              const resize = () => {
+                if (window.innerWidth < 1000) {
+                  this.btnSize = 'sm'
+                  this.toolTip = false
+                  // alert(window.innerWidth)
+                } else {
+                  this.btnSize = ''
+                  this.toolTip = true
+                }
+                this.splitMap2()
+              };
+              // setTimeout(function(){
+                resize()
+              // }, 300);
+              window.onresize =  () => {
+                setTimeout(function(){
+                  resize()
+                }, 50);
+              };
+              window.addEventListener("orientationchange", function() {
+                /* 向き切り替え時の処理 */
+                setTimeout(function(){
+                  resize()
+                }, 50);
+              });
+              // ⑤縦バウンス無効化----------------------
+              // https://github.com/lazd/iNoBounce
+              Inobounce();
 
-        // ①map初期化-----------------------------
-        MyMap.initMap(this);
-        // ②パーマリンク------------------------------
-        Permalink.permalinkEventSet();
-        // ③画面分割-------------------------------
-        // this.splitMap2();
-        // ④リサイズ---------------------------------
-        const resize = () => {
-          if (window.innerWidth < 1000) {
-            this.btnSize = 'sm'
-            this.toolTip = false
-            // alert(window.innerWidth)
-          } else {
-            this.btnSize = ''
-            this.toolTip = true
-          }
-          this.splitMap2()
-        };
-        // setTimeout(function(){
-          resize()
-        // }, 300);
-        window.onresize =  () => {
-          setTimeout(function(){
-            resize()
-          }, 50);
-        };
-        window.addEventListener("orientationchange", function() {
-          /* 向き切り替え時の処理 */
-          setTimeout(function(){
-            resize()
-          }, 50);
-        });
-        // ⑤縦バウンス無効化----------------------
-        // https://github.com/lazd/iNoBounce
-        Inobounce();
+            })
+            .catch(function (error) {
+              console.log(error);
+            })
+            .finally(function () {
+            });
+
+        // // ①map初期化-----------------------------
+        // const vm = this
+        // MyMap.initMap(vm);
+        // // ②パーマリンク------------------------------
+        // Permalink.permalinkEventSet();
+        // // ③画面分割-------------------------------
+        // // this.splitMap2();
+        // // ④リサイズ---------------------------------
+        // const resize = () => {
+        //   if (window.innerWidth < 1000) {
+        //     this.btnSize = 'sm'
+        //     this.toolTip = false
+        //     // alert(window.innerWidth)
+        //   } else {
+        //     this.btnSize = ''
+        //     this.toolTip = true
+        //   }
+        //   this.splitMap2()
+        // };
+        // // setTimeout(function(){
+        //   resize()
+        // // }, 300);
+        // window.onresize =  () => {
+        //   setTimeout(function(){
+        //     resize()
+        //   }, 50);
+        // };
+        // window.addEventListener("orientationchange", function() {
+        //   /* 向き切り替え時の処理 */
+        //   setTimeout(function(){
+        //     resize()
+        //   }, 50);
+        // });
+        // // ⑤縦バウンス無効化----------------------
+        // // https://github.com/lazd/iNoBounce
+        // Inobounce();
       });
     }
   }
@@ -372,6 +445,11 @@
     }
 </style>
 <style>
+/*hogeはテストのため。削除してもよい*/
+.hoge {
+  mix-blend-mode: multiply;
+  filter: grayScale(1);
+}
     /*汎用的なスタイルはここに*/
     body{
         margin: 0;

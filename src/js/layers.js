@@ -3497,10 +3497,9 @@ const kotizu00Summ = SSK
 // 洪水浸水想定（想定最大規模）-------------------------------------------------------------------------------
 function Shinsuishin () {
   this.name = 'shinsuishin'
-     // this.className = 'pointer'
- 
+  // this.className = 'pointer'
   this.pointer = true
-  // this.className = 'shinsuishin'
+  // this.className = 'hoge'
   this.source = new XYZ({
     url: 'https://disaportaldata.gsi.go.jp/raster/01_flood_l2_shinsuishin/{z}/{x}/{y}.png',
     crossOrigin: 'anonymous',
@@ -4052,7 +4051,6 @@ function Ekizyouka19 () {
   this.name = 'ekizyouka19'
   this.extent = transformE([138.0878, 35.9940, 139.1827, 35.0511])
      // this.className = 'pointer'
- 
   this.pointer = true
   this.source = new XYZ({
     url: 'https://disaportal.gsi.go.jp/raster/08_03_ekijoka_pref/19_yamanashi/{z}/{x}/{y}.png',
@@ -4070,7 +4068,6 @@ function Ekizyouka20 () {
   this.name = 'ekizyouka20'
   this.extent = transformE([137.3966, 37.0493, 138.8119, 35.1914])
      // this.className = 'pointer'
- 
   this.pointer = true
   this.source = new XYZ({
     url: 'https://disaportal.gsi.go.jp/raster/08_03_ekijoka_pref/20_nagano/{z}/{x}/{y}.png',
@@ -4088,7 +4085,6 @@ function Ekizyouka21 () {
   this.name = 'ekizyouka21'
   this.extent = transformE([36.2129, 36.4803, 137.7623, 35.1056])
      // this.className = 'pointer'
- 
   this.pointer = true
   this.source = new XYZ({
     url: 'https://disaportal.gsi.go.jp/raster/08_03_ekijoka_pref/21_gifu/{z}/{x}/{y}.png',
@@ -4106,7 +4102,6 @@ function Ekizyouka22 () {
   this.name = 'ekizyouka22'
   this.extent = transformE([137.2620, 35.6814, 139.3122, 34.4404])
      // this.className = 'pointer'
- 
   this.pointer = true
   this.source = new XYZ({
     url: 'https://disaportal.gsi.go.jp/raster/08_03_ekijoka_pref/22_shizuoka/{z}/{x}/{y}.png',
@@ -4124,7 +4119,6 @@ function Ekizyouka23 () {
   this.name = 'ekizyouka23'
   this.extent = transformE([136.5246, 35.4556, 137.9580, 34.5257])
      // this.className = 'pointer'
- 
   this.pointer = true
   this.source = new XYZ({
     url: 'https://disaportal.gsi.go.jp/raster/08_03_ekijoka_pref/23_aichi/{z}/{x}/{y}.png',
@@ -4142,7 +4136,6 @@ function Ekizyouka24 () {
   this.name = 'ekizyouka24'
   this.extent = transformE([135.7781, 35.2965, 137.1478, 33.5774])
      // this.className = 'pointer'
- 
   this.pointer = true
   this.source = new XYZ({
     url: 'https://disaportal.gsi.go.jp/raster/08_03_ekijoka_pref/24_mie/{z}/{x}/{y}.png',
@@ -4160,7 +4153,6 @@ function Ekizyouka25 () {
   this.name = 'ekizyouka25'
   this.extent = transformE([135.7043, 35.7083, 136.4979, 34.7547])
      // this.className = 'pointer'
- 
   this.pointer = true
   this.source = new XYZ({
     url: 'https://disaportal.gsi.go.jp/raster/08_03_ekijoka_pref/25_shiga/{z}/{x}/{y}.png',
@@ -4178,7 +4170,6 @@ function Ekizyouka26 () {
   this.name = 'ekizyouka26'
   this.extent = transformE([134.738, 35.8198, 136.1566, 34.6376])
      // this.className = 'pointer'
- 
   this.pointer = true
   this.source = new XYZ({
     url: 'https://disaportal.gsi.go.jp/raster/08_03_ekijoka_pref/26_kyoto/{z}/{x}/{y}.png',
@@ -4196,7 +4187,6 @@ function Ekizyouka27 () {
   this.name = 'ekizyouka27'
   this.extent = transformE([134.9522, 35.1019,135.9050, 34.20368])
      // this.className = 'pointer'
- 
   this.pointer = true
   this.source = new XYZ({
     url: 'https://disaportal.gsi.go.jp/raster/08_03_ekijoka_pref/27_osaka/{z}/{x}/{y}.png',
@@ -4214,7 +4204,6 @@ function Ekizyouka28 () {
   this.name = 'ekizyouka28'
   this.extent = transformE([133.9501, 35.7554, 135.5849, 34.1116])
      // this.className = 'pointer'
- 
   this.pointer = true
   this.source = new XYZ({
     url: 'https://disaportal.gsi.go.jp/raster/08_03_ekijoka_pref/28_hyogo/{z}/{x}/{y}.png',
@@ -4232,7 +4221,6 @@ function Ekizyouka29 () {
   this.name = 'ekizyouka29'
   this.extent = transformE([135.5026, 34.79412, 136.2517, 33.79113])
      // this.className = 'pointer'
- 
   this.pointer = true
   this.source = new XYZ({
     url: 'https://disaportal.gsi.go.jp/raster/08_03_ekijoka_pref/29_nara/{z}/{x}/{y}.png',
@@ -4250,7 +4238,6 @@ function Ekizyouka30 () {
   this.name = 'ekizyouka30'
   this.extent = transformE([134.9233, 34.41830, 136.18017, 33.41027])
      // this.className = 'pointer'
- 
   this.pointer = true
   this.source = new XYZ({
     url: 'https://disaportal.gsi.go.jp/raster/08_03_ekijoka_pref/30_wakayama/{z}/{x}/{y}.png',
@@ -4268,7 +4255,6 @@ function Ekizyouka31 () {
   this.name = 'ekizyouka31'
   this.extent = transformE([132.9929, 35.63032, 134.5977, 35.09431])
      // this.className = 'pointer'
- 
   this.pointer = true
   this.source = new XYZ({
     url: 'https://disaportal.gsi.go.jp/raster/08_03_ekijoka_pref/31_tottori/{z}/{x}/{y}.png',
@@ -4286,7 +4272,6 @@ function Ekizyouka32 () {
   this.name = 'ekizyouka32'
   this.extent = transformE([131.3381, 35.7297, 133.4505, 34.32081])
      // this.className = 'pointer'
- 
   this.pointer = true
   this.source = new XYZ({
     url: 'https://disaportal.gsi.go.jp/raster/08_03_ekijoka_pref/32_shimane/{z}/{x}/{y}.png',
@@ -4304,7 +4289,6 @@ function Ekizyouka33 () {
   this.name = 'ekizyouka33'
   this.extent = transformE([133.1006, 35.37543, 134.5863, 34.26743])
      // this.className = 'pointer'
- 
   this.pointer = true
   this.source = new XYZ({
     url: 'https://disaportal.gsi.go.jp/raster/08_03_ekijoka_pref/33_okayama/{z}/{x}/{y}.png',
@@ -4322,7 +4306,6 @@ function Ekizyouka34 () {
   this.name = 'ekizyouka34'
   this.extent = transformE([131.7342, 35.1221, 133.6072, 34.08762])
      // this.className = 'pointer'
- 
   this.pointer = true
   this.source = new XYZ({
     url: 'https://disaportal.gsi.go.jp/raster/08_03_ekijoka_pref/34_hiroshima/{z}/{x}/{y}.png',
@@ -4340,7 +4323,6 @@ function Ekizyouka35 () {
   this.name = 'ekizyouka35'
   this.extent = transformE([130.7400, 34.75478, 132.5915, 33.73971])
      // this.className = 'pointer'
- 
   this.pointer = true
   this.source = new XYZ({
     url: 'https://disaportal.gsi.go.jp/raster/08_03_ekijoka_pref/35_yamaguchi/{z}/{x}/{y}.png',
@@ -4358,7 +4340,6 @@ function Ekizyouka36 () {
   this.name = 'ekizyouka36'
   this.extent = transformE([133.4923, 34.28723, 134.9154, 33.35009])
      // this.className = 'pointer'
- 
   this.pointer = true
   this.source = new XYZ({
     url: 'https://disaportal.gsi.go.jp/raster/08_03_ekijoka_pref/36_tokushima/{z}/{x}/{y}.png',
@@ -4376,7 +4357,6 @@ function Ekizyouka37 () {
   this.name = 'ekizyouka37'
   this.extent = transformE([133.3593, 34.55734, 134.5650, 33.97935])
      // this.className = 'pointer'
- 
   this.pointer = true
   this.source = new XYZ({
     url: 'https://disaportal.gsi.go.jp/raster/08_03_ekijoka_pref/37_kagawa/{z}/{x}/{y}.png',
@@ -4394,7 +4374,6 @@ function Ekizyouka38 () {
   this.name = 'ekizyouka38'
   this.extent = transformE([131.8240, 34.33648, 133.9516, 32.77578])
      // this.className = 'pointer'
- 
   this.pointer = true
   this.source = new XYZ({
     url: 'https://disaportal.gsi.go.jp/raster/08_03_ekijoka_pref/38_ehime/{z}/{x}/{y}.png',
@@ -4412,7 +4391,6 @@ function Ekizyouka39 () {
   this.name = 'ekizyouka39'
   this.extent = transformE([132.1797, 33.82657, 134.5602, 32.66275])
      // this.className = 'pointer'
- 
   this.pointer = true
   this.source = new XYZ({
     url: 'https://disaportal.gsi.go.jp/raster/08_03_ekijoka_pref/39_kochi/{z}/{x}/{y}.png',
@@ -4430,7 +4408,6 @@ function Ekizyouka40 () {
   this.name = 'ekizyouka40'
   this.extent = transformE([129.7837, 34.09346, 131.2663, 32.93019])
      // this.className = 'pointer'
- 
   this.pointer = true
   this.source = new XYZ({
     url: 'https://disaportal.gsi.go.jp/raster/08_03_ekijoka_pref/40_fukuoka/{z}/{x}/{y}.png',
@@ -4448,7 +4425,6 @@ function Ekizyouka41 () {
   this.name = 'ekizyouka41'
   this.extent = transformE([129.5852, 33.6536, 130.6883, 32.90807])
      // this.className = 'pointer'
- 
   this.pointer = true
   this.source = new XYZ({
     url: 'https://disaportal.gsi.go.jp/raster/08_03_ekijoka_pref/41_saga/{z}/{x}/{y}.png',

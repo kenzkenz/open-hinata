@@ -50,6 +50,9 @@ export function permalinkEventSet () {
   });
   if (window.location.hash !== '') {
     const hash = decodeURIComponent(window.location.hash.replace('#', ''));
+  // if (response !== '') {
+  //   console.log(response)
+  //   const hash = decodeURIComponent(response.replace('#', ''));
     // 場所、ズームを復帰
     const parts = hash.split('/');
     const map = store.state.base.maps.map01;

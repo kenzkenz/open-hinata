@@ -24,6 +24,7 @@ import DragAndDrop from 'ol/interaction/DragAndDrop.js';
 import {GPX, GeoJSON, IGC, KML, TopoJSON} from 'ol/format.js';
 import {standardFunction} from "@/js/layers-mvt";
 import {popUpTisitu} from "./popup";
+import layer from "@/components/Layer";
 export function initMap (vm) {
     // マップ作製ループ用の配列を作成
     const maps = [
@@ -982,14 +983,17 @@ export function multipliLayer (item, layerList, name) {
     }
 
     if (item.multipli===false) {
+        console.log(9999)
         item.layer.on("prerender", function(evt){
             evt.context.globalCompositeOperation = 'source-over';
         });
         item.layer.on("postrender", function(evt){
             evt.context.globalCompositeOperation = '';
         });
-    }else{
-        console.log(item)
+    } else {
+        console.log(8888)
+        console.log(item.layer)
+        // item.layer.className = 'hoge'
         item.layer.on("prerender", function(evt){
             evt.context.globalCompositeOperation = 'multiply';
         });
