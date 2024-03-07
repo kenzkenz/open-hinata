@@ -174,8 +174,10 @@ export function initMap (vm) {
             if (feature) {
                 document.querySelector('#' + mapName + ' .ol-viewport').style.cursor = "pointer"
             }
-            // //   //----------------------------------
-            // //   // 特定のラスターでカーソルを変える
+            // ----------------------------------
+            // 特定のラスターでカーソルを変える
+            // OL6ではバグのため動かない。無理やり動かすにはlayer.jsのレイヤーにthis.className = 'hoge'と
+            // 入れるといいが今度は合成が効かなくなる
             // const pixel = (map).getPixelFromCoordinate(evt.coordinate);
             const layers = [];
             const layers00 = evt.map.getLayers().getArray();
@@ -987,6 +989,7 @@ export function multipliLayer (item, layerList, name) {
             evt.context.globalCompositeOperation = '';
         });
     }else{
+        console.log(item)
         item.layer.on("prerender", function(evt){
             evt.context.globalCompositeOperation = 'multiply';
         });
