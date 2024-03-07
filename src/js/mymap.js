@@ -178,24 +178,9 @@ export function initMap (vm) {
             // //   // 特定のラスターでカーソルを変える
             // const pixel = (map).getPixelFromCoordinate(evt.coordinate);
             const layers = [];
-            // マウスがあたった箇所のレイヤーを複数取得する
-            //少しでも処理を早めるためにMw5レイヤーがあったら抜ける。-----------
-            // const layers00 = evt.map.getLayers().getArray();
-            // let mw5 = layers00.find(el => el.get('mw'));
-            // if (!mw5) {
-            //     try {
-            //         (map).forEachLayerAtPixel(evt.pixel,function(layer){
-            //             layers.push(layer);
-            //         });
-            //     } catch (error) {}
-            // }
-            // // const tgtLayers = layers.filter(el => el.get('pointer'));
-            // const option = {
-            //   layerFilter: function (layer) {
-            //     return layer.get('name') === 'Mw5center' || layer.get('name') === 'Mw20center';
-            //   }
             const layers00 = evt.map.getLayers().getArray();
             let mw5 = layers00.find(el => el.get('mw'));
+            if (mw5) return
             if (!mw5) {
                 try {
                     (map).forEachLayerAtPixel(evt.pixel,function(layer){
