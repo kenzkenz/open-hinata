@@ -160,24 +160,24 @@ export function initMap (vm) {
             // if (mw5) return //ここで抜ける
             //----------------------------------------------------------
             document.querySelector('#' + mapName + ' .ol-viewport').style.cursor = "default"
-            // const map = evt.map;
+            const map = evt.map;
             // const option = {
             //   layerFilter: function (layer) {
             //     return layer.get('name') === 'Mw5center' || layer.get('name') === 'Mw20center';
             //   }
             // };
-            // const feature = map.forEachFeatureAtPixel(evt.pixel,
-            //     function(feature) {
-            //         return feature;
-            //     });
-            // // },option);
-            // if (feature) {
-            //     document.querySelector('#' + mapName + ' .ol-viewport').style.cursor = "pointer"
-            // }
+            const feature = map.forEachFeatureAtPixel(evt.pixel,
+                function(feature) {
+                    return feature;
+                });
+            // },option);
+            if (feature) {
+                document.querySelector('#' + mapName + ' .ol-viewport').style.cursor = "pointer"
+            }
             // //   //----------------------------------
             // //   // 特定のラスターでカーソルを変える
             // const pixel = (map).getPixelFromCoordinate(evt.coordinate);
-            // const layers = [];
+            const layers = [];
             // マウスがあたった箇所のレイヤーを複数取得する
             //少しでも処理を早めるためにMw5レイヤーがあったら抜ける。-----------
             // const layers00 = evt.map.getLayers().getArray();
@@ -190,16 +190,25 @@ export function initMap (vm) {
             //     } catch (error) {}
             // }
             // // const tgtLayers = layers.filter(el => el.get('pointer'));
-            // const tgtLayers = layers.filter(function(item) {
-            //     // console.log(item.get('pointer'))
-            //     return item.get('pointer');
-            // });
-            // console.log(tgtLayers.length)
-
-            // forEachLayerAtPixelのbugでうまく動かないので以下をコメントアウト
-            // if (tgtLayers.length>0) {
-            //     document.querySelector('#' + mapName + ' .ol-viewport').style.cursor = "pointer"
-            // }
+            // const option = {
+            //   layerFilter: function (layer) {
+            //     return layer.get('name') === 'Mw5center' || layer.get('name') === 'Mw20center';
+            //   }
+            const layers00 = evt.map.getLayers().getArray();
+            let mw5 = layers00.find(el => el.get('mw'));
+            if (!mw5) {
+                try {
+                    (map).forEachLayerAtPixel(evt.pixel,function(layer){
+                        layers.push(layer);
+                    });
+                } catch (error) {}
+            }
+            const tgtLayers = layers.filter(function(layer) {
+                return layer.get('pointer');
+            })
+            if (tgtLayers.length>0) {
+                document.querySelector('#' + mapName + ' .ol-viewport').style.cursor = "pointer"
+            }
         });
         // シングルクリック------------------------------------------------------------------------------------
         // 洪水,津波,継続用-----------------------------------------------------------------

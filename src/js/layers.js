@@ -18,7 +18,7 @@ import Crop from 'ol-ext/filter/Crop'
 import Mask from 'ol-ext/filter/Mask'
 import  * as MaskDep from './mask-dep'
 import  * as LayersMvt from './layers-mvt'
-import {hokkaidouTunamiTObj, hokkaidouTunamiTSumm, houmusyouObj, houmusyouSumm} from "./layers-mvt";
+// import {hokkaidouTunamiTObj, hokkaidouTunamiTSumm, houmusyouObj, houmusyouSumm} from "./layers-mvt";
 const mapsStr = ['map01','map02','map03','map04']
 const transformE = extent => {
   return transformExtent(extent,'EPSG:4326','EPSG:3857')
@@ -26,13 +26,19 @@ const transformE = extent => {
 function flood(pixels, data) {
   const pixel = pixels[0]
   if (pixel[3]) {
-    let height = (pixel[0] * 256 * 256 + pixel[1] * 256 + pixel[2]) / 100
-    // 167770.68
-    // 167767.95
-    if (height > 9000) {
-      // height = -(height / 100000)
-      height = 0
+    // let height = (pixel[0] * 256 * 256 + pixel[1] * 256 + pixel[2]) / 100
+    let height
+    if (pixel[3] === 255) {
+      // let r = pixel[0]
+      // if (r >= 128) {
+      //   r = r - 256
+      // }
+      // height = r * 256 * 256 + pixel[1] * 256 + pixel[2];
+      height = pixel[0] * 256 * 256 + pixel[1] * 256 + pixel[2];
+      height = (height < 8323072) ? height : height - 16777216;
+      height /= 100;
     }
+    // console.log(height)
     if (height <= data.level) {
       let sinsui = - height + data.level
       const c = data.colors
@@ -48,7 +54,6 @@ function flood(pixels, data) {
         pixel[0] = c.m0.r; pixel[1] = c.m0.g; pixel[2] = c.m0.b; pixel[3] = c.m0.a*255
       } else if (sinsui >= 0.0) {
         pixel[0] = c.m00.r; pixel[1] = c.m00.g; pixel[2] = c.m00.b; pixel[3] = c.m00.a*255
-        // console.log((pixel[0] * 256 * 256 + pixel[1] * 256 + pixel[2]) / 100)
       }
     } else {
       pixel[3] = 0
@@ -62,7 +67,7 @@ const url = 'https://tiles.gsj.jp/tiles/elev/land/{z}/{y}/{x}.png'
 const elevation10 = new XYZ({
   url:url,
   // maxZoom:14,
-  maxZoom:14,
+  maxZoom:13,
   crossOrigin:'anonymous'
 });
 function Dem10 () {
@@ -153,6 +158,7 @@ const sources =new XYZ({
 })
 function seamless () {
   this.name = 'seamless'
+  this.className = 'pointer'
   this.pointer = true
   this.source = new RasterSource({
     sources:[sources],
@@ -219,7 +225,7 @@ for (let i of mapsStr) {
 const stdSumm = '国土地理院作成のタイルです。<br><a href="https://maps.gsi.go.jp/development/ichiran.html" target="_blank">リンク</a>'
 // 淡色地図------------------------------------------------------------------------------------
 function Pale () {
-  this.classNam = 'paler'
+  this.className = 'paler'
   this.source = new XYZ({
     url: 'https://cyberjapandata.gsi.go.jp/xyz/pale/{z}/{x}/{y}.png',
     crossOrigin: 'anonymous',
@@ -231,12 +237,6 @@ function Pale () {
 const paleObj = {};
 for (let i of mapsStr) {
   paleObj[i] = new TileLayer(new Pale())
-  // paleObj[i].on("precompose", function(evt){
-  //   evt.context.globalCompositeOperation = 'multiply';
-  // });
-  // paleObj[i].on("postcompose", function(evt){
-  //   evt.context.globalCompositeOperation = "source-over";
-  // });
 }
 const paleSumm = '国土地理院作成のタイルです。<a href="https://maps.gsi.go.jp/development/ichiran.html" target="_blank">リンク</a>'
 // 白地図--------------------------------------------------------------------------------------
@@ -1771,6 +1771,22 @@ for (let i of mapsStr) {
   mayasanjyouObj[i] = new TileLayer(new Mayasanjyou())
 }
 const hyougoIsekiSumm = '<a href="https://www.geospatial.jp/ckan/dataset/2021-2022-hyogo-shiseki" target="_blank">G空間情報センター</a>'
+
+
+function Takiyamajyou () {
+  // this.extent = transformE([137.47545,34.59443,139.1504,35.64359])
+  this.source = new XYZ({
+    url: 'https://kenzkenz3.xsrv.jp/hyougoiseki/takiyamajyou/{z}/{x}/{y}.png',
+    crossOrigin: 'Anonymous',
+    minZoom: 1,
+    maxZoom: 20
+  });
+}
+const takiyamajyouObj = {};
+for (let i of mapsStr) {
+  takiyamajyouObj[i] = new TileLayer(new Takiyamajyou())
+}
+
 
 function Yamashitajyou () {
   // this.extent = transformE([137.47545,34.59443,139.1504,35.64359])
@@ -3480,7 +3496,7 @@ const kotizu00Summ = SSK
 function Shinsuishin () {
   this.name = 'shinsuishin'
   this.pointer = true
-  this.classNam = 'shinsuishin'
+  this.className = 'shinsuishin'
   this.source = new XYZ({
     url: 'https://disaportaldata.gsi.go.jp/raster/01_flood_l2_shinsuishin/{z}/{x}/{y}.png',
     crossOrigin: 'anonymous',
@@ -9134,8 +9150,8 @@ const layers =
         { text: '明治期の低湿地', data: { id: 'sitti', layer: sittiObj, opacity: 1, summary: stdSumm } },
 
         { text: '治水地形分類図 更新版（2007年以降）', data: { id: 'tisui2007', layer: tisui2007Obj, opacity: 1, summary: tisui2007Summ } },
-        { text: '地形分類（自然地形）', data: { id: 'sizen0', layer: LayersMvt.sizentikei0Obj, opacity: 1, summary: LayersMvt.sizentikeiSumm} },
-        { text: '地形分類（自然地形『詳細版』）', data: { id: 'sizen', layer: LayersMvt.sizentikeiObj, opacity: 1, summary: LayersMvt.sizentikeiSumm} },
+        { text: '地形分類（自然地形）', data: { id: 'sizen', layer: LayersMvt.sizentikei0Obj, opacity: 1, summary: LayersMvt.sizentikeiSumm} },
+        // { text: '地形分類（自然地形『詳細版』）', data: { id: 'sizen', layer: LayersMvt.sizentikeiObj, opacity: 1, summary: LayersMvt.sizentikeiSumm} },
         { text: '地形分類（人工地形）', data: { id: "zinkoutikei", layer: LayersMvt.zinkoutikeiObj, opacity: 1, summary: LayersMvt.sizentikeiSumm } },
       ]},
     { text: '航空写真',
@@ -9204,6 +9220,8 @@ const layers =
         { text: '兵庫県遺跡立体図',
           children: [
             { text: '摩耶山城', data: { id: 'mayasanjyou', layer: mayasanjyouObj, opacity: 1, zoom:17, center:[135.20985199593505, 34.72741190512792], summary: hyougoIsekiSumm } },
+            { text: '滝山城', data: { id: 'takiyamajyou', layer: takiyamajyouObj, opacity: 1, zoom:16, center:[135.1897115742397, 34.708324634323816], summary: hyougoIsekiSumm } },
+
             { text: '山下城', data: { id: 'yamasitajyou', layer: yamashitajyouObj, opacity: 1, zoom:17, center:[135.4093350403387, 34.900789307859384], summary: hyougoIsekiSumm } },
             { text: '有子山城', data: { id: 'arikoyamajyou', layer: arikoyamajyouObj, opacity: 1, zoom:17, center:[134.87834538212564, 35.45526548044384], summary: hyougoIsekiSumm } },
             { text: '八木城', data: { id: 'yagijyou', layer: yagijyouObj, opacity: 1, zoom:17, center:[134.71133629505152, 35.389083335934004], summary: hyougoIsekiSumm } },
@@ -9215,7 +9233,7 @@ const layers =
             { text: '洲本城', data: { id: 'sumotojyou', layer: sumotojyouObj, opacity: 1, zoom:17, center:[134.90319944266878, 34.337478918073074], summary: hyougoIsekiSumm } },
             { text: '白巣城', data: { id: 'shirasujyou', layer: shirasujyouObj, opacity: 1, zoom:17, center:[134.8259033029899, 34.38150414125458], summary: hyougoIsekiSumm } },
             { text: '由良古城', data: { id: 'yurakojyou', layer: yurakojyouuObj, opacity: 1, zoom:17, center:[134.9480666440312, 34.2959981627496], summary: hyougoIsekiSumm } },
-            // { text: '炬口城', data: { id: 'takenokuchijyou', layer: takenokuchiObj, opacity: 1, zoom:17, center:[134.38215989768594, 34.90699836775525], summary: hyougoIsekiSumm } },
+            { text: '炬口城', data: { id: 'takenokuchijyou', layer: takenokuchiObj, opacity: 1, zoom:17, center:[134.8898952135649, 34.35267276116555], summary: hyougoIsekiSumm } },
             { text: '竹田城・観音寺山城', data: { id: 'takedajyou', layer: takedajyouObj, opacity: 1, zoom:17, center:[134.82901156539475, 35.30050695947483], summary: hyougoIsekiSumm } },
             { text: '有岡城', data: { id: 'ariokajyou', layer: ariokajyouObj, opacity: 1, zoom:17, center:[135.42095254641023, 34.78123344214727], summary: hyougoIsekiSumm } },
             { text: '感状山城', data: { id: 'kanjyousanjyou', layer: kanjyousanjyouObj, opacity: 1, zoom:17, center:[134.45129592319765, 34.88099338453634], summary: hyougoIsekiSumm } },
@@ -10117,9 +10135,7 @@ const layers =
     { text: 'その他',
       children: [
         { text: 'ラスタータイルtest', data: { id: "dokuji", layer: dokujiObj, opacity: 1, summary: LayersMvt.busSumm, component: {name: 'dokuji', values:[]}} },
-        { text: ' test', data: { id: "test", layer: LayersMvt.testObj, opacity: 1, summary: LayersMvt.testSumm} },
-
-
+        // { text: ' test', data: { id: "test", layer: LayersMvt.testObj, opacity: 1, summary: LayersMvt.testSumm} },
         { text: '日本土壌インベントリー', data: { id: "dojyou", layer: dojyouObj, opacity: 1, summary: dojyouSumm } },
         { text: 'バスルートと停留所', data: { id: "bus", layer: LayersMvt.bus0Obj, opacity: 1, summary: LayersMvt.busSumm} },
         { text: '鉄道（廃線は赤色）', data: { id: "rosen", layer: LayersMvt.rosen0Obj, opacity: 1, summary: LayersMvt.rosenSumm} },
@@ -10130,7 +10146,7 @@ const layers =
         { text: 'ダム', data: { id: "damh26", layer: LayersMvt.damh26Obj, opacity: 1, summary: LayersMvt.damh26Summ } },
         { text: '湖沼', data: { id: "kosyouH17", layer: LayersMvt.kosyouH17Obj, opacity: 1, summary: LayersMvt.kosyouH17Summ } },
         { text: '土地利用図（1982～1983年）', data: { id: "totiriyouzu", layer: totiriyouzuObj, opacity: 1, summary: totiriyouzuSumm } },
-        { text: '法務省地図', data: { id: "houmusyou", layer: houmusyouObj, opacity: 1, summary: houmusyouSumm } },
+        // { text: '法務省地図', data: { id: "houmusyou", layer: houmusyouObj, opacity: 1, summary: houmusyouSumm } },
         { text: 'OpenTopoMap', data: { id: "otm", layer: otmObj, opacity: 1, summary: otmSumm } },
       ]},
   ];

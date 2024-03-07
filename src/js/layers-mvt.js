@@ -3110,8 +3110,8 @@ export const sizentikeiObj = {}
 for (let i of mapsStr) {
   sizentikeiObj[i] = new LayerGroup({
     layers: [
-      sizentikeiObj2,
-      sizentikeiObj1
+      // sizentikeiObj2,
+      // sizentikeiObj1
     ]
   })
 }
