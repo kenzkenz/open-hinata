@@ -3515,8 +3515,7 @@ const shinsuishinSumm = '出典：<br><a href="https://disaportal.gsi.go.jp/haza
 // 洪水浸水想定（計画規模）-------------------------------------------------------------------------------
 function ShinsuishinK () {
   this.name = 'shinsuishinK'
-     // this.className = 'pointer'
- 
+  // this.className = 'pointer'
   this.pointer = true
   this.source = new XYZ({
     url: 'https://disaportaldata.gsi.go.jp/raster/01_flood_l1_shinsuishin_newlegend_kuni_data/{z}/{x}/{y}.png',
@@ -3533,8 +3532,7 @@ const shinsuishinKSumm = '出典：<br><a href="https://disaportal.gsi.go.jp/haz
 // 津波浸水想定-------------------------------------------------------------------------------
 function Tsunami () {
   this.name = 'tunami'
-     // this.className = 'pointer'
- 
+  // this.className = 'pointer'
   this.pointer = true
   this.source = new XYZ({
     url: 'https://disaportaldata.gsi.go.jp/raster/04_tsunami_newlegend_data/{z}/{x}/{y}.png',
@@ -3552,8 +3550,7 @@ const tunamiSumm =  '出典：<br><a href="https://disaportal.gsi.go.jp/hazardma
 // 浸水継続-------------------------------------------------------------------------------
 function Keizoku () {
   this.name = 'keizoku'
-     // this.className = 'pointer'
- 
+  // this.className = 'pointer'
   this.pointer = true
   this.source = new XYZ({
     url: 'https://disaportaldata.gsi.go.jp/raster/01_flood_l2_keizoku_kuni_data/{z}/{x}/{y}.png',
@@ -9221,6 +9218,52 @@ for (let i of mapsStr) {
 }
 const dojyouSumm = '出典：<br><a href="https://soil-inventory.rad.naro.go.jp/figure.html" target="_blank">日本土壌インベントリー</a>';
 
+// https://kenzkenz2.xsrv.jp/usarmy/miyazaki/{z}/{x}/{-y}.png
+
+
+// 米軍地図------------------------------------------------------------------------------------
+// 宮崎市
+function Usamiyazaki () {
+  this.source = new XYZ({
+    url: 'https://kenzkenz2.xsrv.jp/usarmy/miyazaki/{z}/{x}/{-y}.png',
+    crossOrigin: 'Anonymous',
+    minZoom: 1,
+    maxZoom: 18
+  })
+}
+const usaMiyazakiObj = {};
+for (let i of mapsStr) {
+  usaMiyazakiObj[i] = new TileLayer(new Usamiyazaki())
+}
+const usaSumm = '<a href="https://github.com/code4history/jcp_maps" target="_blank">Japan City Plans</a>';
+// 延岡市
+function Usanobeoka () {
+  this.source = new XYZ({
+    url: 'https://kenzkenz2.xsrv.jp/usarmy/nobeoka/{z}/{x}/{-y}.png',
+    crossOrigin: 'Anonymous',
+    minZoom: 1,
+    maxZoom: 18
+  })
+}
+const usaNobeokaObj = {};
+for (let i of mapsStr) {
+  usaNobeokaObj[i] = new TileLayer(new Usanobeoka())
+}
+// 都城市
+function Usamiyakonojyou () {
+  this.source = new XYZ({
+    url: 'https://t.tilemap.jp/jcp_maps/miyakonojo/{z}/{x}/{-y}.png',
+    crossOrigin: 'Anonymous',
+    minZoom: 1,
+    maxZoom: 16
+  })
+}
+const usaMiyakonojyouObj = {};
+for (let i of mapsStr) {
+  usaMiyakonojyouObj[i] = new TileLayer(new Usamiyakonojyou())
+}
+
+
 
 // ここにレイヤーを全部書く。クリックするとストアのlayerListに追加されていく-------------------------
 const layers =
@@ -9235,7 +9278,6 @@ const layers =
         { text: '陰影起伏図', data: { id: 'inei', layer: ineiObj, opacity: 1, summary: stdSumm } },
         { text: '傾斜量図', data: { id: 'keisya', layer: keisyaObj, opacity: 1, summary: stdSumm } },
         { text: '明治期の低湿地', data: { id: 'sitti', layer: sittiObj, opacity: 1, summary: stdSumm } },
-
         { text: '治水地形分類図 更新版（2007年以降）', data: { id: 'tisui2007', layer: tisui2007Obj, opacity: 1, summary: tisui2007Summ } },
         { text: '地形分類（自然地形）', data: { id: 'sizen', layer: LayersMvt.sizentikei0Obj, opacity: 1, summary: LayersMvt.sizentikeiSumm} },
         // { text: '地形分類（自然地形『詳細版』）', data: { id: 'sizen', layer: LayersMvt.sizentikeiObj, opacity: 1, summary: LayersMvt.sizentikeiSumm} },
@@ -9253,11 +9295,9 @@ const layers =
         { text: '厚木市航空写真', data: { id: 'atugiOrt', layer: atugiOrtObj, opacity: 1, zoom:12,center:[139.30477798325904, 35.45374856324422], summary: atugiOrtSumm } },
         { text: '掛川市航空写真', data: { id: 'kakegawaOrt', layer: kakegawaOrtObj, opacity: 1, zoom:12,center:[138.01527201622224, 34.76907462604038], summary: kakegawaOrtSumm } },
         { text: '半田市航空写真', data: { id: 'handaOrt', layer: handaOrtObj, opacity: 1, zoom:13,center:[136.938067, 34.89169], summary: handaOrtSumm } },
-
         { text: '富田林市航空写真', data: { id: 'tondaOrt', layer: tondaOrtObj, opacity: 1, zoom:13,center:[135.60006642031433, 34.50010582072453], summary: tondaOrtSumm } },
         { text: '鹿児島市航空写真', data: { id: 'kagosimasiort', layer: kagosimasiOrtObj, opacity: 1, zoom:12,center:[130.51208842259823, 31.58146097086727], summary: kagosimasiOrtSumm } },
         { text: 'PLATEAUオルソ', data: { id: 'plateauOrt', layer: plateauOrtObj, opacity: 1, summary: plateauOrtObjSumm } },
-
       ]},
     { text: '過去の航空写真',
       children: [
@@ -9270,7 +9310,6 @@ const layers =
         { text: '45~50年航空写真', data: { id: 'sp45', layer: sp45Obj, opacity: 1, summary: sp45Summ } },
         { text: '36~42年航空写真', data: { id: 'sp36', layer: sp36Obj, opacity: 1, summary: sp36Summ } },
         { text: '28年航空写真', data: { id: 'sp28', layer: sp28Obj, opacity: 1, summary: sp28Summ } },
-
       ]},
     { text: '立体図、地質図等',
       children: [
@@ -9282,17 +9321,12 @@ const layers =
         // { text: '全国CS立体図10m', data: { id: 'cs10', layer: cs10mObj, opacity: 1, summary: cs10mSumm } },
         { text: '東京都陰陽図', data: { id: 'tamainyou', layer: tamainyouObj, opacity: 1, zoom:11, center:[139.25439119338986, 35.6997080831123], summary: tamainyouSumm } },
         { text: '東京都赤色立体地図', data: { id: 'tamared', layer: tamaredObj, opacity: 1, zoom:11, center:[139.25439119338986, 35.6997080831123], summary: tamaredSumm } },
-
-
-
         { text: 'CS立体図全部', data: { id: 'cs00', layer: cs00Obj, opacity: 1, summary: tamainyouSumm } },
         { text: '栃木県CS立体図', data: { id: 'tochigcs', layer: tochigicsObj, opacity: 1, zoom:10, center:[139.7261306915493, 36.67065922020146], summary: tochigicsSumm } },
-
         { text: '岐阜県CS立体図', data: { id: 'gcs', layer: gihuCsObj, opacity: 1, zoom:9, center:[137.03491577372932, 35.871742161031975], summary: gihuCsSumm } },
         { text: '兵庫県CS立体図2010〜2018', data: { id: 'hyougocs', layer: hyougoCsObj, opacity: 1, zoom:9, center:[134.8428381533734, 35.05148520051671], summary: hyougoCsSumm } },
         // { text: '兵庫県CS立体図50cm', data: { id: 'hyougocs50cm', layer: hyougoCs50Obj, opacity: 1, zoom:9, center:[134.8428381533734, 35.05148520051671], summary: hyougoCs50Summ } },
         { text: '兵庫県CS立体図50cm', data: { id: 'hyougocs50cm2', layer: hyougoCs50c2Obj, opacity: 1, zoom:9, center:[134.8428381533734, 35.05148520051671], summary: hyougoCs50c2Summ } },
-
         { text: '長野県CS立体図', data: { id: 'naganocs', layer: naganoCsObj, opacity: 1, zoom:9, center:[138.14880751631608, 36.19749617538284], summary: naganoCsSumm } },
         { text: '静岡県CS立体図', data: { id: 'sizuokacs2', layer: sizuokaCs2Obj, opacity: 1, zoom:9, center:[138.26385867875933, 35.01475223050842], summary: sizuokaCs2Summ } },
         { text: '広島県CS立体図', data: { id: 'hiroshimacs', layer: hiroshimaCsObj, opacity: 1, zoom:9, center:[132.77140492854667, 34.41276234214364], summary: hiroshimaCsSumm } },
@@ -9308,7 +9342,6 @@ const layers =
           children: [
             { text: '摩耶山城', data: { id: 'mayasanjyou', layer: mayasanjyouObj, opacity: 1, zoom:17, center:[135.20985199593505, 34.72741190512792], summary: hyougoIsekiSumm } },
             { text: '滝山城', data: { id: 'takiyamajyou', layer: takiyamajyouObj, opacity: 1, zoom:16, center:[135.1897115742397, 34.708324634323816], summary: hyougoIsekiSumm } },
-
             { text: '山下城', data: { id: 'yamasitajyou', layer: yamashitajyouObj, opacity: 1, zoom:17, center:[135.4093350403387, 34.900789307859384], summary: hyougoIsekiSumm } },
             { text: '有子山城', data: { id: 'arikoyamajyou', layer: arikoyamajyouObj, opacity: 1, zoom:17, center:[134.87834538212564, 35.45526548044384], summary: hyougoIsekiSumm } },
             { text: '八木城', data: { id: 'yagijyou', layer: yagijyouObj, opacity: 1, zoom:17, center:[134.71133629505152, 35.389083335934004], summary: hyougoIsekiSumm } },
@@ -9339,18 +9372,23 @@ const layers =
             { text: '姫路城', data: { id: 'himejijyou', layer: himejijyouObj, opacity: 1, zoom:17, center:[134.69313061573334, 34.83893632057601], summary: hyougoIsekiSumm } },
             { text: '明石城', data: { id: 'akashijyou', layer: akashijyouObj, opacity: 1, zoom:17, center:[134.9927713856956, 34.65286024595012], summary: hyougoIsekiSumm } },
             { text: '利神城', data: { id: 'rikanjyou', layer: rikanjyouObj, opacity: 1, zoom:17, center:[134.37733576935972, 35.04615261130358], summary: hyougoIsekiSumm } },
-
           ]},
         { text: '栃木県レーザ林相図', data: { id: 'tochigirinsou', layer: tochigiRinsouObj, opacity: 1, zoom:10, center:[139.7261306915493, 36.67065922020146], summary: tochigiRinsouSumm } },
         { text: '兵庫県レーザ林相図', data: { id: 'hyougorinsou', layer: hyougoRinsouObj, opacity: 1, zoom:9, center:[134.8428381533734, 35.05148520051671], summary: hyougoRinsouSumm } },
         { text: '高知県レーザ林相図', data: { id: 'kochirinsou', layer: kochiRinsouObj, opacity: 1, zoom:9, center:[133.00989747047424, 33.4075764357881], summary: kochiRinsouSumm } },
-
         { text: '都市圏活断層図', data: { id: 'katudansou', layer: katudansouObj, opacity: 1, summary: katudansouSumm } }
       ]},
     { text: '古地図',
       children: [
         { text: '<i class="fa-solid fa-layer-group"></i>戦前地形図5万分の１', data: { id: 'mw5', layer: mw5Obj, opacity: 1, summary: mw5Summ } },
         { text: '<i class="fa-solid fa-layer-group"></i>戦前地形図20万分の１', data: { id: 'mw20', layer: mw20Obj, opacity: 1, summary: mw20Summ } },
+        { text: '米軍作成地図（1945-46年）',
+          children: [
+            { text: '宮崎市米軍作成地図', data: { id: 'usamiyazaki', layer: usaMiyazakiObj, opacity: 1, zoom:14,center:[131.423860,31.911069], summary: usaSumm } },
+            { text: '延岡市米軍作成地図', data: { id: 'usanobeoka', layer: usaNobeokaObj, opacity: 1, zoom:14,center:[131.664854,32.582407], summary: usaSumm } },
+            { text: '都城市米軍作成地図', data: { id: 'usamiyakonojyou', layer: usaMiyakonojyouObj, opacity: 1, zoom:14,center:[131.061498,31.719552], summary: usaSumm } },
+
+          ]},
         { text: '迅速測図 (関東)', data: { id: 'jinsoku', layer: jinsokuObj, opacity: 1, zoom: 9, center: [139.8089637733657, 35.86926927958841], summary: jinsokuSumm } },
         { text: '東京5000分の1明治17年', data: { id: 'tokyo5000', layer: tokyo5000Obj, opacity: 1, zoom: 14, center: [139.7579477727413, 35.6843002871569], summary: tokyo5000Summ } },
         { text: '〔江戸切絵図〕. 麻布絵図', data: { id: 'edokirie', layer: edokirieObj, opacity: 1, zoom: 15, center: [139.73059032411857, 35.654628169454355], summary: edokirieSumm } },
@@ -10112,10 +10150,8 @@ const layers =
         { text: '高潮浸水想定', data: { id: 'takasio', layer: takasioObj, opacity: 1, summary: takasioSumm } },
         { text: 'ため池決壊による浸水想定区域', data: { id: 'tameike', layer: tameikeObj, opacity: 1, summary: tameikeSumm } },
         { text: '家屋倒壊等氾濫想定区域（氾濫流）', data: { id: 'toukai', layer: toukaiObj, opacity: 1, summary: toukaiSumm } },
-
         { text: '筑後川浸水推定図2023/7/11', data: { id: 'sinsuisuitei', layer: sinsuisuiteiObj, center:[130.61658037551376, 33.34398451546858], zoom:13, opacity: 1, summary: stdSumm } },
         { text: '地形区分に基づく液状化の発生傾向図', data: { id: 'ekizyouka', layer: ekizyoukaObj, opacity: 1, summary: ekizyouka0Summ } },
-
         { text: '液状化危険度分布図',
           children: [
               //新潟と埼玉は作っていない。
@@ -10165,7 +10201,6 @@ const layers =
             { text: '液状化危険度分布図（宮崎県）', data: { id: 'ekizyouka', layer: ekizyouka45Obj, opacity: 1, summary: ekizyoukaSumm } },
             { text: '液状化危険度分布図（鹿児島県）', data: { id: 'ekizyouka46', layer: ekizyouka46Obj, opacity: 1, summary: ekizyoukaSumm } },
             { text: '液状化危険度分布図（沖縄県）', data: { id: 'ekizyouka47', layer: ekizyouka47Obj, opacity: 1, summary: ekizyoukaSumm } },
-
           ]},
         { text: '土砂災害',
           children: [
@@ -10196,7 +10231,6 @@ const layers =
         { text: '今後30年間震度6以上の確率', data: { id: 'jisin', layer: jisinObj, opacity: 1, summary: jisinSumm } },
         { text: '北海道太平洋沿岸の津波浸水想定', data: { id: "hokkaidouTunamiT", layer: LayersMvt.hokkaidouTunamiTObj, opacity: 1, summary: LayersMvt.hokkaidouTunamiTSumm } },
         { text: '北海道日本海沿岸の津波浸水想定', data: { id: "hokkaidouTunami", layer: LayersMvt.hokkaidouTunamiObj, opacity: 1, summary: LayersMvt.hokkaidouTunamiSumm } },
-
         { text: '宮崎市洪水ﾊｻﾞｰﾄﾞﾏｯﾌﾟ', data: { id: 'miyazakisiHm', layer: miyazakisiHmObj, opacity: 1, zoom: 13, center: [131.42054548436312, 31.907339493919977], summary: miyazakisiHmSumm } },
         { text: '都城市洪水ﾊｻﾞｰﾄﾞﾏｯﾌﾟ', data: { id: 'miyakonozyousiHm', layer: miyakonozyousiHmObj, opacity: 1, zoom: 13, center: [131.07797970576192, 31.78882205640913], summary: miyakonozyousiHmSumm } },
         { text: '日向市防災ﾊｻﾞｰﾄﾞﾏｯﾌﾟ', data: { id: 'hyuugasiHm', layer: hyuugasiHmObj, opacity: 1, zoom: 13, center: [131.6400086045909, 32.395198966795306], summary: hyuugasiHmSumm } },
@@ -10208,10 +10242,8 @@ const layers =
         { text: '国指定文化財等データベース', data: { id: "bunkazaidb", layer: LayersMvt.bunkazaidbObj, opacity: 1, summary: LayersMvt.bunkazaidbSumm } },
         { text: '全国旧石器時代遺跡', data: { id: "kyuusekki", layer: LayersMvt.kyuusekkiObj, opacity: 1, summary: LayersMvt.kyuusekkiSumm } },
         // { text: '全国旧石器時代遺跡(ヒートマップ)', data: { id: "kyuusekkihm", layer: LayersMvt.kyuusekkiHmObj, opacity: 1, summary: LayersMvt.kyuusekkiSumm } },
-
         // { text: '全国縄文・弥生集落遺跡', data: { id: "yayoiiseki", layer: LayersMvt.yayoiisekiObj, opacity: 1, summary: LayersMvt.yayoiisekiSumm } },
         { text: '北海道埋蔵文化財包蔵地', data: { id: "hokkaidoumaibun", layer: LayersMvt.hokkaidoumaibunObj, opacity: 1, summary: LayersMvt.hokkaidoumaibunSumm } },
-
         { text: '東京都文化財', data: { id: "tokyobunkazai", layer: LayersMvt.tokyobunkazaiObj, opacity: 1, summary: LayersMvt.tokyobunkazaiSumm } },
         { text: '富山県埋蔵文化財', data: { id: "toyamamaibun", layer: LayersMvt.toyamamaibunObj, opacity: 1, summary: LayersMvt.toyamamaibunSumm } },
         { text: '岡山県埋蔵文化財', data: { id: "okayamamai", layer: LayersMvt.okayamamaiiObj, opacity: 1, summary: LayersMvt.okayamamaiSumm } },
