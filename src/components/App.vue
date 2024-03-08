@@ -216,103 +216,64 @@
         } else {
           urlid = 999
         }
-        axios
-            .get('https://kenzkenz.xsrv.jp/open-hinata/php/shorturl.php',{
-              params: {
-                urlid: urlid
-              }
-            })
-            .then(function (response) {
-              console.log(window.location.host.indexOf('localhost'))
-              let host
-              if (window.location.host.indexOf('localhost') !== -1) {
-                host = 'http://localhost:8080/'
-              } else {
-                host = 'https://kenzkenz.xsrv.jp/open-hinata/'
-              }
-              if (response.data) {
-                const url = host + response.data
-                window.location.replace(url)
-              }
-              // ①map初期化-----------------------------
-              MyMap.initMap(vm);
-              // ②パーマリンク------------------------------
-              Permalink.permalinkEventSet();
-              // ③画面分割-------------------------------
-              // this.splitMap2();
-              // ④リサイズ---------------------------------
-              const resize = () => {
-                if (window.innerWidth < 1000) {
-                  this.btnSize = 'sm'
-                  this.toolTip = false
-                  // alert(window.innerWidth)
-                } else {
-                  this.btnSize = ''
-                  this.toolTip = true
-                }
-                this.splitMap2()
-              };
-              // setTimeout(function(){
-                resize()
-              // }, 300);
-              window.onresize =  () => {
-                setTimeout(function(){
-                  resize()
-                }, 50);
-              };
-              window.addEventListener("orientationchange", function() {
-                /* 向き切り替え時の処理 */
-                setTimeout(function(){
-                  resize()
-                }, 50);
-              });
-              // ⑤縦バウンス無効化----------------------
-              // https://github.com/lazd/iNoBounce
-              Inobounce();
+        axios.get('https://kenzkenz.xsrv.jp/open-hinata/php/shorturl.php',{
+          params: {
+            urlid: urlid
+          }
+        }).then(function (response) {
+          init(response)
+        }).finally(function () {
 
-            })
-            .catch(function (error) {
-              console.log(error);
-            })
-            .finally(function () {
-            });
+        });
 
-        // // ①map初期化-----------------------------
-        // const vm = this
-        // MyMap.initMap(vm);
-        // // ②パーマリンク------------------------------
-        // Permalink.permalinkEventSet();
-        // // ③画面分割-------------------------------
-        // // this.splitMap2();
-        // // ④リサイズ---------------------------------
-        // const resize = () => {
-        //   if (window.innerWidth < 1000) {
-        //     this.btnSize = 'sm'
-        //     this.toolTip = false
-        //     // alert(window.innerWidth)
-        //   } else {
-        //     this.btnSize = ''
-        //     this.toolTip = true
-        //   }
-        //   this.splitMap2()
-        // };
-        // // setTimeout(function(){
-        //   resize()
-        // // }, 300);
-        // window.onresize =  () => {
-        //   setTimeout(function(){
-        //     resize()
-        //   }, 50);
-        // };
-        // window.addEventListener("orientationchange", function() {
-        //   /* 向き切り替え時の処理 */
-        //   setTimeout(function(){
-        //     resize()
-        //   }, 50);
-        // });
-        // // ⑤縦バウンス無効化----------------------
-        // // https://github.com/lazd/iNoBounce
-        // Inobounce();
+        function init (response) {
+          console.log(window.location.host.indexOf('localhost'))
+          let host
+          if (window.location.host.indexOf('localhost') !== -1) {
+            host = 'http://localhost:8080/'
+          } else {
+            host = 'https://kenzkenz.xsrv.jp/open-hinata/'
+          }
+          if (response.data) {
+            const url = host + response.data
+            window.location.replace(url)
+          }
+          // ①map初期化-----------------------------
+          MyMap.initMap(vm);
+          // ②パーマリンク------------------------------
+          Permalink.permalinkEventSet();
+          // ③画面分割-------------------------------
+          // this.splitMap2();
+          // ④リサイズ---------------------------------
+          const resize = () => {
+            if (window.innerWidth < 800) {
+              vm.btnSize = 'sm'
+              vm.toolTip = false
+              // alert(window.innerWidth)
+            } else {
+              vm.btnSize = ''
+              vm.toolTip = true
+            }
+            vm.splitMap2()
+          };
+          // setTimeout(function(){
+          resize()
+          // }, 300);
+          window.onresize =  () => {
+            setTimeout(function(){
+              resize()
+            }, 50);
+          };
+          window.addEventListener("orientationchange", function() {
+            /* 向き切り替え時の処理 */
+            setTimeout(function(){
+              resize()
+            }, 50);
+          });
+          // ⑤縦バウンス無効化----------------------
+          // https://github.com/lazd/iNoBounce
+          Inobounce();
+        }
       });
     }
   }
