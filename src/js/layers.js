@@ -9553,6 +9553,223 @@ const usaMitoObj = {};
 for (let i of mapsStr) {
   usaMitoObj[i] = new TileLayer(new Usamito())
 }
+// 長野市
+function Usanagano () {
+  this.extent = transformE([138.14073032198428, 36.69619682804296, 138.2340108459997, 36.615546045100615])
+  this.source = new XYZ({
+    url: 'https://t.tilemap.jp/jcp_maps/nagano/{z}/{x}/{-y}.png',
+    crossOrigin: 'Anonymous',
+    minZoom: 11,
+    maxZoom: 16
+  })
+}
+const usaNaganoObj = {};
+for (let i of mapsStr) {
+  usaNaganoObj[i] = new TileLayer(new Usanagano())
+}
+// 長岡市
+function Usanagaoka () {
+  this.extent = transformE([138.81563140898004, 37.48632713465814, 138.87307359724298, 37.41690979613216])
+  this.source = new XYZ({
+    url: 'https://t.tilemap.jp/jcp_maps/nagaoka/{z}/{x}/{-y}.png',
+    crossOrigin: 'Anonymous',
+    minZoom: 11,
+    maxZoom: 16
+  })
+}
+const usaNagaokaObj = {};
+for (let i of mapsStr) {
+  usaNagaokaObj[i] = new TileLayer(new Usanagaoka())
+}
+// 長崎市
+function Usanagasaki () {
+  this.extent = transformE([129.82426933289048, 32.80116245898009, 129.92143838942525, 32.69767898831918])
+  this.source = new XYZ({
+    url: 'https://t.tilemap.jp/jcp_maps/nagasaki/{z}/{x}/{-y}.png',
+    crossOrigin: 'Anonymous',
+    minZoom: 11,
+    maxZoom: 16
+  })
+}
+const usaNagasakiObj = {};
+for (let i of mapsStr) {
+  usaNagasakiObj[i] = new TileLayer(new Usanagasaki())
+}
+// 名古屋市(北東)
+function Usanagoya_ne () {
+  this.extent = transformE([136.8897098705461, 35.22421193160979, 136.98818271993733, 35.13233810303973])
+  this.source = new XYZ({
+    url: 'https://t.tilemap.jp/jcp_maps/nagoya_ne/{z}/{x}/{-y}.png',
+    crossOrigin: 'Anonymous',
+    minZoom: 11,
+    maxZoom: 16
+  })
+}
+const usaNagoyaNeObj = {};
+for (let i of mapsStr) {
+  usaNagoyaNeObj[i] = new TileLayer(new Usanagoya_ne())
+}
+// 名古屋市(北西)
+function Usanagoya_nw () {
+  this.extent = transformE([136.80611080422372, 35.225824131738065, 136.90547197474476, 35.13243456671647])
+  this.source = new XYZ({
+    url: 'https://t.tilemap.jp/jcp_maps/nagoya_nw/{z}/{x}/{-y}.png',
+    crossOrigin: 'Anonymous',
+    minZoom: 11,
+    maxZoom: 16
+  })
+}
+const usaNagoyaNwObj = {};
+for (let i of mapsStr) {
+  usaNagoyaNwObj[i] = new TileLayer(new Usanagoya_nw())
+}
+// 名古屋市(南東)
+function Usanagoya_se () {
+  this.extent = transformE([136.88919877397763, 35.14167895962797, 136.98842441427456, 35.04951319684166])
+  this.source = new XYZ({
+    url: 'https://t.tilemap.jp/jcp_maps/nagoya_se/{z}/{x}/{-y}.png',
+    crossOrigin: 'Anonymous',
+    minZoom: 11,
+    maxZoom: 16
+  })
+}
+const usaNagoyaSeObj = {};
+for (let i of mapsStr) {
+  usaNagoyaSeObj[i] = new TileLayer(new Usanagoya_se())
+}
+// 名古屋市(南西)
+function Usanagoya_sw () {
+  this.extent = transformE([136.80523113396558, 35.141184354273065, 136.90487806511402, 35.048543288426316])
+  this.source = new XYZ({
+    url: 'https://t.tilemap.jp/jcp_maps/nagoya_sw/{z}/{x}/{-y}.png',
+    crossOrigin: 'Anonymous',
+    minZoom: 11,
+    maxZoom: 16
+  })
+}
+const usaNagoyaSwObj = {};
+for (let i of mapsStr) {
+  usaNagoyaSwObj[i] = new TileLayer(new Usanagoya_sw())
+}
+// 七尾市
+function Usananao () {
+  this.extent = transformE([136.90164078074454, 37.09788232838679, 137.0370105286217, 37.0228343649801])
+  this.source = new XYZ({
+    url: 'https://t.tilemap.jp/jcp_maps/nanao/{z}/{x}/{-y}.png',
+    crossOrigin: 'Anonymous',
+    minZoom: 11,
+    maxZoom: 16
+  })
+}
+const usaNanaoObj = {};
+for (let i of mapsStr) {
+  usaNanaoObj[i] = new TileLayer(new Usananao())
+}
+// 新潟市
+function Usaniigata () {
+  this.extent = transformE([138.99186708819562, 37.96788748388437, 139.0933551717966, 37.8983254944878])
+  this.source = new XYZ({
+    url: 'https://t.tilemap.jp/jcp_maps/niigata/{z}/{x}/{-y}.png',
+    crossOrigin: 'Anonymous',
+    minZoom: 11,
+    maxZoom: 16
+  })
+}
+const usaNiigataObj = {};
+for (let i of mapsStr) {
+  usaNiigataObj[i] = new TileLayer(new Usaniigata())
+}
+// 新居浜市
+function Usaniihama () {
+  this.extent = transformE([133.22255519907048, 34.00367828974015, 133.31210141758493, 33.92086221440381])
+  this.source = new XYZ({
+    url: 'https://t.tilemap.jp/jcp_maps/niihama/{z}/{x}/{-y}.png',
+    crossOrigin: 'Anonymous',
+    minZoom: 11,
+    maxZoom: 16
+  })
+}
+const usaNiihamaObj = {};
+for (let i of mapsStr) {
+  usaNiihamaObj[i] = new TileLayer(new Usaniihama())
+}
+// 日光市
+function Usanikko () {
+  this.extent = transformE([139.48407988645982, 36.78855612641945, 139.64399721124124, 36.71216243946745])
+  this.source = new XYZ({
+    url: 'https://t.tilemap.jp/jcp_maps/nikko/{z}/{x}/{-y}.png',
+    crossOrigin: 'Anonymous',
+    minZoom: 11,
+    maxZoom: 16
+  })
+}
+const usaNikkoObj = {};
+for (let i of mapsStr) {
+  usaNikkoObj[i] = new TileLayer(new Usanikko())
+}
+// 直方市
+function Usanogata () {
+  this.extent = transformE([130.69598996782418, 33.77216740394658, 130.75809919977306, 33.71618955385571])
+  this.source = new XYZ({
+    url: 'https://t.tilemap.jp/jcp_maps/nogata/{z}/{x}/{-y}.png',
+    crossOrigin: 'Anonymous',
+    minZoom: 11,
+    maxZoom: 16
+  })
+}
+const usaNogataObj = {};
+for (let i of mapsStr) {
+  usaNogataObj[i] = new TileLayer(new Usanogata())
+}
+// 沼津市
+function Usanumazu () {
+  this.extent = transformE([138.8324112693624, 35.1277526279410, 138.89685871702, 35.06471308977173])
+  this.source = new XYZ({
+    url: 'https://t.tilemap.jp/jcp_maps/numazu/{z}/{x}/{-y}.png',
+    crossOrigin: 'Anonymous',
+    minZoom: 11,
+    maxZoom: 16
+  })
+}
+const usaNumazuObj = {};
+for (let i of mapsStr) {
+  usaNumazuObj[i] = new TileLayer(new Usanumazu())
+}
+// 大垣市
+function Usaogaki () {
+  this.extent = transformE([136.55413836399077, 35.40195135119643, 136.66695408681392, 35.33227207940551])
+  this.source = new XYZ({
+    url: 'https://t.tilemap.jp/jcp_maps/ogaki/{z}/{x}/{-y}.png',
+    crossOrigin: 'Anonymous',
+    minZoom: 11,
+    maxZoom: 16
+  })
+}
+const usaOgakiObj = {};
+for (let i of mapsStr) {
+  usaOgakiObj[i] = new TileLayer(new Usaogaki())
+}
+// 大分市
+function Usaoita () {
+  this.extent = transformE([131.55698081039802, 33.27340799027354, 131.65331704103366, 33.203760920003575])
+  this.source = new XYZ({
+    url: 'https://t.tilemap.jp/jcp_maps/oita/{z}/{x}/{-y}.png',
+    crossOrigin: 'Anonymous',
+    minZoom: 11,
+    maxZoom: 16
+  })
+}
+const usaOitaObj = {};
+for (let i of mapsStr) {
+  usaOitaObj[i] = new TileLayer(new Usaoita())
+}
+
+
+
+
+
+
+
 
 
 
@@ -9684,7 +9901,6 @@ const layers =
             { text: '宮崎市米軍作成地図', data: { id: 'usamiyazaki', layer: usaMiyazakiObj, opacity: 1, zoom:14,center:[131.423860,31.911069], summary: usaSumm } },
             { text: '延岡市米軍作成地図', data: { id: 'usanobeoka', layer: usaNobeokaObj, opacity: 1, zoom:14,center:[131.664854,32.582407], summary: usaSumm } },
             { text: '都城市米軍作成地図', data: { id: 'usamiyakonojyou', layer: usaMiyakonojyouObj, opacity: 1, zoom:14,center:[131.061498,31.719552], summary: usaSumm } },
-            { text: '室蘭市米軍作成地図', data: { id: 'usamuroran', layer: usaMuroranObj, opacity: 1, zoom:14,center:[140.973774,42.315226], summary: usaSumm } },
             { text: '鹿児島市米軍作成地図', data: { id: 'usakagoshima', layer: usaKagoshimaObj, opacity: 1, zoom:14,center:[130.557143,31.596715], summary: usaSumm } },
             { text: '明石市米軍作成地図', data: { id: 'usaakashi', layer: usaAkashiObj, opacity: 1, zoom:14,center:[134.9791309948764, 34.66807915925325], summary: usaSumm } },
             { text: '相生市米軍作成地図', data: { id: 'usaharima', layer: usaHarimaObj, opacity: 1, zoom:14,center:[134.46288962129597, 34.780312495944486], summary: usaSumm } },
@@ -9705,6 +9921,22 @@ const layers =
             { text: '松江市米軍作成地図', data: { id: 'usamatsue', layer: usaMatsueObj, opacity: 1, zoom:14,center:[133.053093295256, 35.46251193542868], summary: usaSumm } },
             { text: '三原市米軍作成地図', data: { id: 'usamihara', layer: usaMiharaObj, opacity: 1, zoom:14,center:[133.0774957701907, 34.390898812899636], summary: usaSumm } },
             { text: '水戸市米軍作成地図', data: { id: 'usamito', layer: usaMitoObj, opacity: 1, zoom:14,center:[140.48173740075157, 36.38037853073381], summary: usaSumm } },
+            { text: '室蘭市米軍作成地図', data: { id: 'usamuroran', layer: usaMuroranObj, opacity: 1, zoom:14,center:[140.973774,42.315226], summary: usaSumm } },
+            { text: '長野市米軍作成地図', data: { id: 'usanagano', layer: usaNaganoObj, opacity: 1, zoom:14,center:[138.187731396683, 36.65512364316453], summary: usaSumm } },
+            { text: '長岡市米軍作成地図', data: { id: 'usanagaoka', layer: usaNagaokaObj, opacity: 1, zoom:14,center:[138.84329973607316, 37.45145164776194], summary: usaSumm } },
+            { text: '長崎市米軍作成地図', data: { id: 'usanagasaki', layer: usaNagasakiObj, opacity: 1, zoom:14,center:[129.87212858240002, 32.747839083905205], summary: usaSumm } },
+            { text: '名古屋市(北東)米軍作成地図', data: { id: 'usanagoyane', layer: usaNagoyaNeObj, opacity: 1, zoom:14,center:[136.93452147990334, 35.17629876022909], summary: usaSumm } },
+            { text: '名古屋市(北西)米軍作成地図', data: { id: 'usanagoyanw', layer: usaNagoyaNwObj, opacity: 1, zoom:14,center:[136.85534126297378, 35.1785642711219], summary: usaSumm } },
+            { text: '名古屋市(南東)米軍作成地図', data: { id: 'usanagoyase', layer: usaNagoyaSeObj, opacity: 1, zoom:14,center:[136.93568212675797, 35.09505908560605], summary: usaSumm } },
+            { text: '名古屋市(南西)米軍作成地図', data: { id: 'usanagoyasw', layer: usaNagoyaSwObj, opacity: 1, zoom:14,center:[136.85412914541158, 35.094951542207966], summary: usaSumm } },
+            { text: '七尾市米軍作成地図', data: { id: 'usananao', layer: usaNanaoObj, opacity: 1, zoom:14,center:[136.96881281560698, 37.05827293337302], summary: usaSumm } },
+            { text: '新潟市米軍作成地図', data: { id: 'usaniigata', layer: usaNiigataObj, opacity: 1, zoom:14,center:[139.0429256190031, 37.932997833768894], summary: usaSumm } },
+            { text: '新居浜市米軍作成地図', data: { id: 'usaniihama', layer: usaNiihamaObj, opacity: 1, zoom:14,center:[133.26587220410875, 33.96146527435721], summary: usaSumm } },
+            { text: '日光市米軍作成地図', data: { id: 'usanikko', layer: usaNikkoObj, opacity: 1, zoom:14,center:[139.56377233960583, 36.74662439517668], summary: usaSumm } },
+            { text: '直方市米軍作成地図', data: { id: 'usanogata', layer: usaNogataObj, opacity: 1, zoom:14,center:[130.72768294954415, 33.74312474926823], summary: usaSumm } },
+            { text: '沼津市米軍作成地図', data: { id: 'usanumazu', layer: usaNumazuObj, opacity: 1, zoom:14,center:[138.86309171717926, 35.09615226654185], summary: usaSumm } },
+            { text: '大垣市米軍作成地図', data: { id: 'usaogaki', layer: usaOgakiObj, opacity: 1, zoom:14,center:[136.61090834738715, 35.36468691139373], summary: usaSumm } },
+            { text: '大分市米軍作成地図', data: { id: 'usaoita', layer: usaOitaObj, opacity: 1, zoom:14,center:[131.60517876529113, 33.238415284332405], summary: usaSumm } },
 
 
           ]},
