@@ -9861,6 +9861,82 @@ const usaRumoiObj = {};
 for (let i of mapsStr) {
   usaRumoiObj[i] = new TileLayer(new Usarumoi())
 }
+// 佐伯市
+function Usasaeki () {
+  this.extent = transformE([131.85777088174342, 32.99383225285267, 131.93490104102835, 32.90668177072595])
+  this.source = new XYZ({
+    url: 'https://t.tilemap.jp/jcp_maps/saeki/{z}/{x}/{-y}.png',
+    crossOrigin: 'Anonymous',
+    minZoom: 11,
+    maxZoom: 16
+  })
+}
+const usaSaekiObj = {};
+for (let i of mapsStr) {
+  usaSaekiObj[i] = new TileLayer(new Usasaeki())
+}
+// 酒田市
+function Usasakata () {
+  this.extent = transformE([139.79572723006245, 38.94697215540117, 139.86472236310482, 38.893991742680754])
+  this.source = new XYZ({
+    url: 'https://t.tilemap.jp/jcp_maps/sakata/{z}/{x}/{-y}.png',
+    crossOrigin: 'Anonymous',
+    minZoom: 11,
+    maxZoom: 16
+  })
+}
+const usaSakataObj = {};
+for (let i of mapsStr) {
+  usaSakataObj[i] = new TileLayer(new Usasakata())
+}
+// 札幌市
+function Usasapporo () {
+  this.extent = transformE([141.2872269967413, 43.12652987403498, 141.4241048765094, 43.0095195482877])
+  this.source = new XYZ({
+    url: 'https://t.tilemap.jp/jcp_maps/sapporo/{z}/{x}/{-y}.png',
+    crossOrigin: 'Anonymous',
+    minZoom: 11,
+    maxZoom: 16
+  })
+}
+const usaSapporoObj = {};
+for (let i of mapsStr) {
+  usaSapporoObj[i] = new TileLayer(new Usasapporo())
+}
+// 佐世保市
+function Usasasebo () {
+  this.extent = transformE([129.67363106960568, 33.21108635181264, 129.77110120410237, 33.10068154282844])
+  this.source = new XYZ({
+    url: 'https://t.tilemap.jp/jcp_maps/sasebo/{z}/{x}/{-y}.png',
+    crossOrigin: 'Anonymous',
+    minZoom: 11,
+    maxZoom: 16
+  })
+}
+const usaSaseboObj = {};
+for (let i of mapsStr) {
+  usaSaseboObj[i] = new TileLayer(new Usasasebo())
+}
+// 薩摩川内市
+function Usasatsuma_sendai () {
+  this.extent = transformE([130.2660942035549, 31.84126574443949, 130.32700482335025, 31.789400580167452])
+  this.source = new XYZ({
+    url: 'https://t.tilemap.jp/jcp_maps/satsuma_sendai/{z}/{x}/{-y}.png',
+    crossOrigin: 'Anonymous',
+    minZoom: 11,
+    maxZoom: 16
+  })
+}
+const usaSatsumaSendaiObj = {};
+for (let i of mapsStr) {
+  usaSatsumaSendaiObj[i] = new TileLayer(new Usasatsuma_sendai())
+}
+
+
+
+
+
+
 
 
 
@@ -10040,6 +10116,11 @@ const layers =
             { text: '小樽市米軍作成地図', data: { id: 'usaotaru', layer: usaOtaruObj, opacity: 1, zoom:14,center:[141.00512785359837, 43.19779582176179], summary: usaSumm } },
             { text: '大津市米軍作成地図', data: { id: 'usaotsu', layer: usaOtsusetaObj, opacity: 1, zoom:14,center:[135.87672741701954, 34.993886401803096], summary: usaSumm } },
             { text: '留萌市米軍作成地図', data: { id: 'usarumoi', layer: usaRumoiObj, opacity: 1, zoom:14,center:[141.65109378807819, 43.94296342232849], summary: usaSumm } },
+            { text: '佐伯市米軍作成地図', data: { id: 'usasaeki', layer: usaSaekiObj, opacity: 1, zoom:14,center:[131.8954672040914, 32.94667882024817], summary: usaSumm } },
+            { text: '酒田市米軍作成地図', data: { id: 'usasakata', layer: usaSakataObj, opacity: 1, zoom:14,center:[139.83048760293357, 38.919514066325235], summary: usaSumm } },
+            { text: '札幌市米軍作成地図', data: { id: 'usasapporo', layer: usaSapporoObj, opacity: 1, zoom:14,center:[141.35536412397946, 43.06892636116322], summary: usaSumm } },
+            { text: '佐世保市米軍作成地図', data: { id: 'usasasebo', layer: usaSaseboObj, opacity: 1, zoom:14,center:[129.72231852764406, 33.16528142168997], summary: usaSumm } },
+            { text: '薩摩川内市米軍作成地図', data: { id: 'usasatsumasendai', layer: usaSatsumaSendaiObj, opacity: 1, zoom:14,center:[130.29517169620925, 31.81471115754637], summary: usaSumm } },
 
 
           ]},
