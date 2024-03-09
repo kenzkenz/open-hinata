@@ -9931,15 +9931,132 @@ const usaSatsumaSendaiObj = {};
 for (let i of mapsStr) {
   usaSatsumaSendaiObj[i] = new TileLayer(new Usasatsuma_sendai())
 }
-
-
-
-
-
-
-
-
-
+// 仙台市
+function Usasendai () {
+  this.extent = transformE([140.82992065404846, 38.293472864168336, 140.9386044338842, 38.20103124986022])
+  this.source = new XYZ({
+    url: 'https://t.tilemap.jp/jcp_maps/sendai/{z}/{x}/{-y}.png',
+    crossOrigin: 'Anonymous',
+    minZoom: 11,
+    maxZoom: 16
+  })
+}
+const usaSendaiObj = {};
+for (let i of mapsStr) {
+  usaSendaiObj[i] = new TileLayer(new Usasendai())
+}
+// 飾磨
+function Usashikama () {
+  this.extent = transformE([134.57381908301352, 34.830801155046686, 134.69907891456126, 34.7487640772753])
+  this.source = new XYZ({
+    url: 'https://t.tilemap.jp/jcp_maps/shikama/{z}/{x}/{-y}.png',
+    crossOrigin: 'Anonymous',
+    minZoom: 11,
+    maxZoom: 16
+  })
+}
+const usaShikamaObj = {};
+for (let i of mapsStr) {
+  usaShikamaObj[i] = new TileLayer(new Usashikama())
+}
+// 島原市
+function Usashimabara () {
+  this.extent = transformE([130.33991189911603, 32.80562992452464, 130.40247509494066, 32.75341095906735])
+  this.source = new XYZ({
+    url: 'https://t.tilemap.jp/jcp_maps/shimabara/{z}/{x}/{-y}.png',
+    crossOrigin: 'Anonymous',
+    minZoom: 11,
+    maxZoom: 16
+  })
+}
+const usaShimabaraObj = {};
+for (let i of mapsStr) {
+  usaShimabaraObj[i] = new TileLayer(new Usashimabara())
+}
+// 清水市
+function Usashimizu () {
+  this.extent = transformE([138.44154622744944, 35.05407685272354, 138.53987265717413, 34.97184831284642])
+  this.source = new XYZ({
+    url: 'https://t.tilemap.jp/jcp_maps/shimizu/{z}/{x}/{-y}.png',
+    crossOrigin: 'Anonymous',
+    minZoom: 11,
+    maxZoom: 16
+  })
+}
+const usaShimizuObj = {};
+for (let i of mapsStr) {
+  usaShimizuObj[i] = new TileLayer(new Usashimizu())
+}
+// 下関市
+function Usashimonoseki_moji () {
+  this.extent = transformE([130.86186034693543, 33.99364348447547, 130.99910898222745, 33.9010277531139])
+  this.source = new XYZ({
+    url: 'https://t.tilemap.jp/jcp_maps/shimonoseki_moji/{z}/{x}/{-y}.png',
+    crossOrigin: 'Anonymous',
+    minZoom: 11,
+    maxZoom: 16
+  })
+}
+const usaShimonosekiMojiObj = {};
+for (let i of mapsStr) {
+  usaShimonosekiMojiObj[i] = new TileLayer(new Usashimonoseki_moji())
+}
+// 吹田市
+function Usasuita () {
+  this.extent = transformE([135.46811271576692, 34.81241595216801, 135.58729734389593, 34.73599802051933])
+  this.source = new XYZ({
+    url: 'https://t.tilemap.jp/jcp_maps/suita/{z}/{x}/{-y}.png',
+    crossOrigin: 'Anonymous',
+    minZoom: 11,
+    maxZoom: 16
+  })
+}
+const usaSuitaObj = {};
+for (let i of mapsStr) {
+  usaSuitaObj[i] = new TileLayer(new Usasuita())
+}
+// 高田市
+function Usatakada () {
+  this.extent = transformE([138.2140323701369, 37.14730687866512, 138.28622804908625, 37.08329203410612])
+  this.source = new XYZ({
+    url: 'https://t.tilemap.jp/jcp_maps/takada/{z}/{x}/{-y}.png',
+    crossOrigin: 'Anonymous',
+    minZoom: 11,
+    maxZoom: 16
+  })
+}
+const usaTakadaObj = {};
+for (let i of mapsStr) {
+  usaTakadaObj[i] = new TileLayer(new Usatakada())
+}
+// 会津若松市
+function Usawakamatsu () {
+  this.extent = transformE([139.89971460019447, 37.5246569332612, 139.9580861738811, 37.4662552780602])
+  this.source = new XYZ({
+    url: 'https://t.tilemap.jp/jcp_maps/wakamatsu/{z}/{x}/{-y}.png',
+    crossOrigin: 'Anonymous',
+    minZoom: 11,
+    maxZoom: 16
+  })
+}
+const usaWakamatsuObj = {};
+for (let i of mapsStr) {
+  usaWakamatsuObj[i] = new TileLayer(new Usawakamatsu())
+}
+// 八代市
+function Usayatsushiro () {
+  this.extent = transformE([130.56782128418257, 32.52529691909547, 130.64291911328604, 32.4722538224630])
+  this.source = new XYZ({
+    url: 'https://t.tilemap.jp/jcp_maps/yatsushiro/{z}/{x}/{-y}.png',
+    crossOrigin: 'Anonymous',
+    minZoom: 11,
+    maxZoom: 16
+  })
+}
+const usaYatsushiroObj = {};
+for (let i of mapsStr) {
+  usaYatsushiroObj[i] = new TileLayer(new Usayatsushiro())
+}
 
 
 
@@ -10022,8 +10139,6 @@ const layers =
         { text: '能登CS立体図', data: { id: 'notocs', layer: notoCsObj, opacity: 1, zoom:9, center:[136.9312018478913, 37.22961765479215], summary: notoCsSumm } },
         { text: '能登西部赤色立体地図', data: { id: 'notoseibu', layer: notoSeibuObj, opacity: 1, zoom:9, center:[136.9312018478913, 37.22961765479215], summary: notoSeubuSumm } },
         { text: '東京都多摩地域CS立体図テスト', data: { id: 'tamacs', layer: tamaCsObj, opacity: 1, zoom:11, center:[139.29704672528052, 35.72614215101261], summary: tamaCsSumm } },
-
-
         { text: '兵庫県遺跡立体図',
           children: [
             { text: '摩耶山城', data: { id: 'mayasanjyou', layer: mayasanjyouObj, opacity: 1, zoom:17, center:[135.20985199593505, 34.72741190512792], summary: hyougoIsekiSumm } },
@@ -10121,6 +10236,15 @@ const layers =
             { text: '札幌市米軍作成地図', data: { id: 'usasapporo', layer: usaSapporoObj, opacity: 1, zoom:14,center:[141.35536412397946, 43.06892636116322], summary: usaSumm } },
             { text: '佐世保市米軍作成地図', data: { id: 'usasasebo', layer: usaSaseboObj, opacity: 1, zoom:14,center:[129.72231852764406, 33.16528142168997], summary: usaSumm } },
             { text: '薩摩川内市米軍作成地図', data: { id: 'usasatsumasendai', layer: usaSatsumaSendaiObj, opacity: 1, zoom:14,center:[130.29517169620925, 31.81471115754637], summary: usaSumm } },
+            { text: '仙台市米軍作成地図', data: { id: 'usasendai', layer: usaSendaiObj, opacity: 1, zoom:14,center:[140.87982181166603, 38.250530381152004], summary: usaSumm } },
+            { text: '飾磨米軍作成地図', data: { id: 'usashikama', layer: usaShikamaObj, opacity: 1, zoom:14,center:[134.63829226160837, 34.789644593059805], summary: usaSumm } },
+            { text: '島原市米軍作成地図', data: { id: 'usashimabara', layer: usaShimabaraObj, opacity: 1, zoom:14,center:[130.37058698251488, 32.788236967096566], summary: usaSumm } },
+            { text: '清水市米軍作成地図', data: { id: 'usashimizu', layer: usaShimizuObj, opacity: 1, zoom:14,center:[138.48768826913263, 35.01215927716039], summary: usaSumm } },
+            { text: '下関市米軍作成地図', data: { id: 'usashimonosekimoji', layer: usaShimonosekiMojiObj, opacity: 1, zoom:14,center:[130.9410210521442, 33.957283505139145], summary: usaSumm } },
+            { text: '吹田市米軍作成地図', data: { id: 'usasuita', layer: usaSuitaObj, opacity: 1, zoom:14,center:[135.51694635419656, 34.75931078354789], summary: usaSumm } },
+            { text: '高田市米軍作成地図', data: { id: 'usatakada', layer: usaTakadaObj, opacity: 1, zoom:14,center:[138.2511152508723, 37.11354699331529], summary: usaSumm } },
+            { text: '会津若松市米軍作成地図', data: { id: 'usawakamatsu', layer: usaWakamatsuObj, opacity: 1, zoom:14,center:[139.9299974105249, 37.494923943160856], summary: usaSumm } },
+            { text: '八代市米軍作成地図', data: { id: 'usayatsushiro', layer: usaYatsushiroObj, opacity: 1, zoom:14,center:[130.60432480777075, 32.49776723135341], summary: usaSumm } },
 
 
           ]},
