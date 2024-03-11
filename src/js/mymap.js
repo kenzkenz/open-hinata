@@ -180,23 +180,23 @@ export function initMap (vm) {
             // OL6ではバグのため動かない。無理やり動かすにはlayer.jsのレイヤーにthis.className = 'hoge'と
             // 入れるといいが今度は合成が効かなくなる
             // const pixel = (map).getPixelFromCoordinate(evt.coordinate);
-            const layers = [];
-            const layers00 = evt.map.getLayers().getArray();
-            let mw5 = layers00.find(el => el.get('mw'));
-            if (mw5) return
-            if (!mw5) {
-                try {
-                    (map).forEachLayerAtPixel(evt.pixel,function(layer){
-                        layers.push(layer);
-                    });
-                } catch (error) {}
-            }
-            const tgtLayers = layers.filter(function(layer) {
-                return layer.get('pointer');
-            })
-            if (tgtLayers.length>0) {
-                document.querySelector('#' + mapName + ' .ol-viewport').style.cursor = "pointer"
-            }
+            // const layers = [];
+            // const layers00 = evt.map.getLayers().getArray();
+            // let mw5 = layers00.find(el => el.get('mw'));
+            // if (mw5) return
+            // if (!mw5) {
+            //     try {
+            //         (map).forEachLayerAtPixel(evt.pixel,function(layer){
+            //             layers.push(layer);
+            //         });
+            //     } catch (error) {}
+            // }
+            // const tgtLayers = layers.filter(function(layer) {
+            //     return layer.get('pointer');
+            // })
+            // if (tgtLayers.length>0) {
+            //     document.querySelector('#' + mapName + ' .ol-viewport').style.cursor = "pointer"
+            // }
         });
         // シングルクリック------------------------------------------------------------------------------------
         // 洪水,津波,継続用-----------------------------------------------------------------
