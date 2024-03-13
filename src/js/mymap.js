@@ -559,7 +559,7 @@ export function initMap (vm) {
             // }
             //------------------------------------------------------
 
-            console.log(transform(evt.coordinate, "EPSG:3857", "EPSG:4326"));
+            console.log(JSON.stringify(transform(evt.coordinate, "EPSG:3857", "EPSG:4326")));
             const map = evt.map;
             //  洪水浸水想定と重ねるときは動作させない
             const layers0 = map.getLayers().getArray();
