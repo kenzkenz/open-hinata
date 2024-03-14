@@ -1720,9 +1720,9 @@ for (let i of mapsStr) {
   ehimeCsObj[i] = new TileLayer(new EhimeCs())
 }
 const ehimeCsSumm = '出典：<a href="https://www2.ffpri.go.jp/soilmap/index.html" target="_blank">森林総研・森林土壌デジタルマップ</a>'
-// 東京都多摩地域CS立体図test----------------------------------------------------------------------------
+// 東京都CS立体図test----------------------------------------------------------------------------
 function TamaCs () {
-  // this.extent = transformE([132.0778, 34.37512,134.2125, 32.83277])
+  this.extent = transformE([138.93110047834082,35.90551606609344, 139.60311090985996,35.49503296693065])
   this.source = new XYZ({
     url: 'https://shiworks.xsrv.jp/raster-tiles/tokyo-digitaltwin/tokyopc-tama-2023-cs-tiles/{z}/{x}/{y}.png',
     crossOrigin: 'Anonymous',
@@ -1735,6 +1735,105 @@ for (let i of mapsStr) {
   tamaCsObj[i] = new TileLayer(new TamaCs())
 }
 const tamaCsSumm = '<a href="https://github.com/shi-works/aist-dem-with-cs-on-maplibre-gl-js" target="_blank">aist-dem-with-cs-on-maplibre-gl-js</a>'
+// 伊豆大島
+function izuooshima () {
+  this.extent = transformE([139.34043993591177,34.804413371961076, 139.45518445569877,34.67391471650552])
+  this.source = new XYZ({
+    url: 'https://xs489works.xsrv.jp/raster-tiles/tokyo-digitaltwin/tokyopc-shima-01-2023-cs-tiles/{z}/{x}/{y}.png',
+    crossOrigin: 'Anonymous',
+    minZoom: 4,
+    maxZoom: 19
+  });
+}
+const izuooshimaCsObj = {};
+for (let i of mapsStr) {
+  izuooshimaCsObj[i] = new TileLayer(new izuooshima())
+}
+// 利島、新島、式根島、神津島
+function tomoshima () {
+  this.extent = transformE([138.98320733791348,34.56847662565042, 139.39485131984708,34.13658562384532])
+  this.source = new XYZ({
+    url: 'https://xs489works.xsrv.jp/raster-tiles/tokyo-digitaltwin/tokyopc-shima-02-2023-cs-tiles/{z}/{x}/{y}.png',
+    crossOrigin: 'Anonymous',
+    minZoom: 4,
+    maxZoom: 19
+  });
+}
+const tomoshimaCsObj = {};
+for (let i of mapsStr) {
+  tomoshimaCsObj[i] = new TileLayer(new tomoshima())
+}
+//三宅島
+function miyakejima () {
+  this.extent = transformE([139.46296685190651,34.13809622325495, 139.57339784444721,34.041136939996946])
+  this.source = new XYZ({
+    url: 'https://xs489works.xsrv.jp/raster-tiles/tokyo-digitaltwin/tokyopc-shima-03-2023-cs-tiles/{z}/{x}/{y}.png',
+    crossOrigin: 'Anonymous',
+    minZoom: 4,
+    maxZoom: 19
+  });
+}
+const miyakejimCsObj = {};
+for (let i of mapsStr) {
+  miyakejimCsObj[i] = new TileLayer(new miyakejima())
+}
+// 御蔵島
+function mikurajima () {
+  this.extent = transformE([139.57190963346537,33.90455655595973, 139.63541741005005,33.84863773109609])
+  this.source = new XYZ({
+    url: 'https://xs489works.xsrv.jp/raster-tiles/tokyo-digitaltwin/tokyopc-shima-04-2023-cs-tiles/{z}/{x}/{y}.png',
+    crossOrigin: 'Anonymous',
+    minZoom: 4,
+    maxZoom: 19
+  });
+}
+const mikurajimaCsObj = {};
+for (let i of mapsStr) {
+  mikurajimaCsObj[i] = new TileLayer(new mikurajima())
+}
+// 八丈島
+function hachijojima () {
+  this.extent = transformE([139.63696957828407,33.17531101027478, 139.86877396530423,33.03842021632886])
+  this.source = new XYZ({
+    url: 'https://xs489works.xsrv.jp/raster-tiles/tokyo-digitaltwin/tokyopc-shima-05-2023-cs-tiles/{z}/{x}/{y}.png',
+    crossOrigin: 'Anonymous',
+    minZoom: 4,
+    maxZoom: 19
+  });
+}
+const hachijojimaCsObj = {};
+for (let i of mapsStr) {
+  hachijojimaCsObj[i] = new TileLayer(new hachijojima())
+}
+// 青ヶ島
+function aogashima () {
+  this.extent = transformE([139.75174508612426,32.47625962061629, 139.78321093985278,32.440960255575675])
+  this.source = new XYZ({
+    url: 'https://xs489works.xsrv.jp/raster-tiles/tokyo-digitaltwin/tokyopc-shima-06-2023-cs-tiles/{z}/{x}/{y}.png',
+    crossOrigin: 'Anonymous',
+    minZoom: 4,
+    maxZoom: 19
+  });
+}
+const aogashimaCsObj = {};
+for (let i of mapsStr) {
+  aogashimaCsObj[i] = new TileLayer(new aogashima())
+}
+
+const tokyoCsObj = {};
+for (let i of mapsStr) {
+  tokyoCsObj[i] = new LayerGroup({
+    layers: [
+      tamaCsObj[i],
+      izuooshimaCsObj[i],
+      tomoshimaCsObj[i],
+      miyakejimCsObj[i],
+      mikurajimaCsObj[i],
+      hachijojimaCsObj[i],
+      aogashimaCsObj[i]
+    ]
+  })
+}
 
 const cs00Obj = {}
 for (let i of mapsStr) {
@@ -1753,7 +1852,8 @@ for (let i of mapsStr) {
       kochiCsObj[i],
       kumamotoCsObj[i],
       osakaCsObj[i],
-      notoCsObj[i]
+      notoCsObj[i],
+      tokyoCsObj[i],
     ]
   })
 }
@@ -9693,6 +9793,71 @@ const usaKamaishiObj = {};
 for (let i of mapsStr) {
   usaKamaishiObj[i] = new TileLayer(new Usakamaishi())
 }
+// 金沢市
+function Usakanazawa() {
+  this.extent = transformE([136.57678119459374,36.616141434534484, 136.70692666986213,36.51525054188362])
+  this.source = new XYZ({
+    url: 'https://kenzkenz3.xsrv.jp/jcp_maps/kanazawa/{z}/{x}/{y}.png',
+    crossOrigin: 'Anonymous',
+    maxZoom: 16
+  })
+}
+const usaKanazawaObj = {};
+for (let i of mapsStr) {
+  usaKanazawaObj[i] = new TileLayer(new Usakanazawa())
+}
+// 川越市
+function Usakawagoe() {
+  this.extent = transformE([139.4570958921943,35.942500179173905, 139.52681723332742,35.87309357493287])
+  this.source = new XYZ({
+    url: 'https://kenzkenz3.xsrv.jp/jcp_maps/kawagoe/{z}/{x}/{y}.png',
+    crossOrigin: 'Anonymous',
+    maxZoom: 16
+  })
+}
+const usaKawagoeObj = {};
+for (let i of mapsStr) {
+  usaKawagoeObj[i] = new TileLayer(new Usakawagoe())
+}
+// 豊田市（挙母）
+function Usakoromo() {
+  this.extent = transformE([137.08772963931085,35.13859479723625, 137.1960466270638,35.027068132737384])
+  this.source = new XYZ({
+    url: 'https://kenzkenz3.xsrv.jp/jcp_maps/koromo/{z}/{x}/{y}.png',
+    crossOrigin: 'Anonymous',
+    maxZoom: 16
+  })
+}
+const usaKoromoObj = {};
+for (let i of mapsStr) {
+  usaKoromoObj[i] = new TileLayer(new Usakoromo())
+}
+// 下松市
+function Usakudamtsu() {
+  this.extent = transformE([131.8186521172428,34.038862259919966, 131.89699206649303,33.96796119128024])
+  this.source = new XYZ({
+    url: 'https://kenzkenz3.xsrv.jp/jcp_maps/kudamatsu/{z}/{x}/{y}.png',
+    crossOrigin: 'Anonymous',
+    maxZoom: 16
+  })
+}
+const usaKudamatsuObj = {};
+for (let i of mapsStr) {
+  usaKudamatsuObj[i] = new TileLayer(new Usakudamtsu())
+}
+// 桑名市
+function Usakuwana() {
+  this.extent = transformE([136.61704718511825,35.13788876963871, 136.77256971042877,34.97847375883852])
+  this.source = new XYZ({
+    url: 'https://kenzkenz3.xsrv.jp/jcp_maps/kuwana/{z}/{x}/{y}.png',
+    crossOrigin: 'Anonymous',
+    maxZoom: 16
+  })
+}
+const usaKuwanaObj = {};
+for (let i of mapsStr) {
+  usaKuwanaObj[i] = new TileLayer(new Usakuwana())
+}
 
 
 // 高知市
@@ -9752,19 +9917,19 @@ for (let i of mapsStr) {
   usaKoriyamaObj[i] = new TileLayer(new Usakoriyama())
 }
 // 豊田市挙母（ころも）
-function Usakoromo () {
-  this.extent = transformE([137.0879820918465, 35.13749809828019, 137.19499150270465, 35.02774573542449])
-  this.source = new XYZ({
-    url: 'https://t.tilemap.jp/jcp_maps/koromo/{z}/{x}/{-y}.png',
-    crossOrigin: 'Anonymous',
-    minZoom: 11,
-    maxZoom: 16
-  })
-}
-const usaKoromoObj = {};
-for (let i of mapsStr) {
-  usaKoromoObj[i] = new TileLayer(new Usakoromo())
-}
+// function Usakoromo () {
+//   this.extent = transformE([137.0879820918465, 35.13749809828019, 137.19499150270465, 35.02774573542449])
+//   this.source = new XYZ({
+//     url: 'https://t.tilemap.jp/jcp_maps/koromo/{z}/{x}/{-y}.png',
+//     crossOrigin: 'Anonymous',
+//     minZoom: 11,
+//     maxZoom: 16
+//   })
+// }
+// const usaKoromoObj = {};
+// for (let i of mapsStr) {
+//   usaKoromoObj[i] = new TileLayer(new Usakoromo())
+// }
 // 熊本市
 function Usakumamoto () {
   this.extent = transformE([130.6754534531498, 32.83726270469704, 130.77889418491364, 32.75070766375866])
@@ -9808,19 +9973,19 @@ for (let i of mapsStr) {
   usaKushiroObj[i] = new TileLayer(new Usakushiro())
 }
 // 四日市市
-function Usakuwana () {
-  this.extent = transformE([136.6158335235405, 35.13755358853798, 136.7740100946712, 34.979373034182586])
-  this.source = new XYZ({
-    url: 'https://t.tilemap.jp/jcp_maps/kuwana_tomita/{z}/{x}/{-y}.png',
-    crossOrigin: 'Anonymous',
-    minZoom: 11,
-    maxZoom: 16
-  })
-}
-const usaKuwanaObj = {};
-for (let i of mapsStr) {
-  usaKuwanaObj[i] = new TileLayer(new Usakuwana())
-}
+// function Usakuwana () {
+//   this.extent = transformE([136.6158335235405, 35.13755358853798, 136.7740100946712, 34.979373034182586])
+//   this.source = new XYZ({
+//     url: 'https://t.tilemap.jp/jcp_maps/kuwana_tomita/{z}/{x}/{-y}.png',
+//     crossOrigin: 'Anonymous',
+//     minZoom: 11,
+//     maxZoom: 16
+//   })
+// }
+// const usaKuwanaObj = {};
+// for (let i of mapsStr) {
+//   usaKuwanaObj[i] = new TileLayer(new Usakuwana())
+// }
 // 京都市(北)
 function Usakyoto_north () {
   this.extent = transformE([135.69243533265592, 35.07483494738305, 135.80488895726202, 34.98779081635700])
@@ -10805,6 +10970,7 @@ const layers =
         // { text: '全国CS立体図10m', data: { id: 'cs10', layer: cs10mObj, opacity: 1, summary: cs10mSumm } },
         { text: '東京都陰陽図', data: { id: 'tamainyou', layer: tamainyouObj, opacity: 1, zoom:11, center:[139.25439119338986, 35.6997080831123], summary: tamainyouSumm } },
         { text: '東京都赤色立体地図', data: { id: 'tamared', layer: tamaredObj, opacity: 1, zoom:11, center:[139.25439119338986, 35.6997080831123], summary: tamaredSumm } },
+        { text: '東京都CS立体図テスト', data: { id: 'tamacs', layer: tokyoCsObj, opacity: 1, zoom:11, center:[139.25439119338986, 35.6997080831123], summary: tamaCsSumm } },
         { text: 'CS立体図全部', data: { id: 'cs00', layer: cs00Obj, opacity: 1, summary: tamainyouSumm } },
         { text: '栃木県CS立体図', data: { id: 'tochigcs', layer: tochigicsObj, opacity: 1, zoom:10, center:[139.7261306915493, 36.67065922020146], summary: tochigicsSumm } },
         { text: '岐阜県CS立体図', data: { id: 'gcs', layer: gihuCsObj, opacity: 1, zoom:9, center:[137.03491577372932, 35.871742161031975], summary: gihuCsSumm } },
@@ -10822,7 +10988,6 @@ const layers =
         { text: '大阪府CS立体図', data: { id: 'osakacs', layer: osakaCsObj, opacity: 1, zoom:9, center:[135.5167507309548, 34.68490347466543], summary: osakaSumm } },
         { text: '能登CS立体図', data: { id: 'notocs', layer: notoCsObj, opacity: 1, zoom:9, center:[136.9312018478913, 37.22961765479215], summary: notoCsSumm } },
         { text: '能登西部赤色立体地図', data: { id: 'notoseibu', layer: notoSeibuObj, opacity: 1, zoom:9, center:[136.9312018478913, 37.22961765479215], summary: notoSeubuSumm } },
-        { text: '東京都多摩地域CS立体図テスト', data: { id: 'tamacs', layer: tamaCsObj, opacity: 1, zoom:11, center:[139.29704672528052, 35.72614215101261], summary: tamaCsSumm } },
         { text: '兵庫県遺跡立体図',
           children: [
             { text: '摩耶山城', data: { id: 'mayasanjyou', layer: mayasanjyouObj, opacity: 1, zoom:17, center:[135.20985199593505, 34.72741190512792], summary: hyougoIsekiSumm } },
@@ -10897,7 +11062,6 @@ const layers =
             { text: '延岡市米軍作成地図', data: { id: 'usanobeoka', layer: usaNobeokaObj, opacity: 1, zoom:14,center:[131.664854,32.582407], summary: usaSumm } },
             { text: '都城市米軍作成地図', data: { id: 'usamiyakonojyou', layer: usaMiyakonojyouObj, opacity: 1, zoom:14,center:[131.061498,31.719552], summary: usaSumm } },
             { text: '高鍋町米軍作成地図', data: { id: 'usatakanabe', layer: usaTakanabeObj, opacity: 1, zoom:14,center:[131.52414538936347, 32.1261147281202], summary: usaSumm } },
-            { text: '鹿児島市米軍作成地図', data: { id: 'usakagoshima', layer: usaKagoshimaObj, opacity: 1, zoom:14,center:[130.557143,31.596715], summary: usaSumm } },
             { text: '明石市米軍作成地図', data: { id: 'usaakashi', layer: usaAkashiObj, opacity: 1, zoom:14,center:[134.9791309948764, 34.66807915925325], summary: usaSumm } },
             { text: '相生市米軍作成地図', data: { id: 'usaharima', layer: usaHarimaObj, opacity: 1, zoom:14,center:[134.46288962129597, 34.780312495944486], summary: usaSumm } },
             { text: '秋田市米軍作成地図', data: { id: 'usaakita', layer: usaAkitaObj, opacity: 1, zoom:14,center:[140.11091310026987, 39.70899544076053], summary: usaSumm } },
@@ -10927,19 +11091,30 @@ const layers =
             { text: '一宮市米軍作成地図', data: { id: 'usaichinomiya', layer: usaIchinomiyaObj, opacity: 1, zoom:13,center:[136.81835453343757,35.273135052975476], summary: usaSumm } },
             { text: '諫早市米軍作成地図', data: { id: 'usaisahaya', layer: usaIsahayaObj, opacity: 1, zoom:14,center:[130.06467120006434,32.840319404702896], summary: usaSumm } },
             { text: '飯塚市米軍作成地図', data: { id: 'usaiizuka', layer: usaIizukaObj, opacity: 1, zoom:13,center:[130.68341804413788,33.62572602992823], summary: usaSumm } },
+            { text: '鹿児島市米軍作成地図', data: { id: 'usakagoshima', layer: usaKagoshimaObj, opacity: 1, zoom:14,center:[130.557143,31.596715], summary: usaSumm } },
             { text: '加治木米軍作成地図', data: { id: 'usakajiki', layer: usaKajikiObj, opacity: 1, zoom:13,center:[130.66446755589058,31.731392530986824], summary: usaSumm } },
             { text: '釜石市米軍作成地図', data: { id: 'usakamaishi', layer: usaKamaishiObj, opacity: 1, zoom:13,center:[141.88005611648893,39.2710739865191], summary: usaSumm } },
+            { text: '金沢市米軍作成地図', data: { id: 'usakanazawa', layer: usaKanazawaObj, opacity: 1, zoom:13,center:[136.64052992680297,36.56502443349926], summary: usaSumm } },
 
+
+            { text: '川越市米軍作成地図', data: { id: 'usakawagoe', layer: usaKawagoeObj, opacity: 1, zoom:13,center:[139.4874263117347,35.90666555259706], summary: usaSumm } },
 
             { text: '高知市米軍作成地図', data: { id: 'usakochi', layer: usaKochiObj, opacity: 1, zoom:14,center:[133.52569693330742, 33.5356571682687], summary: usaSumm } },
             { text: '甲府市米軍作成地図', data: { id: 'usakofu', layer: usaKofuObj, opacity: 1, zoom:14,center:[138.56572282398247, 35.665528114360654], summary: usaSumm } },
+
             { text: '小倉米軍作成地図', data: { id: 'usakokura', layer: usaKokuraObj, opacity: 1, zoom:14,center:[130.89175739435885, 33.875396768025425], summary: usaSumm } },
             { text: '郡山市米軍作成地図', data: { id: 'usakoriyama', layer: usaKoriyamaObj, opacity: 1, zoom:14,center:[140.3779026527439, 37.40162906062439], summary: usaSumm } },
-            { text: '豊田市米軍作成地図', data: { id: 'usakoromo', layer: usaKoromoObj, opacity: 1, zoom:14,center:[137.1415158375926, 35.08114508362503], summary: usaSumm } },
+            { text: '豊田市（挙母）米軍作成地図', data: { id: 'usakoromo', layer: usaKoromoObj, opacity: 1, zoom:13,center:[137.1415158375926, 35.08114508362503], summary: usaSumm } },
             { text: '熊本市米軍作成地図', data: { id: 'usakumamoto', layer: usaKumamotoObj, opacity: 1, zoom:14,center:[130.72708829149786, 32.7910432578403], summary: usaSumm } },
+            { text: '下松市米軍作成地図', data: { id: 'usakudamatsu', layer: usaKudamatsuObj, opacity: 1, zoom:13,center:[131.86076536167369,34.00346970333018], summary: usaSumm } },
             { text: '久留米市米軍作成地図', data: { id: 'usakurume', layer: usaKurumeObj, opacity: 1, zoom:14,center:[130.53467486266592, 33.30051990907333], summary: usaSumm } },
             { text: '釧路市米軍作成地図', data: { id: 'usakushiro', layer: usaKushiroObj, opacity: 1, zoom:14,center:[144.3922583910218, 42.991142090958704], summary: usaSumm } },
-            { text: '四日市市米軍作成地図', data: { id: 'usakuwana', layer: usaKuwanaObj, opacity: 1, zoom:14,center:[136.6955319616198, 35.055844548035935], summary: usaSumm } },
+            { text: '桑名市米軍作成地図', data: { id: 'usakuwana', layer: usaKuwanaObj, opacity: 1, zoom:12,center:[136.69065236490493,35.052347350793326], summary: usaSumm } },
+
+
+
+
+            // { text: '四日市市米軍作成地図', data: { id: 'usakuwana', layer: usaKuwanaObj, opacity: 1, zoom:14,center:[136.6955319616198, 35.055844548035935], summary: usaSumm } },
             { text: '京都市(北)米軍作成地図', data: { id: 'usakyouton', layer: usaKyotoNorthObj, opacity: 1, zoom:14,center:[135.7494983835389, 35.030220302258456], summary: usaSumm } },
             { text: '京都市(南)米軍作成地図', data: { id: 'usakyoutos', layer: usaKyotoSouthObj, opacity: 1, zoom:14,center:[135.74980960473547, 34.95640834372388], summary: usaSumm } },
             { text: '前橋市米軍作成地図', data: { id: 'usamaebashi', layer: usaMaebashiObj, opacity: 1, zoom:14,center:[139.0727755381333, 36.39605054722378], summary: usaSumm } },
