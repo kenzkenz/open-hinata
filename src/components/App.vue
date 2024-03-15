@@ -209,12 +209,24 @@
         // http://localhost:8080/#yweq
         const vm = this
         const hash = window.location.hash.replace('#','')
-        const zoomParameter = Number(hash.split('/')[0])
+        // const zoomParameter = Number(hash.split('/')[0])
+        // let urlid
+        // if (isNaN(zoomParameter)) {
+        //   urlid = hash
+        // } else {
+        //   urlid = 999
+        // }
         let urlid
-        if (isNaN(zoomParameter)) {
-          urlid = hash
+        if (hash.length === 5 && hash.substring(0,1) === 's') {
+          // 改善後の短縮URL 最初がsの５桁になっている。
+          urlid = hash.substring(1)
         } else {
-          urlid = 999
+          const zoomParameter = Number(hash.split('/')[0])
+          if (isNaN(zoomParameter)) {
+            urlid = hash
+          } else {
+            urlid = 999
+          }
         }
         axios.get('https://kenzkenz.xsrv.jp/open-hinata/php/shorturl.php',{
           params: {

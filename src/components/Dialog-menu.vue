@@ -99,9 +99,9 @@
               console.log(response)
               let host
               if (window.location.host.indexOf('localhost') !== -1) {
-                host = 'http://localhost:8080/#'
+                host = 'http://localhost:8080/#s'
               } else {
-                host = 'https://kenzkenz.xsrv.jp/open-hinata/#'
+                host = 'https://kenzkenz.xsrv.jp/open-hinata/#s'
               }
               // vm.shortUrlText = 'https://kenzkenz.xsrv.jp/open-hinata/#' + response.data.urlid
               vm.shortUrlText = host + response.data.urlid
