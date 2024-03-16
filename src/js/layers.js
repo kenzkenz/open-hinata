@@ -10850,15 +10850,45 @@ const usaTsuyamaObj = {};
 for (let i of mapsStr) {
   usaTsuyamaObj[i] = new TileLayer(new Usatsuyama())
 }
-
-
-
-
-
-
-
-
-
+// 宇部市
+function Usaube () {
+  this.extent = transformE([131.21090737917757,33.985496410975, 131.27556202748153,33.91514344585086])
+  this.source = new XYZ({
+    url: 'https://kenzkenz3.xsrv.jp/jcp_maps/ube/{z}/{x}/{y}.png',
+    crossOrigin: 'Anonymous',
+    maxZoom: 16
+  })
+}
+const usaUbeObj = {};
+for (let i of mapsStr) {
+  usaUbeObj[i] = new TileLayer(new Usaube())
+}
+// 魚津市
+function Usauotsu () {
+  this.extent = transformE([137.359654715174,36.84154335048109, 137.4231533313926,36.78819929793053])
+  this.source = new XYZ({
+    url: 'https://kenzkenz3.xsrv.jp/jcp_maps/uotsu/{z}/{x}/{y}.png',
+    crossOrigin: 'Anonymous',
+    maxZoom: 16
+  })
+}
+const usaUotsuObj = {};
+for (let i of mapsStr) {
+  usaUotsuObj[i] = new TileLayer(new Usauotsu())
+}
+// 宇都宮市
+function Usautsunomiya () {
+  this.extent = transformE([139.80726931534997,36.60692094994177, 139.94236346625078,36.51922096392269])
+  this.source = new XYZ({
+    url: 'https://kenzkenz3.xsrv.jp/jcp_maps/utsunomiya/{z}/{x}/{y}.png',
+    crossOrigin: 'Anonymous',
+    maxZoom: 16
+  })
+}
+const usaUtsunomiyaObj = {};
+for (let i of mapsStr) {
+  usaUtsunomiyaObj[i] = new TileLayer(new Usautsunomiya())
+}
 // 会津若松市
 function Usawakamatsu () {
   this.extent = transformE([139.89971460019447, 37.5246569332612, 139.9580861738811, 37.4662552780602])
@@ -10873,6 +10903,32 @@ const usaWakamatsuObj = {};
 for (let i of mapsStr) {
   usaWakamatsuObj[i] = new TileLayer(new Usawakamatsu())
 }
+// 和歌山市
+function Usawakayama () {
+  this.extent = transformE([135.10168442914156,34.278745841537926, 135.2230356116023,34.16603880752899])
+  this.source = new XYZ({
+    url: 'https://kenzkenz3.xsrv.jp/jcp_maps/wakayama/{z}/{x}/{y}.png',
+    crossOrigin: 'Anonymous',
+    maxZoom: 16
+  })
+}
+const usaWakayamaObj = {};
+for (let i of mapsStr) {
+  usaWakayamaObj[i] = new TileLayer(new Usawakayama())
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
 // 八代市
 function Usayatsushiro () {
   this.extent = transformE([130.56782128418257, 32.52529691909547, 130.64291911328604, 32.4722538224630])
@@ -11322,9 +11378,13 @@ for (let i of mapsStr) {
       usaTsuchizakiObj[i],
       usaTsurugaObj[i],
       usaTsuyamaObj[i],
-
-
+      usaUbeObj[i],
+      usaUotsuObj[i],
+      usaUtsunomiyaObj[i],
       usaWakamatsuObj[i],
+      usaWakayamaObj[i],
+
+
       usaYatsushiroObj[i],
 
     ]
@@ -11591,9 +11651,14 @@ const layers =
             { text: '土崎米軍作成地図', data: { id: 'usatsuchizaki', layer: usaTsuchizakiObj, opacity: 1, zoom:14,center:[140.06804454729837,39.753546265267914], summary: usaSumm } },
             { text: '敦賀市米軍作成地図', data: { id: 'usatsuruga', layer: usaTsurugaObj, opacity: 1, zoom:13,center:[136.0618823951671,35.6431835898338], summary: usaSumm } },
             { text: '津山市米軍作成地図', data: { id: 'usatsuyama', layer: usaTsuyamaObj, opacity: 1, zoom:13,center:[134.00492553738704,35.059401209339356], summary: usaSumm } },
-
-
+            { text: '宇部市米軍作成地図', data: { id: 'usaube', layer: usaUbeObj, opacity: 1, zoom:13,center:[131.2445335630451,33.94980711428086], summary: usaSumm } },
+            { text: '魚津市米軍作成地図', data: { id: 'usauotsu', layer: usaUotsuObj, opacity: 1, zoom:14,center:[137.39223081421213,36.81205945149324], summary: usaSumm } },
+            { text: '宇都宮市米軍作成地図', data: { id: 'usautsunomiya', layer: usaUtsunomiyaObj, opacity: 1, zoom:13,center:[139.87653065763703,36.561033237402626], summary: usaSumm } },
             { text: '会津若松市米軍作成地図', data: { id: 'usawakamatsu', layer: usaWakamatsuObj, opacity: 1, zoom:14,center:[139.9299974105249, 37.494923943160856], summary: usaSumm } },
+            { text: '和歌山市米軍作成地図', data: { id: 'usawakayama', layer: usaWakayamaObj, opacity: 1, zoom:13,center:[135.1655773300853,34.22291018083982], summary: usaSumm } },
+
+
+
             { text: '八代市米軍作成地図', data: { id: 'usayatsushiro', layer: usaYatsushiroObj, opacity: 1, zoom:14,center:[130.60432480777075, 32.49776723135341], summary: usaSumm } },
 
           ]},
