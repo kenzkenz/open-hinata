@@ -10855,6 +10855,10 @@ for (let i of mapsStr) {
 
 
 
+
+
+
+
 // 会津若松市
 function Usawakamatsu () {
   this.extent = transformE([139.89971460019447, 37.5246569332612, 139.9580861738811, 37.4662552780602])
@@ -11200,7 +11204,96 @@ for (let i of mapsStr) {
   })
 }
 
+const usaall = {};
+for (let i of mapsStr) {
+  usaall[i] = new LayerGroup({
+    layers: [
+      usatokyoall[i],
+      usaMiyazakiObj[i],
+      usaNobeokaObj[i],
+      usaMiyakonojyouObj[i],
+      usaTakanabeObj[i],
+      usaAkashiObj[i],
+      usaHarimaObj[i],
+      usaAkitaObj[i],
+      usaAomoriObj[i],
+      usaAsahikawaObj[i],
+      usaChibaObj[i],
+      usaFujinomiyaObj[i],
+      usaFukuiObj[i],
+      usaFukushimaObj[i],
+      usaFushikiObj[i],
+      usaGifuObj[i],
+      usaHabuObj[i],
+      usaHachinoheObj[i],
+      usaHagiObj[i],
+      usaHakodateObj[i],
+      usaHandaObj[i],
+      usaHigashiiwaseObj[i],
+      usaHikoneObj[i],
+      usaHimejiObj[i],
+      usaHirakataObj[i],
+      usaHiratsukaObj[i],
+      usaHiromachiObj[i],
+      usaHirosakiObj[i],
+      usaHiroshimaObj[i],
+      usaHitachiObj[i],
+      usaHitoyoshiObj[i],
+      usaIchinomiyaObj[i],
+      usaIsahayaObj[i],
+      usaIizukaObj[i],
+      usaKagoshimaObj[i],
+      usaKajikiObj[i],
+      usaKamaishiObj[i],
+      usaKanazawaObj[i],
+      usaKandaObj[i],
+      usaKaratsuObj[i],
+      usaKariyaObj[i],
+      usaKashiwazakiObj[i],
+      usaKawagoeObj[i],
+      usaKochiObj[i],
+      usaKofuObj[i],
+      usaKokuraObj[i],
+      usaKoriyamaObj[i],
+      usaKoromoObj[i],
+      usaKumamotoObj[i],
+      usaKudamatsuObj[i],
+      usaKurumeObj[i],
+      usaKushiroObj[i],
+      usaKuwanaObj[i],
+      usaKyotoNorthObj[i],
+      usaKyotoSouthObj[i],
+      usaMaebashiObj[i],
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    ]
+  })
+}
 
 
 
@@ -11329,6 +11422,7 @@ const layers =
         { text: '<i class="fa-solid fa-layer-group"></i>戦前地形図20万分の１', data: { id: 'mw20', layer: mw20Obj, opacity: 1, summary: mw20Summ } },
         { text: '米軍作成地図（1945-46年）',
           children: [
+            { text: '米軍作成地図全て', data: { id: 'usaall', layer: usaall, opacity: 1, summary: usaSumm } },
             { text: '東京近郊',
               children: [
                 { text: '東京近郊全て', data: { id: 'usatokyoall', layer: usatokyoall, opacity: 1, zoom:10,center:[139.65686651442184, 35.552882260038075], summary: usaTokyoSumm } },
