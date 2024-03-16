@@ -10772,6 +10772,85 @@ const usaToyamaObj = {};
 for (let i of mapsStr) {
   usaToyamaObj[i] = new TileLayer(new Usatoyama())
 }
+// 豊橋市(北)
+function Usatoyohasi_north () {
+  this.extent = transformE([137.30419119783116,34.79819174398203, 137.4371489692516,34.699863481299786])
+  this.source = new XYZ({
+    url: 'https://kenzkenz3.xsrv.jp/jcp_maps/toyohashi_north/{z}/{x}/{y}.png',
+    crossOrigin: 'Anonymous',
+    maxZoom: 16
+  })
+}
+const usaToyohashiNorthObj = {};
+for (let i of mapsStr) {
+  usaToyohashiNorthObj[i] = new TileLayer(new Usatoyohasi_north())
+}
+// 豊橋市(南)
+function Usatoyohasi_south () {
+  this.extent = transformE([137.3040570873804,34.77214256985337, 137.4375519711561,34.67231637720508])
+  this.source = new XYZ({
+    url: 'https://kenzkenz3.xsrv.jp/jcp_maps/toyohashi_south/{z}/{x}/{y}.png',
+    crossOrigin: 'Anonymous',
+    maxZoom: 16
+  })
+}
+const usaToyohashiSouthObj = {};
+for (let i of mapsStr) {
+  usaToyohashiSouthObj[i] = new TileLayer(new Usatoyohasi_south())
+}
+// 豊川市
+function Usatoyokawa () {
+  this.extent = transformE([137.3300625528809,34.87697931243254, 137.4370303894993,34.78739376103327])
+  this.source = new XYZ({
+    url: 'https://kenzkenz3.xsrv.jp/jcp_maps/toyokawa/{z}/{x}/{y}.png',
+    crossOrigin: 'Anonymous',
+    maxZoom: 16
+  })
+}
+const usaToyokawaObj = {};
+for (let i of mapsStr) {
+  usaToyokawaObj[i] = new TileLayer(new Usatoyokawa())
+}
+// 土崎
+function Usatsuchizaki () {
+  this.extent = transformE([140.0322280044941,39.77748578452113, 140.10570276186743,39.73013139828953])
+  this.source = new XYZ({
+    url: 'https://kenzkenz3.xsrv.jp/jcp_maps/tsuchizaki/{z}/{x}/{y}.png',
+    crossOrigin: 'Anonymous',
+    maxZoom: 16
+  })
+}
+const usaTsuchizakiObj = {};
+for (let i of mapsStr) {
+  usaTsuchizakiObj[i] = new TileLayer(new Usatsuchizaki())
+}
+// 敦賀市
+function Usatsuruga () {
+  this.extent = transformE([136.02015594007466,35.67725529086043, 136.1043337172458,35.61019094654843])
+  this.source = new XYZ({
+    url: 'https://kenzkenz3.xsrv.jp/jcp_maps/tsuruga/{z}/{x}/{y}.png',
+    crossOrigin: 'Anonymous',
+    maxZoom: 16
+  })
+}
+const usaTsurugaObj = {};
+for (let i of mapsStr) {
+  usaTsurugaObj[i] = new TileLayer(new Usatsuruga())
+}
+// 津山市
+function Usatsuyama () {
+  this.extent = transformE([133.9546515527164,35.093894098921695, 134.05467984406104,35.028394837132595])
+  this.source = new XYZ({
+    url: 'https://kenzkenz3.xsrv.jp/jcp_maps/tsuyama/{z}/{x}/{y}.png',
+    crossOrigin: 'Anonymous',
+    maxZoom: 16
+  })
+}
+const usaTsuyamaObj = {};
+for (let i of mapsStr) {
+  usaTsuyamaObj[i] = new TileLayer(new Usatsuyama())
+}
+
 
 
 
@@ -11383,6 +11462,12 @@ const layers =
             { text: '徳山米軍作成地図', data: { id: 'usatokuyama', layer: usaTokuyamaObj, opacity: 1, zoom:13,center:[131.7947351047902,34.038920505197396], summary: usaSumm } },
             { text: '鳥取市米軍作成地図', data: { id: 'usatottori', layer: usaTottoriObj, opacity: 1, zoom:13,center:[134.23728038714805,35.496239582858124], summary: usaSumm } },
             { text: '富山市米軍作成地図', data: { id: 'usatoyama', layer: usaToyamaObj, opacity: 1, zoom:13,center:[137.21574611118686,36.69559772020091], summary: usaSumm } },
+            { text: '豊橋市(北)米軍作成地図', data: { id: 'usatoyohashinorth', layer: usaToyohashiNorthObj, opacity: 1, zoom:13,center:[137.3720054883547,34.750659858319224], summary: usaSumm } },
+            { text: '豊橋市(南)米軍作成地図', data: { id: 'usatoyohashisouth', layer: usaToyohashiSouthObj, opacity: 1, zoom:13,center:[137.37198134847353,34.72454442489634], summary: usaSumm } },
+            { text: '豊川市米軍作成地図', data: { id: 'usatoyokawa', layer: usaToyokawaObj, opacity: 1, zoom:13,center:[137.38635675568545,34.830923964961485], summary: usaSumm } },
+            { text: '土崎米軍作成地図', data: { id: 'usatsuchizaki', layer: usaTsuchizakiObj, opacity: 1, zoom:14,center:[140.06804454729837,39.753546265267914], summary: usaSumm } },
+            { text: '敦賀市米軍作成地図', data: { id: 'usatsuruga', layer: usaTsurugaObj, opacity: 1, zoom:13,center:[136.0618823951671,35.6431835898338], summary: usaSumm } },
+            { text: '津山市米軍作成地図', data: { id: 'usatsuyama', layer: usaTsuyamaObj, opacity: 1, zoom:13,center:[134.00492553738704,35.059401209339356], summary: usaSumm } },
 
 
             { text: '会津若松市米軍作成地図', data: { id: 'usawakamatsu', layer: usaWakamatsuObj, opacity: 1, zoom:14,center:[139.9299974105249, 37.494923943160856], summary: usaSumm } },
