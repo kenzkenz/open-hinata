@@ -21,6 +21,7 @@ import axios from "axios";
 let maxZndex = 0;
 let legoFilter = null;
 import DragAndDrop from 'ol/interaction/DragAndDrop.js';
+import PinchRotate from 'ol/interaction/PinchRotate';
 import {GPX, GeoJSON, IGC, KML, TopoJSON} from 'ol/format.js';
 import {standardFunction} from "@/js/layers-mvt";
 import {popUpTisitu} from "./popup";
@@ -69,6 +70,14 @@ export function initMap (vm) {
         });
         // マップをストアに登録
         store.commit('base/setMap', {mapName: maps[i].mapName, map});
+
+        //デフォルトで設定されているインタラクション（PinchRotate）を使用不可に
+        const interactions = map.getInteractions().getArray();
+        const pinchRotateInteraction = interactions.filter(function(interaction) {
+            return interaction instanceof PinchRotate;
+        })[0];
+        pinchRotateInteraction.setActive(false);
+
         // コントロール追加---------------------------------------------------------------------------
         // const centerTarget = new Target({composite: 'difference'})
         // map.addControl(centerTarget);
