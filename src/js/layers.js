@@ -10746,6 +10746,34 @@ const usaTokuyamaObj = {};
 for (let i of mapsStr) {
   usaTokuyamaObj[i] = new TileLayer(new Usatokuyama())
 }
+// 鳥取市
+function Usatottori () {
+  this.extent = transformE([134.1900909428445,35.52696479360749, 134.28330172942555,35.46730267834758])
+  this.source = new XYZ({
+    url: 'https://kenzkenz3.xsrv.jp/jcp_maps/tottori/{z}/{x}/{y}.png',
+    crossOrigin: 'Anonymous',
+    maxZoom: 16
+  })
+}
+const usaTottoriObj = {};
+for (let i of mapsStr) {
+  usaTottoriObj[i] = new TileLayer(new Usatottori())
+}
+// 富山市
+function Usatoyama () {
+  this.extent = transformE([137.1684165214623,36.72884284984751, 137.25429548970115,36.66525139660453])
+  this.source = new XYZ({
+    url: 'https://kenzkenz3.xsrv.jp/jcp_maps/toyama/{z}/{x}/{y}.png',
+    crossOrigin: 'Anonymous',
+    maxZoom: 16
+  })
+}
+const usaToyamaObj = {};
+for (let i of mapsStr) {
+  usaToyamaObj[i] = new TileLayer(new Usatoyama())
+}
+
+
 
 
 // 会津若松市
@@ -11353,6 +11381,8 @@ const layers =
             { text: '玉野市米軍作成地図', data: { id: 'usatamano', layer: usaTomanoObj, opacity: 1, zoom:13,center:[133.94636844521116,34.47585731928116], summary: usaSumm } },
             { text: '徳島市米軍作成地図', data: { id: 'usatokushima', layer: usaTokushimaObj, opacity: 1, zoom:13,center:[134.55547223365653,34.07551033482953], summary: usaSumm } },
             { text: '徳山米軍作成地図', data: { id: 'usatokuyama', layer: usaTokuyamaObj, opacity: 1, zoom:13,center:[131.7947351047902,34.038920505197396], summary: usaSumm } },
+            { text: '鳥取市米軍作成地図', data: { id: 'usatottori', layer: usaTottoriObj, opacity: 1, zoom:13,center:[134.23728038714805,35.496239582858124], summary: usaSumm } },
+            { text: '富山市米軍作成地図', data: { id: 'usatoyama', layer: usaToyamaObj, opacity: 1, zoom:13,center:[137.21574611118686,36.69559772020091], summary: usaSumm } },
 
 
             { text: '会津若松市米軍作成地図', data: { id: 'usawakamatsu', layer: usaWakamatsuObj, opacity: 1, zoom:14,center:[139.9299974105249, 37.494923943160856], summary: usaSumm } },
