@@ -10720,6 +10720,33 @@ const usaTomanoObj = {};
 for (let i of mapsStr) {
   usaTomanoObj[i] = new TileLayer(new Usatomano())
 }
+// 徳島市
+function Usatokushima () {
+  this.extent = transformE([134.4936030594145,34.12235468581463, 134.61755866682876,34.02929803919676])
+  this.source = new XYZ({
+    url: 'https://kenzkenz3.xsrv.jp/jcp_maps/tokushima/{z}/{x}/{y}.png',
+    crossOrigin: 'Anonymous',
+    maxZoom: 16
+  })
+}
+const usaTokushimaObj = {};
+for (let i of mapsStr) {
+  usaTokushimaObj[i] = new TileLayer(new Usatokushima())
+}
+// 徳山
+function Usatokuyama () {
+  this.extent = transformE([131.74538715278192,34.08462384762474, 131.84149338399453,33.99426773843973])
+  this.source = new XYZ({
+    url: 'https://kenzkenz3.xsrv.jp/jcp_maps/tokuyama/{z}/{x}/{y}.png',
+    crossOrigin: 'Anonymous',
+    maxZoom: 16
+  })
+}
+const usaTokuyamaObj = {};
+for (let i of mapsStr) {
+  usaTokuyamaObj[i] = new TileLayer(new Usatokuyama())
+}
+
 
 // 会津若松市
 function Usawakamatsu () {
@@ -11324,6 +11351,8 @@ const layers =
             { text: '高崎市米軍作成地図', data: { id: 'usatakasaki', layer: usaTakasakiObj, opacity: 1, zoom:14,center:[139.00683032377682,36.324418813774386], summary: usaSumm } },
             { text: '鳥羽市米軍作成地図', data: { id: 'usatoba', layer: usaTobaObj, opacity: 1, zoom:13,center:[136.8424350785728,34.485381104923874], summary: usaSumm } },
             { text: '玉野市米軍作成地図', data: { id: 'usatamano', layer: usaTomanoObj, opacity: 1, zoom:13,center:[133.94636844521116,34.47585731928116], summary: usaSumm } },
+            { text: '徳島市米軍作成地図', data: { id: 'usatokushima', layer: usaTokushimaObj, opacity: 1, zoom:13,center:[134.55547223365653,34.07551033482953], summary: usaSumm } },
+            { text: '徳山米軍作成地図', data: { id: 'usatokuyama', layer: usaTokuyamaObj, opacity: 1, zoom:13,center:[131.7947351047902,34.038920505197396], summary: usaSumm } },
 
 
             { text: '会津若松市米軍作成地図', data: { id: 'usawakamatsu', layer: usaWakamatsuObj, opacity: 1, zoom:14,center:[139.9299974105249, 37.494923943160856], summary: usaSumm } },

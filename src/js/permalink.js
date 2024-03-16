@@ -60,7 +60,8 @@ export function permalinkEventSet () {
       const center = [ parseFloat(parts[1]), parseFloat(parts[2]) ];
       const center3857 = transform(center,'EPSG:4326','EPSG:3857');
       map.getView().setCenter(center3857);
-      map.getView().setZoom(parseInt(parts[0], 10))
+      // map.getView().setZoom(parseInt(parts[0], 10))
+      map.getView().setZoom(parts[0])
     }
     // パラメータで復帰
     // まずパラメータをオブジェクトにする
