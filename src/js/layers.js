@@ -11264,43 +11264,72 @@ for (let i of mapsStr) {
       usaKyotoNorthObj[i],
       usaKyotoSouthObj[i],
       usaMaebashiObj[i],
+      usaMakurazakiObj[i],
+      usaMatsueObj[i],
+      usaMiharaObj[i],
+      usaMitoObj[i],
+      usaMuroranObj[i],
+      usaNaganoObj[i],
+      usaNagaokaObj[i],
+      usaNagasakiObj[i],
+      usaNagoyaNeObj[i],
+      usaNagoyaNwObj[i],
+      usaNagoyaSeObj[i],
+      usaNagoyaSwObj[i],
+      usaNanaoObj[i],
+      usaNaoetsuObj[i],
+      usaNiigataObj[i],
+      usaNiihamaObj[i],
+      usaNikkoObj[i],
+      usaNogataObj[i],
+      usaNumazuObj[i],
+      usaOgakiObj[i],
+      usaOitaObj[i],
+      usaOkayamaObj[i],
+      usaOkegawaObj[i],
+      usaOminatoObj[i],
+      usaOmuraObj[i],
+      usaOmutaObj[i],
+      usaOnodaObj[i],
+      usaOtaruObj[i],
+      usaOtsusetaObj[i],
+      usaRumoiObj[i],
+      usaSaekiObj[i],
+      usaSakataObj[i],
+      usaSapporoObj[i],
+      usaSaseboObj[i],
+      usaSatsumaSendaiObj[i],
+      usaSendaiObj[i],
+      usaShikamaObj[i],
+      usaShimabaraObj[i],
+      usaShimizuObj[i],
+      usaShimonosekiMojiObj[i],
+      usaSuitaObj[i],
+      usaTakadaObj[i],
+      usaTakamatsuObj[i],
+      usaTakaokaObj[i],
+      usaTakasagoObj[i],
+      usaTakasakiObj[i],
+      usaTobaObj[i],
+      usaTomanoObj[i],
+      usaTokushimaObj[i],
+      usaTokuyamaObj[i],
+      usaTottoriObj[i],
+      usaToyamaObj[i],
+      usaToyohashiNorthObj[i],
+      usaToyohashiSouthObj[i],
+      usaToyokawaObj[i],
+      usaTsuchizakiObj[i],
+      usaTsurugaObj[i],
+      usaTsuyamaObj[i],
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+      usaWakamatsuObj[i],
+      usaYatsushiroObj[i],
 
     ]
   })
 }
-
-
-
-
-
-
-
 
 // ここにレイヤーを全部書く。クリックするとストアのlayerListに追加されていく-------------------------
 const layers =
