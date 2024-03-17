@@ -10461,11 +10461,12 @@ for (let i of mapsStr) {
 }
 // 大津市
 function Usaotsu_seta () {
-  this.extent = transformE([135.8275280558395, 35.042722960235366, 135.93403951814523, 34.94940644218435])
+  this.extent = transformE([135.8276778607642,35.04236537027731, 135.9406216590678,34.950260003281315])
   this.source = new XYZ({
-    url: 'https://t.tilemap.jp/jcp_maps/otsu_seta/{z}/{x}/{-y}.png',
+    // url: 'https://t.tilemap.jp/jcp_maps/otsu_seta/{z}/{x}/{-y}.png',
+    url: 'https://kenzkenz3.xsrv.jp/jcp_maps/otsu/{z}/{x}/{y}.png',
     crossOrigin: 'Anonymous',
-    minZoom: 11,
+    // minZoom: 11,
     maxZoom: 16
   })
 }
@@ -11693,7 +11694,8 @@ const layers =
             { text: '大牟田市米軍作成地図', data: { id: 'usaomuta', layer: usaOmutaObj, opacity: 1, zoom:13,center:[130.4333615206594, 33.020604146271396], summary: usaSumm } },
             { text: '山陽小野田米軍作成地図', data: { id: 'usaonoda', layer: usaOnodaObj, opacity: 1, zoom:13,center:[131.1720054858628,33.97864306325491], summary: usaSumm } },
             { text: '小樽市米軍作成地図', data: { id: 'usaotaru', layer: usaOtaruObj, opacity: 1, zoom:14,center:[141.00512785359837, 43.19779582176179], summary: usaSumm } },
-            { text: '大津市米軍作成地図', data: { id: 'usaotsu', layer: usaOtsusetaObj, opacity: 1, zoom:14,center:[135.87672741701954, 34.993886401803096], summary: usaSumm } },
+            { text: '大津市米軍作成地図', data: { id: 'usaotsu', layer: usaOtsusetaObj, opacity: 1, zoom:13,center:[135.88738651564472,34.99386058351061], summary: usaSumm } },
+
             { text: '留萌市米軍作成地図', data: { id: 'usarumoi', layer: usaRumoiObj, opacity: 1, zoom:14,center:[141.65109378807819, 43.94296342232849], summary: usaSumm } },
             { text: '佐伯市米軍作成地図', data: { id: 'usasaeki', layer: usaSaekiObj, opacity: 1, zoom:14,center:[131.8954672040914, 32.94667882024817], summary: usaSumm } },
             { text: '酒田市米軍作成地図', data: { id: 'usasakata', layer: usaSakataObj, opacity: 1, zoom:14,center:[139.83048760293357, 38.919514066325235], summary: usaSumm } },
