@@ -11452,10 +11452,13 @@ for (let i of mapsStr) {
       usaUtsunomiyaObj[i],
       usaWakamatsuObj[i],
       usaWakayamaObj[i],
-
-
+      usaYamagataObj[i],
+      usaYamaguchiObj[i],
+      usaYawataObj[i],
       usaYatsushiroObj[i],
-
+      usaYokkaichiObj[i],
+      usaYonagoObj[i],
+      usaZentsujiObj[i]
     ]
   })
 }
@@ -11732,10 +11735,6 @@ const layers =
             { text: '四日市米軍作成地図', data: { id: 'usayokkaichi', layer: usaYokkaichiObj, opacity: 1, zoom:13,center:[136.6262647864238,34.959540987684704], summary: usaSumm } },
             { text: '米子市米軍作成地図', data: { id: 'usayonago', layer: usaYonagoObj, opacity: 1, zoom:13,center:[133.3321087774459,35.4387576040568], summary: usaSumm } },
             { text: '善通寺市米軍作成地図', data: { id: 'usazentsuji', layer: usaZentsujiObj, opacity: 1, zoom:13,center:[133.78125150239816,34.22985354430732], summary: usaSumm } },
-
-
-
-
           ]},
         { text: '迅速測図 (関東)', data: { id: 'jinsoku', layer: jinsokuObj, opacity: 1, zoom: 9, center: [139.8089637733657, 35.86926927958841], summary: jinsokuSumm } },
         { text: '東京5000分の1明治17年', data: { id: 'tokyo5000', layer: tokyo5000Obj, opacity: 1, zoom: 14, center: [139.7579477727413, 35.6843002871569], summary: tokyo5000Summ } },
