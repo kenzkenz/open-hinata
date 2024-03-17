@@ -10995,6 +10995,19 @@ const usaYonagoObj = {};
 for (let i of mapsStr) {
   usaYonagoObj[i] = new TileLayer(new Usayonago())
 }
+// 善通寺市
+function Usazentsuji () {
+  this.extent = transformE([133.74462727940428,34.25811177699647, 133.81558511889327,34.199615898483586])
+  this.source = new XYZ({
+    url: 'https://kenzkenz3.xsrv.jp/jcp_maps/zentsuji/{z}/{x}/{y}.png',
+    crossOrigin: 'Anonymous',
+    maxZoom: 16
+  })
+}
+const usaZentsujiObj = {};
+for (let i of mapsStr) {
+  usaZentsujiObj[i] = new TileLayer(new Usazentsuji())
+}
 
 
 
@@ -11718,6 +11731,7 @@ const layers =
             { text: '八代市米軍作成地図', data: { id: 'usayatsushiro', layer: usaYatsushiroObj, opacity: 1, zoom:14,center:[130.60432480777075, 32.49776723135341], summary: usaSumm } },
             { text: '四日市米軍作成地図', data: { id: 'usayokkaichi', layer: usaYokkaichiObj, opacity: 1, zoom:13,center:[136.6262647864238,34.959540987684704], summary: usaSumm } },
             { text: '米子市米軍作成地図', data: { id: 'usayonago', layer: usaYonagoObj, opacity: 1, zoom:13,center:[133.3321087774459,35.4387576040568], summary: usaSumm } },
+            { text: '善通寺市米軍作成地図', data: { id: 'usazentsuji', layer: usaZentsujiObj, opacity: 1, zoom:13,center:[133.78125150239816,34.22985354430732], summary: usaSumm } },
 
 
 
