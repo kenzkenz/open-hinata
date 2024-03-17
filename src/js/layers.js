@@ -10916,19 +10916,45 @@ const usaWakayamaObj = {};
 for (let i of mapsStr) {
   usaWakayamaObj[i] = new TileLayer(new Usawakayama())
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
+// 山形市
+function Usayamagata () {
+  this.extent = transformE([140.31046887145618,38.2869380235048, 140.37764680789093,38.223610501260254])
+  this.source = new XYZ({
+    url: 'https://kenzkenz3.xsrv.jp/jcp_maps/yamagata/{z}/{x}/{y}.png',
+    crossOrigin: 'Anonymous',
+    maxZoom: 16
+  })
+}
+const usaYamagataObj = {};
+for (let i of mapsStr) {
+  usaYamagataObj[i] = new TileLayer(new Usayamagata())
+}
+// 山口市
+function Usayamaguchi () {
+  this.extent = transformE([131.44143730059048,34.20638353543529, 131.50447591796302,34.15296649850379])
+  this.source = new XYZ({
+    url: 'https://kenzkenz3.xsrv.jp/jcp_maps/yamaguchi/{z}/{x}/{y}.png',
+    crossOrigin: 'Anonymous',
+    maxZoom: 16
+  })
+}
+const usaYamaguchiObj = {};
+for (let i of mapsStr) {
+  usaYamaguchiObj[i] = new TileLayer(new Usayamaguchi())
+}
+// 八幡
+function Usayawata () {
+  this.extent = transformE([130.7352353711359,33.93668107746137, 130.8548940797083,33.848555614389184])
+  this.source = new XYZ({
+    url: 'https://kenzkenz3.xsrv.jp/jcp_maps/yawata/{z}/{x}/{y}.png',
+    crossOrigin: 'Anonymous',
+    maxZoom: 16
+  })
+}
+const usaYawataObj = {};
+for (let i of mapsStr) {
+  usaYawataObj[i] = new TileLayer(new Usayawata())
+}
 // 八代市
 function Usayatsushiro () {
   this.extent = transformE([130.56782128418257, 32.52529691909547, 130.64291911328604, 32.4722538224630])
@@ -10943,6 +10969,36 @@ const usaYatsushiroObj = {};
 for (let i of mapsStr) {
   usaYatsushiroObj[i] = new TileLayer(new Usayatsushiro())
 }
+// 四日市
+function Usayokkaichi () {
+  this.extent = transformE([136.5812700596467,34.997838813507684, 136.66969176203165,34.92287302729859])
+  this.source = new XYZ({
+    url: 'https://kenzkenz3.xsrv.jp/jcp_maps/yokkaichi/{z}/{x}/{y}.png',
+    crossOrigin: 'Anonymous',
+    maxZoom: 16
+  })
+}
+const usaYokkaichiObj = {};
+for (let i of mapsStr) {
+  usaYokkaichiObj[i] = new TileLayer(new Usayokkaichi())
+}
+// 米子市
+function Usayonago () {
+  this.extent = transformE([133.28164837924874,35.480611440807465, 133.3806044575397,35.397899772912595])
+  this.source = new XYZ({
+    url: 'https://kenzkenz3.xsrv.jp/jcp_maps/yonago/{z}/{x}/{y}.png',
+    crossOrigin: 'Anonymous',
+    maxZoom: 16
+  })
+}
+const usaYonagoObj = {};
+for (let i of mapsStr) {
+  usaYonagoObj[i] = new TileLayer(new Usayonago())
+}
+
+
+
+
 
 // 高鍋町
 function Usatakanabe () {
@@ -11656,10 +11712,15 @@ const layers =
             { text: '宇都宮市米軍作成地図', data: { id: 'usautsunomiya', layer: usaUtsunomiyaObj, opacity: 1, zoom:13,center:[139.87653065763703,36.561033237402626], summary: usaSumm } },
             { text: '会津若松市米軍作成地図', data: { id: 'usawakamatsu', layer: usaWakamatsuObj, opacity: 1, zoom:14,center:[139.9299974105249, 37.494923943160856], summary: usaSumm } },
             { text: '和歌山市米軍作成地図', data: { id: 'usawakayama', layer: usaWakayamaObj, opacity: 1, zoom:13,center:[135.1655773300853,34.22291018083982], summary: usaSumm } },
-
-
-
+            { text: '山形市米軍作成地図', data: { id: 'usayamagata', layer: usaYamagataObj, opacity: 1, zoom:13,center:[140.34409170256237,38.25508396491401], summary: usaSumm } },
+            { text: '山口市米軍作成地図', data: { id: 'usayamaguchi', layer: usaYamaguchiObj, opacity: 1, zoom:14,center:[131.4732550050297,34.176828138789446], summary: usaSumm } },
+            { text: '八幡米軍作成地図', data: { id: 'usayawata', layer: usaYawataObj, opacity: 1, zoom:13,center:[130.79150945737285,33.89149366978582], summary: usaSumm } },
             { text: '八代市米軍作成地図', data: { id: 'usayatsushiro', layer: usaYatsushiroObj, opacity: 1, zoom:14,center:[130.60432480777075, 32.49776723135341], summary: usaSumm } },
+            { text: '四日市米軍作成地図', data: { id: 'usayokkaichi', layer: usaYokkaichiObj, opacity: 1, zoom:13,center:[136.6262647864238,34.959540987684704], summary: usaSumm } },
+            { text: '米子市米軍作成地図', data: { id: 'usayonago', layer: usaYonagoObj, opacity: 1, zoom:13,center:[133.3321087774459,35.4387576040568], summary: usaSumm } },
+
+
+
 
           ]},
         { text: '迅速測図 (関東)', data: { id: 'jinsoku', layer: jinsokuObj, opacity: 1, zoom: 9, center: [139.8089637733657, 35.86926927958841], summary: jinsokuSumm } },
