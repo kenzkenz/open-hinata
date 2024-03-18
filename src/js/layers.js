@@ -9319,6 +9319,7 @@ const dojyouSumm = '出典：<br><a href="https://soil-inventory.rad.naro.go.jp/
 // 宮崎市
 function Usamiyazaki () {
   this.extent = transformE([131.38730562869546, 31.94874904974968, 131.47186495009896, 31.85909130381588])
+  this.extent2 = transformE([131.38730562869546, 31.94874904974968, 131.47186495009896, 31.85909130381588])
   this.source = new XYZ({
     url: 'https://kenzkenz2.xsrv.jp/usarmy/miyazaki/{z}/{x}/{-y}.png',
     crossOrigin: 'Anonymous',
@@ -9334,6 +9335,7 @@ const usaSumm = 'Courtesy of the University of Texas Libraries, The University o
 // 延岡市
 function Usanobeoka () {
   this.extent = transformE([131.63757572120534, 32.62500535406083, 131.72436281180384, 32.54331840955494])
+  this.extent2 = transformE([131.63757572120534, 32.62500535406083, 131.72436281180384, 32.54331840955494])
   this.source = new XYZ({
     url: 'https://kenzkenz2.xsrv.jp/usarmy/nobeoka/{z}/{x}/{-y}.png',
     crossOrigin: 'Anonymous',
@@ -9348,6 +9350,7 @@ for (let i of mapsStr) {
 // 都城市
 function Usamiyakonojyou () {
   this.extent = transformE([131.01477802559293, 31.759362148868007, 131.10179776971427, 31.69135798671786])
+  this.extent2 = transformE([131.01477802559293, 31.759362148868007, 131.10179776971427, 31.69135798671786])
   this.source = new XYZ({
     url: 'https://t.tilemap.jp/jcp_maps/miyakonojo/{z}/{x}/{-y}.png',
     crossOrigin: 'Anonymous',
@@ -9362,6 +9365,7 @@ for (let i of mapsStr) {
 // 鹿児島市
 function Usakagoshima () {
   this.extent = transformE([130.5199329928549, 31.625904260596627, 130.60040625640664, 31.53839471681782])
+  this.extent2 = transformE([130.5199329928549, 31.625904260596627, 130.60040625640664, 31.53839471681782])
   this.source = new XYZ({
     url: 'https://kenzkenz2.xsrv.jp/usarmy/kagosima/{z}/{x}/{-y}.png',
     crossOrigin: 'Anonymous',
@@ -9375,7 +9379,8 @@ for (let i of mapsStr) {
 }
 // 室蘭市
 function Usamuroran () {
-  this.extent = transformE([40.90440038348575, 42.38405121586513, 141.05923356332505, 42.29059914480226])
+  this.extent = transformE([140.90440038348575, 42.38405121586513, 141.05923356332505, 42.29059914480226])
+  this.extent2 = transformE([140.90440038348575, 42.38405121586513, 141.05923356332505, 42.29059914480226])
   this.source = new XYZ({
     url: 'https://t.tilemap.jp/jcp_maps/muroran/{z}/{x}/{-y}.png',
     crossOrigin: 'Anonymous',
@@ -9389,7 +9394,8 @@ for (let i of mapsStr) {
 }
 // 明石市
 function Usaakashi () {
-  this.extent = transformE([34.9178464474012, 34.710923217623645, 135.04999909886737, 34.6239626197396])
+  this.extent = transformE([134.9178464474012, 34.710923217623645, 135.04999909886737, 34.6239626197396])
+  this.extent2 = transformE([134.9178464474012, 34.710923217623645, 135.04999909886737, 34.6239626197396])
   this.source = new XYZ({
     url: 'https://t.tilemap.jp/jcp_maps/akashi/{z}/{x}/{-y}.png',
     crossOrigin: 'Anonymous',
@@ -9404,6 +9410,7 @@ for (let i of mapsStr) {
 // 相生市
 function Usaharima () {
   this.extent = transformE([134.40899456747056, 34.827906424389056, 134.51680327661515, 34.734588690535986])
+  this.extent2 = transformE([134.40899456747056, 34.827906424389056, 134.51680327661515, 34.734588690535986])
   this.source = new XYZ({
     url: 'https://t.tilemap.jp/jcp_maps/harima/{z}/{x}/{-y}.png',
     crossOrigin: 'Anonymous',
@@ -9418,6 +9425,7 @@ for (let i of mapsStr) {
 // 秋田市
 function Usaakita () {
   this.extent = transformE([140.0717562014137, 39.73918236291928, 140.14706081310268, 39.6820763867207])
+  this.extent2 = transformE([140.0717562014137, 39.73918236291928, 140.14706081310268, 39.6820763867207])
   this.source = new XYZ({
     url: 'https://kenzkenz3.xsrv.jp/jcp_maps/akita/{z}/{x}/{y}.png',
     crossOrigin: 'Anonymous',
@@ -9431,6 +9439,7 @@ for (let i of mapsStr) {
 // 青森市
 function Usaaomori () {
   this.extent = transformE([140.70599744657008, 40.85260097581303, 140.79743395188777, 40.7935556203787])
+  this.extent2 = transformE([140.70599744657008, 40.85260097581303, 140.79743395188777, 40.7935556203787])
   this.source = new XYZ({
     url: 'https://kenzkenz3.xsrv.jp/jcp_maps/aomori/{z}/{x}/{y}.png',
     crossOrigin: 'Anonymous',
@@ -9444,6 +9453,7 @@ for (let i of mapsStr) {
 // 旭川市
 function Usaasahikawa () {
   this.extent = transformE([142.30618215432563, 43.8296431351975, 142.425113984255, 43.7268853650624])
+  this.extent2 = transformE([142.30618215432563, 43.8296431351975, 142.425113984255, 43.7268853650624])
   this.source = new XYZ({
     url: 'https://kenzkenz3.xsrv.jp/jcp_maps/asahikawa/{z}/{x}/{y}.png',
     crossOrigin: 'Anonymous',
@@ -9457,6 +9467,7 @@ for (let i of mapsStr) {
 // 千葉市
 function Usachiba () {
   this.extent = transformE([140.08764378681573,35.62917380173154, 140.15972144856843,35.554932756846156])
+  this.extent2 = transformE([140.08764378681573,35.62917380173154, 140.15972144856843,35.554932756846156])
   this.source = new XYZ({
     url: 'https://kenzkenz3.xsrv.jp/jcp_maps/chiba/{z}/{x}/{y}.png',
     crossOrigin: 'Anonymous',
@@ -9470,6 +9481,7 @@ for (let i of mapsStr) {
 // 富士宮市
 function Usafujinomiya () {
   this.extent = transformE([138.5809732397614,35.25121212484136, 138.6515394767342,35.18069262503313])
+  this.extent2 = transformE([138.5809732397614,35.25121212484136, 138.6515394767342,35.18069262503313])
   this.source = new XYZ({
     url: 'https://kenzkenz3.xsrv.jp/jcp_maps/fujinomiya/{z}/{x}/{y}.png',
     crossOrigin: 'Anonymous',
@@ -9483,6 +9495,7 @@ for (let i of mapsStr) {
 // 福井市
 function Usafukui () {
   this.extent = transformE([136.16942055402976,36.0976050324894, 136.25602908312064,36.01592560352381])
+  this.extent2 = transformE([136.16942055402976,36.0976050324894, 136.25602908312064,36.01592560352381])
   this.source = new XYZ({
     url: 'https://kenzkenz3.xsrv.jp/jcp_maps/fukui/{z}/{x}/{y}.png',
     crossOrigin: 'Anonymous',
@@ -9496,6 +9509,7 @@ for (let i of mapsStr) {
 // 福島市
 function Usafukushima () {
   this.extent = transformE([140.44319076482216,37.78090343507313, 140.5007616991178,37.72953717372495])
+  this.extent2 = transformE([140.44319076482216,37.78090343507313, 140.5007616991178,37.72953717372495])
   this.source = new XYZ({
     url: 'https://kenzkenz3.xsrv.jp/jcp_maps/fukushima/{z}/{x}/{y}.png',
     crossOrigin: 'Anonymous',
@@ -9509,6 +9523,7 @@ for (let i of mapsStr) {
 // 伏木
 function Usafushiki () {
   this.extent = transformE([137.02508679699687,36.8245491449906, 137.1126408047655,36.7604369200003])
+  this.extent2 = transformE([137.02508679699687,36.8245491449906, 137.1126408047655,36.7604369200003])
   this.source = new XYZ({
     url: 'https://kenzkenz3.xsrv.jp/jcp_maps/fushiki/{z}/{x}/{y}.png',
     crossOrigin: 'Anonymous',
@@ -9522,6 +9537,7 @@ for (let i of mapsStr) {
 // 岐阜市
 function Usagifu () {
   this.extent = transformE([136.70751515094838,35.470986568936624, 136.82609225873549,35.37258621685527])
+  this.extent2 = transformE([136.70751515094838,35.470986568936624, 136.82609225873549,35.37258621685527])
   this.source = new XYZ({
     url: 'https://kenzkenz3.xsrv.jp/jcp_maps/gifu/{z}/{x}/{y}.png',
     crossOrigin: 'Anonymous',
@@ -9535,6 +9551,7 @@ for (let i of mapsStr) {
 // habu
 function Usahabu () {
   this.extent = transformE([133.1350108897345,34.32262791592599, 133.2262140428679,34.24586042631])
+  this.extent2 = transformE([133.1350108897345,34.32262791592599, 133.2262140428679,34.24586042631])
   this.source = new XYZ({
     url: 'https://kenzkenz3.xsrv.jp/jcp_maps/habu/{z}/{x}/{y}.png',
     crossOrigin: 'Anonymous',
@@ -9548,6 +9565,7 @@ for (let i of mapsStr) {
 // 八戸市
 function Usahachinohe () {
   this.extent = transformE([141.4589812322207,40.56255590542611, 141.57631044226363,40.48799652674896])
+  this.extent2 = transformE([141.4589812322207,40.56255590542611, 141.57631044226363,40.48799652674896])
   this.source = new XYZ({
     url: 'https://kenzkenz3.xsrv.jp/jcp_maps/hachinohe/{z}/{x}/{y}.png',
     crossOrigin: 'Anonymous',
@@ -9561,6 +9579,7 @@ for (let i of mapsStr) {
 // 萩市
 function Usahagi () {
   this.extent = transformE([131.3620548860769,34.4605107256224, 131.43111774489685,34.38617650807586])
+  this.extent2 = transformE([131.3620548860769,34.4605107256224, 131.43111774489685,34.38617650807586])
   this.source = new XYZ({
     url: 'https://kenzkenz3.xsrv.jp/jcp_maps/hagi/{z}/{x}/{y}.png',
     crossOrigin: 'Anonymous',
@@ -9574,6 +9593,7 @@ for (let i of mapsStr) {
 // 函館市
 function Usahakodate () {
   this.extent = transformE([140.68097748426095,41.82926676413055, 140.7901943531384,41.73143517073271])
+  this.extent2 = transformE([140.68097748426095,41.82926676413055, 140.7901943531384,41.73143517073271])
   this.source = new XYZ({
     url: 'https://kenzkenz3.xsrv.jp/jcp_maps/hakodate/{z}/{x}/{y}.png',
     crossOrigin: 'Anonymous',
@@ -9587,6 +9607,7 @@ for (let i of mapsStr) {
 // 半田市
 function Usahanda () {
   this.extent = transformE([136.89242595186886,34.945077593842996, 137.00722449770626,34.85734903493045])
+  this.extent2 = transformE([136.89242595186886,34.945077593842996, 137.00722449770626,34.85734903493045])
   this.source = new XYZ({
     url: 'https://kenzkenz3.xsrv.jp/jcp_maps/handa/{z}/{x}/{y}.png',
     crossOrigin: 'Anonymous',
@@ -9600,6 +9621,7 @@ for (let i of mapsStr) {
 // 東岩瀬
 function Usahigashiiwase () {
   this.extent = transformE([137.16815167238158,36.78583199289653, 137.25717016627235,36.71700039282162])
+  this.extent2 = transformE([137.16815167238158,36.78583199289653, 137.25717016627235,36.71700039282162])
   this.source = new XYZ({
     url: 'https://kenzkenz3.xsrv.jp/jcp_maps/higashiiwase/{z}/{x}/{y}.png',
     crossOrigin: 'Anonymous',
@@ -9613,6 +9635,7 @@ for (let i of mapsStr) {
 // 彦根市
 function Usahikone () {
   this.extent = transformE([136.1900204514088,35.32992409688262, 136.30520216294815,35.224721393195296])
+  this.extent2 = transformE([136.1900204514088,35.32992409688262, 136.30520216294815,35.224721393195296])
   this.source = new XYZ({
     url: 'https://kenzkenz3.xsrv.jp/jcp_maps/hikone/{z}/{x}/{y}.png',
     crossOrigin: 'Anonymous',
@@ -9626,6 +9649,7 @@ for (let i of mapsStr) {
 // 姫路市
 function Usahimeji () {
   this.extent = transformE([134.64098624425583, 34.8708631072014, 134.7378282897613, 34.80268817759354])
+  this.extent2 = transformE([134.64098624425583, 34.8708631072014, 134.7378282897613, 34.80268817759354])
   this.source = new XYZ({
     url: 'https://t.tilemap.jp/jcp_maps/himeji/{z}/{x}/{-y}.png',
     crossOrigin: 'Anonymous',
@@ -9640,6 +9664,7 @@ for (let i of mapsStr) {
 // 枚方市
 function Usahirakata () {
   this.extent = transformE([135.57194920276365,34.87011100775344, 135.68724932168683,34.800562973217296])
+  this.extent2 = transformE([135.57194920276365,34.87011100775344, 135.68724932168683,34.800562973217296])
   this.source = new XYZ({
     url: 'https://kenzkenz3.xsrv.jp/jcp_maps/hirakata/{z}/{x}/{y}.png',
     crossOrigin: 'Anonymous',
@@ -9653,6 +9678,7 @@ for (let i of mapsStr) {
 // 平塚市
 function Usahiratsuka () {
   this.extent = transformE([139.31229120023235,35.35904999646574, 139.3878805441378,35.28874804475291])
+  this.extent2 = transformE([139.31229120023235,35.35904999646574, 139.3878805441378,35.28874804475291])
   this.source = new XYZ({
     url: 'https://kenzkenz3.xsrv.jp/jcp_maps/hiratsuka/{z}/{x}/{y}.png',
     crossOrigin: 'Anonymous',
@@ -9666,6 +9692,7 @@ for (let i of mapsStr) {
 // 広町
 function Usahiromachi () {
   this.extent = transformE([132.5731525471544,34.26760068261592, 132.67292535809037,34.1905277967504])
+  this.extent2 = transformE([132.5731525471544,34.26760068261592, 132.67292535809037,34.1905277967504])
   this.source = new XYZ({
     url: 'https://kenzkenz3.xsrv.jp/jcp_maps/hiromachi/{z}/{x}/{y}.png',
     crossOrigin: 'Anonymous',
@@ -9679,6 +9706,7 @@ for (let i of mapsStr) {
 // 弘前市
 function Usahirosaki () {
   this.extent = transformE([140.4235199121323,40.631355509931836, 140.5010183369034,40.56109320751867])
+  this.extent2 = transformE([140.4235199121323,40.631355509931836, 140.5010183369034,40.56109320751867])
   this.source = new XYZ({
     url: 'https://kenzkenz3.xsrv.jp/jcp_maps/hirosaki/{z}/{x}/{y}.png',
     crossOrigin: 'Anonymous',
@@ -9692,6 +9720,7 @@ for (let i of mapsStr) {
 // 広島市
 function Usahiroshima() {
   this.extent = transformE([132.3884909359741,34.431458513241665, 132.52820720355984,34.330487127792665])
+  this.extent2 = transformE([132.3884909359741,34.431458513241665, 132.52820720355984,34.330487127792665])
   this.source = new XYZ({
     url: 'https://kenzkenz3.xsrv.jp/jcp_maps/hiroshima/{z}/{x}/{y}.png',
     crossOrigin: 'Anonymous',
@@ -9705,6 +9734,7 @@ for (let i of mapsStr) {
 // 日立市
 function Usahitachi() {
   this.extent = transformE([140.57999833282472,36.64482954491233, 140.6999440377617,36.53230602703728])
+  this.extent2 = transformE([140.57999833282472,36.64482954491233, 140.6999440377617,36.53230602703728])
   this.source = new XYZ({
     url: 'https://kenzkenz3.xsrv.jp/jcp_maps/hitachi/{z}/{x}/{y}.png',
     crossOrigin: 'Anonymous',
@@ -9718,6 +9748,7 @@ for (let i of mapsStr) {
 // 人吉市
 function Usahitoyoshi() {
   this.extent = transformE([130.73763423508643,32.2355050464609, 130.79378929829835,32.1887013821016])
+  this.extent2 = transformE([130.73763423508643,32.2355050464609, 130.79378929829835,32.1887013821016])
   this.source = new XYZ({
     url: 'https://kenzkenz3.xsrv.jp/jcp_maps/hitoyoshi/{z}/{x}/{y}.png',
     crossOrigin: 'Anonymous',
@@ -9731,6 +9762,7 @@ for (let i of mapsStr) {
 // 一宮市
 function Usaichinomiya() {
   this.extent = transformE([136.73726867270835,35.34563130774367, 136.8879913849867,35.19549105733337])
+  this.extent2 = transformE([136.73726867270835,35.34563130774367, 136.8879913849867,35.19549105733337])
   this.source = new XYZ({
     url: 'https://kenzkenz3.xsrv.jp/jcp_maps/ichinomiya/{z}/{x}/{y}.png',
     crossOrigin: 'Anonymous',
@@ -9744,6 +9776,7 @@ for (let i of mapsStr) {
 // 諫早市
 function Usaisahaya() {
   this.extent = transformE([130.02394444628715,32.86659294976408, 130.108573505125,32.81428582145436])
+  this.extent2 = transformE([130.02394444628715,32.86659294976408, 130.108573505125,32.81428582145436])
   this.source = new XYZ({
     url: 'https://kenzkenz3.xsrv.jp/jcp_maps/isahaya/{z}/{x}/{y}.png',
     crossOrigin: 'Anonymous',
@@ -9757,6 +9790,7 @@ for (let i of mapsStr) {
 // 飯塚市
 function Usaiizukz() {
   this.extent = transformE([130.65216494469635,33.671544924421084, 130.71290557949533,33.589367508699866])
+  this.extent2 = transformE([130.65216494469635,33.671544924421084, 130.71290557949533,33.589367508699866])
   this.source = new XYZ({
     url: 'https://kenzkenz3.xsrv.jp/jcp_maps/iizuka/{z}/{x}/{y}.png',
     crossOrigin: 'Anonymous',
@@ -9770,6 +9804,7 @@ for (let i of mapsStr) {
 // 加治木
 function Usakajiki() {
   this.extent = transformE([130.6334297037225,31.757366116931934, 130.6942427581649,31.706007526498084])
+  this.extent2 = transformE([130.6334297037225,31.757366116931934, 130.6942427581649,31.706007526498084])
   this.source = new XYZ({
     url: 'https://kenzkenz3.xsrv.jp/jcp_maps/kajiki/{z}/{x}/{y}.png',
     crossOrigin: 'Anonymous',
@@ -9783,6 +9818,7 @@ for (let i of mapsStr) {
 // 釜石市
 function Usakamaishi() {
   this.extent = transformE([141.83555625727507,39.29839433432599, 141.9190507416997,39.24137226047998])
+  this.extent2 = transformE([141.83555625727507,39.29839433432599, 141.9190507416997,39.24137226047998])
   this.source = new XYZ({
     url: 'https://kenzkenz3.xsrv.jp/jcp_maps/kamaishi/{z}/{x}/{y}.png',
     crossOrigin: 'Anonymous',
@@ -9796,6 +9832,7 @@ for (let i of mapsStr) {
 // 金沢市
 function Usakanazawa() {
   this.extent = transformE([136.57678119459374,36.616141434534484, 136.70692666986213,36.51525054188362])
+  this.extent2 = transformE([136.57678119459374,36.616141434534484, 136.70692666986213,36.51525054188362])
   this.source = new XYZ({
     url: 'https://kenzkenz3.xsrv.jp/jcp_maps/kanazawa/{z}/{x}/{y}.png',
     crossOrigin: 'Anonymous',
@@ -9809,6 +9846,7 @@ for (let i of mapsStr) {
 // 苅田町
 function Usakanda() {
   this.extent = transformE([130.94005143590758,33.81584169930497, 131.02026222594566,33.747149681232116])
+  this.extent2 = transformE([130.94005143590758,33.81584169930497, 131.02026222594566,33.747149681232116])
   this.source = new XYZ({
     url: 'https://kenzkenz3.xsrv.jp/jcp_maps/kanda/{z}/{x}/{y}.png',
     crossOrigin: 'Anonymous',
@@ -9822,6 +9860,7 @@ for (let i of mapsStr) {
 // 唐津市
 function Usakaratsu() {
   this.extent = transformE([129.921021511898,33.50559209417867, 130.005309930191,33.43203779434077])
+  this.extent2 = transformE([129.921021511898,33.50559209417867, 130.005309930191,33.43203779434077])
   this.source = new XYZ({
     url: 'https://kenzkenz3.xsrv.jp/jcp_maps/karatsu/{z}/{x}/{y}.png',
     crossOrigin: 'Anonymous',
@@ -9835,6 +9874,7 @@ for (let i of mapsStr) {
 // 刈谷市
 function Usakariya() {
   this.extent = transformE([136.94200877634015,35.03318584159486, 137.0601647773119,34.959046536665284])
+  this.extent2 = transformE([136.94200877634015,35.03318584159486, 137.0601647773119,34.959046536665284])
   this.source = new XYZ({
     url: 'https://kenzkenz3.xsrv.jp/jcp_maps/kariya/{z}/{x}/{y}.png',
     crossOrigin: 'Anonymous',
@@ -9848,6 +9888,7 @@ for (let i of mapsStr) {
 // 柏崎市
 function Usakashiwazaki() {
   this.extent = transformE([138.50568101943807,37.40203383548953, 138.59532647968607,37.342488307171394])
+  this.extent2 = transformE([138.50568101943807,37.40203383548953, 138.59532647968607,37.342488307171394])
   this.source = new XYZ({
     url: 'https://kenzkenz3.xsrv.jp/jcp_maps/kashiwazaki/{z}/{x}/{y}.png',
     crossOrigin: 'Anonymous',
@@ -9861,6 +9902,7 @@ for (let i of mapsStr) {
 // 川越市
 function Usakawagoe() {
   this.extent = transformE([139.4570958921943,35.942500179173905, 139.52681723332742,35.87309357493287])
+  this.extent2 = transformE([139.4570958921943,35.942500179173905, 139.52681723332742,35.87309357493287])
   this.source = new XYZ({
     url: 'https://kenzkenz3.xsrv.jp/jcp_maps/kawagoe/{z}/{x}/{y}.png',
     crossOrigin: 'Anonymous',
@@ -9874,6 +9916,7 @@ for (let i of mapsStr) {
 // 豊田市（挙母）
 function Usakoromo() {
   this.extent = transformE([137.08772963931085,35.13859479723625, 137.1960466270638,35.027068132737384])
+  this.extent2 = transformE([137.08772963931085,35.13859479723625, 137.1960466270638,35.027068132737384])
   this.source = new XYZ({
     url: 'https://kenzkenz3.xsrv.jp/jcp_maps/koromo/{z}/{x}/{y}.png',
     crossOrigin: 'Anonymous',
@@ -9887,6 +9930,7 @@ for (let i of mapsStr) {
 // 下松市
 function Usakudamtsu() {
   this.extent = transformE([131.8186521172428,34.038862259919966, 131.89699206649303,33.96796119128024])
+  this.extent2 = transformE([131.8186521172428,34.038862259919966, 131.89699206649303,33.96796119128024])
   this.source = new XYZ({
     url: 'https://kenzkenz3.xsrv.jp/jcp_maps/kudamatsu/{z}/{x}/{y}.png',
     crossOrigin: 'Anonymous',
@@ -9900,6 +9944,7 @@ for (let i of mapsStr) {
 // 桑名市
 function Usakuwana() {
   this.extent = transformE([136.61704718511825,35.13788876963871, 136.77256971042877,34.97847375883852])
+  this.extent2 = transformE([136.61704718511825,35.13788876963871, 136.77256971042877,34.97847375883852])
   this.source = new XYZ({
     url: 'https://kenzkenz3.xsrv.jp/jcp_maps/kuwana/{z}/{x}/{y}.png',
     crossOrigin: 'Anonymous',
@@ -9913,6 +9958,7 @@ for (let i of mapsStr) {
 // 高知市
 function Usakochi () {
   this.extent = transformE([133.4697604427741, 33.593332069856146, 133.58746118164257, 33.48248877930844])
+  this.extent2 = transformE([133.4697604427741, 33.593332069856146, 133.58746118164257, 33.48248877930844])
   this.source = new XYZ({
     url: 'https://t.tilemap.jp/jcp_maps/kochi/{z}/{x}/{-y}.png',
     crossOrigin: 'Anonymous',
@@ -9927,6 +9973,7 @@ for (let i of mapsStr) {
 // 甲府市
 function Usakofu () {
   this.extent = transformE([138.5192430532455, 35.713904772878024, 138.61371447806357, 35.62085584514263])
+  this.extent2 = transformE([138.5192430532455, 35.713904772878024, 138.61371447806357, 35.62085584514263])
   this.source = new XYZ({
     url: 'https://t.tilemap.jp/jcp_maps/kofu/{z}/{x}/{-y}.png',
     crossOrigin: 'Anonymous',
@@ -9941,6 +9988,7 @@ for (let i of mapsStr) {
 // 小倉
 function Usakokura () {
   this.extent = transformE([130.83351113737584, 33.92073003726122, 130.95307633268283, 33.83365615261114])
+  this.extent2 = transformE([130.83351113737584, 33.92073003726122, 130.95307633268283, 33.83365615261114])
   this.source = new XYZ({
     url: 'https://t.tilemap.jp/jcp_maps/kokura/{z}/{x}/{-y}.png',
     crossOrigin: 'Anonymous',
@@ -9955,6 +10003,7 @@ for (let i of mapsStr) {
 // 郡山市
 function Usakoriyama () {
   this.extent = transformE([140.33108953120356, 37.43688472335944, 140.4249240446428, 37.367662796402])
+  this.extent2 = transformE([140.33108953120356, 37.43688472335944, 140.4249240446428, 37.367662796402])
   this.source = new XYZ({
     url: 'https://t.tilemap.jp/jcp_maps/koriyama/{z}/{x}/{-y}.png',
     crossOrigin: 'Anonymous',
@@ -9983,6 +10032,7 @@ for (let i of mapsStr) {
 // 熊本市
 function Usakumamoto () {
   this.extent = transformE([130.6754534531498, 32.83726270469704, 130.77889418491364, 32.75070766375866])
+  this.extent2 = transformE([130.6754534531498, 32.83726270469704, 130.77889418491364, 32.75070766375866])
   this.source = new XYZ({
     url: 'https://t.tilemap.jp/jcp_maps/kumamoto/{z}/{x}/{-y}.png',
     crossOrigin: 'Anonymous',
@@ -9997,6 +10047,7 @@ for (let i of mapsStr) {
 // 久留米市
 function Usakurume () {
   this.extent = transformE([130.4842734730671, 33.33550789416525, 130.58554027442437, 33.26640037986165])
+  this.extent2 = transformE([130.4842734730671, 33.33550789416525, 130.58554027442437, 33.26640037986165])
   this.source = new XYZ({
     url: 'https://t.tilemap.jp/jcp_maps/kurume/{z}/{x}/{-y}.png',
     crossOrigin: 'Anonymous',
@@ -10011,6 +10062,7 @@ for (let i of mapsStr) {
 // 釧路市
 function Usakushiro () {
   this.extent = transformE([144.34146030236244, 43.03742598091131, 144.44208605576515, 42.94577285147719])
+  this.extent2 = transformE([144.34146030236244, 43.03742598091131, 144.44208605576515, 42.94577285147719])
   this.source = new XYZ({
     url: 'https://t.tilemap.jp/jcp_maps/kushiro/{z}/{x}/{-y}.png',
     crossOrigin: 'Anonymous',
@@ -10039,6 +10091,7 @@ for (let i of mapsStr) {
 // 京都市(北)
 function Usakyoto_north () {
   this.extent = transformE([135.69243533265592, 35.07483494738305, 135.80488895726202, 34.98779081635700])
+  this.extent2 = transformE([135.69243533265592, 35.07483494738305, 135.80488895726202, 34.98779081635700])
   this.source = new XYZ({
     url: 'https://t.tilemap.jp/jcp_maps/kyoto_north/{z}/{x}/{-y}.png',
     crossOrigin: 'Anonymous',
@@ -10053,6 +10106,7 @@ for (let i of mapsStr) {
 // 京都市(南)
 function Usakyoto_south () {
   this.extent = transformE([135.6943010138845, 34.996985089808334, 135.80539677017686, 34.916474628902776])
+  this.extent2 = transformE([135.6943010138845, 34.996985089808334, 135.80539677017686, 34.916474628902776])
   this.source = new XYZ({
     url: 'https://t.tilemap.jp/jcp_maps/kyoto_south/{z}/{x}/{-y}.png',
     crossOrigin: 'Anonymous',
@@ -10067,6 +10121,7 @@ for (let i of mapsStr) {
 // 前橋市
 function Usamaebashi () {
   this.extent = transformE([139.03692848520149, 36.42476537937992, 139.10921177449703, 36.36642121340162])
+  this.extent2 = transformE([139.03692848520149, 36.42476537937992, 139.10921177449703, 36.36642121340162])
   this.source = new XYZ({
     url: 'https://t.tilemap.jp/jcp_maps/maebashi/{z}/{x}/{-y}.png',
     crossOrigin: 'Anonymous',
@@ -10081,6 +10136,7 @@ for (let i of mapsStr) {
 // 枕崎市
 function Usamakurazaki () {
   this.extent = transformE([130.27057404867296, 31.293447219997688, 130.3296372970093, 31.248059353360432])
+  this.extent2 = transformE([130.27057404867296, 31.293447219997688, 130.3296372970093, 31.248059353360432])
   this.source = new XYZ({
     url: 'https://t.tilemap.jp/jcp_maps/makurazaki/{z}/{x}/{-y}.png',
     crossOrigin: 'Anonymous',
@@ -10095,6 +10151,7 @@ for (let i of mapsStr) {
 // 松江市
 function Usamatsue () {
   this.extent = transformE([132.99721215263972, 35.49991858248744, 133.10912531212935, 35.42483380090842])
+  this.extent2 = transformE([132.99721215263972, 35.49991858248744, 133.10912531212935, 35.42483380090842])
   this.source = new XYZ({
     url: 'https://t.tilemap.jp/jcp_maps/matsue/{z}/{x}/{-y}.png',
     crossOrigin: 'Anonymous',
@@ -10109,6 +10166,7 @@ for (let i of mapsStr) {
 // 三原市
 function Usamihara () {
   this.extent = transformE([133.02333144783972, 34.425199058736396, 133.13130511283873, 34.356677113032205])
+  this.extent2 = transformE([133.02333144783972, 34.425199058736396, 133.13130511283873, 34.356677113032205])
   this.source = new XYZ({
     url: 'https://t.tilemap.jp/jcp_maps/mihara_itozaki/{z}/{x}/{-y}.png',
     crossOrigin: 'Anonymous',
@@ -10123,6 +10181,7 @@ for (let i of mapsStr) {
 // 水戸市
 function Usamito () {
   this.extent = transformE([140.4179578231387, 36.413769771836456, 140.545391585093, 36.350511004933594])
+  this.extent2 = transformE([140.4179578231387, 36.413769771836456, 140.545391585093, 36.350511004933594])
   this.source = new XYZ({
     url: 'https://t.tilemap.jp/jcp_maps/mito/{z}/{x}/{-y}.png',
     crossOrigin: 'Anonymous',
@@ -10137,6 +10196,7 @@ for (let i of mapsStr) {
 // 長野市
 function Usanagano () {
   this.extent = transformE([138.14073032198428, 36.69619682804296, 138.2340108459997, 36.615546045100615])
+  this.extent2 = transformE([138.14073032198428, 36.69619682804296, 138.2340108459997, 36.615546045100615])
   this.source = new XYZ({
     url: 'https://t.tilemap.jp/jcp_maps/nagano/{z}/{x}/{-y}.png',
     crossOrigin: 'Anonymous',
@@ -10151,6 +10211,7 @@ for (let i of mapsStr) {
 // 長岡市
 function Usanagaoka () {
   this.extent = transformE([138.81563140898004, 37.48632713465814, 138.87307359724298, 37.41690979613216])
+  this.extent2 = transformE([138.81563140898004, 37.48632713465814, 138.87307359724298, 37.41690979613216])
   this.source = new XYZ({
     url: 'https://t.tilemap.jp/jcp_maps/nagaoka/{z}/{x}/{-y}.png',
     crossOrigin: 'Anonymous',
@@ -10165,6 +10226,7 @@ for (let i of mapsStr) {
 // 長崎市
 function Usanagasaki () {
   this.extent = transformE([129.82426933289048, 32.80116245898009, 129.92143838942525, 32.69767898831918])
+  this.extent2 = transformE([129.82426933289048, 32.80116245898009, 129.92143838942525, 32.69767898831918])
   this.source = new XYZ({
     url: 'https://t.tilemap.jp/jcp_maps/nagasaki/{z}/{x}/{-y}.png',
     crossOrigin: 'Anonymous',
@@ -10179,6 +10241,7 @@ for (let i of mapsStr) {
 // 名古屋市(北東)
 function Usanagoya_ne () {
   this.extent = transformE([136.8897098705461, 35.22421193160979, 136.98818271993733, 35.13233810303973])
+  this.extent2 = this.extent
   this.source = new XYZ({
     url: 'https://t.tilemap.jp/jcp_maps/nagoya_ne/{z}/{x}/{-y}.png',
     crossOrigin: 'Anonymous',
@@ -10193,6 +10256,7 @@ for (let i of mapsStr) {
 // 名古屋市(北西)
 function Usanagoya_nw () {
   this.extent = transformE([136.80611080422372, 35.225824131738065, 136.90547197474476, 35.13243456671647])
+  this.extent2 = this.extent
   this.source = new XYZ({
     url: 'https://t.tilemap.jp/jcp_maps/nagoya_nw/{z}/{x}/{-y}.png',
     crossOrigin: 'Anonymous',
@@ -10207,6 +10271,7 @@ for (let i of mapsStr) {
 // 名古屋市(南東)
 function Usanagoya_se () {
   this.extent = transformE([136.88919877397763, 35.14167895962797, 136.98842441427456, 35.04951319684166])
+  this.extent2 = this.extent
   this.source = new XYZ({
     url: 'https://t.tilemap.jp/jcp_maps/nagoya_se/{z}/{x}/{-y}.png',
     crossOrigin: 'Anonymous',
@@ -10221,6 +10286,7 @@ for (let i of mapsStr) {
 // 名古屋市(南西)
 function Usanagoya_sw () {
   this.extent = transformE([136.80523113396558, 35.141184354273065, 136.90487806511402, 35.048543288426316])
+  this.extent2 = this.extent
   this.source = new XYZ({
     url: 'https://t.tilemap.jp/jcp_maps/nagoya_sw/{z}/{x}/{-y}.png',
     crossOrigin: 'Anonymous',
@@ -10235,6 +10301,7 @@ for (let i of mapsStr) {
 // 七尾市
 function Usananao () {
   this.extent = transformE([136.90164078074454, 37.09788232838679, 137.0370105286217, 37.0228343649801])
+  this.extent2 = transformE([136.90164078074454, 37.09788232838679, 137.0370105286217, 37.0228343649801])
   this.source = new XYZ({
     url: 'https://t.tilemap.jp/jcp_maps/nanao/{z}/{x}/{-y}.png',
     crossOrigin: 'Anonymous',
@@ -10249,6 +10316,7 @@ for (let i of mapsStr) {
 // 直江津
 function Usanaoetsu() {
   this.extent = transformE([138.20747979491517,37.20133085529935, 138.27912193297908,37.1554182778262])
+  this.extent2 = transformE([138.20747979491517,37.20133085529935, 138.27912193297908,37.1554182778262])
   this.source = new XYZ({
     url: 'https://kenzkenz3.xsrv.jp/jcp_maps/naoetsu/{z}/{x}/{y}.png',
     crossOrigin: 'Anonymous',
@@ -10262,6 +10330,7 @@ for (let i of mapsStr) {
 // 新潟市
 function Usaniigata () {
   this.extent = transformE([138.99186708819562, 37.96788748388437, 139.0933551717966, 37.8983254944878])
+  this.extent2 = transformE([138.99186708819562, 37.96788748388437, 139.0933551717966, 37.8983254944878])
   this.source = new XYZ({
     url: 'https://t.tilemap.jp/jcp_maps/niigata/{z}/{x}/{-y}.png',
     crossOrigin: 'Anonymous',
@@ -10276,6 +10345,7 @@ for (let i of mapsStr) {
 // 新居浜市
 function Usaniihama () {
   this.extent = transformE([133.22255519907048, 34.00367828974015, 133.31210141758493, 33.92086221440381])
+  this.extent2 = transformE([133.22255519907048, 34.00367828974015, 133.31210141758493, 33.92086221440381])
   this.source = new XYZ({
     url: 'https://t.tilemap.jp/jcp_maps/niihama/{z}/{x}/{-y}.png',
     crossOrigin: 'Anonymous',
@@ -10290,6 +10360,7 @@ for (let i of mapsStr) {
 // 日光市
 function Usanikko () {
   this.extent = transformE([139.48407988645982, 36.78855612641945, 139.64399721124124, 36.71216243946745])
+  this.extent2 = transformE([139.48407988645982, 36.78855612641945, 139.64399721124124, 36.71216243946745])
   this.source = new XYZ({
     url: 'https://t.tilemap.jp/jcp_maps/nikko/{z}/{x}/{-y}.png',
     crossOrigin: 'Anonymous',
@@ -10304,6 +10375,7 @@ for (let i of mapsStr) {
 // 直方市
 function Usanogata () {
   this.extent = transformE([130.69598996782418, 33.77216740394658, 130.75809919977306, 33.71618955385571])
+  this.extent2 = transformE([130.69598996782418, 33.77216740394658, 130.75809919977306, 33.71618955385571])
   this.source = new XYZ({
     url: 'https://t.tilemap.jp/jcp_maps/nogata/{z}/{x}/{-y}.png',
     crossOrigin: 'Anonymous',
@@ -10318,6 +10390,7 @@ for (let i of mapsStr) {
 // 沼津市
 function Usanumazu () {
   this.extent = transformE([138.8324112693624, 35.1277526279410, 138.89685871702, 35.06471308977173])
+  this.extent2 = transformE([138.8324112693624, 35.1277526279410, 138.89685871702, 35.06471308977173])
   this.source = new XYZ({
     url: 'https://t.tilemap.jp/jcp_maps/numazu/{z}/{x}/{-y}.png',
     crossOrigin: 'Anonymous',
@@ -10332,6 +10405,7 @@ for (let i of mapsStr) {
 // 大垣市
 function Usaogaki () {
   this.extent = transformE([136.55413836399077, 35.40195135119643, 136.66695408681392, 35.33227207940551])
+  this.extent2 = transformE([136.55413836399077, 35.40195135119643, 136.66695408681392, 35.33227207940551])
   this.source = new XYZ({
     url: 'https://t.tilemap.jp/jcp_maps/ogaki/{z}/{x}/{-y}.png',
     crossOrigin: 'Anonymous',
@@ -10346,6 +10420,7 @@ for (let i of mapsStr) {
 // 大分市
 function Usaoita () {
   this.extent = transformE([131.55698081039802, 33.27340799027354, 131.65331704103366, 33.203760920003575])
+  this.extent2 = transformE([131.55698081039802, 33.27340799027354, 131.65331704103366, 33.203760920003575])
   this.source = new XYZ({
     url: 'https://t.tilemap.jp/jcp_maps/oita/{z}/{x}/{-y}.png',
     crossOrigin: 'Anonymous',
@@ -10360,6 +10435,7 @@ for (let i of mapsStr) {
 // 岡山市
 function Usaokayama() {
   this.extent = transformE([133.87770654276844,34.708880685750856, 133.97912757114406,34.6163776195384])
+  this.extent2 = transformE([133.87770654276844,34.708880685750856, 133.97912757114406,34.6163776195384])
   this.source = new XYZ({
     url: 'https://kenzkenz3.xsrv.jp/jcp_maps/okayama/{z}/{x}/{y}.png',
     crossOrigin: 'Anonymous',
@@ -10380,6 +10456,7 @@ for (let i of mapsStr) {
 // 桶川市
 function Usaokegawa () {
   this.extent = transformE([139.52177323905948, 36.0269588999937, 139.6205921455574, 35.95245423653812])
+  this.extent2 = transformE([139.52177323905948, 36.0269588999937, 139.6205921455574, 35.95245423653812])
   this.source = new XYZ({
     url: 'https://t.tilemap.jp/jcp_maps/okegawa/{z}/{x}/{-y}.png',
     crossOrigin: 'Anonymous',
@@ -10394,6 +10471,7 @@ for (let i of mapsStr) {
 // 大湊市
 function Usaominato () {
   this.extent = transformE([141.10173496456386, 41.30304157411669, 141.22543978543519, 41.20456356172045])
+  this.extent2 = transformE([141.10173496456386, 41.30304157411669, 141.22543978543519, 41.20456356172045])
   this.source = new XYZ({
     url: 'https://t.tilemap.jp/jcp_maps/ominato/{z}/{x}/{-y}.png',
     crossOrigin: 'Anonymous',
@@ -10408,6 +10486,7 @@ for (let i of mapsStr) {
 // 大村市
 function Usaomura () {
   this.extent = transformE([129.89270322251053, 32.95816906007779, 129.98746633755894, 32.8826256032659])
+  this.extent2 = transformE([129.89270322251053, 32.95816906007779, 129.98746633755894, 32.8826256032659])
   this.source = new XYZ({
     url: 'https://kenzkenz3.xsrv.jp/jcp_maps/omura/{z}/{x}/{y}.png',
     crossOrigin: 'Anonymous',
@@ -10421,6 +10500,7 @@ for (let i of mapsStr) {
 // 大牟田市
 function Usaomuta () {
   this.extent = transformE([130.37973611582464, 33.056731972736316, 130.48797531951612, 32.98711858353457])
+  this.extent2 = transformE([130.37973611582464, 33.056731972736316, 130.48797531951612, 32.98711858353457])
   this.source = new XYZ({
     url: 'https://t.tilemap.jp/jcp_maps/omuta/{z}/{x}/{-y}.png',
     crossOrigin: 'Anonymous',
@@ -10435,6 +10515,7 @@ for (let i of mapsStr) {
 // 山陽小野田市
 function Usaonoda () {
   this.extent = transformE([131.13791842343807,34.01405470527139, 131.20457467021942,33.944588710860714])
+  this.extent2 = transformE([131.13791842343807,34.01405470527139, 131.20457467021942,33.944588710860714])
   this.source = new XYZ({
     url: 'https://kenzkenz3.xsrv.jp/jcp_maps/onoda/{z}/{x}/{y}.png',
     crossOrigin: 'Anonymous',
@@ -10448,6 +10529,7 @@ for (let i of mapsStr) {
 // 小樽市
 function Usaotaru () {
   this.extent = transformE([140.95003125711892, 43.2498339236171, 141.06840585812543, 43.1510898825083])
+  this.extent2 = transformE([140.95003125711892, 43.2498339236171, 141.06840585812543, 43.1510898825083])
   this.source = new XYZ({
     url: 'https://t.tilemap.jp/jcp_maps/otaru/{z}/{x}/{-y}.png',
     crossOrigin: 'Anonymous',
@@ -10462,6 +10544,7 @@ for (let i of mapsStr) {
 // 大津市
 function Usaotsu_seta () {
   this.extent = transformE([135.8276778607642,35.04236537027731, 135.9406216590678,34.950260003281315])
+  this.extent2 = transformE([135.8276778607642,35.04236537027731, 135.9406216590678,34.950260003281315])
   this.source = new XYZ({
     // url: 'https://t.tilemap.jp/jcp_maps/otsu_seta/{z}/{x}/{-y}.png',
     url: 'https://kenzkenz3.xsrv.jp/jcp_maps/otsu/{z}/{x}/{y}.png',
@@ -10477,6 +10560,7 @@ for (let i of mapsStr) {
 // 留萌市
 function Usarumoi () {
   this.extent = transformE([141.6042188327817, 43.98252204659977, 141.70030494742667, 43.90720818339608])
+  this.extent2 = transformE([141.6042188327817, 43.98252204659977, 141.70030494742667, 43.90720818339608])
   this.source = new XYZ({
     url: 'https://t.tilemap.jp/jcp_maps/rumoi/{z}/{x}/{-y}.png',
     crossOrigin: 'Anonymous',
@@ -10491,6 +10575,7 @@ for (let i of mapsStr) {
 // 佐伯市
 function Usasaeki () {
   this.extent = transformE([131.85777088174342, 32.99383225285267, 131.93490104102835, 32.90668177072595])
+  this.extent2 = this.extent
   this.source = new XYZ({
     url: 'https://t.tilemap.jp/jcp_maps/saeki/{z}/{x}/{-y}.png',
     crossOrigin: 'Anonymous',
@@ -10505,6 +10590,7 @@ for (let i of mapsStr) {
 // 酒田市
 function Usasakata () {
   this.extent = transformE([139.79572723006245, 38.94697215540117, 139.86472236310482, 38.893991742680754])
+  this.extent2 = this.extent
   this.source = new XYZ({
     url: 'https://t.tilemap.jp/jcp_maps/sakata/{z}/{x}/{-y}.png',
     crossOrigin: 'Anonymous',
@@ -10519,6 +10605,7 @@ for (let i of mapsStr) {
 // 札幌市
 function Usasapporo () {
   this.extent = transformE([141.2872269967413, 43.12652987403498, 141.4241048765094, 43.0095195482877])
+  this.extent2 = this.extent
   this.source = new XYZ({
     url: 'https://t.tilemap.jp/jcp_maps/sapporo/{z}/{x}/{-y}.png',
     crossOrigin: 'Anonymous',
@@ -10533,6 +10620,7 @@ for (let i of mapsStr) {
 // 佐世保市
 function Usasasebo () {
   this.extent = transformE([129.67363106960568, 33.21108635181264, 129.77110120410237, 33.10068154282844])
+  this.extent2 = this.extent
   this.source = new XYZ({
     url: 'https://t.tilemap.jp/jcp_maps/sasebo/{z}/{x}/{-y}.png',
     crossOrigin: 'Anonymous',
@@ -10547,6 +10635,7 @@ for (let i of mapsStr) {
 // 薩摩川内市
 function Usasatsuma_sendai () {
   this.extent = transformE([130.2660942035549, 31.84126574443949, 130.32700482335025, 31.789400580167452])
+  this.extent2 = this.extent
   this.source = new XYZ({
     url: 'https://t.tilemap.jp/jcp_maps/satsuma_sendai/{z}/{x}/{-y}.png',
     crossOrigin: 'Anonymous',
@@ -10561,6 +10650,7 @@ for (let i of mapsStr) {
 // 仙台市
 function Usasendai () {
   this.extent = transformE([140.82992065404846, 38.293472864168336, 140.9386044338842, 38.20103124986022])
+  this.extent2 = this.extent
   this.source = new XYZ({
     url: 'https://t.tilemap.jp/jcp_maps/sendai/{z}/{x}/{-y}.png',
     crossOrigin: 'Anonymous',
@@ -10575,6 +10665,7 @@ for (let i of mapsStr) {
 // 飾磨
 function Usashikama () {
   this.extent = transformE([134.57381908301352, 34.830801155046686, 134.69907891456126, 34.7487640772753])
+  this.extent2 = this.extent
   this.source = new XYZ({
     url: 'https://t.tilemap.jp/jcp_maps/shikama/{z}/{x}/{-y}.png',
     crossOrigin: 'Anonymous',
@@ -10589,6 +10680,7 @@ for (let i of mapsStr) {
 // 島原市
 function Usashimabara () {
   this.extent = transformE([130.33991189911603, 32.80562992452464, 130.40247509494066, 32.75341095906735])
+  this.extent2 = this.extent
   this.source = new XYZ({
     url: 'https://t.tilemap.jp/jcp_maps/shimabara/{z}/{x}/{-y}.png',
     crossOrigin: 'Anonymous',
@@ -10603,6 +10695,7 @@ for (let i of mapsStr) {
 // 清水市
 function Usashimizu () {
   this.extent = transformE([138.44154622744944, 35.05407685272354, 138.53987265717413, 34.97184831284642])
+  this.extent2 = this.extent
   this.source = new XYZ({
     url: 'https://t.tilemap.jp/jcp_maps/shimizu/{z}/{x}/{-y}.png',
     crossOrigin: 'Anonymous',
@@ -10617,6 +10710,7 @@ for (let i of mapsStr) {
 // 下関市
 function Usashimonoseki_moji () {
   this.extent = transformE([130.86186034693543, 33.99364348447547, 130.99910898222745, 33.9010277531139])
+  this.extent2 = this.extent
   this.source = new XYZ({
     url: 'https://t.tilemap.jp/jcp_maps/shimonoseki_moji/{z}/{x}/{-y}.png',
     crossOrigin: 'Anonymous',
@@ -10631,6 +10725,7 @@ for (let i of mapsStr) {
 // 吹田市
 function Usasuita () {
   this.extent = transformE([135.46811271576692, 34.81241595216801, 135.58729734389593, 34.73599802051933])
+  this.extent2 = this.extent
   this.source = new XYZ({
     url: 'https://t.tilemap.jp/jcp_maps/suita/{z}/{x}/{-y}.png',
     crossOrigin: 'Anonymous',
@@ -10645,6 +10740,7 @@ for (let i of mapsStr) {
 // 高田市
 function Usatakada () {
   this.extent = transformE([138.2140323701369, 37.14730687866512, 138.28622804908625, 37.08329203410612])
+  this.extent2 = this.extent
   this.source = new XYZ({
     url: 'https://t.tilemap.jp/jcp_maps/takada/{z}/{x}/{-y}.png',
     crossOrigin: 'Anonymous',
@@ -10659,6 +10755,7 @@ for (let i of mapsStr) {
 // 高松市
 function Usatakamatsu () {
   this.extent = transformE([133.99545893909394,34.39269918414061, 134.11711991669594,34.301570982649295])
+  this.extent2 = this.extent
   this.source = new XYZ({
     url: 'https://kenzkenz3.xsrv.jp/jcp_maps/takamatsu/{z}/{x}/{y}.png',
     crossOrigin: 'Anonymous',
@@ -10672,6 +10769,7 @@ for (let i of mapsStr) {
 // 高砂市
 function Usatakasago () {
   this.extent = transformE([134.74741530689215,34.79614117291294, 134.91089795800664,34.698735552479135])
+  this.extent2 = this.extent
   this.source = new XYZ({
     url: 'https://kenzkenz3.xsrv.jp/jcp_maps/takasago/{z}/{x}/{y}.png',
     crossOrigin: 'Anonymous',
@@ -10685,6 +10783,7 @@ for (let i of mapsStr) {
 // 高崎市
 function Usatakasaki () {
   this.extent = transformE([138.97691229387246,36.35389563865152, 139.03623605175935,36.294564407602934])
+  this.extent2 = this.extent
   this.source = new XYZ({
     url: 'https://kenzkenz3.xsrv.jp/jcp_maps/takasaki/{z}/{x}/{y}.png',
     crossOrigin: 'Anonymous',
@@ -10698,6 +10797,7 @@ for (let i of mapsStr) {
 // 鳥羽市
 function Usatoba () {
   this.extent = transformE([136.80242859001117,34.5282360211439, 136.8797379004474,34.4474052593944])
+  this.extent2 = this.extent
   this.source = new XYZ({
     url: 'https://kenzkenz3.xsrv.jp/jcp_maps/toba/{z}/{x}/{y}.png',
     crossOrigin: 'Anonymous',
@@ -10711,6 +10811,7 @@ for (let i of mapsStr) {
 // 玉野市
 function Usatomano () {
   this.extent = transformE([133.8988852990205,34.519890070517164, 133.99005626564573,34.436591886068825])
+  this.extent2 = this.extent
   this.source = new XYZ({
     url: 'https://kenzkenz3.xsrv.jp/jcp_maps/tomano/{z}/{x}/{y}.png',
     crossOrigin: 'Anonymous',
@@ -10724,6 +10825,7 @@ for (let i of mapsStr) {
 // 徳島市
 function Usatokushima () {
   this.extent = transformE([134.4936030594145,34.12235468581463, 134.61755866682876,34.02929803919676])
+  this.extent2 = this.extent
   this.source = new XYZ({
     url: 'https://kenzkenz3.xsrv.jp/jcp_maps/tokushima/{z}/{x}/{y}.png',
     crossOrigin: 'Anonymous',
@@ -10737,6 +10839,7 @@ for (let i of mapsStr) {
 // 徳山
 function Usatokuyama () {
   this.extent = transformE([131.74538715278192,34.08462384762474, 131.84149338399453,33.99426773843973])
+  this.extent2 = this.extent
   this.source = new XYZ({
     url: 'https://kenzkenz3.xsrv.jp/jcp_maps/tokuyama/{z}/{x}/{y}.png',
     crossOrigin: 'Anonymous',
@@ -10750,6 +10853,7 @@ for (let i of mapsStr) {
 // 鳥取市
 function Usatottori () {
   this.extent = transformE([134.1900909428445,35.52696479360749, 134.28330172942555,35.46730267834758])
+  this.extent2 = this.extent
   this.source = new XYZ({
     url: 'https://kenzkenz3.xsrv.jp/jcp_maps/tottori/{z}/{x}/{y}.png',
     crossOrigin: 'Anonymous',
@@ -10763,6 +10867,7 @@ for (let i of mapsStr) {
 // 富山市
 function Usatoyama () {
   this.extent = transformE([137.1684165214623,36.72884284984751, 137.25429548970115,36.66525139660453])
+  this.extent2 = this.extent
   this.source = new XYZ({
     url: 'https://kenzkenz3.xsrv.jp/jcp_maps/toyama/{z}/{x}/{y}.png',
     crossOrigin: 'Anonymous',
@@ -10776,6 +10881,7 @@ for (let i of mapsStr) {
 // 豊橋市(北)
 function Usatoyohasi_north () {
   this.extent = transformE([137.30419119783116,34.79819174398203, 137.4371489692516,34.699863481299786])
+  this.extent2 = this.extent
   this.source = new XYZ({
     url: 'https://kenzkenz3.xsrv.jp/jcp_maps/toyohashi_north/{z}/{x}/{y}.png',
     crossOrigin: 'Anonymous',
@@ -10789,6 +10895,7 @@ for (let i of mapsStr) {
 // 豊橋市(南)
 function Usatoyohasi_south () {
   this.extent = transformE([137.3040570873804,34.77214256985337, 137.4375519711561,34.67231637720508])
+  this.extent2 = this.extent
   this.source = new XYZ({
     url: 'https://kenzkenz3.xsrv.jp/jcp_maps/toyohashi_south/{z}/{x}/{y}.png',
     crossOrigin: 'Anonymous',
@@ -10802,6 +10909,7 @@ for (let i of mapsStr) {
 // 豊川市
 function Usatoyokawa () {
   this.extent = transformE([137.3300625528809,34.87697931243254, 137.4370303894993,34.78739376103327])
+  this.extent2 = this.extent
   this.source = new XYZ({
     url: 'https://kenzkenz3.xsrv.jp/jcp_maps/toyokawa/{z}/{x}/{y}.png',
     crossOrigin: 'Anonymous',
@@ -10815,6 +10923,7 @@ for (let i of mapsStr) {
 // 土崎
 function Usatsuchizaki () {
   this.extent = transformE([140.0322280044941,39.77748578452113, 140.10570276186743,39.73013139828953])
+  this.extent2 = this.extent
   this.source = new XYZ({
     url: 'https://kenzkenz3.xsrv.jp/jcp_maps/tsuchizaki/{z}/{x}/{y}.png',
     crossOrigin: 'Anonymous',
@@ -10828,6 +10937,7 @@ for (let i of mapsStr) {
 // 敦賀市
 function Usatsuruga () {
   this.extent = transformE([136.02015594007466,35.67725529086043, 136.1043337172458,35.61019094654843])
+  this.extent2 = this.extent
   this.source = new XYZ({
     url: 'https://kenzkenz3.xsrv.jp/jcp_maps/tsuruga/{z}/{x}/{y}.png',
     crossOrigin: 'Anonymous',
@@ -10841,6 +10951,7 @@ for (let i of mapsStr) {
 // 津山市
 function Usatsuyama () {
   this.extent = transformE([133.9546515527164,35.093894098921695, 134.05467984406104,35.028394837132595])
+  this.extent2 = this.extent
   this.source = new XYZ({
     url: 'https://kenzkenz3.xsrv.jp/jcp_maps/tsuyama/{z}/{x}/{y}.png',
     crossOrigin: 'Anonymous',
@@ -10854,6 +10965,7 @@ for (let i of mapsStr) {
 // 宇部市
 function Usaube () {
   this.extent = transformE([131.21090737917757,33.985496410975, 131.27556202748153,33.91514344585086])
+  this.extent2 = this.extent
   this.source = new XYZ({
     url: 'https://kenzkenz3.xsrv.jp/jcp_maps/ube/{z}/{x}/{y}.png',
     crossOrigin: 'Anonymous',
@@ -10867,6 +10979,7 @@ for (let i of mapsStr) {
 // 魚津市
 function Usauotsu () {
   this.extent = transformE([137.359654715174,36.84154335048109, 137.4231533313926,36.78819929793053])
+  this.extent2 = this.extent
   this.source = new XYZ({
     url: 'https://kenzkenz3.xsrv.jp/jcp_maps/uotsu/{z}/{x}/{y}.png',
     crossOrigin: 'Anonymous',
@@ -10880,6 +10993,7 @@ for (let i of mapsStr) {
 // 宇都宮市
 function Usautsunomiya () {
   this.extent = transformE([139.80726931534997,36.60692094994177, 139.94236346625078,36.51922096392269])
+  this.extent2 = this.extent
   this.source = new XYZ({
     url: 'https://kenzkenz3.xsrv.jp/jcp_maps/utsunomiya/{z}/{x}/{y}.png',
     crossOrigin: 'Anonymous',
@@ -10893,6 +11007,7 @@ for (let i of mapsStr) {
 // 会津若松市
 function Usawakamatsu () {
   this.extent = transformE([139.89971460019447, 37.5246569332612, 139.9580861738811, 37.4662552780602])
+  this.extent2 = this.extent
   this.source = new XYZ({
     url: 'https://t.tilemap.jp/jcp_maps/wakamatsu/{z}/{x}/{-y}.png',
     crossOrigin: 'Anonymous',
@@ -10907,6 +11022,7 @@ for (let i of mapsStr) {
 // 和歌山市
 function Usawakayama () {
   this.extent = transformE([135.10168442914156,34.278745841537926, 135.2230356116023,34.16603880752899])
+  this.extent2 = this.extent
   this.source = new XYZ({
     url: 'https://kenzkenz3.xsrv.jp/jcp_maps/wakayama/{z}/{x}/{y}.png',
     crossOrigin: 'Anonymous',
@@ -10920,6 +11036,7 @@ for (let i of mapsStr) {
 // 山形市
 function Usayamagata () {
   this.extent = transformE([140.31046887145618,38.2869380235048, 140.37764680789093,38.223610501260254])
+  this.extent2 = this.extent
   this.source = new XYZ({
     url: 'https://kenzkenz3.xsrv.jp/jcp_maps/yamagata/{z}/{x}/{y}.png',
     crossOrigin: 'Anonymous',
@@ -10933,6 +11050,7 @@ for (let i of mapsStr) {
 // 山口市
 function Usayamaguchi () {
   this.extent = transformE([131.44143730059048,34.20638353543529, 131.50447591796302,34.15296649850379])
+  this.extent2 = this.extent
   this.source = new XYZ({
     url: 'https://kenzkenz3.xsrv.jp/jcp_maps/yamaguchi/{z}/{x}/{y}.png',
     crossOrigin: 'Anonymous',
@@ -10946,6 +11064,7 @@ for (let i of mapsStr) {
 // 八幡
 function Usayawata () {
   this.extent = transformE([130.7352353711359,33.93668107746137, 130.8548940797083,33.848555614389184])
+  this.extent2 = this.extent
   this.source = new XYZ({
     url: 'https://kenzkenz3.xsrv.jp/jcp_maps/yawata/{z}/{x}/{y}.png',
     crossOrigin: 'Anonymous',
@@ -10959,6 +11078,7 @@ for (let i of mapsStr) {
 // 八代市
 function Usayatsushiro () {
   this.extent = transformE([130.56782128418257, 32.52529691909547, 130.64291911328604, 32.4722538224630])
+  this.extent2 = this.extent
   this.source = new XYZ({
     url: 'https://t.tilemap.jp/jcp_maps/yatsushiro/{z}/{x}/{-y}.png',
     crossOrigin: 'Anonymous',
@@ -10973,6 +11093,7 @@ for (let i of mapsStr) {
 // 四日市
 function Usayokkaichi () {
   this.extent = transformE([136.5812700596467,34.997838813507684, 136.66969176203165,34.92287302729859])
+  this.extent2 = this.extent
   this.source = new XYZ({
     url: 'https://kenzkenz3.xsrv.jp/jcp_maps/yokkaichi/{z}/{x}/{y}.png',
     crossOrigin: 'Anonymous',
@@ -10986,6 +11107,7 @@ for (let i of mapsStr) {
 // 米子市
 function Usayonago () {
   this.extent = transformE([133.28164837924874,35.480611440807465, 133.3806044575397,35.397899772912595])
+  this.extent2 = this.extent
   this.source = new XYZ({
     url: 'https://kenzkenz3.xsrv.jp/jcp_maps/yonago/{z}/{x}/{y}.png',
     crossOrigin: 'Anonymous',
@@ -10999,6 +11121,7 @@ for (let i of mapsStr) {
 // 善通寺市
 function Usazentsuji () {
   this.extent = transformE([133.74462727940428,34.25811177699647, 133.81558511889327,34.199615898483586])
+  this.extent2 = this.extent
   this.source = new XYZ({
     url: 'https://kenzkenz3.xsrv.jp/jcp_maps/zentsuji/{z}/{x}/{y}.png',
     crossOrigin: 'Anonymous',
@@ -11017,6 +11140,7 @@ for (let i of mapsStr) {
 // 高鍋町
 function Usatakanabe () {
   this.extent = transformE([131.49437198658654, 32.14926230220921, 131.55480667761816, 32.097161098583])
+  this.extent2 = this.extent
   this.source = new XYZ({
     url: 'https://t.tilemap.jp/jcp_maps/takanabe/{z}/{x}/{-y}.png',
     crossOrigin: 'Anonymous',
@@ -11031,6 +11155,7 @@ for (let i of mapsStr) {
 // 高岡
 function Usatakaoka () {
   this.extent = transformE([136.95122553245773, 36.78462123872494, 137.07285137091316, 36.72027436365445])
+  this.extent2 = this.extent
   this.source = new XYZ({
     url: 'https://t.tilemap.jp/jcp_maps/takaoka/{z}/{x}/{-y}.png',
     crossOrigin: 'Anonymous',
@@ -11044,6 +11169,7 @@ for (let i of mapsStr) {
 }// 大宮
 function Usaomiya () {
   this.extent = transformE([139.58288807604737, 35.936471778972816, 139.68984384272522, 35.82067028475796])
+  this.extent2 = this.extent
   this.source = new XYZ({
     url: 'https://kenzkenz3.xsrv.jp/jcp_maps/omiya/{z}/{x}/{y}.png',
     crossOrigin: 'Anonymous',
@@ -11058,6 +11184,7 @@ const usaTokyoSumm = '<a href="https://maps.lib.utexas.edu/maps/ams/japan_city_p
 // 板橋区
 function Usaitabashi () {
   this.extent = transformE([139.55659942810058, 35.84279388096407, 139.6851201552582, 35.74376046340615])
+  this.extent2 = this.extent
   this.source = new XYZ({
     url: 'https://kenzkenz3.xsrv.jp/jcp_maps/itabashi/{z}/{x}/{y}.png',
     crossOrigin: 'Anonymous',
@@ -11071,6 +11198,7 @@ for (let i of mapsStr) {
 // 川口市
 function Usakawaguchi () {
   this.extent = transformE([139.67232242769714, 35.8422159012266, 139.8030720705461, 35.74493041694202])
+  this.extent2 = this.extent
   this.source = new XYZ({
     url: 'https://kenzkenz3.xsrv.jp/jcp_maps/kawaguchi/{z}/{x}/{y}.png',
     crossOrigin: 'Anonymous',
@@ -11084,6 +11212,7 @@ for (let i of mapsStr) {
 // 松戸市
 function Usamatsudo () {
   this.extent = transformE([139.787265544735, 35.84270580004852, 139.92278817852593, 35.74447067756418])
+  this.extent2 = this.extent
   this.source = new XYZ({
     url: 'https://kenzkenz3.xsrv.jp/jcp_maps/matsudo/{z}/{x}/{y}.png',
     crossOrigin: 'Anonymous',
@@ -11097,6 +11226,7 @@ for (let i of mapsStr) {
 // 立川市
 function UsatachikawaObj () {
   this.extent = transformE([139.3257750300442, 35.7677794416578, 139.45130978801595, 35.66939179444587])
+  this.extent2 = this.extent
   this.source = new XYZ({
     url: 'https://kenzkenz3.xsrv.jp/jcp_maps/tachikawa/{z}/{x}/{y}.png',
     crossOrigin: 'Anonymous',
@@ -11110,6 +11240,7 @@ for (let i of mapsStr) {
 // 田無
 function Usatanashi () {
   this.extent = transformE([139.4374114036049, 35.768251043426986, 139.57501073772565, 35.6676261138138])
+  this.extent2 = this.extent
   this.source = new XYZ({
     url: 'https://kenzkenz3.xsrv.jp/jcp_maps/tanashi/{z}/{x}/{y}.png',
     crossOrigin: 'Anonymous',
@@ -11123,6 +11254,7 @@ for (let i of mapsStr) {
 // 中野区
 function Usanakano () {
   this.extent = transformE([139.55876057440844, 35.766645453219354, 139.6859080105504, 35.66883929724342])
+  this.extent2 = this.extent
   this.source = new XYZ({
     url: 'https://kenzkenz3.xsrv.jp/jcp_maps/nakano/{z}/{x}/{y}.png',
     crossOrigin: 'Anonymous',
@@ -11136,6 +11268,7 @@ for (let i of mapsStr) {
 // 小石川
 function Usakoishikawa () {
   this.extent = transformE([139.67579968662739, 35.7659536404624, 139.8011419961023, 35.67149249224876])
+  this.extent2 = this.extent
   this.source = new XYZ({
     url: 'https://kenzkenz3.xsrv.jp/jcp_maps/koishikawa/{z}/{x}/{y}.png',
     crossOrigin: 'Anonymous',
@@ -11149,6 +11282,7 @@ for (let i of mapsStr) {
 // 本所
 function Usahonjo () {
   this.extent = transformE([139.78699439491749, 35.76692444138439, 139.92178432779318, 35.66956521078299])
+  this.extent2 = this.extent
   this.source = new XYZ({
     url: 'https://kenzkenz3.xsrv.jp/jcp_maps/honjo/{z}/{x}/{y}.png',
     crossOrigin: 'Anonymous',
@@ -11162,6 +11296,7 @@ for (let i of mapsStr) {
 // 調布
 function Usachofu () {
   this.extent = transformE([139.43793800309393, 35.69264409802105, 139.5735330565283, 35.5942285900592])
+  this.extent2 = this.extent
   this.source = new XYZ({
     url: 'https://kenzkenz3.xsrv.jp/jcp_maps/chofu/{z}/{x}/{y}.png',
     crossOrigin: 'Anonymous',
@@ -11175,6 +11310,7 @@ for (let i of mapsStr) {
 // 世田谷区
 function Usasetagaya () {
   this.extent = transformE([139.55750953987325, 35.69020645502415, 139.68686778679574, 35.59558138323757])
+  this.extent2 = this.extent
   this.source = new XYZ({
     url: 'https://kenzkenz3.xsrv.jp/jcp_maps/setagaya/{z}/{x}/{y}.png',
     crossOrigin: 'Anonymous',
@@ -11188,6 +11324,7 @@ for (let i of mapsStr) {
 // 日本橋
 function Usanihonbashi () {
   this.extent = transformE([139.67133578494247, 35.691982412751216, 139.8057094274467, 35.59480793294374])
+  this.extent2 = this.extent
   this.source = new XYZ({
     url: 'https://kenzkenz3.xsrv.jp/jcp_maps/nihonbashi/{z}/{x}/{y}.png',
     crossOrigin: 'Anonymous',
@@ -11201,6 +11338,7 @@ for (let i of mapsStr) {
 // 砂町
 function Usasunamachi () {
   this.extent = transformE([139.7912620438637, 35.6927029142241, 139.9203983379902, 35.595771132326846])
+  this.extent2 = this.extent
   this.source = new XYZ({
     url: 'https://kenzkenz3.xsrv.jp/jcp_maps/sunamachi/{z}/{x}/{y}.png',
     crossOrigin: 'Anonymous',
@@ -11214,6 +11352,7 @@ for (let i of mapsStr) {
 // 田園調布
 function Usadenen () {
   this.extent = transformE([139.5552674729985, 35.61684183769074, 139.68731262280164, 35.520543926413254])
+  this.extent2 = this.extent
   this.source = new XYZ({
     url: 'https://kenzkenz3.xsrv.jp/jcp_maps/denen/{z}/{x}/{y}.png',
     crossOrigin: 'Anonymous',
@@ -11227,6 +11366,7 @@ for (let i of mapsStr) {
 // 大森
 function Usaomori () {
   this.extent = transformE([139.67116572453156, 35.61793041851628, 139.80602518214357, 35.53127408650961])
+  this.extent2 = this.extent
   this.source = new XYZ({
     url: 'https://kenzkenz3.xsrv.jp/jcp_maps/omori/{z}/{x}/{y}.png',
     crossOrigin: 'Anonymous',
@@ -11240,6 +11380,7 @@ for (let i of mapsStr) {
 // 川崎
 function Usakawasaki () {
   this.extent = transformE([139.67419982036674, 35.54299845717924, 139.80459004720768, 35.4553511140454])
+  this.extent2 = this.extent
   this.source = new XYZ({
     url: 'https://kenzkenz3.xsrv.jp/jcp_maps/kawasaki/{z}/{x}/{y}.png',
     crossOrigin: 'Anonymous',
@@ -11253,6 +11394,7 @@ for (let i of mapsStr) {
 // 横浜市
 function Usayokohama () {
   this.extent = transformE([139.55378204664274, 35.466367420903566, 139.689263106194, 35.37842491230309])
+  this.extent2 = this.extent
   this.source = new XYZ({
     url: 'https://kenzkenz3.xsrv.jp/jcp_maps/yokohama/{z}/{x}/{y}.png',
     crossOrigin: 'Anonymous',
@@ -11266,6 +11408,7 @@ for (let i of mapsStr) {
 // 根岸湾
 function Usanegishi () {
   this.extent = transformE([139.56020459612833, 35.4006437745536, 139.68445926984774, 35.30432787941882])
+  this.extent2 = this.extent
   this.source = new XYZ({
     url: 'https://kenzkenz3.xsrv.jp/jcp_maps/negishi/{z}/{x}/{y}.png',
     crossOrigin: 'Anonymous',
@@ -11279,6 +11422,7 @@ for (let i of mapsStr) {
 // 横須賀市
 function Usayokosuka () {
   this.extent = transformE([139.60289262315248, 35.342237358161995, 139.72813703199841, 35.24850065660095])
+  this.extent2 = this.extent
   this.source = new XYZ({
     url: 'https://kenzkenz3.xsrv.jp/jcp_maps/yokosuka/{z}/{x}/{y}.png',
     crossOrigin: 'Anonymous',
@@ -11292,6 +11436,7 @@ for (let i of mapsStr) {
 // 浦賀
 function Usauraga () {
   this.extent = transformE([139.65567449304083, 35.29220632171602, 139.75966105433923, 35.179361639527656])
+  this.extent2 = this.extent
   this.source = new XYZ({
     url: 'https://kenzkenz3.xsrv.jp/jcp_maps/uraga/{z}/{x}/{y}.png',
     crossOrigin: 'Anonymous',
@@ -11302,7 +11447,7 @@ const usaUragaObj = {};
 for (let i of mapsStr) {
   usaUragaObj[i] = new TileLayer(new Usauraga())
 }
-const usatokyoall = {};
+export const usatokyoall = {};
 for (let i of mapsStr) {
   usatokyoall[i] = new LayerGroup({
     layers: [
@@ -11330,11 +11475,30 @@ for (let i of mapsStr) {
   })
 }
 
-const usaall = {};
+export const usaall = {};
 for (let i of mapsStr) {
   usaall[i] = new LayerGroup({
     layers: [
-      usatokyoall[i],
+      usaOmiyaObj[i],
+      usaItabashiObj[i],
+      usaKawaguchiObj[i],
+      usaMatsudoObj[i],
+      usaTachikawaObj[i],
+      usaTanashiObj[i],
+      usaNakanoObj[i],
+      usaKoishikawaObj[i],
+      usaHonjoObj[i],
+      usaChofuObj[i],
+      usaSetagayaObj[i],
+      usanihonbasiObj[i],
+      usaSunsmschiObj[i],
+      usaDenenObj[i],
+      usaOmoriObj[i],
+      usaKawasakiObj[i],
+      usaYokohamaObj[i],
+      usaNegishiObj[i],
+      usaYokosukaObj[i],
+      usaUragaObj[i],
       usaMiyazakiObj[i],
       usaNobeokaObj[i],
       usaMiyakonojyouObj[i],

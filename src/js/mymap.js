@@ -26,6 +26,7 @@ import {GPX, GeoJSON, IGC, KML, TopoJSON} from 'ol/format.js';
 import {standardFunction} from "@/js/layers-mvt";
 import {popUpTisitu} from "./popup";
 import layer from "@/components/Layer";
+import {usatokyoall} from "./layers";
 export function initMap (vm) {
     // マップ作製ループ用の配列を作成
     const maps = [
@@ -551,6 +552,40 @@ export function initMap (vm) {
 //             }
 //         })
         //------------------------------------------------------------------------------------------------------
+        // 米軍地形図用
+        map.on('singleclick', function (evt) {
+            const layers = map.getLayers().getArray();
+            const resultUsaAll = layers.find(el => el === Layers.usaall[mapName]);
+            const resultUsatokyoall = layers.find(el => el === Layers.usatokyoall[mapName]);
+            let gLayers;
+            if (resultUsaAll || resultUsatokyoall) {
+                if (resultUsaAll) gLayers = Layers.usaall[mapName].values_.layers.array_;
+                if (resultUsatokyoall) gLayers = Layers.usatokyoall[mapName].values_.layers.array_;
+                console.log(gLayers.length)
+                const lon = evt.coordinate[0], lat = evt.coordinate[1];
+                for (let i in gLayers) {
+                    const extent2 = gLayers[i].values_['extent2'];
+                    if(extent2) {
+                        const lonMin = extent2[0], lonMax = extent2[2], latMin = extent2[1], latMax = extent2[3];
+                        if (lonMin < lon && lonMax > lon) {
+                            if (latMin < lat && latMax > lat) {
+                                maxZndex++
+                                gLayers[i].setZIndex(maxZndex)
+                                // if (gLayers[i].getZIndex()) {
+                                //     gLayers[i].setZIndex(undefined)
+                                // } else {
+                                //     maxZndex++
+                                //     gLayers[i].setZIndex(maxZndex)
+                                // }
+                            } else {
+                                gLayers[i].setZIndex(undefined)
+                            }
+                        }
+                    }
+                }
+            }
+        })
+        //------------------------------------------------------------------------------------------------------
         // 旧版地形図用
         map.on('singleclick', function (evt) {
 
@@ -641,8 +676,10 @@ export function initMap (vm) {
                 for (let i in gLayers) {
                     const extent2 = gLayers[i].values_['extent2'];
                     const lonMin = extent2[0], lonMax = extent2[2], latMin = extent2[1], latMax = extent2[3];
+                    // console.log(gLayers[i].getExtent())
                     if (lonMin < lon && lonMax > lon) {
                         if (latMin < lat && latMax > lat) {
+                            console.log(gLayers[i].getExtent())
                             if (gLayers[i].getExtent()[0] === extent2[0]) {
                                 maxZndex++;
                                 gLayers[i].setExtent([lonMin - lonOutside, latMin - latOutside, lonMax + lonOutside, latMax + latOutside]);
