@@ -3,6 +3,15 @@
         <!--map01からmap04をループで作成-->
         <transition v-for="mapName in mapNames" :key="mapName">
             <div :id=mapName :style="mapSize[mapName]" v-show="mapFlg[mapName]">
+              <div id="modal">
+                <modal name="modal1" :width="300" :clickToClose="false">
+                  <div class="modal-body">
+                    <b-button class='olbtn' v-on:click="stanford">スタンフォード大学</b-button><br><br>
+                    <b-button class='olbtn' v-on:click="mapWarper">日本版 Map Warper </b-button><br><br>
+                    <b-button class='olbtn' v-on:click="hide">閉じる</b-button>
+                  </div>
+                </modal>
+              </div>
               <div :id="popup[mapName]" class="ol-popup">
                 <a href="#" :id="popupCloser[mapName]" class="ol-popup-closer"></a>
                 <div :id="popupContent[mapName]"></div>
@@ -50,6 +59,8 @@
   import Inobounce from '../js/inobounce'
   import * as MyMap from '../js/mymap'
   import axios from "axios";
+  import * as permalink from "@/js/permalink";
+  import store from "@/js/store";
   export default {
     name: 'App',
     components: {
@@ -85,11 +96,38 @@
       }
     },
     computed: {
+      s_dialogShow () { return this.$store.state.base.dialogShow},
+      s_suUrl () { return this.$store.state.base.suUrl},
+      s_mwId () { return this.$store.state.base.mwId},
       s_dialogs () { return this.$store.state.base.dialogs},
       s_splitFlg () { return this.$store.state.base.splitFlg},
       s_dialogMaxZindex () { return this.$store.state.base.dialogMaxZindex}
     },
+    watch: {
+      s_dialogShow(newValue, oldValue) {
+        if (newValue) {
+          this.$modal.show('modal1');
+          store.commit('base/updateDialogShow',false);
+        } else {
+          this.$modal.hide('modal1');
+        }
+      }
+    },
     methods: {
+      stanford: function () {
+        if(this.s_suUrl.includes('stanford')) {
+          window.open(this.s_suUrl, '_blank')
+        } else {
+          alert('スタンフォード大学にはありません。')
+        }
+      },
+      mapWarper: function () {
+        window.open('https://mapwarper.h-gis.jp/maps/' + this.s_mwId, '_blank');
+      },
+      hide : function () {
+        this.$modal.hide('modal1')
+      },
+
       home() {
         MyMap.history ('説明画面へ')
         window.open('https://kenzkenz.xsrv.jp/open-hinata/open-hinata.html')
@@ -423,6 +461,9 @@
   mix-blend-mode: multiply;
   filter: grayScale(1);
 }
+    #modal .vm--container{
+      z-index: 10002;
+    }
     /*汎用的なスタイルはここに*/
     body{
         margin: 0;

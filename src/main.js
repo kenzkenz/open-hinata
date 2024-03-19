@@ -13,6 +13,10 @@ import '@fortawesome/fontawesome-free/js/solid';
 import '@fortawesome/fontawesome-free/js/regular';
 import '@fortawesome/fontawesome-free/js/brands';
 import drag from './js/drag'
+
+import VModal from 'vue-js-modal'
+Vue.use(VModal);
+
 Vue.use(drag);
 Vue.use(BootstrapVue);
 Vue.component('v-dialog', Dialog);

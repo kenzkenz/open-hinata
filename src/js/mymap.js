@@ -623,18 +623,10 @@ export function initMap (vm) {
                 const prop = feature.getProperties();
                 const uri = prop.uri
                 const title = prop.title
-                if(uri.includes('stanford')) {
-                    if (confirm('スタンフォード大学のサイトを表示しますか？')) {
-                        window.open(uri, '_blank');
-                        return;
-                    }
-                } else {
-                    notification.show('「' +title + '」の地図はスタンフォード大学にありません。',5000)
-                    return;
-                }
-                // return
-
-                //------------------------------------------------------
+                const mwId = prop.id
+                store.commit('base/updateDialogShow',true)
+                store.commit('base/updateSuUrl', uri)
+                store.commit('base/updateMwId', mwId)
             }
             // 普通のフィーチャー用
             const pixel00 = (evt.map).getPixelFromCoordinate(evt.coordinate);
@@ -676,10 +668,8 @@ export function initMap (vm) {
                 for (let i in gLayers) {
                     const extent2 = gLayers[i].values_['extent2'];
                     const lonMin = extent2[0], lonMax = extent2[2], latMin = extent2[1], latMax = extent2[3];
-                    // console.log(gLayers[i].getExtent())
                     if (lonMin < lon && lonMax > lon) {
                         if (latMin < lat && latMax > lat) {
-                            console.log(gLayers[i].getExtent())
                             if (gLayers[i].getExtent()[0] === extent2[0]) {
                                 maxZndex++;
                                 gLayers[i].setExtent([lonMin - lonOutside, latMin - latOutside, lonMax + lonOutside, latMax + latOutside]);

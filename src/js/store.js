@@ -6,6 +6,9 @@ Vue.use(Vuex);
 const moduleBase = {
   namespaced: true,
   state: {
+    dialogShow: false,
+    suUrl: '',
+    mwId: '',
     zyougen:100000,
     colorArr: {
       map01: [],
@@ -76,6 +79,15 @@ const moduleBase = {
     }
   },
   mutations: {
+    updateDialogShow (state, payload) {
+      state.dialogShow = payload
+    },
+    updateSuUrl (state, payload) {
+      state.suUrl = payload
+    },
+    updateMwId (state, payload) {
+      state.mwId = payload
+    },
     updateZyougen (state, payload) {
       state.zyougen = payload
     },
