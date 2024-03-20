@@ -256,7 +256,7 @@
         //   urlid = 999
         // }
         let urlid
-        if (hash.length === 5 && hash.substring(0,1) === 's') {
+        if (hash.length >= 5 && hash.substring(0,1) === 's') {
           // 改善後の短縮URL 最初がsの５桁になっている。
           urlid = hash.substring(1)
         } else {

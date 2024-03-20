@@ -2,6 +2,7 @@ import store from './store'
 import { transform } from 'ol/proj.js'
 import * as Layers from '../js/layers'
 import * as MyMap from '../js/mymap'
+import axios from "axios";
 export function permalinkEventSet () {
   // 起動時の処理------------------------------------------------------------------------------
   // value.layerはオブジェクトになっており、map01から04が入っている。
@@ -179,7 +180,23 @@ export function moveEnd () {
     zoom: zoom,
     center: center4326
   };
-  window.history.pushState(state, 'map', hash + parameter);
+  // window.history.pushState(state, 'map', hash + parameter);
   MyMap.history ('moveend')
-
+  //---------------------------------------------------------------
+  // const parameters = decodeURIComponent(window.location.hash)
+  const parameters = decodeURIComponent(hash + parameter)
+  axios
+      .get('https://kenzkenz.xsrv.jp/open-hinata/php/shorturl.php',{
+        params: {
+          parameters: parameters
+        }
+      })
+      .then(function (response) {
+        window.history.pushState(state, 'map', "#s" + response.data.urlid);
+      })
+      .catch(function (error) {
+        console.log(error);
+      })
+      .finally(function () {
+      });
 }

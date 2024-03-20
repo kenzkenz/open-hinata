@@ -7,15 +7,15 @@
 <!--                <b-button class='olbtn' :size="btnSize" @click="reset02" style="margin-left:5px;">座標を残してリセット</b-button>-->
             </div>
             <hr>
-            <div>
-                <b-button class='olbtn' :size="btnSize" @click="shortUrl">短縮URL作成</b-button>
-                <div class="shortUrl-div">{{ shortUrlText }}</div>
-            </div>
-            <hr>
-            <div>
-              <b-button class='olbtn' :size="btnSize" @click="shortUrlBitly">短縮URL作成(Bitly)</b-button>
-              <div class="shortUrl-div">{{ shortUrlTextBitly }}</div>
-            </div>
+<!--            <div>-->
+<!--                <b-button class='olbtn' :size="btnSize" @click="shortUrl">短縮URL作成</b-button>-->
+<!--                <div class="shortUrl-div">{{ shortUrlText }}</div>-->
+<!--            </div>-->
+<!--            <hr>-->
+<!--            <div>-->
+<!--              <b-button class='olbtn' :size="btnSize" @click="shortUrlBitly">短縮URL作成(Bitly)</b-button>-->
+<!--              <div class="shortUrl-div">{{ shortUrlTextBitly }}</div>-->
+<!--            </div>-->
 
 <!--            <div>-->
 <!--                <b-button :pressed.sync="myToggle" class='olbtn' :size="btnSize">{{ myToggle ? 'ブロックOFF' : 'ブロックON' }}</b-button>-->

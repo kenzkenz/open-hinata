@@ -14,17 +14,17 @@ function makeRandStr($length) {
 }
 $urlid = $_GET["urlid"];
 $parameters = $_GET["parameters"];
-//$parameters = $_POST["parameters"];
 if (!$urlid) {
     try {
-        $mysql = "INSERT INTO shorturl(id,parameters) values (?,?)";
+        $mysql = "INSERT INTO shorturl(id,url,parameters) values (?,?,?)";
         for ($i = 1; $i <= 10; $i++) {
             try {
                 //ユニークID生成
-                $newurlid = makeRandStr(4);
+                $newurlid = makeRandStr(5);
+                $url = 'https://kenzkenz.xsrv.jp/open-hinata/#s' . $newurlid;
                 $stmt = $pdo->prepare($mysql);
-                $stmt->execute(array($newurlid,$parameters));
-                $response = array('urlid' => $newurlid);
+                $stmt->execute(array($newurlid,$url,$parameters));
+                $response = array('urlid' => $newurlid,'url' => $url);
                 break;
             } catch (PDOException $exc) {
                 //万が一重複したら別のユニークIDを生成して再登録する
