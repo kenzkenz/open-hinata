@@ -1,6 +1,7 @@
 import store from './store'
 import { transform } from 'ol/proj.js'
 import * as Layers from '../js/layers'
+import * as MyMap from '../js/mymap'
 export function permalinkEventSet () {
   // 起動時の処理------------------------------------------------------------------------------
   // value.layerはオブジェクトになっており、map01から04が入っている。
@@ -179,4 +180,6 @@ export function moveEnd () {
     center: center4326
   };
   window.history.pushState(state, 'map', hash + parameter);
+  MyMap.history ('moveend')
+
 }

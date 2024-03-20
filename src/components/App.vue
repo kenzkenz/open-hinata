@@ -115,6 +115,7 @@
     },
     methods: {
       stanford: function () {
+        MyMap.history ('スタンフォード大学へ')
         if(this.s_suUrl.includes('stanford')) {
           window.open(this.s_suUrl, '_blank')
         } else {
@@ -122,12 +123,12 @@
         }
       },
       mapWarper: function () {
+        MyMap.history ('日本版mapwarperへ')
         window.open('https://mapwarper.h-gis.jp/maps/' + this.s_mwId, '_blank');
       },
       hide : function () {
         this.$modal.hide('modal1')
       },
-
       home() {
         MyMap.history ('説明画面へ')
         window.open('https://kenzkenz.xsrv.jp/open-hinata/open-hinata.html')

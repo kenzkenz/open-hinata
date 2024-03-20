@@ -2569,7 +2569,7 @@ function Mw5center () {
   this.useInterimTilesOnError = false
   this.name = 'Mw5center'
   this.source = new VectorSource({
-    url:'https://kenzkenz.xsrv.jp/open-hinata/geojson/mw5center.geojson',
+    url:'https://kenzkenz.xsrv.jp/open-hinata/geojson/mw5centerNew.geojson',
     format: new GeoJSON()
   });
   this.maxResolution = 1222.99
