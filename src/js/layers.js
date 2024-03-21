@@ -10468,14 +10468,15 @@ const usaOkegawaObj = {};
 for (let i of mapsStr) {
   usaOkegawaObj[i] = new TileLayer(new Usaokegawa())
 }
-// 大湊市
+// 大湊
 function Usaominato () {
   this.extent = transformE([141.10173496456386, 41.30304157411669, 141.22543978543519, 41.20456356172045])
   this.extent2 = transformE([141.10173496456386, 41.30304157411669, 141.22543978543519, 41.20456356172045])
   this.source = new XYZ({
-    url: 'https://t.tilemap.jp/jcp_maps/ominato/{z}/{x}/{-y}.png',
+    // url: 'https://t.tilemap.jp/jcp_maps/ominato/{z}/{x}/{-y}.png',
+    url: 'https://kenzkenz3.xsrv.jp/jcp_maps/ominato/{z}/{x}/{y}.png',
     crossOrigin: 'Anonymous',
-    minZoom: 11,
+    // minZoom: 11,
     maxZoom: 16
   })
 }
@@ -11853,7 +11854,7 @@ const layers =
             { text: '大分市米軍作成地図', data: { id: 'usaoita', layer: usaOitaObj, opacity: 1, zoom:14,center:[131.60517876529113, 33.238415284332405], summary: usaSumm } },
             { text: '岡山市米軍作成地図', data: { id: 'usaokayama', layer: usaOkayamaObj, opacity: 1, zoom:13,center:[133.92910837974713,34.66464622516263], summary: usaSumm } },
             { text: '桶川市米軍作成地図', data: { id: 'usaokegawa', layer: usaOkegawaObj, opacity: 1, zoom:14,center:[139.56942365239257, 35.988723657710864], summary: usaSumm } },
-            { text: '大湊市米軍作成地図', data: { id: 'usaominato', layer: usaOminatoObj, opacity: 1, zoom:14,center:[141.15905377121211, 41.25461787936507], summary: usaSumm } },
+            { text: '大湊米軍作成地図', data: { id: 'usaominato', layer: usaOminatoObj, opacity: 1, zoom:14,center:[141.15905377121211, 41.25461787936507], summary: usaSumm } },
             { text: '大村市米軍作成地図', data: { id: 'usaomura', layer: usaOmuraObj, opacity: 1, zoom:13,center:[129.93903301882477, 32.919417815308535], summary: usaSumm } },
             { text: '大牟田市米軍作成地図', data: { id: 'usaomuta', layer: usaOmutaObj, opacity: 1, zoom:13,center:[130.4333615206594, 33.020604146271396], summary: usaSumm } },
             { text: '山陽小野田米軍作成地図', data: { id: 'usaonoda', layer: usaOnodaObj, opacity: 1, zoom:13,center:[131.1720054858628,33.97864306325491], summary: usaSumm } },
