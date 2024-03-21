@@ -2351,7 +2351,7 @@ function Jinsoku () {
     // url: 'https://aginfo.cgk.affrc.go.jp/ws/tmc/1.0.0/Kanto_Rapid-900913-L/{z}/{x}/{y}.png',
     crossOrigin: 'Anonymous',
     minZoom:1,
-    maxZoom:17
+    maxZoom:16
   });
 }
 const jinsokuObj = {};
@@ -12088,7 +12088,7 @@ const layers =
               ]},
             { text: '函館',
               children: [
-                { text: '函館19159年', data: { id: 'kzhakodate00', layer: kz_hakodate00Obj, opacity: 1, zoom: 11, center: [140.72930936750572, 41.76792949052427], summary: kzSumm } },
+                { text: '函館1915年', data: { id: 'kzhakodate00', layer: kz_hakodate00Obj, opacity: 1, zoom: 11, center: [140.72930936750572, 41.76792949052427], summary: kzSumm } },
                 { text: '函館1951-1955年', data: { id: 'kzhakodate01', layer: kz_hakodate01Obj, opacity: 1, zoom: 11, center: [140.72930936750572, 41.76792949052427], summary: kzSumm } },
                 { text: '函館1968年', data: { id: 'kzhakodate02', layer: kz_hakodate02Obj, opacity: 1, zoom: 11, center: [140.72930936750572, 41.76792949052427], summary: kzSumm } },
                 { text: '函館1986-1989年', data: { id: 'kzhakodate03', layer: kz_hakodate03Obj, opacity: 1, zoom: 11, center: [140.72930936750572, 41.76792949052427], summary: kzSumm } },

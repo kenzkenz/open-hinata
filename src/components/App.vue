@@ -3,6 +3,16 @@
         <!--map01からmap04をループで作成-->
         <transition v-for="mapName in mapNames" :key="mapName">
             <div :id=mapName :style="mapSize[mapName]" v-show="mapFlg[mapName]">
+
+              <div>
+                <modal name="modal0" :width="300" :clickToClose="false">
+                  <div class="modal-body">
+                    読み込み中です。
+                  </div>
+                </modal>
+              </div>
+
+
               <div id="modal">
                 <modal name="modal1" :width="300" :clickToClose="false">
                   <div class="modal-body">
@@ -246,15 +256,9 @@
       this.$nextTick(function () {
         // http://localhost:8080/#Ldd6
         // http://localhost:8080/#yweq
+        this.$modal.show('modal0');
         const vm = this
         const hash = window.location.hash.replace('#','')
-        // const zoomParameter = Number(hash.split('/')[0])
-        // let urlid
-        // if (isNaN(zoomParameter)) {
-        //   urlid = hash
-        // } else {
-        //   urlid = 999
-        // }
         let urlid
         if (hash.length >= 5 && hash.substring(0,1) === 's') {
           // 改善後の短縮URL 最初がsの５桁になっている。
@@ -273,6 +277,7 @@
           }
         }).then(function (response) {
           init(response)
+          vm.$modal.hide('modal0');
         }).finally(function () {
 
         });
