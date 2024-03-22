@@ -277,27 +277,28 @@
           }
         }).then(function (response) {
           init(response)
+          console.log(response)
           vm.$modal.hide('modal0');
         }).finally(function () {
 
         });
 
         function init (response) {
-          console.log(window.location.host.indexOf('localhost'))
-          let host
-          if (window.location.host.indexOf('localhost') !== -1) {
-            host = 'http://localhost:8080/'
-          } else {
-            host = 'https://kenzkenz.xsrv.jp/open-hinata/'
-          }
-          if (response.data) {
-            const url = host + response.data
-            window.location.replace(url)
-          }
+          // console.log(window.location.host.indexOf('localhost'))
+          // let host
+          // if (window.location.host.indexOf('localhost') !== -1) {
+          //   host = 'http://localhost:8080/'
+          // } else {
+          //   host = 'https://kenzkenz.xsrv.jp/open-hinata/'
+          // }
+          // if (response.data) {
+          //   const url = host + response.data
+          //   window.location.replace(url)
+          // }
           // ①map初期化-----------------------------
           MyMap.initMap(vm);
           // ②パーマリンク------------------------------
-          Permalink.permalinkEventSet();
+          Permalink.permalinkEventSet(response);
           // ③画面分割-------------------------------
           // this.splitMap2();
           // ④リサイズ---------------------------------

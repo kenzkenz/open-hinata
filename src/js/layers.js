@@ -10183,9 +10183,10 @@ function Usamito () {
   this.extent = transformE([140.4179578231387, 36.413769771836456, 140.545391585093, 36.350511004933594])
   this.extent2 = transformE([140.4179578231387, 36.413769771836456, 140.545391585093, 36.350511004933594])
   this.source = new XYZ({
-    url: 'https://t.tilemap.jp/jcp_maps/mito/{z}/{x}/{-y}.png',
+    // url: 'https://t.tilemap.jp/jcp_maps/mito/{z}/{x}/{-y}.png',
+    url: 'https://kenzkenz3.xsrv.jp/jcp_maps/mito/{z}/{x}/{y}.png',
     crossOrigin: 'Anonymous',
-    minZoom: 11,
+    // minZoom: 11,
     maxZoom: 16
   })
 }
@@ -10653,9 +10654,10 @@ function Usasendai () {
   this.extent = transformE([140.82992065404846, 38.293472864168336, 140.9386044338842, 38.20103124986022])
   this.extent2 = this.extent
   this.source = new XYZ({
-    url: 'https://t.tilemap.jp/jcp_maps/sendai/{z}/{x}/{-y}.png',
+    // url: 'https://t.tilemap.jp/jcp_maps/sendai/{z}/{x}/{-y}.png',
+    url: 'https://kenzkenz3.xsrv.jp/jcp_maps/sendai/{z}/{x}/{y}.png',
     crossOrigin: 'Anonymous',
-    minZoom: 11,
+    // minZoom: 11,
     maxZoom: 16
   })
 }

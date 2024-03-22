@@ -3,7 +3,7 @@ import { transform } from 'ol/proj.js'
 import * as Layers from '../js/layers'
 import * as MyMap from '../js/mymap'
 import axios from "axios";
-export function permalinkEventSet () {
+export function permalinkEventSet (response) {
   // 起動時の処理------------------------------------------------------------------------------
   // value.layerはオブジェクトになっており、map01から04が入っている。
   store.commit('base/unshiftLayerList', {
@@ -51,7 +51,8 @@ export function permalinkEventSet () {
     mapName: 'map04'
   });
   if (window.location.hash !== '') {
-    const hash = decodeURIComponent(window.location.hash.replace('#', ''));
+    // const hash = decodeURIComponent(window.location.hash.replace('#', ''));
+    const hash = decodeURIComponent(response.data.replace('#', ''));
   // if (response !== '') {
   //   console.log(response)
   //   const hash = decodeURIComponent(response.replace('#', ''));
