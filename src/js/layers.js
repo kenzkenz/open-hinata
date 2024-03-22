@@ -10229,9 +10229,10 @@ function Usanagasaki () {
   this.extent = transformE([129.82426933289048, 32.80116245898009, 129.92143838942525, 32.69767898831918])
   this.extent2 = transformE([129.82426933289048, 32.80116245898009, 129.92143838942525, 32.69767898831918])
   this.source = new XYZ({
-    url: 'https://t.tilemap.jp/jcp_maps/nagasaki/{z}/{x}/{-y}.png',
+    // url: 'https://t.tilemap.jp/jcp_maps/nagasaki/{z}/{x}/{-y}.png',
+    url: 'https://kenzkenz3.xsrv.jp/jcp_maps/nagasaki/{z}/{x}/{y}.png',
     crossOrigin: 'Anonymous',
-    minZoom: 11,
+    // minZoom: 11,
     maxZoom: 16
   })
 }
