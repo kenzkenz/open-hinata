@@ -482,6 +482,15 @@ export function popUp(map,layers,features,overlay,evt,content) {
     case 'kiseikukan':
       cont = '<div style=width:200px>' + prop.A1 + prop.A2 + '</div>'
       break
+    case 'railroad':
+      if (geoType === 'LineString') {
+        cont = '<div style=width:200px>運営会社=' + prop.N05_003 + '<hr>' +
+            '路線名=' + prop.N05_002 + '</div>'
+      } else {
+        cont = '<div style=width:200px>' +
+            '駅名=' + prop.N05_011 + '</div>'
+      }
+      break
     case 'rosen':
         cont = '<div style=width:200px>運営会社=' + prop.N05_003 + '<hr>' +
             '路線名=' + prop.N05_002 + '</div>'
@@ -679,6 +688,11 @@ export function popUp(map,layers,features,overlay,evt,content) {
           '読み=' + prop.yomi + '<br>' +
           '都道府県=' + prop.ken + '<br>' +
           '地域=' + prop.area +
+          '</div>'
+      break
+    case 'meijikokudo':
+      cont = '<div style=width:200px;>' +
+          '名称=' + prop.Name + '<br>' +
           '</div>'
       break
   }

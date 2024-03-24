@@ -52,7 +52,14 @@ export function permalinkEventSet (response) {
   });
   if (window.location.hash !== '') {
     // const hash = decodeURIComponent(window.location.hash.replace('#', ''));
-    const hash = decodeURIComponent(response.data.replace('#', ''));
+    console.log(response)
+    let hash
+    if (response.data) {
+      hash = decodeURIComponent(response.data.replace('#', ''));
+    } else {
+      hash = decodeURIComponent(window.location.hash.replace('#', ''));
+    }
+
   // if (response !== '') {
   //   console.log(response)
   //   const hash = decodeURIComponent(response.replace('#', ''));

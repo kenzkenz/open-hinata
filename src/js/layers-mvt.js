@@ -3572,14 +3572,22 @@ for (let i of mapsStr) {
     ]
   })
 }
+
+const source =  new VectorTileSource({
+  format: new MVT(),
+  maxZoom: 13,
+  url: "https://kenzkenz.github.io/rosen/{z}/{x}/{y}.mvt"
+});
+const source2 = new VectorTileSource({
+  format: new MVT(),
+  maxZoom: 13,
+  url: "https://kenzkenz.github.io/eki/{z}/{x}/{y}.mvt"
+});
+
 function Rosen() {
   this.name = "rosen";
   this.style = rosenStyleFunction();
-  this.source = new VectorTileSource({
-    format: new MVT(),
-    maxZoom: 13,
-    url: "https://kenzkenz.github.io/rosen/{z}/{x}/{y}.mvt"
-  });
+  this.source =source
 }
 export const rosenObj = {};
 for (let i of mapsStr) {
@@ -3610,11 +3618,7 @@ function rosenStyleFunction() {
 function Rosenhaisi() {
   this.name = "rosen";
   this.style = rosenhaisiStyleFunction();
-  this.source = new VectorTileSource({
-    format: new MVT(),
-    maxZoom: 13,
-    url: "https://kenzkenz.github.io/rosen/{z}/{x}/{y}.mvt"
-  });
+  this.source =source
 }
 export  const rosenhaisiObj = {};
 for (let i of mapsStr) {
@@ -3637,11 +3641,7 @@ function rosenhaisiStyleFunction() {
 function Eki() {
   this.name = "eki";
   this.style = ekiStyleFunction('blue',true);
-  this.source = new VectorTileSource({
-    format: new MVT(),
-    maxZoom: 13,
-    url: "https://kenzkenz.github.io/eki/{z}/{x}/{y}.mvt"
-  });
+  this.source =source2
 }
 export  const ekiObj = {};
 for (let i of mapsStr) {
@@ -3650,11 +3650,7 @@ for (let i of mapsStr) {
 function Ekihaisi() {
   this.name = "eki";
   this.style = ekiStyleFunction('red');
-  this.source = new VectorTileSource({
-    format: new MVT(),
-    maxZoom: 13,
-    url: "https://kenzkenz.github.io/eki/{z}/{x}/{y}.mvt"
-  });
+  this.source = source2
 }
 export  const ekihaisiObj = {};
 for (let i of mapsStr) {
@@ -3693,11 +3689,12 @@ function ekiStyleFunction(color,genzonEki) {
         })
       })
     });
-    if(zoom>=14) {
-      styles.push(iconStyle);
-    }else{
-      styles.push(iconStyle2);
-    }
+    // if(zoom>=14) {
+    //   styles.push(iconStyle);
+    // }else{
+    //   styles.push(iconStyle2);
+    // }
+    styles.push(iconStyle)
     if(zoom>=14) {
       styles.push(textStyle);
     }
@@ -4474,10 +4471,189 @@ for (let i of mapsStr) {
   chimeiObj[i] = new VectorTileLayer(new chimei())
 }
 
+// 明治国道---------------------------------------------------------------
+function Meijikokudo () {
+  this.useInterimTilesOnError = false
+  this.name = 'meijikokudo'
+  this.source = new VectorSource({
+    url:'https://kenzkenz.xsrv.jp/open-hinata/geojson/meijikokudo.geojson',
+    format: new GeoJSON()
+  });
+  this.style = meijikokudoStyleFunction('Name')
+}
+export const meijikokudoSumm = "<a href='https://note.com/smatsu/n/n7fac14777686' target='_blank'>明治期における国道（明治国道）の比定路線および経過地</a>"
+export const meijikokudoObj = {};
+for (let i of mapsStr) {
+  meijikokudoObj[i] = new VectorLayer(new Meijikokudo())
+}
+export function meijikokudoStyleFunction(text) {
+  return function (feature, resolution) {
+    const zoom = getZoom(resolution);
+    const prop = feature.getProperties();
+    const geoType = feature.getGeometry().getType();
+    const styles = [];
+    switch (geoType){
+      case "MultiLineString":
+      case "LineString":
+        const lineStyle = new Style({
+          stroke: new Stroke({
+            color:"red",
+            width:6
+          })
+        });
+        styles.push(lineStyle)
+        break;
+      case "MultiPoint":
+      case "Point":
+        const iconStyle = new Style({
+          image: new Icon({
+            anchor: [0.5, 1],
+            src: require('@/assets/icon/whitepin.png'),
+            color: 'orange',
+          }),
+          zIndex: 9
+        });
+        const iconStyleLerge = new Style({
+          image: new Icon({
+            // anchor: [0.5, 1],
+            src: require('@/assets/icon/whitepinlarge.png'),
+            color: 'black',
+          }),
+          zIndex: 9
+        });
+        const textStyle = new Style({
+          text: new Text({
+            font: "12px sans-serif",
+            text: prop[text],
+            offsetY: 10,
+            fill:  new Fill({
+              color:"red"
+            }),
+            stroke: new Stroke({
+              color: "white",
+              width: 3
+            }),
+            zIndex: 9
+          })
+        })
+        // styles.push(iconStyle)
+        // if (zoom>=13) styles.push(iconStyleLerge)
+        if (zoom>=13) styles.push(textStyle)
+        break;
+      default:
+    }
+    return styles;
+  }
+}
 
-
-
-
+// // 鉄道テスト---------------------------------------------------------------
+// function Railroad () {
+//   this.useInterimTilesOnError = false
+//   this.name = 'railroad'
+//   this.source = new VectorSource({
+//     url:'https://kenzkenz.xsrv.jp/open-hinata/geojson/eki5.geojson',
+//     format: new GeoJSON()
+//   });
+//   // this.style = railroadStyleFunction('black')
+// }
+// export const railroadSumm = "<a href='' target='_blank'></a>"
+// export const railroadObj = {};
+// for (let i of mapsStr) {
+//   railroadObj[i] = new VectorLayer(new Railroad())
+// }
+// function Railroadhaishi () {
+//   this.useInterimTilesOnError = false
+//   this.name = 'railroad'
+//   this.source = new VectorSource({
+//     url:'https://kenzkenz.xsrv.jp/open-hinata/geojson/railroad.geojson',
+//     format: new GeoJSON()
+//   });
+//   this.style = railroadhaisiStyleFunction()
+// }
+// export const railroadHaishiObj = {};
+// for (let i of mapsStr) {
+//   railroadHaishiObj[i] = new VectorLayer(new Railroadhaishi())
+// }
+// function railroadStyleFunction(color) {
+//   return function (feature, resolution) {
+//     const prop = feature.getProperties();
+//     const zoom = getZoom(resolution);
+//     const genzon = prop["N05_005e"];
+//     const text = prop.N05_011
+//     let strokeColor;
+//     let strokeWidth;
+//     if (genzon === '9999') {
+//       strokeColor = "mediumblue";
+//       strokeWidth = zoom > 9 ? 6 : 2
+//     } else {
+//       // strokeColor = "red";
+//       // strokeWidth = zoom>9 ? 6 :2
+//     }
+//     const styles = []
+//     const strokeStyle = new Style({
+//       stroke: new Stroke({
+//         color: strokeColor,
+//         width: strokeWidth,
+//       })
+//     });
+//     const iconStyle = new Style({
+//       image: new Icon({
+//         anchor: [0.5, 0.7],
+//         src: require('@/assets/icon/eki.png'),
+//         color: color,
+//       })
+//     });
+//     const iconStyle2 = new Style({
+//       image: new Icon({
+//         anchor: [0.5, 0.7],
+//         src: require('@/assets/icon/eki2.png'),
+//         color: color,
+//       })
+//     });
+//     const textStyle = new Style({
+//       text: new Text({
+//         font: "8px sans-serif",
+//         text: text,
+//         offsetY: 10,
+//         stroke: new Stroke({
+//           color: "white",
+//           width: 3
+//         })
+//       })
+//     });
+//     if(zoom>=14) {
+//       styles.push(iconStyle);
+//     }else{
+//       // styles.push(iconStyle2);
+//     }
+//     if(zoom>=14) {
+//       styles.push(textStyle);
+//     }
+//     styles.push(strokeStyle)
+//     return styles;
+//   }
+// }
+// function railroadhaisiStyleFunction() {
+//   return function (feature, resolution) {
+//     const zoom = getZoom(resolution);
+//     const style = new Style({
+//       stroke: new Stroke({
+//         color: 'red',
+//         width: zoom>9 ? 6 :2,
+//       })
+//     });
+//     return style;
+//   }
+// }
+// export const railroad00Obj = {};
+// for (let i of mapsStr) {
+//   railroad00Obj[i] = new LayerGroup({
+//     layers: [
+//       // railroadHaishiObj[i],
+//       railroadObj[i],
+//     ]
+//   })
+// }
 
 
 // テスト---------------------------------------------------------------

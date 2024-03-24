@@ -707,13 +707,13 @@ export function initMap (vm) {
             // const zoom = String(Math.floor(map.getView().getZoom() * 100) / 100)
             // vm.zoom[mapName] = 'zoom=' + zoom
         }
-        const win = window.navigator.userAgent.includes('Win')
-        map.on('moveend', function (event) {
-            getElevation(event)
+        // const win = window.navigator.userAgent.includes('Win')
+        // map.on('moveend', function (event) {
+            // getElevation(event)
+            //
+            // map.render();
 
-            map.render();
-
-        });
+        // });
         map.on("pointermove",function(event){
             // if (win)
             getElevation(event)
@@ -879,7 +879,6 @@ export function history (layer) {
     const width = window.screen.width;
     const height = window.screen.height;
     const referrer = document.referrer
-    console.log(referrer)
     axios
         .get('https://kenzkenz.xsrv.jp/open-hinata/php/layer.php',{
             params: {

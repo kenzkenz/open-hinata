@@ -18,6 +18,7 @@ import Crop from 'ol-ext/filter/Crop'
 import Mask from 'ol-ext/filter/Mask'
 import  * as MaskDep from './mask-dep'
 import  * as LayersMvt from './layers-mvt'
+import {meijikokudoSumm, railroad00Obj, railroadObj} from "./layers-mvt";
 // import {hokkaidouTunamiTObj, hokkaidouTunamiTSumm, houmusyouObj, houmusyouSumm} from "./layers-mvt";
 const mapsStr = ['map01','map02','map03','map04']
 const transformE = extent => {
@@ -9331,7 +9332,10 @@ const usaMiyazakiObj = {};
 for (let i of mapsStr) {
   usaMiyazakiObj[i] = new TileLayer(new Usamiyazaki())
 }
-const usaSumm = 'Courtesy of the University of Texas Libraries, The University of Texas at Austin and Code for history/TilemapJP.<br><a href="https://github.com/code4history/jcp_maps" target="_blank">Japan City Plans</a>';
+const usaSumm = '<div>Courtesy of the University of Texas Libraries, <br>The University of Texas at Austin and Code for history/TilemapJP.<br>' +
+    '<a href="https://github.com/code4history/jcp_maps" target="_blank">Code for history</a>　' +
+    '<a href="https://maps.lib.utexas.edu/maps/ams/japan_city_plans/" target="_blank">Japan City Plans</a>' +
+    '</div>'
 // 延岡市
 function Usanobeoka () {
   this.extent = transformE([131.63757572120534, 32.62500535406083, 131.72436281180384, 32.54331840955494])
@@ -11669,14 +11673,14 @@ const layers =
     { text: '過去の航空写真',
       children: [
         // { text: '2010年航空写真', data: { id: 'sp10', layer: sp10Obj, opacity: 1, summary: sp10Summ } },
-        { text: '87~90年航空写真', data: { id: 'sp87', layer: sp87Obj, opacity: 1, summary: sp87Summ } },
-        { text: '84~86年航空写真', data: { id: 'sp84', layer: sp84Obj, opacity: 1, summary: sp84Summ } },
-        { text: '79~83年航空写真', data: { id: 'sp79', layer: sp79Obj, opacity: 1, summary: sp79Summ } },
+        { text: '87~90年航空写真(一部)', data: { id: 'sp87', layer: sp87Obj, opacity: 1, summary: sp87Summ } },
+        { text: '84~86年航空写真(一部)', data: { id: 'sp84', layer: sp84Obj, opacity: 1, summary: sp84Summ } },
+        { text: '79~83年航空写真(一部)', data: { id: 'sp79', layer: sp79Obj, opacity: 1, summary: sp79Summ } },
         { text: '74~78年航空写真(全国)', data: { id: 'sp74', layer: sp74Obj, opacity: 1, summary: sp74Summ } },
-        { text: '61~64年航空写真', data: { id: 'sp61', layer: sp61Obj, opacity: 1, summary: sp61Summ } },
-        { text: '45~50年航空写真', data: { id: 'sp45', layer: sp45Obj, opacity: 1, summary: sp45Summ } },
-        { text: '36~42年航空写真', data: { id: 'sp36', layer: sp36Obj, opacity: 1, summary: sp36Summ } },
-        { text: '28年航空写真', data: { id: 'sp28', layer: sp28Obj, opacity: 1, summary: sp28Summ } },
+        { text: '61~64年航空写真(一部)', data: { id: 'sp61', layer: sp61Obj, opacity: 1, summary: sp61Summ } },
+        { text: '45~50年航空写真(一部)', data: { id: 'sp45', layer: sp45Obj, opacity: 1, summary: sp45Summ } },
+        { text: '36~42年航空写真(一部)', data: { id: 'sp36', layer: sp36Obj, opacity: 1, summary: sp36Summ } },
+        { text: '28年航空写真(大阪府)', data: { id: 'sp28', layer: sp28Obj, opacity: 1, summary: sp28Summ } },
       ]},
     { text: '立体図、地質図等',
       children: [
@@ -11906,7 +11910,7 @@ const layers =
             { text: '米子市米軍作成地図', data: { id: 'usayonago', layer: usaYonagoObj, opacity: 1, zoom:13,center:[133.3321087774459,35.4387576040568], summary: usaSumm } },
             { text: '善通寺市米軍作成地図', data: { id: 'usazentsuji', layer: usaZentsujiObj, opacity: 1, zoom:13,center:[133.78125150239816,34.22985354430732], summary: usaSumm } },
           ]},
-        { text: '迅速測図 (関東)', data: { id: 'jinsoku', layer: jinsokuObj, opacity: 1, zoom: 9, center: [139.8089637733657, 35.86926927958841], summary: jinsokuSumm } },
+        { text: '迅速測図 (関東:明治初期〜中期)', data: { id: 'jinsoku', layer: jinsokuObj, opacity: 1, zoom: 9, center: [139.8089637733657, 35.86926927958841], summary: jinsokuSumm } },
         { text: '東京5000分の1明治17年', data: { id: 'tokyo5000', layer: tokyo5000Obj, opacity: 1, zoom: 14, center: [139.7579477727413, 35.6843002871569], summary: tokyo5000Summ } },
         { text: '〔江戸切絵図〕. 麻布絵図', data: { id: 'edokirie', layer: edokirieObj, opacity: 1, zoom: 15, center: [139.73059032411857, 35.654628169454355], summary: edokirieSumm } },
         { text: 'Shinsen zoho Kyo oezu.', data: { id: 'kyo', layer: kyoObj, opacity: 1, zoom: 13, center: [135.75815091851297, 35.007713081235536], summary: kyoSumm } },
@@ -12768,14 +12772,21 @@ const layers =
         { text: '土木学会選奨土木遺産', data: { id: "dobokuisan", layer: LayersMvt.dobokuisanObj, opacity: 1, summary: LayersMvt.dobokuisanSumm } },
 
       ]},
+    { text: '道、鉄道等',
+      children: [
+        { text: '明治期における国道（明治国道）の比定路線', data: { id: "meijikokudo", layer: LayersMvt.meijikokudoObj, opacity: 1, summary: LayersMvt.meijikokudoSumm} },
+        { text: '鉄道（廃線は赤色）', data: { id: "rosen", layer: LayersMvt.rosen0Obj, opacity: 1, summary: LayersMvt.rosenSumm} },
+
+        // { text: 'test', data: { id: "railroad", layer: LayersMvt.railroadObj, opacity: 1, summary: LayersMvt.railroadSumm} },
+
+        { text: '道の駅', data: { id: "mitinoekiH30", layer: LayersMvt.mitinoekiH30Obj, opacity: 1, summary: LayersMvt.mitinoekiH30Summ } },
+        { text: 'バスルートと停留所', data: { id: "bus", layer: LayersMvt.bus0Obj, opacity: 1, summary: LayersMvt.busSumm} },
+      ]},
     { text: 'その他',
       children: [
         { text: 'ラスタータイルtest', data: { id: "dokuji", layer: dokujiObj, opacity: 1, summary: LayersMvt.busSumm, component: {name: 'dokuji', values:[]}} },
         // { text: ' test', data: { id: "test", layer: LayersMvt.testObj, opacity: 1, summary: LayersMvt.testSumm} },
         { text: '日本土壌インベントリー', data: { id: "dojyou", layer: dojyouObj, opacity: 1, summary: dojyouSumm } },
-        { text: 'バスルートと停留所', data: { id: "bus", layer: LayersMvt.bus0Obj, opacity: 1, summary: LayersMvt.busSumm} },
-        { text: '鉄道（廃線は赤色）', data: { id: "rosen", layer: LayersMvt.rosen0Obj, opacity: 1, summary: LayersMvt.rosenSumm} },
-        { text: '道の駅', data: { id: "mitinoekiH30", layer: LayersMvt.mitinoekiH30Obj, opacity: 1, summary: LayersMvt.mitinoekiH30Summ } },
         { text: '夜の明かり', data: { id: "japanLight", layer: LayersMvt.japanLightObj, opacity: 1, summary: LayersMvt.japanLightSumm } },
         { text: '河川中心線', data: { id: "suiro", layer: LayersMvt.suiroObj, opacity: 1, summary: LayersMvt.suiroSumm } },
         { text: '竜巻', data: { id: "tatumakiH23", layer: LayersMvt.tatumakiH23Obj, opacity: 1, summary: LayersMvt.tatumakiH23Summ } },
