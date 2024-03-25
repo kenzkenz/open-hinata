@@ -555,6 +555,10 @@ export function initMap (vm) {
         // 米軍地形図用
         map.on('singleclick', function (evt) {
             const layers = map.getLayers().getArray();
+            //  洪水浸水想定と重ねるときは動作させない
+            const hazardLayers = layers.filter(el => el.get('pointer'));
+            if (hazardLayers.length>0) return
+
             const resultUsaAll = layers.find(el => el === Layers.usaall[mapName]);
             const resultUsatokyoall = layers.find(el => el === Layers.usatokyoall[mapName]);
             let gLayers;
@@ -571,12 +575,14 @@ export function initMap (vm) {
                             if (latMin < lat && latMax > lat) {
                                 maxZndex++
                                 gLayers[i].setZIndex(maxZndex)
+
                                 // if (gLayers[i].getZIndex()) {
                                 //     gLayers[i].setZIndex(undefined)
                                 // } else {
                                 //     maxZndex++
                                 //     gLayers[i].setZIndex(maxZndex)
                                 // }
+
                             } else {
                                 gLayers[i].setZIndex(undefined)
                             }
@@ -605,10 +611,7 @@ export function initMap (vm) {
 
             console.log(JSON.stringify(transform(evt.coordinate, "EPSG:3857", "EPSG:4326")));
             const map = evt.map;
-            //  洪水浸水想定と重ねるときは動作させない
-            const layers0 = map.getLayers().getArray();
-            const hazardLayers = layers0.filter(el => el.get('pointer'));
-            if (hazardLayers.length>0) return
+
             // ここまで
             const option = {
                 layerFilter: function (layer) {
@@ -640,6 +643,14 @@ export function initMap (vm) {
                 PopUp.popUp(evt.map,layers00,features,overlay[i],evt,content)
                 return
             }
+
+            //  洪水浸水想定と重ねるときは動作させない
+            const layers0 = map.getLayers().getArray();
+            const hazardLayers = layers0.filter(el => el.get('pointer'));
+            if (hazardLayers.length>0) return
+
+
+
             const layers = map.getLayers().getArray();
             const result5 = layers.find(el => el === Layers.mw5Obj[mapName]);
             const result20 = layers.find(el => el === Layers.mw20Obj[mapName]);
@@ -708,12 +719,10 @@ export function initMap (vm) {
             // vm.zoom[mapName] = 'zoom=' + zoom
         }
         // const win = window.navigator.userAgent.includes('Win')
-        // map.on('moveend', function (event) {
-            // getElevation(event)
-            //
+        map.on('moveend', function (event) {
+            getElevation(event)
             // map.render();
-
-        // });
+        });
         map.on("pointermove",function(event){
             // if (win)
             getElevation(event)

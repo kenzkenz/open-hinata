@@ -3680,7 +3680,7 @@ function ekiStyleFunction(color,genzonEki) {
     });
     const textStyle = new Style({
       text: new Text({
-        font: "8px sans-serif",
+        font: "12px sans-serif",
         text: text,
         offsetY: 10,
         stroke: new Stroke({
@@ -3716,6 +3716,7 @@ for (let i of mapsStr) {
       ekiObj[i]
     ]
   })
+  rosen0Obj[i].values_['pointer'] = true
 }
 //----------------------
 function Bus() {

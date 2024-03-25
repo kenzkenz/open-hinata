@@ -18,7 +18,7 @@ import Crop from 'ol-ext/filter/Crop'
 import Mask from 'ol-ext/filter/Mask'
 import  * as MaskDep from './mask-dep'
 import  * as LayersMvt from './layers-mvt'
-import {meijikokudoSumm, railroad00Obj, railroadObj} from "./layers-mvt";
+import {meijikokudoSumm, railroad00Obj, railroadObj, rosen0Obj} from "./layers-mvt";
 // import {hokkaidouTunamiTObj, hokkaidouTunamiTSumm, houmusyouObj, houmusyouSumm} from "./layers-mvt";
 const mapsStr = ['map01','map02','map03','map04']
 const transformE = extent => {
@@ -1319,6 +1319,7 @@ for (let i of mapsStr) {
 //     ]
 //   })
 // }
+// 大阪府CS立体図--------------------------------------------------------
 function OsakaCS () {
   this.extent = transformE([134.9416, 35.10699,135.8409, 34.2379])
   this.source = new XYZ({
@@ -1332,6 +1333,31 @@ const osakaCsObj = {};
 for (let i of mapsStr) {
   osakaCsObj[i] = new TileLayer(new OsakaCS())
 }
+const osakaCsSumm = '<a href="https://github.com/shi-works/aist-dem-with-cs-on-maplibre-gl-js" target="_blank">aist-dem-with-cs-on-maplibre-gl-jsaist-dem-with-cs-on-maplibre-gl-js</a>';
+
+// 和歌山県CS立体図--------------------------------------------------------
+function WakayamaCS () {
+  this.extent = transformE([134.95532947982784,34.40572624226317, 136.0375257154846,33.41823638210427])
+  this.source = new XYZ({
+    url: 'https://xs489works.xsrv.jp/raster-tiles/pref-wakayama/wakayamapc-cs-tiles/{z}/{x}/{y}.png',
+    crossOrigin: 'Anonymous',
+    minZoom: 4,
+    maxZoom: 18
+  });
+}
+const wakayamaCsObj = {};
+for (let i of mapsStr) {
+  wakayamaCsObj[i] = new TileLayer(new WakayamaCS())
+}
+const wakayamaCsSumm = '<a href="https://github.com/shi-works/aist-dem-with-cs-on-maplibre-gl-js" target="_blank">aist-dem-with-cs-on-maplibre-gl-jsaist-dem-with-cs-on-maplibre-gl-js</a>';
+
+
+
+
+
+
+
+
 // 東京都多摩地域陰陽図 ----------------------------------------------------------------------------
 function Tamainyou () {
   this.extent = transformE([138.9259, 35.90926,139.6112, 35.46722])
@@ -1852,9 +1878,18 @@ for (let i of mapsStr) {
       ehimeCsObj[i],
       kochiCsObj[i],
       kumamotoCsObj[i],
+      wakayamaCsObj[i],
       osakaCsObj[i],
       notoCsObj[i],
-      tokyoCsObj[i],
+
+      tamaCsObj[i],
+      izuooshimaCsObj[i],
+      tomoshimaCsObj[i],
+      miyakejimCsObj[i],
+      mikurajimaCsObj[i],
+      hachijojimaCsObj[i],
+      aogashimaCsObj[i]
+
     ]
   })
 }
@@ -5268,7 +5303,7 @@ function Kz_tohoku_pacific_coast00 () {
     url: 'https://ktgis.net/kjmapw/kjtilemap/tohoku_pacific_coast/00/{z}/{x}/{-y}.png',
     crossOrigin: 'Anonymous',
     minZoom: 8,
-    maxZoom: 16
+    maxZoom: 15
   })
   this.extent = transformE([140.52184, 40.76320, 142.4267, 36.67445])
 }
@@ -5281,7 +5316,7 @@ function Kz_tohoku_pacific_coast01 () {
     url: 'https://ktgis.net/kjmapw/kjtilemap/tohoku_pacific_coast/01/{z}/{x}/{-y}.png',
     crossOrigin: 'Anonymous',
     minZoom: 8,
-    maxZoom: 16
+    maxZoom: 15
   })
   this.extent = transformE([140.52184, 40.76320, 142.4267, 36.67445])
 }
@@ -5294,7 +5329,7 @@ function Kz_tohoku_pacific_coast02 () {
     url: 'https://ktgis.net/kjmapw/kjtilemap/tohoku_pacific_coast/02/{z}/{x}/{-y}.png',
     crossOrigin: 'Anonymous',
     minZoom: 8,
-    maxZoom: 16
+    maxZoom: 15
   })
   this.extent = transformE([140.52184, 40.76320, 142.4267, 36.67445])
 }
@@ -5307,7 +5342,7 @@ function Kz_tohoku_pacific_coast03 () {
     url: 'https://ktgis.net/kjmapw/kjtilemap/tohoku_pacific_coast/03/{z}/{x}/{-y}.png',
     crossOrigin: 'Anonymous',
     minZoom: 8,
-    maxZoom: 16
+    maxZoom: 15
   })
   this.extent = transformE([140.52184, 40.76320, 142.4267, 36.67445])
 }
@@ -5630,7 +5665,7 @@ function Kz_kanto00 () {
     url: 'https://ktgis.net/kjmapw/kjtilemap/kanto/00/{z}/{x}/{-y}.png',
     crossOrigin: 'Anonymous',
     minZoom: 8,
-    maxZoom: 16
+    maxZoom: 15
   })
   this.extent = transformE([138.1383, 37.24556, 141.1668, 34.60537])
 }
@@ -5643,7 +5678,7 @@ function Kz_kanto01 () {
     url: 'https://ktgis.net/kjmapw/kjtilemap/kanto/01/{z}/{x}/{-y}.png',
     crossOrigin: 'Anonymous',
     minZoom: 8,
-    maxZoom: 16
+    maxZoom: 15
   })
   this.extent = transformE([138.1383, 37.24556, 141.1668, 34.60537])
 }
@@ -5656,7 +5691,7 @@ function Kz_kanto02 () {
     url: 'https://ktgis.net/kjmapw/kjtilemap/kanto/02/{z}/{x}/{-y}.png',
     crossOrigin: 'Anonymous',
     minZoom: 8,
-    maxZoom: 16
+    maxZoom: 15
   })
   this.extent = transformE([138.1383, 37.24556, 141.1668, 34.60537])
 }
@@ -5669,7 +5704,7 @@ function Kz_kanto03 () {
     url: 'https://ktgis.net/kjmapw/kjtilemap/kanto/03/{z}/{x}/{-y}.png',
     crossOrigin: 'Anonymous',
     minZoom: 8,
-    maxZoom: 16
+    maxZoom: 15
   })
   this.extent = transformE([138.1383, 37.24556, 141.1668, 34.60537])
 }
@@ -11481,6 +11516,7 @@ for (let i of mapsStr) {
       usaUragaObj[i],
     ]
   })
+  // usatokyoall[i].values_['pointer'] = true
 }
 
 export const usaall = {};
@@ -11634,6 +11670,7 @@ for (let i of mapsStr) {
       usaZentsujiObj[i]
     ]
   })
+  // usaall[i].values_['pointer'] = true
 }
 
 // ここにレイヤーを全部書く。クリックするとストアのlayerListに追加されていく-------------------------
@@ -11707,7 +11744,10 @@ const layers =
         { text: '愛媛県CS立体図', data: { id: 'ehimeocs', layer: ehimeCsObj, opacity: 1, zoom:9, center:[132.77042984962463, 33.49503407703915], summary: ehimeCsSumm } },
         { text: '高知県CS立体図', data: { id: 'kochiocs', layer: kochiCsObj, opacity: 1, zoom:9, center:[133.00989747047424, 33.4075764357881], summary: kochiCsSumm } },
         { text: '熊本県・大分県CS立体図', data: { id: 'kumamotocs', layer: kumamotoCsObj, opacity: 1, zoom:9, center:[131.08264176666347, 32.86696607176184], summary: kumamotoCsSumm } },
-        { text: '大阪府CS立体図', data: { id: 'osakacs', layer: osakaCsObj, opacity: 1, zoom:9, center:[135.5167507309548, 34.68490347466543], summary: osakaSumm } },
+        { text: '大阪府CS立体図', data: { id: 'osakacs', layer: osakaCsObj, opacity: 1, zoom:9, center:[135.5167507309548, 34.68490347466543], summary: osakaCsSumm } },
+        { text: '和歌山県CS立体図', data: { id: 'wakayamacs', layer: wakayamaCsObj, opacity: 1, zoom:9, center:[135.52473298498347,33.913180427499256], summary: wakayamaCsSumm } },
+
+
         { text: '能登CS立体図', data: { id: 'notocs', layer: notoCsObj, opacity: 1, zoom:9, center:[136.9312018478913, 37.22961765479215], summary: notoCsSumm } },
         { text: '能登西部赤色立体地図', data: { id: 'notoseibu', layer: notoSeibuObj, opacity: 1, zoom:9, center:[136.9312018478913, 37.22961765479215], summary: notoSeubuSumm } },
         { text: '兵庫県遺跡立体図',
