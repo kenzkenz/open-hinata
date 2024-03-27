@@ -43,7 +43,6 @@ function SyougakkoukuH22(){
   this.source = new VectorTileSource({
     format: new MVT(),
     maxZoom:15,
-    // url: "https://mtile.pref.miyazaki.lg.jp/tile/mvt/syougakkouku/{z}/{x}/{y}.mvt"
     url: "https://kenzkenz.github.io/h22syougaku/{z}/{x}/{y}.mvt"
   });
   this.style = syougakkoukuStyleFunction(22);
@@ -63,7 +62,7 @@ function Syougakkouku(){
     // url: "https://mtile.pref.miyazaki.lg.jp/tile/mvt/syougakkouku/{z}/{x}/{y}.mvt"
     url: "https://kenzkenz.github.io/syougaku/{z}/{x}/{y}.mvt"
   });
-  this.style = syougakkoukuStyleFunction();
+  this.style = syougakkoukuStyleFunction(3);
 }
 export  const syougakkoukuObj = {};
 for (let i of mapsStr) {
@@ -71,8 +70,27 @@ for (let i of mapsStr) {
 }
 export const syougakkoukuSumm = "<a href='http://nlftp.mlit.go.jp/ksj/gml/datalist/KsjTmplt-A27-v2_1.html' target='_blank'>国土数値情報　小学校区データ</a>";
 // ----------------------------------------------------------------------
-const d3syougakkoukuColor = d3.scaleOrdinal(d3.schemeCategory10);
-const d3tyuugakkoukuColor = d3.scaleOrdinal(d3.schemeCategory10);
+// 0から100の配列を作成する。
+const domain = [...Array(1000)].map((_, i) => i)
+const d3OridinalColor = d3.scaleOrdinal()
+    .domain(domain)
+    .range(["red", "green", "blue", "aliceblue", "darkcyan", "coral"
+      , "wheat", "silver", "burlywood", "black"
+      , "lavender", "teal", "tomato", "gray", "lightsteelblue", "darkslategray"
+      , "orangered", "darkgray", "darkgreen"
+      , "crimson", "steelblue", "forestgreen", "mediumvioletred"
+      , "royalblue", "seagreen", "khaki", "deeppink", "midnightblue"
+      , "mediumseagreen", "hotpink", "navy", "mediumaquamarine", "gold"
+      , "palevioletred", "darkseagreen", "orange", "pink", "mediumblue"
+      , "aquamarine", "sandybrown", "palegreen", "darkorange", "thistle"
+      , "dodgerblue", "lightgreen", "goldenrod", "magenta", "cornflowerblue"
+      , "springgreen", "peru", "fuchsia", "deepskyblue", "darkgoldenrod"
+      , "violet", "lightskyblue", "lawngreen", "chocolate", "plum"
+      , "skyblue", "chartreuse", "sienna", "orchid", "lightblue"
+      , "greenyellow", "saddlebrown", "mediumorchid", "powderblue", "lime"
+
+
+    ]);
 function syougakkoukuStyleFunction(year) {
   return function (feature, resolution) {
     const prop = feature.getProperties();
@@ -81,6 +99,10 @@ function syougakkoukuStyleFunction(year) {
     let text = ''
     if (year === 22 || year === 28) {
       text = prop["A27_003"];
+    } else if (year === 3) {
+      text = prop["P29_004"]
+    } else if (year === 30) {
+      text = prop["P29_004"]
     } else if (year === 280) {
       text = prop["A32_003"]
     } else {
@@ -88,12 +110,12 @@ function syougakkoukuStyleFunction(year) {
     }
     let rgb
     let rgba
-    // console.log(prop["id"])
-    if (prop["A27_005"]) {
-      rgb = d3.rgb(d3syougakkoukuColor(Number(prop["id"])));
-      rgba = "rgba(" + rgb.r + "," + rgb.g + "," + rgb.b + ",0.7)";
-    } else {
-      rgb = d3.rgb(d3tyuugakkoukuColor(Number(prop["id"])));
+    if (prop["A27_005"] || prop["A32_005"]) {
+      const id = Math.round(Number(prop["id"].toString().slice(-3)))
+      // const id = "3"
+      // const id = Number(prop["id"])
+      // rgb = d3.rgb(d3syougakkoukuColor(Number(prop["id"])));
+      rgb = d3.rgb(d3OridinalColor(id))
       rgba = "rgba(" + rgb.r + "," + rgb.g + "," + rgb.b + ",0.7)";
     }
     let style
@@ -112,7 +134,7 @@ function syougakkoukuStyleFunction(year) {
             width: 1
           }),
           text: new Text({
-            font: "10px sans-serif",
+            font: "12px sans-serif",
             text: text,
             offsetY: 10,
             stroke: new Stroke({
@@ -124,14 +146,14 @@ function syougakkoukuStyleFunction(year) {
         break;
       case "Polygon":
       case "MultiPolygon":
-        if (zoom > 9) {
+        if (zoom > 10) {
           style = new Style({
             fill: new Fill({
               color: rgba
             }),
             stroke: new Stroke({
-              color: "gray",
-              width: 1
+              color: "black",
+              width: 2
             }),
             zIndex: 0
           });
@@ -187,10 +209,9 @@ function Tyuugakkouku(){
   this.source = new VectorTileSource({
     format: new MVT(),
     maxZoom:15,
-    // url: "https://mtile.pref.miyazaki.lg.jp/tile/mvt//tyuugakkouku/{z}/{x}/{y}.mvt"
     url: "https://kenzkenz.github.io/tyuugaku/{z}/{x}/{y}.mvt"
   });
-  this.style = syougakkoukuStyleFunction();
+  this.style = syougakkoukuStyleFunction(30);
 }
 export  const tyuugakkoukuObj = {};
 for (let i of mapsStr) {

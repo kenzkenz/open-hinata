@@ -970,7 +970,12 @@ export function watchLayer (map, thisName, newLayerList,oldLayerList) {
                 evt.context.globalCompositeOperation = 'source-over';
             });
         }
-
+        // グループレイヤーのとき
+        if (layer.values_.layers) {
+            layer.values_.layers.getArray(0).forEach(object =>{
+                object.setOpacity(newLayerList[0][i].opacity)
+            })
+        }
         layer.setOpacity(newLayerList[0][i].opacity)
         // 新規追加したレイヤーだけにズームとセンターを設定する。
         if(!store.state.base.firstFlg) {
@@ -986,6 +991,12 @@ export function watchLayer (map, thisName, newLayerList,oldLayerList) {
 }
 
 export function opacityChange (item) {
+    // グループレイヤーのとき
+    if (item.layer.values_.layers) {
+        item.layer.values_.layers.getArray(0).forEach(object =>{
+            object.setOpacity(item.opacity)
+        })
+    }
     item.layer.setOpacity(item.opacity);
 }
 
