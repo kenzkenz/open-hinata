@@ -74,7 +74,7 @@ export const syougakkoukuSumm = "<a href='http://nlftp.mlit.go.jp/ksj/gml/datali
 const domain = [...Array(1000)].map((_, i) => i)
 const d3OridinalColor = d3.scaleOrdinal()
     .domain(domain)
-    .range(["red", "green", "blue", "aliceblue", "darkcyan", "coral"
+    .range(["red", "green", "blue", "darkcyan", "coral"
       , "wheat", "silver", "burlywood", "black"
       , "lavender", "teal", "tomato", "gray", "lightsteelblue", "darkslategray"
       , "orangered", "darkgray", "darkgreen"
@@ -112,11 +112,12 @@ function syougakkoukuStyleFunction(year) {
     let rgba
     if (prop["A27_005"] || prop["A32_005"]) {
       const id = Math.round(Number(prop["id"].toString().slice(-3)))
-      // const id = "3"
       // const id = Number(prop["id"])
       // rgb = d3.rgb(d3syougakkoukuColor(Number(prop["id"])));
       rgb = d3.rgb(d3OridinalColor(id))
-      rgba = "rgba(" + rgb.r + "," + rgb.g + "," + rgb.b + ",0.7)";
+      rgba = "rgba(" + rgb.r + "," + rgb.g + "," + rgb.b + ",0.7)"
+    } else {
+      rgba = "rgba(255,255,255,0)"
     }
     let style
     switch (geoType) {
