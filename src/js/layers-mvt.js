@@ -78,16 +78,18 @@ const d3OridinalColor = d3.scaleOrdinal()
       , "wheat", "silver", "burlywood", "black"
       , "lavender", "teal", "tomato", "gray", "lightsteelblue", "darkslategray"
       , "orangered", "darkgray", "darkgreen"
+      , "skyblue", "chartreuse", "sienna", "orchid", "lightblue"
+      , "aquamarine", "sandybrown", "palegreen", "darkorange", "thistle"
+      , "dodgerblue", "lightgreen", "goldenrod", "magenta", "cornflowerblue"
       , "crimson", "steelblue", "forestgreen", "mediumvioletred"
       , "royalblue", "seagreen", "khaki", "deeppink", "midnightblue"
       , "mediumseagreen", "hotpink", "navy", "mediumaquamarine", "gold"
       , "palevioletred", "darkseagreen", "orange", "pink", "mediumblue"
-      , "aquamarine", "sandybrown", "palegreen", "darkorange", "thistle"
-      , "dodgerblue", "lightgreen", "goldenrod", "magenta", "cornflowerblue"
       , "springgreen", "peru", "fuchsia", "deepskyblue", "darkgoldenrod"
       , "violet", "lightskyblue", "lawngreen", "chocolate", "plum"
-      , "skyblue", "chartreuse", "sienna", "orchid", "lightblue"
       , "greenyellow", "saddlebrown", "mediumorchid", "powderblue", "lime"
+      , "maroon", "darkorchid", "paleturquoise", "limegreen", "darkred"
+      , "darkviolet", "yellowgreen", "yellowgreen", "darkmagenta", "cyan"
 
 
     ]);
