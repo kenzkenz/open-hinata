@@ -883,7 +883,7 @@ export function resize () {
     store.state.base.maps.map04.updateSize()
 }
 
-export function history (layer) {
+export function history (layer,url) {
     const ua = navigator.userAgent
     const width = window.screen.width;
     const height = window.screen.height;
@@ -894,7 +894,8 @@ export function history (layer) {
                 layer: layer,
                 screen: width + ' x ' + height,
                 ua: ua,
-                referrer:referrer
+                referrer:referrer,
+                url: url
             }
         })
 }

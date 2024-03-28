@@ -14,7 +14,7 @@ import TileLayer from "ol/layer/Tile";
 import Icon from 'ol/style/Icon.js';
 import VectorSource from "ol/source/Vector";
 import VectorLayer from "ol/layer/Vector";
-import {Heatmap } from 'ol/layer.js';
+import {Heatmap} from 'ol/layer.js';
 import MVTFormat from 'ol/format/MVT';
 
 const transformE = extent => {
@@ -112,7 +112,7 @@ function syougakkoukuStyleFunction(year) {
     }
     let rgb
     let rgba
-    if (prop["A27_005"] || prop["A32_005"]) {
+    if (prop["A27_005"] || prop["A32_005"] || prop["A32_006"]) {
       const id = Math.round(Number(prop["id"].toString().slice(-3)))
       // const id = Number(prop["id"])
       // rgb = d3.rgb(d3syougakkoukuColor(Number(prop["id"])));
@@ -3751,11 +3751,48 @@ function Bus() {
     maxZoom: 13,
     url: "https://kenzkenz.github.io/bus/{z}/{x}/{y}.mvt"
   });
+  // this.maxResolution = 19.109258 //zoom13
+  // this.maxResolution = 38.218515 //zoom12
+  this.maxResolution = 76.437029 //zoom11
 }
 export const busSumm = "<a href='https://nlftp.mlit.go.jp/ksj/gml/datalist/KsjTmplt-N07-v2_0.html' target='_blank'>国土数値情報　バスデータ</a>"
 export  const busObj = {};
 for (let i of mapsStr) {
   busObj[i] = new VectorTileLayer(new Bus())
+}
+
+function Busxyz () {
+  this.source = new XYZ({
+    url: 'https://kenzkenz3.xsrv.jp/bus/{z}/{x}/{y}.png',
+    crossOrigin: 'Anonymous',
+    minZoom: 1,
+    maxZoom: 11
+  })
+  // this.useInterimTilesOnError = false
+  this.minResolution = 76.437029 //zoom11
+}
+export const busXyz0Obj = {};
+for (let i of mapsStr) {
+  busXyz0Obj[i] = new TileLayer(new Busxyz())
+}
+
+
+
+function BusMini() {
+  this.name = "bus";
+  this.style = busStyleFunction();
+  this.source = new VectorTileSource({
+    format: new MVT(),
+    // maxZoom: 13,
+    url: "https://kenzkenz.github.io/busmini/{z}/{x}/{y}.mvt"
+  });
+  // this.maxResolution = 19.109258 //zoom13
+  // this.maxResolution = 38.218515 //zoom12
+  this.minResolution = 76.437029 //zoom11
+}
+export  const busMiniObj = {};
+for (let i of mapsStr) {
+  busMiniObj[i] = new VectorTileLayer(new BusMini())
 }
 // ------------------------------------
 function busStyleFunction() {
@@ -3779,7 +3816,8 @@ function Bustei() {
     maxZoom: 13,
     url: "https://kenzkenz.github.io/bustei/{z}/{x}/{y}.mvt"
   });
-  this.useInterimTilesOnError = false
+  // this.useInterimTilesOnError = false
+  this.maxResolution = 19.109258
 }
 export  const busteiObj = {};
 for (let i of mapsStr) {
@@ -3831,7 +3869,9 @@ for (let i of mapsStr) {
   bus0Obj[i] = new LayerGroup({
     layers: [
         busObj[i],
+      // busMiniObj[i],
       busteiObj[i],
+      busXyz0Obj[i]
     ]
   })
 }

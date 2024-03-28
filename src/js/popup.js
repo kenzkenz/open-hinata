@@ -40,6 +40,7 @@ export function popUp(map,layers,features,overlay,evt,content) {
             '設置主体=' + prop.A27_006 + '<br>' +
             '名称＝' + prop.A27_007 + '<br>' +
             '所在地＝' + prop.A27_008 + '<br>' +
+            'id＝' + prop.id + '<br>'+
             streetView +
             '</div>'
       }
@@ -50,6 +51,7 @@ export function popUp(map,layers,features,overlay,evt,content) {
                     '設置主体=' + prop.A27_002 + '<br>' +
                     '名称＝' + prop.A27_004 + '<br>' +
                     '所在地＝' + prop.A27_005 + '<br>'+
+                    'id＝' + prop.id + '<br>'+
                     streetView +
                '</div>'
       } else {
@@ -67,6 +69,7 @@ export function popUp(map,layers,features,overlay,evt,content) {
                     '設置主体=' + prop.A32_002 + '<br>' +
                     '名称＝' + prop.A32_004 + '<br>' +
                     '所在地＝' + prop.A32_005 + '<br>' +
+                    'id＝' + prop.id + '<br>'+
                      streetView +
                     '</div>'
       } else {
@@ -82,6 +85,7 @@ export function popUp(map,layers,features,overlay,evt,content) {
         cont = '<div style=width:200px>市区町村コード＝' + prop.A32_001 + '<br>' +
             '設置主体=' + prop.A32_002 + '<br>' +
             '名称＝' + prop.A32_003 + '<br>' +
+            'id＝' + prop.id + '<br>'+
             streetView +
             '</div>'
       } else {
@@ -97,6 +101,7 @@ export function popUp(map,layers,features,overlay,evt,content) {
         cont = '<div style=width:200px>市区町村コード＝' + prop.A32_001 + '<br>' +
             '設置主体=' + prop.A32_002 + '<br>' +
             '名称＝' + prop.A32_003 + '<br>' +
+            'id＝' + prop.id + '<br>'+
             streetView +
             '</div>'
       } else {
@@ -509,7 +514,7 @@ export function popUp(map,layers,features,overlay,evt,content) {
     case 'bustei':
       cont = '<div style=width:200px>事業者名=' + prop.P11_002 + '<hr>' +
           'バス停名=' + prop.P11_001 + '<hr>' +
-          'バス系統=' + prop.P11_003_01 + '<hr>' +
+          // 'バス系統=' + prop.P11_003_01 + '<hr>' +
           streetView +
           '</div>'
       break

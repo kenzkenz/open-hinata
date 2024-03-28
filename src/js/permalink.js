@@ -189,7 +189,7 @@ export function moveEnd () {
     center: center4326
   };
   // window.history.pushState(state, 'map', hash + parameter);
-  MyMap.history ('moveend')
+  // MyMap.history ('moveend')
   //---------------------------------------------------------------
   // const parameters = decodeURIComponent(window.location.hash)
   const parameters = decodeURIComponent(hash + parameter)
@@ -201,6 +201,7 @@ export function moveEnd () {
       })
       .then(function (response) {
         window.history.pushState(state, 'map', "#s" + response.data.urlid);
+        MyMap.history ('moveend',window.location.href)
       })
       .catch(function (error) {
         console.log(error);
