@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>open-hinataの説明</title>
+    <link rel="icon" href="./favicon.ico" id="favicon">
+    <meta name=”viewport” content=”width=device-width,initial-scale=1″>
+    <meta property="og:title" content="open-hinata" />
+    <meta property="og:image" content="https://kenzkenz.xsrv.jp/open-hinata/img/image.png" />
+    <script src="https://js.ptengine.jp/42ju29nt.js"></script>
+    <script src="https://kenzkenz.xsrv.jp/open-hinata/olcesium.js"></script>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-HNCNSET26N"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-HNCNSET26N');
+    </script>
+    <!--shinobi1--><script type="text/javascript" src="//xa.shinobi.jp/ufo/191384401"></script><noscript><a href="//xa.shinobi.jp/bin/gg?191384401" target="_blank"><img src="//xa.shinobi.jp/bin/ll?191384401" border="0"></a><br><span style="font-size:9px"><img style="margin:0;vertical-align:text-bottom;" src="//img.shinobi.jp/tadaima/fj.gif" width="19" height="11"> </span></noscript><!--shinobi2-->
+    <style>
+        html, body {
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            font-family: 'Avenir','Helvetica Neue','Helvetica','Arial','Hiragino Sans','ヒラギノ角ゴシック',YuGothic,'Yu Gothic','メイリオ', Meiryo,'ＭＳ Ｐゴシック','MS PGothic'
+        }
+        @media only screen and (min-width:800px) {
+            html {
+                font-size: 150%;
+            }
+        }
+        @media only screen and (min-width:1000px) {
+            html {
+                font-size: 100%;
+            }
+        }
+        #map {
+            position:relative;
+            width:100%;
+            height:90px;
+        }
+        #map a {
+            color:inherit;
+            text-decoration: none;
+        }
+        #title {
+            position:absolute;
+            top:0px;
+            left:10px;
+            z-index:1;
+            /*pointer-events:none;*/
+        }
+        #title h1 {
+            color: #fff;
+        }
+        h2 {
+            border-bottom: 3px solid #aaa;
+        }
+        h3 {
+            /*display: inline-block;*/
+            color: #fff;
+            background: royalblue;
+            padding: 0.5em;
+            line-height: 1.5;
+            vertical-align: middle;
+            border-radius: 30px 0px 0px 30px;
+        }
+        h3::before {
+            content: '●';
+            color: #fff;
+            margin-right: 8px;
+        }
+        .container{
+            width: 100%;
+            max-width: 960px;
+            margin-right: auto;
+            margin-left: auto;
+            padding: 1em;
+        }
+    </style>
+</head>
+<body>
+
+<div id="map">
+    <div id='title'>
+        <h1><a href="https://kenzkenz.xsrv.jp/open-hinata" target="_blank">open-hinata</a></h1>
+    </div>
+</div>
+
+<div class="container">
+    <h1>open-hinata</h1>
+        <p>open-hinataとは<a href="https://twitter.com/kenzkenz" target="_blank">@kenzkenz</a>が作成しているWEBGISです。
+            <br>URLは次のとおりです。<a href="https://kenzkenz.xsrv.jp/open-hinata" target="_blank">https://kenzkenz.xsrv.jp/open-hinata</a>
+            <br>スマホでも動作しますが、できるだけPCでご覧ください。</p>
+    <h2>基本的な使い方</h2>
+        <p>画面左上部の赤いボタン「背景」をクリックしていろいろな背景（レイヤー）を呼び出します。ダイアログ下部のリストから背景を選択すると上部に背景が追加されます。</p>
+        <ul>
+            <li>スライダーを左右に動かすと透過率を変更できます。</li>
+            <li>目アイコンをクリックすると可視状態を変更できます。</li>
+            <li>チェックボタンをクリックすると乗算合成を行います。（下の背景と合成します。）</li>
+            <li>ダイアログ左部の上下アイコンを掴んで動かすと背景の上下を操作できます。 </li>
+            <li>ダイアログ右部のゴミ箱アイコンをクリックすると背景を閉じます。</li>
+            <li>ダイアログ上部のコメ箱アイコンをクリックすると淡色地図を残して全ての背景を閉じます。</li>
+        </ul>
+
+<!--    <iframe frameborder=0 src="https://kenzkenz.xsrv.jp/open-hinata/#15/131.42174/31.89969%3FS%3D1%26L%3D%5B%5B%7B%22id%22%3A6%2C%22ck%22%3Atrue%2C%22o%22%3A1%7D%2C%7B%22id%22%3A2%2C%22ck%22%3Atrue%2C%22o%22%3A1%2C%22c%22%3A%22%22%7D%5D%2C%5B%7B%22id%22%3A2%2C%22ck%22%3Atrue%2C%22o%22%3A1%2C%22c%22%3A%22%22%7D%5D%2C%5B%7B%22id%22%3A2%2C%22ck%22%3Atrue%2C%22o%22%3A1%2C%22c%22%3A%22%22%7D%5D%2C%5B%7B%22id%22%3A2%2C%22ck%22%3Atrue%2C%22o%22%3A1%2C%22c%22%3A%22%22%7D%5D%5D" width="100%" height="600PX"></iframe>-->
+
+    <h2>画面分割と同期解除</h2>
+        <p>画面左上部の分割ボタンをクリックすると２画面・４画面に画面を分割します。また、２画面以上にしたときにマウスカーソルがあたった場所が他の画面にも表示されます。
+        ２画面以上にしたときに現れるカギマークをクリックすると各画面の同期が解除され、各地図を自由に動かすことができるようになります。</p>
+    <h2>出典の確認方法</h2>
+        <p>背景ダイアログの上部に表示されているiアイコンをクリックすると出典や凡例が表示されます。出典の確認はこちらからお願いします。</p>
+    <h2>背景いろいろ</h2>
+        <p>下記にopen-hinataに搭載されている背景を説明します。なお、open-hinataには、これら以外の背景もたくさんありますのでよかったら探してみてください。</p>
+    <h3>戦前古地図</h3>
+        <P><a href="https://stanford.maps.arcgis.com/apps/SimpleViewer/index.html?appid=733446cc5a314ddf85c59ecc10321b41" target="_blank">スタンフォード大学</a>がオープンデータとして公開している戦前の旧版地形図を
+        <a href="https://mapwarper.h-gis.jp/" target="_blank">日本版MapWarper</a> さんがジオリファレンスしたものを使用しています。
+        ほぼ日本全国をカバーしています。戦前地形図上の何もないところをクリックすると地図の外枠が表示され、作成年などがわかります。
+        </P>
+        <ul>
+            <li><a href="https://kenzkenz.xsrv.jp/open-hinata/#9/130.69914/32.42704%3FS%3D1%26L%3D%5B%5B%7B%22id%22%3A%22mw5%22%2C%22ck%22%3Atrue%2C%22o%22%3A1%7D%2C%7B%22id%22%3A2%2C%22ck%22%3Atrue%2C%22o%22%3A1%2C%22c%22%3A%22%22%7D%5D%2C%5B%7B%22id%22%3A2%2C%22ck%22%3Atrue%2C%22o%22%3A1%2C%22c%22%3A%22%22%7D%5D%2C%5B%7B%22id%22%3A2%2C%22ck%22%3Atrue%2C%22o%22%3A1%2C%22c%22%3A%22%22%7D%5D%2C%5B%7B%22id%22%3A2%2C%22ck%22%3Atrue%2C%22o%22%3A1%2C%22c%22%3A%22%22%7D%5D%5D" target="_blank">戦前地形図5万分の１</a> </li>
+            <li><a href="https://kenzkenz.xsrv.jp/open-hinata/#9/130.69914/32.42704%3FS%3D1%26L%3D%5B%5B%7B%22id%22%3A%22mw20%22%2C%22ck%22%3Atrue%2C%22o%22%3A1%7D%2C%7B%22id%22%3A2%2C%22ck%22%3Atrue%2C%22o%22%3A1%2C%22c%22%3A%22%22%7D%5D%2C%5B%7B%22id%22%3A2%2C%22ck%22%3Atrue%2C%22o%22%3A1%2C%22c%22%3A%22%22%7D%5D%2C%5B%7B%22id%22%3A2%2C%22ck%22%3Atrue%2C%22o%22%3A1%2C%22c%22%3A%22%22%7D%5D%2C%5B%7B%22id%22%3A2%2C%22ck%22%3Atrue%2C%22o%22%3A1%2C%22c%22%3A%22%22%7D%5D%5D" target="_blank">戦前地形図20万分の１</a></li>
+        </ul>
+    <h3>米軍作成地図</h3>
+    <p>戦後に米軍が作成した地図です。145地区あります。</p>
+    <ul>
+        <li><a href="https://kenzkenz.xsrv.jp/open-hinata/#sTq8y" target="_blank">米軍作成地図全て</a></li>
+        <li>地区ごとに表示もできます。</li>
+    </ul>
+
+    <h3>大正古地図</h3>
+        <p><a href="https://dl.ndl.go.jp/" target="_blank">国立国会図書館デジタルコレクション</a>が公開している<a href="https://dl.ndl.go.jp/pid/1880805" target="_blank">「最新詳密金刺分縣圖」</a>を作者がジオリファレンスしたものです。大正１３、１４年ころの地図です。
+        地図上でクリックすると、もとになった地図が表示されます。</p>
+        <ul>
+            <li><a href="https://kenzkenz.xsrv.jp/open-hinata/#6/140.28102/38.25603%3FS%3D1%26L%3D%5B%5B%7B%22id%22%3A%22kotizu00%22%2C%22ck%22%3Atrue%2C%22o%22%3A1%7D%2C%7B%22id%22%3A2%2C%22ck%22%3Atrue%2C%22o%22%3A1%2C%22c%22%3A%22%22%7D%5D%2C%5B%7B%22id%22%3A2%2C%22ck%22%3Atrue%2C%22o%22%3A1%2C%22c%22%3A%22%22%7D%5D%2C%5B%7B%22id%22%3A2%2C%22ck%22%3Atrue%2C%22o%22%3A1%2C%22c%22%3A%22%22%7D%5D%2C%5B%7B%22id%22%3A2%2C%22ck%22%3Atrue%2C%22o%22%3A1%2C%22c%22%3A%22%22%7D%5D%5D" target="_blank">大正古地図全て</a> </li>
+            <li>都道府県ごとに表示もできます。</li>
+        </ul>
+    <h3>迅速測図</h3>
+        <p><a href="https://boiledorange73.sakura.ne.jp/" target="_blank">boiledorange73@sakura</a>さんがジオリファレンスしたものです。迅速測図とは、日本において明治時代初期から中期にかけて大日本帝国陸軍参謀本部陸地測量部によって作成された簡易地図です。</p>
+        <ul>
+            <li><a href="https://kenzkenz.xsrv.jp/open-hinata/#9/140.03338/35.77867%3FS%3D1%26L%3D%5B%5B%7B%22id%22%3A%22jinsoku%22%2C%22ck%22%3Atrue%2C%22o%22%3A1%7D%2C%7B%22id%22%3A2%2C%22ck%22%3Atrue%2C%22o%22%3A1%2C%22c%22%3A%22%22%7D%5D%2C%5B%7B%22id%22%3A2%2C%22ck%22%3Atrue%2C%22o%22%3A1%2C%22c%22%3A%22%22%7D%5D%2C%5B%7B%22id%22%3A2%2C%22ck%22%3Atrue%2C%22o%22%3A1%2C%22c%22%3A%22%22%7D%5D%2C%5B%7B%22id%22%3A2%2C%22ck%22%3Atrue%2C%22o%22%3A1%2C%22c%22%3A%22%22%7D%5D%5D" target="_blank">迅速測図</a></li>
+        </ul>
+    <h3>東西蝦夷山川地理取調図</h3>
+        <p><a href="https://github.com/koukita/touzaiezo" target="_blank">喜多さん</a>がジオリファレンスして公開している東西蝦夷山川地理取調図を表示します。
+        二つあるので用途によって使い分けてください。</p>
+        <ul>
+            <li><a href="https://kenzkenz.xsrv.jp/open-hinata/#7/142.96992/43.08551%3FS%3D1%26L%3D%5B%5B%7B%22id%22%3A%22ezosansen%22%2C%22ck%22%3Atrue%2C%22o%22%3A1%7D%2C%7B%22id%22%3A2%2C%22ck%22%3Atrue%2C%22o%22%3A1%2C%22c%22%3A%22%22%7D%5D%2C%5B%7B%22id%22%3A2%2C%22ck%22%3Atrue%2C%22o%22%3A1%2C%22c%22%3A%22%22%7D%5D%2C%5B%7B%22id%22%3A2%2C%22ck%22%3Atrue%2C%22o%22%3A1%2C%22c%22%3A%22%22%7D%5D%2C%5B%7B%22id%22%3A2%2C%22ck%22%3Atrue%2C%22o%22%3A1%2C%22c%22%3A%22%22%7D%5D%5D" target="_blank">東西蝦夷山川地理取調図</a>・・・中央部分が欠けていますが択捉島が含まれています。 </li>
+            <li><a href="https://kenzkenz.xsrv.jp/open-hinata/#7/142.6944/43.24165%3FS%3D1%26L%3D%5B%5B%7B%22id%22%3A%22ezosansen2%22%2C%22ck%22%3Atrue%2C%22o%22%3A1%7D%2C%7B%22id%22%3A2%2C%22ck%22%3Atrue%2C%22o%22%3A1%2C%22c%22%3A%22%22%7D%5D%2C%5B%7B%22id%22%3A2%2C%22ck%22%3Atrue%2C%22o%22%3A1%2C%22c%22%3A%22%22%7D%5D%2C%5B%7B%22id%22%3A2%2C%22ck%22%3Atrue%2C%22o%22%3A1%2C%22c%22%3A%22%22%7D%5D%2C%5B%7B%22id%22%3A2%2C%22ck%22%3Atrue%2C%22o%22%3A1%2C%22c%22%3A%22%22%7D%5D%5D" target="_blank">東西蝦夷山川地理取調図2</a>・・中央部分の欠けはありませんが、択捉島などが含まれていません。</li>
+        </ul>
+    <h3>今昔マップ</h3>
+        <p><a href="https://ktgis.net/kjmapw/tilemapservice.html" target="_blank">今昔マップ</a>から全59地区を取り込んでいます。下記はその例です。全59地区をご覧になりたいときは
+        「抽出します...」と書いてあるテキストボックスに「今昔マップ」と記入して抽出してください。</p>
+        <ul>
+            <li><a href="https://kenzkenz.xsrv.jp/open-hinata/#9/139.51766/36.07056%3FS%3D1%26L%3D%5B%5B%7B%22id%22%3A%22kzkanto00%22%2C%22ck%22%3Atrue%2C%22o%22%3A1%7D%2C%7B%22id%22%3A2%2C%22ck%22%3Atrue%2C%22o%22%3A1%2C%22c%22%3A%22%22%7D%5D%2C%5B%7B%22id%22%3A2%2C%22ck%22%3Atrue%2C%22o%22%3A1%2C%22c%22%3A%22%22%7D%5D%2C%5B%7B%22id%22%3A2%2C%22ck%22%3Atrue%2C%22o%22%3A1%2C%22c%22%3A%22%22%7D%5D%2C%5B%7B%22id%22%3A2%2C%22ck%22%3Atrue%2C%22o%22%3A1%2C%22c%22%3A%22%22%7D%5D%5D" target="_blank">関東1894-1915年</a></li>
+            <li><a href="https://kenzkenz.xsrv.jp/open-hinata/#13/131.37331/31.91826%3FS%3D1%26L%3D%5B%5B%7B%22id%22%3A%22kzmiyazaki00%22%2C%22ck%22%3Atrue%2C%22o%22%3A1%7D%2C%7B%22id%22%3A2%2C%22ck%22%3Atrue%2C%22o%22%3A1%2C%22c%22%3A%22%22%7D%5D%2C%5B%7B%22id%22%3A2%2C%22ck%22%3Atrue%2C%22o%22%3A1%2C%22c%22%3A%22%22%7D%5D%2C%5B%7B%22id%22%3A2%2C%22ck%22%3Atrue%2C%22o%22%3A1%2C%22c%22%3A%22%22%7D%5D%2C%5B%7B%22id%22%3A2%2C%22ck%22%3Atrue%2C%22o%22%3A1%2C%22c%22%3A%22%22%7D%5D%5D" target="_blank">宮崎1902年</a></li>
+        </ul>
+    <h3>全国の鉄道（路線と駅、廃線含む）</h3>
+        <p>全国鉄道の路線と駅を表示します。廃線になったものも表示します。現存している路線、駅は青色、廃線になった路線、駅は赤色で表示しています。
+            駅をクリックしてポップアップするとストリービューのリンクがあります。
+            <a href="https://nlftp.mlit.go.jp/ksj/" target="_blank">国土数値情報</a>が公開しているデータです。</p>
+        <ul>
+            <li><a href="https://kenzkenz.xsrv.jp/open-hinata/#6/138.20598/38.20708%3FS%3D1%26L%3D%5B%5B%7B%22id%22%3A%22rosen%22%2C%22ck%22%3Atrue%2C%22o%22%3A1%7D%2C%7B%22id%22%3A2%2C%22ck%22%3Atrue%2C%22o%22%3A1%2C%22c%22%3A%22%22%7D%5D%2C%5B%7B%22id%22%3A2%2C%22ck%22%3Atrue%2C%22o%22%3A1%2C%22c%22%3A%22%22%7D%5D%2C%5B%7B%22id%22%3A2%2C%22ck%22%3Atrue%2C%22o%22%3A1%2C%22c%22%3A%22%22%7D%5D%2C%5B%7B%22id%22%3A2%2C%22ck%22%3Atrue%2C%22o%22%3A1%2C%22c%22%3A%22%22%7D%5D%5D" target="_blank">鉄道（廃線は赤色）</a></li>
+        </ul>
+    <h3>全国のバスルートと停留所</h3>
+        <p>令和４年の全国のバスルートと停留所のデータです。
+            停留所をクリックしてポップアップするとストリートビューのリンクがあります。
+            <a href="https://nlftp.mlit.go.jp/ksj/" target="_blank">国土数値情報</a>が公開しているデータです。</p>
+        <ul>
+            <li><a href="https://kenzkenz.xsrv.jp/open-hinata/#6/138.20598/38.20708%3FS%3D1%26L%3D%5B%5B%7B%22id%22%3A%22bus%22%2C%22ck%22%3Atrue%2C%22o%22%3A1%7D%2C%7B%22id%22%3A2%2C%22ck%22%3Atrue%2C%22o%22%3A1%2C%22c%22%3A%22%22%7D%5D%2C%5B%7B%22id%22%3A2%2C%22ck%22%3Atrue%2C%22o%22%3A1%2C%22c%22%3A%22%22%7D%5D%2C%5B%7B%22id%22%3A2%2C%22ck%22%3Atrue%2C%22o%22%3A1%2C%22c%22%3A%22%22%7D%5D%2C%5B%7B%22id%22%3A2%2C%22ck%22%3Atrue%2C%22o%22%3A1%2C%22c%22%3A%22%22%7D%5D%5D" target="_blank">バスルートと停留所</a> </li>
+        </ul>
+    <h3>東京都デジタルツイン実現プロジェクト</h3>
+    <p><a href="https://www.geospatial.jp/ckan/dataset/tokyopc-shima-2023" target="_blank">東京都デジタルツイン実現プロジェクト</a>から微地形表現図を取り込んでいます。陰陽図と赤色立体地図があります。</p>
+    <ul>
+        <li><a href="https://kenzkenz.xsrv.jp/open-hinata/?fbclid=IwAR3_PKRNOJi11JuxHHPWpTr7JDtpXZd-VgIoafTBbiL7uXrEX2C7Yu9xcs4#11/139.25439/35.69971%3FS%3D1%26L%3D%5B%5B%7B%22id%22%3A%22tamainyou%22%2C%22ck%22%3Atrue%2C%22o%22%3A1%7D%2C%7B%22id%22%3A2%2C%22ck%22%3Atrue%2C%22o%22%3A1%2C%22c%22%3A%22%22%7D%5D%2C%5B%7B%22id%22%3A2%2C%22ck%22%3Atrue%2C%22o%22%3A1%2C%22c%22%3A%22%22%7D%5D%2C%5B%7B%22id%22%3A2%2C%22ck%22%3Atrue%2C%22o%22%3A1%2C%22c%22%3A%22%22%7D%5D%2C%5B%7B%22id%22%3A2%2C%22ck%22%3Atrue%2C%22o%22%3A1%2C%22c%22%3A%22%22%7D%5D%5D" target="_blank">陰陽図</a></li>
+        <li><a href="https://kenzkenz.xsrv.jp/open-hinata/?fbclid=IwAR3_PKRNOJi11JuxHHPWpTr7JDtpXZd-VgIoafTBbiL7uXrEX2C7Yu9xcs4#11/139.25439/35.69971%3FS%3D1%26L%3D%5B%5B%7B%22id%22%3A%22tamared%22%2C%22ck%22%3Atrue%2C%22o%22%3A1%7D%2C%7B%22id%22%3A2%2C%22ck%22%3Atrue%2C%22o%22%3A1%2C%22c%22%3A%22%22%7D%5D%2C%5B%7B%22id%22%3A2%2C%22ck%22%3Atrue%2C%22o%22%3A1%2C%22c%22%3A%22%22%7D%5D%2C%5B%7B%22id%22%3A2%2C%22ck%22%3Atrue%2C%22o%22%3A1%2C%22c%22%3A%22%22%7D%5D%2C%5B%7B%22id%22%3A2%2C%22ck%22%3Atrue%2C%22o%22%3A1%2C%22c%22%3A%22%22%7D%5D%5D" target="_blank">赤色立体地図</a></li>
+    </ul>
+    <h3>CS立体図</h3>
+        <p>岐阜県、兵庫県、長野県、静岡県の全県域、広島県、岡山県、福島県、愛媛県、高知県、大分県の一部のCS立体図です。CS 立体図とは、長野県林業総合センターが考案した微地形表現図です。「標高」「傾斜」「曲率」をそれぞれ別の色調で着色し、重ねて透過処理することで作成した地形表現図法です。</p>
+        <ul>
+            <li><a href="https://kenzkenz.xsrv.jp/open-hinata/#7/136.73678/35.4645%3FS%3D1%26L%3D%5B%5B%7B%22id%22%3A%22cs00%22%2C%22m%22%3Atrue%2C%22ck%22%3Atrue%2C%22o%22%3A1%7D%2C%7B%22id%22%3A2%2C%22ck%22%3Atrue%2C%22o%22%3A1%2C%22c%22%3A%22%22%7D%5D%2C%5B%7B%22id%22%3A2%2C%22ck%22%3Atrue%2C%22o%22%3A1%2C%22c%22%3A%22%22%7D%5D%2C%5B%7B%22id%22%3A2%2C%22ck%22%3Atrue%2C%22o%22%3A1%2C%22c%22%3A%22%22%7D%5D%2C%5B%7B%22id%22%3A2%2C%22ck%22%3Atrue%2C%22o%22%3A1%2C%22c%22%3A%22%22%7D%5D%5D" target="_blank">CS立体図全部</a> </li>
+            <li>都道府県ごとに表示もできます。</li>
+        </ul>
+    <h3>シームレス地質図</h3>
+        <p>国立研究開発法人産業技術総合研究所が開発した<a href="https://gbank.gsj.jp/seamless/" target="_blank">シームレス地質図</a>を表示します。クリックすると地質の詳細が表示されます。地質で抽出して表示することも可能です。</p>
+        <ul>
+            <li><a href="https://kenzkenz.xsrv.jp/open-hinata/#6/137.67494/38.14858%3FS%3D1%26L%3D%5B%5B%7B%22id%22%3A%22seamless%22%2C%22ck%22%3Atrue%2C%22o%22%3A1%2C%22c%22%3A%7B%22name%22%3A%22seamless%22%2C%22values%22%3A%5B%5D%7D%7D%2C%7B%22id%22%3A2%2C%22ck%22%3Atrue%2C%22o%22%3A1%2C%22c%22%3A%22%22%7D%5D%2C%5B%7B%22id%22%3A2%2C%22ck%22%3Atrue%2C%22o%22%3A1%2C%22c%22%3A%22%22%7D%5D%2C%5B%7B%22id%22%3A2%2C%22ck%22%3Atrue%2C%22o%22%3A1%2C%22c%22%3A%22%22%7D%5D%2C%5B%7B%22id%22%3A2%2C%22ck%22%3Atrue%2C%22o%22%3A1%2C%22c%22%3A%22%22%7D%5D%5D" target="_blank">シームレス地質図</a> </li>
+        </ul>
+    <h3>推計人口</h3>
+        <p>2050年の人口を推計します。赤色は2050年に人口増となる地域、青色になるほど人口減の地域です。黒は無居住化となった地域です。
+            <a href="https://nlftp.mlit.go.jp/ksj/" target="_blank">国土数値情報</a>が公開しているデータです。</p>
+        <ul>
+            <li><a href="https://kenzkenz.xsrv.jp/open-hinata/#6/139.50257/38.45557%3FS%3D1%26L%3D%5B%5B%7B%22id%22%3A2%2C%22m%22%3Atrue%2C%22ck%22%3Atrue%2C%22o%22%3A1%2C%22c%22%3A%22%22%7D%2C%7B%22id%22%3A%22suikei1km%22%2C%22ck%22%3Atrue%2C%22o%22%3A1%7D%5D%2C%5B%7B%22id%22%3A2%2C%22ck%22%3Atrue%2C%22o%22%3A1%2C%22c%22%3A%22%22%7D%5D%2C%5B%7B%22id%22%3A2%2C%22ck%22%3Atrue%2C%22o%22%3A1%2C%22c%22%3A%22%22%7D%5D%2C%5B%7B%22id%22%3A2%2C%22ck%22%3Atrue%2C%22o%22%3A1%2C%22c%22%3A%22%22%7D%5D%5D" target="_blank">推計人口1km</a></li>
+            <li><a href="https://kenzkenz.xsrv.jp/open-hinata/#6/139.50257/38.45557%3FS%3D1%26L%3D%5B%5B%7B%22id%22%3A2%2C%22m%22%3Atrue%2C%22ck%22%3Atrue%2C%22o%22%3A1%2C%22c%22%3A%22%22%7D%2C%7B%22id%22%3A%22suikei500m%22%2C%22ck%22%3Atrue%2C%22o%22%3A1%7D%5D%2C%5B%7B%22id%22%3A2%2C%22ck%22%3Atrue%2C%22o%22%3A1%2C%22c%22%3A%22%22%7D%5D%2C%5B%7B%22id%22%3A2%2C%22ck%22%3Atrue%2C%22o%22%3A1%2C%22c%22%3A%22%22%7D%5D%2C%5B%7B%22id%22%3A2%2C%22ck%22%3Atrue%2C%22o%22%3A1%2C%22c%22%3A%22%22%7D%5D%5D" target="_blank">推計人口500m</a>・・・重いので注意</li>
+        </ul>
+    <h3>市町村、郡</h3>
+        <p>過去の市町村、郡の境界を表示します。郡地図は<a href="https://booth.pm/ja/items/3053727">郡地図研究会</a>さんから、
+            それ以外は<a href="https://nlftp.mlit.go.jp/ksj/gml/datalist/KsjTmplt-N03-v3_1.html" target="_blank">国土数値情報</a>からデータをいただいています。</p>
+        <ul>
+            <li><a href="https://kenzkenz.xsrv.jp/open-hinata/#5/141.4566/41.86724%3FS%3D1%26L%3D%5B%5B%7B%22id%22%3A%22gun%22%2C%22ck%22%3Atrue%2C%22o%22%3A1%7D%2C%7B%22id%22%3A2%2C%22ck%22%3Atrue%2C%22o%22%3A1%2C%22c%22%3A%22%22%7D%5D%2C%5B%7B%22id%22%3A2%2C%22ck%22%3Atrue%2C%22o%22%3A1%2C%22c%22%3A%22%22%7D%5D%2C%5B%7B%22id%22%3A2%2C%22ck%22%3Atrue%2C%22o%22%3A1%2C%22c%22%3A%22%22%7D%5D%2C%5B%7B%22id%22%3A2%2C%22ck%22%3Atrue%2C%22o%22%3A1%2C%22c%22%3A%22%22%7D%5D%5D" target="_blank">明治中期の郡（県で色分け）</a> </li>
+            <li><a href="https://kenzkenz.xsrv.jp/open-hinata/#5/141.4566/41.86724%3FS%3D1%26L%3D%5B%5B%7B%22id%22%3A%22gunkuni%22%2C%22ck%22%3Atrue%2C%22o%22%3A1%7D%2C%7B%22id%22%3A2%2C%22ck%22%3Atrue%2C%22o%22%3A1%2C%22c%22%3A%22%22%7D%5D%2C%5B%7B%22id%22%3A2%2C%22ck%22%3Atrue%2C%22o%22%3A1%2C%22c%22%3A%22%22%7D%5D%2C%5B%7B%22id%22%3A2%2C%22ck%22%3Atrue%2C%22o%22%3A1%2C%22c%22%3A%22%22%7D%5D%2C%5B%7B%22id%22%3A2%2C%22ck%22%3Atrue%2C%22o%22%3A1%2C%22c%22%3A%22%22%7D%5D%5D" target="_blank">明治中期の郡（国で色分け）</a> </li>
+            <li><a href="https://kenzkenz.xsrv.jp/open-hinata/#6/138.27623/38.53365%3FS%3D1%26L%3D%5B%5B%7B%22id%22%3A%22cityT9%22%2C%22ck%22%3Atrue%2C%22o%22%3A1%7D%2C%7B%22id%22%3A2%2C%22ck%22%3Atrue%2C%22o%22%3A1%2C%22c%22%3A%22%22%7D%5D%2C%5B%7B%22id%22%3A2%2C%22ck%22%3Atrue%2C%22o%22%3A1%2C%22c%22%3A%22%22%7D%5D%2C%5B%7B%22id%22%3A2%2C%22ck%22%3Atrue%2C%22o%22%3A1%2C%22c%22%3A%22%22%7D%5D%2C%5B%7B%22id%22%3A2%2C%22ck%22%3Atrue%2C%22o%22%3A1%2C%22c%22%3A%22%22%7D%5D%5D" target="_blank">大正９年市町村</a> </li>
+            <li><a href="https://kenzkenz.xsrv.jp/open-hinata/#6/138.27623/38.53365%3FS%3D1%26L%3D%5B%5B%7B%22id%22%3A%22cityS25%22%2C%22ck%22%3Atrue%2C%22o%22%3A1%7D%2C%7B%22id%22%3A2%2C%22ck%22%3Atrue%2C%22o%22%3A1%2C%22c%22%3A%22%22%7D%5D%2C%5B%7B%22id%22%3A2%2C%22ck%22%3Atrue%2C%22o%22%3A1%2C%22c%22%3A%22%22%7D%5D%2C%5B%7B%22id%22%3A2%2C%22ck%22%3Atrue%2C%22o%22%3A1%2C%22c%22%3A%22%22%7D%5D%2C%5B%7B%22id%22%3A2%2C%22ck%22%3Atrue%2C%22o%22%3A1%2C%22c%22%3A%22%22%7D%5D%5D" target="_blank">昭和２５年市町村</a> </li>
+            <li><a href="https://kenzkenz.xsrv.jp/open-hinata/#6/138.27623/38.53365%3FS%3D1%26L%3D%5B%5B%7B%22id%22%3A%22cityH07%22%2C%22ck%22%3Atrue%2C%22o%22%3A1%7D%2C%7B%22id%22%3A2%2C%22ck%22%3Atrue%2C%22o%22%3A1%2C%22c%22%3A%22%22%7D%5D%2C%5B%7B%22id%22%3A2%2C%22ck%22%3Atrue%2C%22o%22%3A1%2C%22c%22%3A%22%22%7D%5D%2C%5B%7B%22id%22%3A2%2C%22ck%22%3Atrue%2C%22o%22%3A1%2C%22c%22%3A%22%22%7D%5D%2C%5B%7B%22id%22%3A2%2C%22ck%22%3Atrue%2C%22o%22%3A1%2C%22c%22%3A%22%22%7D%5D%5D" target="_blank">平成７年市町村</a> </li>
+            <li><a href="https://kenzkenz.xsrv.jp/open-hinata/#6/138.12228/38.31412%3FS%3D1%26L%3D%5B%5B%7B%22id%22%3A%22cityR03%22%2C%22m%22%3Afalse%2C%22ck%22%3Atrue%2C%22o%22%3A1%7D%2C%7B%22id%22%3A2%2C%22ck%22%3Atrue%2C%22o%22%3A1%2C%22c%22%3A%22%22%7D%5D%2C%5B%7B%22id%22%3A2%2C%22ck%22%3Atrue%2C%22o%22%3A1%2C%22c%22%3A%22%22%7D%5D%2C%5B%7B%22id%22%3A2%2C%22ck%22%3Atrue%2C%22o%22%3A1%2C%22c%22%3A%22%22%7D%5D%2C%5B%7B%22id%22%3A2%2C%22ck%22%3Atrue%2C%22o%22%3A1%2C%22c%22%3A%22%22%7D%5D%5D" target="_blank">令和３年市町村</a></li>
+        </ul>
+    <h3>海面上昇シミュレーション</h3>
+        <p>国土地理院のdemデータを使用して海面が上昇したときのシミュレーションを行います。スライダーを左右に動かして上昇値を操作してください。またmax値を変更することも可能です。</p>
+        <ul>
+            <li><a href="https://kenzkenz.xsrv.jp/open-hinata/#6/138.51832/38.83106%3FS%3D1%26L%3D%5B%5B%7B%22id%22%3A%22flood10m%22%2C%22ck%22%3Atrue%2C%22o%22%3A1%2C%22c%22%3A%7B%22name%22%3A%22flood10m%22%2C%22values%22%3A%5B25.5%2C100%5D%7D%7D%2C%7B%22id%22%3A2%2C%22ck%22%3Atrue%2C%22o%22%3A1%2C%22c%22%3A%22%22%7D%5D%2C%5B%7B%22id%22%3A2%2C%22ck%22%3Atrue%2C%22o%22%3A1%2C%22c%22%3A%22%22%7D%5D%2C%5B%7B%22id%22%3A2%2C%22ck%22%3Atrue%2C%22o%22%3A1%2C%22c%22%3A%22%22%7D%5D%2C%5B%7B%22id%22%3A2%2C%22ck%22%3Atrue%2C%22o%22%3A1%2C%22c%22%3A%22%22%7D%5D%5D" target="_blank">海面上昇シミュ10Mdem</a></li>
+<!--            <li><a href="https://kenzkenz.xsrv.jp/open-hinata/#12.260000000000005/131.43827/32.052%3FS%3D1%26L%3D%5B%5B%7B%22id%22%3A%22flood5m%22%2C%22ck%22%3Atrue%2C%22o%22%3A1%2C%22c%22%3A%7B%22name%22%3A%22flood5m%22%2C%22values%22%3A%5B25.5%2C100%5D%7D%7D%2C%7B%22id%22%3A2%2C%22ck%22%3Atrue%2C%22o%22%3A1%2C%22c%22%3A%22%22%7D%5D%2C%5B%7B%22id%22%3A2%2C%22ck%22%3Atrue%2C%22o%22%3A1%2C%22c%22%3A%22%22%7D%5D%2C%5B%7B%22id%22%3A2%2C%22ck%22%3Atrue%2C%22o%22%3A1%2C%22c%22%3A%22%22%7D%5D%2C%5B%7B%22id%22%3A2%2C%22ck%22%3Atrue%2C%22o%22%3A1%2C%22c%22%3A%22%22%7D%5D%5D" target="_blank">海面上昇シミュ5Mdem</a>・・・詳細ですが都市部しかデータがありません。ズームして表示してください。</li>-->
+        </ul>
+    <h3>ハザードマップ</h3>
+        <p>各種ハザードマップ等を表示します。背景の多くは<a href="https://disaportal.gsi.go.jp/hazardmapportal/hazardmap/copyright/opendata.html" target="_blank">「重ねるハザードマップ」</a> からデータをいただいています。</p>
+        <ul>
+            <li><a href="https://kenzkenz.xsrv.jp/open-hinata/#14/131.40312/31.91738%3FS%3D1%26L%3D%5B%5B%7B%22id%22%3A%22shinsuishin%22%2C%22m%22%3Atrue%2C%22ck%22%3Atrue%2C%22o%22%3A1%7D%2C%7B%22id%22%3A2%2C%22ck%22%3Atrue%2C%22o%22%3A1%2C%22c%22%3A%22%22%7D%5D%2C%5B%7B%22id%22%3A2%2C%22ck%22%3Atrue%2C%22o%22%3A1%2C%22c%22%3A%22%22%7D%5D%2C%5B%7B%22id%22%3A2%2C%22ck%22%3Atrue%2C%22o%22%3A1%2C%22c%22%3A%22%22%7D%5D%2C%5B%7B%22id%22%3A2%2C%22ck%22%3Atrue%2C%22o%22%3A1%2C%22c%22%3A%22%22%7D%5D%5D" target="_blank">洪水浸水想定（想定最大規模）</a></li>
+            <li><a href="https://kenzkenz.xsrv.jp/open-hinata/#14/131.43856/31.89917%3FS%3D1%26L%3D%5B%5B%7B%22id%22%3A%22tunami%22%2C%22m%22%3Atrue%2C%22ck%22%3Atrue%2C%22o%22%3A1%7D%2C%7B%22id%22%3A2%2C%22ck%22%3Atrue%2C%22o%22%3A1%2C%22c%22%3A%22%22%7D%5D%2C%5B%7B%22id%22%3A2%2C%22ck%22%3Atrue%2C%22o%22%3A1%2C%22c%22%3A%22%22%7D%5D%2C%5B%7B%22id%22%3A2%2C%22ck%22%3Atrue%2C%22o%22%3A1%2C%22c%22%3A%22%22%7D%5D%2C%5B%7B%22id%22%3A2%2C%22ck%22%3Atrue%2C%22o%22%3A1%2C%22c%22%3A%22%22%7D%5D%5D" target="_blank">津波浸水想定</a></li>
+            <li><a href="https://kenzkenz.xsrv.jp/open-hinata/#6/140.097/37.856%3FS%3D1%26L%3D%5B%5B%7B%22id%22%3A%22kansui%22%2C%22ck%22%3Atrue%2C%22o%22%3A1%7D%2C%7B%22id%22%3A2%2C%22ck%22%3Atrue%2C%22o%22%3A1%2C%22c%22%3A%22%22%7D%5D%2C%5B%7B%22id%22%3A2%2C%22ck%22%3Atrue%2C%22o%22%3A1%2C%22c%22%3A%22%22%7D%5D%2C%5B%7B%22id%22%3A2%2C%22ck%22%3Atrue%2C%22o%22%3A1%2C%22c%22%3A%22%22%7D%5D%2C%5B%7B%22id%22%3A2%2C%22ck%22%3Atrue%2C%22o%22%3A1%2C%22c%22%3A%22%22%7D%5D%5D" target="_blank">道路冠水想定箇所</a></li>
+            <li><a href="https://kenzkenz.xsrv.jp/open-hinata/#9/131.02249/32.45729%3FS%3D1%26L%3D%5B%5B%7B%22id%22%3A%22dosyasaigai%22%2C%22m%22%3Atrue%2C%22ck%22%3Atrue%2C%22o%22%3A1%7D%2C%7B%22id%22%3A2%2C%22ck%22%3Atrue%2C%22o%22%3A1%2C%22c%22%3A%22%22%7D%5D%2C%5B%7B%22id%22%3A2%2C%22ck%22%3Atrue%2C%22o%22%3A1%2C%22c%22%3A%22%22%7D%5D%2C%5B%7B%22id%22%3A2%2C%22ck%22%3Atrue%2C%22o%22%3A1%2C%22c%22%3A%22%22%7D%5D%2C%5B%7B%22id%22%3A2%2C%22ck%22%3Atrue%2C%22o%22%3A1%2C%22c%22%3A%22%22%7D%5D%5D" target="_blank">土砂災害全て</a></li>
+            <li><a href="https://kenzkenz.xsrv.jp/open-hinata/#6/138.73814/38.28306%3FS%3D1%26L%3D%5B%5B%7B%22id%22%3A%22densyou%22%2C%22ck%22%3Atrue%2C%22o%22%3A1%7D%2C%7B%22id%22%3A2%2C%22ck%22%3Atrue%2C%22o%22%3A1%2C%22c%22%3A%22%22%7D%5D%2C%5B%7B%22id%22%3A2%2C%22ck%22%3Atrue%2C%22o%22%3A1%2C%22c%22%3A%22%22%7D%5D%2C%5B%7B%22id%22%3A2%2C%22ck%22%3Atrue%2C%22o%22%3A1%2C%22c%22%3A%22%22%7D%5D%2C%5B%7B%22id%22%3A2%2C%22ck%22%3Atrue%2C%22o%22%3A1%2C%22c%22%3A%22%22%7D%5D%5D" target="_blank">自然災害伝承碑</a></li>
+            <li><a href="https://kenzkenz.xsrv.jp/open-hinata/#6/140.44335/37.91171%3FS%3D1%26L%3D%5B%5B%7B%22id%22%3A2%2C%22m%22%3Atrue%2C%22ck%22%3Atrue%2C%22o%22%3A1%2C%22c%22%3A%22%22%7D%2C%7B%22id%22%3A%22ekizyouka00%22%2C%22ck%22%3Atrue%2C%22o%22%3A1%7D%5D%2C%5B%7B%22id%22%3A2%2C%22ck%22%3Atrue%2C%22o%22%3A1%2C%22c%22%3A%22%22%7D%5D%2C%5B%7B%22id%22%3A2%2C%22ck%22%3Atrue%2C%22o%22%3A1%2C%22c%22%3A%22%22%7D%5D%2C%5B%7B%22id%22%3A2%2C%22ck%22%3Atrue%2C%22o%22%3A1%2C%22c%22%3A%22%22%7D%5D%5D" target="_blank">液状化危険度分布図（全国）</a>・・・都道府県ごとに表示方法が違うので注意</li>
+            <li><a href="https://kenzkenz.xsrv.jp/open-hinata/#8/142.37908/43.63136%3FS%3D1%26L%3D%5B%5B%7B%22id%22%3A2%2C%22m%22%3Atrue%2C%22ck%22%3Atrue%2C%22o%22%3A1%2C%22c%22%3A%22%22%7D%2C%7B%22id%22%3A%22hokkaidouTunami%22%2C%22ck%22%3Atrue%2C%22o%22%3A1%7D%2C%7B%22id%22%3A%22hokkaidouTunamiT%22%2C%22ck%22%3Atrue%2C%22o%22%3A1%7D%5D%2C%5B%7B%22id%22%3A2%2C%22ck%22%3Atrue%2C%22o%22%3A1%2C%22c%22%3A%22%22%7D%5D%2C%5B%7B%22id%22%3A2%2C%22ck%22%3Atrue%2C%22o%22%3A1%2C%22c%22%3A%22%22%7D%5D%2C%5B%7B%22id%22%3A2%2C%22ck%22%3Atrue%2C%22o%22%3A1%2C%22c%22%3A%22%22%7D%5D%5D" target="_blank">北海道の津波浸水想定</a></li>
+        </ul>
+    <h3>遺跡、文化財等</h3>
+        <p>遺跡、文化財等を表示します。</p>
+        <ul>
+            <li><a href="https://kenzkenz.xsrv.jp/open-hinata/#6/138.69025/38.18287%3FS%3D1%26L%3D%5B%5B%7B%22id%22%3A%22nihonisan%22%2C%22ck%22%3Atrue%2C%22o%22%3A1%7D%2C%7B%22id%22%3A2%2C%22ck%22%3Atrue%2C%22o%22%3A1%2C%22c%22%3A%22%22%7D%5D%2C%5B%7B%22id%22%3A2%2C%22ck%22%3Atrue%2C%22o%22%3A1%2C%22c%22%3A%22%22%7D%5D%2C%5B%7B%22id%22%3A2%2C%22ck%22%3Atrue%2C%22o%22%3A1%2C%22c%22%3A%22%22%7D%5D%2C%5B%7B%22id%22%3A2%2C%22ck%22%3Atrue%2C%22o%22%3A1%2C%22c%22%3A%22%22%7D%5D%5D" target="_blank">日本遺産</a></li>
+            <li><a href="https://kenzkenz.xsrv.jp/open-hinata/#7/142.59058/43.31709%3FS%3D1%26L%3D%5B%5B%7B%22id%22%3A%22hokkaidoumaibun%22%2C%22ck%22%3Atrue%2C%22o%22%3A1%7D%2C%7B%22id%22%3A2%2C%22ck%22%3Atrue%2C%22o%22%3A1%2C%22c%22%3A%22%22%7D%5D%2C%5B%7B%22id%22%3A2%2C%22ck%22%3Atrue%2C%22o%22%3A1%2C%22c%22%3A%22%22%7D%5D%2C%5B%7B%22id%22%3A2%2C%22ck%22%3Atrue%2C%22o%22%3A1%2C%22c%22%3A%22%22%7D%5D%2C%5B%7B%22id%22%3A2%2C%22ck%22%3Atrue%2C%22o%22%3A1%2C%22c%22%3A%22%22%7D%5D%5D" target="_blank">北海道埋蔵文化財包蔵地</a></li>
+            <li><a href="https://kenzkenz.xsrv.jp/open-hinata/#12/130.81196/32.85326%3FS%3D1%26L%3D%5B%5B%7B%22id%22%3A2%2C%22m%22%3Atrue%2C%22ck%22%3Atrue%2C%22o%22%3A1%2C%22c%22%3A%22%22%7D%2C%7B%22id%22%3A%22kumamotomai%22%2C%22m%22%3Afalse%2C%22ck%22%3Atrue%2C%22o%22%3A1%7D%5D%2C%5B%7B%22id%22%3A2%2C%22ck%22%3Atrue%2C%22o%22%3A1%2C%22c%22%3A%22%22%7D%5D%2C%5B%7B%22id%22%3A2%2C%22ck%22%3Atrue%2C%22o%22%3A1%2C%22c%22%3A%22%22%7D%5D%2C%5B%7B%22id%22%3A2%2C%22ck%22%3Atrue%2C%22o%22%3A1%2C%22c%22%3A%22%22%7D%5D%5D" target="_blank">熊本県遺跡</a></li>
+            <li><a href="https://kenzkenz.xsrv.jp/open-hinata/#6/140.097/37.856%3FS%3D1%26L%3D%5B%5B%7B%22id%22%3A%22kyuusekki%22%2C%22ck%22%3Atrue%2C%22o%22%3A1%7D%2C%7B%22id%22%3A2%2C%22ck%22%3Atrue%2C%22o%22%3A1%2C%22c%22%3A%22%22%7D%5D%2C%5B%7B%22id%22%3A2%2C%22ck%22%3Atrue%2C%22o%22%3A1%2C%22c%22%3A%22%22%7D%5D%2C%5B%7B%22id%22%3A2%2C%22ck%22%3Atrue%2C%22o%22%3A1%2C%22c%22%3A%22%22%7D%5D%2C%5B%7B%22id%22%3A2%2C%22ck%22%3Atrue%2C%22o%22%3A1%2C%22c%22%3A%22%22%7D%5D%5D" target="_blank">全国旧石器時代遺跡</a></li>
+        </ul>
+    <h3>小学校区、中学校区</h3>
+        <p>小学校区と中学校区を表示します。校区を公表していない自治体の地区は表示されません。</p>
+        <ul>
+            <li><a href="https://kenzkenz.xsrv.jp/open-hinata/#6/139.88163/37.86266%3FS%3D1%26L%3D%5B%5B%7B%22id%22%3A%22syougakkouku%22%2C%22m%22%3Atrue%2C%22ck%22%3Atrue%2C%22o%22%3A1%7D%2C%7B%22id%22%3A2%2C%22ck%22%3Atrue%2C%22o%22%3A1%2C%22c%22%3A%22%22%7D%5D%2C%5B%7B%22id%22%3A2%2C%22ck%22%3Atrue%2C%22o%22%3A1%2C%22c%22%3A%22%22%7D%5D%2C%5B%7B%22id%22%3A2%2C%22ck%22%3Atrue%2C%22o%22%3A1%2C%22c%22%3A%22%22%7D%5D%2C%5B%7B%22id%22%3A2%2C%22ck%22%3Atrue%2C%22o%22%3A1%2C%22c%22%3A%22%22%7D%5D%5D" target="_blank">令和3年小学校区</a</li>
+            <li><a href="https://kenzkenz.xsrv.jp/open-hinata/#6/139.88163/37.86266%3FS%3D1%26L%3D%5B%5B%7B%22id%22%3A%22tyuugakkouku%22%2C%22m%22%3Atrue%2C%22ck%22%3Atrue%2C%22o%22%3A1%7D%2C%7B%22id%22%3A2%2C%22ck%22%3Atrue%2C%22o%22%3A1%2C%22c%22%3A%22%22%7D%5D%2C%5B%7B%22id%22%3A2%2C%22ck%22%3Atrue%2C%22o%22%3A1%2C%22c%22%3A%22%22%7D%5D%2C%5B%7B%22id%22%3A2%2C%22ck%22%3Atrue%2C%22o%22%3A1%2C%22c%22%3A%22%22%7D%5D%2C%5B%7B%22id%22%3A2%2C%22ck%22%3Atrue%2C%22o%22%3A1%2C%22c%22%3A%22%22%7D%5D%5D" target="_blank">令和3年中学校区</a></li>
+        </ul>
+    <h3>用途地域</h3>
+        <p>全国の用途地域です。ポップアップすると用途地域名などを表示します。ストリートビューも開けます。</p>
+        <ul>
+            <li><a href="https://kenzkenz.xsrv.jp/open-hinata/#12/139.7555/35.68495%3FS%3D1%26L%3D%5B%5B%7B%22id%22%3A%22youtoH23%22%2C%22m%22%3Atrue%2C%22ck%22%3Atrue%2C%22o%22%3A1%7D%2C%7B%22id%22%3A2%2C%22ck%22%3Atrue%2C%22o%22%3A1%2C%22c%22%3A%22%22%7D%5D%2C%5B%7B%22id%22%3A2%2C%22ck%22%3Atrue%2C%22o%22%3A1%2C%22c%22%3A%22%22%7D%5D%2C%5B%7B%22id%22%3A2%2C%22ck%22%3Atrue%2C%22o%22%3A1%2C%22c%22%3A%22%22%7D%5D%2C%5B%7B%22id%22%3A2%2C%22ck%22%3Atrue%2C%22o%22%3A1%2C%22c%22%3A%22%22%7D%5D%5D" target="_blank">平成23年用途地域</a></li>
+            <li><a href="https://kenzkenz.xsrv.jp/open-hinata/#12/139.7555/35.68495%3FS%3D1%26L%3D%5B%5B%7B%22id%22%3A%22youtoR01%22%2C%22m%22%3Atrue%2C%22ck%22%3Atrue%2C%22o%22%3A1%7D%2C%7B%22id%22%3A2%2C%22ck%22%3Atrue%2C%22o%22%3A1%2C%22c%22%3A%22%22%7D%5D%2C%5B%7B%22id%22%3A2%2C%22ck%22%3Atrue%2C%22o%22%3A1%2C%22c%22%3A%22%22%7D%5D%2C%5B%7B%22id%22%3A2%2C%22ck%22%3Atrue%2C%22o%22%3A1%2C%22c%22%3A%22%22%7D%5D%2C%5B%7B%22id%22%3A2%2C%22ck%22%3Atrue%2C%22o%22%3A1%2C%22c%22%3A%22%22%7D%5D%5D" target="_blank">令和1年用途地域</a></li>
+        </ul>
+    <h3>東京都の地震に関する地域危険度測定調査</h3>
+    <p>東京都の<a href="https://www.toshiseibi.metro.tokyo.lg.jp/bosai/chousa_6/home.htm" target="_blank">地震に関する地域危険度測定調査</a>です。</p>
+        <ul>
+            <li><a href="http://localhost:8080/#11/139.53036/35.66745%3FS%3D1%26L%3D%5B%5B%7B%22id%22%3A%22tokyoZisin%22%2C%22m%22%3Atrue%2C%22ck%22%3Atrue%2C%22o%22%3A1%7D%2C%7B%22id%22%3A2%2C%22ck%22%3Atrue%2C%22o%22%3A1%2C%22c%22%3A%22%22%7D%5D%2C%5B%7B%22id%22%3A2%2C%22ck%22%3Atrue%2C%22o%22%3A1%2C%22c%22%3A%22%22%7D%5D%2C%5B%7B%22id%22%3A2%2C%22ck%22%3Atrue%2C%22o%22%3A1%2C%22c%22%3A%22%22%7D%5D%2C%5B%7B%22id%22%3A2%2C%22ck%22%3Atrue%2C%22o%22%3A1%2C%22c%22%3A%22%22%7D%5D%5D" target="_blank">総合危険度ランク</a>・・・赤いほど危険度が高いです。</li>
+            <li><a href="http://localhost:8080/#11/139.53036/35.66745%3FS%3D1%26L%3D%5B%5B%7B%22id%22%3A%22tokyoZisin2%22%2C%22m%22%3Atrue%2C%22ck%22%3Atrue%2C%22o%22%3A1%7D%2C%7B%22id%22%3A2%2C%22ck%22%3Atrue%2C%22o%22%3A1%2C%22c%22%3A%22%22%7D%5D%2C%5B%7B%22id%22%3A2%2C%22ck%22%3Atrue%2C%22o%22%3A1%2C%22c%22%3A%22%22%7D%5D%2C%5B%7B%22id%22%3A2%2C%22ck%22%3Atrue%2C%22o%22%3A1%2C%22c%22%3A%22%22%7D%5D%2C%5B%7B%22id%22%3A2%2C%22ck%22%3Atrue%2C%22o%22%3A1%2C%22c%22%3A%22%22%7D%5D%5D" target="_blank">災害時活動困難係数</a></li>
+        </ul>
+    <h3>航空写真</h3>
+        <p>自治体等がオープンデータとして公開したデータを地図タイル化したものです。</p>
+        <ul>
+            <li><a href="https://kenzkenz.xsrv.jp/open-hinata/#12/138.43674/35.05286%3FS%3D1%26L%3D%5B%5B%7B%22id%22%3A7%2C%22ck%22%3Atrue%2C%22o%22%3A1%7D%2C%7B%22id%22%3A2%2C%22ck%22%3Atrue%2C%22o%22%3A1%2C%22c%22%3A%22%22%7D%5D%2C%5B%7B%22id%22%3A2%2C%22ck%22%3Atrue%2C%22o%22%3A1%2C%22c%22%3A%22%22%7D%5D%2C%5B%7B%22id%22%3A2%2C%22ck%22%3Atrue%2C%22o%22%3A1%2C%22c%22%3A%22%22%7D%5D%2C%5B%7B%22id%22%3A2%2C%22ck%22%3Atrue%2C%22o%22%3A1%2C%22c%22%3A%22%22%7D%5D%5D" target="_blank">静岡県航空写真</a></li>
+            <li><a href="https://kenzkenz.xsrv.jp/open-hinata/#13/140.9776/42.35223%3FS%3D1%26L%3D%5B%5B%7B%22id%22%3A%22muroransiort%22%2C%22ck%22%3Atrue%2C%22o%22%3A1%7D%2C%7B%22id%22%3A2%2C%22ck%22%3Atrue%2C%22o%22%3A1%2C%22c%22%3A%22%22%7D%5D%2C%5B%7B%22id%22%3A2%2C%22ck%22%3Atrue%2C%22o%22%3A1%2C%22c%22%3A%22%22%7D%5D%2C%5B%7B%22id%22%3A2%2C%22ck%22%3Atrue%2C%22o%22%3A1%2C%22c%22%3A%22%22%7D%5D%2C%5B%7B%22id%22%3A2%2C%22ck%22%3Atrue%2C%22o%22%3A1%2C%22c%22%3A%22%22%7D%5D%5D" target="_blank">室蘭市航空写真</a></li>
+            <li><a href="https://kenzkenz.xsrv.jp/open-hinata/#12/138.01527/34.76907%3FS%3D1%26L%3D%5B%5B%7B%22id%22%3A%22kakegawaOrt%22%2C%22ck%22%3Atrue%2C%22o%22%3A1%7D%2C%7B%22id%22%3A2%2C%22ck%22%3Atrue%2C%22o%22%3A1%2C%22c%22%3A%22%22%7D%5D%2C%5B%7B%22id%22%3A2%2C%22ck%22%3Atrue%2C%22o%22%3A1%2C%22c%22%3A%22%22%7D%5D%2C%5B%7B%22id%22%3A2%2C%22ck%22%3Atrue%2C%22o%22%3A1%2C%22c%22%3A%22%22%7D%5D%2C%5B%7B%22id%22%3A2%2C%22ck%22%3Atrue%2C%22o%22%3A1%2C%22c%22%3A%22%22%7D%5D%5D" target="_blank">掛川市航空写真</a></li>
+            <li><a href="https://kenzkenz.xsrv.jp/open-hinata/#13/135.60007/34.50011%3FS%3D1%26L%3D%5B%5B%7B%22id%22%3A%22tondaOrt%22%2C%22ck%22%3Atrue%2C%22o%22%3A1%7D%2C%7B%22id%22%3A2%2C%22ck%22%3Atrue%2C%22o%22%3A1%2C%22c%22%3A%22%22%7D%5D%2C%5B%7B%22id%22%3A2%2C%22ck%22%3Atrue%2C%22o%22%3A1%2C%22c%22%3A%22%22%7D%5D%2C%5B%7B%22id%22%3A2%2C%22ck%22%3Atrue%2C%22o%22%3A1%2C%22c%22%3A%22%22%7D%5D%2C%5B%7B%22id%22%3A2%2C%22ck%22%3Atrue%2C%22o%22%3A1%2C%22c%22%3A%22%22%7D%5D%5D" target="_blank">富田林市航空写真</a></li>
+            <li><a href="https://kenzkenz.xsrv.jp/open-hinata/#12/130.51209/31.58146%3FS%3D1%26L%3D%5B%5B%7B%22id%22%3A%22kagosimasiort%22%2C%22ck%22%3Atrue%2C%22o%22%3A1%7D%2C%7B%22id%22%3A2%2C%22ck%22%3Atrue%2C%22o%22%3A1%2C%22c%22%3A%22%22%7D%5D%2C%5B%7B%22id%22%3A2%2C%22ck%22%3Atrue%2C%22o%22%3A1%2C%22c%22%3A%22%22%7D%5D%2C%5B%7B%22id%22%3A2%2C%22ck%22%3Atrue%2C%22o%22%3A1%2C%22c%22%3A%22%22%7D%5D%2C%5B%7B%22id%22%3A2%2C%22ck%22%3Atrue%2C%22o%22%3A1%2C%22c%22%3A%22%22%7D%5D%5D" target="_blank">鹿児島市航空写真</a></li>　
+        </ul>
+    <h2>ハンバーガーメニュー（三本線）</h2>
+        <p>左上のハンバーガーメニュー（三本線）から下記の各種機能を使用できます。</p>
+    <h3>リセット</h3>
+        <p>open-hinataは選択した背景などを記憶しています。初期画面に戻りたい時に使用してください。また不具合を起こした時もここからリセットしてください。</p>
+<!--    <h3>短縮URL作成</h3>-->
+<!--        <p>短縮URLを作成します。あまりにも長いURLのときは作成に失敗すかもしれません。</p>-->
+    <h3>住所検索</h3>
+        <p>住所検索します。APIは国土地理院のものを使用しています。https://msearch.gsi.go.jp/address-search/AddressSearch</p>
+    <h3>PNGダウンロード</h3>
+        <p>PNG形式で画面を保存します。画面中央の＋や、ボタン等を非表示にして保存します。</p>
+    <h2>その他</h2>
+    <h3>現在地取得</h3>
+        <p>画面右下のアイコンをクリックすると現在地を連続で取得します。もう一度クリックすると解除されます。</p>
+    <h3>ドラッグ&ドロップ</h3>
+        <p>geojson,GPXデータを地図上にドラッグ&ドロップすると画面上に表示されます。<a href="https://kenzkenz.xsrv.jp/open-hinata/geojson/tokyobunkazai.geojson" download>geojsonサンプル</a>
+        </p>
+    <h2>github</h2>
+        <p><a href="https://github.com/kenzkenz/open-hinata" target="_blank">open-hinataのgithub</a>です。</p>
+    <h2>作者</h2>
+        <a href="https://twitter.com/kenzkenz" target="_blank">@kenzkenz</a>
+</div>
+
+<script type="text/javascript">
+    function MiyazakiOrt(){
+        this.source = new ol.source.XYZ({
+            url:'https://mtile.pref.miyazaki.lg.jp/tile/ort/{z}/{x}/{-y}.png',
+            crossOrigin:"anonymous",
+            maxZoom:19
+        })
+    }
+    const ort1 = new ol.layer.Tile(new MiyazakiOrt());
+    const map = new ol.Map({
+        target: 'map',
+        layers: [ort1],
+        view: new ol.View({
+            center:ol.proj.fromLonLat([131.415,31.908]),
+            zoom: 15
+        })
+    });
+</script>
+</body>
+</html>
