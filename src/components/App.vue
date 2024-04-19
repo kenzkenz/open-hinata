@@ -43,10 +43,9 @@
                     <b-button v-if="mapName === 'map01'" class='olbtn' :size="btnSize" @click="openDialog(s_dialogs['menuDialog'])" style="margin-right:5px;"><i class="fa-solid fa-bars"></i></b-button>
                     <b-button v-if="mapName === 'map01'" class='olbtn' :size="btnSize" @click="home" style="margin-right:5px;"><i class="fa-solid fa-house"></i></b-button>
 
-                  <b-button v-if="mapName === 'map01'" style="margin-right:5px;" :pressed.sync="toggle3d" class='olbtn' :size="btnSize">{{ toggle3d ? '2D' : '3D' }}</b-button>
+                    <b-button v-if="mapName === 'map01'" style="margin-right:5px;" :pressed.sync="toggle3d" class='olbtn' :size="btnSize">{{ toggle3d ? '2D' : '3D' }}</b-button>
 
-
-                  <b-button id='split-map-btn' v-if="mapName === 'map01'" class='olbtn' :size="btnSize" @click="splitMap" style="margin-right:5px;">分割</b-button>
+                    <b-button id='split-map-btn' v-if="mapName === 'map01'" class='olbtn' :size="btnSize" @click="splitMap" style="margin-right:5px;">分割</b-button>
                     <b-button class='olbtn-red' :size="btnSize" @click="openDialog(s_dialogs[mapName])">背景</b-button>
                 </div>
 <!--                <div class="top-right-div">-->
@@ -289,9 +288,6 @@
           document.querySelector('.lock').style.display = 'none'
         }
       }
-    },
-    created () {
-      // ol3d = new OLCesium( { map: this.$store.state.base.maps['map01'] } )
     },
     mounted () {
       this.$watch(function () {
