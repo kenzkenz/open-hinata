@@ -43,7 +43,7 @@
                     <b-button v-if="mapName === 'map01'" class='olbtn' :size="btnSize" @click="openDialog(s_dialogs['menuDialog'])" style="margin-right:5px;"><i class="fa-solid fa-bars"></i></b-button>
                     <b-button v-if="mapName === 'map01'" class='olbtn' :size="btnSize" @click="home" style="margin-right:5px;"><i class="fa-solid fa-house"></i></b-button>
 
-                    <b-button v-if="mapName === 'map01'" style="margin-right:5px;" :pressed.sync="toggle3d" class='olbtn' :size="btnSize">{{ toggle3d ? '2D' : '3D' }}</b-button>
+                    <b-button style="margin-right:5px;" :pressed.sync="toggle3d[mapName]" class='olbtn' :size="btnSize" @click="click3d(mapName)">{{ toggle3d[mapName] ? '2D' : '3D' }}</b-button>
 
                     <b-button id='split-map-btn' v-if="mapName === 'map01'" class='olbtn' :size="btnSize" @click="splitMap" style="margin-right:5px;">分割</b-button>
                     <b-button class='olbtn-red' :size="btnSize" @click="openDialog(s_dialogs[mapName])">背景</b-button>
@@ -91,7 +91,7 @@
   import {dialog} from "../js/mymap";
   import OLCesium from 'ol-cesium'
 
-
+  let ol3d = []
   export default {
     name: 'App',
     components: {
@@ -101,8 +101,7 @@
     },
     data () {
       return {
-        ol3d: null,
-        toggle3d: false,
+        toggle3d: {'map01':false,'map02':false,'map03':false,'map04':false},
         mapNames: ['map01','map02','map03','map04'],
         btnSize: '',
         cp:{map01: 'map01-current-position',map02: 'map02-current-position',map03: 'map03-current-position',map04: 'map04-current-position'},
@@ -287,42 +286,54 @@
           document.querySelector('.lock-open').style.display = 'block'
           document.querySelector('.lock').style.display = 'none'
         }
+      },
+      click3d (mapName) {
+        console.log(mapName)
+        if (!ol3d[mapName]) {
+          ol3d[mapName] = new OLCesium({map: this.$store.state.base.maps[mapName]})
+          const scene = ol3d[mapName].getCesiumScene()
+          const terrainProvider = new Cesium.PngElevationTileTerrainProvider( {
+            url: 'https://gsj-seamless.jp/labs/elev2/elev/{z}/{y}/{x}.png?prj=latlng&size=257',
+            tilingScheme: new Cesium.GeographicTilingScheme(),
+            magnification: 5,
+            crossOrigin: 'anonymous',
+          })
+          scene.terrainProvider = terrainProvider
+          ol3d[mapName].setEnabled(true)
+        } else {
+          ol3d[mapName].setEnabled(false)
+          ol3d[mapName] = null
+        }
       }
     },
     mounted () {
-      let ol3d
-      this.$watch(function () {
-        return [this.toggle3d]
-      }, function () {
-        console.log('on')
-        if (!ol3d) ol3d = new OLCesium( { map: this.$store.state.base.maps['map01'] } )
-        const scene = ol3d.getCesiumScene()
-        scene.terrainProvider = new Cesium.PngElevationTileTerrainProvider( {
-          url: 'https://gsj-seamless.jp/labs/elev2/elev/{z}/{y}/{x}.png?prj=latlng&size=257',
-          tilingScheme: new Cesium.GeographicTilingScheme(),
-          magnification:5,
-          crossOrigin: 'anonymous',
-        });
-        // scene.screenSpaceCameraController._minimumZoomRate = 1;//10000
-        // // ズームしたときの，ホイールに対する動作制御。
-        // scene.screenSpaceCameraController.minimumZoomDistance = 10;
-        // // めり込みにくくするためズーム制限
-        // //scene.screenSpaceCameraController.minimumCollisionTerrainHeight=10;
-        // scene.terrainProvider.heightmapTerrainQuality = 0.1;
-        // scene.terrainProvider.hasVertexNormals = false;
-        // scene.terrainProvider.hasWaterMask = false;
-        // scene.globe.depthTestAgainstTerrain = true;
-        ol3d.setEnabled(false)
-        if (this.toggle3d) {
-          MyMap.history ('3D')
-          ol3d.setEnabled(true);
-          console.log(ol3d)
-        } else {
-          console.log('off')
-          ol3d.setEnabled(false);
-
-        }
-      })
+      // let ol3d
+      // this.$watch(function () {
+      //   return [this.toggle3d]
+      // }, function () {
+      //   if (!ol3d) ol3d = new OLCesium({map: this.$store.state.base.maps['map01']})
+      //   const scene = ol3d.getCesiumScene()
+      //   const terrainProvider = new Cesium.PngElevationTileTerrainProvider( {
+      //     url: 'https://gsj-seamless.jp/labs/elev2/elev/{z}/{y}/{x}.png?prj=latlng&size=257',
+      //     tilingScheme: new Cesium.GeographicTilingScheme(),
+      //     magnification: 5,
+      //     crossOrigin: 'anonymous',
+      //   })
+      //   scene.terrainProvider = terrainProvider
+      //   // scene.screenSpaceCameraController._minimumZoomRate = 1//10000
+      //   // // // ズームしたときの，ホイールに対する動作制御。
+      //   // scene.screenSpaceCameraController.minimumZoomDistance = 10
+      //   // // // めり込みにくくするためズーム制限
+      //   // scene.terrainProvider.heightmapTerrainQuality = 0.1
+      //   // scene.globe.depthTestAgainstTerrain = true;//trueにすると地形より下のフューチャーは見えないようになる。
+      //   ol3d.setEnabled(false)
+      //   if (this.toggle3d) {
+      //     MyMap.history ('3D')
+      //     ol3d.setEnabled(true);
+      //   } else {
+      //     ol3d.setEnabled(false);
+      //   }
+      // })
 
       this.$nextTick(function () {
 

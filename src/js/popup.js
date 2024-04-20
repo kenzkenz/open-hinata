@@ -964,23 +964,23 @@ export function popUp(map,layers,features,overlay,evt,content) {
       break
   }
 
-  // if (width) {
-  //   document.querySelector('.ol-popup').style.left = -(width / 2) - 16 + 'px'
-  //   const style1 = document.createElement('style')
-  //   const style2 = document.createElement('style')
-  //   style1.textContent = ".ol-popup:after{ left:" + ((width / 2) + 15) + "px;}"
-  //   style2.textContent = ".ol-popup:before{ left:" + ((width / 2) + 15) + "px;}"
-  //   document.head.appendChild(style1)
-  //   document.head.appendChild(style2)
-  // } else {
-  //   document.querySelector('.ol-popup').style.left = '-50px'
-  //   const style1 = document.createElement('style')
-  //   const style2 = document.createElement('style')
-  //   style1.textContent = ".ol-popup:after{ left:" + 48 + "px;}"
-  //   style2.textContent = ".ol-popup:before{ left:" + 48 + "px;}"
-  //   document.head.appendChild(style1)
-  //   document.head.appendChild(style2)
-  // }
+  if (width) {
+    document.querySelector('.ol-popup').style.left = -(width / 2) - 16 + 'px'
+    const style1 = document.createElement('style')
+    const style2 = document.createElement('style')
+    style1.textContent = ".ol-popup:after{ left:" + ((width / 2) + 15) + "px;}"
+    style2.textContent = ".ol-popup:before{ left:" + ((width / 2) + 15) + "px;}"
+    document.head.appendChild(style1)
+    document.head.appendChild(style2)
+  } else {
+    document.querySelector('.ol-popup').style.left = '-50px'
+    const style1 = document.createElement('style')
+    const style2 = document.createElement('style')
+    style1.textContent = ".ol-popup:after{ left:" + 48 + "px;}"
+    style2.textContent = ".ol-popup:before{ left:" + 48 + "px;}"
+    document.head.appendChild(style1)
+    document.head.appendChild(style2)
+  }
 
   content.innerHTML = cont
   if (cont && cont !== undefined) overlay.setPosition(coordinate);

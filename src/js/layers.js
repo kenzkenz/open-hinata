@@ -733,6 +733,7 @@ const kawadakeSumm = '<a href="https://www.gridscapes.net/#AllRiversAllLakesTopo
 function Ryuuiki () {
   this.preload = Infinity
   this.source = new XYZ({
+    // url: 'https://kenzkenz.xsrv.jp/open-hinata/php/proxy-png-curl.php?url=https://tiles.dammaps.jp/ryuiki_t/1/{z}/{x}/{y}.png',
     url: 'https://tiles.dammaps.jp/ryuiki_t/1/{z}/{x}/{y}.png',
     // crossOrigin: 'Anonymous',
     minZoom: 5,
