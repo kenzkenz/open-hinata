@@ -288,7 +288,6 @@
         }
       },
       click3d (mapName) {
-        console.log(mapName)
         if (!ol3d[mapName]) {
           ol3d[mapName] = new OLCesium({map: this.$store.state.base.maps[mapName]})
           const scene = ol3d[mapName].getCesiumScene()
@@ -299,6 +298,7 @@
             crossOrigin: 'anonymous',
           })
           scene.terrainProvider = terrainProvider
+          scene.terrainProvider.heightmapTerrainQuality = 0.5
           ol3d[mapName].setEnabled(true)
         } else {
           ol3d[mapName].setEnabled(false)
