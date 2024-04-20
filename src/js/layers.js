@@ -816,7 +816,7 @@ function HyougoCs50c2 () {
   this.extent = transformE([134.2669714033038, 34.17797854803047,135.47241581374712, 35.783161768341444])
   this.source = new XYZ({
     url: 'https://rinya-hyogo.geospatial.jp/2023/rinya/tile/csmap/{z}/{x}/{y}.png',
-    crossOrigin: 'Anonymous',
+    // crossOrigin: 'Anonymous',
     minZoom: 8,
     maxZoom: 18
   });
@@ -1577,9 +1577,10 @@ function Tamared () {
   this.extent = transformE([138.9259, 35.90926,139.6112, 35.46722])
   this.source = new XYZ({
     url: 'https://kenzkenz2.xsrv.jp/tokyo/tamasekisyoku/{z}/{x}/{-y}.png',
+    // url: 'https://kenzkenz2.xsrv.jp/tokyo/tousyosekisyoku01/{z}/{x}/{-y}.png',
     crossOrigin: 'Anonymous',
-    minZoom: 1,
-    maxZoom: 18
+    // minZoom: 1,
+    // maxZoom: 18
   });
 }
 const tamared00Obj = {};
@@ -1690,6 +1691,8 @@ for (let i of mapsStr) {
       tousyosekisyoku04Obj[i],
       tousyosekisyoku05Obj[i],
       tousyosekisyoku06Obj[i],
+      // tamared00Obj[i]
+
     ]
   })
 }
@@ -2004,8 +2007,8 @@ for (let i of mapsStr) {
     layers: [
       tochigicsObj[i],
       gihuCsObj[i],
-      // hyougoCs50Obj[i],
-      hyougoCs50c2Obj[i],
+      hyougoCs50Obj[i],
+      // hyougoCs50c2Obj[i],
       naganoCsObj[i],
       sizuokaCs2Obj[i],
       hiroshimaCsObj2[i],
@@ -2809,8 +2812,8 @@ function Mapwarper (url,bbox,maxResolution) {
   this.source = new XYZ({
     url: url,
     crossOrigin: 'Anonymous',
-    minZoom: 1,
-    maxZoom: 18
+    // minZoom: 1,
+    // maxZoom: 18
   });
   //mymapのwatchLayerで実際にextentを作っている。
   this.extent2 = transformE(bbox)

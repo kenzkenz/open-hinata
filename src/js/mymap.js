@@ -32,8 +32,6 @@ import {Circle, LineString} from "ol/geom";
 import Feature from 'ol/Feature.js'
 import {moveEnd} from "./permalink";
 import Dialog from 'ol-ext/control/Dialog'
-import OLCesium from 'ol-cesium'
-
 
 // ドロー関係-------------------------------------------------------------------------------
 const drawSource = new VectorSource({wrapX: false});

@@ -91,7 +91,7 @@
   import {dialog} from "../js/mymap";
   import OLCesium from 'ol-cesium'
 
-  let ol3d
+
   export default {
     name: 'App',
     components: {
@@ -290,6 +290,7 @@
       }
     },
     mounted () {
+      let ol3d
       this.$watch(function () {
         return [this.toggle3d]
       }, function () {
@@ -299,9 +300,18 @@
         scene.terrainProvider = new Cesium.PngElevationTileTerrainProvider( {
           url: 'https://gsj-seamless.jp/labs/elev2/elev/{z}/{y}/{x}.png?prj=latlng&size=257',
           tilingScheme: new Cesium.GeographicTilingScheme(),
-          magnification:2
-          // crossOrigin: 'anonymous',
-        } );
+          magnification:5,
+          crossOrigin: 'anonymous',
+        });
+        // scene.screenSpaceCameraController._minimumZoomRate = 1;//10000
+        // // ズームしたときの，ホイールに対する動作制御。
+        // scene.screenSpaceCameraController.minimumZoomDistance = 10;
+        // // めり込みにくくするためズーム制限
+        // //scene.screenSpaceCameraController.minimumCollisionTerrainHeight=10;
+        // scene.terrainProvider.heightmapTerrainQuality = 0.1;
+        // scene.terrainProvider.hasVertexNormals = false;
+        // scene.terrainProvider.hasWaterMask = false;
+        // scene.globe.depthTestAgainstTerrain = true;
         ol3d.setEnabled(false)
         if (this.toggle3d) {
           MyMap.history ('3D')
