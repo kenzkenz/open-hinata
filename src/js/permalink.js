@@ -106,10 +106,13 @@ export function permalinkEventSet (response) {
           scene.terrainProvider.heightmapTerrainQuality = 0.5
           ol3d.setEnabled(true)
           const json = JSON.parse(obj[key])
+          console.log(obj[key])
+          console.log(json)
           ol3d.getCamera().setTilt(json.tilt)
           ol3d.getCamera().setHeading(json.heading)
-          // s_toggle3d
+          // store.state.base.maps[map].getView().setZoom(9)
           store.state.base.toggle3d[map] = true
+          document.querySelector('#' + map + '-3d').style.display = 'block'
         }
       })
 

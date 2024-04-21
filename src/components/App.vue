@@ -4,12 +4,14 @@
         <div v-for="mapName in mapNames" :key="mapName">
             <div :id=mapName :style="mapSize[mapName]" v-show="mapFlg[mapName]">
 
-              <div class="cesium-btn-div">
+              <div :id="div3d[mapName]"  class="cesium-btn-div">
                 <div class="cesiun-btn-container">
-                  <button type="button" class="cesium-btn-up btn olbtn"><i class='fa fa-arrow-up fa-lg hover'></i></button>
-                  <button type="button" class="cesium-btn-down btn olbtn"><i class='fa fa-arrow-down fa-lg'></i></button>
-                  <button type="button" class="cesium-btn-left btn olbtn" @mousedown="leftMousedown(mapName)" @mouseup="leftMouseup"><i class='fa fa-arrow-left fa-lg'></i></button>
-                  <button type="button" class="cesium-btn-right btn olbtn" @mousedown="rightMousedown(mapName)" @mouseup="rightMouseup"><i class='fa fa-arrow-right fa-lg'></i></button>
+                  <button type="button" class="cesium-btn-up btn olbtn"
+                          @pointerdown="upMousedown(mapName)"
+                          @pointerup="leftMouseup"><i class='fa fa-arrow-up fa-lg hover'></i></button>
+                  <button type="button" class="cesium-btn-down btn olbtn" @pointerdown="downMousedown(mapName)" @pointerup="leftMouseup"><i class='fa fa-arrow-down fa-lg'></i></button>
+                  <button type="button" class="cesium-btn-left btn olbtn" @pointerdown="leftMousedown(mapName)" @pointerup="leftMouseup"><i class='fa fa-arrow-left fa-lg'></i></button>
+                  <button type="button" class="cesium-btn-right btn olbtn" @pointerdown="rightMousedown(mapName)" @pointerup="rightMouseup"><i class='fa fa-arrow-right fa-lg'></i></button>
 
 <!--                  <div class="elevMag">-->
 <!--                    ×<input type="text" class="elevMag-text" value="1">-->
@@ -17,9 +19,6 @@
 
                 </div>
               </div>
-
-
-
 
               <div id="modal0">
                 <modal name="modal0" :width="300" :clickToClose="false">
@@ -126,6 +125,8 @@
         cp:{map01: 'map01-current-position',map02: 'map02-current-position',map03: 'map03-current-position',map04: 'map04-current-position'},
         marker:{map01: 'map01-marker',map02: 'map02-marker',map03: 'map03-marker',map04: 'map04-marker'},
         popup:{map01: 'map01-popup',map02: 'map02-popup',map03: 'map03-popup',map04: 'map04-popup'},
+        div3d:{map01: 'map01-3d',map02: 'map02-3d',map03: 'map03-3d',map04: 'map04-3d'},
+
         popupCloser:{map01: 'map01-popup-closer',map02: 'map02-popup-closer',map03: 'map03-popup-closer',map04: 'map04-popup-closer'},
         popupContent:{map01: 'map01-popup-content',map02: 'map02-popup-content',map03: 'map03-popup-content',map04: 'map04-popup-content'},
         mapSize: {
@@ -322,15 +323,31 @@
           scene.terrainProvider = terrainProvider
           scene.terrainProvider.heightmapTerrainQuality = 0.5
           ol3d.setEnabled(true)
-          ol3d.getCamera().setTilt(1000)
+          // document.querySelector('.cesium-btn-div').style.display = 'block'
+          document.querySelector('#' + mapName + '-3d').style.display = 'block'
+          // ol3d.getCamera().setTilt(1000)
+          // ol3d.getCamera().setHeading(0.5)
         } else {
           const ol3d = this.$store.state.base.ol3d[mapName]
           ol3d.setEnabled(false)
           this.$store.state.base.ol3d[mapName] = null
+          // document.querySelector('.cesium-btn-div').style.display = 'none'
+          document.querySelector('#' + mapName + '-3d').style.display = 'none'
         }
       },
+      downMousedown(mapName) {
+        const vm = this
+        const ol3d = this.$store.state.base.ol3d[mapName]
+        vm.tiltFlg = true
+        tilt(ol3d,'down')
+      },
+      upMousedown(mapName) {
+        const vm = this
+        const ol3d = this.$store.state.base.ol3d[mapName]
+        vm.tiltFlg = true
+        tilt(ol3d,'up')
+      },
       leftMousedown(mapName) {
-        console.log(11111)
         const vm = this
         const ol3d = this.$store.state.base.ol3d[mapName]
         vm.tiltFlg = true
@@ -353,11 +370,15 @@
       const vm = this
       heading = function(ol3d,leftRight){
         if(vm.tiltFlg){
-          const head = ol3d.getCamera().getHeading()
+          let head = ol3d.getCamera().getHeading()
+          if (head === 0) {
+            head = -12.62
+            ol3d.getCamera().setHeading(-12.62)
+          }
           if (leftRight === 'left') {
-            ol3d.getCamera().setHeading(head - 0.05)
+            ol3d.getCamera().setHeading(head - 0.06)
           } else {
-            ol3d.getCamera().setHeading(head + 0.05)
+            ol3d.getCamera().setHeading(head + 0.06)
           }
           setTimeout(function(){heading(ol3d,leftRight)},20);
         } else {
@@ -367,11 +388,11 @@
 
       tilt = function(ol3d,upDown){
         if(vm.tiltFlg){
-          const head = ol3d.getCamera().getHeading()
-          if (upDown === 'up') {
-            ol3d.getCamera().setHeading(head - 0.05)
+          const tilt0 = ol3d.getCamera().getTilt()
+          if (upDown === 'down') {
+            if (tilt0 > -1.5) ol3d.getCamera().setTilt(tilt0 - 0.05)
           } else {
-            ol3d.getCamera().setHeading(head + 0.05)
+            if (tilt0 < 1.5) ol3d.getCamera().setTilt(tilt0 + 0.05)
           }
           setTimeout(function(){tilt(ol3d,upDown)},20);
         } else {
@@ -670,7 +691,7 @@
       top:50%;
       right:0px;
       z-index:999999999;
-      /*display:none;*/
+      display:none;
       height:145px;
       width:145px;
       margin-left:-72px;
