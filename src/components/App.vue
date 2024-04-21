@@ -7,9 +7,9 @@
               <div :id="div3d[mapName]"  class="cesium-btn-div">
                 <div class="cesiun-btn-container">
                   <button type="button" class="cesium-btn-up btn olbtn"
-                          @pointerdown="upMousedown(mapName)"
+                          @pointerdown.stop="upMousedown(mapName)"
                           @pointerup="leftMouseup"><i class='fa fa-arrow-up fa-lg hover'></i></button>
-                  <button type="button" class="cesium-btn-down btn olbtn" @pointerdown="downMousedown(mapName)" @pointerup="leftMouseup"><i class='fa fa-arrow-down fa-lg'></i></button>
+                  <button type="button" class="cesium-btn-down btn olbtn" @pointerdown.stop="downMousedown(mapName)" @pointerup="leftMouseup"><i class='fa fa-arrow-down fa-lg'></i></button>
                   <button type="button" class="cesium-btn-left btn olbtn" @pointerdown="leftMousedown(mapName)" @pointerup="leftMouseup"><i class='fa fa-arrow-left fa-lg'></i></button>
                   <button type="button" class="cesium-btn-right btn olbtn" @pointerdown="rightMousedown(mapName)" @pointerup="rightMouseup"><i class='fa fa-arrow-right fa-lg'></i></button>
 
@@ -322,16 +322,16 @@
           })
           scene.terrainProvider = terrainProvider
           scene.terrainProvider.heightmapTerrainQuality = 0.5
+          scene.screenSpaceCameraController._minimumZoomRate = 1//10000
+          // // ズームしたときの，ホイールに対する動作制御。
+          scene.screenSpaceCameraController.minimumZoomDistance = 10
+          // // めり込みにくくするためズーム制限
           ol3d.setEnabled(true)
-          // document.querySelector('.cesium-btn-div').style.display = 'block'
           document.querySelector('#' + mapName + '-3d').style.display = 'block'
-          // ol3d.getCamera().setTilt(1000)
-          // ol3d.getCamera().setHeading(0.5)
         } else {
           const ol3d = this.$store.state.base.ol3d[mapName]
           ol3d.setEnabled(false)
           this.$store.state.base.ol3d[mapName] = null
-          // document.querySelector('.cesium-btn-div').style.display = 'none'
           document.querySelector('#' + mapName + '-3d').style.display = 'none'
         }
       },
@@ -376,11 +376,11 @@
             ol3d.getCamera().setHeading(-12.62)
           }
           if (leftRight === 'left') {
-            ol3d.getCamera().setHeading(head - 0.06)
+            ol3d.getCamera().setHeading(head - 0.025)
           } else {
-            ol3d.getCamera().setHeading(head + 0.06)
+            ol3d.getCamera().setHeading(head + 0.025)
           }
-          setTimeout(function(){heading(ol3d,leftRight)},20);
+          setTimeout(function(){heading(ol3d,leftRight)},10);
         } else {
           clearTimeout(heading);
         }
@@ -389,12 +389,13 @@
       tilt = function(ol3d,upDown){
         if(vm.tiltFlg){
           const tilt0 = ol3d.getCamera().getTilt()
+          // console.log(tilt0)
           if (upDown === 'down') {
-            if (tilt0 > -1.5) ol3d.getCamera().setTilt(tilt0 - 0.05)
+            if (tilt0 > 0) ol3d.getCamera().setTilt(tilt0 - 0.025)
           } else {
-            if (tilt0 < 1.5) ol3d.getCamera().setTilt(tilt0 + 0.05)
+            if (tilt0 < 1.5) ol3d.getCamera().setTilt(tilt0 + 0.025)
           }
-          setTimeout(function(){tilt(ol3d,upDown)},20);
+          setTimeout(function(){tilt(ol3d,upDown)},10);
         } else {
           clearTimeout(tilt);
         }
@@ -688,7 +689,7 @@
     /*セシウムのボタン-------------------------------------------------------------*/
     .cesium-btn-div{
       position:absolute;
-      top:50%;
+      top:60%;
       right:0px;
       z-index:999999999;
       display:none;

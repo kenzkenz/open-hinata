@@ -104,6 +104,10 @@ export function permalinkEventSet (response) {
           })
           scene.terrainProvider = terrainProvider
           scene.terrainProvider.heightmapTerrainQuality = 0.5
+          scene.screenSpaceCameraController._minimumZoomRate = 1//10000
+          // // ズームしたときの，ホイールに対する動作制御。
+          scene.screenSpaceCameraController.minimumZoomDistance = 10
+          // // めり込みにくくするためズーム制限
           ol3d.setEnabled(true)
           const json = JSON.parse(obj[key])
           console.log(obj[key])
@@ -304,19 +308,6 @@ export function moveEnd () {
       parameter += '&3d' + map + '=' + jsonT
     }
   })
-
-  // if (store.state.base.ol3d['map01']) {
-  //   const json = {
-  //     'enabled': true,
-  //     'tilt':store.state.base.ol3d['map01'].getCamera().getTilt(),
-  //     'heading':store.state.base.ol3d['map01'].getCamera().getHeading()
-  //   }
-  //   const jsonT = JSON.stringify(json,null,1)
-  //   console.log(jsonT)
-  //   parameter += '&3d1=' + jsonT
-  // }
-
-
     // console.log(parameter)
   // console.log(parameter.replace(/,/g,encodeURIComponent(",")))
   // parameter = parameter.replace(/,/g,encodeURIComponent(","))
