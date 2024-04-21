@@ -334,21 +334,21 @@
         const ol3d = this.$store.state.base.ol3d[mapName]
         vm.tiltFlg = true
         // ol3d.getCamera().setHeading(0.5);
-        if (!tiltLeft) {
-          tiltLeft = function(){
-            console.log(22222)
-            if(vm.tiltFlg){
-              console.log(333333)
-              const head = ol3d.getCamera().getHeading();
-              ol3d.getCamera().setHeading(head - 0.5);
-              setTimeout(function(){tiltLeft('left')},20);
-            } else {
-              clearTimeout(tiltLeft);
-            }
-          };
-          tiltLeft(ol3d)
-
-        }
+        // if (!tiltLeft) {
+        //   tiltLeft = function(){
+        //     console.log(22222)
+        //     if(vm.tiltFlg){
+        //       console.log(333333)
+        //       const head = ol3d.getCamera().getHeading();
+        //       ol3d.getCamera().setHeading(head - 0.5);
+        //       setTimeout(function(){tiltLeft('left')},20);
+        //     } else {
+        //       clearTimeout(tiltLeft);
+        //     }
+        //   };
+        //   tiltLeft(ol3d)
+        //
+        // }
         tiltLeft(ol3d,'left')
       },
       leftMouseup(mapName) {
@@ -363,20 +363,20 @@
       // const ol3d = this.$store.state.base.ol3d[mapName]
 
 
-      // tiltLeft = function(ol3d,leftRight){
-      //   console.log(22222)
-      //   if(vm.tiltFlg){
-      //     const head = ol3d.getCamera().getHeading()
-      //     if (leftRight === 'left') {
-      //       ol3d.getCamera().setHeading(head - 0.05)
-      //     } else {
-      //       ol3d.getCamera().setHeading(head + 0.05)
-      //     }
-      //     setTimeout(function(){tiltLeft(ol3d,'left')},20);
-      //   } else {
-      //     clearTimeout(tiltLeft);
-      //   }
-      // }
+      tiltLeft = function(ol3d,leftRight){
+        console.log(22222)
+        if(vm.tiltFlg){
+          const head = ol3d.getCamera().getHeading()
+          if (leftRight === 'left') {
+            ol3d.getCamera().setHeading(head - 0.05)
+          } else {
+            ol3d.getCamera().setHeading(head + 0.05)
+          }
+          setTimeout(function(){tiltLeft(ol3d,'left')},20);
+        } else {
+          clearTimeout(tiltLeft);
+        }
+      }
 
 
 
