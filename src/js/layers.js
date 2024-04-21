@@ -1581,8 +1581,8 @@ function Tamared () {
     // url: 'https://kenzkenz2.xsrv.jp/tokyo/tousyosekisyoku01/{z}/{x}/{-y}.png',
     crossOrigin: 'Anonymous',
     // minZoom: 1,
-    // maxZoom: 18
-  });
+    maxZoom: 18
+  })
 }
 const tamared00Obj = {};
 for (let i of mapsStr) {
@@ -1692,8 +1692,6 @@ for (let i of mapsStr) {
       tousyosekisyoku04Obj[i],
       tousyosekisyoku05Obj[i],
       tousyosekisyoku06Obj[i],
-      // tamared00Obj[i]
-
     ]
   })
 }
@@ -2593,7 +2591,7 @@ function Jinsoku () {
     // url: 'https://habs.rad.naro.go.jp/rapid16/{z}/{x}/{-y}.png',
     // url: 'https://aginfo.cgk.affrc.go.jp/ws/tmc/1.0.0/Kanto_Rapid-900913-L/{z}/{x}/{y}.png',
     crossOrigin: 'Anonymous',
-    minZoom:1,
+    // minZoom:1,
     maxZoom:16
   });
 }
