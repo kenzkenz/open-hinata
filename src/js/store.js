@@ -18,6 +18,7 @@ const moduleBase = {
       map04: []
     },
     maps: {map01: null, map02: null, map03: null, map04: null},
+    ol3d: {map01: null, map02: null, map03: null, map04: null},
     layerLists: {
       map01: [],
       map02: [],

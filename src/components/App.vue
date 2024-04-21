@@ -288,9 +288,10 @@
         }
       },
       click3d (mapName) {
-        if (!ol3d[mapName]) {
-          ol3d[mapName] = new OLCesium({map: this.$store.state.base.maps[mapName]})
-          const scene = ol3d[mapName].getCesiumScene()
+        if (!this.$store.state.base.ol3d[mapName]) {
+          this.$store.state.base.ol3d[mapName] = new OLCesium({map: this.$store.state.base.maps[mapName]})
+          const ol3d = this.$store.state.base.ol3d[mapName]
+          const scene = ol3d.getCesiumScene()
           const terrainProvider = new Cesium.PngElevationTileTerrainProvider( {
             url: 'https://gsj-seamless.jp/labs/elev2/elev/{z}/{y}/{x}.png?prj=latlng&size=257',
             tilingScheme: new Cesium.GeographicTilingScheme(),
@@ -299,10 +300,11 @@
           })
           scene.terrainProvider = terrainProvider
           scene.terrainProvider.heightmapTerrainQuality = 0.5
-          ol3d[mapName].setEnabled(true)
+          ol3d.setEnabled(true)
         } else {
-          ol3d[mapName].setEnabled(false)
-          ol3d[mapName] = null
+          const ol3d = this.$store.state.base.ol3d[mapName]
+          ol3d.setEnabled(false)
+          this.$store.state.base.ol3d[mapName] = null
         }
       }
     },

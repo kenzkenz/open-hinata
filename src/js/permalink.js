@@ -8,6 +8,7 @@ import {GeoJSON} from "ol/format";
 import {Circle,LineString,Polygon} from "ol/geom";
 import Feature from "ol/Feature";
 import * as turf from "@turf/turf";
+import OLCesium from "ol-cesium";
 export function permalinkEventSet (response) {
   // 起動時の処理------------------------------------------------------------------------------
   // value.layerはオブジェクトになっており、map01から04が入っている。
@@ -89,9 +90,25 @@ export function permalinkEventSet (response) {
       }
     }
     for (let key in obj) {
+      if (key==='3d1') {
+        const mapName = 'map01'
+        store.state.base.ol3d[mapName] = new OLCesium({map: store.state.base.maps[mapName]})
+        const ol3d = store.state.base.ol3d[mapName]
+        const scene = ol3d.getCesiumScene()
+        const terrainProvider = new Cesium.PngElevationTileTerrainProvider( {
+          url: 'https://gsj-seamless.jp/labs/elev2/elev/{z}/{y}/{x}.png?prj=latlng&size=257',
+          tilingScheme: new Cesium.GeographicTilingScheme(),
+          magnification: 5,
+          crossOrigin: 'anonymous',
+        })
+        scene.terrainProvider = terrainProvider
+        scene.terrainProvider.heightmapTerrainQuality = 0.5
+        ol3d.setEnabled(true)
+        const json = JSON.parse(obj[key])
+        ol3d.getCamera().setTilt(json.tilt)
+        ol3d.getCamera().setHeading(json.heading)
+      }
       if (key==='GJ') {
-        // map.removeLayer(MyMap.drawLayer)
-        // map.addLayer(MyMap.drawLayer)
         const geojson = JSON.parse(obj[key])
         if (geojson.features[0]) {
           geojson.features.forEach((feature) => {
@@ -222,7 +239,6 @@ export function permalinkEventSet (response) {
 }
 
 export function moveEnd () {
-  console.log(9999999)
   const features = MyMap.drawLayer.getSource().getFeatures()
   features.forEach(function(feature){
     if (feature.getGeometry().getType() === 'Circle') {
@@ -237,8 +253,7 @@ export function moveEnd () {
   });
   const geojsonT = JSON.stringify(JSON.parse(drawSourceGeojson),null,1);
   // console.log(geojsonT)
-
-
+  // ----------------------------------------------------------------------------------
   const map = store.state.base.maps.map01;
   const zoom = map.getView().getZoom();
   const center = map.getView().getCenter();
@@ -249,10 +264,20 @@ export function moveEnd () {
       Math.round(center4326[1] * 100000) / 100000;
   let parameter = '?S=' + store.state.base.splitFlg;
   parameter += '&L=' + store.getters['base/layerLists'];
-
   parameter += '&GJ=' + geojsonT
+  if (store.state.base.ol3d['map01']) {
+    const json = {
+      'enabled': true,
+      'tilt':store.state.base.ol3d['map01'].getCamera().getTilt(),
+      'heading':store.state.base.ol3d['map01'].getCamera().getHeading()
+    }
+    const jsonT = JSON.stringify(json,null,1)
+    console.log(jsonT)
+    parameter += '&3d1=' + jsonT
+  }
 
-  // console.log(parameter)
+
+    // console.log(parameter)
   // console.log(parameter.replace(/,/g,encodeURIComponent(",")))
   // parameter = parameter.replace(/,/g,encodeURIComponent(","))
   // parameterだけエンコードする。起動時にwindow.location.hashでハッシュ値を取得するため
