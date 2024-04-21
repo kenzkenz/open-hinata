@@ -110,6 +110,7 @@
   import OLCesium from 'ol-cesium'
 
   let heading
+  let tilt
   export default {
     name: 'App',
     components: {
@@ -329,6 +330,7 @@
         }
       },
       leftMousedown(mapName) {
+        console.log(11111)
         const vm = this
         const ol3d = this.$store.state.base.ol3d[mapName]
         vm.tiltFlg = true
@@ -360,6 +362,20 @@
           setTimeout(function(){heading(ol3d,leftRight)},20);
         } else {
           clearTimeout(heading);
+        }
+      }
+
+      tilt = function(ol3d,upDown){
+        if(vm.tiltFlg){
+          const head = ol3d.getCamera().getHeading()
+          if (upDown === 'up') {
+            ol3d.getCamera().setHeading(head - 0.05)
+          } else {
+            ol3d.getCamera().setHeading(head + 0.05)
+          }
+          setTimeout(function(){tilt(ol3d,upDown)},20);
+        } else {
+          clearTimeout(tilt);
         }
       }
 
