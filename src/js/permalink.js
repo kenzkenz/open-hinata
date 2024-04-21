@@ -90,24 +90,46 @@ export function permalinkEventSet (response) {
       }
     }
     for (let key in obj) {
-      if (key==='3d1') {
-        const mapName = 'map01'
-        store.state.base.ol3d[mapName] = new OLCesium({map: store.state.base.maps[mapName]})
-        const ol3d = store.state.base.ol3d[mapName]
-        const scene = ol3d.getCesiumScene()
-        const terrainProvider = new Cesium.PngElevationTileTerrainProvider( {
-          url: 'https://gsj-seamless.jp/labs/elev2/elev/{z}/{y}/{x}.png?prj=latlng&size=257',
-          tilingScheme: new Cesium.GeographicTilingScheme(),
-          magnification: 5,
-          crossOrigin: 'anonymous',
-        })
-        scene.terrainProvider = terrainProvider
-        scene.terrainProvider.heightmapTerrainQuality = 0.5
-        ol3d.setEnabled(true)
-        const json = JSON.parse(obj[key])
-        ol3d.getCamera().setTilt(json.tilt)
-        ol3d.getCamera().setHeading(json.heading)
-      }
+      const maps = ['map01','map02','map03','map04']
+      maps.forEach((map) => {
+        if (key==='3d' + map) {
+          // const mapName = 'map01'
+          store.state.base.ol3d[map] = new OLCesium({map: store.state.base.maps[map]})
+          const ol3d = store.state.base.ol3d[map]
+          const scene = ol3d.getCesiumScene()
+          const terrainProvider = new Cesium.PngElevationTileTerrainProvider( {
+            url: 'https://gsj-seamless.jp/labs/elev2/elev/{z}/{y}/{x}.png?prj=latlng&size=257',
+            tilingScheme: new Cesium.GeographicTilingScheme(),
+            magnification: 5,
+            crossOrigin: 'anonymous',
+          })
+          scene.terrainProvider = terrainProvider
+          scene.terrainProvider.heightmapTerrainQuality = 0.5
+          ol3d.setEnabled(true)
+          const json = JSON.parse(obj[key])
+          ol3d.getCamera().setTilt(json.tilt)
+          ol3d.getCamera().setHeading(json.heading)
+        }
+      })
+
+      // if (key==='3d1') {
+      //   const mapName = 'map01'
+      //   store.state.base.ol3d[mapName] = new OLCesium({map: store.state.base.maps[mapName]})
+      //   const ol3d = store.state.base.ol3d[mapName]
+      //   const scene = ol3d.getCesiumScene()
+      //   const terrainProvider = new Cesium.PngElevationTileTerrainProvider( {
+      //     url: 'https://gsj-seamless.jp/labs/elev2/elev/{z}/{y}/{x}.png?prj=latlng&size=257',
+      //     tilingScheme: new Cesium.GeographicTilingScheme(),
+      //     magnification: 5,
+      //     crossOrigin: 'anonymous',
+      //   })
+      //   scene.terrainProvider = terrainProvider
+      //   scene.terrainProvider.heightmapTerrainQuality = 0.5
+      //   ol3d.setEnabled(true)
+      //   const json = JSON.parse(obj[key])
+      //   ol3d.getCamera().setTilt(json.tilt)
+      //   ol3d.getCamera().setHeading(json.heading)
+      // }
       if (key==='GJ') {
         const geojson = JSON.parse(obj[key])
         if (geojson.features[0]) {
@@ -265,16 +287,31 @@ export function moveEnd () {
   let parameter = '?S=' + store.state.base.splitFlg;
   parameter += '&L=' + store.getters['base/layerLists'];
   parameter += '&GJ=' + geojsonT
-  if (store.state.base.ol3d['map01']) {
-    const json = {
-      'enabled': true,
-      'tilt':store.state.base.ol3d['map01'].getCamera().getTilt(),
-      'heading':store.state.base.ol3d['map01'].getCamera().getHeading()
+
+  const maps = ['map01','map02','map03','map04']
+  maps.forEach((map) => {
+    if (store.state.base.ol3d[map]) {
+      const json = {
+        'enabled': true,
+        'tilt':store.state.base.ol3d[map].getCamera().getTilt(),
+        'heading':store.state.base.ol3d[map].getCamera().getHeading()
+      }
+      const jsonT = JSON.stringify(json,null,1)
+      console.log(jsonT)
+      parameter += '&3d' + map + '=' + jsonT
     }
-    const jsonT = JSON.stringify(json,null,1)
-    console.log(jsonT)
-    parameter += '&3d1=' + jsonT
-  }
+  })
+
+  // if (store.state.base.ol3d['map01']) {
+  //   const json = {
+  //     'enabled': true,
+  //     'tilt':store.state.base.ol3d['map01'].getCamera().getTilt(),
+  //     'heading':store.state.base.ol3d['map01'].getCamera().getHeading()
+  //   }
+  //   const jsonT = JSON.stringify(json,null,1)
+  //   console.log(jsonT)
+  //   parameter += '&3d1=' + jsonT
+  // }
 
 
     // console.log(parameter)
