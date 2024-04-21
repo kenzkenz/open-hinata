@@ -332,7 +332,6 @@
         const vm = this
         const ol3d = this.$store.state.base.ol3d[mapName]
         vm.tiltFlg = true
-        console.log(1111)
         heading(ol3d,'left')
       },
       leftMouseup(mapName) {
@@ -344,14 +343,13 @@
       const vm = this
       heading = function(ol3d,leftRight){
         if(vm.tiltFlg){
-          console.log(2222)
           const head = ol3d.getCamera().getHeading()
           if (leftRight === 'left') {
             ol3d.getCamera().setHeading(head - 0.05)
           } else {
             ol3d.getCamera().setHeading(head + 0.05)
           }
-          setTimeout(function(){heading(ol3d,'left')},20);
+          setTimeout(function(){heading(ol3d,leftRight)},20);
         } else {
           clearTimeout(heading);
         }
