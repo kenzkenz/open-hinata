@@ -93,7 +93,6 @@ export function permalinkEventSet (response) {
       const maps = ['map01','map02','map03','map04']
       maps.forEach((map) => {
         if (key==='3d' + map) {
-          // const mapName = 'map01'
           store.state.base.ol3d[map] = new OLCesium({map: store.state.base.maps[map]})
           const ol3d = store.state.base.ol3d[map]
           const scene = ol3d.getCesiumScene()
@@ -109,6 +108,8 @@ export function permalinkEventSet (response) {
           const json = JSON.parse(obj[key])
           ol3d.getCamera().setTilt(json.tilt)
           ol3d.getCamera().setHeading(json.heading)
+          // s_toggle3d
+          store.state.base.toggle3d[map] = true
         }
       })
 
@@ -297,7 +298,6 @@ export function moveEnd () {
         'heading':store.state.base.ol3d[map].getCamera().getHeading()
       }
       const jsonT = JSON.stringify(json,null,1)
-      console.log(jsonT)
       parameter += '&3d' + map + '=' + jsonT
     }
   })

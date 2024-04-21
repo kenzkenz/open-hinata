@@ -235,6 +235,7 @@ export function initMap (vm) {
         closer.onclick = () => {
             overlay[i].setPosition(undefined);
             closer.blur();
+            document.querySelector('.center-target').style.zIndex = 1
             return false;
         }
         const markerElement = document.getElementById(maps[i].mapName + '-marker');

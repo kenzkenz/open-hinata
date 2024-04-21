@@ -982,6 +982,8 @@ export function popUp(map,layers,features,overlay,evt,content) {
     document.head.appendChild(style2)
   }
 
+  document.querySelector('.center-target').style.zIndex = 0
+
   content.innerHTML = cont
   if (cont && cont !== undefined) overlay.setPosition(coordinate);
 }

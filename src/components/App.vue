@@ -3,6 +3,24 @@
         <!--map01からmap04をループで作成-->
         <div v-for="mapName in mapNames" :key="mapName">
             <div :id=mapName :style="mapSize[mapName]" v-show="mapFlg[mapName]">
+
+              <div class="cesium-btn-div">
+                <div class="cesiun-btn-container">
+                  <button type="button" class="cesium-btn-up btn olbtn"><i class='fa fa-arrow-up fa-lg hover'></i></button>
+                  <button type="button" class="cesium-btn-down btn olbtn"><i class='fa fa-arrow-down fa-lg'></i></button>
+                  <button type="button" class="cesium-btn-left btn olbtn" @mousedown="leftMousedown(mapName)" @mouseup="leftMouseup(mapName)"><i class='fa fa-arrow-left fa-lg'></i></button>
+                  <button type="button" class="cesium-btn-right btn olbtn"><i class='fa fa-arrow-right fa-lg'></i></button>
+
+<!--                  <div class="elevMag">-->
+<!--                    ×<input type="text" class="elevMag-text" value="1">-->
+<!--                  </div>-->
+
+                </div>
+              </div>
+
+
+
+
               <div id="modal0">
                 <modal name="modal0" :width="300" :clickToClose="false">
                   <div class="modal-body">
@@ -43,7 +61,7 @@
                     <b-button v-if="mapName === 'map01'" class='olbtn' :size="btnSize" @click="openDialog(s_dialogs['menuDialog'])" style="margin-right:5px;"><i class="fa-solid fa-bars"></i></b-button>
                     <b-button v-if="mapName === 'map01'" class='olbtn' :size="btnSize" @click="home" style="margin-right:5px;"><i class="fa-solid fa-house"></i></b-button>
 
-                    <b-button style="margin-right:5px;" :pressed.sync="toggle3d[mapName]" class='olbtn' :size="btnSize" @click="click3d(mapName)">{{ toggle3d[mapName] ? '2D' : '3D' }}</b-button>
+                    <b-button style="margin-right:5px;" :pressed.sync="s_toggle3d[mapName]" class='olbtn' :size="btnSize" @click="click3d(mapName)">{{ s_toggle3d[mapName] ? '2D' : '3D' }}</b-button>
 
                     <b-button id='split-map-btn' v-if="mapName === 'map01'" class='olbtn' :size="btnSize" @click="splitMap" style="margin-right:5px;">分割</b-button>
                     <b-button class='olbtn-red' :size="btnSize" @click="openDialog(s_dialogs[mapName])">背景</b-button>
@@ -91,7 +109,7 @@
   import {dialog} from "../js/mymap";
   import OLCesium from 'ol-cesium'
 
-  let ol3d = []
+  let tiltLeft
   export default {
     name: 'App',
     components: {
@@ -101,7 +119,7 @@
     },
     data () {
       return {
-        toggle3d: {'map01':false,'map02':false,'map03':false,'map04':false},
+        tiltFlg: false,
         mapNames: ['map01','map02','map03','map04'],
         btnSize: '',
         cp:{map01: 'map01-current-position',map02: 'map02-current-position',map03: 'map03-current-position',map04: 'map04-current-position'},
@@ -130,6 +148,7 @@
       }
     },
     computed: {
+      s_toggle3d () { return this.$store.state.base.toggle3d},
       s_dialogShow () { return this.$store.state.base.dialogShow},
       s_suUrl () { return this.$store.state.base.suUrl},
       s_mwId () { return this.$store.state.base.mwId},
@@ -148,6 +167,7 @@
       }
     },
     methods: {
+
       currentPosition: function (){
         MyMap.history ('現在地取得')
         MyMap.currentPosition()
@@ -301,14 +321,65 @@
           scene.terrainProvider = terrainProvider
           scene.terrainProvider.heightmapTerrainQuality = 0.5
           ol3d.setEnabled(true)
+          ol3d.getCamera().setTilt(1000)
         } else {
           const ol3d = this.$store.state.base.ol3d[mapName]
           ol3d.setEnabled(false)
           this.$store.state.base.ol3d[mapName] = null
         }
-      }
+      },
+      leftMousedown(mapName) {
+        console.log(11111)
+        const vm = this
+        const ol3d = this.$store.state.base.ol3d[mapName]
+        vm.tiltFlg = true
+        // ol3d.getCamera().setHeading(0.5);
+        if (!tiltLeft) {
+          tiltLeft = function(){
+            console.log(22222)
+            if(vm.tiltFlg){
+              console.log(333333)
+              const head = ol3d.getCamera().getHeading();
+              ol3d.getCamera().setHeading(head - 0.5);
+              setTimeout(function(){tiltLeft('left')},20);
+            } else {
+              clearTimeout(tiltLeft);
+            }
+          };
+          tiltLeft(ol3d)
+
+        }
+        tiltLeft(ol3d,'left')
+      },
+      leftMouseup(mapName) {
+        const vm = this
+        vm.tiltFlg = false
+      },
     },
     mounted () {
+
+      // console.log(11111)
+      const vm = this
+      // const ol3d = this.$store.state.base.ol3d[mapName]
+
+
+      // tiltLeft = function(ol3d,leftRight){
+      //   console.log(22222)
+      //   if(vm.tiltFlg){
+      //     const head = ol3d.getCamera().getHeading()
+      //     if (leftRight === 'left') {
+      //       ol3d.getCamera().setHeading(head - 0.05)
+      //     } else {
+      //       ol3d.getCamera().setHeading(head + 0.05)
+      //     }
+      //     setTimeout(function(){tiltLeft(ol3d,'left')},20);
+      //   } else {
+      //     clearTimeout(tiltLeft);
+      //   }
+      // }
+
+
+
       // let ol3d
       // this.$watch(function () {
       //   return [this.toggle3d]
@@ -591,6 +662,89 @@
         bottom: 5px;
         width: 100%;
         text-align: center;
+    }
+    /*セシウムのボタン-------------------------------------------------------------*/
+    .cesium-btn-div{
+      position:absolute;
+      top:50%;
+      right:0px;
+      z-index:999999999;
+      /*display:none;*/
+      height:145px;
+      width:145px;
+      margin-left:-72px;
+      /*margin-top:-72px;*/
+      margin-top:20px;
+      background:rgba(0,0,0,0.1);
+      border-radius:145px 0 0 145px;
+      -moz-user-select:none;
+      -webkit-user-select:none;
+      -ms-user-select:none;
+      cursor:move;
+    }
+    .cesiun-btn-container{
+      position:relative;
+      height:100%;
+    }
+    .cesium-btn-up{
+      position:absolute;
+      top:10px;
+      left:50%;
+      padding:0;
+      width:40px;
+      height:40px;
+      margin-left:-20px;
+      color: white;
+      /*display:none;*/
+    }
+    .cesium-btn-down{
+      position:absolute;
+      bottom:10px;
+      left:50%;
+      padding:0;
+      width:40px;
+      height:40px;
+      margin-left:-20px;
+      color: white;
+      /*display:none;*/
+    }
+    .cesium-btn-left{
+      position:absolute;
+      top:50%;
+      left:10px;
+      padding:0;
+      width:40px;
+      height:40px;
+      margin-top:-20px;
+      color: white;
+    }
+    .cesium-btn-right{
+      position:absolute;
+      top:50%;
+      right:10px;
+      padding:0;
+      width:40px;
+      height:40px;
+      margin-top:-20px;
+      color: white;
+    }
+    .elevMag{
+      position:absolute;
+      top:60px;
+      left:50%;
+      padding:0;
+      /*width:40px;*/
+      /*height:40px;*/
+      margin-left:-20px;
+      text-align:center;
+      display:none;
+    }
+
+    .cesium-btn-div .ui-spinner{
+      font-size:10px;
+      width:30px;
+      background:rgba(0,0,0,0);
+      border:none;
     }
 </style>
 <style>
