@@ -8,8 +8,8 @@
                 <div class="cesiun-btn-container">
                   <button type="button" class="cesium-btn-up btn olbtn"><i class='fa fa-arrow-up fa-lg hover'></i></button>
                   <button type="button" class="cesium-btn-down btn olbtn"><i class='fa fa-arrow-down fa-lg'></i></button>
-                  <button type="button" class="cesium-btn-left btn olbtn" @mousedown="leftMousedown(mapName)" @mouseup="leftMouseup(mapName)"><i class='fa fa-arrow-left fa-lg'></i></button>
-                  <button type="button" class="cesium-btn-right btn olbtn"><i class='fa fa-arrow-right fa-lg'></i></button>
+                  <button type="button" class="cesium-btn-left btn olbtn" @mousedown="leftMousedown(mapName)" @mouseup="leftMouseup"><i class='fa fa-arrow-left fa-lg'></i></button>
+                  <button type="button" class="cesium-btn-right btn olbtn" @mousedown="rightMousedown(mapName)" @mouseup="rightMouseup"><i class='fa fa-arrow-right fa-lg'></i></button>
 
 <!--                  <div class="elevMag">-->
 <!--                    ×<input type="text" class="elevMag-text" value="1">-->
@@ -334,9 +334,17 @@
         vm.tiltFlg = true
         heading(ol3d,'left')
       },
-      leftMouseup(mapName) {
+      leftMouseup() {
+        this.tiltFlg = false
+      },
+      rightMousedown(mapName) {
         const vm = this
-        vm.tiltFlg = false
+        const ol3d = this.$store.state.base.ol3d[mapName]
+        vm.tiltFlg = true
+        heading(ol3d,'right')
+      },
+      rightMouseup() {
+        this.tiltFlg = false
       },
     },
     mounted () {
