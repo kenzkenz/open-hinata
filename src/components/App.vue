@@ -771,6 +771,9 @@
     }
 </style>
 <style>
+    html {
+      touch-action: manipulation;
+    }
     #modal1 .vm--container{
       z-index: 10002;
     }

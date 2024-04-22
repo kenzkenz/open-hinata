@@ -12375,36 +12375,36 @@ const saigaihukkouYokohamakukakuseiriobj = {};
 for (let i of mapsStr) {
   saigaihukkouYokohamakukakuseiriobj[i] = new TileLayer(new Saigaiyokohamakukakuseiri())
 }
-// Bing-----------------------------------------------------------------------
-const bingStyles = [
-  'RoadOnDemand',
-  'Aerial',
-  'AerialWithLabelsOnDemand',
-  'CanvasDark',
-  'OrdnanceSurvey',
-];
-function Bing(i) {
-  this.preload = Infinity
-  this.source = new BingMaps({
-    key: 'AjNVFf2SArbxTVL45IzERWpNhf9gbY7xLIymRb8t4FC9y77ww2wd90QkKvF5Lan-',
-    imagerySet: bingStyles[i],
-    culture: 'ja-JP',
-    maxZoom: 19
-  })
-}
-const bingSumm = ''
-const bingRoadobj = {};
-for (let i of mapsStr) {
-  bingRoadobj[i] = new TileLayer(new Bing(0))
-}
-const bingAerialobj = {};
-for (let i of mapsStr) {
-  bingAerialobj[i] = new TileLayer(new Bing(1))
-}
-const bingAerialLabelobj = {};
-for (let i of mapsStr) {
-  bingAerialLabelobj[i] = new TileLayer(new Bing(2))
-}
+// // Bing-----------------------------------------------------------------------
+// const bingStyles = [
+//   'RoadOnDemand',
+//   'Aerial',
+//   'AerialWithLabelsOnDemand',
+//   'CanvasDark',
+//   'OrdnanceSurvey',
+// ];
+// function Bing(i) {
+//   this.preload = Infinity
+//   this.source = new BingMaps({
+//     key: 'AjNVFf2SArbxTVL45IzERWpNhf9gbY7xLIymRb8t4FC9y77ww2wd90QkKvF5Lan-',
+//     imagerySet: bingStyles[i],
+//     culture: 'ja-JP',
+//     maxZoom: 19
+//   })
+// }
+// const bingSumm = ''
+// const bingRoadobj = {};
+// for (let i of mapsStr) {
+//   bingRoadobj[i] = new TileLayer(new Bing(0))
+// }
+// const bingAerialobj = {};
+// for (let i of mapsStr) {
+//   bingAerialobj[i] = new TileLayer(new Bing(1))
+// }
+// const bingAerialLabelobj = {};
+// for (let i of mapsStr) {
+//   bingAerialLabelobj[i] = new TileLayer(new Bing(2))
+// }
 
 // ヤマシロマップ.---------------------------------------------------------------
 function Yamashiro() {
@@ -12465,8 +12465,8 @@ export const Layers =
       ]},
     { text: '航空写真',
       children: [
-        { text: 'Bing Maps Aerial', data: { id: 'bing', layer: bingAerialobj, opacity: 1, summary: bingSumm } },
-        { text: 'Bing Maps Aerial(地名あり)', data: { id: 'binglabel', layer: bingAerialLabelobj, opacity: 1, summary: bingSumm } },
+        // { text: 'Bing Maps Aerial', data: { id: 'bing', layer: bingAerialobj, opacity: 1, summary: bingSumm } },
+        // { text: 'Bing Maps Aerial(地名あり)', data: { id: 'binglabel', layer: bingAerialLabelobj, opacity: 1, summary: bingSumm } },
         { text: '全国最新写真', data: { id: 'zenkokusaisin', layer: seamlessphotoObj, opacity: 1, summary: seamlessphotoSumm } },
         { text: '宮崎県航空写真', data: { id: 6, layer: miyazakiOrtObj, opacity: 1, zoom:9, center: [131.42386188579064, 31.911063477361182], summary: miyazakiOrtSumm } },
         { text: '静岡県航空写真', data: { id: 7, layer: sizuokaOrtObj, opacity: 1, zoom:12,center:[138.43674074146253, 35.052859245538755], summary: sizuokaOrtSumm } },
@@ -13622,7 +13622,7 @@ export const Layers =
     { text: 'その他',
       children: [
         { text: 'テスト', data: { id: "test", layer: LayersMvt.vectorObj, opacity: 1, summary: LayersMvt.suiroSumm } },
-        { text: 'テスト2', data: { id: "test2", layer: bingRoadobj, opacity: 1, summary: LayersMvt.suiroSumm } },
+        // { text: 'テスト2', data: { id: "test2", layer: bingRoadobj, opacity: 1, summary: LayersMvt.suiroSumm } },
         { text: 'ラスタータイルtest', data: { id: "dokuji", layer: dokujiObj, opacity: 1, summary: LayersMvt.busSumm, component: {name: 'dokuji', values:[]}} },
         { text: '一等三角点', data: { id: "itto", layer: LayersMvt.ittosankakutenObj, opacity: 1, summary: LayersMvt.ittosankakutenSumm } },
         { text: 'ウィキメディア・コモンズ', data: { id: "wiki", layer: wikiObj, opacity: 1, summary: LayersMvt.wikiSumm } },
