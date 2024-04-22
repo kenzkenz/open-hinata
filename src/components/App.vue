@@ -4,7 +4,7 @@
         <div v-for="mapName in mapNames" :key="mapName">
             <div :id=mapName :style="mapSize[mapName]" v-show="mapFlg[mapName]">
 
-              <div :id="div3d[mapName]"  class="cesium-btn-div">
+              <div v-drag :id="div3d[mapName]"  class="cesium-btn-div">
                 <div class="cesiun-btn-container">
                   <button type="button" class="cesium-btn-up btn olbtn"
                           @pointerdown.stop="upMousedown(mapName)"
@@ -507,18 +507,15 @@
           store.state.base.maps['map01'].addControl(MyMap.dialog);
           MyMap.dialog.show({
             content:
-                '<p>新しい背景（レイヤー）「' +
-                '<a href="https://kenzkenz.xsrv.jp/open-hinata/#sx2Ngs" target="_blank">ウィキメディア・コモンズ</a>' +
+                '<p>新しい機能「' +
+                '<a href="https://kenzkenz.xsrv.jp/open-hinata/#sqDROP" target="_blank">3D</a>' +
                 '」を追加しました。' +
-                '<br>是非ご覧ください。世界中の写真にアクセスできます。<hr>' +
-                '<p>背景（レイヤー）「' +
-                '<a href="https://kenzkenz.xsrv.jp/open-hinata/#siJMNP" target="_blank">全国旧石器時代遺跡</a>' +
-                '」を軽量化しました。スマホでも見られます。' +
+                '画面左上の『3D』ボタンで2Dと3Dを切り替えます。' +
+                '<br>背景によってはうまく機能しません。CS立体図などがおすすめです。' +
                 '<br>是非ご覧ください。',
             title: 'お知らせ',
             // buttons:{ ok:'hello', cancel:'nope' }
           })
-
         }
       })
     }

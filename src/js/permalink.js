@@ -114,6 +114,7 @@ export function permalinkEventSet (response) {
           console.log(json)
           ol3d.getCamera().setTilt(json.tilt)
           ol3d.getCamera().setHeading(json.heading)
+          ol3d.getCamera().setDistance(json.distance)
           // store.state.base.maps[map].getView().setZoom(9)
           store.state.base.toggle3d[map] = true
           document.querySelector('#' + map + '-3d').style.display = 'block'
@@ -302,7 +303,8 @@ export function moveEnd () {
       const json = {
         'enabled': true,
         'tilt':store.state.base.ol3d[map].getCamera().getTilt(),
-        'heading':store.state.base.ol3d[map].getCamera().getHeading()
+        'heading':store.state.base.ol3d[map].getCamera().getHeading(),
+        'distance':store.state.base.ol3d[map].getCamera().getDistance(),
       }
       const jsonT = JSON.stringify(json,null,1)
       parameter += '&3d' + map + '=' + jsonT
