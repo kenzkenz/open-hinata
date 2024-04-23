@@ -326,6 +326,7 @@
           scene.screenSpaceCameraController.minimumZoomDistance = 10
           // // めり込みにくくするためズーム制限
           ol3d.setEnabled(true)
+          ol3d.getCamera().setTilt(0.75)
           document.querySelector('#' + mapName + '-3d').style.display = 'block'
         } else {
           const ol3d = this.$store.state.base.ol3d[mapName]
