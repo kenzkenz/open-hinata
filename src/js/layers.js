@@ -12375,6 +12375,21 @@ const saigaihukkouYokohamakukakuseiriobj = {};
 for (let i of mapsStr) {
   saigaihukkouYokohamakukakuseiriobj[i] = new TileLayer(new Saigaiyokohamakukakuseiri())
 }
+// デジタル標高地形図-----------------------------------------------------------------------
+function DsmMiyazaki() {
+  // this.extent = transformE([139.58528152735363,35.46939934433827, 139.6614082402578,35.42134925811986])
+  this.preload = Infinity
+  this.source = new XYZ({
+    url: 'https://maps.gsi.go.jp/xyz/d1-no799/{z}/{x}/{y}.png',
+    crossOrigin: 'anonymous',
+    minZoom: 11,
+    maxZoom: 14
+  })
+}
+const dsmMiyazakiobj = {};
+for (let i of mapsStr) {
+  dsmMiyazakiobj[i] = new TileLayer(new DsmMiyazaki())
+}
 // // Bing-----------------------------------------------------------------------
 // const bingStyles = [
 //   'RoadOnDemand',
@@ -13578,6 +13593,10 @@ export const Layers =
             { text: '自然災害伝承碑（津波）', data: { id: "densyouetsunami", layer: LayersMvt.densyouTsunamiObj, opacity: 1, summary: stdSumm } },
             { text: '自然災害伝承碑（火山災害）', data: { id: "densyovolcano", layer: LayersMvt.densyouVolcanoObj, opacity: 1, summary: stdSumm } },
             { text: '自然災害伝承碑（そのほか）', data: { id: "densyovoother", layer: LayersMvt.densyouOtherObj, opacity: 1, summary: stdSumm } },
+          ]},
+        { text: 'デジタル標高地形図',
+          children: [
+            { text: '宮崎2012/9月', data: { id: "dsmmiyazaki", layer: dsmMiyazakiobj, opacity: 1, summary: stdSumm } },
           ]},
         { text: '大規模盛土造成地', data: { id: 'morido', layer: moridoObj, opacity: 1, summary: moridoSumm } },
         // { text: '避難施設', data: { id: 'hinan', layer: LayersMvt.hinanObj, opacity: 1, summary: LayersMvt.hinanSumm } },
