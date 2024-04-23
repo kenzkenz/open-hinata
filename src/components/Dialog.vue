@@ -85,6 +85,7 @@
         -moz-user-select: none;
         -ms-user-select: none;
         user-select: none;
+        /*width: 300px;*/
     }
     .drag-handle{
         height: 30px;

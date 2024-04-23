@@ -13603,11 +13603,11 @@ export const Layers =
         { text: '道路冠水想定箇所', data: { id: 'kansui', layer: LayersMvt.kansui00Obj, opacity: 1, summary: stdSumm } },
         { text: '事前通行規制区間', data: { id: 'kiseikukan', layer: LayersMvt.kiseikukan00Obj, opacity: 1, summary: stdSumm } },
         { text: '指定緊急避難場所(洪水)', data: { id: 'hinan01', layer: LayersMvt.hinanzyo01Obj, opacity: 1, summary: stdSumm } },
-        { text: '指定緊急避難場所<br>(崖崩れ、土石流及び地滑り)', data: { id: 'hinan02', layer: LayersMvt.hinanzyo02Obj, opacity: 1, summary: stdSumm } },
+        { text: '<span style="font-size: smaller;">指定緊急避難場所(崖崩れ、土石流及び地滑り)</span>', data: { id: 'hinan02', layer: LayersMvt.hinanzyo02Obj, opacity: 1, summary: stdSumm } },
         { text: '指定緊急避難場所(地震)', data: { id: 'hinan04', layer: LayersMvt.hinanzyo04Obj, opacity: 1, summary: stdSumm } },
         { text: '指定緊急避難場所(津波)', data: { id: 'hinan05', layer: LayersMvt.hinanzyo05Obj, opacity: 1, summary: stdSumm } },
         { text: '指定緊急避難場所(大規模な火事)', data: { id: 'hinan06', layer: LayersMvt.hinanzyo06Obj, opacity: 1, summary: stdSumm } },
-        { text: '平成23年東北地方太平洋沖地震　津波浸水範囲', data: { id: 'h23tunami', layer: h23tunamiObj, opacity: 1, summary: h23tunamiSumm} },
+        { text: '<span style="font-size: smaller;">平成23年東北地方太平洋沖地震　津波浸水範囲</span>', data: { id: 'h23tunami', layer: h23tunamiObj, opacity: 1, summary: h23tunamiSumm} },
         { text: '地すべり地形分布図', data: { id: 'zisuberi9', layer: zisuberi9Obj, opacity: 1, summary: zisuberi9Summ} },
         { text: '地震危険度測定調査(東京都)',
           children: [
