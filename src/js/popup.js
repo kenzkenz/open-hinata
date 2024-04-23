@@ -474,12 +474,13 @@ export function popUp(map,layers,features,overlay,evt,content) {
              '</div>'
       break
     case 'densyou':
-      width = 400
+      width = 350
       console.log(prop.geometry.extent_[0])
       const lonLat1 = transform([prop.geometry.extent_[0],prop.geometry.extent_[1]], "EPSG:3857", "EPSG:4326")
       const lon1 = lonLat1[0]
       const lat1 = lonLat1[1]
-      cont = '<div style="width:400px;font-size:small">碑名=' + prop.LoreName + '<hr>' +
+      cont = '<div style="width:350px;font-size:small">' +
+          '<h4>' + prop.LoreName + '</h4>' +
           '災害名=' + prop.DisasterName + '<hr>' +
           '災害種別=' + prop.DisasterKind + '<hr>' +
           '所在地=' + prop.Address + '<hr>' +

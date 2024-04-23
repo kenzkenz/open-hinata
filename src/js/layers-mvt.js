@@ -3341,25 +3341,53 @@ function zinkoutikeiStyleFunction() {
     }
 }
 // 自然災害伝承碑-----------------------------------------------------
-function Densyou(){
+function Densyou(url){
   this.name = 'densyou'
   this.className = 'densyou'
+  this.pointer = true
   this.source = new VectorTileSource({
     format: new GeoJSON({defaultProjection:'EPSG:4326'}),
     tileGrid: new createXYZ({
       minZoom:7,
       maxZoom:7
     }),
-    url: "https://cyberjapandata.gsi.go.jp/xyz/disaster_lore_all/{z}/{x}/{y}.geojson"
+    url: url
   });
   this.style = densyouStyleFunction();
   this.useInterimTilesOnError = false
-  this.renderMode = 'vector'
-  this.declutter = true
+  // this.declutter = true
 }
 export const densyouObj = {};
 for (let i of mapsStr) {
-  densyouObj[i] = new VectorTileLayer(new Densyou())
+  densyouObj[i] = new VectorTileLayer(new Densyou("https://cyberjapandata.gsi.go.jp/xyz/disaster_lore_all/{z}/{x}/{y}.geojson"))
+}
+export const densyouFloodObj = {};
+for (let i of mapsStr) {
+  densyouFloodObj[i] = new VectorTileLayer(new Densyou("https://cyberjapandata.gsi.go.jp/xyz/disaster_lore_flood/{z}/{x}/{y}.geojson"))
+}
+export const densyouSedimentObj = {};
+for (let i of mapsStr) {
+  densyouSedimentObj[i] = new VectorTileLayer(new Densyou("https://cyberjapandata.gsi.go.jp/xyz/disaster_lore_sediment/{z}/{x}/{y}.geojson"))
+}
+export const densyouHightideObj = {};
+for (let i of mapsStr) {
+  densyouHightideObj[i] = new VectorTileLayer(new Densyou("https://cyberjapandata.gsi.go.jp/xyz/disaster_lore_hightide/{z}/{x}/{y}.geojson"))
+}
+export const densyouEarthquakeObj = {};
+for (let i of mapsStr) {
+  densyouEarthquakeObj[i] = new VectorTileLayer(new Densyou("https://cyberjapandata.gsi.go.jp/xyz/disaster_lore_earthquake/{z}/{x}/{y}.geojson"))
+}
+export const densyouTsunamiObj = {};
+for (let i of mapsStr) {
+  densyouTsunamiObj[i] = new VectorTileLayer(new Densyou("https://cyberjapandata.gsi.go.jp/xyz/disaster_lore_tsunami/{z}/{x}/{y}.geojson"))
+}
+export const densyouVolcanoObj = {};
+for (let i of mapsStr) {
+  densyouVolcanoObj[i] = new VectorTileLayer(new Densyou("https://cyberjapandata.gsi.go.jp/xyz/disaster_lore_volcano/{z}/{x}/{y}.geojson"))
+}
+export const densyouOtherObj = {};
+for (let i of mapsStr) {
+  densyouOtherObj[i] = new VectorTileLayer(new Densyou("https://cyberjapandata.gsi.go.jp/xyz/disaster_lore_other/{z}/{x}/{y}.geojson"))
 }
 function densyouStyleFunction() {
   return function (feature, resolution) {
@@ -3372,22 +3400,12 @@ function densyouStyleFunction() {
         src: require('@/assets/icon/densyouhi.png'),
         scale: 1.4
       })
-      // image: new Circle({
-      //   radius: 8,
-      //   fill: new Fill({
-      //     color: "black"
-      //   }),
-      //   stroke: new Stroke({
-      //     color: "white",
-      //     width: 1
-      //   })
-      // })
     });
     const textStyle = new Style({
         text: new Text({
           font: "16px sans-serif",
           text: text,
-          offsetY: 29,
+          offsetY: 30,
           stroke: new Stroke({
             color: "white",
             width: 3
