@@ -486,7 +486,7 @@ export function popUp(map,layers,features,overlay,evt,content) {
           '所在地=' + prop.Address + '<hr>' +
           '建立年=' + prop.LoreYear + '<hr>' +
           '伝承内容=' + prop.DisasterInfo + '<hr>' +
-          '<a href="' + prop.Image + '" target="_blank"><img height="200" src="' + prop.Image + '"></a>' +
+          '<a href="' + prop.Image + '" target="_blank"><img style="object-fit:cover;height:200px;width:350px;" src="' + prop.Image + '"></a>' +
           '<br><a href="https://www.google.com/maps?q=' + lat1 + ',' + lon1 + '" target="_blank">GoogleMapsで開く</a>' +
           '　<a href="https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=' + lat + ',' + lon + '&hl=ja" target="_blank">Street Viewを開く</a></div>'
           '</div>'
@@ -942,11 +942,11 @@ export function popUp(map,layers,features,overlay,evt,content) {
           '</div>'
       break
     case 'wiki':
-      width = 320
-      cont = '<div style=min-width:320px;min-height:310px;>' +
-          '<p>' + prop.title + '</p>' +
+      width = 330
+      cont = '<div style="width:330px;height:330px;">' +
+          '<h4>' + prop.title + '</h4>' +
           '<img src="https://kenzkenz.xsrv.jp/open-hinata/img/loading.gif" style="position: absolute;top:50%;left:20%;z-index:1;">' +
-          '<div style="position:absolute;z-index: 2;"><a href="' + prop.url + '" target="_blank"><img src="' + ru(prop.thumbnail) + '" height=200PX></a>' +
+          '<div style="position:absolute;z-index: 2;"><a href="' + prop.url + '" target="_blank"><img style="object-fit: cover;width: 330px;height:200px;" src="' + ru(prop.thumbnail) + '"></a>' +
           '<br>' +
           '<p style="margin-top: 10px!important;"><a href="' + prop.descriptionurl + '?uselang=ja" target="_blank">wikiMwdiaへ</a></p>' +
           streetView +
