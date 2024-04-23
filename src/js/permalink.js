@@ -99,8 +99,7 @@ export function permalinkEventSet (response) {
           const terrainProvider = new Cesium.PngElevationTileTerrainProvider( {
             url: 'https://gsj-seamless.jp/labs/elev2/elev/{z}/{y}/{x}.png?prj=latlng&size=257',
             tilingScheme: new Cesium.GeographicTilingScheme(),
-            magnification: 5,
-            crossOrigin: 'anonymous',
+            credit: ''
           })
           scene.terrainProvider = terrainProvider
           scene.terrainProvider.heightmapTerrainQuality = 0.5

@@ -3369,10 +3369,7 @@ function densyouStyleFunction() {
     const styles = [];
     const iconStyle = new Style({
       image: new Icon({
-        // anchor: [0.5, 1],
-        // src: require('@/assets/icon/whitepin.png'),
-        src: require('@/assets/icon/whitecircle.png'),
-        color: "red",
+        src: require('@/assets/icon/densyouhi.png'),
         scale: 1.4
       })
       // image: new Circle({
