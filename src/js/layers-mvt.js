@@ -4476,28 +4476,29 @@ export function standardFunction(text) {
       case "Point":
         const iconStyle = new Style({
           image: new Icon({
-            anchor: [0.5, 1],
             // src: require('@/assets/icon/whitepin.png'),
-            src: require('@/assets/icon/whitepinlarge.png'),
+            src: require('@/assets/icon/whitecircle.png'),
             color: 'red',
+            scale: 1,
           }),
           zIndex: 9
         });
         const iconStyleLerge = new Style({
           image: new Icon({
-            anchor: [0.5, 1],
-            src: require('@/assets/icon/whitepinlarge.png'),
+            // anchor: [0.5, 1],
+            src: require('@/assets/icon/whitecircle.png'),
             color: 'red',
+            scale: 1.5,
           }),
           zIndex: 9
         });
         const textStyle = new Style({
           text: new Text({
-            font: "12px sans-serif",
+            font: "14px sans-serif",
             text: prop[text],
-            offsetY: 10,
+            offsetY: 15,
             fill:  new Fill({
-              color:"red"
+              color:"black"
             }),
             stroke: new Stroke({
               color: "white",
@@ -4506,8 +4507,11 @@ export function standardFunction(text) {
             zIndex: 9
           })
         })
-        styles.push(iconStyle)
-        if (zoom>=13) styles.push(iconStyleLerge)
+        if (zoom>=13) {
+          styles.push(iconStyleLerge)
+        } else {
+          styles.push(iconStyle)
+        }
         if (zoom>=13) styles.push(textStyle)
         break;
       case "Polygon":

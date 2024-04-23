@@ -764,7 +764,6 @@ export function initMap (vm) {
             const seamlessLayer = layers0.find(el => el.get('name') === 'seamless');
             if (seamlessLayer) PopUp.popupSeamless(overlay[i],evt,content)
         })
-//--------------------------------------------------------------------------------
         //------------------------------------------------------------------------------------------------------
         // 米軍地形図用
         map.on('singleclick', function (evt) {
@@ -909,6 +908,7 @@ export function initMap (vm) {
         map.on('singleclick', function (evt) {
             // moveEnd()
             // dialogMap.show({ content: 'Hello World!', title: 'Hello'})
+            document.querySelector('.center-target').style.zIndex = 1
             console.log(JSON.stringify(transform(evt.coordinate, "EPSG:3857", "EPSG:4326")));
             overlay[i].setPosition(undefined)
             const pixel = (evt.map).getPixelFromCoordinate(evt.coordinate);

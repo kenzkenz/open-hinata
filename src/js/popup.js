@@ -765,12 +765,13 @@ export function popUp(map,layers,features,overlay,evt,content) {
       break
     case 'nihonisanheatmap':
     case 'nihonisan':
-      cont = '<div style=width:200px;font-size:small;>' +
-          '名称=<a href="https://japan-heritage.bunka.go.jp/ja/stories/story' +  ('000' + prop.jhno).slice(-3) + '/" target="_blank" >' + prop.name + '</a><hr>' +
+      width = 300
+      cont = '<div style=width:300px;font-size:small;>' +
+          '<h4><a href="https://japan-heritage.bunka.go.jp/ja/stories/story' +  ('000' + prop.jhno).slice(-3) + '/" target="_blank" >' + prop.name + '</a></h4>' +
           '読み=' + prop.yomi + '<br>' +
           '所在地=' + prop.spot + '<br>' +
           '指定等=' + prop.status + '<br>' +
-          '<a href="' + prop.image + '" target="_blank"><img width="200px" src="' + prop.image + '"></a><hr>' +
+          '<a href="' + prop.image + '" target="_blank"><img height="200px" src="' + prop.image + '"></a><hr>' +
           streetView +
           '</div>'
       break
