@@ -5,13 +5,10 @@
             <div :id=mapName :style="mapSize[mapName]" v-show="mapFlg[mapName]">
               <div :id="div3d[mapName]"  class="cesium-btn-div">
                 <div class="cesiun-btn-container">
-                  <button type="button" class="cesium-btn-up btn olbtn"
-                          @pointerdown.stop="upMousedown(mapName)"
-                          @pointerup="leftMouseup"><i class='fa fa-arrow-up fa-lg hover'></i></button>
+                  <button type="button" class="cesium-btn-up btn olbtn" @pointerdown.stop="upMousedown(mapName)" @pointerup="leftMouseup"><i class='fa fa-arrow-up fa-lg hover'></i></button>
                   <button type="button" class="cesium-btn-down btn olbtn" @pointerdown.stop="downMousedown(mapName)" @pointerup="leftMouseup"><i class='fa fa-arrow-down fa-lg'></i></button>
                   <button type="button" class="cesium-btn-left btn olbtn" @pointerdown="leftMousedown(mapName)" @pointerup="leftMouseup"><i class='fa fa-arrow-left fa-lg'></i></button>
                   <button type="button" class="cesium-btn-right btn olbtn" @pointerdown="rightMousedown(mapName)" @pointerup="rightMouseup"><i class='fa fa-arrow-right fa-lg'></i></button>
-
                   <div class="elevMag">
                     <input type='number' v-model="s_hight" style="width: 40px;">
                   </div>
