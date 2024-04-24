@@ -60,6 +60,9 @@
   import {drawLayer, selectInteraction} from "../js/mymap";
   import {GPX, GeoJSON, IGC, KML, TopoJSON} from 'ol/format.js';
   import {moveEnd} from "../js/permalink";
+  import OLCesium from 'ol-cesium'
+
+
   export default {
     name: "Menu",
     data () {
@@ -221,19 +224,52 @@
           console.log(target)
           map.removeControl(target)
         })
+
         const type = 'image/png';
         const canvas = document.querySelector("canvas");
-        const dataurl = canvas.toDataURL(type);
+        const ol3d = this.$store.state.base.ol3d['map01']
+        let dataurl
+        if (ol3d) {
+          const pngScene = ol3d.getCesiumScene()
+          pngScene.render();//セシウムのsceneを使う。
+          dataurl = pngScene.canvas.toDataURL(type)
+        } else {
+          dataurl = canvas.toDataURL(type)
+        }
         const bin = atob(dataurl.split(',')[1]);
         const buffer = new Uint8Array(bin.length);
         for (var i = 0; i < bin.length; i++){
-           buffer[i] = bin.charCodeAt(i);
+          buffer[i] = bin.charCodeAt(i);
         }
         const blob = new Blob([buffer.buffer],{type:type});
         document.getElementById('toPng').href = window.URL.createObjectURL(blob);
         targetArr.forEach(target => {
           map.addControl(target)
         })
+        // const map = this.$store.state.base.maps['map01']
+        // const targetArr = []
+        // const targets = map.getControls().array_
+        // const targetsMap = targets.map(value => {
+        //   return value
+        // });
+        // targetsMap.forEach(target => {
+        //   targetArr.push(target)
+        //   console.log(target)
+        //   map.removeControl(target)
+        // })
+        // const type = 'image/png';
+        // const canvas = document.querySelector("canvas");
+        // const dataurl = canvas.toDataURL(type);
+        // const bin = atob(dataurl.split(',')[1]);
+        // const buffer = new Uint8Array(bin.length);
+        // for (var i = 0; i < bin.length; i++){
+        //    buffer[i] = bin.charCodeAt(i);
+        // }
+        // const blob = new Blob([buffer.buffer],{type:type});
+        // document.getElementById('toPng').href = window.URL.createObjectURL(blob);
+        // targetArr.forEach(target => {
+        //   map.addControl(target)
+        // })
       }
     },
     mounted () {
