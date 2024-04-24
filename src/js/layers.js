@@ -5970,7 +5970,7 @@ function Kz_kanto00 () {
   this.source = new XYZ({
     url: 'https://ktgis.net/kjmapw/kjtilemap/kanto/00/{z}/{x}/{-y}.png',
     crossOrigin: 'Anonymous',
-    minZoom: 8,
+    // minZoom: 8,
     maxZoom: 15
   })
   this.extent = transformE([138.1383, 37.24556, 141.1668, 34.60537])
@@ -5984,7 +5984,7 @@ function Kz_kanto01 () {
   this.source = new XYZ({
     url: 'https://ktgis.net/kjmapw/kjtilemap/kanto/01/{z}/{x}/{-y}.png',
     crossOrigin: 'Anonymous',
-    minZoom: 8,
+    // minZoom: 8,
     maxZoom: 15
   })
   this.extent = transformE([138.1383, 37.24556, 141.1668, 34.60537])
@@ -5998,7 +5998,7 @@ function Kz_kanto02 () {
   this.source = new XYZ({
     url: 'https://ktgis.net/kjmapw/kjtilemap/kanto/02/{z}/{x}/{-y}.png',
     crossOrigin: 'Anonymous',
-    minZoom: 8,
+    // minZoom: 8,
     maxZoom: 15
   })
   this.extent = transformE([138.1383, 37.24556, 141.1668, 34.60537])
@@ -6012,7 +6012,7 @@ function Kz_kanto03 () {
   this.source = new XYZ({
     url: 'https://ktgis.net/kjmapw/kjtilemap/kanto/03/{z}/{x}/{-y}.png',
     crossOrigin: 'Anonymous',
-    minZoom: 8,
+    // minZoom: 8,
     maxZoom: 15
   })
   this.extent = transformE([138.1383, 37.24556, 141.1668, 34.60537])
