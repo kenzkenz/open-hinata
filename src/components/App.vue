@@ -110,6 +110,7 @@
 
   let heading
   let tilt
+  let tiltStart
   export default {
     name: 'App',
     components: {
@@ -326,7 +327,11 @@
           scene.screenSpaceCameraController.minimumZoomDistance = 10
           // // めり込みにくくするためズーム制限
           ol3d.setEnabled(true)
-          ol3d.getCamera().setTilt(0.75)
+          // ol3d.getCamera().setTilt(0.75)
+          tiltStart(ol3d)
+
+
+
           document.querySelector('#' + mapName + '-3d').style.display = 'block'
         } else {
           const ol3d = this.$store.state.base.ol3d[mapName]
@@ -398,6 +403,16 @@
           setTimeout(function(){tilt(ol3d,upDown)},10);
         } else {
           clearTimeout(tilt);
+        }
+      }
+
+      tiltStart = function(ol3d){
+        if(ol3d.getCamera().getTilt() < 0.75){
+          const tilt0 = ol3d.getCamera().getTilt()
+          ol3d.getCamera().setTilt(tilt0 + 0.0125)
+          setTimeout(function(){tiltStart(ol3d)},10);
+        } else {
+          clearTimeout(tiltStart);
         }
       }
 
