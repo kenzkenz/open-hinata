@@ -332,23 +332,10 @@
             url: 'https://gsj-seamless.jp/labs/elev2/elev/{z}/{y}/{x}.png?prj=latlng&size=257',
             tilingScheme: new Cesium.GeographicTilingScheme(),
             credit: '',
-            heightScale: 1,
+            heightScale: this.$store.state.base.hight[mapName],
             // heightMapWidth: 32,
             // maximumLevel: 14,
           })
-          // const terrainProvider = new Cesium.PngElevationTileTerrainProvider( {
-          //   url: 'https://gsj-seamless.jp/labs/elev2/elev/{z}/{y}/{x}.png?prj=latlng&size=257',
-          //   tilingScheme: new Cesium.GeographicTilingScheme(),
-          //   credit: '',
-          // })
-
-          // const terrainProvider = new Cesium.PngElevationTileTerrainProvider( {
-          //   url: 'https://gsj-seamless.jp/labs/elev2/elev/{z}/{y}/{x}.png?prj=latlng&size=257',
-          //   credit: '',
-          //   heightScale: 1,
-          //   heightMapWidth: 32,
-          //   maximumLevel: 14,
-          // })
           scene.terrainProvider = terrainProvider
           scene.terrainProvider.heightmapTerrainQuality = 0.5
           scene.screenSpaceCameraController._minimumZoomRate = 1//10000
@@ -358,8 +345,6 @@
           ol3d.setEnabled(true)
           // ol3d.getCamera().setTilt(0.75)
           tiltStart(ol3d)
-
-
 
           document.querySelector('#' + mapName + '-3d').style.display = 'block'
         } else {
