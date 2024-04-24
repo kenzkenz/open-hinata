@@ -4,6 +4,7 @@ import Vuex from 'vuex'
 Vue.use(Vuex);
 
 const moduleBase = {
+
   namespaced: true,
   state: {
     currentPosition: false,
@@ -47,7 +48,13 @@ const moduleBase = {
     splitFlg: 1,
     firstFlg: true,
     increment: 0,
-    popUpCont: ''
+    popUpCont: '',
+    hight: {
+      map01: 1,
+      map02: 1,
+      map03: 1,
+      map04: 1
+    },
   },
   getters: {
     layerList: (state) => (mapName) => {
@@ -83,6 +90,10 @@ const moduleBase = {
     }
   },
   mutations: {
+    updateHight (state,payload) {
+      console.log(payload.value)
+      state.hight[payload.mapName] = payload.value
+    },
     toggleCurrentPosition (state) {
       state.currentPosition = !state.currentPosition
     },
@@ -226,12 +237,6 @@ const moduleInfo = {
       map03: 100000,
       map04: 100000
     },
-    hight: {
-      map01: 1,
-      map02: 1,
-      map03: 1,
-      map04: 1
-    },
     colors: {
       m20: {r: 187,g: 0,b:187,a:122/255 },
       m10: {r: 228,g: 0,b:142,a:135/255 },
@@ -274,10 +279,7 @@ const moduleInfo = {
       }
       state[variable][payload.mapName] = payload.value
     },
-    updateHight (state,payload) {
-      console.log(payload.value)
-      state.hight[payload.mapName] = payload.value
-    },
+
     updateKouzi (state,payload) {
       state.kouzi[payload.mapName] = payload.value
     },

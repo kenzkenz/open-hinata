@@ -13,18 +13,10 @@
                   <button type="button" class="cesium-btn-right btn olbtn" @pointerdown="rightMousedown(mapName)" @pointerup="rightMouseup"><i class='fa fa-arrow-right fa-lg'></i></button>
 
                   <div class="elevMag">
-<!--                    <input type="text" class="elevMag-text" value="1">-->
-                    <input type='number' v-model="s_hight" style="width: 40px;" value="1">
-
-<!--                    <input type='number' v-model="zyougen" style="width: 100px;">円<br><br>-->
-
-
+                    <input type='number' v-model="s_hight" style="width: 40px;">
                   </div>
-
                 </div>
               </div>
-
-
 
               <div id="modal0">
                 <modal name="modal0" :width="300" :clickToClose="false">
@@ -158,14 +150,12 @@
     computed: {
       s_hight: {
         get() {
-          console.log(this.$store.state.info.hight['map01'])
-          return this.$store.state.info.hight['map01']
+          console.log(this.$store.state.base.hight['map01'])
+          return this.$store.state.base.hight['map01']
         },
         set(value) {
           console.log(value)
-          this.$store.commit('info/updateHight',{mapName: 'map01', value: value})
-          // console.log(this.$store.state.info.hight['map01'])
-          // // permalink.moveEnd()
+          this.$store.commit('base/updateHight',{mapName: 'map01', value: value})
           const ol3d = this.$store.state.base.ol3d['map01']
           const scene = ol3d.getCesiumScene()
           const terrainProvider = new Cesium.PngElevationTileTerrainProvider( {
@@ -175,6 +165,7 @@
             heightScale: Number(value),
           })
           scene.terrainProvider = terrainProvider
+          Permalink.moveEnd()
         }
       },
       s_toggle3d () { return this.$store.state.base.toggle3d},

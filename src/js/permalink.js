@@ -96,12 +96,17 @@ export function permalinkEventSet (response) {
           store.state.base.ol3d[map] = new OLCesium({map: store.state.base.maps[map]})
           const ol3d = store.state.base.ol3d[map]
           const scene = ol3d.getCesiumScene()
+          const json = JSON.parse(obj[key])
+          console.log(obj[key])
+          console.log(json)
           const terrainProvider = new Cesium.PngElevationTileTerrainProvider( {
             url: 'https://gsj-seamless.jp/labs/elev2/elev/{z}/{y}/{x}.png?prj=latlng&size=257',
             tilingScheme: new Cesium.GeographicTilingScheme(),
             credit: '',
-            heightScale: 1,
+            heightScale: json.hight,
           })
+          console.log(json.hight)
+          store.state.base.hight[map] = json.hight
           scene.terrainProvider = terrainProvider
           scene.terrainProvider.heightmapTerrainQuality = 0.5
           scene.screenSpaceCameraController._minimumZoomRate = 1//10000
@@ -109,13 +114,12 @@ export function permalinkEventSet (response) {
           scene.screenSpaceCameraController.minimumZoomDistance = 10
           // // めり込みにくくするためズーム制限
           ol3d.setEnabled(true)
-          const json = JSON.parse(obj[key])
-          console.log(obj[key])
-          console.log(json)
+          // const json = JSON.parse(obj[key])
+          // console.log(obj[key])
+          // console.log(json)
           ol3d.getCamera().setTilt(json.tilt)
           ol3d.getCamera().setHeading(json.heading)
           ol3d.getCamera().setDistance(json.distance)
-          // store.state.base.maps[map].getView().setZoom(9)
           store.state.base.toggle3d[map] = true
           document.querySelector('#' + map + '-3d').style.display = 'block'
         }
@@ -305,6 +309,7 @@ export function moveEnd () {
         'tilt':store.state.base.ol3d[map].getCamera().getTilt(),
         'heading':store.state.base.ol3d[map].getCamera().getHeading(),
         'distance':store.state.base.ol3d[map].getCamera().getDistance(),
+        'hight':store.state.base.hight[map]
       }
       const jsonT = JSON.stringify(json,null,1)
       parameter += '&3d' + map + '=' + jsonT
