@@ -5437,7 +5437,7 @@ function Kz_sapporo00 () {
   this.source = new XYZ({
     url: 'https://ktgis.net/kjmapw/kjtilemap/sapporo/00/{z}/{x}/{-y}.png',
     crossOrigin: 'Anonymous',
-    minZoom: 8,
+    // minZoom: 8,
     maxZoom: 16
   })
   this.extent = transformE([140.8138, 43.28177, 141.6423, 42.89743])
@@ -5451,7 +5451,7 @@ function Kz_sapporo01 () {
   this.source = new XYZ({
     url: 'https://ktgis.net/kjmapw/kjtilemap/sapporo/01/{z}/{x}/{-y}.png',
     crossOrigin: 'Anonymous',
-    minZoom: 8,
+    // minZoom: 8,
     maxZoom: 16
   })
   this.extent = transformE([140.8138, 43.28177, 141.6423, 42.89743])
@@ -5465,7 +5465,7 @@ function Kz_sapporo02 () {
   this.source = new XYZ({
     url: 'https://ktgis.net/kjmapw/kjtilemap/sapporo/02/{z}/{x}/{-y}.png',
     crossOrigin: 'Anonymous',
-    minZoom: 8,
+    // minZoom: 8,
     maxZoom: 16
   })
   this.extent = transformE([140.8138, 43.28177, 141.6423, 42.89743])
@@ -5479,7 +5479,7 @@ function Kz_sapporo03 () {
   this.source = new XYZ({
     url: 'https://ktgis.net/kjmapw/kjtilemap/sapporo/03/{z}/{x}/{-y}.png',
     crossOrigin: 'Anonymous',
-    minZoom: 8,
+    // minZoom: 8,
     maxZoom: 16
   })
   this.extent = transformE([140.8138, 43.28177, 141.6423, 42.89743])
@@ -5493,7 +5493,7 @@ function Kz_sapporo04 () {
   this.source = new XYZ({
     url: 'https://ktgis.net/kjmapw/kjtilemap/sapporo/04/{z}/{x}/{-y}.png',
     crossOrigin: 'Anonymous',
-    minZoom: 8,
+    // minZoom: 8,
     maxZoom: 16
   })
   this.extent = transformE([140.8138, 43.28177, 141.6423, 42.89743])
@@ -5509,7 +5509,7 @@ function Kz_sendai00 () {
   this.source = new XYZ({
     url: 'https://ktgis.net/kjmapw/kjtilemap/sendai/00/{z}/{x}/{-y}.png',
     crossOrigin: 'Anonymous',
-    minZoom: 8,
+    // minZoom: 8,
     maxZoom: 16
   })
   this.extent = transformE([140.7323, 38.43329, 141.2941, 38.05300])
@@ -5523,7 +5523,7 @@ function Kz_sendai01 () {
   this.source = new XYZ({
     url: 'https://ktgis.net/kjmapw/kjtilemap/sendai/01/{z}/{x}/{-y}.png',
     crossOrigin: 'Anonymous',
-    minZoom: 8,
+    // minZoom: 8,
     maxZoom: 16
   })
   this.extent = transformE([140.7323, 38.43329, 141.2941, 38.05300])
@@ -5537,7 +5537,7 @@ function Kz_sendai02 () {
   this.source = new XYZ({
     url: 'https://ktgis.net/kjmapw/kjtilemap/sendai/02/{z}/{x}/{-y}.png',
     crossOrigin: 'Anonymous',
-    minZoom: 8,
+    // minZoom: 8,
     maxZoom: 16
   })
   this.extent = transformE([140.7323, 38.43329, 141.2941, 38.05300])
@@ -5551,7 +5551,7 @@ function Kz_sendai03 () {
   this.source = new XYZ({
     url: 'https://ktgis.net/kjmapw/kjtilemap/sendai/03/{z}/{x}/{-y}.png',
     crossOrigin: 'Anonymous',
-    minZoom: 8,
+    // minZoom: 8,
     maxZoom: 16
   })
   this.extent = transformE([140.7323, 38.43329, 141.2941, 38.05300])
@@ -5565,7 +5565,7 @@ function Kz_sendai04 () {
   this.source = new XYZ({
     url: 'https://ktgis.net/kjmapw/kjtilemap/sendai/04/{z}/{x}/{-y}.png',
     crossOrigin: 'Anonymous',
-    minZoom: 8,
+    // minZoom: 8,
     maxZoom: 16
   })
   this.extent = transformE([140.7323, 38.43329, 141.2941, 38.05300])
@@ -5581,7 +5581,7 @@ function Kz_tohoku_pacific_coast00 () {
   this.source = new XYZ({
     url: 'https://ktgis.net/kjmapw/kjtilemap/tohoku_pacific_coast/00/{z}/{x}/{-y}.png',
     crossOrigin: 'Anonymous',
-    minZoom: 8,
+    // minZoom: 8,
     maxZoom: 15
   })
   this.extent = transformE([140.52184, 40.76320, 142.4267, 36.67445])
@@ -5595,7 +5595,7 @@ function Kz_tohoku_pacific_coast01 () {
   this.source = new XYZ({
     url: 'https://ktgis.net/kjmapw/kjtilemap/tohoku_pacific_coast/01/{z}/{x}/{-y}.png',
     crossOrigin: 'Anonymous',
-    minZoom: 8,
+    // minZoom: 8,
     maxZoom: 15
   })
   this.extent = transformE([140.52184, 40.76320, 142.4267, 36.67445])
@@ -5609,7 +5609,7 @@ function Kz_tohoku_pacific_coast02 () {
   this.source = new XYZ({
     url: 'https://ktgis.net/kjmapw/kjtilemap/tohoku_pacific_coast/02/{z}/{x}/{-y}.png',
     crossOrigin: 'Anonymous',
-    minZoom: 8,
+    // minZoom: 8,
     maxZoom: 15
   })
   this.extent = transformE([140.52184, 40.76320, 142.4267, 36.67445])
@@ -5623,7 +5623,7 @@ function Kz_tohoku_pacific_coast03 () {
   this.source = new XYZ({
     url: 'https://ktgis.net/kjmapw/kjtilemap/tohoku_pacific_coast/03/{z}/{x}/{-y}.png',
     crossOrigin: 'Anonymous',
-    minZoom: 8,
+    // minZoom: 8,
     maxZoom: 15
   })
   this.extent = transformE([140.52184, 40.76320, 142.4267, 36.67445])
@@ -5639,7 +5639,7 @@ function Kz_himeji2man () {
   this.source = new XYZ({
     url: 'https://ktgis.net/kjmapw/kjtilemap/himeji/2man/{z}/{x}/{-y}.png',
     crossOrigin: 'Anonymous',
-    minZoom: 8,
+    // minZoom: 8,
     maxZoom: 16
   })
   this.extent = transformE([134.4642, 34.95249, 135.1670, 34.53810])
@@ -5653,7 +5653,7 @@ function Kz_himeji00 () {
   this.source = new XYZ({
     url: 'https://ktgis.net/kjmapw/kjtilemap/himeji/00/{z}/{x}/{-y}.png',
     crossOrigin: 'Anonymous',
-    minZoom: 8,
+    // minZoom: 8,
     maxZoom: 16
   })
   this.extent = transformE([134.4642, 34.95249, 135.1670, 34.53810])
@@ -5667,7 +5667,7 @@ function Kz_himeji01 () {
   this.source = new XYZ({
     url: 'https://ktgis.net/kjmapw/kjtilemap/himeji/01/{z}/{x}/{-y}.png',
     crossOrigin: 'Anonymous',
-    minZoom: 8,
+    // minZoom: 8,
     maxZoom: 16
   })
   this.extent = transformE([134.4642, 34.95249, 135.1670, 34.53810])
@@ -5681,7 +5681,7 @@ function Kz_himeji02 () {
   this.source = new XYZ({
     url: 'https://ktgis.net/kjmapw/kjtilemap/himeji/02/{z}/{x}/{-y}.png',
     crossOrigin: 'Anonymous',
-    minZoom: 8,
+    // minZoom: 8,
     maxZoom: 16
   })
   this.extent = transformE([134.4642, 34.95249, 135.1670, 34.53810])
@@ -5695,7 +5695,7 @@ function Kz_himeji03 () {
   this.source = new XYZ({
     url: 'https://ktgis.net/kjmapw/kjtilemap/himeji/03/{z}/{x}/{-y}.png',
     crossOrigin: 'Anonymous',
-    minZoom: 8,
+    // minZoom: 8,
     maxZoom: 16
   })
   this.extent = transformE([134.4642, 34.95249, 135.1670, 34.53810])
@@ -5711,7 +5711,7 @@ function Kz_okayama2man () {
   this.source = new XYZ({
     url: 'https://ktgis.net/kjmapw/kjtilemap/okayama/2man/{z}/{x}/{-y}.png',
     crossOrigin: 'Anonymous',
-    minZoom: 8,
+    // minZoom: 8,
     maxZoom: 16
   })
   this.extent = transformE([132.9334, 34.78731, 134.2442, 34.27248])
@@ -5725,7 +5725,7 @@ function Kz_okayama00 () {
   this.source = new XYZ({
     url: 'https://ktgis.net/kjmapw/kjtilemap/okayama/00/{z}/{x}/{-y}.png',
     crossOrigin: 'Anonymous',
-    minZoom: 8,
+    // minZoom: 8,
     maxZoom: 16
   })
   this.extent = transformE([132.9334, 34.78731, 134.2442, 34.27248])
@@ -5739,7 +5739,7 @@ function Kz_okayama01 () {
   this.source = new XYZ({
     url: 'https://ktgis.net/kjmapw/kjtilemap/okayama/01/{z}/{x}/{-y}.png',
     crossOrigin: 'Anonymous',
-    minZoom: 8,
+    // minZoom: 8,
     maxZoom: 16
   })
   this.extent = transformE([132.9334, 34.78731, 134.2442, 34.27248])
@@ -5753,7 +5753,7 @@ function Kz_okayama02 () {
   this.source = new XYZ({
     url: 'https://ktgis.net/kjmapw/kjtilemap/okayama/02/{z}/{x}/{-y}.png',
     crossOrigin: 'Anonymous',
-    minZoom: 8,
+    // minZoom: 8,
     maxZoom: 16
   })
   this.extent = transformE([132.9334, 34.78731, 134.2442, 34.27248])
@@ -5767,7 +5767,7 @@ function Kz_okayama03 () {
   this.source = new XYZ({
     url: 'https://ktgis.net/kjmapw/kjtilemap/okayama/03/{z}/{x}/{-y}.png',
     crossOrigin: 'Anonymous',
-    minZoom: 8,
+    // minZoom: 8,
     maxZoom: 16
   })
   this.extent = transformE([132.9334, 34.78731, 134.2442, 34.27248])
@@ -5784,7 +5784,7 @@ function Kz_hamamatsu2man () {
   this.source = new XYZ({
     url: 'https://ktgis.net/kjmapw/kjtilemap/hamamatsu/2man/{z}/{x}/{-y}.png',
     crossOrigin: 'Anonymous',
-    minZoom: 8,
+    // minZoom: 8,
     maxZoom: 16
   })
   this.extent = transformE([137.0838, 34.95158, 138.1734, 34.55129])
@@ -5798,7 +5798,7 @@ function Kz_hamamatsu00 () {
   this.source = new XYZ({
     url: 'https://ktgis.net/kjmapw/kjtilemap/hamamatsu/00/{z}/{x}/{-y}.png',
     crossOrigin: 'Anonymous',
-    minZoom: 8,
+    // minZoom: 8,
     maxZoom: 16
   })
   this.extent = transformE([137.0838, 34.95158, 138.1734, 34.55129])
@@ -5812,7 +5812,7 @@ function Kz_hamamatsu01 () {
   this.source = new XYZ({
     url: 'https://ktgis.net/kjmapw/kjtilemap/hamamatsu/01/{z}/{x}/{-y}.png',
     crossOrigin: 'Anonymous',
-    minZoom: 8,
+    // minZoom: 8,
     maxZoom: 16
   })
   this.extent = transformE([137.0838, 34.95158, 138.1734, 34.55129])
@@ -5826,7 +5826,7 @@ function Kz_hamamatsu02 () {
   this.source = new XYZ({
     url: 'https://ktgis.net/kjmapw/kjtilemap/hamamatsu/02/{z}/{x}/{-y}.png',
     crossOrigin: 'Anonymous',
-    minZoom: 8,
+    // minZoom: 8,
     maxZoom: 16
   })
   this.extent = transformE([137.0838, 34.95158, 138.1734, 34.55129])
@@ -5840,7 +5840,7 @@ function Kz_hamamatsu03 () {
   this.source = new XYZ({
     url: 'https://ktgis.net/kjmapw/kjtilemap/hamamatsu/03/{z}/{x}/{-y}.png',
     crossOrigin: 'Anonymous',
-    minZoom: 8,
+    // minZoom: 8,
     maxZoom: 16
   })
   this.extent = transformE([137.0838, 34.95158, 138.1734, 34.55129])
@@ -5854,7 +5854,7 @@ function Kz_hamamatsu04 () {
   this.source = new XYZ({
     url: 'https://ktgis.net/kjmapw/kjtilemap/hamamatsu/04/{z}/{x}/{-y}.png',
     crossOrigin: 'Anonymous',
-    minZoom: 8,
+    // minZoom: 8,
     maxZoom: 16
   })
   this.extent = transformE([137.0838, 34.95158, 138.1734, 34.55129])
@@ -5868,7 +5868,7 @@ function Kz_hamamatsu05 () {
   this.source = new XYZ({
     url: 'https://ktgis.net/kjmapw/kjtilemap/hamamatsu/05/{z}/{x}/{-y}.png',
     crossOrigin: 'Anonymous',
-    minZoom: 8,
+    // minZoom: 8,
     maxZoom: 16
   })
   this.extent = transformE([137.0838, 34.95158, 138.1734, 34.55129])
@@ -5884,7 +5884,7 @@ function Kz_hiroshima2man () {
   this.source = new XYZ({
     url: 'https://ktgis.net/kjmapw/kjtilemap/hiroshima/2man/{z}/{x}/{-y}.png',
     crossOrigin: 'Anonymous',
-    minZoom: 8,
+    // minZoom: 8,
     maxZoom: 16
   })
   this.extent = transformE([132.0764, 34.63549, 133.0733, 34.06630])
@@ -5898,7 +5898,7 @@ function Kz_hiroshima00 () {
   this.source = new XYZ({
     url: 'https://ktgis.net/kjmapw/kjtilemap/hiroshima/00/{z}/{x}/{-y}.png',
     crossOrigin: 'Anonymous',
-    minZoom: 8,
+    // minZoom: 8,
     maxZoom: 16
   })
   this.extent = transformE([132.0764, 34.63549, 133.0733, 34.06630])
@@ -5912,7 +5912,7 @@ function Kz_hiroshima01 () {
   this.source = new XYZ({
     url: 'https://ktgis.net/kjmapw/kjtilemap/hiroshima/01/{z}/{x}/{-y}.png',
     crossOrigin: 'Anonymous',
-    minZoom: 8,
+    // minZoom: 8,
     maxZoom: 16
   })
   this.extent = transformE([132.0764, 34.63549, 133.0733, 34.06630])
@@ -5926,7 +5926,7 @@ function Kz_hiroshima02 () {
   this.source = new XYZ({
     url: 'https://ktgis.net/kjmapw/kjtilemap/hiroshima/02/{z}/{x}/{-y}.png',
     crossOrigin: 'Anonymous',
-    minZoom: 8,
+    // minZoom: 8,
     maxZoom: 16
   })
   this.extent = transformE([132.0764, 34.63549, 133.0733, 34.06630])
@@ -5940,7 +5940,7 @@ function Kz_hiroshima03 () {
   this.source = new XYZ({
     url: 'https://ktgis.net/kjmapw/kjtilemap/hiroshima/03/{z}/{x}/{-y}.png',
     crossOrigin: 'Anonymous',
-    minZoom: 8,
+    // minZoom: 8,
     maxZoom: 16
   })
   this.extent = transformE([132.0764, 34.63549, 133.0733, 34.06630])
@@ -5954,7 +5954,7 @@ function Kz_hiroshima04 () {
   this.source = new XYZ({
     url: 'https://ktgis.net/kjmapw/kjtilemap/hiroshima/04/{z}/{x}/{-y}.png',
     crossOrigin: 'Anonymous',
-    minZoom: 8,
+    // minZoom: 8,
     maxZoom: 16
   })
   this.extent = transformE([132.0764, 34.63549, 133.0733, 34.06630])
@@ -9387,7 +9387,7 @@ function Kz_miyazaki00 () {
   this.source = new XYZ({
     url: 'https://ktgis.net/kjmapw/kjtilemap/miyazaki/00/{z}/{x}/{-y}.png',
     crossOrigin: 'Anonymous',
-    minZoom: 8,
+    // minZoom: 8,
     maxZoom: 16
   })
 }
@@ -9402,7 +9402,7 @@ function Kz_miyazaki01 () {
   this.source = new XYZ({
     url: 'https://ktgis.net/kjmapw/kjtilemap/miyazaki/01/{z}/{x}/{-y}.png',
     crossOrigin: 'Anonymous',
-    minZoom: 8,
+    // minZoom: 8,
     maxZoom: 16
   })
 }
@@ -9416,7 +9416,7 @@ function Kz_miyazaki02 () {
   this.source = new XYZ({
     url: 'https://ktgis.net/kjmapw/kjtilemap/miyazaki/02/{z}/{x}/{-y}.png',
     crossOrigin: 'Anonymous',
-    minZoom: 8,
+    // minZoom: 8,
     maxZoom: 16
   })
 }
@@ -9430,7 +9430,7 @@ function Kz_miyazaki03 () {
   this.source = new XYZ({
     url: 'https://ktgis.net/kjmapw/kjtilemap/miyazaki/03/{z}/{x}/{-y}.png',
     crossOrigin: 'Anonymous',
-    minZoom: 8,
+    // minZoom: 8,
     maxZoom: 16
   })
 }
@@ -9444,7 +9444,7 @@ function Kz_miyazaki04 () {
   this.source = new XYZ({
     url: 'https://ktgis.net/kjmapw/kjtilemap/miyazaki/04/{z}/{x}/{-y}.png',
     crossOrigin: 'Anonymous',
-    minZoom: 8,
+    // minZoom: 8,
     maxZoom: 16
   })
 }
@@ -9459,7 +9459,7 @@ function Kz_miyakonojyou00 () {
   this.source = new XYZ({
     url: 'https://ktgis.net/kjmapw/kjtilemap/miyakonojyou/00/{z}/{x}/{-y}.png',
     crossOrigin: 'Anonymous',
-    minZoom: 8,
+    // minZoom: 8,
     maxZoom: 16
   })
 }
@@ -9472,7 +9472,7 @@ function Kz_miyakonojyou01 () {
   this.source = new XYZ({
     url: 'https://ktgis.net/kjmapw/kjtilemap/miyakonojyou/01/{z}/{x}/{-y}.png',
     crossOrigin: 'Anonymous',
-    minZoom: 8,
+    // minZoom: 8,
     maxZoom: 16
   })
 }
@@ -9486,7 +9486,7 @@ function Kz_miyakonojyou02 () {
   this.source = new XYZ({
     url: 'https://ktgis.net/kjmapw/kjtilemap/miyakonojyou/02/{z}/{x}/{-y}.png',
     crossOrigin: 'Anonymous',
-    minZoom: 8,
+    // minZoom: 8,
     maxZoom: 16
   })
 }
@@ -9500,7 +9500,7 @@ function Kz_miyakonojyou03 () {
   this.source = new XYZ({
     url: 'https://ktgis.net/kjmapw/kjtilemap/miyakonojyou/03/{z}/{x}/{-y}.png',
     crossOrigin: 'Anonymous',
-    minZoom: 8,
+    // minZoom: 8,
     maxZoom: 16
   })
 }
@@ -9514,7 +9514,7 @@ function Kz_miyakonojyou04 () {
   this.source = new XYZ({
     url: 'https://ktgis.net/kjmapw/kjtilemap/miyakonojyou/04/{z}/{x}/{-y}.png',
     crossOrigin: 'Anonymous',
-    minZoom: 8,
+    // minZoom: 8,
     maxZoom: 16
   })
 }
@@ -9528,7 +9528,7 @@ function Kz_nobeoka00 () {
   this.source = new XYZ({
     url: 'https://ktgis.net/kjmapw/kjtilemap/nobeoka/00/{z}/{x}/{-y}.png',
     crossOrigin: 'Anonymous',
-    minZoom: 8,
+    // minZoom: 8,
     maxZoom: 16
   })
 }
@@ -9541,7 +9541,7 @@ function Kz_nobeoka01 () {
   this.source = new XYZ({
     url: 'https://ktgis.net/kjmapw/kjtilemap/nobeoka/01/{z}/{x}/{-y}.png',
     crossOrigin: 'Anonymous',
-    minZoom: 8,
+    // minZoom: 8,
     maxZoom: 16
   })
 }
@@ -9555,7 +9555,7 @@ function Kz_nobeoka02 () {
   this.source = new XYZ({
     url: 'https://ktgis.net/kjmapw/kjtilemap/nobeoka/02/{z}/{x}/{-y}.png',
     crossOrigin: 'Anonymous',
-    minZoom: 8,
+    // minZoom: 8,
     maxZoom: 16
   })
 }
@@ -9569,7 +9569,7 @@ function Kz_nobeoka03 () {
   this.source = new XYZ({
     url: 'https://ktgis.net/kjmapw/kjtilemap/nobeoka/03/{z}/{x}/{-y}.png',
     crossOrigin: 'Anonymous',
-    minZoom: 8,
+    // minZoom: 8,
     maxZoom: 16
   })
 }
@@ -9583,7 +9583,7 @@ function Kz_nobeoka04 () {
   this.source = new XYZ({
     url: 'https://ktgis.net/kjmapw/kjtilemap/nobeoka/04/{z}/{x}/{-y}.png',
     crossOrigin: 'Anonymous',
-    minZoom: 8,
+    // minZoom: 8,
     maxZoom: 16
   })
 }
