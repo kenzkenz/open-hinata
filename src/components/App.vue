@@ -3,8 +3,7 @@
         <!--map01からmap04をループで作成-->
         <div v-for="mapName in mapNames" :key="mapName">
             <div :id=mapName :style="mapSize[mapName]" v-show="mapFlg[mapName]">
-
-              <div v-drag :id="div3d[mapName]"  class="cesium-btn-div">
+              <div :id="div3d[mapName]"  class="cesium-btn-div">
                 <div class="cesiun-btn-container">
                   <button type="button" class="cesium-btn-up btn olbtn"
                           @pointerdown.stop="upMousedown(mapName)"
@@ -13,12 +12,19 @@
                   <button type="button" class="cesium-btn-left btn olbtn" @pointerdown="leftMousedown(mapName)" @pointerup="leftMouseup"><i class='fa fa-arrow-left fa-lg'></i></button>
                   <button type="button" class="cesium-btn-right btn olbtn" @pointerdown="rightMousedown(mapName)" @pointerup="rightMouseup"><i class='fa fa-arrow-right fa-lg'></i></button>
 
-<!--                  <div class="elevMag">-->
-<!--                    ×<input type="text" class="elevMag-text" value="1">-->
-<!--                  </div>-->
+                  <div class="elevMag">
+<!--                    <input type="text" class="elevMag-text" value="1">-->
+                    <input type='number' v-model="s_hight" style="width: 40px;" value="1">
+
+<!--                    <input type='number' v-model="zyougen" style="width: 100px;">円<br><br>-->
+
+
+                  </div>
 
                 </div>
               </div>
+
+
 
               <div id="modal0">
                 <modal name="modal0" :width="300" :clickToClose="false">
@@ -59,15 +65,13 @@
                 <div class="top-left-div">
                     <b-button v-if="mapName === 'map01'" class='olbtn' :size="btnSize" @click="openDialog(s_dialogs['menuDialog'])" style="margin-right:5px;"><i class="fa-solid fa-bars"></i></b-button>
                     <b-button v-if="mapName === 'map01'" class='olbtn' :size="btnSize" @click="home" style="margin-right:5px;"><i class="fa-solid fa-house"></i></b-button>
-
                     <b-button style="margin-right:5px;" :pressed.sync="s_toggle3d[mapName]" class='olbtn' :size="btnSize" @click="click3d(mapName)">{{ s_toggle3d[mapName] ? '2D' : '3D' }}</b-button>
-
                     <b-button id='split-map-btn' v-if="mapName === 'map01'" class='olbtn' :size="btnSize" @click="splitMap" style="margin-right:5px;">分割</b-button>
                     <b-button class='olbtn-red' :size="btnSize" @click="openDialog(s_dialogs[mapName])">背景</b-button>
                 </div>
-<!--                <div class="top-right-div">-->
-<!--                  <b-button i v-if="mapName === 'map01'" class='olbtn' :size="btnSize" @click="openDialog(s_dialogs['mainInfoDialog'])"><i class="fa-brands fa-github"></i></b-button>-->
-<!--                </div>-->
+                <div class="top-right-div">
+                  <b-button i v-if="mapName === 'map01'" class='olbtn' :size="btnSize" @click="openDialog(s_dialogs['mainInfoDialog'])"><i class="fa-brands fa-github"></i></b-button>
+                </div>
                 <div class="bottom-right-div">
                   <b-button i v-if="mapName === 'map01'" class='olbtn' :size="btnSize" @click="currentPosition"><i class="fa-solid fa-location-crosshairs"></i></b-button>
                 </div>
@@ -120,6 +124,7 @@
     },
     data () {
       return {
+        zyougen:1,
         tiltFlg: false,
         mapNames: ['map01','map02','map03','map04'],
         btnSize: '',
@@ -151,6 +156,27 @@
       }
     },
     computed: {
+      s_hight: {
+        get() {
+          console.log(this.$store.state.info.hight['map01'])
+          return this.$store.state.info.hight['map01']
+        },
+        set(value) {
+          console.log(value)
+          this.$store.commit('info/updateHight',{mapName: 'map01', value: value})
+          // console.log(this.$store.state.info.hight['map01'])
+          // // permalink.moveEnd()
+          const ol3d = this.$store.state.base.ol3d['map01']
+          const scene = ol3d.getCesiumScene()
+          const terrainProvider = new Cesium.PngElevationTileTerrainProvider( {
+            url: 'https://gsj-seamless.jp/labs/elev2/elev/{z}/{y}/{x}.png?prj=latlng&size=257',
+            tilingScheme: new Cesium.GeographicTilingScheme(),
+            credit: '',
+            heightScale: Number(value),
+          })
+          scene.terrainProvider = terrainProvider
+        }
+      },
       s_toggle3d () { return this.$store.state.base.toggle3d},
       s_dialogShow () { return this.$store.state.base.dialogShow},
       s_suUrl () { return this.$store.state.base.suUrl},
@@ -170,7 +196,6 @@
       }
     },
     methods: {
-
       currentPosition: function (){
         MyMap.history ('現在地取得')
         MyMap.currentPosition()
@@ -319,7 +344,23 @@
             url: 'https://gsj-seamless.jp/labs/elev2/elev/{z}/{y}/{x}.png?prj=latlng&size=257',
             tilingScheme: new Cesium.GeographicTilingScheme(),
             credit: '',
+            heightScale: 1,
+            // heightMapWidth: 32,
+            // maximumLevel: 14,
           })
+          // const terrainProvider = new Cesium.PngElevationTileTerrainProvider( {
+          //   url: 'https://gsj-seamless.jp/labs/elev2/elev/{z}/{y}/{x}.png?prj=latlng&size=257',
+          //   tilingScheme: new Cesium.GeographicTilingScheme(),
+          //   credit: '',
+          // })
+
+          // const terrainProvider = new Cesium.PngElevationTileTerrainProvider( {
+          //   url: 'https://gsj-seamless.jp/labs/elev2/elev/{z}/{y}/{x}.png?prj=latlng&size=257',
+          //   credit: '',
+          //   heightScale: 1,
+          //   heightMapWidth: 32,
+          //   maximumLevel: 14,
+          // })
           scene.terrainProvider = terrainProvider
           scene.terrainProvider.heightmapTerrainQuality = 0.5
           scene.screenSpaceCameraController._minimumZoomRate = 1//10000
@@ -716,9 +757,9 @@
       margin-top:20px;
       background:rgba(0,0,0,0.1);
       border-radius:145px 0 0 145px;
-      -moz-user-select:none;
-      -webkit-user-select:none;
-      -ms-user-select:none;
+      /*-moz-user-select:none;*/
+      /*-webkit-user-select:none;*/
+      /*-ms-user-select:none;*/
       cursor:move;
     }
     .cesiun-btn-container{
@@ -772,11 +813,11 @@
       top:60px;
       left:50%;
       padding:0;
-      /*width:40px;*/
-      /*height:40px;*/
+      width:20px;
+      height:20px;
       margin-left:-20px;
       text-align:center;
-      display:none;
+      /*display:none;*/
     }
 
     .cesium-btn-div .ui-spinner{
@@ -787,9 +828,9 @@
     }
 </style>
 <style>
-    html {
-      touch-action: manipulation;
-    }
+    /*html {*/
+    /*  touch-action: manipulation;*/
+    /*}*/
     #modal1 .vm--container{
       z-index: 10002;
     }

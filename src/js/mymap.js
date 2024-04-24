@@ -207,12 +207,12 @@ export function initMap (vm) {
     map01.addEventListener('mouseleave', () => {
         moveEnd()
     })
-    const cesiumDiv = document.querySelector('.cesium-btn-div, .cesium-btn-up, .cesium-btn-down, .cesium-btn-left, .cesium-btn-right')
-    cesiumDiv.addEventListener("touchstart", (e) => {
-        if (e.touches.length > 1) {
-            e.preventDefault();
-        }
-    }, { passive: false });
+    // const cesiumDiv = document.querySelector('.cesium-btn-div, .cesium-btn-up, .cesium-btn-down, .cesium-btn-left, .cesium-btn-right')
+    // cesiumDiv.addEventListener("touchstart", (e) => {
+    //     if (e.touches.length > 1) {
+    //         e.preventDefault();
+    //     }
+    // }, { passive: false });
 
     // マップ作製ループ用の配列を作成
     const maps = [

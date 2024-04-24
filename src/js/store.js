@@ -226,6 +226,12 @@ const moduleInfo = {
       map03: 100000,
       map04: 100000
     },
+    hight: {
+      map01: 1,
+      map02: 1,
+      map03: 1,
+      map04: 1
+    },
     colors: {
       m20: {r: 187,g: 0,b:187,a:122/255 },
       m10: {r: 228,g: 0,b:142,a:135/255 },
@@ -267,6 +273,10 @@ const moduleInfo = {
           break
       }
       state[variable][payload.mapName] = payload.value
+    },
+    updateHight (state,payload) {
+      console.log(payload.value)
+      state.hight[payload.mapName] = payload.value
     },
     updateKouzi (state,payload) {
       state.kouzi[payload.mapName] = payload.value

@@ -100,9 +100,7 @@ export function permalinkEventSet (response) {
             url: 'https://gsj-seamless.jp/labs/elev2/elev/{z}/{y}/{x}.png?prj=latlng&size=257',
             tilingScheme: new Cesium.GeographicTilingScheme(),
             credit: '',
-            // heightScale: 0.01,
-            // heightMapWidth: 32,
-            // maximumLevel: 14,
+            heightScale: 1,
           })
           scene.terrainProvider = terrainProvider
           scene.terrainProvider.heightmapTerrainQuality = 0.5
