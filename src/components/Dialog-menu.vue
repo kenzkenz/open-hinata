@@ -209,7 +209,6 @@
         })();
       },
       toPng(){
-        // MyMap.ChangeFilter('map01','grayscale')
         MyMap.history ('PNGダウンロード')
         const map = this.$store.state.base.maps['map01']
         const targetArr = []
@@ -235,7 +234,7 @@
         targetArr.forEach(target => {
           map.addControl(target)
         })
-       }
+      }
     },
     mounted () {
       this.$watch(function () {
