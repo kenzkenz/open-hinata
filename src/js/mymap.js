@@ -964,9 +964,9 @@ export function initMap (vm) {
         //	成功時には標高(単位m)，無効値の場合は'e'を返す
         // ****************
         function getElev( rx, ry, z, then ) {
-            // const elevServer = 'https://gsj-seamless.jp/labs/elev2/elev/'
+            const elevServer = 'https://gsj-seamless.jp/labs/elev2/elev/' // 海あり
             // const elevServer = 'https://tiles.gsj.jp/tiles/elev/mixed/'
-            const elevServer = 'https://tiles.gsj.jp/tiles/elev/land/'
+            // const elevServer = 'https://tiles.gsj.jp/tiles/elev/land/' // 陸地のみ
             const x = Math.floor( rx )				// タイルX座標
             const y = Math.floor( ry )				// タイルY座標
             const i = ( rx - x ) * 256			// タイル内i座標
