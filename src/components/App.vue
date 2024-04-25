@@ -59,7 +59,7 @@
                     <b-button class='olbtn-red' :size="btnSize" @click="openDialog(s_dialogs[mapName])">背景</b-button>
                 </div>
                 <div class="top-right-div">
-                  <b-button i v-if="mapName === 'map01'" class='olbtn' :size="btnSize" @click="openDialog(s_dialogs['mainInfoDialog'])"><i class="fa-brands fa-github"></i></b-button>
+<!--                  <b-button i v-if="mapName === 'map01'" class='olbtn' :size="btnSize" @click="openDialog(s_dialogs['mainInfoDialog'])"><i class="fa-brands fa-github"></i></b-button>-->
                 </div>
                 <div class="bottom-right-div">
                   <b-button i v-if="mapName === 'map01'" class='olbtn' :size="btnSize" @click="currentPosition"><i class="fa-solid fa-location-crosshairs"></i></b-button>

@@ -90,7 +90,8 @@ export function permalinkEventSet (response) {
       }
     }
     for (let key in obj) {
-      const maps = ['map01','map02','map03','map04']
+      // const maps = ['map01','map02','map03','map04']
+      const maps = ['map01']
       maps.forEach((map) => {
         if (key==='3d' + map) {
           store.state.base.ol3d[map] = new OLCesium({map: store.state.base.maps[map]})

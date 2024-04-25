@@ -16,7 +16,7 @@ export function popUp(map,layers,features,overlay,evt,content) {
   const prop = features[0].getProperties();
   console.log(prop)
   let lonLat
-  if (geoType === 'Polygon' || geoType === 'LineString') {
+  if (geoType === 'Polygon' || geoType === 'MultiPolygon' || geoType === 'LineString') {
     coordinate = evt.coordinate
     lonLat = transform([coordinate[0],coordinate[1]], "EPSG:3857", "EPSG:4326")
   } else {
@@ -467,7 +467,8 @@ export function popUp(map,layers,features,overlay,evt,content) {
         }
       }
       width = 300
-      cont = '<div style=width:300px>分類名=' + landFormName + '<hr>' +
+      cont = '<div style=width:300px>' +
+             '<h4>分類名=' + landFormName + '</h4>' +
              '成り立ち=' + naritachi + '<hr>' +
              'リスク=' + risk + '<hr>' +
              streetView +
