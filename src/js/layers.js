@@ -50,7 +50,9 @@ function flood(pixels, data) {
         pixel[0] = c.m00.r; pixel[1] = c.m00.g; pixel[2] = c.m00.b; pixel[3] = c.m00.a*255
       }
     } else {
-      pixel[3] = 0
+      const c = data.colors
+      pixel[0] = c.land.r; pixel[1] = c.land.g; pixel[2] = c.land.b; pixel[3] = c.land.a*255
+      // pixel[3] = 0
     }
   }
   return pixel
