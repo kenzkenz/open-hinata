@@ -19,7 +19,6 @@ import Mask from 'ol-ext/filter/Mask'
 import  * as MaskDep from './mask-dep'
 import  * as LayersMvt from './layers-mvt'
 import BingMaps from 'ol/source/BingMaps'
-import {kyuusekki0Obj, wikiObj} from "./layers-mvt";
 const mapsStr = ['map01','map02','map03','map04']
 const transformE = extent => {
   return transformExtent(extent,'EPSG:4326','EPSG:3857')
@@ -64,7 +63,8 @@ function flood(pixels, data) {
 }
 //dem10---------------------------------------------------------------------------------
 // const url = 'https://cyberjapandata.gsi.go.jp/xyz/dem_png/{z}/{x}/{y}.png'
-const url = 'https://tiles.gsj.jp/tiles/elev/land/{z}/{y}/{x}.png'
+const url = 'https://tiles.gsj.jp/tiles/elev/land/{z}/{y}/{x}.png' // 陸のみ
+// const url = 'https://gsj-seamless.jp/labs/elev2/elev/{z}/{y}/{x}.png' // 海あり
 const elevation10 = new XYZ({
   url:url,
   // maxZoom:14,
@@ -734,7 +734,8 @@ function Ryuuiki () {
   this.preload = Infinity
   this.source = new XYZ({
     // url: 'https://kenzkenz.xsrv.jp/open-hinata/php/proxy-png-curl.php?url=https://tiles.dammaps.jp/ryuiki_t/1/{z}/{x}/{y}.png',
-    url: 'https://tiles.dammaps.jp/ryuiki_t/1/{z}/{x}/{y}.png',
+    // url: 'https://tiles.dammaps.jp/ryuiki_t/1/{z}/{x}/{y}.png',
+    url: 'https://kenzkenz3.xsrv.jp/ryuuiki/{z}/{x}/{y}.png',
     // crossOrigin: 'Anonymous',
     minZoom: 5,
     maxZoom: 14
@@ -12455,7 +12456,7 @@ export const Layers =
         { text: '傾斜量図', data: { id: 'keisya', layer: keisyaObj, opacity: 1, summary: stdSumm } },
         { text: '明治期の低湿地', data: { id: 'sitti', layer: sittiObj, opacity: 1, summary: stdSumm } },
         { text: '治水地形分類図 更新版（2007年以降）', data: { id: 'tisui2007', layer: tisui2007Obj, opacity: 1, summary: tisui2007Summ } },
-        { text: '地形分類（自然地形）', data: { id: 'sizen', layer: LayersMvt.sizentikei0Obj, opacity: 1, summary: LayersMvt.sizentikeiSumm} },
+        { text: '地形分類（自然地形）', data: { id: 'sizen', layer: LayersMvt.sizentikei0Objfぉおd, opacity: 1, summary: LayersMvt.sizentikeiSumm} },
         // { text: '地形分類（自然地形『詳細版』）', data: { id: 'sizen', layer: LayersMvt.sizentikeiObj, opacity: 1, summary: LayersMvt.sizentikeiSumm} },
         { text: '地形分類（人工地形）', data: { id: "zinkoutikei", layer: LayersMvt.zinkoutikeiObj, opacity: 1, summary: LayersMvt.sizentikeiSumm } },
         { text: '土地利用図（1982～1983年）', data: { id: "totiriyouzu", layer: totiriyouzuObj, opacity: 1, summary: totiriyouzuSumm } },
@@ -13654,7 +13655,7 @@ export const Layers =
         // { text: 'テスト2', data: { id: "test2", layer: bingRoadobj, opacity: 1, summary: LayersMvt.suiroSumm } },
         { text: 'ラスタータイルtest', data: { id: "dokuji", layer: dokujiObj, opacity: 1, summary: LayersMvt.busSumm, component: {name: 'dokuji', values:[]}} },
         { text: '一等三角点', data: { id: "itto", layer: LayersMvt.ittosankakutenObj, opacity: 1, summary: LayersMvt.ittosankakutenSumm } },
-        { text: 'ウィキメディア・コモンズ', data: { id: "wiki", layer: wikiObj, opacity: 1, summary: LayersMvt.wikiSumm } },
+        { text: 'ウィキメディア・コモンズ', data: { id: "wiki", layer: LayersMvt.wikiObj, opacity: 1, summary: LayersMvt.wikiSumm } },
 
         { text: '気象庁予報区（一次細分区域等 ）', data: { id: "yohouku1", layer: LayersMvt.yohouku1Obj, opacity: 1, summary: LayersMvt.yohoukuSumm } },
         { text: '夜の明かり', data: { id: "japanLight", layer: LayersMvt.japanLightObj, opacity: 1, summary: LayersMvt.japanLightSumm } },
