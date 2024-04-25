@@ -26,17 +26,11 @@ const transformE = extent => {
 function flood(pixels, data) {
   const pixel = pixels[0]
   if (pixel[3]) {
-    // let height = (pixel[0] * 256 * 256 + pixel[1] * 256 + pixel[2]) / 100
     let height
     if (pixel[3] === 255) {
-      // let r = pixel[0]
-      // if (r >= 128) {
-      //   r = r - 256
-      // }
-      // height = r * 256 * 256 + pixel[1] * 256 + pixel[2];
-      height = pixel[0] * 256 * 256 + pixel[1] * 256 + pixel[2];
-      height = (height < 8323072) ? height : height - 16777216;
-      height /= 100;
+      height = pixel[0] * 256 * 256 + pixel[1] * 256 + pixel[2]
+      height = (height < 8323072) ? height : height - 16777216
+      // height /= 100 //他のDEMを使う時はこれ
     }
     // console.log(height)
     if (height <= data.level) {
@@ -63,8 +57,8 @@ function flood(pixels, data) {
 }
 //dem10---------------------------------------------------------------------------------
 // const url = 'https://cyberjapandata.gsi.go.jp/xyz/dem_png/{z}/{x}/{y}.png'
-const url = 'https://tiles.gsj.jp/tiles/elev/land/{z}/{y}/{x}.png' // 陸のみ
-// const url = 'https://gsj-seamless.jp/labs/elev2/elev/{z}/{y}/{x}.png' // 海あり
+// const url = 'https://tiles.gsj.jp/tiles/elev/land/{z}/{y}/{x}.png' // 陸のみ
+const url = 'https://gsj-seamless.jp/labs/elev2/elev/{z}/{y}/{x}.png' // 海あり
 const elevation10 = new XYZ({
   url:url,
   // maxZoom:14,
