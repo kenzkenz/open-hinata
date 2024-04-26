@@ -30,7 +30,7 @@ function flood(pixels, data) {
     if (pixel[3] === 255) {
       height = pixel[0] * 256 * 256 + pixel[1] * 256 + pixel[2]
       height = (height < 8323072) ? height : height - 16777216
-      // height /= 100 //他のDEMを使う時はこれ
+      height /= 100 //他のDEMを使う時はこれ
     }
     // console.log(height)
     if (height >= data.level) { // 陸上
@@ -87,7 +87,7 @@ function flood2(pixels, data) {
     if (pixel[3] === 255) {
       height = pixel[0] * 256 * 256 + pixel[1] * 256 + pixel[2]
       height = (height < 8323072) ? height : height - 16777216
-      // height /= 100 //他のDEMを使う時はこれ
+      height /= 100 //他のDEMを使う時はこれ
     }
     if (height >= data.level) { // 陸上
       pixel[3] = 0
@@ -101,9 +101,9 @@ function flood2(pixels, data) {
 //dem10---------------------------------------------------------------------------------
 // const url = 'https://cyberjapandata.gsi.go.jp/xyz/dem_png/{z}/{x}/{y}.png'
 // const url = 'https://tiles.gsj.jp/tiles/elev/land/{z}/{y}/{x}.png' // 陸のみ
-const url = 'https://gsj-seamless.jp/labs/elev2/elev/{z}/{y}/{x}.png' // 海あり
+// const url = 'https://gsj-seamless.jp/labs/elev2/elev/{z}/{y}/{x}.png' // 海あり
 const elevation10 = new XYZ({
-  url:url,
+  url:'https://tiles.gsj.jp/tiles/elev/mixed/{z}/{y}/{x}.png',
   maxZoom:9,
   // maxZoom:15,
   crossOrigin:'anonymous',
