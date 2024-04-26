@@ -218,6 +218,12 @@ const moduleInfo = {
       map03: 100,
       map04: 100
     },
+    land: {
+      map01: true,
+      map02: true,
+      map03: true,
+      map04: true
+    },
     seaLevel5m: {
       map01: 10,
       map02: 10,
@@ -245,9 +251,32 @@ const moduleInfo = {
       // m00: {r: 232,g: 226,b:8,a:166/255 },
       // m000: {r: 0,g: 0,b:0,a:0 }
 
+      m5: {r: 145,g: 255,b:0,a:255/255 },
+      m10: {r: 145,g: 255,b:0,a:255/255 },
+      m50: {r: 145,g: 255 ,b:0,a:255/255 },
+      m100: {r: 255,g: 255,b:0,a:255/255 },
+      m500: {r: 255,g: 125,b:0,a:255/255 },
+      m1500: {r: 255,g: 140,b:0,a:255/255 },
+      m2500: {r: 255,g: 68,b:0,a:255/255 },
+      sea: {r: 0,g: 0,b:255,a:255/255 },
+
+      sea5: {r: 0,g: 0,b:255,a:255/255 },
+      sea10: {r: 0,g: 0,b:255,a:255/255 },
+      sea50: {r: 0,g: 0 ,b:205,a:255/255 },
+      sea100: {r: 0,g: 0,b:205,a:255/255 },
+      sea500: {r: 0,g: 0,b:205,a:255/255 },
+      sea1500: {r: 0,g: 0,b:139,a:255/255 },
+      sea2500: {r: 0,g: 0,b:128,a:255/255 },
+      sea3500: {r: 25,g: 25,b:112,a:255/255 },
+
+
+
+
+
+
       m20: {r: 0,g: 0,b:255,a:122/255 },
-      m10: {r: 0,g: 0,b:255,a:122/255 },
-      m5: {r: 0,g: 0,b:255,a:122/255 },
+      // m10: {r: 0,g: 0,b:255,a:122/255 },
+      // m5: {r: 0,g: 0,b:255,a:122/255 },
       m3: {r: 0,g: 0,b:255,a:122/255 },
       m0: {r: 0,g: 0,b:255,a:122/255 },
       m00: {r: 0,g: 0,b:255,a:122/255 },
@@ -302,6 +331,9 @@ const moduleInfo = {
     },
     updateSelected10m (state,payload) {
       state.selected10m[payload.mapName] = payload.value
+    },
+    updateLand (state,payload) {
+      state.land[payload.mapName] = payload.value
     },
     updateDokujiUrl (state,payload) {
       state.dokujiUrl[payload.mapName] = payload.value

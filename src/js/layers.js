@@ -33,38 +33,76 @@ function flood(pixels, data) {
       // height /= 100 //他のDEMを使う時はこれ
     }
     // console.log(height)
-    if (height <= data.level) {
-      let sinsui = - height + data.level
+    if (height >= data.level) { // 陸上
+      // let sinsui = - height + data.level
+      let sinsui = height - data.level
       const c = data.colors
-      if (sinsui >= 20) {
-        pixel[0] = c.m20.r; pixel[1] = c.m20.g; pixel[2] = c.m20.b; pixel[3] = c.m20.a*255
-      } else if (sinsui >= 10) {
-        pixel[0] = c.m10.r; pixel[1] = c.m10.g; pixel[2] = c.m10.b; pixel[3] = c.m10.a*255
-      } else if (sinsui >= 5) {
+      if (sinsui <= 10) {
         pixel[0] = c.m5.r; pixel[1] = c.m5.g; pixel[2] = c.m5.b; pixel[3] = c.m5.a*255
-      } else if (sinsui >= 3) {
-        pixel[0] = c.m3.r; pixel[1] = c.m3.g; pixel[2] = c.m3.b; pixel[3] = c.m3.a*255
-      } else if (sinsui >= 0.5) {
-        pixel[0] = c.m0.r; pixel[1] = c.m0.g; pixel[2] = c.m0.b; pixel[3] = c.m0.a*255
-      } else if (sinsui >= 0.0) {
-        pixel[0] = c.m00.r; pixel[1] = c.m00.g; pixel[2] = c.m00.b; pixel[3] = c.m00.a*255
+      } else if (sinsui <= 50) {
+        pixel[0] = c.m10.r; pixel[1] = c.m10.g; pixel[2] = c.m10.b; pixel[3] = c.m10.a*255
+      } else if (sinsui <= 100) {
+        pixel[0] = c.m50.r; pixel[1] = c.m50.g; pixel[2] = c.m50.b; pixel[3] = c.m50.a*255
+      } else if (sinsui <= 500) {
+        pixel[0] = c.m100.r; pixel[1] = c.m100.g; pixel[2] = c.m100.b; pixel[3] = c.m100.a*255
+      } else if (sinsui <= 1500) {
+        pixel[0] = c.m500.r; pixel[1] = c.m500.g; pixel[2] = c.m500.b; pixel[3] = c.m500.a*255
+      } else if (sinsui <= 2500) {
+        pixel[0] = c.m1500.r;pixel[1] = c.m1500.g;pixel[2] = c.m1500.b;pixel[3] = c.m1500.a * 255
+      } else {
+        pixel[0] = c.m2500.r;pixel[1] = c.m2500.g;pixel[2] = c.m2500.b;pixel[3] = c.m2500.a * 255
       }
-    } else {
+    } else { //海面下
+      // let sinsui = - height + data.level
+      let sinsui = height - data.level
       const c = data.colors
-      pixel[0] = c.land.r; pixel[1] = c.land.g; pixel[2] = c.land.b; pixel[3] = c.land.a*255
+      if (sinsui >= -10) {
+        pixel[0] = c.sea10.r; pixel[1] = c.sea10.g; pixel[2] = c.sea10.b; pixel[3] = c.sea10.a*255
+      } else if (sinsui >= -50) {
+        pixel[0] = c.sea50.r; pixel[1] = c.sea50.g; pixel[2] = c.sea50.b; pixel[3] = c.sea50.a*255
+      } else if (sinsui >= -100) {
+        pixel[0] = c.sea100.r; pixel[1] = c.sea100.g; pixel[2] = c.sea100.b; pixel[3] = c.sea100.a*255
+      } else if (sinsui >= -500) {
+        pixel[0] = c.sea500.r; pixel[1] = c.sea500.g; pixel[2] = c.sea500.b; pixel[3] = c.sea500.a*255
+      } else if (sinsui >= -1500) {
+        pixel[0] = c.sea1500.r; pixel[1] = c.sea1500.g; pixel[2] = c.sea1500.b; pixel[3] = c.sea1500.a*255
+      } else if (sinsui >= -2500) {
+        pixel[0] = c.sea2500.r;pixel[1] = c.sea2500.g;pixel[2] = c.sea2500.b;pixel[3] = c.sea2500.a*255
+      } else {
+        pixel[0] = c.sea3500.r;pixel[1] = c.sea3500.g;pixel[2] = c.sea3500.b;pixel[3] = c.sea3500.a*255
+      }
+      // pixel[0] = c.sea.r; pixel[1] = c.sea.g; pixel[2] = c.sea.b; pixel[3] = c.sea.a*255
+      // pixel[0] = c.land.r; pixel[1] = c.land.g; pixel[2] = c.land.b; pixel[3] = c.land.a*255
       // pixel[3] = 0
     }
   }
   return pixel
 }
+//
+// if (sinsui >= 20) {
+//   pixel[0] = c.m20.r; pixel[1] = c.m20.g; pixel[2] = c.m20.b; pixel[3] = c.m20.a*255
+// } else if (sinsui >= 10) {
+//   pixel[0] = c.m10.r; pixel[1] = c.m10.g; pixel[2] = c.m10.b; pixel[3] = c.m10.a*255
+// } else if (sinsui >= 5) {
+//   pixel[0] = c.m5.r; pixel[1] = c.m5.g; pixel[2] = c.m5.b; pixel[3] = c.m5.a*255
+// } else if (sinsui >= 3) {
+//   pixel[0] = c.m3.r; pixel[1] = c.m3.g; pixel[2] = c.m3.b; pixel[3] = c.m3.a*255
+// } else if (sinsui >= 0.5) {
+//   pixel[0] = c.m0.r; pixel[1] = c.m0.g; pixel[2] = c.m0.b; pixel[3] = c.m0.a*255
+// } else if (sinsui >= 0.0) {
+//   pixel[0] = c.m00.r; pixel[1] = c.m00.g; pixel[2] = c.m00.b; pixel[3] = c.m00.a*255
+// }
+
+
+
 //dem10---------------------------------------------------------------------------------
 // const url = 'https://cyberjapandata.gsi.go.jp/xyz/dem_png/{z}/{x}/{y}.png'
 // const url = 'https://tiles.gsj.jp/tiles/elev/land/{z}/{y}/{x}.png' // 陸のみ
 const url = 'https://gsj-seamless.jp/labs/elev2/elev/{z}/{y}/{x}.png' // 海あり
 const elevation10 = new XYZ({
   url:url,
-  // maxZoom:14,
-  maxZoom:13,
+  maxZoom:15,
+  // maxZoom:13,
   crossOrigin:'anonymous'
 });
 function Dem10 () {
@@ -72,7 +110,7 @@ function Dem10 () {
     sources:[elevation10],
     operation:flood
   })
-  this.maxResolution = 19.109258
+  // this.maxResolution = 19.109258
 }
 export const flood10Obj = {}
 for (let i of mapsStr) {
@@ -112,7 +150,7 @@ for (let i of mapsStr) {
   flood100Obj[i] = new LayerGroup({
     layers: [
       flood10Obj[i],
-      flood102Obj[i],
+      // flood102Obj[i],
     ]
   })
 }
@@ -171,6 +209,24 @@ for (let i of mapsStr) {
     }
   });
 }
+
+function SeamlessCisitu () {
+  this.preload = Infinity
+  this.source = new XYZ({
+    url: 'https://gbank.gsj.jp/seamless/v2/api/1.2/tiles/{z}/{y}/{x}.png?layer=glf',
+    crossOrigin: 'Anonymous',
+    minZoom: 5,
+    maxZoom: 13
+  })
+}
+const seamelesChisituObj = {};
+for (let i of mapsStr) {
+  seamelesChisituObj[i] = new TileLayer(new SeamlessCisitu())
+}
+
+
+
+
 const seamlessSumm = ''
 function operationFunc () {
   return function (pixels, data) {
