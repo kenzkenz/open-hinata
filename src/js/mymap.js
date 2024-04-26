@@ -1158,18 +1158,30 @@ export function watchLayer (map, thisName, newLayerList,oldLayerList) {
             }
         }
         console.log(layer.get('multiply'))
-        if (layer.get('multiply')) {
-
-        }
-
-        if (newLayerList[0][i].multipli===false || newLayerList[0][i].multipli===undefined) {
-            layer.on("prerender", function(evt){
+        if (newLayerList[0][i].multipli===false) {
+            layer.on("prerender", function (evt) {
                 evt.context.globalCompositeOperation = 'source-over';
             });
-            layer.on("postrender", function(evt){
+            layer.on("postrender", function (evt) {
                 evt.context.globalCompositeOperation = '';
             })
-
+        } else if(newLayerList[0][i].multipli===undefined) {
+            if (layer.get('multiply')) {
+                newLayerList[0][i].multipli = true
+                layer.on("prerender", function (evt) {
+                    evt.context.globalCompositeOperation = 'multiply';
+                });
+                layer.on("postrender", function (evt) {
+                    evt.context.globalCompositeOperation = 'source-over';
+                })
+            } else {
+                layer.on("prerender", function (evt) {
+                    evt.context.globalCompositeOperation = 'source-over';
+                });
+                layer.on("postrender", function (evt) {
+                    evt.context.globalCompositeOperation = '';
+                })
+            }
         } else {
             layer.on("prerender", function(evt){
                 evt.context.globalCompositeOperation = 'multiply';

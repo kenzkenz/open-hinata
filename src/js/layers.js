@@ -211,7 +211,8 @@ const sources =new XYZ({
 function seamless () {
   this.name = 'seamless'
    // this.className = 'pointer'
-  this.pointer = true
+  this.pointer = true,
+  this.multiply = true,
   this.source = new RasterSource({
     sources:[sources],
     operation:operationFunc()
@@ -229,6 +230,9 @@ for (let i of mapsStr) {
 
 function SeamlessCisitu () {
   this.preload = Infinity
+  this.name = 'seamless'
+  this.pointer = true,
+  this.multiply = true,
   this.source = new XYZ({
     url: 'https://gbank.gsj.jp/seamless/v2/api/1.2/tiles/{z}/{y}/{x}.png?layer=glf',
     crossOrigin: 'Anonymous',
@@ -12525,7 +12529,7 @@ export const Layers =
         { text: '傾斜量図', data: { id: 'keisya', layer: keisyaObj, opacity: 1, summary: stdSumm } },
         { text: '明治期の低湿地', data: { id: 'sitti', layer: sittiObj, opacity: 1, summary: stdSumm } },
         { text: '治水地形分類図 更新版（2007年以降）', data: { id: 'tisui2007', layer: tisui2007Obj, opacity: 1, summary: tisui2007Summ } },
-        { text: '地形分類（自然地形）', data: { id: 'sizen', layer: LayersMvt.sizentikei0Objfぉおd, opacity: 1, summary: LayersMvt.sizentikeiSumm} },
+        { text: '地形分類（自然地形）', data: { id: 'sizen', layer: LayersMvt.sizentikei0Obj, opacity: 1, summary: LayersMvt.sizentikeiSumm} },
         // { text: '地形分類（自然地形『詳細版』）', data: { id: 'sizen', layer: LayersMvt.sizentikeiObj, opacity: 1, summary: LayersMvt.sizentikeiSumm} },
         { text: '地形分類（人工地形）', data: { id: "zinkoutikei", layer: LayersMvt.zinkoutikeiObj, opacity: 1, summary: LayersMvt.sizentikeiSumm } },
         { text: '土地利用図（1982～1983年）', data: { id: "totiriyouzu", layer: totiriyouzuObj, opacity: 1, summary: totiriyouzuSumm } },
@@ -12580,7 +12584,9 @@ export const Layers =
       ]},
     { text: '立体図、地質図等',
       children: [
-        { text: 'シームレス地質図', data: { id: 'seamless', layer: seamlessObj, opacity: 1, summary: seamlessSumm,component: {name: 'seamless', values:[]} } },
+        // { text: 'シームレス地質図', data: { id: 'seamless', layer: seamlessObj, opacity: 1, summary: seamlessSumm,component: {name: 'seamless', values:[]} } },
+        { text: 'シームレス地質図', data: { id: 'seamless', layer: seamelesChisituObj, opacity: 1, summary: seamlessSumm } },
+
         { text: '河川', data: { id: "kasen", layer: LayersMvt.kasenLine0Obj, opacity: 1, summary: LayersMvt.kasenLineSumm } },
         { text: '川だけ地形地図', data: { id: 'kawadake', layer: kawadakeObj, opacity: 1, summary: kawadakeSumm } },
         { text: '川と流域地図', data: { id: 'ryuuiki', layer: ryuuikiObj, opacity: 1, summary: ryuuikiSumm } },

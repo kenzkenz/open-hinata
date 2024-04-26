@@ -3202,6 +3202,7 @@ var codeList_sizen = new Array(//図式コード,"色"]
 );
 // 簡易版
 function Sizentikei0(name,minzoom,maxzoom,url){
+  this.multiply = true,
   this.name = 'sizentikei0'
   this.source = new VectorTileSource({
     format: new GeoJSON({defaultProjection:'EPSG:4326'}),
@@ -3220,6 +3221,7 @@ for (let i of mapsStr) {
 }
 // 詳細版
 function Sizentikei(name,minzoom,maxzoom,url,zIndex){
+  this.multiply = true,
   this.name = 'sizentikei'
   this.source = new VectorTileSource({
     format: new GeoJSON({defaultProjection:'EPSG:4326'}),
@@ -3251,6 +3253,7 @@ for (let i of mapsStr) {
 export const sizentikeiSumm = "<a href='https://github.com/gsi-cyberjapan/experimental_landformclassification' target='_blank'>国土地理院ベクトルタイル提供実験（地形分類）</a>"
 //---------------------------------------------
 function Zinkoutikei(minzoom,maxzoom){
+  this.multiply = true,
   this.name = 'zinkoutikei'
   this.source = new VectorTileSource({
     format: new GeoJSON({defaultProjection:'EPSG:4326'}),

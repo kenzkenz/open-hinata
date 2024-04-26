@@ -214,11 +214,13 @@ export function permalinkEventSet (response) {
                   saiki(node.children)
                 } else {
                   if (urlLayerListArr[i][j].id === node.data.id) {
-                    const mapName = 'map0' + ( i + 1 );
+                    const mapName = 'map0' + ( i + 1 )
+
                     store.commit('base/unshiftLayerList', {
                       value: {
                         id: node.data.id,
                         multipli: urlLayerListArr[i][j].m,
+                        // multipli: true,
                         check: urlLayerListArr[i][j].ck,
                         title: node.text,
                         layer: node.data.layer,
