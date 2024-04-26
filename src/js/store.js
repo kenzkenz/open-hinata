@@ -59,6 +59,7 @@ const moduleBase = {
     layerList: (state) => (mapName) => {
       return state.layerLists[mapName]
     },
+    // 重要！！！！！！！！！！------------------------------------------------
     layerLists (state) {
       const layerListArr = [];
       layerListArr.push(state.layerLists.map01);layerListArr.push(state.layerLists.map02);layerListArr.push(state.layerLists.map03);layerListArr.push(state.layerLists.map04);

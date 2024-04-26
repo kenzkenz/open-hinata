@@ -34,8 +34,9 @@ function flood(pixels, data) {
     }
     // console.log(height)
     if (height >= data.level) { // 陸上
-
       let sinsui = height - data.level
+      // console.log(height,data.level)
+
       const c = data.colors
       if (sinsui <= 10) {
         pixel[0] = c.m5.r; pixel[1] = c.m5.g; pixel[2] = c.m5.b; pixel[3] = c.m5.a*255
@@ -103,8 +104,8 @@ function flood2(pixels, data) {
 const url = 'https://gsj-seamless.jp/labs/elev2/elev/{z}/{y}/{x}.png' // 海あり
 const elevation10 = new XYZ({
   url:url,
-  maxZoom:15,
-  // maxZoom:13,
+  maxZoom:9,
+  // maxZoom:15,
   crossOrigin:'anonymous',
   interpolate: false,
 });
