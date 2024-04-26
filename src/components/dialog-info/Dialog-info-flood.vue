@@ -24,6 +24,7 @@
                 <input type="range" min="-200" :max="floodMax10m" :step="seaLevelStep10m" class="flood-range10m" v-model.number="s_seaLevel10m" @input="flood10m" />
                 <div style="text-align: center;">{{ s_seaLevel10m.toFixed(1) }}m上昇した場合</div>
                 <p v-html="item.summary"></p><hr>
+<!--                <input type="checkbox" v-model="s_land" @change="landChangge">-->
 <!--                <div style="position: absolute;left:260px;"><chrome-picker v-show="colorsShowFlg" v-model="s_colors" @input="colorChange10m"/></div>-->
 <!--                <div @click="colorsShow('m20')" :style="style('m20')">20m～</div>-->
 <!--                <div @click="colorsShow('m10')" :style="style('m10')">10m～20m</div>-->
@@ -99,9 +100,25 @@
         set(value) {
           this.$store.commit('info/updateSelected10m', {mapName: this.mapName, value:value})
         }
+      },
+      s_land: {
+        get() {
+          return this.$store.state.info.landCheck[this.mapName]
+        },
+        set(value) {
+          this.$store.commit('info/updateLand', {mapName: this.mapName, value:value})
+        }
       }
     },
     methods: {
+      landChangge (value) {
+        console.log(this.s_land)
+
+
+
+        Layers.flood10Obj[this.mapName].getSource().changed();
+        this.storeUpdate('10m')
+      },
       style (colorM) {
         let rgba; let border;
         if (this.colorM === colorM) {
@@ -152,15 +169,17 @@
       },
       // 海面上昇シミュレーション
       storeUpdate (dem) {
-        let lebel; let selected;
+        let lebel; let selected; let land;
         if (dem === '5m') {
           lebel = this.s_seaLevel5m;
           selected = this.s_selected5m;
         } else {
           lebel = this.s_seaLevel10m;
           selected = this.s_selected10m;
+          land = this.s_land
         }
-        this.$store.commit('base/updateListPart',{mapName: this.mapName, id:this.item.id, values: [lebel, selected]});
+        console.log(land)
+        this.$store.commit('base/updateListPart',{mapName: this.mapName, id:this.item.id, values: [lebel, selected, land]});
         permalink.moveEnd();
       },
       flood5m () {

@@ -218,7 +218,7 @@ const moduleInfo = {
       map03: 100,
       map04: 100
     },
-    land: {
+    landCheck: {
       map01: true,
       map02: true,
       map03: true,
@@ -303,8 +303,10 @@ const moduleInfo = {
         case 'flood10m':
           if (payload.order === 0) {
             variable = 'seaLevel10m'
-          } else {
+          } else if (payload.order === 1){
             variable = 'selected10m'
+          } else if (payload.order === 2){
+            variable = 'landCheck'
           }
           break
         case 'kouzi':
@@ -333,7 +335,7 @@ const moduleInfo = {
       state.selected10m[payload.mapName] = payload.value
     },
     updateLand (state,payload) {
-      state.land[payload.mapName] = payload.value
+      state.landCheck[payload.mapName] = payload.value
     },
     updateDokujiUrl (state,payload) {
       state.dokujiUrl[payload.mapName] = payload.value

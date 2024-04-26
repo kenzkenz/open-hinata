@@ -34,7 +34,7 @@ function flood(pixels, data) {
     }
     // console.log(height)
     if (height >= data.level) { // 陸上
-      // let sinsui = - height + data.level
+
       let sinsui = height - data.level
       const c = data.colors
       if (sinsui <= 10) {
@@ -52,6 +52,7 @@ function flood(pixels, data) {
       } else {
         pixel[0] = c.m2500.r;pixel[1] = c.m2500.g;pixel[2] = c.m2500.b;pixel[3] = c.m2500.a * 255
       }
+
     } else { //海面下
       // let sinsui = - height + data.level
       let sinsui = height - data.level
@@ -78,30 +79,48 @@ function flood(pixels, data) {
   }
   return pixel
 }
-//
-// if (sinsui >= 20) {
-//   pixel[0] = c.m20.r; pixel[1] = c.m20.g; pixel[2] = c.m20.b; pixel[3] = c.m20.a*255
-// } else if (sinsui >= 10) {
-//   pixel[0] = c.m10.r; pixel[1] = c.m10.g; pixel[2] = c.m10.b; pixel[3] = c.m10.a*255
-// } else if (sinsui >= 5) {
-//   pixel[0] = c.m5.r; pixel[1] = c.m5.g; pixel[2] = c.m5.b; pixel[3] = c.m5.a*255
-// } else if (sinsui >= 3) {
-//   pixel[0] = c.m3.r; pixel[1] = c.m3.g; pixel[2] = c.m3.b; pixel[3] = c.m3.a*255
-// } else if (sinsui >= 0.5) {
-//   pixel[0] = c.m0.r; pixel[1] = c.m0.g; pixel[2] = c.m0.b; pixel[3] = c.m0.a*255
-// } else if (sinsui >= 0.0) {
-//   pixel[0] = c.m00.r; pixel[1] = c.m00.g; pixel[2] = c.m00.b; pixel[3] = c.m00.a*255
-// }
-
-
-
+function flood2(pixels, data) {
+  const pixel = pixels[0]
+  if (pixel[3]) {
+    let height
+    if (pixel[3] === 255) {
+      height = pixel[0] * 256 * 256 + pixel[1] * 256 + pixel[2]
+      height = (height < 8323072) ? height : height - 16777216
+      // height /= 100 //他のDEMを使う時はこれ
+    }
+    // console.log(height)
+    if (height >= data.level) { // 陸上
+      pixel[3] = 0
+    } else { //海面下
+      // let sinsui = - height + data.level
+      // let sinsui = height - data.level
+      const c = data.colors
+      // if (sinsui >= -10) {
+        pixel[0] = c.sea10.r; pixel[1] = c.sea10.g; pixel[2] = c.sea10.b; pixel[3] = c.sea10.a*255
+      // } else if (sinsui >= -50) {
+      //   pixel[0] = c.sea50.r; pixel[1] = c.sea50.g; pixel[2] = c.sea50.b; pixel[3] = c.sea50.a*255
+      // } else if (sinsui >= -100) {
+      //   pixel[0] = c.sea100.r; pixel[1] = c.sea100.g; pixel[2] = c.sea100.b; pixel[3] = c.sea100.a*255
+      // } else if (sinsui >= -500) {
+      //   pixel[0] = c.sea500.r; pixel[1] = c.sea500.g; pixel[2] = c.sea500.b; pixel[3] = c.sea500.a*255
+      // } else if (sinsui >= -1500) {
+      //   pixel[0] = c.sea1500.r; pixel[1] = c.sea1500.g; pixel[2] = c.sea1500.b; pixel[3] = c.sea1500.a*255
+      // } else if (sinsui >= -2500) {
+      //   pixel[0] = c.sea2500.r;pixel[1] = c.sea2500.g;pixel[2] = c.sea2500.b;pixel[3] = c.sea2500.a*255
+      // } else {
+      //   pixel[0] = c.sea3500.r;pixel[1] = c.sea3500.g;pixel[2] = c.sea3500.b;pixel[3] = c.sea3500.a*255
+      // }
+    }
+  }
+  return pixel
+}
 //dem10---------------------------------------------------------------------------------
 // const url = 'https://cyberjapandata.gsi.go.jp/xyz/dem_png/{z}/{x}/{y}.png'
 // const url = 'https://tiles.gsj.jp/tiles/elev/land/{z}/{y}/{x}.png' // 陸のみ
 const url = 'https://gsj-seamless.jp/labs/elev2/elev/{z}/{y}/{x}.png' // 海あり
 const elevation10 = new XYZ({
   url:url,
-  maxZoom:15,
+  maxZoom:14,
   // maxZoom:13,
   crossOrigin:'anonymous'
 });
@@ -110,7 +129,6 @@ function Dem10 () {
     sources:[elevation10],
     operation:flood
   })
-  // this.maxResolution = 19.109258
 }
 export const flood10Obj = {}
 for (let i of mapsStr) {
@@ -120,20 +138,11 @@ for (let i of mapsStr) {
     event.data.colors = store.state.info.colors
   });
 }
-//----------------------------
-const elevation102 = new XYZ({
-  url:url,
-  maxZoom:11,
-  crossOrigin:'anonymous'
-});
 function Dem102 () {
   this.source = new RasterSource({
-    sources:[elevation102],
-    operation:flood
+    sources:[elevation10],
+    operation:flood2
   })
-  this.minResolution = 19.109258
-  // this.minResolution = 19.109257
-  // this.minResolution = 9.554629
 }
 export const flood102Obj = {}
 for (let i of mapsStr) {
@@ -143,6 +152,29 @@ for (let i of mapsStr) {
     event.data.colors = store.state.info.colors
   });
 }
+//----------------------------
+// const elevation102 = new XYZ({
+//   url:url,
+//   maxZoom:11,
+//   crossOrigin:'anonymous'
+// });
+// function Dem102 () {
+//   this.source = new RasterSource({
+//     sources:[elevation102],
+//     operation:flood
+//   })
+//   this.minResolution = 19.109258
+//   // this.minResolution = 19.109257
+//   // this.minResolution = 9.554629
+// }
+// export const flood102Obj = {}
+// for (let i of mapsStr) {
+//   flood102Obj[i] = new ImageLaye(new Dem102())
+//   flood102Obj[i].getSource().on('beforeoperations', function(event) {
+//     event.data.level = Number(document.querySelector('#' + i  + " .flood-range10m").value)
+//     event.data.colors = store.state.info.colors
+//   });
+// }
 
 // -------------
 const flood100Obj = {};
@@ -13564,8 +13596,10 @@ export const Layers =
     { text: '海面上昇シミュレーション　　　　　',
       children: [
         // { text: '海面上昇シミュ5Mdem', data: { id: 'flood5m', layer: flood5Obj, opacity: 1, summary: floodSumm, component: {name: 'flood5m', values:[]}} },
-        { text: '海面上昇シミュ', data: { id: 'flood10m', layer: flood100Obj, opacity: 1, summary: floodSumm, component: {name: 'flood10m', values:[]}} },
-      ]},
+        { text: '海面上昇シミュ（色別標高図風）', data: { id: 'flood10m', layer: flood100Obj, opacity: 1, summary: floodSumm, component: {name: 'flood10m', values:[]}} },
+        { text: '海面上昇シミュ（シンプル）', data: { id: 'flood10m2', layer: flood102Obj, opacity: 1, summary: floodSumm, component: {name: 'flood10m', values:[]}} },
+      ]
+    },
     { text: 'ハザードマップ',
       children: [
         { text: '洪水浸水想定（想定最大規模）', data: { id: 'shinsuishin', layer: shinsuishinObj, opacity: 1, summary: shinsuishinSumm } },
