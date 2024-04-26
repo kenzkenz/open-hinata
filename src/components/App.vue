@@ -536,19 +536,14 @@
           store.state.base.maps['map01'].addControl(MyMap.dialog);
           MyMap.dialog.show({
             content:
-                '<p>新しい機能「' +
-                '<a href="https://kenzkenz.xsrv.jp/open-hinata/#sqDROP" target="_blank">3D</a>' +
-                '」を追加しました。' +
-                '画面左上の『3D』ボタンで2Dと3Dを切り替えます。' +
-                '<br>背景によってはうまく機能しません。CS立体図などがおすすめです。' +
+                '<p>海面上昇シミュを改良しました。上昇だけでなく下降もシミュレートします。「' +
+                '<a href="https://kenzkenz.xsrv.jp/open-hinata/#spCXRi" target="_blank">海面上昇シミュ</a>' +
+                '」' +
                 '<br>是非ご覧ください。',
             title: 'お知らせ',
             // buttons:{ ok:'hello', cancel:'nope' }
           })
           //-------------------------------
-
-
-
         }
       })
     }

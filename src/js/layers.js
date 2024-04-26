@@ -88,28 +88,11 @@ function flood2(pixels, data) {
       height = (height < 8323072) ? height : height - 16777216
       // height /= 100 //他のDEMを使う時はこれ
     }
-    // console.log(height)
     if (height >= data.level) { // 陸上
       pixel[3] = 0
     } else { //海面下
-      // let sinsui = - height + data.level
-      // let sinsui = height - data.level
       const c = data.colors
-      // if (sinsui >= -10) {
-        pixel[0] = c.sea10.r; pixel[1] = c.sea10.g; pixel[2] = c.sea10.b; pixel[3] = c.sea10.a*255
-      // } else if (sinsui >= -50) {
-      //   pixel[0] = c.sea50.r; pixel[1] = c.sea50.g; pixel[2] = c.sea50.b; pixel[3] = c.sea50.a*255
-      // } else if (sinsui >= -100) {
-      //   pixel[0] = c.sea100.r; pixel[1] = c.sea100.g; pixel[2] = c.sea100.b; pixel[3] = c.sea100.a*255
-      // } else if (sinsui >= -500) {
-      //   pixel[0] = c.sea500.r; pixel[1] = c.sea500.g; pixel[2] = c.sea500.b; pixel[3] = c.sea500.a*255
-      // } else if (sinsui >= -1500) {
-      //   pixel[0] = c.sea1500.r; pixel[1] = c.sea1500.g; pixel[2] = c.sea1500.b; pixel[3] = c.sea1500.a*255
-      // } else if (sinsui >= -2500) {
-      //   pixel[0] = c.sea2500.r;pixel[1] = c.sea2500.g;pixel[2] = c.sea2500.b;pixel[3] = c.sea2500.a*255
-      // } else {
-      //   pixel[0] = c.sea3500.r;pixel[1] = c.sea3500.g;pixel[2] = c.sea3500.b;pixel[3] = c.sea3500.a*255
-      // }
+      pixel[0] = c.sea10.r; pixel[1] = c.sea10.g; pixel[2] = c.sea10.b; pixel[3] = c.sea10.a*255
     }
   }
   return pixel
@@ -122,7 +105,8 @@ const elevation10 = new XYZ({
   url:url,
   maxZoom:14,
   // maxZoom:13,
-  crossOrigin:'anonymous'
+  crossOrigin:'anonymous',
+  interpolate: false,
 });
 function Dem10 () {
   this.source = new RasterSource({
