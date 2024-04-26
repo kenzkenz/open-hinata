@@ -823,6 +823,7 @@ export function initMap (vm) {
             }
             //  洪水浸水想定と重ねるときは動作させない
             const layers0 = map.getLayers().getArray();
+            console.log(layers0)
             const hazardLayers = layers0.filter(el => el.get('pointer'));
             if (hazardLayers.length>0) return
 
@@ -1156,6 +1157,10 @@ export function watchLayer (map, thisName, newLayerList,oldLayerList) {
                 }
             }
         }
+        console.log(layer.get('multiply'))
+        if (layer.get('multiply')) {
+
+        }
 
         if (newLayerList[0][i].multipli===false || newLayerList[0][i].multipli===undefined) {
             layer.on("prerender", function(evt){
@@ -1163,8 +1168,9 @@ export function watchLayer (map, thisName, newLayerList,oldLayerList) {
             });
             layer.on("postrender", function(evt){
                 evt.context.globalCompositeOperation = '';
-            });
-        }else{
+            })
+
+        } else {
             layer.on("prerender", function(evt){
                 evt.context.globalCompositeOperation = 'multiply';
             });
@@ -1172,6 +1178,7 @@ export function watchLayer (map, thisName, newLayerList,oldLayerList) {
                 evt.context.globalCompositeOperation = 'source-over';
             });
         }
+
         // グループレイヤーのとき
         if (layer.values_.layers) {
             layer.values_.layers.getArray(0).forEach(object =>{
@@ -1192,10 +1199,6 @@ export function watchLayer (map, thisName, newLayerList,oldLayerList) {
     store.commit('base/updateFirstFlg',false)
     map.removeLayer(drawLayer)
     map.addLayer(drawLayer)
-
-
-
-
 }
 
 export function opacityChange (item) {
