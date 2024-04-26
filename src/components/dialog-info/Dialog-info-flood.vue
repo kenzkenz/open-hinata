@@ -191,7 +191,7 @@
         MyMap.history ('海面上昇10mdem')
         Layers.flood10Obj[this.mapName].getSource().changed();
         Layers.flood102Obj[this.mapName].getSource().changed();
-
+        Layers.flood15Obj[this.mapName].getSource().changed();
         this.storeUpdate('10m')
       },
       floodChange5m () {

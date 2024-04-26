@@ -124,6 +124,29 @@ for (let i of mapsStr) {
     event.data.colors = store.state.info.colors
   });
 }
+const elevation15 = new XYZ({
+  url:'https://tiles.gsj.jp/tiles/elev/land/{z}/{y}/{x}.png',
+  // maxZoom:9,
+  maxZoom:15,
+  crossOrigin:'anonymous',
+  interpolate: false,
+});
+function Dem15 () {
+  this.multiply = true,
+      this.source = new RasterSource({
+        sources:[elevation15],
+        operation:flood
+      })
+}
+export const flood15Obj = {}
+for (let i of mapsStr) {
+  flood15Obj[i] = new ImageLaye(new Dem15())
+  flood15Obj[i].getSource().on('beforeoperations', function(event) {
+    event.data.level = Number(document.querySelector('#' + i  + " .flood-range10m").value)
+    event.data.colors = store.state.info.colors
+  });
+}
+
 function Dem102 () {
   this.source = new RasterSource({
     sources:[elevation10],
@@ -13589,7 +13612,9 @@ export const Layers =
       children: [
         // { text: '海面上昇シミュ5Mdem', data: { id: 'flood5m', layer: flood5Obj, opacity: 1, summary: floodSumm, component: {name: 'flood5m', values:[]}} },
         { text: '海面上昇シミュ（色別標高図風）', data: { id: 'flood10m', layer: flood10Obj, opacity: 1, summary: floodSumm, component: {name: 'flood10m', values:[]}} },
-        { text: '海面上昇シミュ（シンプル）', data: { id: 'flood10m2', layer: flood102Obj, opacity: 1, summary: floodSumm, component: {name: 'flood10m', values:[]}} },
+        // { text: '海面上昇シミュ（シンプル）', data: { id: 'flood10m2', layer: flood102Obj, opacity: 1, summary: floodSumm, component: {name: 'flood10m', values:[]}} },
+        { text: '海面上昇シミュ（詳細）', data: { id: 'flood15', layer: flood15Obj, opacity: 1, summary: floodSumm, component: {name: 'flood10m', values:[]}} },
+
       ]
     },
     { text: 'ハザードマップ',
