@@ -853,6 +853,14 @@
         -webkit-appearance: none;
         margin-top: -7.5px;
     }
+    @media screen and (max-width:480px) {
+      input[type=range]::-webkit-slider-thumb {
+        height: 23px;
+        width: 30px;
+        border-radius: 0;
+        margin-top: -12.5px;
+      }
+    }
     input[type=range]:focus::-webkit-slider-runnable-track {
         background: #B6B6B6;
     }

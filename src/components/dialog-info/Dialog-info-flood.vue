@@ -21,8 +21,8 @@
         <div v-else-if="item.component.name === 'flood10m'">
             <div class="content-div">
                 <p v-html="item.title"></p><hr>
-                <input type="range" min="-200" :max="floodMax10m" :step="seaLevelStep10m" class="flood-range10m" v-model.number="s_seaLevel10m" @input="flood10m" />
                 <div style="text-align: center;">{{ s_seaLevel10m.toFixed(1) }}m上昇した場合</div>
+                <input type="range" min="-200" :max="floodMax10m" :step="seaLevelStep10m" class="flood-range10m" v-model.number="s_seaLevel10m" @input="flood10m" />
                 <p v-html="item.summary"></p><hr>
 <!--                <input type="checkbox" v-model="s_land" @change="landChangge">-->
 <!--                <div style="position: absolute;left:260px;"><chrome-picker v-show="colorsShowFlg" v-model="s_colors" @input="colorChange10m"/></div>-->

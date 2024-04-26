@@ -103,7 +103,7 @@ function flood2(pixels, data) {
 const url = 'https://gsj-seamless.jp/labs/elev2/elev/{z}/{y}/{x}.png' // 海あり
 const elevation10 = new XYZ({
   url:url,
-  maxZoom:14,
+  maxZoom:15,
   // maxZoom:13,
   crossOrigin:'anonymous',
   interpolate: false,
