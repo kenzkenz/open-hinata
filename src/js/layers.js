@@ -145,17 +145,17 @@ for (let i of mapsStr) {
   });
 }
 
-function DemShinple () {
+function DemSinple () {
   this.multiply = true,
       this.source = new RasterSource({
     sources:[elevation15],
     operation:flood2
   })
 }
-export const flood102Obj = {}
+export const floodSinpleObj = {}
 for (let i of mapsStr) {
-  flood102Obj[i] = new ImageLaye(new DemShinple())
-  flood102Obj[i].getSource().on('beforeoperations', function(event) {
+  floodSinpleObj[i] = new ImageLaye(new DemSinple())
+  floodSinpleObj[i].getSource().on('beforeoperations', function(event) {
     event.data.level = Number(document.querySelector('#' + i  + " .flood-range10m").value)
     event.data.colors = store.state.info.colors
   });
@@ -175,10 +175,10 @@ for (let i of mapsStr) {
 //   // this.minResolution = 19.109257
 //   // this.minResolution = 9.554629
 // }
-// export const flood102Obj = {}
+// export const floodSinpleObj = {}
 // for (let i of mapsStr) {
-//   flood102Obj[i] = new ImageLaye(new Dem102())
-//   flood102Obj[i].getSource().on('beforeoperations', function(event) {
+//   floodSinpleObj[i] = new ImageLaye(new Dem102())
+//   floodSinpleObj[i].getSource().on('beforeoperations', function(event) {
 //     event.data.level = Number(document.querySelector('#' + i  + " .flood-range10m").value)
 //     event.data.colors = store.state.info.colors
 //   });
@@ -190,7 +190,7 @@ for (let i of mapsStr) {
 //   flood100Obj[i] = new LayerGroup({
 //     layers: [
 //       flood10Obj[i],
-//       // flood102Obj[i],
+//       // floodSinpleObj[i],
 //     ]
 //   })
 // }
@@ -13612,7 +13612,7 @@ export const Layers =
         // { text: '海面上昇シミュ5Mdem', data: { id: 'flood5m', layer: flood5Obj, opacity: 1, summary: floodSumm, component: {name: 'flood5m', values:[]}} },
         { text: '海面上昇シミュ（色別標高図風）', data: { id: 'flood10m', layer: flood10Obj, opacity: 1, summary: floodSumm, component: {name: 'flood10m', values:[]}} },
         { text: '海面上昇シミュ（詳細）', data: { id: 'flood15', layer: flood15Obj, opacity: 1, summary: floodSumm, component: {name: 'flood15', values:[]}} },
-        { text: '海面上昇シミュ（シンプル）', data: { id: 'flood10m2', layer: flood102Obj, opacity: 1, summary: floodSumm, component: {name: 'floodSimple', values:[]}} },
+        { text: '海面上昇シミュ（シンプル）', data: { id: 'flood10m2', layer: floodSinpleObj, opacity: 1, summary: floodSumm, component: {name: 'floodSimple', values:[]}} },
 
       ]
     },

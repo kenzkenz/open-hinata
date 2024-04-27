@@ -160,10 +160,10 @@
         Layers.flood10Obj['map03'].getSource().changed();
         Layers.flood10Obj['map04'].getSource().changed()
 
-        Layers.flood102Obj['map01'].getSource().changed();
-        Layers.flood102Obj['map02'].getSource().changed();
-        Layers.flood102Obj['map03'].getSource().changed();
-        Layers.flood102Obj['map04'].getSource().changed()
+        Layers.floodSinpleObj['map01'].getSource().changed();
+        Layers.floodSinpleObj['map02'].getSource().changed();
+        Layers.floodSinpleObj['map03'].getSource().changed();
+        Layers.floodSinpleObj['map04'].getSource().changed()
 
       },
       colorsShow (cororM) {
@@ -199,7 +199,7 @@
       flood10m () {
         MyMap.history ('海面上昇10mdem')
         Layers.flood10Obj[this.mapName].getSource().changed();
-        Layers.flood102Obj[this.mapName].getSource().changed();
+        Layers.floodSinpleObj[this.mapName].getSource().changed();
         Layers.flood15Obj[this.mapName].getSource().changed();
         this.storeUpdate('10m')
       },
@@ -236,7 +236,7 @@
       this.$nextTick(function () {
         Layers.flood5Obj[this.mapName].getSource().changed();
         Layers.flood10Obj[this.mapName].getSource().changed();
-        Layers.flood102Obj[this.mapName].getSource().changed();
+        Layers.floodSinpleObj[this.mapName].getSource().changed();
         Layers.flood15Obj[this.mapName].getSource().changed();
         this.storeUpdate('5m');
         this.storeUpdate('10m')
