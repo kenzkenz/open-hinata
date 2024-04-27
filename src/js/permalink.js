@@ -125,6 +125,8 @@ export function permalinkEventSet (response) {
           ol3d.getCamera().setDistance(json.distance)
           store.state.base.toggle3d[map] = true
           document.querySelector('#' + map + '-3d').style.display = 'block'
+
+          // drawLayer.set('altitudeMode', 'clampToGround')
         }
       })
 

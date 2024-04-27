@@ -40,6 +40,7 @@ export  const drawLayer = new VectorLayer({
     name: 'drawSource',
     // pointer: true,
     source: drawSource,
+    // altitudeMode: 'clampToGround',
     style: drawStylefunction()
 });
 export const selectInteraction = new Select({
@@ -1209,6 +1210,7 @@ export function watchLayer (map, thisName, newLayerList,oldLayerList) {
         }
     }
     store.commit('base/updateFirstFlg',false)
+    // drawLayer.set("altitudeMode","clampToGround")
     map.removeLayer(drawLayer)
     map.addLayer(drawLayer)
 }
