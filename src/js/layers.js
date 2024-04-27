@@ -109,7 +109,7 @@ const elevation9 = new XYZ({
   interpolate: false,
 });
 function Dem10 () {
-  this.multiply = true,
+  this.multiply = true
   this.source = new RasterSource({
     sources:[elevation9],
     operation:flood
@@ -130,7 +130,7 @@ const elevation15 = new XYZ({
   interpolate: false,
 });
 function Dem15 () {
-  this.multiply = true,
+  this.multiply = true
       this.source = new RasterSource({
         sources:[elevation15],
         operation:flood
@@ -146,7 +146,7 @@ for (let i of mapsStr) {
 }
 
 function DemSinple () {
-  this.multiply = true,
+  this.multiply = true
       this.source = new RasterSource({
     sources:[elevation15],
     operation:flood2
@@ -160,40 +160,6 @@ for (let i of mapsStr) {
     event.data.colors = store.state.info.colors
   });
 }
-//----------------------------
-// const elevation102 = new XYZ({
-//   url:url,
-//   maxZoom:11,
-//   crossOrigin:'anonymous'
-// });
-// function Dem102 () {
-//   this.source = new RasterSource({
-//     sources:[elevation102],
-//     operation:flood
-//   })
-//   this.minResolution = 19.109258
-//   // this.minResolution = 19.109257
-//   // this.minResolution = 9.554629
-// }
-// export const floodSinpleObj = {}
-// for (let i of mapsStr) {
-//   floodSinpleObj[i] = new ImageLaye(new Dem102())
-//   floodSinpleObj[i].getSource().on('beforeoperations', function(event) {
-//     event.data.level = Number(document.querySelector('#' + i  + " .flood-range10m").value)
-//     event.data.colors = store.state.info.colors
-//   });
-// }
-
-// -------------
-// const flood100Obj = {};
-// for (let i of mapsStr) {
-//   flood100Obj[i] = new LayerGroup({
-//     layers: [
-//       flood10Obj[i],
-//       // floodSinpleObj[i],
-//     ]
-//   })
-// }
 
 //dem5---------------------------------------------------------------------------------
 const elevation5 = new XYZ({
@@ -213,10 +179,8 @@ export const flood5Obj = {}
 for (let i of mapsStr) {
   flood5Obj[i] = new ImageLaye(new Dem5());
   flood5Obj[i].getSource().on('beforeoperations', function(event) {
-    console.log(event.data)
     event.data.level = Number(document.querySelector('#' + i  + " .flood-range5m").value)
     event.data.colors = store.state.info.colors
-    console.log(event.data)
   });
 }
 
@@ -234,8 +198,8 @@ const sources =new XYZ({
 function seamless () {
   this.name = 'seamless'
    // this.className = 'pointer'
-  this.pointer = true,
-  this.multiply = true,
+  this.pointer = true
+  this.multiply = true
   this.source = new RasterSource({
     sources:[sources],
     operation:operationFunc()
@@ -254,8 +218,8 @@ for (let i of mapsStr) {
 function SeamlessCisitu () {
   this.preload = Infinity
   this.name = 'seamless'
-  this.pointer = true,
-  this.multiply = true,
+  this.pointer = true
+  this.multiply = true
   this.source = new XYZ({
     url: 'https://gbank.gsj.jp/seamless/v2/api/1.2/tiles/{z}/{y}/{x}.png?layer=glf',
     crossOrigin: 'Anonymous',
@@ -296,7 +260,7 @@ function Osm () {
   this.preload = Infinity
   this.source = new OSM()
 }
-const osmObj = {};
+const osmObj = {}
 for (let i of mapsStr) {
   osmObj[i] = new TileLayer(new Osm())
 }
@@ -311,7 +275,7 @@ function Std () {
     maxZoom: 18
   })
 }
-const stdObj = {};
+const stdObj = {}
 for (let i of mapsStr) {
   stdObj[i] = new TileLayer(new Std())
 }
@@ -327,7 +291,7 @@ function Pale () {
   })
   this.useInterimTilesOnError = false
 }
-const paleObj = {};
+const paleObj = {}
 for (let i of mapsStr) {
   paleObj[i] = new TileLayer(new Pale())
 }
