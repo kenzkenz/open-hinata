@@ -102,17 +102,16 @@ function flood2(pixels, data) {
 // const url = 'https://cyberjapandata.gsi.go.jp/xyz/dem_png/{z}/{x}/{y}.png'
 // const url = 'https://tiles.gsj.jp/tiles/elev/land/{z}/{y}/{x}.png' // 陸のみ
 // const url = 'https://gsj-seamless.jp/labs/elev2/elev/{z}/{y}/{x}.png' // 海あり
-const elevation10 = new XYZ({
+const elevation9 = new XYZ({
   url:'https://tiles.gsj.jp/tiles/elev/mixed/{z}/{y}/{x}.png',
   maxZoom:9,
-  // maxZoom:15,
   crossOrigin:'anonymous',
   interpolate: false,
 });
 function Dem10 () {
   this.multiply = true,
   this.source = new RasterSource({
-    sources:[elevation10],
+    sources:[elevation9],
     operation:flood
   })
 }
@@ -126,7 +125,6 @@ for (let i of mapsStr) {
 }
 const elevation15 = new XYZ({
   url:'https://tiles.gsj.jp/tiles/elev/land/{z}/{y}/{x}.png',
-  // maxZoom:9,
   maxZoom:15,
   crossOrigin:'anonymous',
   interpolate: false,
@@ -147,15 +145,16 @@ for (let i of mapsStr) {
   });
 }
 
-function Dem102 () {
-  this.source = new RasterSource({
-    sources:[elevation10],
+function DemShinple () {
+  this.multiply = true,
+      this.source = new RasterSource({
+    sources:[elevation15],
     operation:flood2
   })
 }
 export const flood102Obj = {}
 for (let i of mapsStr) {
-  flood102Obj[i] = new ImageLaye(new Dem102())
+  flood102Obj[i] = new ImageLaye(new DemShinple())
   flood102Obj[i].getSource().on('beforeoperations', function(event) {
     event.data.level = Number(document.querySelector('#' + i  + " .flood-range10m").value)
     event.data.colors = store.state.info.colors
