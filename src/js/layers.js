@@ -13613,7 +13613,7 @@ export const Layers =
         // { text: '海面上昇シミュ5Mdem', data: { id: 'flood5m', layer: flood5Obj, opacity: 1, summary: floodSumm, component: {name: 'flood5m', values:[]}} },
         { text: '海面上昇シミュ（色別標高図風）', data: { id: 'flood10m', layer: flood10Obj, opacity: 1, summary: floodSumm, component: {name: 'flood10m', values:[]}} },
         // { text: '海面上昇シミュ（シンプル）', data: { id: 'flood10m2', layer: flood102Obj, opacity: 1, summary: floodSumm, component: {name: 'flood10m', values:[]}} },
-        { text: '海面上昇シミュ（詳細）', data: { id: 'flood15', layer: flood15Obj, opacity: 1, summary: floodSumm, component: {name: 'flood10m', values:[]}} },
+        { text: '海面上昇シミュ（詳細）', data: { id: 'flood15', layer: flood15Obj, opacity: 1, summary: floodSumm, component: {name: 'flood15', values:[]}} },
 
       ]
     },

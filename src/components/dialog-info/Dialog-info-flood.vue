@@ -18,11 +18,11 @@
             </div>
         </div>
         <!--海面上昇シミュレーション10m-->
-        <div v-else-if="item.component.name === 'flood10m'">
+        <div v-else-if="item.component.name === 'flood10m' || item.component.name === 'flood15'">
             <div class="content-div">
                 <p v-html="item.title"></p><hr>
                 <div style="text-align: center;">{{ s_seaLevel10m.toFixed(1) }}m上昇した場合</div>
-                <input type="range" min="-200" :max="floodMax10m" :step="seaLevelStep10m" class="flood-range10m" v-model.number="s_seaLevel10m" @input="flood10m" />
+                <input type="range" :min="min(item.component.name)" :max="floodMax10m" :step="seaLevelStep10m" class="flood-range10m" v-model.number="s_seaLevel10m" @input="flood10m" />
                 <p v-html="item.summary"></p><hr>
 <!--                <input type="checkbox" v-model="s_land" @change="landChangge">-->
 <!--                <div style="position: absolute;left:260px;"><chrome-picker v-show="colorsShowFlg" v-model="s_colors" @input="colorChange10m"/></div>-->
@@ -111,6 +111,13 @@
       }
     },
     methods: {
+      min (name) {
+        if (name === 'flood10m') {
+          return -200
+        } else {
+          return 0
+        }
+      },
       landChangge (value) {
         console.log(this.s_land)
 
@@ -178,7 +185,7 @@
           selected = this.s_selected10m;
           land = this.s_land
         }
-        console.log(land)
+        console.log(lebel)
         this.$store.commit('base/updateListPart',{mapName: this.mapName, id:this.item.id, values: [lebel, selected, land]});
         permalink.moveEnd();
       },
@@ -228,6 +235,7 @@
         Layers.flood5Obj[this.mapName].getSource().changed();
         Layers.flood10Obj[this.mapName].getSource().changed();
         Layers.flood102Obj[this.mapName].getSource().changed();
+        Layers.flood15Obj[this.mapName].getSource().changed();
         this.storeUpdate('5m');
         this.storeUpdate('10m')
       })

@@ -14,7 +14,9 @@
             <v-flood :item="item" :mapName="mapName" v-else-if="item.component.name === 'flood5m'" />
             <!--海面上昇シミュレーション10m-->
             <v-flood :item="item" :mapName="mapName" v-else-if="item.component.name === 'flood10m'"/>
-            <!--シームレス地質図-->
+          <v-flood :item="item" :mapName="mapName" v-else-if="item.component.name === 'flood15'"/>
+
+          <!--シームレス地質図-->
             <v-seamless :item="item" :mapName="mapName" v-else-if="item.component.name === 'seamless'"/>
 
             <v-kouzi :item="item" :mapName="mapName" v-else-if="item.component.name === 'kouzi'"/>
