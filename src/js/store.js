@@ -154,6 +154,10 @@ const moduleBase = {
       dialogs.push(payload.dialog)
       console.log(payload.dialog)
     },
+
+    deketeDialogsInfo (state,payload) {
+      state.dialogsInfo[payload.mapName]= []
+    },
     // レイヤーリスト更新-------------------------------------------------------------------------
     updateList (state, payload) {
       state.layerLists[payload.mapName] = payload.value

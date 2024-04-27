@@ -103,6 +103,7 @@ export function permalinkEventSet (response) {
           const terrainProvider = new Cesium.PngElevationTileTerrainProvider( {
             url: 'https://gsj-seamless.jp/labs/elev2/elev/{z}/{y}/{x}.png?prj=latlng&size=257',
             // url: 'https://tiles.gsj.jp/tiles/elev/mixed/{z}/{y}/{x}.png',
+            // url: 'https://gsj-seamless.jp/labs/elev2/elev/gsi10m_latlng_257/{z}/{y}/{x}.png',
             tilingScheme: new Cesium.GeographicTilingScheme(),
             credit: '',
             heightScale: json.hight,

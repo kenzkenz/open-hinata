@@ -82,6 +82,7 @@
                     'z-index': 9
                   }
                 };
+              this.$store.commit('base/deketeDialogsInfo',{mapName: this.mapName})
               this.$store.commit('base/pushDialogsInfo', {mapName: this.mapName, dialog: infoDialog});
             }
           }
