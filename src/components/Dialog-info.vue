@@ -10,14 +10,12 @@
                     <p v-html="item.summary"></p>
                 </div>
             </div>
-            <!--海面上昇シミュレーション5m-->
-            <v-flood :item="item" :mapName="mapName" v-else-if="item.component.name === 'flood5m'" />
-            <!--海面上昇シミュレーション10m-->
+            <!--海面上昇シミュレーション-->
             <v-flood :item="item" :mapName="mapName" v-else-if="item.component.name === 'flood10m'"/>
-          <v-flood :item="item" :mapName="mapName" v-else-if="item.component.name === 'flood15'"/>
-          <v-flood :item="item" :mapName="mapName" v-else-if="item.component.name === 'floodSimple'"/>
+            <v-flood :item="item" :mapName="mapName" v-else-if="item.component.name === 'flood15'"/>
+            <v-flood :item="item" :mapName="mapName" v-else-if="item.component.name === 'floodSimple'"/>
 
-          <!--シームレス地質図-->
+            <!--シームレス地質図-->
             <v-seamless :item="item" :mapName="mapName" v-else-if="item.component.name === 'seamless'"/>
 
             <v-kouzi :item="item" :mapName="mapName" v-else-if="item.component.name === 'kouzi'"/>

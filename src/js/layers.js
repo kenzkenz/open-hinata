@@ -93,7 +93,7 @@ function flood2(pixels, data) {
       pixel[3] = 0
     } else { //海面下
       const c = data.colors
-      pixel[0] = c.sea10.r; pixel[1] = c.sea10.g; pixel[2] = c.sea10.b; pixel[3] = c.sea10.a*255
+      pixel[0] = c.paleSea.r; pixel[1] = c.paleSea.g; pixel[2] = c.paleSea.b; pixel[3] = c.paleSea.a*255
     }
   }
   return pixel

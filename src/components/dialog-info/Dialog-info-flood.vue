@@ -4,7 +4,7 @@
         <div v-if="item.component.name === 'flood10m' || item.component.name === 'flood15' || item.component.name === 'floodSimple'">
             <div class="content-div">
                 <p v-html="item.title"></p><hr>
-                <div style="text-align: center;">{{ s_seaLevel10m.toFixed(1) }}m上昇した場合</div>
+                <div v-bind:class="{'blue': s_seaLevel10m < 0, 'black': s_seaLevel10m >= 0}" style="text-align: center;">{{ s_seaLevel10m.toFixed(1) }}m上昇した場合</div>
                 <input type="range" :min="min(item.component.name)" :max="floodMax10m" :step="seaLevelStep10m" class="flood-range10m" v-model.number="s_seaLevel10m" @input="flood10m" />
                 <p v-html="item.summary"></p><hr>
 <!--                <input type="checkbox" v-model="s_land" @change="landChangge">-->
@@ -91,9 +91,6 @@
       },
       landChangge (value) {
         console.log(this.s_land)
-
-
-
         Layers.flood10Obj[this.mapName].getSource().changed();
         this.storeUpdate('10m')
       },
@@ -119,12 +116,6 @@
           cursor: 'pointer'
         }
       },
-      colorChange5m () {
-        Layers.flood5Obj['map01'].getSource().changed();
-        Layers.flood5Obj['map02'].getSource().changed();
-        Layers.flood5Obj['map03'].getSource().changed();
-        Layers.flood5Obj['map04'].getSource().changed()
-      },
       colorChange10m () {
         Layers.flood10Obj['map01'].getSource().changed();
         Layers.flood10Obj['map02'].getSource().changed();
@@ -135,7 +126,6 @@
         Layers.floodSinpleObj['map02'].getSource().changed();
         Layers.floodSinpleObj['map03'].getSource().changed();
         Layers.floodSinpleObj['map04'].getSource().changed()
-
       },
       colorsShow (cororM) {
         if (this.colorM === cororM) {
@@ -158,8 +148,6 @@
         }
         console.log(this.item.id)
         this.$store.commit('base/updateListPart',{mapName: this.mapName, id:this.item.id, values: [lebel, selected, land]});
-        // this.$store.commit('base/updateListPart',{mapName: this.mapName, id:'flood10m', values: [lebel, selected, land]});
-
         permalink.moveEnd();
       },
       flood10m () {
@@ -190,17 +178,10 @@
         Layers.flood10Obj[this.mapName].getSource().changed();
         Layers.floodSinpleObj[this.mapName].getSource().changed();
         Layers.flood15Obj[this.mapName].getSource().changed();
-        this.storeUpdate('5m');
         this.storeUpdate('10m')
       })
     },
     watch: {
-      s_selected5m: {
-        handler: function () {
-          this.floodMax5m = this.s_selected5m
-        },
-        immediate: true
-      },
       s_selected10m: {
         handler: function () {
           this.floodMax10m = this.s_selected10m
@@ -213,7 +194,13 @@
 
 <style scoped>
 .content-div{
-  width: 200px;
+  width: 250px;
   padding: 10px;
+}
+.blue {
+  color: blue;
+}
+.black {
+  color: black;
 }
 </style>

@@ -229,12 +229,6 @@ const moduleInfo = {
       map03: true,
       map04: true
     },
-    seaLevel5m: {
-      map01: 10,
-      map02: 10,
-      map03: 10,
-      map04: 10
-    },
     seaLevel10m: {
       map01: 10,
       map02: 10,
@@ -275,10 +269,7 @@ const moduleInfo = {
       sea2500: {r: 0,g: 0,b:128,a:255/255 },
       sea3500: {r: 25,g: 25,b:112,a:255/255 },
 
-
-
-
-
+      paleSea: {r: 193,g: 210,b:251,a:255/255 },
 
       m20: {r: 0,g: 0,b:255,a:122/255 },
       // m10: {r: 0,g: 0,b:255,a:122/255 },
@@ -296,6 +287,7 @@ const moduleInfo = {
     updateColors (state,payload) {
       state.colors[payload.colorM] = payload.value.rgba
     },
+    // 重要
     update (state,payload) {
       let variable;
       switch (payload.name) {
