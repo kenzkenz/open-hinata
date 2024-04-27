@@ -18,7 +18,7 @@
             </div>
         </div>
         <!--海面上昇シミュレーション10m-->
-        <div v-else-if="item.component.name === 'flood10m' || item.component.name === 'flood15'">
+        <div v-else-if="item.component.name === 'flood10m' || item.component.name === 'flood15' || item.component.name === 'floodSimple'">
             <div class="content-div">
                 <p v-html="item.title"></p><hr>
                 <div style="text-align: center;">{{ s_seaLevel10m.toFixed(1) }}m上昇した場合</div>
@@ -185,8 +185,10 @@
           selected = this.s_selected10m;
           land = this.s_land
         }
-        console.log(lebel)
+        console.log(this.item.id)
         this.$store.commit('base/updateListPart',{mapName: this.mapName, id:this.item.id, values: [lebel, selected, land]});
+        // this.$store.commit('base/updateListPart',{mapName: this.mapName, id:'flood10m', values: [lebel, selected, land]});
+
         permalink.moveEnd();
       },
       flood5m () {

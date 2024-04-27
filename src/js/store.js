@@ -306,6 +306,8 @@ const moduleInfo = {
             variable = 'selected5m'
           }
           break;
+        case 'floodSimple':
+        case 'flood15':
         case 'flood10m':
           if (payload.order === 0) {
             variable = 'seaLevel10m'

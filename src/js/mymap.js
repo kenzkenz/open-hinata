@@ -1104,9 +1104,9 @@ export function watchLayer (map, thisName, newLayerList,oldLayerList) {
     oldLayerList[0].forEach(value => {
         map.removeLayer(value.layer);
     })
-    console.log(newLayerList[0][0].title)
-    const layer = newLayerList[0][0].title
-    history (layer)
+    // console.log(newLayerList[0][0].title)
+    // const layer = newLayerList[0][0].title
+    // history (layer)
     // store.commit('base/updateFirstFlg')
     //[0]はレイヤーリスト。[1]はlength
     // 逆ループ
