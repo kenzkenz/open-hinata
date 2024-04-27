@@ -1,24 +1,7 @@
 <template>
     <div>
-        <!--海面上昇シミュレーション5m-->
-        <div v-if="item.component.name === 'flood5m'">
-            <div class="content-div">
-                <p v-html="item.title"></p><hr>
-                <input type="range" min="0" :max="floodMax5m" :step="seaLevelStep5m" class="flood-range5m" v-model.number="s_seaLevel5m" @input="flood5m" />
-                <div style="text-align: center;">{{ s_seaLevel5m.toFixed(1) }}m上昇した場合</div>
-                <p v-html="item.summary"></p><hr>
-                <div style="position: absolute;left:260px;"><chrome-picker v-show="colorsShowFlg" v-model="s_colors" @input="colorChange5m"/></div>
-                <div @click="colorsShow('m20')" :style="style('m20')">20m～</div>
-                <div @click="colorsShow('m10')" :style="style('m10')">10m～20m</div>
-                <div @click="colorsShow('m5')" :style="style('m5')">5m～10m</div>
-                <div @click="colorsShow('m3')" :style="style('m3')">3m～5m</div>
-                <div @click="colorsShow('m0')" :style="style('m0')">0.5m～3m</div>
-                <div @click="colorsShow('m00')" :style="style('m00')">～0.5m</div>
-                <b-form-radio-group v-model="s_selected5m" :options="options" @change="floodChange5m" />
-            </div>
-        </div>
         <!--海面上昇シミュレーション10m-->
-        <div v-else-if="item.component.name === 'flood10m' || item.component.name === 'flood15' || item.component.name === 'floodSimple'">
+        <div v-if="item.component.name === 'flood10m' || item.component.name === 'flood15' || item.component.name === 'floodSimple'">
             <div class="content-div">
                 <p v-html="item.title"></p><hr>
                 <div style="text-align: center;">{{ s_seaLevel10m.toFixed(1) }}m上昇した場合</div>
@@ -77,22 +60,10 @@
           this.$store.commit('info/updateColors', {colorM:this.colorM, value:value})
         }
       },
-      s_seaLevel5m: {
-        get() { return this.$store.state.info.seaLevel5m[this.mapName] },
-        set(value) {
-          this.$store.commit('info/updateSeaLevel5m', {mapName: this.mapName, value:value})
-        }
-      },
       s_seaLevel10m: {
         get() { return this.$store.state.info.seaLevel10m[this.mapName] },
         set(value) {
           this.$store.commit('info/updateSeaLevel10m', {mapName: this.mapName, value:value})
-        }
-      },
-      s_selected5m: {
-        get() { return this.$store.state.info.selected5m[this.mapName] },
-        set(value) {
-          this.$store.commit('info/updateSelected5m', {mapName: this.mapName, value:value})
         }
       },
       s_selected10m: {
@@ -191,31 +162,12 @@
 
         permalink.moveEnd();
       },
-      flood5m () {
-        MyMap.history ('海面上昇5mdem')
-        Layers.flood5Obj[this.mapName].getSource().changed();
-        this.storeUpdate('5m')
-      },
       flood10m () {
         MyMap.history ('海面上昇10mdem')
         Layers.flood10Obj[this.mapName].getSource().changed();
         Layers.floodSinpleObj[this.mapName].getSource().changed();
         Layers.flood15Obj[this.mapName].getSource().changed();
         this.storeUpdate('10m')
-      },
-      floodChange5m () {
-        this.$nextTick(function () {
-          const val = this.s_selected5m;
-          this.floodMax5m = val;
-          if (val === '25') {
-            this.seaLevelStep5m = 0.1
-          } else if (val === '100') {
-            this.seaLevelStep5m = 0.5
-          } else {
-            this.seaLevelStep5m = 1
-          }
-          this.storeUpdate('5m')
-        })
       },
       floodChange10m () {
         this.$nextTick(function () {
