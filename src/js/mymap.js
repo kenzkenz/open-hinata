@@ -32,6 +32,7 @@ import {Circle, LineString} from "ol/geom";
 import Feature from 'ol/Feature.js'
 import {moveEnd} from "./permalink";
 import Dialog from 'ol-ext/control/Dialog'
+import Profile from 'ol-ext/control/Profile.js'
 
 // ドロー関係-------------------------------------------------------------------------------
 const drawSource = new VectorSource({wrapX: false});
@@ -281,17 +282,14 @@ export function initMap (vm) {
         })[0];
         pinchRotateInteraction.setActive(false);
 
-        // const ol3d = new OLCesium( { map: map } )
-        // const scene = ol3d.getCesiumScene()
-        // // scene.terrainProvider = new Cesium.PngElevationTileTerrainProvider( {
-        // //     url: 'https://gsj-seamless.jp/labs/elev2/elev/{z}/{y}/{x}.png?prj=latlng&size=257',
-        // //     tilingScheme: new Cesium.GeographicTilingScheme(),
-        // //     // crossOrigin: 'anonymous',
-        // // } );
-        //
-        // ol3d.setEnabled( true );
 
         // コントロール追加---------------------------------------------------------------------------
+
+        // var profile = new Profile();
+        // map.addControl(profile)
+
+
+
 
 
 
