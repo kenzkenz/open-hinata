@@ -154,11 +154,15 @@
         MyMap.history ('海面上昇10mdem')
         Layers.flood10Obj[this.mapName].getSource().changed();
         const gLayers = Layers.floodSinpleObj[this.mapName].values_.layers.array_;
-        gLayers.forEach((laier) =>{
-          laier.getSource().changed()
+        gLayers.forEach((layer) =>{
+          layer.getSource().changed()
         })
         // Layers.floodSinpleObj[this.mapName].getSource().changed();
-        Layers.flood15Obj[this.mapName].getSource().changed();
+        const gLayers2 = Layers.flood15Obj[this.mapName].values_.layers.array_;
+        gLayers2.forEach((layer) =>{
+          layer.getSource().changed()
+        })
+        // Layers.flood15Obj[this.mapName].getSource().changed();
         this.storeUpdate('10m')
       },
       floodChange10m () {
@@ -182,10 +186,14 @@
         Layers.flood10Obj[this.mapName].getSource().changed();
         // Layers.floodSinpleObj[this.mapName].getSource().changed();
         const gLayers = Layers.floodSinpleObj[this.mapName].values_.layers.array_;
-        gLayers.forEach((laier) =>{
-          laier.getSource().changed()
+        gLayers.forEach((layer) =>{
+          layer.getSource().changed()
         })
-        Layers.flood15Obj[this.mapName].getSource().changed();
+        const gLayers2 = Layers.flood15Obj[this.mapName].values_.layers.array_;
+        gLayers2.forEach((layer) =>{
+          layer.getSource().changed()
+        })
+        // Layers.flood15Obj[this.mapName].getSource().changed();
         this.storeUpdate('10m')
       })
     },

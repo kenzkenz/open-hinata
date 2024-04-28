@@ -136,23 +136,50 @@ const elevation15 = new XYZ({
   crossOrigin:'anonymous',
   interpolate: false,
 });
-function Dem15 () {
+function Dem151 () {
   this.multiply = true
   this.source = new RasterSource({
     sources:[elevation11],
     operation:flood
   })
   this.minResolution = 19.109257
-
 }
-export const flood15Obj = {}
+export const flood151Obj = {}
 for (let i of mapsStr) {
-  flood15Obj[i] = new ImageLaye(new Dem15())
-  flood15Obj[i].getSource().on('beforeoperations', function(event) {
+  flood151Obj[i] = new ImageLaye(new Dem151())
+  flood151Obj[i].getSource().on('beforeoperations', function(event) {
     event.data.level = Number(document.querySelector('#' + i  + " .flood-range10m").value)
     event.data.colors = store.state.info.colors
   });
 }
+function Dem152 () {
+  this.multiply = true
+  this.source = new RasterSource({
+    sources:[elevation15],
+    operation:flood
+  })
+  this.maxResolution = 19.109257
+}
+export const flood152Obj = {}
+for (let i of mapsStr) {
+  flood152Obj[i] = new ImageLaye(new Dem152())
+  flood152Obj[i].getSource().on('beforeoperations', function(event) {
+    event.data.level = Number(document.querySelector('#' + i  + " .flood-range10m").value)
+    event.data.colors = store.state.info.colors
+  });
+}
+export const flood15Obj = {};
+for (let i of mapsStr) {
+  flood15Obj[i] = new LayerGroup({
+    layers: [
+      flood151Obj[i],
+      flood152Obj[i],
+    ]
+  })
+  flood15Obj[i].values_['multiply'] = true
+}
+
+
 
 function DemSinple1 () {
   this.multiply = true
@@ -170,7 +197,6 @@ for (let i of mapsStr) {
     event.data.colors = store.state.info.colors
   })
 }
-
 function DemSinple2 () {
   this.multiply = true
   this.source = new RasterSource({
