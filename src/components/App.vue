@@ -350,7 +350,8 @@
           document.querySelector('#' + mapName + '-3d').style.display = 'block'
         } else {
           const ol3d = this.$store.state.base.ol3d[mapName]
-          ol3d.setEnabled(false)
+          // ol3d.setEnabled(false)
+          tiltEnd(ol3d)
           this.$store.state.base.ol3d[mapName] = null
           document.querySelector('#' + mapName + '-3d').style.display = 'none'
         }
@@ -409,7 +410,7 @@
       tilt = function(ol3d,upDown){
         if(vm.tiltFlg){
           const tilt0 = ol3d.getCamera().getTilt()
-          // console.log(tilt0)
+          console.log(tilt0)
           if (upDown === 'down') {
             if (tilt0 > 0) ol3d.getCamera().setTilt(tilt0 - 0.025)
           } else {
@@ -431,6 +432,16 @@
         }
       }
 
+      tiltEnd = function(ol3d){
+        if(ol3d.getCamera().getTilt() > 0){
+          const tilt0 = ol3d.getCamera().getTilt()
+          ol3d.getCamera().setTilt(tilt0 - 0.0125)
+          setTimeout(function(){tiltEnd(ol3d)},10);
+        } else {
+          clearTimeout(tiltEnd)
+          ol3d.setEnabled(false)
+        }
+      }
 
 
       // let ol3d
