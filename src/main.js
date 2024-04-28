@@ -15,7 +15,6 @@ import '@fortawesome/fontawesome-free/js/brands';
 import drag from './js/drag'
 import VModal from 'vue-js-modal'
 import dragV from 'v-drag'
-
 Vue.use(dragV, {
     // global configuration
 });

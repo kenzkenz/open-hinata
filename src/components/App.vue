@@ -104,6 +104,7 @@
   let heading
   let tilt
   let tiltStart
+  let tiltEnd
   export default {
     name: 'App',
     components: {
