@@ -19,6 +19,7 @@ import Mask from 'ol-ext/filter/Mask'
 import  * as MaskDep from './mask-dep'
 import  * as LayersMvt from './layers-mvt'
 import BingMaps from 'ol/source/BingMaps'
+import {tyuugakkouku0Obj} from "./layers-mvt";
 const mapsStr = ['map01','map02','map03','map04']
 const transformE = extent => {
   return transformExtent(extent,'EPSG:4326','EPSG:3857')
@@ -123,19 +124,26 @@ for (let i of mapsStr) {
     event.data.colors = store.state.info.colors
   });
 }
+const elevation11 = new XYZ({
+  url:'https://tiles.gsj.jp/tiles/elev/land/{z}/{y}/{x}.png',
+  maxZoom:11,
+  crossOrigin:'anonymous',
+  interpolate: false,
+});
 const elevation15 = new XYZ({
   url:'https://tiles.gsj.jp/tiles/elev/land/{z}/{y}/{x}.png',
   maxZoom:15,
   crossOrigin:'anonymous',
   interpolate: false,
-  
 });
 function Dem15 () {
   this.multiply = true
   this.source = new RasterSource({
-    sources:[elevation15],
+    sources:[elevation11],
     operation:flood
   })
+  this.minResolution = 19.109257
+
 }
 export const flood15Obj = {}
 for (let i of mapsStr) {
@@ -149,20 +157,47 @@ for (let i of mapsStr) {
 function DemSinple1 () {
   this.multiply = true
   this.source = new RasterSource({
-    sources:[elevation15],
+    sources:[elevation11],
     operation:flood2
   })
+  this.minResolution = 19.109257
 }
-export const floodSinpleObj = {}
+export const floodSinple1Obj = {}
 for (let i of mapsStr) {
-  floodSinpleObj[i] = new ImageLaye(new DemSinple1())
-  floodSinpleObj[i].getSource().on('beforeoperations', function(event) {
+  floodSinple1Obj[i] = new ImageLaye(new DemSinple1())
+  floodSinple1Obj[i].getSource().on('beforeoperations', function(event) {
     event.data.level = Number(document.querySelector('#' + i  + " .flood-range10m").value)
     event.data.colors = store.state.info.colors
   })
 }
 
+function DemSinple2 () {
+  this.multiply = true
+  this.source = new RasterSource({
+    sources:[elevation15],
+    operation:flood2
+  })
+  this.maxResolution = 19.109257
+}
+export const floodSinple2Obj = {}
+for (let i of mapsStr) {
+  floodSinple2Obj[i] = new ImageLaye(new DemSinple2())
+  floodSinple2Obj[i].getSource().on('beforeoperations', function(event) {
+    event.data.level = Number(document.querySelector('#' + i  + " .flood-range10m").value)
+    event.data.colors = store.state.info.colors
+  })
+}
 
+export const floodSinpleObj = {};
+for (let i of mapsStr) {
+  floodSinpleObj[i] = new LayerGroup({
+    layers: [
+      floodSinple1Obj[i],
+      floodSinple2Obj[i],
+    ]
+  })
+  floodSinpleObj[i].values_['multiply'] = true
+}
 
 
 

@@ -1139,13 +1139,30 @@ export function watchLayer (map, thisName, newLayerList,oldLayerList) {
         if (layer.values_.layers) {
             const gLayers = layer.values_.layers.array_;
             for (let j in gLayers) {
-                if (newLayerList[0][i].multipli===false || newLayerList[0][i].multipli===undefined){
-                    gLayers[j].on("prerender", function(evt){
+                if (newLayerList[0][i].multipli===false) {
+                    gLayers[j].on("prerender", function (evt) {
                         evt.context.globalCompositeOperation = 'source-over';
                     });
-                    gLayers[j].on("postrender", function(evt){
+                    gLayers[j].on("postrender", function (evt) {
                         evt.context.globalCompositeOperation = '';
                     });
+                } else if (newLayerList[0][i].multipli===undefined) {
+                    if (layer.get('multiply')) {
+                        newLayerList[0][i].multipli = true
+                        gLayers[j].on("prerender", function (evt) {
+                            evt.context.globalCompositeOperation = 'multiply';
+                        });
+                        gLayers[j].on("postrender", function (evt) {
+                            evt.context.globalCompositeOperation = 'source-over';
+                        })
+                    } else {
+                        gLayers[j].on("prerender", function (evt) {
+                            evt.context.globalCompositeOperation = 'source-over';
+                        });
+                        gLayers[j].on("postrender", function (evt) {
+                            evt.context.globalCompositeOperation = '';
+                        })
+                    }
                 } else {
                     gLayers[j].on("prerender", function(evt){
                         evt.context.globalCompositeOperation = 'multiply';
