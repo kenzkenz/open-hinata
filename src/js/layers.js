@@ -19,11 +19,28 @@ import Mask from 'ol-ext/filter/Mask'
 import  * as MaskDep from './mask-dep'
 import  * as LayersMvt from './layers-mvt'
 import BingMaps from 'ol/source/BingMaps'
-import {tyuugakkouku0Obj} from "./layers-mvt";
+import {tyuugakkouku0Obj} from "./layers-mvt"
+import * as d3 from "d3"
 const mapsStr = ['map01','map02','map03','map04']
 const transformE = extent => {
   return transformExtent(extent,'EPSG:4326','EPSG:3857')
-};
+}
+// const floodColor = d3.scaleLinear()
+//     .domain([0, 50, 100, 500, 1500, 2500])
+//     .range([
+//         "#91ff00",
+//       "#91ff00",
+//       "#91ff00",
+//       "#ffff00",
+//       "#ff8c00",
+//       "#ff4400",
+//       // "#ff4400",
+//       // "#ff4400"
+//     ])
+// for (let i = 0; i < 3901; i++) {
+//   store.state.info.floodColors[i] = d3.rgb(floodColor(i))
+// }
+
 function flood(pixels, data) {
   const pixel = pixels[0]
   if (pixel[3]) {
@@ -37,6 +54,15 @@ function flood(pixels, data) {
     if (height >= data.level) { // 陸上
       let sinsui = height - data.level
       // console.log(height,data.level)
+      sinsui = Math.floor(sinsui)
+      // const floodColors = data.floodColors
+      // const rgb = floodColors[sinsui]
+      // // console.log(rgb)
+      // pixel[0] = rgb.r;
+      // pixel[1] = rgb.g;
+      // pixel[2] = rgb.b;
+      // pixel[3] = 255
+
       const c = data.colors
       if (sinsui <= 10) {
         pixel[0] = c.m5.r; pixel[1] = c.m5.g; pixel[2] = c.m5.b; pixel[3] = c.m5.a*255
@@ -120,6 +146,7 @@ for (let i of mapsStr) {
   flood10Obj[i].getSource().on('beforeoperations', function(event) {
     event.data.level = Number(document.querySelector('#' + i  + " .flood-range10m").value)
     event.data.colors = store.state.info.colors
+    // event.data.floodColors = store.state.info.floodColors
   })
 }
 const elevation11 = new XYZ({

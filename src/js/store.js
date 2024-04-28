@@ -241,6 +241,9 @@ const moduleInfo = {
       map03: 100000,
       map04: 100000
     },
+    floodColors: {
+
+    },
     colors: {
       // m20: {r: 187,g: 0,b:187,a:122/255 },
       // m10: {r: 228,g: 0,b:142,a:135/255 },
