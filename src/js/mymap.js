@@ -930,7 +930,7 @@ export function initMap (vm) {
         const getElevation = (event) =>{
             let z = Math.floor(map.getView().getZoom())
             if(z>9) z=9;
-            // const coord = event.coordinateこっちにするとマウスの標高を取得する。
+            // const coord = event.coordinate // こっちにするとマウスの標高を取得する。
             const coord =map.getView().getCenter()
             const R = 6378137;// 地球の半径(m);
             const x = ( 0.5 + coord[ 0 ] / ( 2 * R * Math.PI ) ) * Math.pow( 2, z );
@@ -996,6 +996,7 @@ export function initMap (vm) {
                 }
                 then( h );
             }
+            // console.log(elevServer + z + '/' + y + '/' + x + '.png?res=cm')
             img.src = elevServer + z + '/' + y + '/' + x + '.png?res=cm';
         }
     }

@@ -19,23 +19,22 @@ import Mask from 'ol-ext/filter/Mask'
 import  * as MaskDep from './mask-dep'
 import  * as LayersMvt from './layers-mvt'
 import BingMaps from 'ol/source/BingMaps'
-import {tyuugakkouku0Obj} from "./layers-mvt"
 import * as d3 from "d3"
 const mapsStr = ['map01','map02','map03','map04']
 const transformE = extent => {
   return transformExtent(extent,'EPSG:4326','EPSG:3857')
 }
 const floodColor = d3.scaleLinear()
-    .domain([0, 50, 100, 500, 1000, 2500,9000, 20000])
+    .domain([0, 100, 1000, 2500,9000, 20000])
     .range([
-        "#91ff00",
-      "#91ff00",
-      "#91ff00",
+        "#00FF00",
+      // "#00FF66",
+      // "#ffff00",
       "#ffff00",
       "#ff8c00",
       "#ff4400",
       "red",
-      "red"
+      "#880000"
     ])
 for (let i = 0; i < 20000; i++) {
   store.state.info.floodColors[i] = d3.rgb(floodColor(i))

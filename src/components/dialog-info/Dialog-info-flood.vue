@@ -44,8 +44,8 @@
           { text: 'max 100m　', value: '100' },
           { text: 'max 500m', value: '500' },
           { text: 'max 1000m', value: '1000' },
-          { text: 'max 3800m', value: '3800' },
-          { text: 'max 9000m', value: '9000' }
+          { text: 'max 4000m', value: '4000' },
+          { text: 'max 10000m', value: '10000' }
         ],
         floodMax5m: '100',
         floodMax10m: '100'
