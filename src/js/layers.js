@@ -25,21 +25,38 @@ const mapsStr = ['map01','map02','map03','map04']
 const transformE = extent => {
   return transformExtent(extent,'EPSG:4326','EPSG:3857')
 }
-// const floodColor = d3.scaleLinear()
-//     .domain([0, 50, 100, 500, 1500, 2500])
-//     .range([
-//         "#91ff00",
-//       "#91ff00",
-//       "#91ff00",
-//       "#ffff00",
-//       "#ff8c00",
-//       "#ff4400",
-//       // "#ff4400",
-//       // "#ff4400"
-//     ])
-// for (let i = 0; i < 3901; i++) {
-//   store.state.info.floodColors[i] = d3.rgb(floodColor(i))
-// }
+const floodColor = d3.scaleLinear()
+    .domain([0, 50, 100, 500, 1000, 2500,9000])
+    .range([
+        "#91ff00",
+      "#91ff00",
+      "#91ff00",
+      "#ffff00",
+      "#ff8c00",
+      "#ff4400",
+      "red",
+      // "#ff4400"
+    ])
+for (let i = 0; i < 9000; i++) {
+  store.state.info.floodColors[i] = d3.rgb(floodColor(i))
+}
+const floodColor2 = d3.scaleLinear()
+    .domain([0, 50, 100, 500, 1000, 2500,5000,11000])
+    .range([
+      "deepskyblue",
+      "dodgerblue",
+      "blue",
+      "mediumblue",
+      "darkblue",
+      "navy",
+      "midnightblue",
+      "black"
+    ])
+for (let i = 0; i < 11000; i++) {
+  store.state.info.floodColors2[i] = d3.rgb(floodColor2(i))
+}
+
+
 
 function flood(pixels, data) {
   const pixel = pixels[0]
@@ -55,52 +72,60 @@ function flood(pixels, data) {
       let sinsui = height - data.level
       // console.log(height,data.level)
       sinsui = Math.floor(sinsui)
-      // const floodColors = data.floodColors
-      // const rgb = floodColors[sinsui]
+      const floodColors = data.floodColors
+      const rgb = floodColors[sinsui]
       // // console.log(rgb)
-      // pixel[0] = rgb.r;
-      // pixel[1] = rgb.g;
-      // pixel[2] = rgb.b;
-      // pixel[3] = 255
+      if (rgb) pixel[0] = rgb.r;
+      if (rgb) pixel[1] = rgb.g;
+      if (rgb) pixel[2] = rgb.b;
+      if (rgb) pixel[3] = 255
 
-      const c = data.colors
-      if (sinsui <= 10) {
-        pixel[0] = c.m5.r; pixel[1] = c.m5.g; pixel[2] = c.m5.b; pixel[3] = c.m5.a*255
-      } else if (sinsui <= 50) {
-        pixel[0] = c.m10.r; pixel[1] = c.m10.g; pixel[2] = c.m10.b; pixel[3] = c.m10.a*255
-      } else if (sinsui <= 100) {
-        pixel[0] = c.m50.r; pixel[1] = c.m50.g; pixel[2] = c.m50.b; pixel[3] = c.m50.a*255
-      } else if (sinsui <= 500) {
-        pixel[0] = c.m100.r; pixel[1] = c.m100.g; pixel[2] = c.m100.b; pixel[3] = c.m100.a*255
-      } else if (sinsui <= 1500) {
-        pixel[0] = c.m500.r; pixel[1] = c.m500.g; pixel[2] = c.m500.b; pixel[3] = c.m500.a*255
-      } else if (sinsui <= 2500) {
-        pixel[0] = c.m1500.r;pixel[1] = c.m1500.g;pixel[2] = c.m1500.b;pixel[3] = c.m1500.a * 255
-      } else {
-        pixel[0] = c.m2500.r;pixel[1] = c.m2500.g;pixel[2] = c.m2500.b;pixel[3] = c.m2500.a * 255
-      }
+      // const c = data.colors
+      // if (sinsui <= 10) {
+      //   pixel[0] = c.m5.r; pixel[1] = c.m5.g; pixel[2] = c.m5.b; pixel[3] = c.m5.a*255
+      // } else if (sinsui <= 50) {
+      //   pixel[0] = c.m10.r; pixel[1] = c.m10.g; pixel[2] = c.m10.b; pixel[3] = c.m10.a*255
+      // } else if (sinsui <= 100) {
+      //   pixel[0] = c.m50.r; pixel[1] = c.m50.g; pixel[2] = c.m50.b; pixel[3] = c.m50.a*255
+      // } else if (sinsui <= 500) {
+      //   pixel[0] = c.m100.r; pixel[1] = c.m100.g; pixel[2] = c.m100.b; pixel[3] = c.m100.a*255
+      // } else if (sinsui <= 1000) {
+      //   pixel[0] = c.m500.r; pixel[1] = c.m500.g; pixel[2] = c.m500.b; pixel[3] = c.m500.a*255
+      // } else if (sinsui <= 2500) {
+      //   pixel[0] = c.m1500.r;pixel[1] = c.m1500.g;pixel[2] = c.m1500.b;pixel[3] = c.m1500.a * 255
+      // } else {
+      //   pixel[0] = c.m2500.r;pixel[1] = c.m2500.g;pixel[2] = c.m2500.b;pixel[3] = c.m2500.a * 255
+      // }
     } else { //海面下
       // let sinsui = - height + data.level
-      let sinsui = height - data.level
-      const c = data.colors
-      if (sinsui >= -10) {
-        pixel[0] = c.sea10.r; pixel[1] = c.sea10.g; pixel[2] = c.sea10.b; pixel[3] = c.sea10.a*255
-      } else if (sinsui >= -50) {
-        pixel[0] = c.sea50.r; pixel[1] = c.sea50.g; pixel[2] = c.sea50.b; pixel[3] = c.sea50.a*255
-      } else if (sinsui >= -100) {
-        pixel[0] = c.sea100.r; pixel[1] = c.sea100.g; pixel[2] = c.sea100.b; pixel[3] = c.sea100.a*255
-      } else if (sinsui >= -500) {
-        pixel[0] = c.sea500.r; pixel[1] = c.sea500.g; pixel[2] = c.sea500.b; pixel[3] = c.sea500.a*255
-      } else if (sinsui >= -1500) {
-        pixel[0] = c.sea1500.r; pixel[1] = c.sea1500.g; pixel[2] = c.sea1500.b; pixel[3] = c.sea1500.a*255
-      } else if (sinsui >= -2500) {
-        pixel[0] = c.sea2500.r;pixel[1] = c.sea2500.g;pixel[2] = c.sea2500.b;pixel[3] = c.sea2500.a*255
-      } else {
-        pixel[0] = c.sea3500.r;pixel[1] = c.sea3500.g;pixel[2] = c.sea3500.b;pixel[3] = c.sea3500.a*255
-      }
-      // pixel[0] = c.sea.r; pixel[1] = c.sea.g; pixel[2] = c.sea.b; pixel[3] = c.sea.a*255
-      // pixel[0] = c.land.r; pixel[1] = c.land.g; pixel[2] = c.land.b; pixel[3] = c.land.a*255
-      // pixel[3] = 0
+      let sinsui = -height + data.level
+
+      sinsui = Math.floor(sinsui)
+      const floodColors2 = data.floodColors2
+      const rgb = floodColors2[sinsui]
+      // // console.log(rgb)
+      if (rgb) pixel[0] = rgb.r;
+      if (rgb) pixel[1] = rgb.g;
+      if (rgb) pixel[2] = rgb.b;
+      if (rgb) pixel[3] = 255
+
+
+      // const c = data.colors
+      // if (sinsui >= -10) {
+      //   pixel[0] = c.sea10.r; pixel[1] = c.sea10.g; pixel[2] = c.sea10.b; pixel[3] = c.sea10.a*255
+      // } else if (sinsui >= -50) {
+      //   pixel[0] = c.sea50.r; pixel[1] = c.sea50.g; pixel[2] = c.sea50.b; pixel[3] = c.sea50.a*255
+      // } else if (sinsui >= -100) {
+      //   pixel[0] = c.sea100.r; pixel[1] = c.sea100.g; pixel[2] = c.sea100.b; pixel[3] = c.sea100.a*255
+      // } else if (sinsui >= -500) {
+      //   pixel[0] = c.sea500.r; pixel[1] = c.sea500.g; pixel[2] = c.sea500.b; pixel[3] = c.sea500.a*255
+      // } else if (sinsui >= -1000) {
+      //   pixel[0] = c.sea1500.r; pixel[1] = c.sea1500.g; pixel[2] = c.sea1500.b; pixel[3] = c.sea1500.a*255
+      // } else if (sinsui >= -2500) {
+      //   pixel[0] = c.sea2500.r;pixel[1] = c.sea2500.g;pixel[2] = c.sea2500.b;pixel[3] = c.sea2500.a*255
+      // } else {
+      //   pixel[0] = c.sea3500.r;pixel[1] = c.sea3500.g;pixel[2] = c.sea3500.b;pixel[3] = c.sea3500.a*255
+      // }
     }
   }
   return pixel
@@ -146,7 +171,8 @@ for (let i of mapsStr) {
   flood10Obj[i].getSource().on('beforeoperations', function(event) {
     event.data.level = Number(document.querySelector('#' + i  + " .flood-range10m").value)
     event.data.colors = store.state.info.colors
-    // event.data.floodColors = store.state.info.floodColors
+    event.data.floodColors = store.state.info.floodColors
+    event.data.floodColors2 = store.state.info.floodColors2
   })
 }
 const elevation11 = new XYZ({
@@ -175,6 +201,8 @@ for (let i of mapsStr) {
   flood151Obj[i].getSource().on('beforeoperations', function(event) {
     event.data.level = Number(document.querySelector('#' + i  + " .flood-range10m").value)
     event.data.colors = store.state.info.colors
+    event.data.floodColors = store.state.info.floodColors
+    event.data.floodColors2 = store.state.info.floodColors2
   })
 }
 function Dem152 () {
@@ -191,6 +219,8 @@ for (let i of mapsStr) {
   flood152Obj[i].getSource().on('beforeoperations', function(event) {
     event.data.level = Number(document.querySelector('#' + i  + " .flood-range10m").value)
     event.data.colors = store.state.info.colors
+    event.data.floodColors = store.state.info.floodColors
+    event.data.floodColors2 = store.state.info.floodColors2
   })
 }
 export const flood15Obj = {};

@@ -31,7 +31,8 @@
     // },
     methods: {
       resetBtn () {
-        MyMap.history ('リセット2')
+        store.commit('base/deleteDialogsInfo',{mapName: this.mapName})
+        MyMap.history ('リセット2だ')
         const map = store.state.base.maps[this.mapName];
         const result = this.s_layerList.filter((el) => el.id === 2);
         const removeResult = this.s_layerList.filter((el) => el.id !== 2);

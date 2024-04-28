@@ -107,6 +107,7 @@ export function permalinkEventSet (response) {
             tilingScheme: new Cesium.GeographicTilingScheme(),
             credit: '',
             heightScale: json.hight,
+            // heightScale: 0.01,
           })
           console.log(json.hight)
           store.state.base.hight[map] = json.hight
@@ -116,6 +117,7 @@ export function permalinkEventSet (response) {
           // // ズームしたときの，ホイールに対する動作制御。
           scene.screenSpaceCameraController.minimumZoomDistance = 10
           // // めり込みにくくするためズーム制限
+          scene.globe.depthTestAgainstTerrain = true
           ol3d.setEnabled(true)
           // const json = JSON.parse(obj[key])
           // console.log(obj[key])
@@ -126,6 +128,8 @@ export function permalinkEventSet (response) {
           store.state.base.toggle3d[map] = true
           document.querySelector('#' + map + '-3d').style.display = 'block'
 
+
+          // scene.primitives.add(Cesium.createOsmBuildings());
           // drawLayer.set('altitudeMode', 'clampToGround')
         }
       })

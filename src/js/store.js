@@ -155,7 +155,7 @@ const moduleBase = {
       console.log(payload.dialog)
     },
 
-    deketeDialogsInfo (state,payload) {
+    deleteDialogsInfo (state,payload) {
       state.dialogsInfo[payload.mapName]= []
     },
     // レイヤーリスト更新-------------------------------------------------------------------------
@@ -242,7 +242,8 @@ const moduleInfo = {
       map04: 100000
     },
     floodColors: {
-
+    },
+    floodColors2: {
     },
     colors: {
       // m20: {r: 187,g: 0,b:187,a:122/255 },

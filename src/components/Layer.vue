@@ -85,7 +85,7 @@
       removeLayer (item) {
         MyMap.history ('リセット3')
         MyMap.removeLayer(item, this.s_layerList, this.mapName)
-        this.$store.commit('base/deketeDialogsInfo',{mapName: this.mapName})
+        this.$store.commit('base/deleteDialogsInfo',{mapName: this.mapName})
       },
       infoOpen (e,item) {
         // const dialogEl = $(e.currentTarget).parents('.dialog-div')[0];
