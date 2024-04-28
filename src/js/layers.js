@@ -26,7 +26,7 @@ const transformE = extent => {
   return transformExtent(extent,'EPSG:4326','EPSG:3857')
 }
 const floodColor = d3.scaleLinear()
-    .domain([0, 50, 100, 500, 1000, 2500,9000])
+    .domain([0, 50, 100, 500, 1000, 2500,9000, 20000])
     .range([
         "#91ff00",
       "#91ff00",
@@ -35,13 +35,13 @@ const floodColor = d3.scaleLinear()
       "#ff8c00",
       "#ff4400",
       "red",
-      // "#ff4400"
+      "red"
     ])
-for (let i = 0; i < 9000; i++) {
+for (let i = 0; i < 20000; i++) {
   store.state.info.floodColors[i] = d3.rgb(floodColor(i))
 }
 const floodColor2 = d3.scaleLinear()
-    .domain([0, 50, 100, 500, 1000, 2500,5000,11000])
+    .domain([0, 50, 100, 500, 1000, 2500,5000,11000,20000])
     .range([
       "deepskyblue",
       "dodgerblue",
@@ -50,13 +50,12 @@ const floodColor2 = d3.scaleLinear()
       "darkblue",
       "navy",
       "midnightblue",
+      "black",
       "black"
     ])
-for (let i = 0; i < 11000; i++) {
+for (let i = 0; i < 20000; i++) {
   store.state.info.floodColors2[i] = d3.rgb(floodColor2(i))
 }
-
-
 
 function flood(pixels, data) {
   const pixel = pixels[0]

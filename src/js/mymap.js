@@ -929,20 +929,24 @@ export function initMap (vm) {
         //----------------------------------------------------------------------------------------
         const getElevation = (event) =>{
             let z = Math.floor(map.getView().getZoom())
-            if(z>14) z=14;
+            if(z>9) z=9;
             // const coord = event.coordinateこっちにするとマウスの標高を取得する。
             const coord =map.getView().getCenter()
             const R = 6378137;// 地球の半径(m);
             const x = ( 0.5 + coord[ 0 ] / ( 2 * R * Math.PI ) ) * Math.pow( 2, z );
             const y = ( 0.5 - coord[ 1 ] / ( 2 * R * Math.PI ) ) * Math.pow( 2, z );
             const e = event;
+            const zoom = String(Math.floor(map.getView().getZoom() * 100) / 100)
+            // vm.zoom[mapName] = 'zoom=' + zoom
+            // vm.zoom[mapName] = ''
             getElev( x, y, z, function( h ) {
-                const zoom = String(Math.floor(map.getView().getZoom() * 100) / 100)
+                // const zoom = String(Math.floor(map.getView().getZoom() * 100) / 100)
                 if (h !=='e') {
                     // console.log(h)
                     vm.zoom[mapName] = 'zoom=' + zoom + '  中心の標高' + h + 'm'
                 } else {
-                    vm.zoom[mapName] = 'zoom=' + zoom
+                    // vm.zoom[mapName] = 'zoom=' + zoom
+                    vm.zoom[mapName] = '標高取得できませんでした。'
                 }
             } );
             // const zoom = String(Math.floor(map.getView().getZoom() * 100) / 100)
@@ -964,14 +968,15 @@ export function initMap (vm) {
         //	成功時には標高(単位m)，無効値の場合は'e'を返す
         // ****************
         function getElev( rx, ry, z, then ) {
-            const elevServer = 'https://gsj-seamless.jp/labs/elev2/elev/' // 海あり
-            // const elevServer = 'https://tiles.gsj.jp/tiles/elev/mixed/'
+            // const elevServer = 'https://gsj-seamless.jp/labs/elev2/elev/' // 海あり
+            const elevServer = 'https://tiles.gsj.jp/tiles/elev/mixed/'
             // const elevServer = 'https://tiles.gsj.jp/tiles/elev/land/' // 陸地のみ
             const x = Math.floor( rx )				// タイルX座標
             const y = Math.floor( ry )				// タイルY座標
             const i = ( rx - x ) * 256			// タイル内i座標
             const j = ( ry - y ) * 256			// タイル内j座標
             const img = new Image();
+            // let  h = 'e'
             img.crossOrigin = 'anonymous';
             img.alt = "";
             img.onload = function(){
@@ -982,11 +987,12 @@ export function initMap (vm) {
                 canvas.height = 1;
                 context.drawImage( img, i, j, 1, 1, 0, 0, 1, 1 );
                 const data = context.getImageData( 0, 0, 1, 1 ).data;
-                // console.log(data)
-                if ( data[ 3 ] === 255 ) {
-                    h = data[ 0 ] * 256 * 256 + data[ 1 ] * 256 + data[ 2 ];
-                    h = ( h < 8323072 ) ? h : h - 16777216;
-                    h /= 100;
+                if (data) {
+                    if ( data[ 3 ] === 255 ) {
+                        h = data[ 0 ] * 256 * 256 + data[ 1 ] * 256 + data[ 2 ];
+                        h = ( h < 8323072 ) ? h : h - 16777216;
+                        h /= 100;
+                    }
                 }
                 then( h );
             }
