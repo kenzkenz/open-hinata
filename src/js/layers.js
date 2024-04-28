@@ -128,13 +128,14 @@ const elevation15 = new XYZ({
   maxZoom:15,
   crossOrigin:'anonymous',
   interpolate: false,
+  
 });
 function Dem15 () {
   this.multiply = true
-      this.source = new RasterSource({
-        sources:[elevation15],
-        operation:flood
-      })
+  this.source = new RasterSource({
+    sources:[elevation15],
+    operation:flood
+  })
 }
 export const flood15Obj = {}
 for (let i of mapsStr) {
@@ -145,21 +146,28 @@ for (let i of mapsStr) {
   });
 }
 
-function DemSinple () {
+function DemSinple1 () {
   this.multiply = true
-      this.source = new RasterSource({
+  this.source = new RasterSource({
     sources:[elevation15],
     operation:flood2
   })
 }
 export const floodSinpleObj = {}
 for (let i of mapsStr) {
-  floodSinpleObj[i] = new ImageLaye(new DemSinple())
+  floodSinpleObj[i] = new ImageLaye(new DemSinple1())
   floodSinpleObj[i].getSource().on('beforeoperations', function(event) {
     event.data.level = Number(document.querySelector('#' + i  + " .flood-range10m").value)
     event.data.colors = store.state.info.colors
-  });
+  })
 }
+
+
+
+
+
+
+
 
 //dem5---------------------------------------------------------------------------------
 const elevation5 = new XYZ({
