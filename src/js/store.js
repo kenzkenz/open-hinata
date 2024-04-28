@@ -211,17 +211,11 @@ const moduleInfo = {
     //   map03: '',
     //   map04: ''
     // },
-    selected5m: {
-      map01: 100,
-      map02: 100,
-      map03: 100,
-      map04: 100
-    },
     selected10m: {
-      map01: 100,
-      map02: 100,
-      map03: 100,
-      map04: 100
+      map01: 200,
+      map02: 200,
+      map03: 200,
+      map04: 200
     },
     landCheck: {
       map01: true,
@@ -230,10 +224,10 @@ const moduleInfo = {
       map04: true
     },
     seaLevel10m: {
-      map01: 10,
-      map02: 10,
-      map03: 10,
-      map04: 10
+      map01: 0,
+      map02: 0,
+      map03: 0,
+      map04: 0
     },
     kouzi: {
       map01: 100000,

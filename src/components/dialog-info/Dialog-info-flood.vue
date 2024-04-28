@@ -42,12 +42,12 @@
         options: [
           { text: 'max 25m　', value: '25' },
           { text: 'max 100m　', value: '100' },
+          { text: 'max 200m　', value: '200' },
           { text: 'max 500m', value: '500' },
           { text: 'max 1000m', value: '1000' },
           { text: 'max 4000m', value: '4000' },
           { text: 'max 10000m', value: '10000' }
         ],
-        floodMax5m: '100',
         floodMax10m: '100'
       }
     },
@@ -84,7 +84,13 @@
     methods: {
       min (name) {
         if (name === 'flood10m') {
-          return -200
+
+          switch (this.s_selected10m) {
+            case '':
+          }
+
+
+          return - Number(this.s_selected10m)
         } else {
           return 0
         }
@@ -146,7 +152,6 @@
           selected = this.s_selected10m;
           land = this.s_land
         }
-        console.log(this.item.id)
         this.$store.commit('base/updateListPart',{mapName: this.mapName, id:this.item.id, values: [lebel, selected, land]});
         permalink.moveEnd();
       },
@@ -169,6 +174,7 @@
         this.$nextTick(function () {
           const val = this.s_selected10m;
           this.floodMax10m = val;
+
           if (val === '25') {
             this.seaLevelStep10m = 0.1
           } else if (val === '100') {
