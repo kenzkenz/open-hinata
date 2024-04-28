@@ -37,7 +37,6 @@ function flood(pixels, data) {
     if (height >= data.level) { // 陸上
       let sinsui = height - data.level
       // console.log(height,data.level)
-
       const c = data.colors
       if (sinsui <= 10) {
         pixel[0] = c.m5.r; pixel[1] = c.m5.g; pixel[2] = c.m5.b; pixel[3] = c.m5.a*255
@@ -54,7 +53,6 @@ function flood(pixels, data) {
       } else {
         pixel[0] = c.m2500.r;pixel[1] = c.m2500.g;pixel[2] = c.m2500.b;pixel[3] = c.m2500.a * 255
       }
-
     } else { //海面下
       // let sinsui = - height + data.level
       let sinsui = height - data.level
@@ -108,7 +106,7 @@ const elevation9 = new XYZ({
   maxZoom:9,
   crossOrigin:'anonymous',
   interpolate: false,
-});
+})
 function Dem10 () {
   this.multiply = true
   this.source = new RasterSource({
@@ -122,20 +120,20 @@ for (let i of mapsStr) {
   flood10Obj[i].getSource().on('beforeoperations', function(event) {
     event.data.level = Number(document.querySelector('#' + i  + " .flood-range10m").value)
     event.data.colors = store.state.info.colors
-  });
+  })
 }
 const elevation11 = new XYZ({
   url:'https://tiles.gsj.jp/tiles/elev/land/{z}/{y}/{x}.png',
   maxZoom:11,
   crossOrigin:'anonymous',
   interpolate: false,
-});
+})
 const elevation15 = new XYZ({
   url:'https://tiles.gsj.jp/tiles/elev/land/{z}/{y}/{x}.png',
   maxZoom:15,
   crossOrigin:'anonymous',
   interpolate: false,
-});
+})
 function Dem151 () {
   this.multiply = true
   this.source = new RasterSource({
@@ -150,7 +148,7 @@ for (let i of mapsStr) {
   flood151Obj[i].getSource().on('beforeoperations', function(event) {
     event.data.level = Number(document.querySelector('#' + i  + " .flood-range10m").value)
     event.data.colors = store.state.info.colors
-  });
+  })
 }
 function Dem152 () {
   this.multiply = true
@@ -166,7 +164,7 @@ for (let i of mapsStr) {
   flood152Obj[i].getSource().on('beforeoperations', function(event) {
     event.data.level = Number(document.querySelector('#' + i  + " .flood-range10m").value)
     event.data.colors = store.state.info.colors
-  });
+  })
 }
 export const flood15Obj = {};
 for (let i of mapsStr) {
