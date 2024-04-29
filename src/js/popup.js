@@ -3,6 +3,7 @@ import { transform, fromLonLat } from 'ol/proj.js'
 import axios from 'axios'
 import figureRGB from './figureRGB'
 import {transformExtent} from "ol/proj";
+import {moveEnd} from "@/js/permalink";
 export function popUp(map,layers,features,overlay,evt,content) {
   let cont
   let coordinate
@@ -952,18 +953,16 @@ export function popUp(map,layers,features,overlay,evt,content) {
           '<p style="margin-top: 10px!important;"><a href="' + prop.descriptionurl + '?uselang=ja" target="_blank">wikiMwdiaへ</a></p>' +
           streetView +
           '</div></div>'
-
-      // cont = '<div style=min-width:300px;min-height:300px;>' +
-      //     '<h4>' + prop.title + '</h4>' +
-      //     '<img src="https://kenzkenz.xsrv.jp/open-hinata/img/loading.gif" style="position: absolute;top:50%;left:20%;z-index:1;">' +
-      //     '<div style="position:absolute;z-index: 2;"><a href="' + prop.url + '" target="_blank"><img src="' + ru(prop.thumbnail) + '" height=200PX></a>' +
-      //     '<br>' +
-      //     '<a href="' + prop.descriptionurl + '?uselang=ja" target="_blank">wikiMwdiaへ</a>' +
-      //     '<br>' +
-      //     streetView +
-      //     '</div></div>'
-
-
+      break
+    case 'shikuchoson':
+      width = 200
+      cont = '<div style=width:200px;>' +
+          '<h4>' + prop.P34_003 + '</h4>' +
+          '所在地=' + ru(prop.P34_004) + '<br>' +
+          'コード=' + ru(prop.P34_001) + '<br>' +
+          '<button class="pyramid" value="' + ru(prop.P34_001) + '">test</button><br>' +
+          streetView +
+          '</div>'
       break
   }
 
@@ -990,6 +989,16 @@ export function popUp(map,layers,features,overlay,evt,content) {
   content.innerHTML = cont
   if (cont && cont !== undefined) overlay.setPosition(coordinate);
 }
+// ------------------------------------------------
+
+
+
+
+
+
+
+
+
 //----------------------------------------------------------------------------------------
 export function popupSeamless(overlay,evt,content) {
   const coordinate = evt.coordinate;

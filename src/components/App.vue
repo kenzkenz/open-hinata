@@ -388,6 +388,18 @@
       },
     },
     mounted () {
+
+      const olPopup = document.querySelector('#' + 'map01'  + ' .ol-popup')
+      olPopup.addEventListener('click', (e) => {
+        if (e.target && e.target.classList.contains("pyramid") ) {
+          alert()
+          console.log(e.target.value)
+          this.openDialog(this.s_dialogs['mainInfoDialog'])
+          // this.$store.commit('base/pushDialogsInfo',{mapName: maps[i].mapName, dialog: infoDialog})
+
+        }
+      })
+      // --------------------------------------------------------------
       const vm = this
       heading = function(ol3d,leftRight){
         if(vm.tiltFlg){

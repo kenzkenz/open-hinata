@@ -5648,6 +5648,35 @@ function wikiStileFunction() {
     return styles;
   }
 }
+// 市区町村---------------------------------------------------------------
+function Shikuchoson () {
+  this.useInterimTilesOnError = false
+  this.name = 'shikuchoson'
+  this.source = new VectorSource({
+    url:'https://kenzkenz.xsrv.jp/open-hinata/geojson/shikuchoson.geojson',
+    format: new GeoJSON()
+  });
+  this.style = shikuchosonFunction()
+}
+export const shikuchosonSumm = "<a href='' target='_blank'></a>"
+export const shikuchosonObj = {};
+for (let i of mapsStr) {
+  shikuchosonObj[i] = new VectorLayer(new Shikuchoson())
+}
+function shikuchosonFunction() {
+  return function (feature, resolution) {
+    const style = new Style({
+      image: new Icon({
+        src: require('@/assets/icon/whitecircle.png'),
+        color: 'red'
+      })
+    })
+    return style;
+  }
+}
+
+
+
 
 
 

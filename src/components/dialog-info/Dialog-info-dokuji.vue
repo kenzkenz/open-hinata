@@ -2,29 +2,6 @@
   <div style="padding: 10px;">
     タイルURL<br>
     <input type='text' @input="onInput" v-model="s_dokujiUrl" style="width: 300px;"><br><br>
-
-<!--    <fieldset>-->
-<!--      crossOrigin-->
-<!--      <div>-->
-<!--        <input type="radio"-->
-<!--               id="coYes"-->
-<!--               name="crossOrigin"-->
-<!--               value=true-->
-<!--               v-model="s_co"-->
-<!--               @change="changeRadio"-->
-<!--               checked>-->
-<!--        <label for="coYes">Anonymous</label>-->
-<!--      </div>-->
-<!--      <div>-->
-<!--        <input type="radio"-->
-<!--               id="coNo"-->
-<!--               name="crossOrigin"-->
-<!--               value=false-->
-<!--               @change="changeRadio"-->
-<!--               v-model="s_co">-->
-<!--        <label for="coNo">設定無し</label>-->
-<!--      </div>-->
-<!--    </fieldset>-->
     URLは記録されません。テスト用です。
  </div>
 </template>
@@ -57,16 +34,6 @@ export default {
           permalink.moveEnd()
         }
     },
-    // s_co:{
-    //   get() {
-    //     return this.$store.state.info.crossOrigin[this.mapName].co
-    //   },
-    //   set(value) {
-    //     this.$store.commit('base/updateListPart',{mapName: this.mapName, id:this.item.id, values: [{co:value}]});
-    //     this.$store.commit('info/updateCrossOrigin',{mapName: this.mapName, value: {co:value}})
-    //     permalink.moveEnd()
-    //   }
-    // }
   },
   methods: {
     // changeRadio: function() {
