@@ -61,6 +61,7 @@
                 <div class="top-right-div">
 <!--                  <b-button i v-if="mapName === 'map01'" class='olbtn' :size="btnSize" @click="openDialog(s_dialogs['mainInfoDialog'])"><i class="fa-brands fa-github"></i></b-button>-->
                 </div>
+
                 <div class="bottom-right-div">
                   <b-button i v-if="mapName === 'map01'" class='olbtn' :size="btnSize" @click="currentPosition"><i class="fa-solid fa-location-crosshairs"></i></b-button>
                 </div>
@@ -68,6 +69,7 @@
                 <v-dialog-info :mapName=mapName />
                 <v-dialog-menu v-if="mapName === 'map01'"/>
                 <v-dialog-main-info v-if="mapName === 'map01'"/>
+              <v-dialog-pyramid v-if="mapName === 'map01'"/>
                 <div class="zoom-div">{{ zoom[mapName] }}</div>
             </div>
         </div>
@@ -92,6 +94,7 @@
   import DialogMenu from './Dialog-menu'
   import DialogLayer from './Dialog-layer'
   import DialogMainInfo from './Dialog-main-info'
+  import DialogPyramid from './Dialog-pyramid'
   import * as Permalink from '../js/permalink'
   import Inobounce from '../js/inobounce'
   import * as MyMap from '../js/mymap'
@@ -110,7 +113,8 @@
     components: {
       'v-dialog-layer': DialogLayer,
       'v-dialog-menu': DialogMenu,
-      'v-dialog-main-info': DialogMainInfo
+      'v-dialog-main-info': DialogMainInfo,
+      'v-dialog-pyramid': DialogPyramid
     },
     data () {
       return {
@@ -394,7 +398,7 @@
         if (e.target && e.target.classList.contains("pyramid") ) {
           alert()
           console.log(e.target.value)
-          this.openDialog(this.s_dialogs['mainInfoDialog'])
+          this.openDialog(this.s_dialogs['pyramidDialog'])
           // this.$store.commit('base/pushDialogsInfo',{mapName: maps[i].mapName, dialog: infoDialog})
 
         }
