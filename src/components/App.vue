@@ -396,12 +396,14 @@
       const olPopup = document.querySelector('#' + 'map01'  + ' .ol-popup')
       olPopup.addEventListener('click', (e) => {
         if (e.target && e.target.classList.contains("pyramid") ) {
-          console.log(e.target.value)
-          this.$store.state.base.cityCode = e.target.value
+          console.log(e.target)
+          console.log(e.target.getAttribute("citycode"))
+          this.$store.state.base.cityCode = e.target.getAttribute("citycode")
+          this.$store.state.base.prefCode = e.target.getAttribute("citycode").slice(0,2)
           this.openDialog(this.s_dialogs['pyramidDialog'])
         }
       })
-      // --------------------------------------------------------------
+      // --------------------------------------------------------------str.slice( start[省略可能], end[省略可能] )
       const vm = this
       heading = function(ol3d,leftRight){
         if(vm.tiltFlg){
