@@ -218,13 +218,16 @@
       },
       // ダイアログを開く------------------------------------------------------------------
       openDialog (dialog) {
-        if (dialog.style.display === 'block') {
-          dialog.style.display = 'none'
-        } else {
-          this.$store.commit('base/incrDialogMaxZindex');
-          dialog.style["z-index"] = this.s_dialogMaxZindex;
-          dialog.style.display = 'block'
-        }
+        this.$store.commit('base/incrDialogMaxZindex');
+        dialog.style["z-index"] = this.s_dialogMaxZindex;
+        dialog.style.display = 'block'
+        // if (dialog.style.display === 'block') {
+        //   dialog.style.display = 'none'
+        // } else {
+        //   this.$store.commit('base/incrDialogMaxZindex');
+        //   dialog.style["z-index"] = this.s_dialogMaxZindex;
+        //   dialog.style.display = 'block'
+        // }
       },
       // 分割-------------------------------------------------------------------------------------
       splitMap () {
@@ -400,6 +403,7 @@
           console.log(e.target.getAttribute("citycode"))
           this.$store.state.base.cityCode = e.target.getAttribute("citycode")
           this.$store.state.base.prefCode = e.target.getAttribute("citycode").slice(0,2)
+          this.$store.state.base.cityName = e.target.getAttribute("cityname")
           this.openDialog(this.s_dialogs['pyramidDialog'])
         }
       })
