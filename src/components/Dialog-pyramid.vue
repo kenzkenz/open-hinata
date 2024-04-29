@@ -10,6 +10,8 @@
 </template>
 
 <script>
+import store from "@/js/store";
+
 export default {
   name: "Dialog-pyramid",
   data () {
@@ -20,11 +22,22 @@ export default {
   computed: {
     S_mainInfoDialog () {
       return this.$store.state.base.dialogs.pyramidDialog
-    }
+    },
+    S_cityCode () {
+      return this.$store.state.base.cityCode
+    },
   },
   methods: {
   },
+  watch: {
+    S_cityCode: {
+      handler: function () {
+        alert()
+      },
+    }
+  },
   mounted () {
+    console.log(this.$store.state.base.cityCode)
     this.$watch(function () {
 
     });

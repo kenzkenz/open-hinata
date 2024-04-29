@@ -216,7 +216,7 @@
         // window.open('https://kenzkenz.xsrv.jp/oh/open-hinata/')
         window.open('https://note.com/kenzkenz2536/n/n08d8fca5d795')
       },
-      // レイヤーのダイアログを開く------------------------------------------------------------------
+      // ダイアログを開く------------------------------------------------------------------
       openDialog (dialog) {
         if (dialog.style.display === 'block') {
           dialog.style.display = 'none'
@@ -392,15 +392,13 @@
       },
     },
     mounted () {
-
+      // 人口ピラミッド----------------------------------------------------------------
       const olPopup = document.querySelector('#' + 'map01'  + ' .ol-popup')
       olPopup.addEventListener('click', (e) => {
         if (e.target && e.target.classList.contains("pyramid") ) {
-          alert()
           console.log(e.target.value)
+          this.$store.state.base.cityCode = e.target.value
           this.openDialog(this.s_dialogs['pyramidDialog'])
-          // this.$store.commit('base/pushDialogsInfo',{mapName: maps[i].mapName, dialog: infoDialog})
-
         }
       })
       // --------------------------------------------------------------

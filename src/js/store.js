@@ -56,6 +56,7 @@ const moduleBase = {
       map03: 1,
       map04: 1
     },
+    cityCode: '',
   },
   getters: {
     layerList: (state) => (mapName) => {
