@@ -31,20 +31,17 @@ let renzoku
 
 export default {
   name: "Dialog-pyramid",
+  props: ['mapName'],
   data () {
     return {
-      // contentSize: {'height': 'auto', 'width': 'auto', 'margin': '10px', 'overflow': 'auto', 'user-select': 'text'},
-      // width: 500,
-      // height: 500,
-      // r: 75
     }
   },
   computed: {
     S_mainInfoDialog () {
-      return this.$store.state.base.dialogs.pyramidDialog
+      return this.$store.state.base.dialogs.pyramidDialog[this.mapName]
     },
     S_cityCode () {
-      return this.$store.state.base.cityCode
+      return this.$store.state.base.cityCode[this.mapName]
     },
   },
   methods: {
@@ -52,11 +49,13 @@ export default {
   watch: {
     S_cityCode: {
       handler: function () {
-        d3.select('.d3-pyramid svg').remove()
-        d3.select('.loadingImg').style("display","block")
-        const resasApiKey = "ZKE7BccwVM8e2onUYC7iX2tnuuZwZJfuOTf3rL93";
+        d3.select('#' + this.mapName + ' .d3-pyramid svg').remove()
+        d3.select('#' + this.mapName + ' .loadingImg').style("display","block")
+        // const resasApiKey = "ZKE7BccwVM8e2onUYC7iX2tnuuZwZJfuOTf3rL93"
+        const resasApiKey = "Sultx8zfCSfOwJ9M0bZPcTd3KmryBhzm86Qz9skE"
+
         const resasUrl = "https://opendata.resas-portal.go.jp/api/v1/"
-        const cityCode = this.$store.state.base.cityCode
+        const cityCode = this.$store.state.base.cityCode[this.mapName]
         let cityName = this.$store.state.base.cityName
         const prefCode = this.$store.state.base.prefCode
         console.log(cityCode)
@@ -85,7 +84,7 @@ export default {
                 // console.log(response)
                 d3Create (response)
                 console.log(d3.select('.loadingImg'))
-                d3.select('.loadingImg').style("display","none")
+                d3.selectAll('.loadingImg').style("display","none")
               })
               .catch(function (response) {
                 console.log(response);
@@ -102,14 +101,14 @@ export default {
           let womanMargin = 250
 
           if (window.innerWidth > 600) {
-            vm.$store.state.base.dialogs.pyramidDialog.style.width = '550px'
-            console.log(vm.$store.state.base.dialogs.pyramidDialog.style.width)
+            vm.$store.state.base.dialogs.pyramidDialog[vm.mapName].style.width = '550px'
+            console.log(vm.$store.state.base.dialogs.pyramidDialog[vm.mapName].style.width)
             width = 550 - margin.left - margin.right
             height = 400 - margin.top - margin.bottom
             womanMargin = 275
           } else {
-            vm.$store.state.base.dialogs.pyramidDialog.style.width = '300px'
-            console.log(vm.$store.state.base.dialogs.pyramidDialog.style.width)
+            vm.$store.state.base.dialogs.pyramidDialog[vm.mapName].style.width = '300px'
+            console.log(vm.$store.state.base.dialogs.pyramidDialog[vm.mapName].style.width)
             width = 300 - margin.left - margin.right
             height = 200 - margin.top - margin.bottom
             womanMargin = 150
@@ -130,7 +129,7 @@ export default {
 
           // d3.select(".d3-pyramid svg").remove()
 
-          const svg = d3.select(".d3-pyramid").append("svg")
+          const svg = d3.select('#' + vm.mapName + ' .d3-pyramid').append("svg")
               .attr("width", width + margin.left + margin.right)
               .attr("height", height + margin.top + margin.bottom)
               .append("g")
@@ -220,13 +219,16 @@ export default {
 
           svg.append("g")
               .attr("transform", "translate(0," + height + ")")
-              .call(d3.axisBottom(x).ticks(4));
+              .call(d3.axisBottom(x).ticks(4))
           svg.append("g")
               .attr("transform", "translate(0," + height + ")")
-              .call(d3.axisBottom(x2).ticks(4));
+              .call(d3.axisBottom(x2).ticks(4))
           svg.append("g")
               .attr("transform", "translate(" + womanMargin + "," + 0 + ")")
-              .call(d3.axisLeft(y));
+              .call(d3.axisLeft(y))
+          // svg.append("g")
+          //     .attr("transform", "translate(" + womanMargin -40 + "," + 0 + ")")
+          //     .call(d3.axisRight(y).tickValues([]))
 
           d3.selectAll(".updataGraph")
               .on("click",click);

@@ -15,9 +15,6 @@
             <v-flood :item="item" :mapName="mapName" v-else-if="item.component.name === 'flood15'"/>
             <v-flood :item="item" :mapName="mapName" v-else-if="item.component.name === 'floodSimple'"/>
 
-
-
-
             <!--シームレス地質図-->
             <v-seamless :item="item" :mapName="mapName" v-else-if="item.component.name === 'seamless'"/>
 
