@@ -138,7 +138,7 @@ export default {
               .attr("font", "10px")
               .attr("text-anchor", "middle")
               .attr("class", "city-name")
-              .text(cityName + '1980');
+              .text(cityName + '2020');
 
           x.domain([0, d3.max(data, function(d){ return d.woman; })])
           x2.domain(
