@@ -140,15 +140,6 @@ export default {
               .attr("class", "city-name")
               .text(cityName + '1980');
 
-          // svg.append("text")
-          //     .attr("fill", "black")
-          //     // .attr("transform", function(d) { return "translate(" + text.centroid(d) + ")"; })
-          //     // .attr("dy", "5px")
-          //     .attr("font", "10px")
-          //     .attr("text-anchor", "middle")
-          //     .attr("class", "year")
-          //     .text('wwwwwwwwwwwwww');
-
           x.domain([0, d3.max(data, function(d){ return d.woman; })])
           x2.domain(
                   [0,d3.max(data, function(d){ return d.man; })]
@@ -162,7 +153,6 @@ export default {
               .data(data)
               .enter().append("rect")
               .attr("class", "bar")
-              //.attr("x", function(d) { return x(d.sales); })
               .attr("width", function(d) {
                 return x(d.woman) - womanMargin
               })
