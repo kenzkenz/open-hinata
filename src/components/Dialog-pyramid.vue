@@ -51,6 +51,7 @@ export default {
   watch: {
     S_cityCode: {
       handler: function () {
+        d3.select(".d3-pyramid svg").remove()
         const resasApiKey = "ZKE7BccwVM8e2onUYC7iX2tnuuZwZJfuOTf3rL93";
         const resasUrl = "https://opendata.resas-portal.go.jp/api/v1/"
         const cityCode = this.$store.state.base.cityCode
@@ -101,7 +102,6 @@ export default {
           const womanMargin = 200
           //
 
-// set the ranges
           const y = d3.scaleBand()
               .range([height, 0])
               .padding(0.1);
@@ -116,7 +116,7 @@ export default {
                   .range([width - womanMargin-20,0])
 
 
-          d3.select(".d3-pyramid svg").remove()
+          // d3.select(".d3-pyramid svg").remove()
 
           var svg = d3.select(".d3-pyramid").append("svg")
               .attr("width", width + margin.left + margin.right)
