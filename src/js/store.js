@@ -28,7 +28,7 @@ const moduleBase = {
     },
     dialogs: {
       mainInfoDialog:{style: {top: '56px', right: '10px', 'z-index': 1, height: 'auto', 'width': '200px', display: 'none'}},
-      pyramidDialog:{style: {top: '56px', right: '10px', 'z-index': 1, height: 'auto', 'width': '500px', display: 'none'}},
+      pyramidDialog:{style: {top: '56px', right: '10px', 'z-index': 1, height: 'auto', 'width': '520px', display: 'none'}},
 
       menuDialog: {style: {top: '56px', left: '10px', 'z-index': 1, height: 'auto', 'min-width': '150px', display: 'none'}},
       map01: {style: {top: '56px', left:'10px', 'z-index': 1, height: 'auto', 'min-width': '250px', display: 'none'}},

@@ -1,7 +1,22 @@
 
 <template>
   <v-dialog :dialog="S_mainInfoDialog">
+    <button class="updataGraph" value="0" >80</button>
+    <button class="updataGraph" value="1" >85</button>
+    <button class="updataGraph" value="2" >90</button>
+    <button class="updataGraph" value="3" >95</button>
+    <button class="updataGraph" value="4" >00</button>
+    <button class="updataGraph" value="5" >05</button>
+    <button class="updataGraph" value="6" >10</button>
+    <button class="updataGraph" value="7" >15</button>
+    <button class="updataGraph" value="8" >20</button>
+    <button class="updataGraph" value="9" >25</button>
+    <button class="updataGraph" value="10" >30</button>
+    <button class="updataGraph" value="11" >35</button>
+    <button class="updataGraph" value="12" >40</button>
+    <button class="updataGraph" value="13" >45</button>
 
+    <button id="renzoku">連続</button>
       <div class="d3-pyramid">
 
       </div>
@@ -17,7 +32,7 @@ import store from "@/js/store";
 import * as d3 from "d3"
 import axios from "axios";
 import {transform} from "ol/proj";
-
+let ccc
 
 export default {
   name: "Dialog-pyramid",
@@ -52,7 +67,7 @@ export default {
         console.log(prefCode)
         cityName = cityName.replace('役所','').replace('役場','')
         console.log(cityName)
-        const yearRights = ['2000', '2005', '2010']
+        const yearRights = ['1980','1985','1990','1995','2000', '2005', '2010','2015','2020','2025','2030','2035','2040','2045']
         async function created() {
           const fetchData = yearRights.map((yearRight) => {
             return axios
@@ -82,17 +97,8 @@ export default {
         function aaa (response) {
           console.log(response[0].data.result.yearRight.data)
 
-          // var svg = d3.select('#d3-pyramid');
-          // this.circle = svg.append('circle')
-          //     .attr('cx', 40)
-          //     .attr('cy', 25)
-          //     .attr('r', 75)
-          //     .style('fill','rgba(255, 0, 0, 0.8)')
-
-
-
           // 1. データの準備
-          const  data = response[0].data.result.yearRight.data
+          let  data = response[8].data.result.yearRight.data
 
           // set the dimensions and margins of the graph
           const margin = {top: 20, right: 20, bottom: 30, left: 40}
@@ -100,8 +106,6 @@ export default {
           const height = 250 - margin.top - margin.bottom
           const womanMargin = 240
           //
-
-
 
 // set the ranges
           const y = d3.scaleBand()
@@ -113,23 +117,8 @@ export default {
           const x = d3.scaleLinear()
               .range([womanMargin, width]);
           const x2 = d3.scaleLinear()
-              // .range([width,womanMargin])
-              .range([0, width-240])
+              // .range([0, width-240])
               .range([width-240,0])
-              // .range([womanMargin, width]);
-              // .range([xPadding,width/2 - xCenterPadding/2])
-
-          // var x3 = d3.scaleLinear()
-          //     .domain([0, maxPopulation])
-          //     .range([width/2 - xCenterPadding/2,xPadding]);
-
-
-
-// append the svg object to the body of the page
-// append a 'group' element to 'svg'
-// moves the 'group' element to the top left margin
-
-          // var svg = d3.select("body").append("svg")
 
           d3.select(".d3-pyramid svg").remove()
 
@@ -146,16 +135,18 @@ export default {
               // .attr("dy", "5px")
               .attr("font", "10px")
               .attr("text-anchor", "middle")
-              .text(cityName);
+              .attr("class", "city-name")
+              .text(cityName + '1980');
 
-          // var svg = svg = d3.select('#d3-pyramid')
-          // svg.attr("width", width + margin.left + margin.right)
-          //     .attr("height", height + margin.top + margin.bottom)
-          //     .append("g")
-          //     .attr("transform",
-          //         "translate(" + margin.left + "," + margin.top + ")");
+          // svg.append("text")
+          //     .attr("fill", "black")
+          //     // .attr("transform", function(d) { return "translate(" + text.centroid(d) + ")"; })
+          //     // .attr("dy", "5px")
+          //     .attr("font", "10px")
+          //     .attr("text-anchor", "middle")
+          //     .attr("class", "year")
+          //     .text('wwwwwwwwwwwwww');
 
-          // Scale the range of the data in the domains
           x.domain([0, d3.max(data, function(d){ return d.woman; })])
           x2.domain(
                   [0,d3.max(data, function(d){ return d.man; })]
@@ -184,7 +175,7 @@ export default {
               .attr("class", "bar-man")
               .attr("x", function(d) {return x2(d.man);})
               .attr("width", function(d) {
-                return width-x2(d.man)-womanMargin
+                return width -x2(d.man) -womanMargin
               })
               .attr("y", function(d) { return y(d.class); })
               .attr("height", y.bandwidth())
@@ -198,17 +189,71 @@ export default {
               .attr("transform", "translate(0," + height + ")")
               // .call(d3.axisBottom(x2))
               .call(d3.axisBottom(x2).ticks(4));
-
-
           // add the y Axis
           svg.append("g")
               .attr("transform", "translate(240," + 0 + ")")
               .call(d3.axisLeft(y));
 
+          d3.selectAll(".updataGraph")
+              .on("click",aaa);
+          function aaa(e) {
+            // console.log(e.srcElement.classList.contains("ug1985"))
+            // console.log(e.srcElement.getAttribute("value"))
+            const count = Number(e.srcElement.getAttribute("value"))
+            let year
+            data = response[count].data.result.yearRight.data
+            year = 1980 + (count*5)
+            svg
+                .selectAll(".city-name")
+                .text(cityName + year)
+            svg
+                .selectAll(".bar")
+                .data(data)
+                .attr("width", function(d) {
+                  return x(d.woman) - womanMargin
+                })
+            svg
+                .selectAll(".bar-man")
+                .data(data)
+                .attr("x", function(d) {return x2(d.man);})
+                .attr("width", function(d) {
+                  return width -x2(d.man) -womanMargin
+                })
+          }
 
-
-
-
+          d3.select("#renzoku")
+              .on("click",function(){
+                let count = 0
+                ccc = function(){
+                  let year
+                  if(count < 14){
+                    data = response[count].data.result.yearRight.data
+                        year = 1980 + (count*5)
+                    svg
+                        .selectAll(".city-name")
+                        .text(cityName + year)
+                    svg
+                        .selectAll(".bar")
+                        .data(data)
+                        .attr("width", function(d) {
+                          return x(d.woman) - womanMargin
+                        })
+                    svg
+                        .selectAll(".bar-man")
+                        .data(data)
+                        .attr("x", function(d) {return x2(d.man);})
+                        .attr("width", function(d) {
+                          return width -x2(d.man) -womanMargin
+                        })
+                    count++
+                    console.log(9999)
+                    setTimeout(function(){ccc()},500);
+                  } else {
+                    clearTimeout(ccc)
+                  }
+                }
+                ccc()
+              });
 
 
 
