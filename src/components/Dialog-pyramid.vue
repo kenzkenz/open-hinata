@@ -133,7 +133,7 @@ export default {
 
           svg.append("text")
               .attr("fill", "black")
-              // .attr("transform", function(d) { return "translate(" + text.centroid(d) + ")"; })
+              .attr("transform", "translate(" + 30 + "," + 0 + ")")
               // .attr("dy", "5px")
               .attr("font", "10px")
               .attr("text-anchor", "middle")
@@ -153,26 +153,40 @@ export default {
               .data(data)
               .enter().append("rect")
               .attr("class", "bar")
-              .attr("width", function(d) {
-                return x(d.woman) - womanMargin
-              })
               .attr("y", function(d) { return y(d.class); })
               .attr("height", y.bandwidth())
               .attr("transform", "translate(" + womanMargin + "," + 0 + ")")
               .attr("fill", "pink")
+              .attr("width", 0)
+              .transition()
+              .duration(1500)
+              .delay(200)
+              .attr("width", function(d) {
+                return x(d.woman) - womanMargin
+              })
+
 
           svg.selectAll(".bar-man")
               .data(data)
               .enter().append("rect")
               .attr("class", "bar-man")
-              .attr("x", function(d) {return x2(d.man);})
-              .attr("width", function(d) {
-                return width -x2(d.man) -womanMargin-20
-              })
+
               .attr("y", function(d) { return y(d.class); })
               .attr("height", y.bandwidth())
               .attr("transform", "translate(" + 0 + "," + 0 + ")")
               .attr("fill", "steelblue")
+              .attr("width", 0)
+              .attr("x", function(d) {
+                return width/2 -40;
+              })
+              .transition()
+              .duration(1500)
+              .delay(200)
+              .attr("x", function(d) {return x2(d.man);})
+              .attr("width", function(d) {
+                return width -x2(d.man) -womanMargin-20
+              })
+
           // add the x Axis
           svg.append("g")
               .attr("transform", "translate(0," + height + ")")
@@ -189,8 +203,6 @@ export default {
           d3.selectAll(".updataGraph")
               .on("click",aaa);
           function aaa(e) {
-            // console.log(e.srcElement.classList.contains("ug1985"))
-            // console.log(e.srcElement.getAttribute("value"))
             const count = Number(e.srcElement.getAttribute("value"))
             let year
             data = response[count].data.result.yearRight.data
@@ -201,12 +213,14 @@ export default {
             svg
                 .selectAll(".bar")
                 .data(data)
+                .transition()
                 .attr("width", function(d) {
                   return x(d.woman) - womanMargin
                 })
             svg
                 .selectAll(".bar-man")
                 .data(data)
+                .transition()
                 .attr("x", function(d) {return x2(d.man);})
                 .attr("width", function(d) {
                   return width -x2(d.man) -womanMargin-20
@@ -218,7 +232,7 @@ export default {
                 let count = 0
                 ccc = function(){
                   let year
-                  if(count < 14){
+                  if(count < 15){
                     data = response[count].data.result.yearRight.data
                         year = 1980 + (count*5)
                     svg
@@ -227,12 +241,14 @@ export default {
                     svg
                         .selectAll(".bar")
                         .data(data)
+                        .transition()
                         .attr("width", function(d) {
                           return x(d.woman) - womanMargin
                         })
                     svg
                         .selectAll(".bar-man")
                         .data(data)
+                        .transition()
                         .attr("x", function(d) {return x2(d.man);})
                         .attr("width", function(d) {
                           return width -x2(d.man) -womanMargin-20
