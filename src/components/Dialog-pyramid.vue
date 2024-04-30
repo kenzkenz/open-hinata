@@ -155,11 +155,24 @@ export default {
           y2.domain(data.map(function(d) { return d.class; }));
           //y.domain([0, d3.max(data, function(d) { return d.sales; })]);
 
-          // append the rectangles for the bar chart
+          var tooltip = d3.select("body").append("div").attr("class", "d3tooltip");
           svg.selectAll(".bar")
               .data(data)
               .enter().append("rect")
               .attr("class", "bar")
+              .on("mouseover", function(event, data) {
+                tooltip
+                    .style("visibility", "visible")
+                    .html("年齢:" + data.class + "<br>人数: " + data.woman + "人");
+              })
+              .on("mousemove", function(event) {
+                tooltip
+                    .style("top", (event.pageY - 20) + "px")
+                    .style("left", (event.pageX + 10) + "px");
+              })
+              .on("mouseout", function(d) {
+                tooltip.style("visibility", "hidden");
+              })
               .attr("y", function(d) { return y(d.class); })
               .attr("height", y.bandwidth())
               .attr("transform", "translate(" + womanMargin + "," + 0 + ")")
@@ -171,13 +184,24 @@ export default {
               .attr("width", function(d) {
                 return x(d.woman) - womanMargin
               })
-
-
+          
           svg.selectAll(".bar-man")
               .data(data)
               .enter().append("rect")
               .attr("class", "bar-man")
-
+              .on("mouseover", function(event, data) {
+                tooltip
+                    .style("visibility", "visible")
+                    .html("年齢:" + data.class + "<br>人数: " + data.man + "人");
+              })
+              .on("mousemove", function(event) {
+                tooltip
+                    .style("top", (event.pageY - 20) + "px")
+                    .style("left", (event.pageX + 10) + "px");
+              })
+              .on("mouseout", function(d) {
+                tooltip.style("visibility", "hidden");
+              })
               .attr("y", function(d) { return y(d.class); })
               .attr("height", y.bandwidth())
               .attr("transform", "translate(" + 0 + "," + 0 + ")")
@@ -364,9 +388,27 @@ export default {
 }
 </script>
 
+<style>
+.d3tooltip {
+  position: absolute;
+  text-align: center;
+  width: auto;
+  height: auto;
+  padding: 2px;
+  font-size: 14px;
+  background: white;
+  -webkit-box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.8);
+  -moz-box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.8);
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.8);
+  visibility: hidden;
+  border-radius:2px;
+  z-index: 9999;
+}
+</style>
 <style scoped>
 .content-div{
   width: 500px;
   padding: 10px;
 }
+
 </style>
