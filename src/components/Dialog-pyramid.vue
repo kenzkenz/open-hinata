@@ -101,7 +101,7 @@ export default {
           let  data = response[8].data.result.yearRight.data
 
           // set the dimensions and margins of the graph
-          const margin = {top: 20, right: 20, bottom: 30, left: 40}
+          const margin = {top: 20, right: 20, bottom: 30, left: 20}
           const width = 400 - margin.left - margin.right
           const height = 250 - margin.top - margin.bottom
           const womanMargin = 200
@@ -119,7 +119,7 @@ export default {
           const x2 = d3.scaleLinear()
               // .range([0, width-240])
               // .range([width-240,0]
-                  .range([width - womanMargin,-0])
+                  .range([width - womanMargin-20,0])
 
 
           d3.select(".d3-pyramid svg").remove()
@@ -167,7 +167,7 @@ export default {
               .attr("class", "bar-man")
               .attr("x", function(d) {return x2(d.man);})
               .attr("width", function(d) {
-                return width -x2(d.man) -womanMargin
+                return width -x2(d.man) -womanMargin-20
               })
               .attr("y", function(d) { return y(d.class); })
               .attr("height", y.bandwidth())
@@ -209,7 +209,7 @@ export default {
                 .data(data)
                 .attr("x", function(d) {return x2(d.man);})
                 .attr("width", function(d) {
-                  return width -x2(d.man) -womanMargin
+                  return width -x2(d.man) -womanMargin-20
                 })
           }
 
@@ -235,7 +235,7 @@ export default {
                         .data(data)
                         .attr("x", function(d) {return x2(d.man);})
                         .attr("width", function(d) {
-                          return width -x2(d.man) -womanMargin
+                          return width -x2(d.man) -womanMargin-20
                         })
                     count++
                     console.log(9999)
