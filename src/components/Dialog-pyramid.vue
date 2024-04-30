@@ -1,6 +1,6 @@
 
 <template>
-  <v-dialog :dialog="S_mainInfoDialog">
+  <div :id="id">
     <button class="updataGraph" value="0" >80</button>
     <button class="updataGraph" value="1" >85</button>
     <button class="updataGraph" value="2" >90</button>
@@ -19,7 +19,7 @@
     <img class='loadingImg' src="https://kenzkenz.xsrv.jp/open-hinata/img/loading.gif" style="position: absolute;top:50%;left:50%;z-index:1;">
     <div class="d3-pyramid"></div>
 <!--      <svg id="d3-pyramid" width="350" :height="350" style="border: 1px dotted"></svg>-->
-  </v-dialog>
+  </div>
 </template>
 
 <script>
@@ -31,15 +31,18 @@ let renzoku
 
 export default {
   name: "Dialog-pyramid",
-  props: ['mapName'],
+  props: ['mapName', 'item'],
   data () {
     return {
     }
   },
   computed: {
-    S_mainInfoDialog () {
-      return this.$store.state.base.dialogs.pyramidDialog[this.mapName]
+    id () {
+      return 'pyramid' + this.item.id
     },
+    // S_mainInfoDialog () {
+    //   return this.$store.state.base.dialogs.pyramidDialog[this.mapName]
+    // },
     S_cityCode () {
       return this.$store.state.base.cityCode[this.mapName]
     },
@@ -47,341 +50,518 @@ export default {
   methods: {
   },
   watch: {
-    S_cityCode: {
-      handler: function () {
-        d3.select('#' + this.mapName + ' .d3-pyramid svg').remove()
-        d3.select('#' + this.mapName + ' .loadingImg').style("display","block")
-        // const resasApiKey = "ZKE7BccwVM8e2onUYC7iX2tnuuZwZJfuOTf3rL93"
-        const resasApiKey = "Sultx8zfCSfOwJ9M0bZPcTd3KmryBhzm86Qz9skE"
-
-        const resasUrl = "https://opendata.resas-portal.go.jp/api/v1/"
-        const cityCode = this.$store.state.base.cityCode[this.mapName]
-        let cityName = this.$store.state.base.cityName
-        const prefCode = this.$store.state.base.prefCode
-        console.log(cityCode)
-        console.log(cityName)
-        console.log(prefCode)
-        cityName = cityName.replace('役所','').replace('役場','')
-        console.log(cityName)
-        const yearRights = ['1980','1985','1990','1995','2000', '2005', '2010','2015','2020','2025','2030','2035','2040','2045']
-        async function created() {
-          const fetchData = yearRights.map((yearRight) => {
-            return axios
-                .get(resasUrl +'population/composition/pyramid',{
-                  headers:{'X-API-KEY':resasApiKey},
-                  params: {
-                    prefCode:prefCode,
-                    cityCode:cityCode,
-                    yearLeft:"2000",
-                    yearRight:yearRight,
-                  }
-                })
-          })
-          await Promise.all([
-            ...fetchData
-          ])
-              .then((response) => {
-                // console.log(response)
-                d3Create (response)
-                console.log(d3.select('.loadingImg'))
-                d3.selectAll('.loadingImg').style("display","none")
-              })
-              .catch(function (response) {
-                console.log(response);
-              })
+    // S_cityCode: {
+    //   handler: function () {
+    //     alert()
+    //     d3.select('#' + this.mapName + ' .d3-pyramid svg').remove()
+    //     d3.select('#' + this.mapName + ' .loadingImg').style("display","block")
+    //     // const resasApiKey = "ZKE7BccwVM8e2onUYC7iX2tnuuZwZJfuOTf3rL93"
+    //     const resasApiKey = "Sultx8zfCSfOwJ9M0bZPcTd3KmryBhzm86Qz9skE"
+    //
+    //     const resasUrl = "https://opendata.resas-portal.go.jp/api/v1/"
+    //     const cityCode = this.$store.state.base.cityCode[this.mapName]
+    //     let cityName = this.$store.state.base.cityName
+    //     const prefCode = this.$store.state.base.prefCode
+    //     console.log(cityCode)
+    //     console.log(cityName)
+    //     console.log(prefCode)
+    //     cityName = cityName.replace('役所','').replace('役場','')
+    //     console.log(cityName)
+    //     const yearRights = ['1980','1985','1990','1995','2000', '2005', '2010','2015','2020','2025','2030','2035','2040','2045']
+    //     async function created() {
+    //       const fetchData = yearRights.map((yearRight) => {
+    //         return axios
+    //             .get(resasUrl +'population/composition/pyramid',{
+    //               headers:{'X-API-KEY':resasApiKey},
+    //               params: {
+    //                 prefCode:prefCode,
+    //                 cityCode:cityCode,
+    //                 yearLeft:"2000",
+    //                 yearRight:yearRight,
+    //               }
+    //             })
+    //       })
+    //       await Promise.all([
+    //         ...fetchData
+    //       ])
+    //           .then((response) => {
+    //             // console.log(response)
+    //             d3Create (response)
+    //             console.log(d3.select('.loadingImg'))
+    //             d3.selectAll('.loadingImg').style("display","none")
+    //           })
+    //           .catch(function (response) {
+    //             console.log(response);
+    //           })
+    //     }
+    //     created()
+    //     const vm = this
+    //     function d3Create (response) {
+    //       console.log(response[0].data.result.yearRight.data)
+    //
+    //       const margin = {top: 20, right: 20, bottom: 30, left: 20}
+    //       let width = 500 - margin.left - margin.right
+    //       let height = 400 - margin.top - margin.bottom
+    //       let womanMargin = 250
+    //
+    //       if (window.innerWidth > 600) {
+    //         vm.$store.state.base.dialogs.pyramidDialog[vm.mapName].style.width = '550px'
+    //         console.log(vm.$store.state.base.dialogs.pyramidDialog[vm.mapName].style.width)
+    //         width = 550 - margin.left - margin.right
+    //         height = 400 - margin.top - margin.bottom
+    //         womanMargin = 275
+    //       } else {
+    //         vm.$store.state.base.dialogs.pyramidDialog[vm.mapName].style.width = '300px'
+    //         console.log(vm.$store.state.base.dialogs.pyramidDialog[vm.mapName].style.width)
+    //         width = 300 - margin.left - margin.right
+    //         height = 200 - margin.top - margin.bottom
+    //         womanMargin = 150
+    //       }
+    //
+    //       let  data = response[8].data.result.yearRight.data
+    //
+    //       const y = d3.scaleBand()
+    //           .range([height, 0])
+    //           .padding(0.1);
+    //       const y2 = d3.scaleBand()
+    //           .range([height, 0])
+    //           .padding(0.1);
+    //       const x = d3.scaleLinear()
+    //           .range([womanMargin, width]);
+    //       const x2 = d3.scaleLinear()
+    //           .range([width - womanMargin-20,0])
+    //
+    //       // d3.select(".d3-pyramid svg").remove()
+    //
+    //       const svg = d3.select('#' + vm.mapName + ' .d3-pyramid').append("svg")
+    //           .attr("width", width + margin.left + margin.right)
+    //           .attr("height", height + margin.top + margin.bottom)
+    //           .append("g")
+    //           .attr("transform",
+    //               "translate(" + margin.left + "," + margin.top + ")");
+    //
+    //       svg.append("text")
+    //           .attr("fill", "black")
+    //           .attr("transform", "translate(" + 30 + "," + 0 + ")")
+    //           // .attr("dy", "5px")
+    //           .attr("font", "10px")
+    //           // .attr("text-anchor", "middle")
+    //           .attr("class", "city-name")
+    //           .text(cityName + '2020');
+    //
+    //       x.domain([0, d3.max(data, function(d){ return d.woman; })])
+    //       x2.domain(
+    //           // スケールを女性に合わせる。
+    //               [0,d3.max(data, function(d){ return d.woman; })]
+    //       )
+    //
+    //       y.domain(data.map(function(d) { return d.class; }));
+    //       y2.domain(data.map(function(d) { return d.class; }));
+    //
+    //       const tooltip = d3.select("body").append("div").attr("class", "d3tooltip");
+    //       svg.selectAll(".bar")
+    //           .data(data)
+    //           .enter().append("rect")
+    //           .attr("class", "bar")
+    //           .on("mouseover", function(event, data) {
+    //             tooltip
+    //                 .style("visibility", "visible")
+    //                 .html("年齢:" + data.class + "<br>人数: " + data.woman + "人");
+    //           })
+    //           .on("mousemove", function(event) {
+    //             tooltip
+    //                 .style("top", (event.pageY - 20) + "px")
+    //                 .style("left", (event.pageX + 10) + "px");
+    //           })
+    //           .on("mouseout", function(d) {
+    //             tooltip.style("visibility", "hidden");
+    //           })
+    //           .attr("y", function(d) { return y(d.class); })
+    //           .attr("height", y.bandwidth())
+    //           .attr("transform", "translate(" + womanMargin + "," + 0 + ")")
+    //           .attr("fill", "pink")
+    //           .attr("width", 0)
+    //           .transition()
+    //           .duration(1500)
+    //           .delay(200)
+    //           .attr("width", function(d) {
+    //             return x(d.woman) - womanMargin
+    //           })
+    //
+    //       svg.selectAll(".bar-man")
+    //           .data(data)
+    //           .enter().append("rect")
+    //           .attr("class", "bar-man")
+    //           .on("mouseover", function(event, data) {
+    //             tooltip
+    //                 .style("visibility", "visible")
+    //                 .html("年齢:" + data.class + "<br>人数: " + data.man + "人");
+    //           })
+    //           .on("mousemove", function(event) {
+    //             tooltip
+    //                 .style("top", (event.pageY - 20) + "px")
+    //                 .style("left", (event.pageX + 10) + "px");
+    //           })
+    //           .on("mouseout", function(d) {
+    //             tooltip.style("visibility", "hidden");
+    //           })
+    //           .attr("y", function(d) { return y(d.class); })
+    //           .attr("height", y.bandwidth())
+    //           .attr("transform", "translate(" + 0 + "," + 0 + ")")
+    //           .attr("fill", "steelblue")
+    //           .attr("width", 0)
+    //           .attr("x", function(d) {
+    //             return width/2 -40;
+    //           })
+    //           .transition()
+    //           .duration(1500)
+    //           .delay(200)
+    //           .attr("x", function(d) {return x2(d.man);})
+    //           .attr("width", function(d) {
+    //             return width -x2(d.man) -womanMargin-20
+    //           })
+    //
+    //       svg.append("g")
+    //           .attr("transform", "translate(0," + height + ")")
+    //           .call(d3.axisBottom(x).ticks(4))
+    //       svg.append("g")
+    //           .attr("transform", "translate(0," + height + ")")
+    //           .call(d3.axisBottom(x2).ticks(4))
+    //       svg.append("g")
+    //           .attr("transform", "translate(" + womanMargin + "," + 0 + ")")
+    //           .call(d3.axisLeft(y))
+    //       // svg.append("g")
+    //       //     .attr("transform", "translate(" + womanMargin -40 + "," + 0 + ")")
+    //       //     .call(d3.axisRight(y).tickValues([]))
+    //       // グラフ書き換え
+    //       d3.selectAll('#' + vm.mapName + ' .updataGraph')
+    //           .on("click",click);
+    //       function click(e) {
+    //         const count = Number(e.srcElement.getAttribute("value"))
+    //         let year
+    //         data = response[count].data.result.yearRight.data
+    //         year = 1980 + (count*5)
+    //         svg
+    //             .selectAll(".city-name")
+    //             .text(cityName + year)
+    //         svg
+    //             .selectAll(".bar")
+    //             .data(data)
+    //             .transition()
+    //             .attr("width", function(d) {
+    //               return x(d.woman) - womanMargin
+    //             })
+    //         svg
+    //             .selectAll(".bar-man")
+    //             .data(data)
+    //             .transition()
+    //             .attr("x", function(d) {return x2(d.man);})
+    //             .attr("width", function(d) {
+    //               return width -x2(d.man) -womanMargin-20
+    //             })
+    //       }
+    //
+    //       d3.select('#' + vm.mapName + ' .renzoku')
+    //           .on("click",function(){
+    //             let count = 0
+    //             renzoku = function(){
+    //               let year
+    //               if(count < 14){
+    //                 data = response[count].data.result.yearRight.data
+    //                     year = 1980 + (count*5)
+    //                 svg
+    //                     .selectAll(".city-name")
+    //                     .text(cityName + year)
+    //                 svg
+    //                     .selectAll(".bar")
+    //                     .data(data)
+    //                     .transition()
+    //                     .attr("width", function(d) {
+    //                       return x(d.woman) - womanMargin
+    //                     })
+    //                 svg
+    //                     .selectAll(".bar-man")
+    //                     .data(data)
+    //                     .transition()
+    //                     .attr("x", function(d) {return x2(d.man);})
+    //                     .attr("width", function(d) {
+    //                       return width -x2(d.man) -womanMargin-20
+    //                     })
+    //                 count++
+    //                 console.log(9999)
+    //                 setTimeout(function(){renzoku()},500);
+    //               } else {
+    //                 clearTimeout(renzoku)
+    //               }
+    //             }
+    //             renzoku()
+    //           });
+    //     }
+    //   },
+    // }
+  },
+  mounted () {
+    const vm = this
+    console.log(this.id)
+    resasD3()
+    function resasD3 () {
+      const elements = document.querySelectorAll('.v-dialog-info2-div')
+      const len = elements.length
+      if (len>1) {
+        if (elements[len-2].style.top === '60px') {
+          elements[len-1].style.top = '100px'
         }
-        created()
-        const vm = this
-        function d3Create (response) {
-          console.log(response[0].data.result.yearRight.data)
+      }
+      elements[len-1].style.width = '550px'
 
-          const margin = {top: 20, right: 20, bottom: 30, left: 20}
-          let width = 500 - margin.left - margin.right
-          let height = 400 - margin.top - margin.bottom
-          let womanMargin = 250
+      d3.select('#' + vm.id + ' .d3-pyramid svg').remove()
+      d3.select('#' + vm.id + ' .loadingImg').style("display","block")
+      // const resasApiKey = "ZKE7BccwVM8e2onUYC7iX2tnuuZwZJfuOTf3rL93"
+      const resasApiKey = "Sultx8zfCSfOwJ9M0bZPcTd3KmryBhzm86Qz9skE"
 
-          if (window.innerWidth > 600) {
-            vm.$store.state.base.dialogs.pyramidDialog[vm.mapName].style.width = '550px'
-            console.log(vm.$store.state.base.dialogs.pyramidDialog[vm.mapName].style.width)
-            width = 550 - margin.left - margin.right
-            height = 400 - margin.top - margin.bottom
-            womanMargin = 275
-          } else {
-            vm.$store.state.base.dialogs.pyramidDialog[vm.mapName].style.width = '300px'
-            console.log(vm.$store.state.base.dialogs.pyramidDialog[vm.mapName].style.width)
-            width = 300 - margin.left - margin.right
-            height = 200 - margin.top - margin.bottom
-            womanMargin = 150
-          }
+      const resasUrl = "https://opendata.resas-portal.go.jp/api/v1/"
+      const cityCode = vm.$store.state.base.cityCode[vm.mapName]
+      let cityName = vm.$store.state.base.cityName
+      const prefCode = vm.$store.state.base.prefCode
+      console.log(cityCode)
+      console.log(cityName)
+      console.log(prefCode)
+      cityName = cityName.replace('役所','').replace('役場','')
+      console.log(cityName)
+      const yearRights = ['1980','1985','1990','1995','2000', '2005', '2010','2015','2020','2025','2030','2035','2040','2045']
+      async function created() {
+        const fetchData = yearRights.map((yearRight) => {
+          return axios
+              .get(resasUrl +'population/composition/pyramid',{
+                headers:{'X-API-KEY':resasApiKey},
+                params: {
+                  prefCode:prefCode,
+                  cityCode:cityCode,
+                  yearLeft:"2000",
+                  yearRight:yearRight,
+                }
+              })
+        })
+        await Promise.all([
+          ...fetchData
+        ])
+            .then((response) => {
+              // console.log(response)
+              d3Create (response)
+              d3.selectAll('.loadingImg').style("display","none")
+            })
+            .catch(function (response) {
+              console.log(response);
+            })
+      }
+      created()
+      function d3Create (response) {
+        console.log(response[0].data.result.yearRight.data)
 
-          let  data = response[8].data.result.yearRight.data
+        const margin = {top: 20, right: 20, bottom: 30, left: 20}
+        let width = 500 - margin.left - margin.right
+        let height = 400 - margin.top - margin.bottom
+        let womanMargin = 230
 
-          const y = d3.scaleBand()
-              .range([height, 0])
-              .padding(0.1);
-          const y2 = d3.scaleBand()
-              .range([height, 0])
-              .padding(0.1);
-          const x = d3.scaleLinear()
-              .range([womanMargin, width]);
-          const x2 = d3.scaleLinear()
-              .range([width - womanMargin-20,0])
+        if (window.innerWidth > 600) {
+          elements[len-1].style.width = '550px'
+          width = 550 - margin.left - margin.right
+          height = 400 - margin.top - margin.bottom
+          womanMargin = 285
+        } else {
+          elements[len-1].style.width = '300px'
+          width = 300 - margin.left - margin.right
+          height = 200 - margin.top - margin.bottom
+          womanMargin = 150
+        }
 
-          // d3.select(".d3-pyramid svg").remove()
+        let  data = response[8].data.result.yearRight.data
 
-          const svg = d3.select('#' + vm.mapName + ' .d3-pyramid').append("svg")
-              .attr("width", width + margin.left + margin.right)
-              .attr("height", height + margin.top + margin.bottom)
-              .append("g")
-              .attr("transform",
-                  "translate(" + margin.left + "," + margin.top + ")");
+        const y = d3.scaleBand()
+            .range([height, 0])
+            .padding(0.1);
+        const y2 = d3.scaleBand()
+            .range([height, 0])
+            .padding(0.1);
+        const x = d3.scaleLinear()
+            .range([womanMargin, width]);
+        const x2 = d3.scaleLinear()
+            .range([width - womanMargin-0,0])
 
-          svg.append("text")
-              .attr("fill", "black")
-              .attr("transform", "translate(" + 30 + "," + 0 + ")")
-              // .attr("dy", "5px")
-              .attr("font", "10px")
-              // .attr("text-anchor", "middle")
-              .attr("class", "city-name")
-              .text(cityName + '2020');
+        // d3.select(".d3-pyramid svg").remove()
 
-          x.domain([0, d3.max(data, function(d){ return d.woman; })])
-          x2.domain(
-              // スケールを女性に合わせる。
-                  [0,d3.max(data, function(d){ return d.woman; })]
-          )
+        const svg = d3.select('#' + vm.id + ' .d3-pyramid').append("svg")
+            .attr("width", width + margin.left + margin.right)
+            .attr("height", height + margin.top + margin.bottom)
+            .append("g")
+            .attr("transform",
+                "translate(" + margin.left + "," + margin.top + ")");
 
-          y.domain(data.map(function(d) { return d.class; }));
-          y2.domain(data.map(function(d) { return d.class; }));
+        svg.append("text")
+            .attr("fill", "black")
+            .attr("transform", "translate(" + 30 + "," + 0 + ")")
+            // .attr("dy", "5px")
+            .attr("font", "10px")
+            // .attr("text-anchor", "middle")
+            .attr("class", "city-name")
+            .text(cityName + '2020');
 
-          const tooltip = d3.select("body").append("div").attr("class", "d3tooltip");
-          svg.selectAll(".bar")
+        x.domain([0, d3.max(data, function(d){ return d.woman; })])
+        x2.domain(
+            // スケールを女性に合わせる。
+            [0,d3.max(data, function(d){ return d.woman; })]
+        )
+
+        y.domain(data.map(function(d) { return d.class; }));
+        y2.domain(data.map(function(d) { return d.class; }));
+
+        const tooltip = d3.select("body").append("div").attr("class", "d3tooltip");
+        svg.selectAll(".bar")
+            .data(data)
+            .enter().append("rect")
+            .attr("class", "bar")
+            .on("mouseover", function(event, data) {
+              tooltip
+                  .style("visibility", "visible")
+                  .html("年齢:" + data.class + "<br>人数: " + data.woman + "人");
+            })
+            .on("mousemove", function(event) {
+              tooltip
+                  .style("top", (event.pageY - 20) + "px")
+                  .style("left", (event.pageX + 10) + "px");
+            })
+            .on("mouseout", function(d) {
+              tooltip.style("visibility", "hidden");
+            })
+            .attr("y", function(d) { return y(d.class); })
+            .attr("height", y.bandwidth())
+            .attr("transform", "translate(" + womanMargin + "," + 0 + ")")
+            .attr("fill", "pink")
+            .attr("width", 0)
+            .transition()
+            .duration(1500)
+            .delay(200)
+            .attr("width", function(d) {
+              return x(d.woman) - womanMargin
+            })
+
+        svg.selectAll(".bar-man")
+            .data(data)
+            .enter().append("rect")
+            .attr("class", "bar-man")
+            .on("mouseover", function(event, data) {
+              tooltip
+                  .style("visibility", "visible")
+                  .html("年齢:" + data.class + "<br>人数: " + data.man + "人");
+            })
+            .on("mousemove", function(event) {
+              tooltip
+                  .style("top", (event.pageY - 20) + "px")
+                  .style("left", (event.pageX + 10) + "px");
+            })
+            .on("mouseout", function(d) {
+              tooltip.style("visibility", "hidden");
+            })
+            .attr("y", function(d) { return y(d.class); })
+            .attr("height", y.bandwidth())
+            .attr("transform", "translate(" + 0 + "," + 0 + ")")
+            .attr("fill", "steelblue")
+            .attr("width", 0)
+            .attr("x", function(d) {
+              return width/2 -30;
+            })
+            // .attr("x", function(d) {return x2(d.man)/;})
+            .transition()
+            .duration(1500)
+            .delay(200)
+            .attr("x", function(d) {return x2(d.man);})
+            .attr("width", function(d) {
+              return width -x2(d.man) -womanMargin-0
+            })
+
+        svg.append("g")
+            .attr("transform", "translate(0," + height + ")")
+            .call(d3.axisBottom(x).ticks(4))
+        svg.append("g")
+            .attr("transform", "translate(0," + height + ")")
+            .call(d3.axisBottom(x2).ticks(4))
+        svg.append("g")
+            .attr("transform", "translate(" + womanMargin + "," + 0 + ")")
+            .call(d3.axisLeft(y))
+        // svg.append("g")
+        //     .attr("transform", "translate(" + womanMargin -40 + "," + 0 + ")")
+        //     .call(d3.axisRight(y).tickValues([]))
+        // グラフ書き換え
+        d3.selectAll('#' + vm.id + ' .updataGraph')
+            .on("click",click);
+        function click(e) {
+          const count = Number(e.srcElement.getAttribute("value"))
+          let year
+          data = response[count].data.result.yearRight.data
+          year = 1980 + (count*5)
+          svg
+              .selectAll(".city-name")
+              .text(cityName + year)
+          svg
+              .selectAll(".bar")
               .data(data)
-              .enter().append("rect")
-              .attr("class", "bar")
-              .on("mouseover", function(event, data) {
-                tooltip
-                    .style("visibility", "visible")
-                    .html("年齢:" + data.class + "<br>人数: " + data.woman + "人");
-              })
-              .on("mousemove", function(event) {
-                tooltip
-                    .style("top", (event.pageY - 20) + "px")
-                    .style("left", (event.pageX + 10) + "px");
-              })
-              .on("mouseout", function(d) {
-                tooltip.style("visibility", "hidden");
-              })
-              .attr("y", function(d) { return y(d.class); })
-              .attr("height", y.bandwidth())
-              .attr("transform", "translate(" + womanMargin + "," + 0 + ")")
-              .attr("fill", "pink")
-              .attr("width", 0)
               .transition()
-              .duration(1500)
-              .delay(200)
               .attr("width", function(d) {
                 return x(d.woman) - womanMargin
               })
-
-          svg.selectAll(".bar-man")
+          svg
+              .selectAll(".bar-man")
               .data(data)
-              .enter().append("rect")
-              .attr("class", "bar-man")
-              .on("mouseover", function(event, data) {
-                tooltip
-                    .style("visibility", "visible")
-                    .html("年齢:" + data.class + "<br>人数: " + data.man + "人");
-              })
-              .on("mousemove", function(event) {
-                tooltip
-                    .style("top", (event.pageY - 20) + "px")
-                    .style("left", (event.pageX + 10) + "px");
-              })
-              .on("mouseout", function(d) {
-                tooltip.style("visibility", "hidden");
-              })
-              .attr("y", function(d) { return y(d.class); })
-              .attr("height", y.bandwidth())
-              .attr("transform", "translate(" + 0 + "," + 0 + ")")
-              .attr("fill", "steelblue")
-              .attr("width", 0)
-              .attr("x", function(d) {
-                return width/2 -40;
-              })
               .transition()
-              .duration(1500)
-              .delay(200)
               .attr("x", function(d) {return x2(d.man);})
               .attr("width", function(d) {
-                return width -x2(d.man) -womanMargin-20
+                return width -x2(d.man) -womanMargin-0
               })
-
-          svg.append("g")
-              .attr("transform", "translate(0," + height + ")")
-              .call(d3.axisBottom(x).ticks(4))
-          svg.append("g")
-              .attr("transform", "translate(0," + height + ")")
-              .call(d3.axisBottom(x2).ticks(4))
-          svg.append("g")
-              .attr("transform", "translate(" + womanMargin + "," + 0 + ")")
-              .call(d3.axisLeft(y))
-          // svg.append("g")
-          //     .attr("transform", "translate(" + womanMargin -40 + "," + 0 + ")")
-          //     .call(d3.axisRight(y).tickValues([]))
-          // グラフ書き換え
-          d3.selectAll('#' + vm.mapName + ' .updataGraph')
-              .on("click",click);
-          function click(e) {
-            const count = Number(e.srcElement.getAttribute("value"))
-            let year
-            data = response[count].data.result.yearRight.data
-            year = 1980 + (count*5)
-            svg
-                .selectAll(".city-name")
-                .text(cityName + year)
-            svg
-                .selectAll(".bar")
-                .data(data)
-                .transition()
-                .attr("width", function(d) {
-                  return x(d.woman) - womanMargin
-                })
-            svg
-                .selectAll(".bar-man")
-                .data(data)
-                .transition()
-                .attr("x", function(d) {return x2(d.man);})
-                .attr("width", function(d) {
-                  return width -x2(d.man) -womanMargin-20
-                })
-          }
-
-          d3.select('#' + vm.mapName + ' .renzoku')
-              .on("click",function(){
-                let count = 0
-                renzoku = function(){
-                  let year
-                  if(count < 14){
-                    data = response[count].data.result.yearRight.data
-                        year = 1980 + (count*5)
-                    svg
-                        .selectAll(".city-name")
-                        .text(cityName + year)
-                    svg
-                        .selectAll(".bar")
-                        .data(data)
-                        .transition()
-                        .attr("width", function(d) {
-                          return x(d.woman) - womanMargin
-                        })
-                    svg
-                        .selectAll(".bar-man")
-                        .data(data)
-                        .transition()
-                        .attr("x", function(d) {return x2(d.man);})
-                        .attr("width", function(d) {
-                          return width -x2(d.man) -womanMargin-20
-                        })
-                    count++
-                    console.log(9999)
-                    setTimeout(function(){renzoku()},500);
-                  } else {
-                    clearTimeout(renzoku)
-                  }
-                }
-                renzoku()
-              });
-
-
-
-          // var width = 400; // グラフの幅
-          // var height = 300; // グラフの高さ
-          // var padding = 30; // スケール表示用マージン
-          //
-          // // 2. SVG領域の設定
-          // // var svg = d3.select("body").append("svg").attr("width", width).attr("height", height);
-          // var svg = d3.select('#d3-pyramid');
-          //
-          // // 3. 軸スケールの設定
-          // var xScale = d3.scaleBand()
-          //     .rangeRound([padding, width - padding])
-          //     .padding(0.1)
-          //     .domain(dataset.map(function(d) { return d.class; }));
-          //
-          // var yScale = d3.scaleLinear()
-          //     .domain([0, d3.max(dataset, function(d) { return d.man; })])
-          //     .range([height - padding, padding]);
-          //
-          // // 4. 軸の表示
-          // svg.append("g")
-          //     .attr("transform", "translate(" + 0 + "," + (height - padding) + ")")
-          //     .call(d3.axisBottom(xScale));
-          //
-          // svg.append("g")
-          //     .attr("transform", "translate(" + padding + "," + 0 + ")")
-          //     .call(d3.axisLeft(yScale));
-          //
-          // // 5. バーの表示
-          // svg.append("g")
-          //     .selectAll("rect")
-          //     .data(dataset)
-          //     .enter()
-          //     .append("rect")
-          //     .attr("x", function(d) {
-          //       console.log(d)
-          //       return xScale(d.class);
-          //     })
-          //     .attr("y", function(d) { return yScale(d.man); })
-          //     .attr("width", xScale.bandwidth())
-          //     .attr("height", function(d) { return height - padding - yScale(d.man); })
-          //     .attr("fill", "steelblue");
-
-
-
-
         }
 
-
-
-
-
-
-        // ------------------------------
-        // axios
-        //       .get(resasUrl +'population/composition/pyramid',{
-        //         headers:{'X-API-KEY':resasApiKey},
-        //         params: {
-        //           prefCode:prefCode,
-        //           cityCode:cityCode,
-        //           yearLeft:"2000",
-        //           yearRight:"2030",
-        //         }
-        //       })
-        //     .then(function (response) {
-        //       console.log(response)
-        //     })
-        //     .catch(function (error) {
-        //     })
-        //     .finally(function () {
-        //     })
-        //-----------------------------------
-      },
+        d3.select('#' + vm.id + ' .renzoku')
+            .on("click",function(){
+              let count = 0
+              renzoku = function(){
+                let year
+                if(count < 14){
+                  data = response[count].data.result.yearRight.data
+                  year = 1980 + (count*5)
+                  svg
+                      .selectAll(".city-name")
+                      .text(cityName + year)
+                  svg
+                      .selectAll(".bar")
+                      .data(data)
+                      .transition()
+                      .attr("width", function(d) {
+                        return x(d.woman) - womanMargin
+                      })
+                  svg
+                      .selectAll(".bar-man")
+                      .data(data)
+                      .transition()
+                      .attr("x", function(d) {return x2(d.man);})
+                      .attr("width", function(d) {
+                        return width -x2(d.man) -womanMargin-0
+                      })
+                  count++
+                  console.log(9999)
+                  setTimeout(function(){renzoku()},500);
+                } else {
+                  clearTimeout(renzoku)
+                }
+              }
+              renzoku()
+            });
+      }
     }
-  },
-  mounted () {
-    // var svg = d3.select('#d3-pyramid');
-    // this.circle = svg.append('circle')
-    //     .attr('cx', 40)
-    //     .attr('cy', 25)
-    //     .attr('r', 75)
-    //     .style('fill','rgba(255, 0, 0, 0.8)')
+
 
 
 
 
     this.$watch(function () {
-
     });
   }
 }

@@ -28,12 +28,12 @@ const moduleBase = {
     },
     dialogs: {
       mainInfoDialog:{style: {top: '56px', right: '10px', 'z-index': 1, height: 'auto', 'width': '200px', display: 'none'}},
-      pyramidDialog:{
-        map01: {style: {top: '56px', right: '10px', 'z-index': 1, height: 'auto', 'width': '550px', display: 'none'}},
-        map02: {style: {top: '56px', right: '10px', 'z-index': 1, height: 'auto', 'width': '550px', display: 'none'}},
-        map03: {style: {top: '56px', right: '10px', 'z-index': 1, height: 'auto', 'width': '550px', display: 'none'}},
-        map04: {style: {top: '56px', right: '10px', 'z-index': 1, height: 'auto', 'width': '550px', display: 'none'}},
-      },
+      // pyramidDialog:{
+      //   map01: {style: {top: '56px', right: '10px', 'z-index': 1, height: 'auto', 'width': '550px', display: 'block'}},
+      //   map02: {style: {top: '56px', right: '10px', 'z-index': 1, height: 'auto', 'width': '550px', display: 'block'}},
+      //   map03: {style: {top: '56px', right: '10px', 'z-index': 1, height: 'auto', 'width': '550px', display: 'block'}},
+      //   map04: {style: {top: '56px', right: '10px', 'z-index': 1, height: 'auto', 'width': '550px', display: 'block'}},
+      // },
       menuDialog: {style: {top: '56px', left: '10px', 'z-index': 1, height: 'auto', 'min-width': '150px', display: 'none'}},
       map01: {style: {top: '56px', left:'10px', 'z-index': 1, height: 'auto', 'min-width': '250px', display: 'none'}},
       map02: {style: {top: '56px', left:'10px', 'z-index': 1, height: 'auto', 'min-width': '250px', display: 'none'}},
@@ -41,6 +41,12 @@ const moduleBase = {
       map04: {style: {top: '56px', left:'10px', 'z-index': 1, height: 'auto', 'min-width': '250px', display: 'none'}},
     },
     dialogsInfo: {
+      map01: [],
+      map02: [],
+      map03: [],
+      map04: []
+    },
+    dialogsInfo2: {
       map01: [],
       map02: [],
       map03: [],
@@ -165,6 +171,11 @@ const moduleBase = {
     // インフォ用ダイアログの追加------------------------------------------------------------------
     pushDialogsInfo (state,payload) {
       const dialogs = state.dialogsInfo[payload.mapName];
+      dialogs.push(payload.dialog)
+      console.log(payload.dialog)
+    },
+    pushDialogsInfo2 (state,payload) {
+      const dialogs = state.dialogsInfo2[payload.mapName];
       dialogs.push(payload.dialog)
       console.log(payload.dialog)
     },

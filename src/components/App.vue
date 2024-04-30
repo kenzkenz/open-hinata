@@ -67,9 +67,10 @@
                 </div>
                 <v-dialog-layer :mapName=mapName />
                 <v-dialog-info :mapName=mapName />
+              <v-dialog-info2 :mapName=mapName />
                 <v-dialog-menu v-if="mapName === 'map01'"/>
 <!--                <v-dialog-main-info v-if="mapName === 'map01'"/>-->
-                <v-dialog-pyramid :mapName=mapName />
+<!--                <v-dialog-pyramid :mapName=mapName />-->
 <!--                <v-dialog-pyramid v-if="mapName === 'map01'"/>-->
                 <div class="zoom-div">{{ zoom[mapName] }}</div>
             </div>
@@ -399,15 +400,38 @@
       // 人口ピラミッド----------------------------------------------------------------
       const maps = ['map01','map02','map03','map04']
       maps.forEach((mapName) => {
+
         const olPopup = document.querySelector('#' + mapName + ' .ol-popup')
         olPopup.addEventListener('click', (e) => {
           if (e.target && e.target.classList.contains("pyramid") ) {
             console.log(e.target)
             console.log(e.target.getAttribute("citycode"))
-            this.$store.state.base.cityCode[mapName] = e.target.getAttribute("citycode")
+            // this.$store.state.base.cityCode[mapName] = e.target.getAttribute("citycode")
             this.$store.state.base.prefCode = e.target.getAttribute("citycode").slice(0,2)
             this.$store.state.base.cityName = e.target.getAttribute("cityname")
-            this.openDialog(this.s_dialogs['pyramidDialog'][mapName])
+            // this.openDialog(this.s_dialogs['pyramidDialog'][mapName])
+
+            this.$store.commit('base/incrDialogMaxZindex');
+            const infoDialog =
+                {
+                  id: this.s_dialogMaxZindex,
+                  title: 'aaaaaa',
+                  summary: '',
+                  component: '',
+                  style: {
+                    display: 'block',
+                    top: '60px',
+                    // left: '10px',
+                    right:'10px',
+                    'z-index': this.s_dialogMaxZindex
+                  }
+                }
+
+            this.$store.commit('base/pushDialogsInfo2',{mapName: mapName, dialog: infoDialog})
+            this.$store.state.base.cityCode[mapName] = e.target.getAttribute("citycode")
+
+
+
           }
         })
       })
