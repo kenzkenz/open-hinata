@@ -97,7 +97,7 @@ export default {
           let height = 400 - margin.top - margin.bottom
           let womanMargin = 250
 
-          if (window.innerWidth > 800) {
+          if (window.innerWidth > 600) {
             vm.$store.state.base.dialogs.pyramidDialog.style.width = '550px'
             console.log(vm.$store.state.base.dialogs.pyramidDialog.style.width)
             width = 550 - margin.left - margin.right
@@ -184,7 +184,7 @@ export default {
               .attr("width", function(d) {
                 return x(d.woman) - womanMargin
               })
-          
+
           svg.selectAll(".bar-man")
               .data(data)
               .enter().append("rect")
