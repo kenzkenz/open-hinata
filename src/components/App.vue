@@ -430,7 +430,7 @@
       tilt = function(ol3d,upDown){
         if(vm.tiltFlg){
           const tilt0 = ol3d.getCamera().getTilt()
-          console.log(tilt0)
+          // console.log(tilt0)
           if (upDown === 'down') {
             if (tilt0 > 0) ol3d.getCamera().setTilt(tilt0 - 0.025)
           } else {
@@ -462,35 +462,6 @@
           ol3d.setEnabled(false)
         }
       }
-
-
-      // let ol3d
-      // this.$watch(function () {
-      //   return [this.toggle3d]
-      // }, function () {
-      //   if (!ol3d) ol3d = new OLCesium({map: this.$store.state.base.maps['map01']})
-      //   const scene = ol3d.getCesiumScene()
-      //   const terrainProvider = new Cesium.PngElevationTileTerrainProvider( {
-      //     url: 'https://gsj-seamless.jp/labs/elev2/elev/{z}/{y}/{x}.png?prj=latlng&size=257',
-      //     tilingScheme: new Cesium.GeographicTilingScheme(),
-      //     magnification: 5,
-      //     crossOrigin: 'anonymous',
-      //   })
-      //   scene.terrainProvider = terrainProvider
-      //   // scene.screenSpaceCameraController._minimumZoomRate = 1//10000
-      //   // // // ズームしたときの，ホイールに対する動作制御。
-      //   // scene.screenSpaceCameraController.minimumZoomDistance = 10
-      //   // // // めり込みにくくするためズーム制限
-      //   // scene.terrainProvider.heightmapTerrainQuality = 0.1
-      //   // scene.globe.depthTestAgainstTerrain = true;//trueにすると地形より下のフューチャーは見えないようになる。
-      //   ol3d.setEnabled(false)
-      //   if (this.toggle3d) {
-      //     MyMap.history ('3D')
-      //     ol3d.setEnabled(true);
-      //   } else {
-      //     ol3d.setEnabled(false);
-      //   }
-      // })
 
       this.$nextTick(function () {
 
@@ -570,6 +541,10 @@
             content:
                 '<p>海面上昇シミュを改良しました。上昇だけでなく下降もシミュレートします。「' +
                 '<a href="https://kenzkenz.xsrv.jp/open-hinata/#spCXRi" target="_blank">海面上昇シミュ</a>' +
+                '」' +
+                '<br>是非ご覧ください。' +
+                '<p>市区町村の人口ピラミッドを追加しました。「' +
+                '<a href="https://kenzkenz.xsrv.jp/open-hinata/#sDbPrP" target="_blank">市区町村人口ピラミッド</a>' +
                 '」' +
                 '<br>是非ご覧ください。',
             title: 'お知らせ',

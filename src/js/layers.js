@@ -13693,12 +13693,13 @@ export const Layers =
             { text: 'S35人口集中地区', data: { id: "didS35", layer: LayersMvt.didS35Obj, opacity: 1, summary: LayersMvt.didS35Summ } },
           ]},
       ]},
-    { text: '海面上昇シミュレーション　　　　　',
+    { text: '海面上昇シミュと人口ピラミッド　　　　　',
       children: [
         // { text: '海面上昇シミュ5Mdem', data: { id: 'flood5m', layer: flood5Obj, opacity: 1, summary: floodSumm, component: {name: 'flood5m', values:[]}} },
         { text: '海面上昇シミュ（色別標高図風）', data: { id: 'flood10m', layer: flood10Obj, opacity: 1, summary: floodSumm, component: {name: 'flood10m', values:[]}} },
         { text: '海面上昇シミュ（詳細）', data: { id: 'flood15', layer: flood15Obj, opacity: 1, summary: floodSumm, component: {name: 'flood15', values:[]}} },
         { text: '海面上昇シミュ（シンプル）', data: { id: 'flood10m2', layer: floodSinpleObj, opacity: 1, summary: floodSumm, component: {name: 'floodSimple', values:[]}} },
+        { text: '市区町村人口ピラミッド', data: { id: "shikuchoson", layer: LayersMvt.shikuchosonObj, opacity: 1, summary: LayersMvt.shikuchosonSumm } },
 
       ]
     },
@@ -13839,8 +13840,6 @@ export const Layers =
       ]},
     { text: 'その他',
       children: [
-        { text: '市区町村人口ピラミッド', data: { id: "shikuchoson", layer: LayersMvt.shikuchosonObj, opacity: 1, summary: LayersMvt.shikuchosonSumm } },
-
         { text: 'テスト', data: { id: "test", layer: LayersMvt.vectorObj, opacity: 1, summary: LayersMvt.suiroSumm } },
         // { text: 'テスト2', data: { id: "test2", layer: bingRoadobj, opacity: 1, summary: LayersMvt.suiroSumm } },
         { text: 'ラスタータイルtest', data: { id: "dokuji", layer: dokujiObj, opacity: 1, summary: LayersMvt.busSumm, component: {name: 'dokuji', values:[]}} },

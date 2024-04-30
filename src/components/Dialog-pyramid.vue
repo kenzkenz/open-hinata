@@ -16,6 +16,7 @@
     <button class="updataGraph" value="12" >40</button>
     <button class="updataGraph" value="13" >45</button>
     <button id="renzoku">連続</button>
+    <img class='loadingImg' src="https://kenzkenz.xsrv.jp/open-hinata/img/loading.gif" style="position: absolute;top:50%;left:50%;z-index:1;">
     <div class="d3-pyramid"></div>
 <!--      <svg id="d3-pyramid" width="350" :height="350" style="border: 1px dotted"></svg>-->
   </v-dialog>
@@ -26,7 +27,7 @@ import store from "@/js/store";
 import * as d3 from "d3"
 import axios from "axios";
 import {transform} from "ol/proj";
-let ccc
+let renzoku
 
 export default {
   name: "Dialog-pyramid",
@@ -51,7 +52,8 @@ export default {
   watch: {
     S_cityCode: {
       handler: function () {
-        d3.select(".d3-pyramid svg").remove()
+        d3.select('.d3-pyramid svg').remove()
+        d3.select('.loadingImg').style("display","block")
         const resasApiKey = "ZKE7BccwVM8e2onUYC7iX2tnuuZwZJfuOTf3rL93";
         const resasUrl = "https://opendata.resas-portal.go.jp/api/v1/"
         const cityCode = this.$store.state.base.cityCode
@@ -81,7 +83,9 @@ export default {
           ])
               .then((response) => {
                 // console.log(response)
-                aaa (response)
+                d3Create (response)
+                console.log(d3.select('.loadingImg'))
+                d3.select('.loadingImg').style("display","none")
               })
               .catch(function (response) {
                 console.log(response);
@@ -89,7 +93,7 @@ export default {
         }
         created()
         const vm = this
-        function aaa (response) {
+        function d3Create (response) {
           console.log(response[0].data.result.yearRight.data)
 
           const margin = {top: 20, right: 20, bottom: 30, left: 20}
@@ -122,14 +126,11 @@ export default {
           const x = d3.scaleLinear()
               .range([womanMargin, width]);
           const x2 = d3.scaleLinear()
-              // .range([0, width-240])
-              // .range([width-240,0]
-                  .range([width - womanMargin-20,0])
-
+              .range([width - womanMargin-20,0])
 
           // d3.select(".d3-pyramid svg").remove()
 
-          var svg = d3.select(".d3-pyramid").append("svg")
+          const svg = d3.select(".d3-pyramid").append("svg")
               .attr("width", width + margin.left + margin.right)
               .attr("height", height + margin.top + margin.bottom)
               .append("g")
@@ -153,9 +154,8 @@ export default {
 
           y.domain(data.map(function(d) { return d.class; }));
           y2.domain(data.map(function(d) { return d.class; }));
-          //y.domain([0, d3.max(data, function(d) { return d.sales; })]);
 
-          var tooltip = d3.select("body").append("div").attr("class", "d3tooltip");
+          const tooltip = d3.select("body").append("div").attr("class", "d3tooltip");
           svg.selectAll(".bar")
               .data(data)
               .enter().append("rect")
@@ -218,22 +218,19 @@ export default {
                 return width -x2(d.man) -womanMargin-20
               })
 
-          // add the x Axis
           svg.append("g")
               .attr("transform", "translate(0," + height + ")")
               .call(d3.axisBottom(x).ticks(4));
           svg.append("g")
               .attr("transform", "translate(0," + height + ")")
-              // .call(d3.axisBottom(x2))
               .call(d3.axisBottom(x2).ticks(4));
-          // add the y Axis
           svg.append("g")
               .attr("transform", "translate(" + womanMargin + "," + 0 + ")")
               .call(d3.axisLeft(y));
 
           d3.selectAll(".updataGraph")
-              .on("click",aaa);
-          function aaa(e) {
+              .on("click",click);
+          function click(e) {
             const count = Number(e.srcElement.getAttribute("value"))
             let year
             data = response[count].data.result.yearRight.data
@@ -261,7 +258,7 @@ export default {
           d3.select("#renzoku")
               .on("click",function(){
                 let count = 0
-                ccc = function(){
+                renzoku = function(){
                   let year
                   if(count < 14){
                     data = response[count].data.result.yearRight.data
@@ -286,12 +283,12 @@ export default {
                         })
                     count++
                     console.log(9999)
-                    setTimeout(function(){ccc()},500);
+                    setTimeout(function(){renzoku()},500);
                   } else {
-                    clearTimeout(ccc)
+                    clearTimeout(renzoku)
                   }
                 }
-                ccc()
+                renzoku()
               });
 
 
