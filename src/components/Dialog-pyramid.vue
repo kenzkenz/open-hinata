@@ -15,7 +15,7 @@
     <button class="updataGraph" value="11" >35</button>
     <button class="updataGraph" value="12" >40</button>
     <button class="updataGraph" value="13" >45</button>
-    <button id="renzoku">連続</button>
+    <button class="renzoku">連続</button>
     <img class='loadingImg' src="https://kenzkenz.xsrv.jp/open-hinata/img/loading.gif" style="position: absolute;top:50%;left:50%;z-index:1;">
     <div class="d3-pyramid"></div>
 <!--      <svg id="d3-pyramid" width="350" :height="350" style="border: 1px dotted"></svg>-->
@@ -229,8 +229,8 @@ export default {
           // svg.append("g")
           //     .attr("transform", "translate(" + womanMargin -40 + "," + 0 + ")")
           //     .call(d3.axisRight(y).tickValues([]))
-
-          d3.selectAll(".updataGraph")
+          // グラフ書き換え
+          d3.selectAll('#' + vm.mapName + ' .updataGraph')
               .on("click",click);
           function click(e) {
             const count = Number(e.srcElement.getAttribute("value"))
@@ -257,7 +257,7 @@ export default {
                 })
           }
 
-          d3.select("#renzoku")
+          d3.select('#' + vm.mapName + ' .renzoku')
               .on("click",function(){
                 let count = 0
                 renzoku = function(){
