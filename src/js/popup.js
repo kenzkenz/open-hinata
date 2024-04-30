@@ -959,8 +959,8 @@ export function popUp(map,layers,features,overlay,evt,content) {
       cont = '<div style=width:200px;>' +
           '<h4>' + prop.P34_003 + '</h4>' +
           '所在地=' + ru(prop.P34_004) + '<br>' +
-          'コード=' + ru(prop.P34_001) + '<br>' +
-          '<button class="pyramid" citycode="' + ru(prop.P34_001) + '" cityname="' + ru(prop.P34_003) + '">人口ピラミッド</button><br>' +
+          'コード=' + ru(prop.P34_001) + '<br><br>' +
+          '<button class="pyramid" citycode="' + ru(prop.P34_001) + '" cityname="' + ru(prop.P34_003) + '">人口ピラミッド</button><br><br>' +
           streetView +
           '</div>'
       break

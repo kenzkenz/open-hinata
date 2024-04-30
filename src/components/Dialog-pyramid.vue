@@ -88,19 +88,30 @@ export default {
               })
         }
         created()
-
+        const vm = this
         function aaa (response) {
           console.log(response[0].data.result.yearRight.data)
 
-          // 1. データの準備
-          let  data = response[8].data.result.yearRight.data
-
-          // set the dimensions and margins of the graph
           const margin = {top: 20, right: 20, bottom: 30, left: 20}
-          const width = 400 - margin.left - margin.right
-          const height = 250 - margin.top - margin.bottom
-          const womanMargin = 200
-          //
+          let width = 500 - margin.left - margin.right
+          let height = 400 - margin.top - margin.bottom
+          let womanMargin = 250
+
+          if (window.innerWidth > 800) {
+            vm.$store.state.base.dialogs.pyramidDialog.style.width = '550px'
+            console.log(vm.$store.state.base.dialogs.pyramidDialog.style.width)
+            width = 550 - margin.left - margin.right
+            height = 400 - margin.top - margin.bottom
+            womanMargin = 275
+          } else {
+            vm.$store.state.base.dialogs.pyramidDialog.style.width = '300px'
+            console.log(vm.$store.state.base.dialogs.pyramidDialog.style.width)
+            width = 300 - margin.left - margin.right
+            height = 200 - margin.top - margin.bottom
+            womanMargin = 150
+          }
+
+          let  data = response[8].data.result.yearRight.data
 
           const y = d3.scaleBand()
               .range([height, 0])
@@ -130,7 +141,7 @@ export default {
               .attr("transform", "translate(" + 30 + "," + 0 + ")")
               // .attr("dy", "5px")
               .attr("font", "10px")
-              .attr("text-anchor", "middle")
+              // .attr("text-anchor", "middle")
               .attr("class", "city-name")
               .text(cityName + '2020');
 
