@@ -102,9 +102,9 @@ export default {
 
           // set the dimensions and margins of the graph
           const margin = {top: 20, right: 20, bottom: 30, left: 40}
-          const width = 480 - margin.left - margin.right
+          const width = 400 - margin.left - margin.right
           const height = 250 - margin.top - margin.bottom
-          const womanMargin = 240
+          const womanMargin = 200
           //
 
 // set the ranges
@@ -118,7 +118,9 @@ export default {
               .range([womanMargin, width]);
           const x2 = d3.scaleLinear()
               // .range([0, width-240])
-              .range([width-240,0])
+              // .range([width-240,0]
+                  .range([width - womanMargin,-0])
+
 
           d3.select(".d3-pyramid svg").remove()
 
@@ -191,7 +193,7 @@ export default {
               .call(d3.axisBottom(x2).ticks(4));
           // add the y Axis
           svg.append("g")
-              .attr("transform", "translate(240," + 0 + ")")
+              .attr("transform", "translate(" + womanMargin + "," + 0 + ")")
               .call(d3.axisLeft(y));
 
           d3.selectAll(".updataGraph")
