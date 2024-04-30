@@ -5665,13 +5665,33 @@ for (let i of mapsStr) {
 }
 function shikuchosonFunction() {
   return function (feature, resolution) {
-    const style = new Style({
+    const zoom = getZoom(resolution);
+    const prop = feature.getProperties()
+    const styles = []
+    const iconStyle = new Style({
       image: new Icon({
         src: require('@/assets/icon/whitecircle.png'),
         color: 'red'
       })
     })
-    return style;
+    const textStyle = new Style({
+      text: new Text({
+        font: "20px sans-serif",
+        text: prop.P34_003,
+        offsetY: 16,
+        fill:  new Fill({
+          color:"black"
+        }),
+        stroke: new Stroke({
+          color: "white",
+          width: 3
+        }),
+        zIndex: 9
+      })
+    })
+    styles.push(iconStyle)
+    if (zoom>=10) styles.push(textStyle)
+    return styles;
   }
 }
 

@@ -960,7 +960,7 @@ export function popUp(map,layers,features,overlay,evt,content) {
           '<h4>' + prop.P34_003 + '</h4>' +
           '所在地=' + ru(prop.P34_004) + '<br>' +
           'コード=' + ru(prop.P34_001) + '<br>' +
-          '<button class="pyramid" citycode="' + ru(prop.P34_001) + '" cityname="' + ru(prop.P34_003) + '">test</button><br>' +
+          '<button class="pyramid" citycode="' + ru(prop.P34_001) + '" cityname="' + ru(prop.P34_003) + '">人口ピラミッド</button><br>' +
           streetView +
           '</div>'
       break

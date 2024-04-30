@@ -13839,7 +13839,7 @@ export const Layers =
       ]},
     { text: 'その他',
       children: [
-        { text: '市区町村', data: { id: "shikuchoson", layer: LayersMvt.shikuchosonObj, opacity: 1, summary: LayersMvt.shikuchosonSumm } },
+        { text: '市区町村人口ピラミッド', data: { id: "shikuchoson", layer: LayersMvt.shikuchosonObj, opacity: 1, summary: LayersMvt.shikuchosonSumm } },
 
         { text: 'テスト', data: { id: "test", layer: LayersMvt.vectorObj, opacity: 1, summary: LayersMvt.suiroSumm } },
         // { text: 'テスト2', data: { id: "test2", layer: bingRoadobj, opacity: 1, summary: LayersMvt.suiroSumm } },

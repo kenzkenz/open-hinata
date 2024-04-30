@@ -15,15 +15,9 @@
     <button class="updataGraph" value="11" >35</button>
     <button class="updataGraph" value="12" >40</button>
     <button class="updataGraph" value="13" >45</button>
-
     <button id="renzoku">連続</button>
-      <div class="d3-pyramid">
-
-      </div>
-
+    <div class="d3-pyramid"></div>
 <!--      <svg id="d3-pyramid" width="350" :height="350" style="border: 1px dotted"></svg>-->
-
-
   </v-dialog>
 </template>
 
@@ -142,8 +136,10 @@ export default {
 
           x.domain([0, d3.max(data, function(d){ return d.woman; })])
           x2.domain(
-                  [0,d3.max(data, function(d){ return d.man; })]
+              // スケールを女性に合わせる。
+                  [0,d3.max(data, function(d){ return d.woman; })]
           )
+
           y.domain(data.map(function(d) { return d.class; }));
           y2.domain(data.map(function(d) { return d.class; }));
           //y.domain([0, d3.max(data, function(d) { return d.sales; })]);
@@ -232,7 +228,7 @@ export default {
                 let count = 0
                 ccc = function(){
                   let year
-                  if(count < 15){
+                  if(count < 14){
                     data = response[count].data.result.yearRight.data
                         year = 1980 + (count*5)
                     svg
