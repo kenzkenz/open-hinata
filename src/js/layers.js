@@ -13508,14 +13508,13 @@ export const Layers =
         { text: '第二次世界大戦（戦災復興）',
           children: [
             { text: '東京大空襲延焼範囲', data: { id: 'tokyodaikusyshu', layer: saigaihukkouTokyodaikushuobj, opacity: 1, zoom: 11, center: [139.77488637162242,35.67889581170937], summary: saigaihukkouSumm } },
-            { text: '東京区画整理', data: { id: 'tokyokukakuseiri', layer: saigaihukkouTokyokukakuseiriobj, opacity: 1, zoom: 12, center: [139.78281640205068,35.69843707920772], summary: saigaihukkouSumm } },
          ]},
         { text: '関東大震災（震災復興）',
           children: [
             { text: '関東大震災延焼範囲東京市', data: { id: 'shinsaitokyo', layer: saigaihukkouTokyoshinsaiobj, opacity: 1, zoom: 13, center: [139.7755079735616,35.68553692258399], summary: saigaihukkouSumm } },
+            { text: '関東大震災東京区画整理', data: { id: 'tokyokukakuseiri', layer: saigaihukkouTokyokukakuseiriobj, opacity: 1, zoom: 12, center: [139.78281640205068,35.69843707920772], summary: saigaihukkouSumm } },
             { text: '関東大震災延焼範囲横浜市', data: { id: 'shinsaiyokohama', layer: saigaihukkouYokohamahinsaiobj, opacity: 1, zoom: 13, center: [139.6291296422488,35.44934336537246], summary: saigaihukkouSumm } },
             { text: '関東大震災区画整理横浜市', data: { id: 'kukakuseiriyokohama', layer: saigaihukkouYokohamakukakuseiriobj, opacity: 1, zoom: 14, center: [139.62189389907851,35.44466555825774], summary: saigaihukkouSumm } },
-
           ]},
         { text: '東京5000分の1明治17年', data: { id: 'tokyo5000', layer: tokyo5000Obj, opacity: 1, zoom: 14, center: [139.7579477727413, 35.6843002871569], summary: tokyo5000Summ } },
         // { text: '〔江戸切絵図〕. 麻布絵図', data: { id: 'edokirie', layer: edokirieObj, opacity: 1, zoom: 15, center: [139.73059032411857, 35.654628169454355], summary: edokirieSumm } },

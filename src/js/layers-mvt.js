@@ -5658,7 +5658,8 @@ function Shikuchoson () {
   });
   this.style = shikuchosonFunction()
 }
-export const shikuchosonSumm = "<a href='' target='_blank'></a>"
+export const shikuchosonSumm = "<a href='https://opendata.resas-portal.go.jp/' target='_blank'>RESAS</a><br>" +
+                               "<a href='https://nlftp.mlit.go.jp/ksj/gml/datalist/KsjTmplt-P34.html#!' target='_blank'>国土数値情報</a>"
 export const shikuchosonObj = {};
 for (let i of mapsStr) {
   shikuchosonObj[i] = new VectorLayer(new Shikuchoson())

@@ -314,7 +314,7 @@ export default {
         }
       }
       elements[len-1].style.width = '550px'
-
+      // ---------------------------------------------------------------------------
       d3.select('#' + vm.id + ' .d3-pyramid svg').remove()
       d3.select('#' + vm.id + ' .loadingImg').style("display","block")
       // const resasApiKey = "ZKE7BccwVM8e2onUYC7iX2tnuuZwZJfuOTf3rL93"
@@ -329,6 +329,8 @@ export default {
       console.log(prefCode)
       cityName = cityName.replace('役所','').replace('役場','')
       console.log(cityName)
+      const dialog2DragHandle = document.querySelector('#dialog2-' + vm.item.id + ' .drag-handle')
+      dialog2DragHandle.innerHTML = cityName
       const yearRights = ['1980','1985','1990','1995','2000', '2005', '2010','2015','2020','2025','2030','2035','2040','2045']
       async function created() {
         const fetchData = yearRights.map((yearRight) => {

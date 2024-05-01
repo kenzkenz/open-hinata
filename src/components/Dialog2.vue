@@ -1,7 +1,8 @@
 <template>
   <div>
-    <div class="v-dialog2-div" v-for="item in dialog2" :key="item.id" :style="item.style" @mousedown="dialogMouseDown(item)">
-      <div class="drag-handle" v-my-drag-handle></div>
+    <div :id="'dialog2-' + item.id" class="v-dialog2-div" v-for="item in s_dialog2" :key="item.id" :style="item.style" @mousedown="dialogMouseDown(item)">
+      <div class="drag-handle" v-my-drag-handle>
+      </div>
       <div class="close-btn-div" @click="close(item)"><i class="fa-solid fa-xmark hover close-btn"></i></div>
 
       <v-pyramid :item="item" :mapName="mapName" v-if="item.name === 'pyramid'" />
@@ -20,9 +21,9 @@ export default {
   },
   props: ['mapName'],
   computed: {
-    dialog2 () {
+    s_dialog2 () {
       return this.$store.state.base.dialogs2[this.mapName]
-    }
+    },
   },
   methods: {
     close (item) {
@@ -59,6 +60,7 @@ export default {
   height: 30px;
   padding: 5px;
   background-color: rgba(0,60,136,0.5);
+  color: white;
   border-top-left-radius: 4px;
   border-top-right-radius: 4px;
   cursor: grab;
