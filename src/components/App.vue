@@ -3,7 +3,7 @@
         <!--map01からmap04をループで作成-->
         <div v-for="mapName in mapNames" :key="mapName">
             <div :id=mapName :style="mapSize[mapName]" v-show="mapFlg[mapName]">
-              <div :id="div3d[mapName]"  class="cesium-btn-div">
+              <div :id="div3d[mapName]" class="cesium-btn-div">
                 <div class="cesiun-btn-container">
                   <button type="button" class="cesium-btn-up btn olbtn" @pointerdown.stop="upMousedown(mapName)" @pointerup="leftMouseup"><i class='fa fa-arrow-up fa-lg hover'></i></button>
                   <button type="button" class="cesium-btn-down btn olbtn" @pointerdown.stop="downMousedown(mapName)" @pointerup="leftMouseup"><i class='fa fa-arrow-down fa-lg'></i></button>
@@ -67,11 +67,9 @@
                 </div>
                 <v-dialog-layer :mapName=mapName />
                 <v-dialog-info :mapName=mapName />
-              <v-dialog-info2 :mapName=mapName />
+                <v-dialog2 :mapName=mapName />
                 <v-dialog-menu v-if="mapName === 'map01'"/>
 <!--                <v-dialog-main-info v-if="mapName === 'map01'"/>-->
-<!--                <v-dialog-pyramid :mapName=mapName />-->
-<!--                <v-dialog-pyramid v-if="mapName === 'map01'"/>-->
                 <div class="zoom-div">{{ zoom[mapName] }}</div>
             </div>
         </div>
@@ -116,7 +114,6 @@
       'v-dialog-layer': DialogLayer,
       'v-dialog-menu': DialogMenu,
       'v-dialog-main-info': DialogMainInfo,
-      'v-dialog-pyramid': DialogPyramid
     },
     data () {
       return {
@@ -759,7 +756,7 @@
       /*-moz-user-select:none;*/
       /*-webkit-user-select:none;*/
       /*-ms-user-select:none;*/
-      cursor:move;
+      /*cursor:move;*/
     }
     .cesiun-btn-container{
       position:relative;
