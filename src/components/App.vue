@@ -178,7 +178,9 @@
       s_mwId () { return this.$store.state.base.mwId},
       s_dialogs () { return this.$store.state.base.dialogs},
       s_splitFlg () { return this.$store.state.base.splitFlg},
-      s_dialogMaxZindex () { return this.$store.state.base.dialogMaxZindex}
+      s_dialogMaxZindex () { return this.$store.state.base.dialogMaxZindex},
+      s_dialo2Id () { return this.$store.state.base.dialog2Id}
+
     },
     watch: {
       s_dialogShow(newValue, oldValue) {
@@ -410,14 +412,12 @@
             this.$store.state.base.prefCode = e.target.getAttribute("citycode").slice(0,2)
             this.$store.state.base.cityName = e.target.getAttribute("cityname")
             // this.openDialog(this.s_dialogs['pyramidDialog'][mapName])
-
+            this.$store.commit('base/incrDialog2Id');
             this.$store.commit('base/incrDialogMaxZindex');
-            const infoDialog =
+            const diialog =
                 {
-                  id: this.s_dialogMaxZindex,
-                  title: 'aaaaaa',
-                  summary: '',
-                  component: '',
+                  id: this.s_dialo2Id,
+                  name:'pyramid',
                   style: {
                     display: 'block',
                     top: '60px',
@@ -426,12 +426,8 @@
                     'z-index': this.s_dialogMaxZindex
                   }
                 }
-
-            this.$store.commit('base/pushDialogsInfo2',{mapName: mapName, dialog: infoDialog})
+            this.$store.commit('base/pushDialogs2',{mapName: mapName, dialog: diialog})
             this.$store.state.base.cityCode[mapName] = e.target.getAttribute("citycode")
-
-
-
           }
         })
       })

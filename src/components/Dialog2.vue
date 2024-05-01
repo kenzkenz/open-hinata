@@ -1,10 +1,10 @@
 <template>
   <div>
-    <div class="v-dialog-info2-div" v-for="item in info" :key="item.id" :style="item.style" @mousedown="dialogMouseDown(item)">
+    <div class="v-dialog2-div" v-for="item in dialog2" :key="item.id" :style="item.style" @mousedown="dialogMouseDown(item)">
       <div class="drag-handle" v-my-drag-handle></div>
       <div class="close-btn-div" @click="close(item)"><i class="fa-solid fa-xmark hover close-btn"></i></div>
 
-      <v-pyramid :item="item" :mapName="mapName" />
+      <v-pyramid :item="item" :mapName="mapName" v-if="item.name === 'pyramid'" />
 
     </div>
   </div>
@@ -14,23 +14,23 @@
 import DialogPyramid from "@/components/Dialog-pyramid";
 
 export default {
-  name: "v-dialog-info2",
+  name: "v-dialog2",
   components: {
     'v-pyramid': DialogPyramid,
   },
   props: ['mapName'],
   computed: {
-    info () {
-      return this.$store.state.base.dialogsInfo2[this.mapName]
+    dialog2 () {
+      return this.$store.state.base.dialogs2[this.mapName]
     }
   },
   methods: {
     close (item) {
-      const result = this.$store.state.base.dialogsInfo2[this.mapName] .find(el => el.id === item.id);
+      const result = this.$store.state.base.dialogs2[this.mapName] .find(el => el.id === item.id);
       result.style.display = 'none'
     },
     dialogMouseDown (item) {
-      const result = this.$store.state.base.dialogsInfo2[this.mapName] .find(el => el.id === item.id);
+      const result = this.$store.state.base.dialogs2[this.mapName] .find(el => el.id === item.id);
       this.$store.commit('base/incrDialogMaxZindex');
       result.style["z-index"] = this.$store.state.base.dialogMaxZindex
     }
@@ -42,7 +42,7 @@ export default {
 .form-group {
   margin-bottom: 0;
 }
-.v-dialog-info2-div{
+.v-dialog2-div{
   position: absolute;
   z-index: 10;
   background-color: #fff;

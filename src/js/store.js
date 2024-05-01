@@ -46,7 +46,7 @@ const moduleBase = {
       map03: [],
       map04: []
     },
-    dialogsInfo2: {
+    dialogs2: {
       map01: [],
       map02: [],
       map03: [],
@@ -56,6 +56,7 @@ const moduleBase = {
     notifications: {},
     notification: '',
     dialogMaxZindex:1,
+    dialog2Id:1,
     splitFlg: 1,
     firstFlg: true,
     increment: 0,
@@ -168,14 +169,18 @@ const moduleBase = {
     incrDialogMaxZindex (state) {
       state.dialogMaxZindex++
     },
+    // cdialog2のid インクリメント--------------------------------------------------
+    incrDialog2Id (state) {
+      state.dialog2Id++
+    },
     // インフォ用ダイアログの追加------------------------------------------------------------------
     pushDialogsInfo (state,payload) {
       const dialogs = state.dialogsInfo[payload.mapName];
       dialogs.push(payload.dialog)
       console.log(payload.dialog)
     },
-    pushDialogsInfo2 (state,payload) {
-      const dialogs = state.dialogsInfo2[payload.mapName];
+    pushDialogs2 (state,payload) {
+      const dialogs = state.dialogs2[payload.mapName];
       dialogs.push(payload.dialog)
       console.log(payload.dialog)
     },

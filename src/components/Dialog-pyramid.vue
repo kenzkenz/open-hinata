@@ -305,7 +305,7 @@ export default {
     console.log(this.id)
     resasD3()
     function resasD3 () {
-      const elements = document.querySelectorAll('.v-dialog-info2-div')
+      const elements = document.querySelectorAll('.v-dialog2-div')
       const len = elements.length
       if (len>1) {
         if (elements[len-2].style.top === '60px') {
@@ -369,10 +369,10 @@ export default {
           height = 400 - margin.top - margin.bottom
           womanMargin = 285
         } else {
-          elements[len-1].style.width = '300px'
-          width = 300 - margin.left - margin.right
+          elements[len-1].style.width = '350px'
+          width = 350 - margin.left - margin.right
           height = 200 - margin.top - margin.bottom
-          womanMargin = 150
+          womanMargin = 185
         }
 
         let  data = response[8].data.result.yearRight.data
