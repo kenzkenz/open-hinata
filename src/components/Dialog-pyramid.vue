@@ -310,6 +310,7 @@ export default {
       if (len>1) {
         if (elements[len-2].style.top === '60px') {
           elements[len-1].style.top = '100px'
+          elements[len-1].style.right = '50px'
         }
       }
       elements[len-1].style.width = '550px'
@@ -346,11 +347,12 @@ export default {
           ...fetchData
         ])
             .then((response) => {
-              // console.log(response)
               d3Create (response)
               d3.selectAll('.loadingImg').style("display","none")
             })
             .catch(function (response) {
+              alert('データが存在しません。')
+              elements[len-1].style.display = 'none'
               console.log(response);
             })
       }
