@@ -205,16 +205,17 @@ danmenInteraction.on('drawend', function (event) {
                     // console.log(valu.data.elevation)
                     // console.log(kyoriArr[index])
                     let kyori = kyoriArr[index]
-                    // let tani
-                    kyori = kyori * 1000
+                    let tani
+                    // kyori = kyori * 1000
                     console.log(kyori)
-                    // if (kyori >= 10000) {
-                    //     tani = 'km'
-                    // } else {
-                    //     tani = 'm'
-                    // }
+                    if (tDistance > 10) {
+                        tani = 'km'
+                    } else {
+                        kyori = kyori * 1000
+                        tani = 'm'
+                    }
                     // console.log(tani)
-                    return {'erev':valu.data.elevation,'kyori':kyori,'tDistance': tDistance}
+                    return {'erev':valu.data.elevation,'kyori':kyori,'tDistance': tDistance, 'tani':tani}
                 })
                 console.log(dataSet)
                 dialogOpen(dataSet)

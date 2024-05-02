@@ -30,8 +30,8 @@ export default {
   mounted () {
     const vm = this
     const dataset = this.$store.state.base.erevArr
-    const tDistance = dataset[0].tDistance
-    console.log(tDistance)
+    const tani = dataset[0].tani
+    console.log(tani)
 
     const width = 500; // グラフの幅
     const height = 400; // グラフの高さ
@@ -45,9 +45,7 @@ export default {
 
     // 3. 軸スケールの設定
     var xScale = d3.scaleLinear()
-        .domain([0, d3.max(dataset, function(d) {
-          return d.kyori;
-        })])
+        .domain([0, d3.max(dataset, function(d) {return d.kyori;})])
         .range([margin.left, width - margin.right]);
 
     var yScale = d3.scaleLinear()
@@ -68,7 +66,7 @@ export default {
         .attr("text-anchor", "middle")
         .attr("font-size", "10pt")
         // .attr("font-weight", "bold")
-        .text("距離(m)");
+        .text("距離(" + dataset[0].tani +  ")");
 
     svg.append("g")
         .attr("transform", "translate(" + margin.left + "," + 0 + ")")
