@@ -135,7 +135,7 @@ export function measure (geoType,feature,coordAr) {
         }
         console.log(tDistance2)
         feature.setProperties({distance: tDistance})
-        return tDistance2
+        return {'tDistance':tDistance,'tDistance2':tDistance2}
     } else if (geoType === 'Polygon') {
         let tPolygon = turf.polygon(coordAr)
         tPolygon = turf.toWgs84(tPolygon)
@@ -166,27 +166,23 @@ danmenInteraction.on('drawend', function (event) {
     const feature = event.feature;
     const coordAr = feature.getGeometry().getCoordinates()
     const geoType = feature.getGeometry().getType()
-    const tDistance = (measure (geoType,feature,coordAr))
-    console.log(tDistance)
+    const tDistance = (measure (geoType,feature,coordAr).tDistance)
+    const tDistance2 = (measure (geoType,feature,coordAr).tDistance2)
     const splitCount = 100;
-    const split = tDistance/splitCount;
+    const split = tDistance2/splitCount;
     const coodARsprit = []
     const kyoriArr = []
-    for(var i = 0; i < splitCount; i++) {
+    for(let i = 0; i < splitCount; i++) {
         const line = turf.toWgs84(turf.lineString(coordAr));
-        const kyori = split * (i + 1);
-        // console.log(kyori)
+        const kyori = split * i;
         const along = turf.along(line, kyori);
-        var coord = along["geometry"]["coordinates"];
+        const coord = along["geometry"]["coordinates"];
         coodARsprit.push(coord)
         kyoriArr.push(kyori)
     }
-    console.log(coodARsprit)
 
     async function created() {
         const fetchData = coodARsprit.map((coord) => {
-            // coord = turf.toWgs84(coord)
-            // console.log(coord[0])
             return axios
                 .get('https://cyberjapandata2.gsi.go.jp/general/dem/scripts/getelevation.php',{
                     params: {
@@ -202,30 +198,22 @@ danmenInteraction.on('drawend', function (event) {
             .then((response) => {
                 console.log(response)
                 const dataSet = response.map((valu,index) => {
-                    // console.log(valu.data.elevation)
-                    // console.log(kyoriArr[index])
                     let kyori = kyoriArr[index]
                     let tani
-                    // kyori = kyori * 1000
-                    console.log(kyori)
-                    if (tDistance > 10) {
+                    if (tDistance2 > 10) {
                         tani = 'km'
                     } else {
                         kyori = kyori * 1000
                         tani = 'm'
                     }
-                    // console.log(tani)
-                    return {'erev':valu.data.elevation,'kyori':kyori,'tDistance': tDistance, 'tani':tani}
+                    return {'erev':valu.data.elevation,'kyori':kyori,'tDistance': tDistance,'tDistance2': tDistance2, 'tani':tani}
                 })
-                console.log(dataSet)
                 dialogOpen(dataSet)
-
             })
             .catch(function (response) {
             })
     }
     function dialogOpen(dataSet){
-        console.log(dataSet)
         store.commit('base/incrDialog2Id');
         store.commit('base/incrDialogMaxZindex');
         const diialog =
@@ -245,13 +233,6 @@ danmenInteraction.on('drawend', function (event) {
         store.commit('base/pushDialogs2',{mapName: 'map01', dialog: diialog})
     }
     created()
-
-
-
-
-
-
-
 })
 
 modifyInteraction.on('modifyend', function (event) {

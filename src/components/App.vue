@@ -514,7 +514,6 @@
           }
         }).then(function (response) {
           init(response)
-          console.log(response)
           // vm.$modal.hide('modal0')
         }).finally(function () {
 

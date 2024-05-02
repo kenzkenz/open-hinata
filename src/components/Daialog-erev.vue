@@ -31,11 +31,14 @@ export default {
     const vm = this
     const dataset = this.$store.state.base.erevArr
     const tani = dataset[0].tani
-    console.log(tani)
+    const soukyori = dataset[0].tDistance
+    const saikouErev = d3.max(dataset, function(d) { return d.erev; })
+    const dialog2DragHandle = document.querySelector('#dialog2-' + vm.item.id + ' .drag-handle')
+    dialog2DragHandle.innerHTML = '距離=' + soukyori + ' 最高標高' + saikouErev + 'm'
 
     const width = 500; // グラフの幅
     const height = 400; // グラフの高さ
-    var margin = { "top": 30, "bottom": 60, "right": 30, "left": 60 };
+    const margin = { "top": 30, "bottom": 60, "right": 30, "left": 60 };
 
     // 2. SVG領域の設定
     // var svg = d3.select("body").append("svg").attr("width", width).attr("height", height);
@@ -44,11 +47,11 @@ export default {
         .attr("height", height)
 
     // 3. 軸スケールの設定
-    var xScale = d3.scaleLinear()
+    const xScale = d3.scaleLinear()
         .domain([0, d3.max(dataset, function(d) {return d.kyori;})])
         .range([margin.left, width - margin.right]);
 
-    var yScale = d3.scaleLinear()
+    const yScale = d3.scaleLinear()
         .domain([0, d3.max(dataset, function(d) { return d.erev; })])
         .range([height - margin.bottom, margin.top]);
 

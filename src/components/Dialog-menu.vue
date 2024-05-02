@@ -356,7 +356,7 @@
           this.$store.state.base.maps['map01'].addInteraction(MyMap.modifyInteraction)
         } else {
           console.log('off')
-          MyMap.drawLayer.getSource().clear()
+          // MyMap.drawLayer.getSource().clear()
           this.$store.state.base.maps['map01'].removeInteraction(MyMap.danmenInteraction)
         }
       })
