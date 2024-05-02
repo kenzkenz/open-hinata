@@ -162,10 +162,15 @@ export function measure (geoType,feature,coordAr) {
     }
 }
 
-danmenInteraction.on('drawend', function (event) {
-    const feature = event.feature;
+function danmen(feature) {
+    // const feature = event.feature
     const coordAr = feature.getGeometry().getCoordinates()
     const geoType = feature.getGeometry().getType()
+
+    console.log(feature)
+    console.log(coordAr)
+    console.log(geoType)
+    if (geoType !==  'LineString') return
     const tDistance = (measure (geoType,feature,coordAr).tDistance)
     const tDistance2 = (measure (geoType,feature,coordAr).tDistance2)
     const splitCount = 100;
@@ -233,6 +238,12 @@ danmenInteraction.on('drawend', function (event) {
         store.commit('base/pushDialogs2',{mapName: 'map01', dialog: diialog})
     }
     created()
+}
+danmenInteraction.on('drawend', function (event) {
+    const feature = event.feature
+    // const coordAr = feature.getGeometry().getCoordinates()
+    // const geoType = feature.getGeometry().getType()
+    danmen(feature)
 })
 
 modifyInteraction.on('modifyend', function (event) {
@@ -241,6 +252,7 @@ modifyInteraction.on('modifyend', function (event) {
     const geoType = event.features.array_[0].getGeometry().getType()
     measure (geoType,feature,coordAr)
     moveEnd()
+    if (store.state.base.drawType === 'danmen') danmen(feature)
 })
 
 drawLayer.getSource().on("change", function(e) {

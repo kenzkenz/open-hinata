@@ -271,9 +271,11 @@
           this.toggleMenseki = false
           this.toggleCircle = false
           this.toggleDelete = false
+          this.toggleDanmen = false
           this.$store.state.base.maps['map01'].removeInteraction(MyMap.lineInteraction)
           this.$store.state.base.maps['map01'].removeInteraction(MyMap.polygonInteraction)
           this.$store.state.base.maps['map01'].removeInteraction(MyMap.circleInteraction)
+          this.$store.state.base.maps['map01'].removeInteraction(MyMap.danmenInteraction)
           this.$store.state.base.maps['map01'].addInteraction(MyMap.transformInteraction)
           this.$store.state.base.maps['map01'].addInteraction(MyMap.modifyInteraction)
         } else {
@@ -314,6 +316,7 @@
           this.$store.state.base.maps['map01'].removeInteraction(MyMap.polygonInteraction)
           this.$store.state.base.maps['map01'].addInteraction(MyMap.circleInteraction)
           this.$store.state.base.maps['map01'].addInteraction(MyMap.modifyInteraction)
+          this.$store.state.base.drawType = 'circle'
         } else {
           console.log('off')
           // MyMap.drawLayer.getSource().clear()
@@ -333,6 +336,8 @@
           this.$store.state.base.maps['map01'].removeInteraction(MyMap.polygonInteraction)
           this.$store.state.base.maps['map01'].addInteraction(MyMap.polygonInteraction)
           this.$store.state.base.maps['map01'].addInteraction(MyMap.modifyInteraction)
+          this.$store.state.base.drawType = 'menseki'
+
         } else {
           console.log('off')
           // MyMap.drawLayer.getSource().clear()
@@ -354,6 +359,8 @@
           this.$store.state.base.maps['map01'].removeInteraction(MyMap.polygonInteraction)
           this.$store.state.base.maps['map01'].addInteraction(MyMap.danmenInteraction)
           this.$store.state.base.maps['map01'].addInteraction(MyMap.modifyInteraction)
+          this.$store.state.base.drawType = 'danmen'
+
         } else {
           console.log('off')
           // MyMap.drawLayer.getSource().clear()
@@ -375,6 +382,8 @@
           this.$store.state.base.maps['map01'].removeInteraction(MyMap.polygonInteraction)
           this.$store.state.base.maps['map01'].addInteraction(MyMap.lineInteraction)
           this.$store.state.base.maps['map01'].addInteraction(MyMap.modifyInteraction)
+          this.$store.state.base.drawType = 'line'
+
         } else {
           console.log('off')
           // MyMap.drawLayer.getSource().clear()

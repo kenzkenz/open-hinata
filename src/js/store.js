@@ -76,6 +76,7 @@ const moduleBase = {
     },
     cityName: '',
     erevArr:[],
+    drawType:'danmen',
   },
   getters: {
     layerList: (state) => (mapName) => {
