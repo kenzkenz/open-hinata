@@ -8,8 +8,13 @@
 
 <script>
 import * as d3 from "d3"
+import Point from 'ol/geom/Point.js'
+import Feature from 'ol/Feature.js'
 import axios from "axios";
-import {transform} from "ol/proj";
+// import {transform} from "ol/proj";
+import * as MyMap from '../js/mymap'
+import { transform, fromLonLat } from 'ol/proj'
+import {drawLayer} from "../js/mymap";
 
 export default {
   name: "Dialog-pyramid",
@@ -85,7 +90,8 @@ export default {
         .text("標高(m)");
 
     // 5. ラインの表示
-    svg.append("path")
+
+    const path = svg.append("path")
         .datum(dataset)
         .attr("fill", "none")
         .attr("stroke", "steelblue")
@@ -94,7 +100,47 @@ export default {
             .x(function(d) { return xScale(d.kyori); })
             .y(function(d) { return yScale(d.erev); }));
 
+    let totalLength = path.node().getTotalLength();
+    path
+        .attr("stroke-dasharray", totalLength + " " + totalLength)
+        .attr("stroke-dashoffset", totalLength)
+        .transition()
+        .duration(2000)
+        .delay(200)
+        .attr("stroke-dashoffset", 0);
 
+    // 5. バーの表示
+    svg.append("g")
+        .selectAll("rect")
+        .data(dataset)
+        .enter()
+        .append("rect")
+        .attr("x", function(d) { return xScale(d.kyori); })
+        // .attr("y", function(d) { return yScale(d.erev); })
+        .attr("y", function(d) { return margin.top; })
+        .attr("width", 2)
+        // .attr("height", function(d) { return height - margin.bottom - yScale(d.erev); })
+        .attr("height", function(d) { return height - margin.bottom; })
+        .attr("fill", "rgb(0,0,0,0)")
+        .on("mouseover", function(event, data) {
+          let coord = data.coord
+          coord = transform(coord, "EPSG:4326", "EPSG:3857")
+          const geometry = new Point(coord);
+          const newFeature = new Feature({
+            geometry: geometry,
+          });
+          MyMap.danmenLayer.getSource().clear()
+          MyMap.danmenLayer.getSource().addFeature(newFeature)
+          d3.select(this).attr("fill", "steelblue")
+        })
+        .on("mouseout", function(d) {
+          d3.select(this).attr("fill", "rgb(0,0,0,0)")
+        })
+
+    svg.on("mouseout", function(d) {
+      d3.select(this).attr("fill", "rgb(0,0,0,0)")
+      MyMap.danmenLayer.getSource().clear()
+    })
 
     this.$watch(function () {
     });

@@ -114,7 +114,6 @@ const moduleBase = {
   },
   mutations: {
     updateHight (state,payload) {
-      console.log(payload.value)
       state.hight[payload.mapName] = payload.value
     },
     toggleCurrentPosition (state) {

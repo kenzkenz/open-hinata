@@ -29,14 +29,34 @@ import {Fill, Stroke, Style, Text} from "ol/style";
 import * as turf from '@turf/turf';
 import Select from 'ol/interaction/Select.js'
 import {Circle, LineString} from "ol/geom";
-import Feature from 'ol/Feature.js'
+import Feature from 'ol/Feature'
 import {moveEnd} from "./permalink";
 import Dialog from 'ol-ext/control/Dialog'
+import Icon from 'ol/style/Icon';
+
 import Profile from 'ol-ext/control/Profile.js'
 import * as d3 from "d3";
 
 // ドロー関係-------------------------------------------------------------------------------
-const drawSource = new VectorSource({wrapX: false});
+
+export  const danmenLayer = new VectorLayer({
+    name: 'drawSource',
+    source: new VectorSource({wrapX: false}),
+    style: danmenStyleFunction()
+})
+function danmenStyleFunction() {
+    return function (feature, resolution) {
+        const styles = []
+        const iconStyle = new Style({
+            image: new Icon({
+                src: require('@/assets/icon/whitecircle.png'),
+                color: 'red'
+            })
+        })
+        styles.push(iconStyle)
+        return styles;
+    }
+}const drawSource = new VectorSource({wrapX: false})
 export  const drawLayer = new VectorLayer({
     // zIndex: 999999,
     name: 'drawSource',
@@ -44,7 +64,7 @@ export  const drawLayer = new VectorLayer({
     source: drawSource,
     // altitudeMode: 'clampToGround',
     style: drawStylefunction()
-});
+})
 export const selectInteraction = new Select({
     layers: [drawLayer]
 })
@@ -166,14 +186,13 @@ function danmen(feature) {
     // const feature = event.feature
     const coordAr = feature.getGeometry().getCoordinates()
     const geoType = feature.getGeometry().getType()
-
     console.log(feature)
     console.log(coordAr)
     console.log(geoType)
     if (geoType !==  'LineString') return
     const tDistance = (measure (geoType,feature,coordAr).tDistance)
     const tDistance2 = (measure (geoType,feature,coordAr).tDistance2)
-    const splitCount = 100;
+    const splitCount = 300;
     const split = tDistance2/splitCount;
     const coodARsprit = []
     const kyoriArr = []
@@ -211,7 +230,9 @@ function danmen(feature) {
                         kyori = kyori * 1000
                         tani = 'm'
                     }
-                    return {'erev':valu.data.elevation,'kyori':kyori,'tDistance': tDistance,'tDistance2': tDistance2, 'tani':tani}
+                    const coord =coodARsprit[index]
+                    return {'erev':valu.data.elevation,'kyori':kyori,
+                        'tDistance': tDistance,'tDistance2': tDistance2, 'tani':tani, 'coord':coord}
                 })
                 dialogOpen(dataSet)
             })
@@ -1329,6 +1350,7 @@ export function watchLayer (map, thisName, newLayerList,oldLayerList) {
     // drawLayer.set("altitudeMode","clampToGround")
     map.removeLayer(drawLayer)
     map.addLayer(drawLayer)
+    map.addLayer(danmenLayer)
 }
 
 export function opacityChange (item) {
