@@ -6,18 +6,23 @@
       <div class="close-btn-div" @click="close(item)"><i class="fa-solid fa-xmark hover close-btn"></i></div>
 
       <v-pyramid :item="item" :mapName="mapName" v-if="item.name === 'pyramid'" />
+      <v-erev :item="item" :mapName="mapName" v-if="item.name === 'erev'" />
+
 
     </div>
   </div>
 </template>
 
 <script>
-import DialogPyramid from "@/components/Dialog-pyramid";
+import DialogPyramid from "@/components/Dialog-pyramid"
+import DialogErev from "@/components/Daialog-erev";
+
 
 export default {
   name: "v-dialog2",
   components: {
     'v-pyramid': DialogPyramid,
+    'v-erev': DialogErev
   },
   props: ['mapName'],
   computed: {

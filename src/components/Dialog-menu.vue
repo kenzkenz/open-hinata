@@ -34,7 +34,8 @@
             <hr>
             計測
             <br>
-            <b-button :pressed.sync="toggleLine" class='olbtn' :size="btnSize">{{ toggleLine ? '距離計測ON' : '距離計測OFF' }}</b-button>
+            <b-button :pressed.sync="toggleDanmen" class='olbtn' :size="btnSize">{{ toggleDanmen ? '断面図ON' : '断面図OFF' }}</b-button>
+            <b-button style="margin-left: 10px;" :pressed.sync="toggleLine" class='olbtn' :size="btnSize">{{ toggleLine ? '距離計測ON' : '距離計測OFF' }}</b-button>
             <b-button style="margin-left: 10px;" :pressed.sync="toggleMenseki" class='olbtn' :size="btnSize">{{ toggleMenseki ? '面積計測ON' : '面積計測OFF' }}</b-button>
             <b-button style="margin-left: 10px;" :pressed.sync="toggleCircle" class='olbtn' :size="btnSize">{{ toggleCircle ? '円描画ON' : '円描画OFF' }}</b-button>
             <br>
@@ -75,6 +76,7 @@
         toggle: false,
         toggleCenter: true,
         toggleLine: false,
+        toggleDanmen: false,
         toggleMenseki: false,
         toggleCircle: false,
         toggleDelete: false,
@@ -130,6 +132,7 @@
         this.toggleMenseki = false
         this.toggleCircle = false
         this.toggleDelete = false
+        this.toggleDanmen = false
         MyMap.drawLayer.getSource().clear()
         moveEnd()
       },
@@ -246,30 +249,6 @@
         targetArr.forEach(target => {
           map.addControl(target)
         })
-        // const map = this.$store.state.base.maps['map01']
-        // const targetArr = []
-        // const targets = map.getControls().array_
-        // const targetsMap = targets.map(value => {
-        //   return value
-        // });
-        // targetsMap.forEach(target => {
-        //   targetArr.push(target)
-        //   console.log(target)
-        //   map.removeControl(target)
-        // })
-        // const type = 'image/png';
-        // const canvas = document.querySelector("canvas");
-        // const dataurl = canvas.toDataURL(type);
-        // const bin = atob(dataurl.split(',')[1]);
-        // const buffer = new Uint8Array(bin.length);
-        // for (var i = 0; i < bin.length; i++){
-        //    buffer[i] = bin.charCodeAt(i);
-        // }
-        // const blob = new Blob([buffer.buffer],{type:type});
-        // document.getElementById('toPng').href = window.URL.createObjectURL(blob);
-        // targetArr.forEach(target => {
-        //   map.addControl(target)
-        // })
       }
     },
     mounted () {
@@ -358,6 +337,27 @@
           console.log('off')
           // MyMap.drawLayer.getSource().clear()
           this.$store.state.base.maps['map01'].removeInteraction(MyMap.polygonInteraction)
+        }
+      })
+      this.$watch(function () {
+        return [this.toggleDanmen]
+      }, function () {
+        if (this.toggleDanmen) {
+          // this.$store.state.base.maps['map01'].removeLayer(MyMap.drawLayer)
+          // this.$store.state.base.maps['map01'].addLayer(MyMap.drawLayer)
+          console.log('on')
+          this.toggleMenseki = false
+          this.toggleCircle = false
+          this.toggleDelete = false
+          this.$store.state.base.maps['map01'].removeInteraction(MyMap.selectInteraction)
+          this.$store.state.base.maps['map01'].removeInteraction(MyMap.lineInteraction)
+          this.$store.state.base.maps['map01'].removeInteraction(MyMap.polygonInteraction)
+          this.$store.state.base.maps['map01'].addInteraction(MyMap.danmenInteraction)
+          this.$store.state.base.maps['map01'].addInteraction(MyMap.modifyInteraction)
+        } else {
+          console.log('off')
+          MyMap.drawLayer.getSource().clear()
+          this.$store.state.base.maps['map01'].removeInteraction(MyMap.danmenInteraction)
         }
       })
       this.$watch(function () {

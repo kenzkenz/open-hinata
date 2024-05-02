@@ -33,6 +33,7 @@ import Feature from 'ol/Feature.js'
 import {moveEnd} from "./permalink";
 import Dialog from 'ol-ext/control/Dialog'
 import Profile from 'ol-ext/control/Profile.js'
+import * as d3 from "d3";
 
 // ドロー関係-------------------------------------------------------------------------------
 const drawSource = new VectorSource({wrapX: false});
@@ -91,6 +92,10 @@ function drawStylefunction (){
     }
 }
 
+export const danmenInteraction = new Draw({
+    source: drawSource,
+    type: 'LineString',
+})
 export const lineInteraction = new Draw({
     source: drawSource,
     type: 'LineString',
@@ -120,12 +125,17 @@ export function measure (geoType,feature,coordAr) {
             const toCoord = turf.point(turf.toWgs84(coordAr[i + 1]))
             tDistance = tDistance + turf.distance(fromCoord, toCoord, {units: 'kilometers'})
         }
+        let tDistance2 = tDistance
         if (tDistance > 10) {
+            // tDistance2 = tDistance
             tDistance = tDistance.toFixed(2) + 'km'
         } else {
+            // tDistance2 = tDistance * 1000
             tDistance = (tDistance * 1000).toFixed(2) + 'm'
         }
+        console.log(tDistance2)
         feature.setProperties({distance: tDistance})
+        return tDistance2
     } else if (geoType === 'Polygon') {
         let tPolygon = turf.polygon(coordAr)
         tPolygon = turf.toWgs84(tPolygon)
@@ -152,6 +162,97 @@ export function measure (geoType,feature,coordAr) {
     }
 }
 
+danmenInteraction.on('drawend', function (event) {
+    const feature = event.feature;
+    const coordAr = feature.getGeometry().getCoordinates()
+    const geoType = feature.getGeometry().getType()
+    const tDistance = (measure (geoType,feature,coordAr))
+    console.log(tDistance)
+    const splitCount = 100;
+    const split = tDistance/splitCount;
+    const coodARsprit = []
+    const kyoriArr = []
+    for(var i = 0; i < splitCount; i++) {
+        const line = turf.toWgs84(turf.lineString(coordAr));
+        const kyori = split * (i + 1);
+        // console.log(kyori)
+        const along = turf.along(line, kyori);
+        var coord = along["geometry"]["coordinates"];
+        coodARsprit.push(coord)
+        kyoriArr.push(kyori)
+    }
+    console.log(coodARsprit)
+
+    async function created() {
+        const fetchData = coodARsprit.map((coord) => {
+            // coord = turf.toWgs84(coord)
+            // console.log(coord[0])
+            return axios
+                .get('https://cyberjapandata2.gsi.go.jp/general/dem/scripts/getelevation.php',{
+                    params: {
+                        dataType: "json",
+                        lon: coord[0],
+                        lat: coord[1],
+                    }
+                })
+        })
+        await Promise.all([
+            ...fetchData
+        ])
+            .then((response) => {
+                console.log(response)
+                const dataSet = response.map((valu,index) => {
+                    // console.log(valu.data.elevation)
+                    // console.log(kyoriArr[index])
+                    let kyori = kyoriArr[index]
+                    // let tani
+                    kyori = kyori * 1000
+                    console.log(kyori)
+                    // if (kyori >= 10000) {
+                    //     tani = 'km'
+                    // } else {
+                    //     tani = 'm'
+                    // }
+                    // console.log(tani)
+                    return {'erev':valu.data.elevation,'kyori':kyori,'tDistance': tDistance}
+                })
+                console.log(dataSet)
+                dialogOpen(dataSet)
+
+            })
+            .catch(function (response) {
+            })
+    }
+    function dialogOpen(dataSet){
+        console.log(dataSet)
+        store.commit('base/incrDialog2Id');
+        store.commit('base/incrDialogMaxZindex');
+        const diialog =
+            {
+                id: store.state.base.dialog2Id,
+                name:'erev',
+                style: {
+                    display: 'block',
+                    top: '60px',
+                    width: '500px',
+                    // left: '10px',
+                    right:'10px',
+                    'z-index':store.state.base.dialogMaxZindex
+                }
+            }
+        store.state.base.erevArr = dataSet
+        store.commit('base/pushDialogs2',{mapName: 'map01', dialog: diialog})
+    }
+    created()
+
+
+
+
+
+
+
+})
+
 modifyInteraction.on('modifyend', function (event) {
     const feature = event.features.array_[0]
     const coordAr = event.features.array_[0].getGeometry().getCoordinates()
@@ -167,7 +268,6 @@ drawLayer.getSource().on("change", function(e) {
 
 lineInteraction.on('drawend', function (event) {
     const feature = event.feature;
-    // const features = drawLayer.getSource().getFeatures()
     const coordAr = feature.getGeometry().getCoordinates()
     const geoType = feature.getGeometry().getType()
     measure (geoType,feature,coordAr)

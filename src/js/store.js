@@ -75,6 +75,7 @@ const moduleBase = {
       map04: ''
     },
     cityName: '',
+    erevArr:[],
   },
   getters: {
     layerList: (state) => (mapName) => {
