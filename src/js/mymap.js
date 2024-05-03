@@ -13,29 +13,28 @@ import Lego from 'ol-ext/filter/Lego'
 import Notification from 'ol-ext/control/Notification'
 import * as Layers from './layers'
 import * as PopUp from './popup'
-import {defaults as defaultInteractions, DragRotateAndZoom, Modify, Snap} from 'ol/interaction';
-import VectorSource from "ol/source/Vector";
-import VectorLayer from "ol/layer/Vector";
-import axios from "axios";
-let maxZndex = 0;
+import {defaults as defaultInteractions, DragRotateAndZoom, Modify, Snap} from 'ol/interaction'
+import VectorSource from "ol/source/Vector"
+import VectorLayer from "ol/layer/Vector"
+import axios from "axios"
+let maxZndex = 0
 let legoFilter = null;
-import Draw from 'ol/interaction/Draw';
+import Draw from 'ol/interaction/Draw'
 import Transform from 'ol-ext/interaction/Transform'
-import DragAndDrop from 'ol/interaction/DragAndDrop.js';
-import PinchRotate from 'ol/interaction/PinchRotate';
-import {GPX, GeoJSON, IGC, KML, TopoJSON} from 'ol/format.js';
+import DragAndDrop from 'ol/interaction/DragAndDrop.js'
+import PinchRotate from 'ol/interaction/PinchRotate'
+import {GPX, GeoJSON, IGC, KML, TopoJSON} from 'ol/format.js'
 import {standardFunction} from "@/js/layers-mvt";
-import {Fill, Stroke, Style, Text} from "ol/style";
+import {Fill, Stroke, Style, Text} from "ol/style"
 import * as turf from '@turf/turf';
 import Select from 'ol/interaction/Select.js'
-import {Circle, LineString} from "ol/geom";
+import {Circle, LineString} from "ol/geom"
 import Feature from 'ol/Feature'
-import {moveEnd} from "./permalink";
+import {moveEnd} from "./permalink"
 import Dialog from 'ol-ext/control/Dialog'
-import Icon from 'ol/style/Icon';
-
+import Icon from 'ol/style/Icon'
+import * as d3 from "d3"
 import Profile from 'ol-ext/control/Profile.js'
-import * as d3 from "d3";
 
 // ドロー関係-------------------------------------------------------------------------------
 
@@ -56,7 +55,8 @@ function danmenStyleFunction() {
         styles.push(iconStyle)
         return styles;
     }
-}const drawSource = new VectorSource({wrapX: false})
+}
+const drawSource = new VectorSource({wrapX: false})
 export  const drawLayer = new VectorLayer({
     // zIndex: 999999,
     name: 'drawSource',
@@ -184,6 +184,8 @@ export function measure (geoType,feature,coordAr) {
 }
 
 function danmen(feature) {
+    d3.select('#map01 .loadingImg').style("display","block")
+
     // const feature = event.feature
     const coordAr = feature.getGeometry().getCoordinates()
     const geoType = feature.getGeometry().getType()
@@ -221,6 +223,8 @@ function danmen(feature) {
             ...fetchData
         ])
             .then((response) => {
+                d3.select('#map01 .loadingImg').style("display","none")
+
                 console.log(response)
                 const dataSet = response.map((valu,index) => {
                     let kyori = kyoriArr[index]
@@ -268,13 +272,14 @@ function danmen(feature) {
 }
 danmenInteraction.on('drawend', function (event) {
     const feature = event.feature
-    // const coordAr = feature.getGeometry().getCoordinates()
-    // const geoType = feature.getGeometry().getType()
     danmen(feature)
-    history ('断面時')
+    history ('断面図')
+    console.log(event)
 })
 
 modifyInteraction.on('modifyend', function (event) {
+    const id =event.target.ol_uid
+    console.log(id)
     const feature = event.features.array_[0]
     const coordAr = event.features.array_[0].getGeometry().getCoordinates()
     const geoType = event.features.array_[0].getGeometry().getType()

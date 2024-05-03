@@ -1,7 +1,6 @@
 
 <template>
   <div :id="id">
-<!--    <img class='loadingImg' src="https://kenzkenz.xsrv.jp/open-hinata/img/loading.gif" style="position: absolute;top:50%;left:50%;z-index:1;">-->
     <div class="d3-erev"></div>
   </div>
 </template>

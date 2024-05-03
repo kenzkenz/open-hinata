@@ -13552,9 +13552,9 @@ export const Layers =
         { text: '農業集落境界', data: { id: "kyoukai", layer: LayersMvt.kyoukaiObj, opacity: 1, summary: LayersMvt.kyoukaiSumm } },
         { text: '医療圏',
           children: [
-            { text: '一時医療圏', data: { id: "iryouken1zi", layer: LayersMvt.iryouken1ziObj, opacity: 1, summary: LayersMvt.iryouken1ziSumm } },
-            { text: '二時医療圏', data: { id: "iryouken2zi", layer: LayersMvt.iryouken2ziObj, opacity: 1, summary: LayersMvt.iryouken2ziSumm } },
-            { text: '三時医療圏', data: { id: "iryouken3zi", layer: LayersMvt.iryouken3ziObj, opacity: 1, summary: LayersMvt.iryouken3ziSumm } },
+            { text: '一次医療圏', data: { id: "iryouken1zi", layer: LayersMvt.iryouken1ziObj, opacity: 1, summary: LayersMvt.iryouken1ziSumm } },
+            { text: '二次医療圏', data: { id: "iryouken2zi", layer: LayersMvt.iryouken2ziObj, opacity: 1, summary: LayersMvt.iryouken2ziSumm } },
+            { text: '三次医療圏', data: { id: "iryouken3zi", layer: LayersMvt.iryouken3ziObj, opacity: 1, summary: LayersMvt.iryouken3ziSumm } },
           ]},
         { text: '振興山村地域',
           children: [
