@@ -278,8 +278,7 @@ danmenInteraction.on('drawend', function (event) {
 })
 
 modifyInteraction.on('modifyend', function (event) {
-    const id =event.target.ol_uid
-    console.log(id)
+    console.log(event.features.array_[0].ol_uid)
     const feature = event.features.array_[0]
     const coordAr = event.features.array_[0].getGeometry().getCoordinates()
     const geoType = event.features.array_[0].getGeometry().getType()
