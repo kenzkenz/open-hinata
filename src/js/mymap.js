@@ -115,6 +115,7 @@ function drawStylefunction (){
 export const danmenInteraction = new Draw({
     source: drawSource,
     type: 'LineString',
+    // freehand:true
 })
 export const lineInteraction = new Draw({
     source: drawSource,
@@ -224,6 +225,7 @@ function danmen(feature) {
                 const dataSet = response.map((valu,index) => {
                     let kyori = kyoriArr[index]
                     let tani
+                    let erev
                     if (tDistance2 > 10) {
                         tani = 'km'
                     } else {
@@ -231,7 +233,10 @@ function danmen(feature) {
                         tani = 'm'
                     }
                     const coord =coodARsprit[index]
-                    return {'erev':valu.data.elevation,'kyori':kyori,
+                    erev = valu.data.elevation
+                    if (erev === "-----") erev = 0
+
+                    return {'erev':erev,'kyori':kyori,
                         'tDistance': tDistance,'tDistance2': tDistance2, 'tani':tani, 'coord':coord}
                 })
                 dialogOpen(dataSet)
@@ -256,6 +261,7 @@ function danmen(feature) {
                 }
             }
         store.state.base.erevArr = dataSet
+        console.log(dataSet)
         store.commit('base/pushDialogs2',{mapName: 'map01', dialog: diialog})
     }
     created()
@@ -265,6 +271,7 @@ danmenInteraction.on('drawend', function (event) {
     // const coordAr = feature.getGeometry().getCoordinates()
     // const geoType = feature.getGeometry().getType()
     danmen(feature)
+    history ('断面時')
 })
 
 modifyInteraction.on('modifyend', function (event) {
