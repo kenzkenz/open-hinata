@@ -117,8 +117,9 @@ export default {
               console.log(response);
             })
       }
-      //----------------------------------------------------------------
       created()
+      //----------------------------------------------------------------
+
       function d3Create (response) {
         console.log(response[0].data.result.yearRight.data)
 
