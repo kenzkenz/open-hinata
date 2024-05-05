@@ -76,9 +76,11 @@ const moduleBase = {
     },
     cityName: '',
     cdArea: '',
+    syochiikiName: '',
     resusOrEstat: 'resus',
     erevArr:[],
     drawType:'danmen',
+    estatDataset:[],
   },
   getters: {
     layerList: (state) => (mapName) => {

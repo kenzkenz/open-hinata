@@ -399,6 +399,7 @@
     },
     mounted () {
       // 市区町村人口ピラミッド----------------------------------------------------------------
+      const vm = this
       const maps = ['map01','map02','map03','map04']
       maps.forEach((mapName) => {
         const olPopup = document.querySelector('#' + mapName + ' .ol-popup')
@@ -474,29 +475,242 @@
             // this.$store.state.base.cityCode[mapName] = e.target.getAttribute("citycode")
             // this.$store.state.base.prefCode = e.target.getAttribute("citycode").slice(0,2)
             this.$store.state.base.cdArea = e.target.getAttribute("cdArea")
+            this.$store.state.base.syochiikiName = e.target.getAttribute("syochiikiname")
             // this.openDialog(this.s_dialogs['pyramidDialog'][mapName])
-            this.$store.commit('base/incrDialog2Id');
-            this.$store.commit('base/incrDialogMaxZindex');
-            const diialog =
-                {
-                  id: this.s_dialo2Id,
-                  name:'pyramid',
-                  style: {
-                    display: 'block',
-                    top: '60px',
-                    // left: '10px',
-                    right:'10px',
-                    'z-index': this.s_dialogMaxZindex
+
+            let statsDataId
+            const prefCode = this.$store.state.base.cdArea.slice(0,2)
+            console.log(prefCode)
+            switch (prefCode) {
+              case '01':
+                statsDataId = '8003006783'
+                break
+              case '02':
+                statsDataId = '8003006747'
+                break
+              case '03':
+                statsDataId = '8003006760'
+                break
+              case '04':
+                statsDataId = '8003006765'
+                break
+              case '05':
+                statsDataId = '8003006766'
+                break
+              case '06':
+                statsDataId = '8003006791'
+                break
+              case '07':
+                statsDataId = '8003006755'
+                break
+              case '08':
+                statsDataId = '8003006756'
+                break
+              case '09':
+                statsDataId = '8003006769'
+                break
+              case '10':
+                statsDataId = '8003006778'
+                break
+              case '11':
+                statsDataId = '8003006762'
+                break
+              case '12':
+                statsDataId = '8003006752'
+                break
+              case '13':
+                statsDataId = '8003006792'
+                break
+              case '14':
+                statsDataId = '8003006761'
+                break
+              case '15':
+                statsDataId = '8003006774'
+                break
+              case '16':
+                statsDataId = '8003006784'
+                break
+              case '17':
+                statsDataId = '8003006771'
+                break
+              case '18':
+                statsDataId = '8003006753'
+                break
+              case '19':
+                statsDataId = '8003006758'
+                break
+              case '20':
+                statsDataId = '8003006775'
+                break
+              case '21':
+                statsDataId = '8003006782'
+                break
+              case '22':
+                statsDataId = '8003006767'
+                break
+              case '23':
+                statsDataId = '8003006757'
+                break
+              case '24':
+                statsDataId = '8003006776'
+                break
+              case '25':
+                statsDataId = '8003006787'
+                break
+              case '26':
+                statsDataId = '8003006764'
+                break
+              case '27':
+                statsDataId = '8003006751'
+                break
+              case '28':
+                statsDataId = '8003006777'
+                break
+              case '29':
+                statsDataId = '8003006763'
+                break
+              case '30':
+                statsDataId = '8003006772'
+                break
+              case '31':
+                statsDataId = '8003006790'
+                break
+              case '32':
+                statsDataId = '8003006754'
+                break
+              case '33':
+                statsDataId = '8003006779'
+                break
+              case '34':
+                statsDataId = '8003006785'
+                break
+              case '35':
+                statsDataId = '8003006793'
+                break
+              case '36':
+                statsDataId = '8003006759'
+                break
+              case '37':
+                statsDataId = '8003006780'
+                break
+              case '38':
+                statsDataId = '8003006781'
+                break
+              case '39':
+                statsDataId = '8003006786'
+                break
+              case '40':
+                statsDataId = '8003006768'
+                break
+              case '41':
+                statsDataId = '8003006788'
+                break
+              case '42':
+                statsDataId = '8003006749'
+                break
+              case '43':
+                statsDataId = '8003006789'
+                break
+              case '44':
+                statsDataId = '8003006770'
+                break
+              case '45':
+                statsDataId = '8003006773'
+                break
+              case '46':
+                statsDataId = '8003006750'
+                break
+              case '47':
+                statsDataId = '8003006748'
+                break
+            }
+
+
+            axios
+                .get('https://api.e-stat.go.jp/rest/3.0/app/json/getStatsData',{
+                  params: {
+                    appId:'5797c9f94cb117eca0c4e72ca1bd3dddad95c4a5',
+                    // statsDataId:'8003006773', // 宮崎
+                    // statsDataId: '8003006750', // 鹿児島
+                    statsDataId:statsDataId,
+                    // cdArea:"452011520",
+                    cdArea:this.$store.state.base.cdArea
                   }
-                }
-            this.$store.state.base.resusOrEstat = 'eStat'
-            this.$store.commit('base/pushDialogs2',{mapName: mapName, dialog: diialog})
-            this.$store.state.base.cdArea = e.target.getAttribute("cdArea")
+                }).then(function (response) {
+                  console.log(response.data)
+                  const class0 = response.data.GET_STATS_DATA.STATISTICAL_DATA.CLASS_INF.CLASS_OBJ[0].CLASS
+                  const value = response.data.GET_STATS_DATA.STATISTICAL_DATA.DATA_INF.VALUE
+                  const man = []
+                  value.forEach((v, index) => {
+                    if ((index >= 21 & index <= 35) || index === 39) {
+                      man.push({class: class0[index]['@name'], man: v['$']})
+                    }
+                  })
+                  const woman = []
+                  value.forEach((v, index) => {
+                    if ((index >= 41 & index <= 55) || index === 59) {
+                      woman.push({class: class0[index]['@name'], woman: v['$']})
+                    }
+                  })
+
+                  function toHalfWidth(str) {
+                   // 全角英数字を半角に変換
+                    str = str.replace(/[Ａ-Ｚａ-ｚ０-９]/g, function(s) {
+                       return String.fromCharCode(s.charCodeAt(0) - 0xFEE0);
+                    });
+                    return str;
+                  }
+
+
+
+                  const estatDataset = man.map((v, i) => {
+                    let class1 = toHalfWidth(v.class).replace('男','')
+                    return {class: class1, man: Number(v.man), woman: Number(woman[i].woman)}
+                  })
+                  console.log(estatDataset)
+                  console.log(vm.$store.state.base.estatDataset)
+                  vm.$store.state.base.estatDataset = estatDataset
+
+              vm.$store.commit('base/incrDialog2Id');
+              vm.$store.commit('base/incrDialogMaxZindex');
+              const diialog =
+                  {
+                    id: vm.s_dialo2Id,
+                    name:'pyramid-estat',
+                    style: {
+                      display: 'block',
+                      top: '60px',
+                      // left: '10px',
+                      right:'10px',
+                      'z-index': vm.s_dialogMaxZindex
+                    }
+                  }
+              vm.$store.state.base.resusOrEstat = 'eStat'
+              vm.$store.commit('base/pushDialogs2',{mapName: mapName, dialog: diialog})
+              vm.$store.state.base.cdArea = e.target.getAttribute("cdArea")
+
+
+
+
+                })
+
+
+
+
+
+
+
+
+
+
+
+
+
           }
         })
       })
       // --------------------------------------------------------------
-      const vm = this
+      // const vm = this
       heading = function(ol3d,leftRight){
         if(vm.tiltFlg){
           let head = ol3d.getCamera().getHeading()

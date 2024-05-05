@@ -274,6 +274,10 @@ tippecanoe -pk -pf -f -e tile gun.geojson
 
 tippecanoe -pk -pf -f -e tile 45miyazaki.geojson
 
+tippecanoe -pk -pf -f -e tile miyazakisi.geojson
+tippecanoe -pk -pf -f -e tile zenkoku.geojson
+
+
 
 $ cd tile
 $ gzip -d -v -r -S .pbf *

@@ -33,10 +33,11 @@ function Syochiiki2020(){
   this.source = new VectorTileSource({
     crossOrigin: 'Anonymous',
     format: new MVT(),
-    maxZoom:14,
+    maxZoom:13,
     url: "https://kenzkenz3.xsrv.jp/mvt/syochiiki/2020/{z}/{x}/{y}.mvt"
   });
-  this.style = syougakkoukuStyleFunction(28);
+  this.style = syochiikiStyleFunction()
+  this.maxResolution = 38.218514 //zoom12
 }
 export  const syochiiki2020Obj = {};
 for (let i of mapsStr) {
@@ -46,6 +47,49 @@ export const syochiiki2020Summ = "<a href='' target='_blank'></a>";
 
 
 
+const syochiikiColor = d3.scaleOrdinal(d3.schemeCategory10);
+function syochiikiStyleFunction() {
+  return function (feature, resolution) {
+    const zoom = getZoom(resolution);
+    const prop = feature.getProperties();
+    const styles = [];
+    let id = prop.KEY_CODE
+    const rgb = d3.rgb(syochiikiColor(id))
+    // const rgb = d3.rgb(cityColor(id))
+    const rgba = "rgba(" + rgb.r + "," + rgb.g + "," + rgb.b + ",0.8)"
+    const polygonStyle = new Style({
+      fill: new Fill({
+        // color: rgba
+        color: 'rgba(0,0,0,0)'
+      }),
+      stroke: new Stroke({
+        color: "black",
+        width: 1
+      })
+    });
+    const text = String(prop.JINKO) + '人'
+    const textStyle = new Style({
+      text: new Text({
+        font: "14px sans-serif",
+        text: text,
+        fill: new Fill({
+          color: "black"
+        }),
+        stroke: new Stroke({
+          color: "white",
+          width: 3
+        }),
+        exceedLength:true
+      })
+    });
+    styles.push(polygonStyle);
+    styles.push(textStyle);
+    // if(zoom>=9) {
+    //   styles.push(textStyle);
+    // }
+    return styles;
+  }
+}
 
 
 

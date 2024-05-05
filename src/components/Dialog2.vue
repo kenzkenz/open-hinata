@@ -6,6 +6,8 @@
       <div class="close-btn-div" @click="close(item)"><i class="fa-solid fa-xmark hover close-btn"></i></div>
 
       <v-pyramid :item="item" :mapName="mapName" v-if="item.name === 'pyramid'" />
+      <v-pyramid-estat :item="item" :mapName="mapName" v-if="item.name === 'pyramid-estat'" />
+
       <v-erev :item="item" :mapName="mapName" v-if="item.name === 'erev'" />
 
 
@@ -15,13 +17,14 @@
 
 <script>
 import DialogPyramid from "@/components/Dialog-pyramid"
+import DialogPyramidEstat from "@/components/Dialog-pyramid-estat"
 import DialogErev from "@/components/Daialog-erev";
-
 
 export default {
   name: "v-dialog2",
   components: {
     'v-pyramid': DialogPyramid,
+    'v-pyramid-estat':DialogPyramidEstat,
     'v-erev': DialogErev
   },
   props: ['mapName'],

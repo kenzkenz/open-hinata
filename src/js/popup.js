@@ -981,9 +981,9 @@ export function popUp(map,layers,features,overlay,evt,content) {
       width = 200
       cont = '<div style=width:200px;>' +
           '<h4>' + prop.S_NAME + '</h4>' +
-          // '所在地=' + ru(prop.P28_006) + '<br>' +
+          '都道府県=' + ru(prop.PREF_NAME) + '<br>' +
           'コード=' + ru(prop.KEY_CODE) + '<br><br>' +
-          '<button class="pyramid-syochiiki" mapname="' + map.values_.target + '" cdArea="' + ru(prop.KEY_CODE) + '" cityname="' + ru(prop.S_NAME) + '">人口ピラミッド</button><br><br>' +
+          '<button class="pyramid-syochiiki" mapname="' + map.values_.target + '" cdArea="' + ru(prop.KEY_CODE) + '" syochiikiname="' + ru(prop.S_NAME) + '">人口ピラミッド</button><br><br>' +
           streetView +
           '</div>'
       break

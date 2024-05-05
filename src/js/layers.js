@@ -13726,7 +13726,7 @@ export const Layers =
         { text: '海面上昇シミュ（シンプル）', data: { id: 'flood10m2', layer: floodSinpleObj, opacity: 1, summary: floodSumm, component: {name: 'floodSimple', values:[]}} },
         { text: '都道府県人口ピラミッド', data: { id: "kencho", layer: LayersMvt.kenchoObj, opacity: 1, summary: LayersMvt.kenchoSumm } },
         { text: '市区町村人口ピラミッド', data: { id: "shikuchoson", layer: LayersMvt.shikuchosonObj, opacity: 1, summary: LayersMvt.shikuchosonSumm } },
-        { text: '小地域人口ピラミッド', data: { id: "syochiiki2020", layer: LayersMvt.syochiiki2020Obj, opacity: 1, summary: LayersMvt.syochiiki2020Summ } },
+        { text: 'R2国勢調査小地域人口ピラミッド', data: { id: "syochiiki2020", layer: LayersMvt.syochiiki2020Obj, opacity: 1, summary: LayersMvt.syochiiki2020Summ } },
 
       ]
     },
