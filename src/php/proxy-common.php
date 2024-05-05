@@ -3,8 +3,8 @@ function curl_get_contents($url)
 {
 
 //    $server = 'tcp://183.90.232.31';
-    $server = 'tcp://183.90.232.31';
-    $port = '80';
+    $server = 'tcp://10.151.91.188';
+    $port = '8080';
 
     $ch = curl_init();
     curl_setopt($ch, CURLOPT_URL, $url);

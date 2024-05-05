@@ -424,6 +424,7 @@
                     'z-index': this.s_dialogMaxZindex
                   }
                 }
+            this.$store.state.base.resusOrEstat = 'resus'
             this.$store.commit('base/pushDialogs2',{mapName: mapName, dialog: diialog})
             this.$store.state.base.cityCode[mapName] = e.target.getAttribute("citycode")
           }
@@ -455,13 +456,46 @@
                     'z-index': this.s_dialogMaxZindex
                   }
                 }
+            this.$store.state.base.resusOrEstat = 'resus'
             this.$store.commit('base/pushDialogs2',{mapName: mapName, dialog: diialog})
             this.$store.state.base.cityCode[mapName] = e.target.getAttribute("citycode")
             this.$store.state.base.cityCode[mapName] = '-'
           }
         })
       })
-      // --------------------------------------------------------------str.slice( start[省略可能], end[省略可能] )
+      // 小地域人口ピラミッド----------------------------------------------------------------
+      // const maps = ['map01','map02','map03','map04']
+      maps.forEach((mapName) => {
+        const olPopup = document.querySelector('#' + mapName + ' .ol-popup')
+        olPopup.addEventListener('click', (e) => {
+          if (e.target && e.target.classList.contains("pyramid-syochiiki") ) {
+            console.log(e.target)
+            console.log(e.target.getAttribute("cdArea"))
+            // this.$store.state.base.cityCode[mapName] = e.target.getAttribute("citycode")
+            // this.$store.state.base.prefCode = e.target.getAttribute("citycode").slice(0,2)
+            this.$store.state.base.cdArea = e.target.getAttribute("cdArea")
+            // this.openDialog(this.s_dialogs['pyramidDialog'][mapName])
+            this.$store.commit('base/incrDialog2Id');
+            this.$store.commit('base/incrDialogMaxZindex');
+            const diialog =
+                {
+                  id: this.s_dialo2Id,
+                  name:'pyramid',
+                  style: {
+                    display: 'block',
+                    top: '60px',
+                    // left: '10px',
+                    right:'10px',
+                    'z-index': this.s_dialogMaxZindex
+                  }
+                }
+            this.$store.state.base.resusOrEstat = 'eStat'
+            this.$store.commit('base/pushDialogs2',{mapName: mapName, dialog: diialog})
+            this.$store.state.base.cdArea = e.target.getAttribute("cdArea")
+          }
+        })
+      })
+      // --------------------------------------------------------------
       const vm = this
       heading = function(ol3d,leftRight){
         if(vm.tiltFlg){
@@ -598,6 +632,10 @@
                 '<br>是非ご覧ください。' +
                 '<p>市区町村の人口ピラミッドを追加しました。「' +
                 '<a href="https://kenzkenz.xsrv.jp/open-hinata/#sDbPrP" target="_blank">市区町村人口ピラミッド</a>' +
+                '」' +
+                '<br>是非ご覧ください。' +
+                '<p>都道府県の人口ピラミッドを追加しました。「' +
+                '<a href="https://kenzkenz.xsrv.jp/open-hinata/#s3SqZv" target="_blank">都道府県人口ピラミッド</a>' +
                 '」' +
                 '<br>是非ご覧ください。',
             title: 'お知らせ',
@@ -856,9 +894,9 @@
     }
 </style>
 <style>
-    /*html {*/
-    /*  touch-action: manipulation;*/
-    /*}*/
+    html {
+      touch-action: manipulation;
+    }
 
     #modal1 .vm--container{
       z-index: 10002;

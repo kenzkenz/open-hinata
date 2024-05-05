@@ -75,6 +75,8 @@ const moduleBase = {
       map04: ''
     },
     cityName: '',
+    cdArea: '',
+    resusOrEstat: 'resus',
     erevArr:[],
     drawType:'danmen',
   },

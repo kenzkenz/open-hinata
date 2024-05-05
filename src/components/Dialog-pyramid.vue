@@ -68,9 +68,17 @@ export default {
       // ---------------------------------------------------------------------------
       d3.select('#' + vm.id + ' .d3-pyramid svg').remove()
       d3.select('#' + vm.id + ' .loadingImg').style("display","block")
+
+      //----------------------------------------------------------------
+
+      if (vm.$store.state.base.resusOrEstat === 'eStat') {
+
+      } else {
+        
+      }
+
       // const resasApiKey = "ZKE7BccwVM8e2onUYC7iX2tnuuZwZJfuOTf3rL93"
       const resasApiKey = "Sultx8zfCSfOwJ9M0bZPcTd3KmryBhzm86Qz9skE"
-
       const resasUrl = "https://opendata.resas-portal.go.jp/api/v1/"
       const cityCode = vm.$store.state.base.cityCode[vm.mapName]
       let cityName = vm.$store.state.base.cityName
@@ -109,6 +117,7 @@ export default {
               console.log(response);
             })
       }
+      //----------------------------------------------------------------
       created()
       function d3Create (response) {
         console.log(response[0].data.result.yearRight.data)

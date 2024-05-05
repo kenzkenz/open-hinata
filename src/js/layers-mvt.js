@@ -27,6 +27,32 @@ const transformE = extent => {
   return transformExtent(extent,'EPSG:4326','EPSG:3857')
 };
 const mapsStr = ['map01','map02','map03','map04'];
+//小地域------------------------------------------------------------------------------------------------
+function Syochiiki2020(){
+  this.name = 'syochiki2020'
+  this.source = new VectorTileSource({
+    crossOrigin: 'Anonymous',
+    format: new MVT(),
+    maxZoom:14,
+    url: "https://kenzkenz3.xsrv.jp/mvt/syochiiki/2020/{z}/{x}/{y}.mvt"
+  });
+  this.style = syougakkoukuStyleFunction(28);
+}
+export  const syochiiki2020Obj = {};
+for (let i of mapsStr) {
+  syochiiki2020Obj[i] = new VectorTileLayer(new Syochiiki2020())
+}
+export const syochiiki2020Summ = "<a href='' target='_blank'></a>";
+
+
+
+
+
+
+
+
+
+
 //H28小学校区------------------------------------------------------------------------------------------------
 function SyougakkoukuH28(){
   this.name = 'syougakkoukuH28'

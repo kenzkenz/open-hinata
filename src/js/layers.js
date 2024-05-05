@@ -1965,7 +1965,7 @@ for (let i of mapsStr) {
 }
 const sizuokaCs2Summ = '<a href="https://www.geospatial.jp/ckan/dataset/shizuoka-2023-csmap" target="_blank">G空間情報センター</a>'
 
-// 広島県CS立体図----------------------------------------------------------------------------
+// 広島県CS立体図 林野庁0.5m----------------------------------------------------------------------------
 function HiroshimaCs () {
   this.preload = Infinity
   this.extent = transformE([132.1650338172913, 34.69661995103654,133.3746349811554, 34.03206918961159])
@@ -1982,7 +1982,7 @@ for (let i of mapsStr) {
 }
 const hiroshimaCsSumm = '出典：<a href="https://www2.ffpri.go.jp/soilmap/index.html" target="_blank">森林総研・森林土壌デジタルマップ</a>'
 
-// 広島県CS立体図shi-works氏----------------------------------------------------------------------------
+// 広島県CS立体図shi-works氏-CS 1m---------------------------------------------------------------------------
 function HiroshimaCsShiWorks () {
   this.preload = Infinity
   // this.extent = transformE([132.1650338172913, 34.69661995103654,133.3746349811554, 34.03206918961159])
@@ -1998,6 +1998,25 @@ for (let i of mapsStr) {
   hiroshimaCsObj2[i] = new TileLayer(new HiroshimaCsShiWorks())
 }
 const hiroshimaCs2Summ = '<a href="https://github.com/shi-works/aist-dem-with-cs-on-maplibre-gl-js" target="_blank">aist-dem-with-cs-on-maplibre-gl-js</a>'
+
+// 広島県CS立体図shi-works氏-CS 0.5m---------------------------------------------------------------------------
+function HiroshimaCsShiWorks05 () {
+  this.preload = Infinity
+  // this.extent = transformE([132.1650338172913, 34.69661995103654,133.3746349811554, 34.03206918961159])
+  this.source = new XYZ({
+    // url: 'https://xs489works.xsrv.jp/raster-tiles/pref-hiroshima/hiroshimapc-cs-tiles/{z}/{x}/{y}.png',
+    url: 'https://shiworks.xsrv.jp/raster-tiles/pref-hiroshima/hiroshimapc-2022-cs-tiles/{z}/{x}/{y}.png',
+    crossOrigin: 'Anonymous',
+    minZoom: 4,
+    maxZoom: 17
+  });
+}
+const hiroshimaCsObj3 = {};
+for (let i of mapsStr) {
+  hiroshimaCsObj3[i] = new TileLayer(new HiroshimaCsShiWorks05())
+}
+// const hiroshimaCs2Summ = '<a href="https://github.com/shi-works/aist-dem-with-cs-on-maplibre-gl-js" target="_blank">aist-dem-with-cs-on-maplibre-gl-js</a>'
+
 
 // 岡山県CS立体図----------------------------------------------------------------------------
 function OkayamaCs () {
@@ -12717,8 +12736,10 @@ export const Layers =
         { text: '兵庫県CS立体図50cm', data: { id: 'hyougocs50cm2', layer: hyougoCs50c2Obj, opacity: 1, zoom:9, center:[134.8428381533734, 35.05148520051671], summary: hyougoCs50c2Summ } },
         { text: '長野県CS立体図', data: { id: 'naganocs', layer: naganoCsObj, opacity: 1, zoom:9, center:[138.14880751631608, 36.19749617538284], summary: naganoCsSumm } },
         { text: '静岡県CS立体図', data: { id: 'sizuokacs2', layer: sizuokaCs2Obj, opacity: 1, zoom:9, center:[138.26385867875933, 35.01475223050842], summary: sizuokaCs2Summ } },
-        { text: '広島県CS立体図（一部）', data: { id: 'hiroshimacs', layer: hiroshimaCsObj, opacity: 1, zoom:9, center:[132.77140492854667, 34.41276234214364], summary: hiroshimaCsSumm } },
-        { text: '広島県CS立体図（全域）', data: { id: 'hiroshimacs2', layer: hiroshimaCsObj2, opacity: 1, zoom:9, center:[132.77140492854667, 34.41276234214364], summary: hiroshimaCs2Summ } },
+        { text: '広島県CS立体図（林野庁0.5m）', data: { id: 'hiroshimacs', layer: hiroshimaCsObj, opacity: 1, zoom:9, center:[132.77140492854667, 34.41276234214364], summary: hiroshimaCsSumm } },
+        { text: '広島県CS立体図（広島県1m）', data: { id: 'hiroshimacs2', layer: hiroshimaCsObj2, opacity: 1, zoom:9, center:[132.77140492854667, 34.41276234214364], summary: hiroshimaCs2Summ } },
+        { text: '広島県CS立体図（広島県0.5m）', data: { id: 'hiroshimacs3', layer: hiroshimaCsObj3, opacity: 1, zoom:9, center:[132.77140492854667, 34.41276234214364], summary: hiroshimaCs2Summ } },
+
         { text: '岡山県CS立体図', data: { id: 'okayamacs', layer: okayamaCsObj, opacity: 1, zoom:9, center:[133.5767769813538, 34.736393137403084], summary: okayamaCsSumm } },
         { text: '福島県CS立体図', data: { id: 'fukushimacs', layer: fukushimaCsObj, opacity: 1, zoom:9, center:[140.6180906295776, 37.49835474973223], summary: fukushimaCsSumm } },
         { text: '愛媛県CS立体図', data: { id: 'ehimeocs', layer: ehimeCsObj, opacity: 1, zoom:9, center:[132.77042984962463, 33.49503407703915], summary: ehimeCsSumm } },
@@ -13705,6 +13726,7 @@ export const Layers =
         { text: '海面上昇シミュ（シンプル）', data: { id: 'flood10m2', layer: floodSinpleObj, opacity: 1, summary: floodSumm, component: {name: 'floodSimple', values:[]}} },
         { text: '都道府県人口ピラミッド', data: { id: "kencho", layer: LayersMvt.kenchoObj, opacity: 1, summary: LayersMvt.kenchoSumm } },
         { text: '市区町村人口ピラミッド', data: { id: "shikuchoson", layer: LayersMvt.shikuchosonObj, opacity: 1, summary: LayersMvt.shikuchosonSumm } },
+        { text: '小地域人口ピラミッド', data: { id: "syochiiki2020", layer: LayersMvt.syochiiki2020Obj, opacity: 1, summary: LayersMvt.syochiiki2020Summ } },
 
       ]
     },
