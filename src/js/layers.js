@@ -916,7 +916,10 @@ function Ryuuiki () {
   this.preload = Infinity
   this.source = new XYZ({
     // url: 'https://kenzkenz.xsrv.jp/open-hinata/php/proxy-png-curl.php?url=https://tiles.dammaps.jp/ryuiki_t/1/{z}/{x}/{y}.png',
+    // url: 'https://hgis.pref.miyazaki.lg.jp/hinata/php/proxy-png-curl.php?url=https://tiles.dammaps.jp/ryuiki_t/1/{z}/{x}/{y}.png',
+
     // url: 'https://tiles.dammaps.jp/ryuiki_t/1/{z}/{x}/{y}.png',
+
     url: 'https://kenzkenz3.xsrv.jp/ryuuiki/{z}/{x}/{y}.png',
     // crossOrigin: 'Anonymous',
     minZoom: 5,
@@ -13650,6 +13653,8 @@ export const Layers =
             { text: 'H25公示価格', data: { id: "kouziH25", layer: LayersMvt.kouziH25Obj, opacity: 1, summary: LayersMvt.kouziH25Summ,component: {name: 'kouzi', values:[]} } },
             { text: 'H30公示価格', data: { id: "kouziH30", layer: LayersMvt.kouziH30Obj, opacity: 1, summary: LayersMvt.kouziH30Summ,component: {name: 'kouzi', values:[]} } },
             { text: 'R04公示価格', data: { id: "kouziR04", layer: LayersMvt.kouziR04Obj, opacity: 1, summary: LayersMvt.kouziR04Summ,component: {name: 'kouzi', values:[]} } },
+            // { text: 'R05公示価格', data: { id: "kouziR05", layer: LayersMvt.kouziR05Obj, opacity: 1, summary: LayersMvt.kouziR05Summ,component: {name: 'kouzi', values:[]} } },
+
           ]},
         { text: '都市地域',
           children: [
@@ -13698,6 +13703,7 @@ export const Layers =
         { text: '海面上昇シミュ（色別標高図風）', data: { id: 'flood10m', layer: flood10Obj, opacity: 1, summary: floodSumm, component: {name: 'flood10m', values:[]}} },
         { text: '海面上昇シミュ（詳細）', data: { id: 'flood15', layer: flood15Obj, opacity: 1, summary: floodSumm, component: {name: 'flood15', values:[]}} },
         { text: '海面上昇シミュ（シンプル）', data: { id: 'flood10m2', layer: floodSinpleObj, opacity: 1, summary: floodSumm, component: {name: 'floodSimple', values:[]}} },
+        { text: '都道府県人口ピラミッド', data: { id: "kencho", layer: LayersMvt.kenchoObj, opacity: 1, summary: LayersMvt.kenchoSumm } },
         { text: '市区町村人口ピラミッド', data: { id: "shikuchoson", layer: LayersMvt.shikuchosonObj, opacity: 1, summary: LayersMvt.shikuchosonSumm } },
 
       ]

@@ -398,10 +398,9 @@
       },
     },
     mounted () {
-      // 人口ピラミッド----------------------------------------------------------------
+      // 市区町村人口ピラミッド----------------------------------------------------------------
       const maps = ['map01','map02','map03','map04']
       maps.forEach((mapName) => {
-
         const olPopup = document.querySelector('#' + mapName + ' .ol-popup')
         olPopup.addEventListener('click', (e) => {
           if (e.target && e.target.classList.contains("pyramid") ) {
@@ -427,6 +426,38 @@
                 }
             this.$store.commit('base/pushDialogs2',{mapName: mapName, dialog: diialog})
             this.$store.state.base.cityCode[mapName] = e.target.getAttribute("citycode")
+          }
+        })
+      })
+      // 都道府県人口ピラミッド----------------------------------------------------------------
+      // const maps = ['map01','map02','map03','map04']
+      maps.forEach((mapName) => {
+        const olPopup = document.querySelector('#' + mapName + ' .ol-popup')
+        olPopup.addEventListener('click', (e) => {
+          if (e.target && e.target.classList.contains("pyramid-kencho") ) {
+            console.log(e.target)
+            console.log(e.target.getAttribute("citycode"))
+            // this.$store.state.base.cityCode[mapName] = e.target.getAttribute("citycode")
+            this.$store.state.base.prefCode = e.target.getAttribute("citycode").slice(0,2)
+            this.$store.state.base.cityName = e.target.getAttribute("cityname")
+            // this.openDialog(this.s_dialogs['pyramidDialog'][mapName])
+            this.$store.commit('base/incrDialog2Id');
+            this.$store.commit('base/incrDialogMaxZindex');
+            const diialog =
+                {
+                  id: this.s_dialo2Id,
+                  name:'pyramid',
+                  style: {
+                    display: 'block',
+                    top: '60px',
+                    // left: '10px',
+                    right:'10px',
+                    'z-index': this.s_dialogMaxZindex
+                  }
+                }
+            this.$store.commit('base/pushDialogs2',{mapName: mapName, dialog: diialog})
+            this.$store.state.base.cityCode[mapName] = e.target.getAttribute("citycode")
+            this.$store.state.base.cityCode[mapName] = '-'
           }
         })
       })

@@ -965,6 +965,17 @@ export function popUp(map,layers,features,overlay,evt,content) {
           streetView +
           '</div>'
       break
+    case 'kencho':
+      console.log(map.values_.target)
+      width = 200
+      cont = '<div style=width:200px;>' +
+          '<h4>' + prop.P28_005 + '</h4>' +
+          '所在地=' + ru(prop.P28_006) + '<br>' +
+          'コード=' + ru(prop.P28_001) + '<br><br>' +
+          '<button class="pyramid-kencho" mapname="' + map.values_.target + '" citycode="' + ru(prop.P28_001) + '" cityname="' + ru(prop.P28_005) + '">人口ピラミッド</button><br><br>' +
+          streetView +
+          '</div>'
+      break
   }
 
   if (width) {

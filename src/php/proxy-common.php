@@ -2,6 +2,7 @@
 function curl_get_contents($url)
 {
 
+//    $server = 'tcp://183.90.232.31';
     $server = 'tcp://183.90.232.31';
     $port = '80';
 

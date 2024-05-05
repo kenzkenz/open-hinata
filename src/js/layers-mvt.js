@@ -1159,12 +1159,36 @@ function KouziR04(mapName){
   this.style = kouziStyleFunction(mapName,4)
   // this.maxResolution = 152.874058 //zoom10
   // this.declutter = true
+  // this.overflow = true
+  // this.renderMode = 'hybrid'
+  // this.renderOrder = null
+  // this.renderBuffer = 10000
 }
 export const kouziR04Obj = {};
 for (let i of mapsStr) {
   kouziR04Obj[i] = new VectorTileLayer(new KouziR04(i))
 }
 export const kouziR04Summ = "<a href='' target='_blank'>国土数値情報　公示価格</a>";
+
+
+function KouziR05 (mapName) {
+  this.useInterimTilesOnError = false
+  this.name = 'kouziR04'
+  this.source = new VectorSource({
+    url:'https://kenzkenz.xsrv.jp/open-hinata/geojson/kouzir05.geojson',
+    format: new GeoJSON()
+  });
+  this.style = kouziStyleFunction(mapName,5)
+}
+export const kouziR05Summ = "<a href='' target='_blank'>国土数値情報　公示価格</a>";
+export const kouziR05Obj = {};
+for (let i of mapsStr) {
+  kouziR05Obj[i] = new VectorLayer(new KouziR05(i))
+}
+
+
+
+
 // --------------------------------------------------
 function kouziStyleFunction (mapName,year) {
   return function(feature, resolution) {
@@ -1187,7 +1211,11 @@ function kouziStyleFunction (mapName,year) {
         text = prop.L01_019
         break
       case 4:
-        color2 = color(prop.L01_100)
+        color2 = color(Number(prop.L01_100))
+        text = prop.L01_024
+        break
+      case 5:
+        color2 = color(prop.L01_006)
         text = prop.L01_024
         break
     }
@@ -1204,10 +1232,6 @@ function kouziStyleFunction (mapName,year) {
         radius: 6,
         fill: new Fill({
           color: color2
-        }),
-        stroke: new Stroke({
-          color: "white",
-          width: 1
         })
       })
     })
@@ -1229,7 +1253,7 @@ function kouziStyleFunction (mapName,year) {
     });
     styles.push(circleStyle);
     if(zoom>=14) {
-      styles.push(textStyle);
+      styles.push(textStyle)
     }
     // console.log(prop)
     return styles;
@@ -5656,7 +5680,7 @@ function Shikuchoson () {
     url:'https://kenzkenz.xsrv.jp/open-hinata/geojson/shikuchoson.geojson',
     format: new GeoJSON()
   });
-  this.style = shikuchosonFunction()
+  this.style = shikuchosonFunction('shi')
 }
 export const shikuchosonSumm = "<a href='https://opendata.resas-portal.go.jp/' target='_blank'>RESAS</a><br>" +
                                "<a href='https://nlftp.mlit.go.jp/ksj/gml/datalist/KsjTmplt-P34.html#!' target='_blank'>国土数値情報</a>"
@@ -5664,11 +5688,33 @@ export const shikuchosonObj = {};
 for (let i of mapsStr) {
   shikuchosonObj[i] = new VectorLayer(new Shikuchoson())
 }
-function shikuchosonFunction() {
+// ---------------------------
+function Kencho () {
+  this.useInterimTilesOnError = false
+  this.name = 'kencho'
+  this.source = new VectorSource({
+    url:'https://kenzkenz.xsrv.jp/open-hinata/geojson/kencho.geojson',
+    format: new GeoJSON()
+  });
+  this.style = shikuchosonFunction('ken')
+}
+export const kenchoSumm = "<a href='https://opendata.resas-portal.go.jp/' target='_blank'>RESAS</a><br>" +
+    "<a href='https://nlftp.mlit.go.jp/ksj/gml/datalist/KsjTmplt-P34.html#!' target='_blank'>国土数値情報</a>"
+export const kenchoObj = {};
+for (let i of mapsStr) {
+  kenchoObj[i] = new VectorLayer(new Kencho())
+}
+function shikuchosonFunction(yakusyo) {
   return function (feature, resolution) {
     const zoom = getZoom(resolution);
     const prop = feature.getProperties()
     const styles = []
+    let text
+    if (yakusyo=== 'shi') {
+      text = prop.P34_003
+    } else {
+      text = prop.P28_005
+    }
     const iconStyle = new Style({
       image: new Icon({
         src: require('@/assets/icon/whitecircle.png'),
@@ -5678,7 +5724,7 @@ function shikuchosonFunction() {
     const textStyle = new Style({
       text: new Text({
         font: "20px sans-serif",
-        text: prop.P34_003,
+        text: text,
         offsetY: 16,
         fill:  new Fill({
           color:"black"

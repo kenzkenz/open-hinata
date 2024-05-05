@@ -78,7 +78,7 @@ export default {
       console.log(cityCode)
       console.log(cityName)
       console.log(prefCode)
-      cityName = cityName.replace('役所','').replace('役場','')
+      cityName = cityName.replace('役所','').replace('役場','').replace('庁','')
       console.log(cityName)
       const dialog2DragHandle = document.querySelector('#dialog2-' + vm.item.id + ' .drag-handle')
       dialog2DragHandle.innerHTML = cityName

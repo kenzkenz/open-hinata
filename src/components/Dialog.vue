@@ -39,7 +39,7 @@
         removeResult.forEach((value) =>{
           map.removeLayer(value.layer)
         })
-        map.addLayer(MyMap.danmenLayer)
+        // map.addLayer(MyMap.danmenLayer)
         store.commit('base/updateList', {
           value: [{
             id: 2,
