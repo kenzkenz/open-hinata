@@ -21,7 +21,6 @@ import WikiCommons from 'ol-ext/source/WikiCommons'
 import  * as Tilegrid from 'ol/tilegrid'
 import * as Loadingstrategy from 'ol/loadingstrategy';
 import image from "ol-ext/legend/Image";
-import {floodSinple1Obj, floodSinple2Obj} from "@/js/layers";
 // import * as flatgeobuf from 'flatgeobuf'
 
 const transformE = extent => {
@@ -46,6 +45,8 @@ function Syochiiki2020(){
   });
   this.style = syochiikiStyleFunction()
   this.maxResolution = 38.218514 //zoom12
+  this.declutter = true
+  this.overflow = true
 }
 export  const syochiiki2020MvtObj = {};
 for (let i of mapsStr) {
@@ -96,9 +97,6 @@ function syochiikiStyleFunction() {
     });
     styles.push(polygonStyle);
     styles.push(textStyle);
-    // if(zoom>=9) {
-    //   styles.push(textStyle);
-    // }
     return styles;
   }
 }
@@ -121,7 +119,7 @@ for (let i of mapsStr) {
   syochiiki2020Obj[i] = new LayerGroup({
     layers: [
       syochiiki2020MvtObj[i],
-      syochiiki2020RasterObj[i],
+      // syochiiki2020RasterObj[i],
     ]
   })
 }

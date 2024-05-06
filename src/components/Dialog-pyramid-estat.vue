@@ -70,17 +70,20 @@ export default {
         let width = 500 - margin.left - margin.right
         let height = 400 - margin.top - margin.bottom
         let womanMargin = 230
+        let textLeft = 195
 
         if (window.innerWidth > 600) {
           elements[len-1].style.width = '550px'
           width = 550 - margin.left - margin.right
           height = 400 - margin.top - margin.bottom
           womanMargin = 285
+          textLeft = 195
         } else {
           elements[len-1].style.width = '350px'
           width = 350 - margin.left - margin.right
           height = 200 - margin.top - margin.bottom
           womanMargin = 185
+          textLeft = 95
         }
 
         // let  data = response[8].data.result.yearRight.data
@@ -109,7 +112,7 @@ export default {
         const womanSum = d3.sum(data, function(d){ return d.woman; })
         svg.append("text")
             .attr("fill", "black")
-            .attr("transform", "translate(" + 195 + "," + -5 + ")")
+            .attr("transform", "translate(" + textLeft + "," + -5 + ")")
             // .attr("dy", "5px")
             .attr("font", "8px")
             // .attr("text-anchor", "middle")
