@@ -43,7 +43,8 @@ export  const syochiiki2020Obj = {};
 for (let i of mapsStr) {
   syochiiki2020Obj[i] = new VectorTileLayer(new Syochiiki2020())
 }
-export const syochiiki2020Summ = "<a href='' target='_blank'></a>";
+export const syochiiki2020Summ = "このサービスは、政府統計総合窓口(e-Stat)<br>のAPI機能を使用していますが、サービスの<br>内容は国によって保証されたものではありません。<br>" +
+    "<a href='https://www.e-stat.go.jp/api/' target='_blank'>e-Stat API</a>";
 
 
 
@@ -63,17 +64,23 @@ function syochiikiStyleFunction() {
         color: 'rgba(0,0,0,0)'
       }),
       stroke: new Stroke({
-        color: "black",
-        width: 1
+        color: "red",
+        width: 2
       })
-    });
-    const text = String(prop.JINKO) + '人'
+    })
+    let text
+    if (zoom>15) {
+      text = prop.S_NAME + ' ' + String(prop.JINKO) + '人'
+    } else {
+      text = String(prop.JINKO) + '人'
+    }
+    // const text = String(prop.JINKO) + '人'
     const textStyle = new Style({
       text: new Text({
-        font: "14px sans-serif",
+        font: "16px sans-serif",
         text: text,
         fill: new Fill({
-          color: "black"
+          color: "red"
         }),
         stroke: new Stroke({
           color: "white",

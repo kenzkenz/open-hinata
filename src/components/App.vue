@@ -624,8 +624,6 @@
                 statsDataId = '8003006748'
                 break
             }
-
-
             axios
                 .get('https://api.e-stat.go.jp/rest/3.0/app/json/getStatsData',{
                   params: {
@@ -660,9 +658,6 @@
                     });
                     return str;
                   }
-
-
-
                   const estatDataset = man.map((v, i) => {
                     let class1 = toHalfWidth(v.class).replace('男','')
                     return {class: class1, man: Number(v.man), woman: Number(woman[i].woman)}

@@ -105,23 +105,22 @@ export default {
             .attr("transform",
                 "translate(" + margin.left + "," + margin.top + ")");
 
-        // svg.append("text")
-        //     .attr("fill", "black")
-        //     .attr("transform", "translate(" + 30 + "," + 0 + ")")
-        //     // .attr("dy", "5px")
-        //     .attr("font", "10px")
-        //     // .attr("text-anchor", "middle")
-        //     .attr("class", "city-name")
-        //     .text(cityName + '2020');
-        console.log(data)
-        console.log(d3.max(data, function(d){ return d.woman; }))
+        const manSum = d3.sum(data, function(d){ return d.man; })
+        const womanSum = d3.sum(data, function(d){ return d.woman; })
+        svg.append("text")
+            .attr("fill", "black")
+            .attr("transform", "translate(" + 195 + "," + -5 + ")")
+            // .attr("dy", "5px")
+            .attr("font", "8px")
+            // .attr("text-anchor", "middle")
+            // .attr("class", "city-name")
+            .text('男' + manSum + '人 女' + womanSum + '人');
         let max
         if (d3.max(data, function(d){ return d.woman; }) > d3.max(data, function(d){ return d.man; })) {
           max = d3.max(data, function(d){ return d.woman; })
         } else {
           max = d3.max(data, function(d){ return d.man; })
         }
-
 
         x.domain([0, max])
         x2.domain([0,max])
@@ -137,7 +136,7 @@ export default {
             .on("mouseover", function(event, data) {
               tooltip
                   .style("visibility", "visible")
-                  .html("年齢:" + data.class + "<br>人数: " + data.woman + "人");
+                  .html("年齢:" + data.class.trim() + "<br>人数: " + data.woman + "人");
             })
             .on("mousemove", function(event) {
               tooltip
@@ -166,7 +165,7 @@ export default {
             .on("mouseover", function(event, data) {
               tooltip
                   .style("visibility", "visible")
-                  .html("年齢:" + data.class + "<br>人数: " + data.man + "人");
+                  .html("年齢:" + data.class.trim() + "<br>人数: " + data.man + "人");
             })
             .on("mousemove", function(event) {
               tooltip
