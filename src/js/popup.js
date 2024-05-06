@@ -33,6 +33,13 @@ export function popUp(map,layers,features,overlay,evt,content) {
       return string
     }
   }
+  const ru2 = string => {
+    if (string === undefined || string === 0) {
+      return '-'
+    } else {
+      return string
+    }
+  }
   const lon = lonLat[0]
   const lat = lonLat[1]
   const streetView = '<a href="https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=' + lat + ',' + lon + '&hl=ja" target="_blank">Street Viewを開く</a></div>'
@@ -981,7 +988,7 @@ export function popUp(map,layers,features,overlay,evt,content) {
       width = 200
       cont = '<div style=width:200px;>' +
           '<h4>' + prop.S_NAME + '</h4>' +
-          '<h5>人口=' + ru(prop.JINKO) + '人</h5>' +
+          '<h5>人口=' + ru2(prop.JINKO) + '人</h5>' +
           ru(prop.PREF_NAME) + ru(prop.CITY_NAME) + '<br>' +
           'コード=' + ru(prop.KEY_CODE) + '<br><br>' +
           '<button class="pyramid-syochiiki" mapname="' + map.values_.target + '" cdArea="' + ru(prop.KEY_CODE) + '" syochiikiname="' + ru(prop.S_NAME) + '">人口ピラミッド</button><br><br>' +

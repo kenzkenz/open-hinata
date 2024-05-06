@@ -25,7 +25,14 @@ import image from "ol-ext/legend/Image";
 
 const transformE = extent => {
   return transformExtent(extent,'EPSG:4326','EPSG:3857')
-};
+}
+const ru2 = string => {
+  if (string === undefined || string === 0) {
+    return '-'
+  } else {
+    return string
+  }
+}
 const mapsStr = ['map01','map02','map03','map04'];
 //小地域------------------------------------------------------------------------------------------------
 function Syochiiki2020(){
@@ -45,8 +52,6 @@ for (let i of mapsStr) {
 }
 export const syochiiki2020Summ = "このサービスは、政府統計総合窓口(e-Stat)<br>のAPI機能を使用していますが、サービスの<br>内容は国によって保証されたものではありません。<br>" +
     "<a href='https://www.e-stat.go.jp/api/' target='_blank'>e-Stat API</a>";
-
-
 
 const syochiikiColor = d3.scaleOrdinal(d3.schemeCategory10);
 function syochiikiStyleFunction() {
@@ -70,11 +75,10 @@ function syochiikiStyleFunction() {
     })
     let text
     if (zoom>15) {
-      text = prop.S_NAME + ' ' + String(prop.JINKO) + '人'
+      text = prop.S_NAME + ' ' + String(ru2(prop.JINKO)) + '人'
     } else {
-      text = String(prop.JINKO) + '人'
+      text = String(ru2(prop.JINKO)) + '人'
     }
-    // const text = String(prop.JINKO) + '人'
     const textStyle = new Style({
       text: new Text({
         font: "16px sans-serif",
