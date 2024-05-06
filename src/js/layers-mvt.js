@@ -21,6 +21,7 @@ import WikiCommons from 'ol-ext/source/WikiCommons'
 import  * as Tilegrid from 'ol/tilegrid'
 import * as Loadingstrategy from 'ol/loadingstrategy';
 import image from "ol-ext/legend/Image";
+import {floodSinple1Obj, floodSinple2Obj} from "@/js/layers";
 // import * as flatgeobuf from 'flatgeobuf'
 
 const transformE = extent => {
@@ -46,9 +47,9 @@ function Syochiiki2020(){
   this.style = syochiikiStyleFunction()
   this.maxResolution = 38.218514 //zoom12
 }
-export  const syochiiki2020Obj = {};
+export  const syochiiki2020MvtObj = {};
 for (let i of mapsStr) {
-  syochiiki2020Obj[i] = new VectorTileLayer(new Syochiiki2020())
+  syochiiki2020MvtObj[i] = new VectorTileLayer(new Syochiiki2020())
 }
 export const syochiiki2020Summ = "このサービスは、政府統計総合窓口(e-Stat)<br>のAPI機能を使用していますが、サービスの<br>内容は国によって保証されたものではありません。<br>" +
     "<a href='https://www.e-stat.go.jp/api/' target='_blank'>e-Stat API</a>";
@@ -101,12 +102,29 @@ function syochiikiStyleFunction() {
     return styles;
   }
 }
-
-
-
-
-
-
+function Syochiiki2020Raster () {
+  this.preload = Infinity
+  this.source = new XYZ({
+    url: "https://kenzkenz3.xsrv.jp/mvt/syochiiki/2020/raster/{z}/{x}/{y}.png",
+    crossOrigin: 'Anonymous',
+    minZoom: 0,
+    maxZoom: 11
+  })
+  this.minResolution = 38.218514 //zoom12
+}
+export const syochiiki2020RasterObj = {};
+for (let i of mapsStr) {
+  syochiiki2020RasterObj[i] = new TileLayer(new Syochiiki2020Raster())
+}
+export const syochiiki2020Obj = {};
+for (let i of mapsStr) {
+  syochiiki2020Obj[i] = new LayerGroup({
+    layers: [
+      syochiiki2020MvtObj[i],
+      syochiiki2020RasterObj[i],
+    ]
+  })
+}
 
 //H28小学校区------------------------------------------------------------------------------------------------
 function SyougakkoukuH28(){

@@ -354,9 +354,6 @@ for (let i of mapsStr) {
   seamelesChisituObj[i] = new TileLayer(new SeamlessCisitu())
 }
 
-
-
-
 const seamlessSumm = ''
 function operationFunc () {
   return function (pixels, data) {
