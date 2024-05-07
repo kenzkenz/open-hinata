@@ -55,16 +55,18 @@ for (let i of mapsStr) {
 export const syochiiki2020Summ = "このサービスは、政府統計総合窓口(e-Stat)<br>のAPI機能を使用していますが、サービスの<br>内容は国によって保証されたものではありません。<br>" +
     "<a href='https://www.e-stat.go.jp/api/' target='_blank'>e-Stat API</a>";
 
-const syochiikiColor = d3.scaleOrdinal(d3.schemeCategory10);
+const syochiikiColor = d3.scaleLinear()
+    .domain([0, 10])
+    .range(["white", "blue"]);
 function syochiikiStyleFunction() {
   return function (feature, resolution) {
     const zoom = getZoom(resolution);
     const prop = feature.getProperties();
+    // console.log(prop.JINKO/prop.AREA*1000)
     const styles = [];
-    let id = prop.KEY_CODE
-    const rgb = d3.rgb(syochiikiColor(id))
-    // const rgb = d3.rgb(cityColor(id))
-    const rgba = "rgba(" + rgb.r + "," + rgb.g + "," + rgb.b + ",0.8)"
+    // let id = prop.KEY_CODE
+    // const rgb = d3.rgb(syochiikiColor(prop.JINKO/prop.AREA*1000))
+    // const rgba = "rgba(" + rgb.r + "," + rgb.g + "," + rgb.b + ",0.8)"
     const polygonStyle = new Style({
       fill: new Fill({
         // color: rgba

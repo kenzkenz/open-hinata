@@ -28,6 +28,7 @@ import {standardFunction} from "@/js/layers-mvt";
 import {Fill, Stroke, Style, Text} from "ol/style"
 import * as turf from '@turf/turf';
 import Select from 'ol/interaction/Select.js'
+import {click, pointerMove, altKeyOnly} from 'ol/events/condition.js';
 import {Circle, LineString} from "ol/geom"
 import Feature from 'ol/Feature'
 import {moveEnd} from "./permalink"
@@ -410,27 +411,6 @@ export function initMap (vm) {
 
 
         // コントロール追加---------------------------------------------------------------------------
-
-        // var profile = new Profile();
-        // map.addControl(profile)
-
-
-
-
-
-
-        // const dialogMap = new Dialog({ hideOnClick: false, className: 'center' });
-        // map.addControl(dialogMap);
-        // dialogMap.on('button', function(e) {
-        //     notification.show(e.button)
-        // });
-        // dialogMap.show({
-        //     content: 'Hello World!',
-        //     title: 'Hello',
-        //     buttons:{ ok:'hello', cancel:'nope' }
-        // })
-
-
 
         map.addControl(new ScaleLine());
         const notification = new Notification();
