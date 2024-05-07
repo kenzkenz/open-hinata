@@ -143,7 +143,8 @@ export default {
               const ritu = (data.woman / womanSum * 100).toFixed(2)
               tooltip
                   .style("visibility", "visible")
-                  .html("年齢:" + data.class.trim() + "<br>人数: " + data.woman + "人<br>" + ritu + '%');
+                  // .html("年齢:" + data.class.trim() + "<br>人数: " + data.woman + "人<br>" + ritu + '%');
+                  .html("年齢:" + data.class.trim() + "<br>人数: " + data.woman + "人");
             })
             .on("mousemove", function(event) {
               tooltip
@@ -173,7 +174,8 @@ export default {
               const ritu = (data.woman / manSum * 100).toFixed(2)
               tooltip
                   .style("visibility", "visible")
-                  .html("年齢:" + data.class.trim() + "<br>人数: " + data.man + "人<br>" + ritu + '%');
+                  // .html("年齢:" + data.class.trim() + "<br>人数: " + data.man + "人<br>" + ritu + '%');
+                  .html("年齢:" + data.class.trim() + "<br>人数: " + data.man + "人");
             })
             .on("mousemove", function(event) {
               tooltip
