@@ -500,6 +500,47 @@
             let statsDataId
             const prefCode = this.$store.state.base.cdArea.slice(0,2)
             console.log(prefCode)
+
+            axios
+                .get('https://kenzkenz.xsrv.jp/open-hinata/php/pyramid.php',{
+                  params: {
+                    cityCode: '45201',
+                    azaCode: '121003'
+                  }
+                }).then(function (response) {
+                   console.log(response.data)
+                   const dataMan = []
+                   const dataWoman = []
+                   response.data.forEach((v) => {
+                     if (v.男女 === '男') {
+                       dataMan.push({class: '0～4歳', man: Number(v['0～4歳'])})
+                       dataMan.push({class: '5～9歳', man: Number(v['5～9歳'])})
+                       dataMan.push({class: '10～14歳', man: Number(v['10～14歳'])})
+                     } else if(v.男女 === '女') {
+                       dataWoman.push({class:'0～4歳',woman: Number(v['0～4歳'])})
+                       dataWoman.push({class:'5～9歳',woman: Number(v['5～9歳'])})
+                       dataWoman.push({class:'10～14歳',woman: Number(v['10～14歳'])})
+                     }
+                   })
+                   const data = dataMan.map((v,i) =>{
+                     return Object.assign(v, dataWoman[i]);
+                   })
+                   console.log(data)
+
+
+
+              
+                })
+
+
+
+
+
+
+
+
+
+
             switch (prefCode) {
               case '01':
                 statsDataId = '8003006783'
@@ -711,26 +752,10 @@
                       'z-index': vm.s_dialogMaxZindex
                     }
                   }
-              vm.$store.state.base.resusOrEstat = 'eStat'
-              vm.$store.commit('base/pushDialogs2',{mapName: mapName, dialog: diialog})
-              vm.$store.state.base.cdArea = e.target.getAttribute("cdArea")
-
-
-
-
+                  vm.$store.state.base.resusOrEstat = 'eStat'
+                  vm.$store.commit('base/pushDialogs2',{mapName: mapName, dialog: diialog})
+                  vm.$store.state.base.cdArea = e.target.getAttribute("cdArea")
                 })
-
-
-
-
-
-
-
-
-
-
-
-
 
           }
         })
