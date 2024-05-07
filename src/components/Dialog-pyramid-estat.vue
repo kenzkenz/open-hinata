@@ -121,10 +121,12 @@ export default {
             // .attr("class", "city-name")
             .text('男' + manSum + '人 女' + womanSum + '人');
         let max
-        if (d3.max(data, function(d){ return d.woman; }) > d3.max(data, function(d){ return d.man; })) {
-          max = d3.max(data, function(d){ return d.woman; })
+        const womanMax = d3.max(data, function(d){ return d.woman; })
+        const manMax = d3.max(data, function(d){ return d.man; })
+        if ( womanMax > manMax) {
+          max = womanMax
         } else {
-          max = d3.max(data, function(d){ return d.man; })
+          max = manMax
         }
 
         x.domain([0, max])
@@ -139,9 +141,10 @@ export default {
             .enter().append("rect")
             .attr("class", "bar")
             .on("mouseover", function(event, data) {
+              const ritu = (data.woman / womanSum * 100).toFixed(2)
               tooltip
                   .style("visibility", "visible")
-                  .html("年齢:" + data.class.trim() + "<br>人数: " + data.woman + "人");
+                  .html("年齢:" + data.class.trim() + "<br>人数: " + data.woman + "人<br>" + ritu + '%');
             })
             .on("mousemove", function(event) {
               tooltip
@@ -168,9 +171,10 @@ export default {
             .enter().append("rect")
             .attr("class", "bar-man")
             .on("mouseover", function(event, data) {
+              const ritu = (data.woman / manSum * 100).toFixed(2)
               tooltip
                   .style("visibility", "visible")
-                  .html("年齢:" + data.class.trim() + "<br>人数: " + data.man + "人");
+                  .html("年齢:" + data.class.trim() + "<br>人数: " + data.man + "人<br>" + ritu + '%');
             })
             .on("mousemove", function(event) {
               tooltip
