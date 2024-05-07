@@ -413,15 +413,25 @@
             // this.openDialog(this.s_dialogs['pyramidDialog'][mapName])
             this.$store.commit('base/incrDialog2Id');
             this.$store.commit('base/incrDialogMaxZindex');
+            let width
+            let left
+            if (window.innerWidth > 600) {
+              width = '550px'
+              left = (window.innerWidth - 560) + 'px'
+            } else {
+              width = '350px'
+              left = (window.innerWidth / 2 - 175) + 'px'
+            }
             const diialog =
                 {
                   id: this.s_dialo2Id,
                   name:'pyramid',
                   style: {
                     display: 'block',
+                    width: width,
                     top: '60px',
-                    // left: '10px',
-                    right:'10px',
+                    left: left,
+                    // right:'10px',
                     'z-index': this.s_dialogMaxZindex
                   }
                 }
@@ -445,15 +455,25 @@
             // this.openDialog(this.s_dialogs['pyramidDialog'][mapName])
             this.$store.commit('base/incrDialog2Id');
             this.$store.commit('base/incrDialogMaxZindex');
+            let width
+            let left
+            if (window.innerWidth > 600) {
+              width = '550px'
+              left = (window.innerWidth - 560) + 'px'
+            } else {
+              width = '350px'
+              left = (window.innerWidth / 2 - 175) + 'px'
+            }
             const diialog =
                 {
                   id: this.s_dialo2Id,
                   name:'pyramid',
                   style: {
                     display: 'block',
+                    width: width,
                     top: '60px',
-                    // left: '10px',
-                    right:'10px',
+                    left: left,
+                    // right:'10px',
                     'z-index': this.s_dialogMaxZindex
                   }
                 }
@@ -637,6 +657,11 @@
                   console.log(response.data)
                   const class0 = response.data.GET_STATS_DATA.STATISTICAL_DATA.CLASS_INF.CLASS_OBJ[0].CLASS
                   const value = response.data.GET_STATS_DATA.STATISTICAL_DATA.DATA_INF.VALUE
+                  console.log(value[0]['$'])
+                  console.log(value[18]['$'])
+                  const koureikaritu = ((value[18]['$'] / value[0]['$']) * 100).toFixed(2) + '%'
+                  console.log(koureikaritu)
+                  vm.$store.state.base.koureikaritu = koureikaritu
                   const man = []
                   value.forEach((v, index) => {
                     if ((index >= 21 & index <= 35) || index === 39) {

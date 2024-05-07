@@ -61,8 +61,6 @@ export default {
   transition: opacity 1s;
   /*left: calc(50% - 250PX);*/
 }
-
-
 .drag-handle{
   height: 30px;
   padding: 5px;

@@ -77,6 +77,7 @@ const moduleBase = {
     cityName: '',
     cdArea: '',
     syochiikiName: '',
+    koureikaritu:0,
     resusOrEstat: 'resus',
     erevArr:[],
     drawType:'danmen',

@@ -64,12 +64,10 @@ export default {
       //----------------------------------------------------------------
       d3Create (vm.$store.state.base.estatDataset)
       function d3Create (response) {
-        // console.log(response[0].data.result.yearRight.data)
-        // let  data = response[8].data.result.yearRight.data
         let  data = response
-
+        console.log(data)
         const margin = {top: 20, right: 20, bottom: 30, left: 20}
-        let width = 500 - margin.left - margin.right
+        let width = 550 - margin.left - margin.right
         let height = 400 - margin.top - margin.bottom
         let womanMargin = 230
         let textLeft = 195
@@ -79,13 +77,13 @@ export default {
           width = 550 - margin.left - margin.right
           height = 400 - margin.top - margin.bottom
           womanMargin = 285
-          textLeft = 195
+          textLeft = 255
         } else {
           elements[len-1].style.width = '350px'
           width = 350 - margin.left - margin.right
           height = 200 - margin.top - margin.bottom
           womanMargin = 185
-          textLeft = 95
+          textLeft = 155
         }
 
         // let  data = response[8].data.result.yearRight.data
@@ -112,14 +110,15 @@ export default {
 
         const manSum = d3.sum(data, function(d){ return d.man; })
         const womanSum = d3.sum(data, function(d){ return d.woman; })
+        const koureikaritu = vm.$store.state.base.koureikaritu
         svg.append("text")
             .attr("fill", "black")
             .attr("transform", "translate(" + textLeft + "," + -5 + ")")
             // .attr("dy", "5px")
             .attr("font", "8px")
-            // .attr("text-anchor", "middle")
+            .attr("text-anchor", "middle")
             // .attr("class", "city-name")
-            .text('男' + manSum + '人 女' + womanSum + '人');
+            .text('男' + manSum + '人 女' + womanSum + '人 高齢化率' + koureikaritu);
         let max
         const womanMax = d3.max(data, function(d){ return d.woman; })
         const manMax = d3.max(data, function(d){ return d.man; })
