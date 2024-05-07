@@ -59,11 +59,10 @@ export default {
   border: 1px solid whitesmoke;
   border-radius: 4px;
   transition: opacity 1s;
-  /*-webkit-user-select: none;*/
-  /*-moz-user-select: none;*/
-  /*-ms-user-select: none;*/
-  /*user-select: none;*/
+  /*left: calc(50% - 250PX);*/
 }
+
+
 .drag-handle{
   height: 30px;
   padding: 5px;

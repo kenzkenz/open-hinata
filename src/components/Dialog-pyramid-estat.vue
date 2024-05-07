@@ -47,7 +47,9 @@ export default {
       if (len>1) {
         if (elements[len-2].style.top === '60px') {
           elements[len-1].style.top = '100px'
-          elements[len-1].style.right = '50px'
+          if (window.innerWidth > 600) {
+            elements[len-1].style.left = (window.innerWidth - 600) + 'px'
+          }
         }
       }
       elements[len-1].style.width = '550px'

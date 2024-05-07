@@ -412,6 +412,17 @@ export function initMap (vm) {
 
         // コントロール追加---------------------------------------------------------------------------
 
+
+
+
+
+
+
+
+
+
+
+
         map.addControl(new ScaleLine());
         const notification = new Notification();
         map.addControl(notification);

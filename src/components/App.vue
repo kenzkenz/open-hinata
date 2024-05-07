@@ -477,7 +477,6 @@
             this.$store.state.base.cdArea = e.target.getAttribute("cdArea")
             this.$store.state.base.syochiikiName = e.target.getAttribute("syochiikiname")
             // this.openDialog(this.s_dialogs['pyramidDialog'][mapName])
-
             let statsDataId
             const prefCode = this.$store.state.base.cdArea.slice(0,2)
             console.log(prefCode)
@@ -668,6 +667,12 @@
 
               vm.$store.commit('base/incrDialog2Id');
               vm.$store.commit('base/incrDialogMaxZindex');
+              let left
+              if (window.innerWidth < 600) {
+                left = (window.innerWidth / 2 - 175) + 'px'
+              } else {
+                left = (window.innerWidth - 560) + 'px'
+              }
               const diialog =
                   {
                     id: vm.s_dialo2Id,
@@ -676,7 +681,8 @@
                       display: 'block',
                       top: '60px',
                       // left: '10px',
-                      right:'10px',
+                      // right:'10px',
+                      left:left,
                       'z-index': vm.s_dialogMaxZindex
                     }
                   }
