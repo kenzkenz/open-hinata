@@ -46,6 +46,8 @@ if ($count > 0) {
 
             "65歳以上" => $row['65歳以上'],
 
+            "平均年齢" => $row['平均年齢'],
+
         ];
         $array0[] = $array;
         $response = $array0;

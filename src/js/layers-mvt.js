@@ -52,8 +52,7 @@ export  const syochiiki2020MvtObj = {};
 for (let i of mapsStr) {
   syochiiki2020MvtObj[i] = new VectorTileLayer(new Syochiiki2020())
 }
-export const syochiiki2020Summ = "このサービスは、政府統計総合窓口(e-Stat)<br>のAPI機能を使用していますが、サービスの<br>内容は国によって保証されたものではありません。<br>" +
-    "<a href='https://www.e-stat.go.jp/api/' target='_blank'>e-Stat API</a>";
+export const syochiiki2020Summ = "<a href='https://www.e-stat.go.jp/stat-search/files?page=1&toukei=00200521&tstat=000001136464&cycle=0&tclass1=000001136472' target='_blank'>e-StatI</a>";
 
 const syochiikiColor = d3.scaleLinear()
     .domain([0, 10])

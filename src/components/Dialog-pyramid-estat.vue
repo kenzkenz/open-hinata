@@ -69,6 +69,7 @@ export default {
         let height = 400 - margin.top - margin.bottom
         let womanMargin = 230
         let textLeft = 195
+        let fontSize
 
         if (window.innerWidth > 600) {
           elements[len-1].style.width = '550px'
@@ -76,12 +77,14 @@ export default {
           height = 500 - margin.top - margin.bottom
           womanMargin = 285
           textLeft = 255
+          fontSize = '16px'
         } else {
           elements[len-1].style.width = '350px'
           width = 350 - margin.left - margin.right
           height = 300 - margin.top - margin.bottom
           womanMargin = 185
           textLeft = 155
+          fontSize = '12px'
         }
 
         // let  data = response[8].data.result.yearRight.data
@@ -109,14 +112,15 @@ export default {
         const manSum = d3.sum(data, function(d){ return d.man; })
         const womanSum = d3.sum(data, function(d){ return d.woman; })
         const koureikaritu = vm.$store.state.base.koureikaritu
+        const heikinnenrei = vm.$store.state.base.heikinnenrei
         svg.append("text")
             .attr("fill", "black")
             .attr("transform", "translate(" + textLeft + "," + -5 + ")")
             // .attr("dy", "5px")
-            .attr("font", "8px")
+            .attr("font-size", fontSize)
             .attr("text-anchor", "middle")
             // .attr("class", "city-name")
-            .text('男' + manSum + '人 女' + womanSum + '人 高齢化率' + koureikaritu);
+            .text('男' + manSum + '人 女' + womanSum + '人 高齢化率' + koureikaritu + ' 平均年齢' + heikinnenrei);
         let max
         const womanMax = d3.max(data, function(d){ return d.woman; })
         const manMax = d3.max(data, function(d){ return d.man; })
@@ -142,7 +146,6 @@ export default {
               tooltip
                   .style("visibility", "visible")
                   .html("年齢:" + data.class.trim() + "<br>人数: " + data.woman + "人<br>" + ritu + '%');
-                  // .html("年齢:" + data.class.trim() + "<br>人数: " + data.woman + "人");
             })
             .on("mousemove", function(event) {
               tooltip
@@ -155,7 +158,30 @@ export default {
             .attr("y", function(d) { return y(d.class); })
             .attr("height", y.bandwidth())
             .attr("transform", "translate(" + womanMargin + "," + 0 + ")")
-            .attr("fill", "pink")
+            .attr("fill", function(d) {
+              // switch (d.class){
+              //   case '0～4歳':
+              //   case '5～9歳':
+              //   case '10～14歳':
+              //     return 'green'
+              //     break;
+              //   case '15～19歳':
+              //   case '20～24歳':
+              //   case '25～29歳':
+              //   case '30～34歳':
+              //   case '35～39歳':
+              //   case '40～44歳':
+              //   case '45～49歳':
+              //   case '50～54歳':
+              //   case '55～59歳':
+              //   case '60～64歳':
+              //     return 'blue'
+              //     break;
+              //   default:
+              //     return 'brown'
+              // }
+                return  "pink"
+            })
             .attr("width", 0)
             .transition()
             .duration(1500)

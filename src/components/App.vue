@@ -105,6 +105,7 @@
   import store from "@/js/store";
   import {dialog} from "../js/mymap";
   import OLCesium from 'ol-cesium'
+  import * as d3 from "d3";
 
   let heading
   let tilt
@@ -490,6 +491,7 @@
         const olPopup = document.querySelector('#' + mapName + ' .ol-popup')
         olPopup.addEventListener('click', (e) => {
           if (e.target && e.target.classList.contains("pyramid-syochiiki") ) {
+            d3.select('#' + mapName + ' .loadingImg').style("display","block")
             console.log(e.target)
             console.log(e.target.getAttribute("cdArea"))
             // this.$store.state.base.cityCode[mapName] = e.target.getAttribute("citycode")
@@ -511,6 +513,7 @@
                     azaCode: azaCode
                   }
                 }).then(function (response) {
+                   d3.select('#' + mapName + ' .loadingImg').style("display","none")
                    console.log(response.data)
 
                    const dataMan = []
@@ -539,8 +542,6 @@
                        dataMan.push({class: '90～94歳', man: Number(v['90～94歳'])})
                        dataMan.push({class: '95～99歳', man: Number(v['95～99歳'])})
                        dataMan.push({class: '100歳以上', man: Number(v['100歳以上'])})
-
-
                      } else if(v.男女 === '女') {
                        dataWoman.push({woman: Number(v['0～4歳'])})
                        dataWoman.push({woman: Number(v['5～9歳'])})
@@ -565,21 +566,21 @@
                        dataWoman.push({woman: Number(v['100歳以上'])})
                      } else if(v.男女 === '総数') {
                        dataSousu.push({class: '総数', 総数: Number(v['総数'])})
-                       dataSousu.push({class: '65歳以上', over65: Number(v['65歳以上'])})
+                       dataSousu.push({class: '総数', over65: Number(v['65歳以上'])})
+                       dataSousu.push({class: '総数', 平均年齢: Number(v['平均年齢'])})
                      }
                    })
                    const data = dataMan.map((v,i) =>{
                      return Object.assign(v, dataWoman[i]);
                    })
-                   console.log(data)
+                   console.log(dataSousu)
                    const sousu = dataSousu[0]['総数']
                    const over65 = dataSousu[1].over65
-                   console.log(sousu)
-                   console.log(over65)
-
+                   const heikinnenrei = dataSousu[2]['平均年齢'].toFixed(2) + '歳'
                    const koureikaritu = ((over65 / sousu) * 100).toFixed(2) + '%'
-                   console.log(koureikaritu)
                    vm.$store.state.base.koureikaritu = koureikaritu
+                   vm.$store.state.base.heikinnenrei = heikinnenrei
+
 
               vm.$store.state.base.estatDataset = data
 
