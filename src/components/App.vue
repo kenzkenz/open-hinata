@@ -568,6 +568,7 @@
                        dataSousu.push({class: '総数', 総数: Number(v['総数'])})
                        dataSousu.push({class: '総数', over65: Number(v['65歳以上'])})
                        dataSousu.push({class: '総数', 平均年齢: Number(v['平均年齢'])})
+                       dataSousu.push({class: '総数', 秘匿処理: v['秘匿処理']})
                      }
                    })
                    const data = dataMan.map((v,i) =>{
@@ -578,6 +579,9 @@
                    const over65 = dataSousu[1].over65
                    const heikinnenrei = dataSousu[2]['平均年齢'].toFixed(2) + '歳'
                    const koureikaritu = ((over65 / sousu) * 100).toFixed(2) + '%'
+                   const hitokuSyori = dataSousu[3]['秘匿処理']
+                   if (hitokuSyori === '秘匿地域') alert('秘匿地域です。人口ピラミッドは作成されません。')
+                   console.log(hitokuSyori)
                    vm.$store.state.base.koureikaritu = koureikaritu
                    vm.$store.state.base.heikinnenrei = heikinnenrei
 

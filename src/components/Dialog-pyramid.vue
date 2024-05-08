@@ -71,9 +71,16 @@ export default {
       d3.select('#' + vm.id + ' .d3-pyramid svg').remove()
       d3.select('#' + vm.id + ' .loadingImg').style("display","block")
       //----------------------------------------------------------------
-      // const resasApiKey = "ZKE7BccwVM8e2onUYC7iX2tnuuZwZJfuOTf3rL93"
-      const resasApiKey = "Sultx8zfCSfOwJ9M0bZPcTd3KmryBhzm86Qz9skE"
-      // const resasApiKey = 'dQz5vv6mTd3awaTl3qVRJyQRrnyQfcPhlHXGuuR3'
+      const randRange = function (min, max) {
+        return Math.floor(Math.random() * (max - min + 1) + min)
+      }
+      const resasApiKeyArr = [
+        "ZKE7BccwVM8e2onUYC7iX2tnuuZwZJfuOTf3rL93",
+        "Sultx8zfCSfOwJ9M0bZPcTd3KmryBhzm86Qz9skE",
+        'dQz5vv6mTd3awaTl3qVRJyQRrnyQfcPhlHXGuuR3',
+        'PhDwqQNb40trBwyOivI5CMdeyqGEx0Gcubdv1GpL'
+      ]
+      const resasApiKey = resasApiKeyArr[randRange(0,3)]
       const resasUrl = "https://opendata.resas-portal.go.jp/api/v1/"
       const cityCode = vm.$store.state.base.cityCode[vm.mapName]
       let cityName = vm.$store.state.base.cityName

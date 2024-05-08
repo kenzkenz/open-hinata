@@ -13,7 +13,6 @@ import store from "@/js/store";
 import * as d3 from "d3"
 import axios from "axios";
 import {transform} from "ol/proj";
-let renzoku
 
 export default {
   name: "Dialog-pyramid-estat",
