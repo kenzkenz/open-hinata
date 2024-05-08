@@ -56,11 +56,9 @@ export default {
       // ---------------------------------------------------------------------------
       d3.select('#' + vm.id + ' .d3-pyramid svg').remove()
       d3.select('#' + vm.id + ' .loadingImg').style("display","block")
-
       //----------------------------------------------------------------
       const dialog2DragHandle = document.querySelector('#dialog2-' + vm.item.id + ' .drag-handle')
       dialog2DragHandle.innerHTML = vm.$store.state.base.syochiikiName
-
       //----------------------------------------------------------------
       d3Create (vm.$store.state.base.estatDataset)
       function d3Create (response) {
@@ -75,13 +73,13 @@ export default {
         if (window.innerWidth > 600) {
           elements[len-1].style.width = '550px'
           width = 550 - margin.left - margin.right
-          height = 400 - margin.top - margin.bottom
+          height = 500 - margin.top - margin.bottom
           womanMargin = 285
           textLeft = 255
         } else {
           elements[len-1].style.width = '350px'
           width = 350 - margin.left - margin.right
-          height = 200 - margin.top - margin.bottom
+          height = 300 - margin.top - margin.bottom
           womanMargin = 185
           textLeft = 155
         }
@@ -140,11 +138,11 @@ export default {
             .enter().append("rect")
             .attr("class", "bar")
             .on("mouseover", function(event, data) {
-              const ritu = (data.woman / womanSum * 100).toFixed(2)
+              const ritu = (data.woman / (womanSum + manSum) * 100).toFixed(2)
               tooltip
                   .style("visibility", "visible")
-                  // .html("年齢:" + data.class.trim() + "<br>人数: " + data.woman + "人<br>" + ritu + '%');
-                  .html("年齢:" + data.class.trim() + "<br>人数: " + data.woman + "人");
+                  .html("年齢:" + data.class.trim() + "<br>人数: " + data.woman + "人<br>" + ritu + '%');
+                  // .html("年齢:" + data.class.trim() + "<br>人数: " + data.woman + "人");
             })
             .on("mousemove", function(event) {
               tooltip
@@ -171,11 +169,11 @@ export default {
             .enter().append("rect")
             .attr("class", "bar-man")
             .on("mouseover", function(event, data) {
-              const ritu = (data.woman / manSum * 100).toFixed(2)
+              const ritu = (data.man / (womanSum + manSum) * 100).toFixed(2)
               tooltip
                   .style("visibility", "visible")
-                  // .html("年齢:" + data.class.trim() + "<br>人数: " + data.man + "人<br>" + ritu + '%');
-                  .html("年齢:" + data.class.trim() + "<br>人数: " + data.man + "人");
+                  .html("年齢:" + data.class.trim() + "<br>人数: " + data.man + "人<br>" + ritu + '%');
+                  // .html("年齢:" + data.class.trim() + "<br>人数: " + data.man + "人");
             })
             .on("mousemove", function(event) {
               tooltip

@@ -72,8 +72,8 @@ export default {
       d3.select('#' + vm.id + ' .loadingImg').style("display","block")
       //----------------------------------------------------------------
       // const resasApiKey = "ZKE7BccwVM8e2onUYC7iX2tnuuZwZJfuOTf3rL93"
-      // const resasApiKey = "Sultx8zfCSfOwJ9M0bZPcTd3KmryBhzm86Qz9skE"
-      const resasApiKey = 'dQz5vv6mTd3awaTl3qVRJyQRrnyQfcPhlHXGuuR3'
+      const resasApiKey = "Sultx8zfCSfOwJ9M0bZPcTd3KmryBhzm86Qz9skE"
+      // const resasApiKey = 'dQz5vv6mTd3awaTl3qVRJyQRrnyQfcPhlHXGuuR3'
       const resasUrl = "https://opendata.resas-portal.go.jp/api/v1/"
       const cityCode = vm.$store.state.base.cityCode[vm.mapName]
       let cityName = vm.$store.state.base.cityName
@@ -107,7 +107,7 @@ export default {
               d3.selectAll('.loadingImg').style("display","none")
             })
             .catch(function (response) {
-              alert('データが存在しません。')
+              alert('データが存在しないか又はリクエストが多くて制限がかかっています。')
               elements[len-1].style.display = 'none'
               console.log(response);
             })
