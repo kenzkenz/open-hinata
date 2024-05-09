@@ -67,7 +67,6 @@ const moduleBase = {
       map03: 1,
       map04: 1
     },
-    prefCode: '',
     cityCode: {
       map01: '',
       map02: '',
@@ -79,10 +78,10 @@ const moduleBase = {
     syochiikiName: '',
     koureikaritu: '',
     heikinnenrei: '',
-    resusOrEstat: 'resus',
     erevArr:[],
     drawType:'danmen',
     estatDataset:[],
+    resasDataset:[],
   },
   getters: {
     layerList: (state) => (mapName) => {

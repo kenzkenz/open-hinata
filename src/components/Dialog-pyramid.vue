@@ -16,7 +16,7 @@
     <button class="updataGraph" value="12" >40</button>
     <button class="updataGraph" value="13" >45</button>
     <button class="renzoku">連続</button>
-    <img class='loadingImg' src="https://kenzkenz.xsrv.jp/open-hinata/img/loading.gif" style="position: absolute;top:50%;left:50%;z-index:1;">
+<!--    <img class='loadingImg' src="https://kenzkenz.xsrv.jp/open-hinata/img/loading.gif" style="position: absolute;top:50%;left:50%;z-index:1;">-->
     <div class="d3-pyramid"></div>
 <!--      <svg id="d3-pyramid" width="350" :height="350" style="border: 1px dotted"></svg>-->
   </div>
@@ -69,62 +69,65 @@ export default {
       // elements[len-1].style.width = '550px'
       // ---------------------------------------------------------------------------
       d3.select('#' + vm.id + ' .d3-pyramid svg').remove()
-      d3.select('#' + vm.id + ' .loadingImg').style("display","block")
-      //----------------------------------------------------------------
-      const randRange = function (min, max) {
-        return Math.floor(Math.random() * (max - min + 1) + min)
-      }
-      const resasApiKeyArr = [
-        "ZKE7BccwVM8e2onUYC7iX2tnuuZwZJfuOTf3rL93",
-        "Sultx8zfCSfOwJ9M0bZPcTd3KmryBhzm86Qz9skE",
-        'dQz5vv6mTd3awaTl3qVRJyQRrnyQfcPhlHXGuuR3',
-        'PhDwqQNb40trBwyOivI5CMdeyqGEx0Gcubdv1GpL'
-      ]
-      const resasApiKey = resasApiKeyArr[randRange(0,3)]
-      const resasUrl = "https://opendata.resas-portal.go.jp/api/v1/"
-      const cityCode = vm.$store.state.base.cityCode[vm.mapName]
-      let cityName = vm.$store.state.base.cityName
-      const prefCode = vm.$store.state.base.prefCode
-      console.log(cityCode)
-      console.log(cityName)
-      console.log(prefCode)
-      cityName = cityName.replace('役所','').replace('役場','').replace('庁','')
-      console.log(cityName)
-      const dialog2DragHandle = document.querySelector('#dialog2-' + vm.item.id + ' .drag-handle')
-      dialog2DragHandle.innerHTML = cityName
-      const yearRights = ['1980','1985','1990','1995','2000', '2005', '2010','2015','2020','2025','2030','2035','2040','2045']
-      async function created() {
-        const fetchData = yearRights.map((yearRight) => {
-          return axios
-              .get(resasUrl +'population/composition/pyramid',{
-                headers:{'X-API-KEY':resasApiKey},
-                params: {
-                  prefCode:prefCode,
-                  cityCode:cityCode,
-                  yearLeft:"2000",
-                  yearRight:yearRight,
-                }
-              })
-        })
-        await Promise.all([
-          ...fetchData
-        ])
-            .then((response) => {
-              d3Create (response)
-              d3.selectAll('.loadingImg').style("display","none")
-            })
-            .catch(function (response) {
-              alert('データが存在しないか又はリクエストが多くて制限がかかっています。')
-              elements[len-1].style.display = 'none'
-              console.log(response);
-            })
-      }
-      created()
-      //----------------------------------------------------------------
-
+      // d3.select('#' + vm.id + ' .loadingImg').style("display","block")
+      // //----------------------------------------------------------------
+      // const randRange = function (min, max) {
+      //   return Math.floor(Math.random() * (max - min + 1) + min)
+      // }
+      // const resasApiKeyArr = [
+      //   "ZKE7BccwVM8e2onUYC7iX2tnuuZwZJfuOTf3rL93",
+      //   "Sultx8zfCSfOwJ9M0bZPcTd3KmryBhzm86Qz9skE",
+      //   'dQz5vv6mTd3awaTl3qVRJyQRrnyQfcPhlHXGuuR3',
+      //   'PhDwqQNb40trBwyOivI5CMdeyqGEx0Gcubdv1GpL'
+      // ]
+      // const resasApiKey = resasApiKeyArr[randRange(0,3)]
+      // const resasUrl = "https://opendata.resas-portal.go.jp/api/v1/"
+      // const cityCode = vm.$store.state.base.cityCode[vm.mapName]
+      // let cityName = vm.$store.state.base.cityName
+      // const prefCode = vm.$store.state.base.prefCode
+      // console.log(cityCode)
+      // console.log(cityName)
+      // console.log(prefCode)
+      // cityName = cityName.replace('役所','').replace('役場','').replace('庁','')
+      // console.log(cityName)
+      // const dialog2DragHandle = document.querySelector('#dialog2-' + vm.item.id + ' .drag-handle')
+      // dialog2DragHandle.innerHTML = cityName
+      // const yearRights = ['1980','1985','1990','1995','2000', '2005', '2010','2015','2020','2025','2030','2035','2040','2045']
+      // async function created() {
+      //   const fetchData = yearRights.map((yearRight) => {
+      //     return axios
+      //         .get(resasUrl +'population/composition/pyramid',{
+      //           headers:{'X-API-KEY':resasApiKey},
+      //           params: {
+      //             prefCode:prefCode,
+      //             cityCode:cityCode,
+      //             yearLeft:"2000",
+      //             yearRight:yearRight,
+      //           }
+      //         })
+      //   })
+      //   await Promise.all([
+      //     ...fetchData
+      //   ])
+      //       .then((response) => {
+      //         d3Create (response)
+      //         d3.selectAll('.loadingImg').style("display","none")
+      //       })
+      //       .catch(function (response) {
+      //         alert('データが存在しないか又はリクエストが多くて制限がかかっています。')
+      //         elements[len-1].style.display = 'none'
+      //         console.log(response);
+      //       })
+      // }
+      // created()
+      // //----------------------------------------------------------------
+      console.log(vm.$store.state.base.resasDataset)
+      d3Create(vm.$store.state.base.resasDataset)
       function d3Create (response) {
         console.log(response[0].data.result.yearRight.data)
-
+        const cityName = vm.$store.state.base.cityName
+        const dialog2DragHandle = document.querySelector('#dialog2-' + vm.item.id + ' .drag-handle')
+        dialog2DragHandle.innerHTML = cityName
         const margin = {top: 20, right: 20, bottom: 30, left: 20}
         let width = 500 - margin.left - margin.right
         let height = 400 - margin.top - margin.bottom

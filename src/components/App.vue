@@ -399,46 +399,97 @@
       },
     },
     mounted () {
-      // 市区町村人口ピラミッド----------------------------------------------------------------
+      // RESAS人口ピラミッド----------------------------------------------------------------
       const vm = this
+      const randRange = function (min, max) {
+        return Math.floor(Math.random() * (max - min + 1) + min)
+      }
+      const resasApiKeyArr = [
+        "ZKE7BccwVM8e2onUYC7iX2tnuuZwZJfuOTf3rL93",
+        "Sultx8zfCSfOwJ9M0bZPcTd3KmryBhzm86Qz9skE",
+        'dQz5vv6mTd3awaTl3qVRJyQRrnyQfcPhlHXGuuR3',
+        'PhDwqQNb40trBwyOivI5CMdeyqGEx0Gcubdv1GpL'
+      ]
+      const resasApiKey = resasApiKeyArr[randRange(0,3)]
+      const resasUrl = "https://opendata.resas-portal.go.jp/api/v1/"
+      // 市区町村人口ピラミッド----------------------------------------------------------------
+
       const maps = ['map01','map02','map03','map04']
       maps.forEach((mapName) => {
         const olPopup = document.querySelector('#' + mapName + ' .ol-popup')
         olPopup.addEventListener('click', (e) => {
           if (e.target && e.target.classList.contains("pyramid") ) {
-            console.log(e.target)
-            console.log(e.target.getAttribute("citycode"))
-            // this.$store.state.base.cityCode[mapName] = e.target.getAttribute("citycode")
-            this.$store.state.base.prefCode = e.target.getAttribute("citycode").slice(0,2)
-            this.$store.state.base.cityName = e.target.getAttribute("cityname")
-            // this.openDialog(this.s_dialogs['pyramidDialog'][mapName])
-            this.$store.commit('base/incrDialog2Id');
-            this.$store.commit('base/incrDialogMaxZindex');
-            let width
-            let left
-            if (window.innerWidth > 600) {
-              width = '550px'
-              left = (window.innerWidth - 560) + 'px'
-            } else {
-              width = '350px'
-              left = (window.innerWidth / 2 - 175) + 'px'
+            //----------------------------------------------------------------
+            d3.select('#' + mapName + ' .loadingImg').style("display","block")
+            // const resasApiKey ='PhDwqQNb40trBwyOivI5CMdeyqGEx0Gcubdv1GpL'
+            const cityCode = e.target.getAttribute("citycode")
+            let cityName = e.target.getAttribute("cityName")
+            const prefCode = e.target.getAttribute("citycode").slice(0,2)
+            console.log(cityCode)
+            console.log(cityName)
+            console.log(prefCode)
+            cityName = cityName.replace('役所','').replace('役場','').replace('庁','')
+            vm.$store.state.base.cityName = cityName
+            console.log(cityName)
+            vm.$store.state.base.cityCode[mapName] = cityName
+            const yearRights = ['1980','1985','1990','1995','2000', '2005', '2010','2015','2020','2025','2030','2035','2040','2045']
+            async function created() {
+              const fetchData = yearRights.map((yearRight) => {
+                return axios
+                    .get(resasUrl +'population/composition/pyramid',{
+                      headers:{'X-API-KEY':resasApiKey},
+                      params: {
+                        prefCode:prefCode,
+                        cityCode:cityCode,
+                        yearLeft:"2000",
+                        yearRight:yearRight,
+                      }
+                    })
+              })
+              await Promise.all([
+                ...fetchData
+              ])
+                  .then((response) => {
+                    // d3Create (response)
+                    console.log(response)
+                    vm.$store.state.base.resasDataset = response
+                    dialogOpen()
+                    d3.select('#' + mapName + ' .loadingImg').style("display","none")
+                  })
+                  .catch(function (response) {
+                    alert('データが存在しないか又はリクエストが多くて制限がかかっています。')
+                  })
             }
-            const diialog =
-                {
-                  id: this.s_dialo2Id,
-                  name:'pyramid',
-                  style: {
-                    display: 'block',
-                    width: width,
-                    top: '60px',
-                    left: left,
-                    // right:'10px',
-                    'z-index': this.s_dialogMaxZindex
+            created()
+            //----------------------------------------------------------------
+
+            function dialogOpen() {
+              vm.$store.commit('base/incrDialog2Id');
+              vm.$store.commit('base/incrDialogMaxZindex');
+              let width
+              let left
+              if (window.innerWidth > 600) {
+                width = '550px'
+                left = (window.innerWidth - 560) + 'px'
+              } else {
+                width = '350px'
+                left = (window.innerWidth / 2 - 175) + 'px'
+              }
+              const diialog =
+                  {
+                    id: vm.s_dialo2Id,
+                    name:'pyramid',
+                    style: {
+                      display: 'block',
+                      width: width,
+                      top: '60px',
+                      left: left,
+                      // right:'10px',
+                      'z-index': vm.s_dialogMaxZindex
+                    }
                   }
-                }
-            this.$store.state.base.resusOrEstat = 'resus'
-            this.$store.commit('base/pushDialogs2',{mapName: mapName, dialog: diialog})
-            this.$store.state.base.cityCode[mapName] = e.target.getAttribute("citycode")
+              vm.$store.commit('base/pushDialogs2',{mapName: mapName, dialog: diialog})
+            }
           }
         })
       })
@@ -448,40 +499,77 @@
         const olPopup = document.querySelector('#' + mapName + ' .ol-popup')
         olPopup.addEventListener('click', (e) => {
           if (e.target && e.target.classList.contains("pyramid-kencho") ) {
-            console.log(e.target)
-            console.log(e.target.getAttribute("citycode"))
-            // this.$store.state.base.cityCode[mapName] = e.target.getAttribute("citycode")
-            this.$store.state.base.prefCode = e.target.getAttribute("citycode").slice(0,2)
-            this.$store.state.base.cityName = e.target.getAttribute("cityname")
-            // this.openDialog(this.s_dialogs['pyramidDialog'][mapName])
-            this.$store.commit('base/incrDialog2Id');
-            this.$store.commit('base/incrDialogMaxZindex');
-            let width
-            let left
-            if (window.innerWidth > 600) {
-              width = '550px'
-              left = (window.innerWidth - 560) + 'px'
-            } else {
-              width = '350px'
-              left = (window.innerWidth / 2 - 175) + 'px'
+
+            //----------------------------------------------------------------
+            d3.select('#' + mapName + ' .loadingImg').style("display","block")
+            // const resasApiKey ='PhDwqQNb40trBwyOivI5CMdeyqGEx0Gcubdv1GpL'
+            const cityCode = e.target.getAttribute("citycode")
+            let cityName = e.target.getAttribute("cityName")
+            const prefCode = e.target.getAttribute("citycode").slice(0,2)
+            console.log(cityCode)
+            console.log(cityName)
+            console.log(prefCode)
+            cityName = cityName.replace('役所','').replace('役場','').replace('庁','')
+            console.log(cityName)
+            vm.$store.state.base.cityName = cityName
+            const yearRights = ['1980','1985','1990','1995','2000', '2005', '2010','2015','2020','2025','2030','2035','2040','2045']
+            async function created() {
+              const fetchData = yearRights.map((yearRight) => {
+                return axios
+                    .get(resasUrl +'population/composition/pyramid',{
+                      headers:{'X-API-KEY':resasApiKey},
+                      params: {
+                        prefCode:prefCode,
+                        cityCode:'-',
+                        yearLeft:"2000",
+                        yearRight:yearRight,
+                      }
+                    })
+              })
+              await Promise.all([
+                ...fetchData
+              ])
+                  .then((response) => {
+                    // d3Create (response)
+                    console.log(response)
+                    vm.$store.state.base.resasDataset = response
+                    dialogOpen()
+                    d3.select('#' + mapName + ' .loadingImg').style("display","none")
+                  })
+                  .catch(function (response) {
+                    alert('データが存在しないか又はリクエストが多くて制限がかかっています。')
+                  })
             }
-            const diialog =
-                {
-                  id: this.s_dialo2Id,
-                  name:'pyramid',
-                  style: {
-                    display: 'block',
-                    width: width,
-                    top: '60px',
-                    left: left,
-                    // right:'10px',
-                    'z-index': this.s_dialogMaxZindex
+            created()
+            //----------------------------------------------------------------
+
+            function dialogOpen() {
+              vm.$store.commit('base/incrDialog2Id');
+              vm.$store.commit('base/incrDialogMaxZindex');
+              let width
+              let left
+              if (window.innerWidth > 600) {
+                width = '550px'
+                left = (window.innerWidth - 560) + 'px'
+              } else {
+                width = '350px'
+                left = (window.innerWidth / 2 - 175) + 'px'
+              }
+              const diialog =
+                  {
+                    id: vm.s_dialo2Id,
+                    name:'pyramid',
+                    style: {
+                      display: 'block',
+                      width: width,
+                      top: '60px',
+                      left: left,
+                      // right:'10px',
+                      'z-index': vm.s_dialogMaxZindex
+                    }
                   }
-                }
-            this.$store.state.base.resusOrEstat = 'resus'
-            this.$store.commit('base/pushDialogs2',{mapName: mapName, dialog: diialog})
-            this.$store.state.base.cityCode[mapName] = e.target.getAttribute("citycode")
-            this.$store.state.base.cityCode[mapName] = '-'
+              vm.$store.commit('base/pushDialogs2',{mapName: mapName, dialog: diialog})
+            }
           }
         })
       })
@@ -492,20 +580,10 @@
         olPopup.addEventListener('click', (e) => {
           if (e.target && e.target.classList.contains("pyramid-syochiiki") ) {
             d3.select('#' + mapName + ' .loadingImg').style("display","block")
-            console.log(e.target)
-            console.log(e.target.getAttribute("cdArea"))
-            // this.$store.state.base.cityCode[mapName] = e.target.getAttribute("citycode")
-            // this.$store.state.base.prefCode = e.target.getAttribute("citycode").slice(0,2)
             this.$store.state.base.cdArea = e.target.getAttribute("cdArea")
             this.$store.state.base.syochiikiName = e.target.getAttribute("syochiikiname")
-            // this.openDialog(this.s_dialogs['pyramidDialog'][mapName])
-            let statsDataId
-            const prefCode = this.$store.state.base.cdArea.slice(0,2)
-            // console.log(prefCode)
             const cityCode = this.$store.state.base.cdArea.slice(0,5)
-            console.log(cityCode)
             const azaCode = this.$store.state.base.cdArea.slice(5)
-            console.log(azaCode)
             axios
                 .get('https://kenzkenz.xsrv.jp/open-hinata/php/pyramid.php',{
                   params: {
@@ -515,7 +593,6 @@
                 }).then(function (response) {
                    d3.select('#' + mapName + ' .loadingImg').style("display","none")
                    console.log(response.data)
-
                    const dataMan = []
                    const dataWoman = []
                    const dataSousu = []
@@ -581,51 +658,32 @@
                    const koureikaritu = ((over65 / sousu) * 100).toFixed(2) + '%'
                    const hitokuSyori = dataSousu[3]['秘匿処理']
                    if (hitokuSyori === '秘匿地域') alert('秘匿地域です。人口ピラミッドは作成されません。')
-                   console.log(hitokuSyori)
                    vm.$store.state.base.koureikaritu = koureikaritu
                    vm.$store.state.base.heikinnenrei = heikinnenrei
 
+                   vm.$store.state.base.estatDataset = data
 
-              vm.$store.state.base.estatDataset = data
-
-              vm.$store.commit('base/incrDialog2Id');
-              vm.$store.commit('base/incrDialogMaxZindex');
-              let left
-              if (window.innerWidth < 600) {
-                left = (window.innerWidth / 2 - 175) + 'px'
-              } else {
-                left = (window.innerWidth - 560) + 'px'
-              }
-              const diialog =
-                  {
-                    id: vm.s_dialo2Id,
-                    name:'pyramid-estat',
-                    style: {
-                      display: 'block',
-                      top: '60px',
-                      // left: '10px',
-                      // right:'10px',
-                      left:left,
-                      'z-index': vm.s_dialogMaxZindex
-                    }
-                  }
-              vm.$store.state.base.resusOrEstat = 'eStat'
-              vm.$store.commit('base/pushDialogs2',{mapName: mapName, dialog: diialog})
-              vm.$store.state.base.cdArea = e.target.getAttribute("cdArea")
-
-
-
+                   vm.$store.commit('base/incrDialog2Id');
+                   vm.$store.commit('base/incrDialogMaxZindex');
+                   let left
+                   if (window.innerWidth < 600) {
+                      left = (window.innerWidth / 2 - 175) + 'px'
+                   } else {
+                      left = (window.innerWidth - 560) + 'px'
+                   }
+                   const diialog =
+                       {
+                         id: vm.s_dialo2Id,
+                         name:'pyramid-estat',
+                         style: {
+                           display: 'block',
+                           top: '60px',
+                           left:left,
+                           'z-index': vm.s_dialogMaxZindex
+                         }
+                       }
+                   vm.$store.commit('base/pushDialogs2',{mapName: mapName, dialog: diialog})
                 })
-
-
-
-
-
-
-
-
-
-
             // switch (prefCode) {
             //   case '01':
             //     statsDataId = '8003006783'
@@ -843,7 +901,6 @@
             //
             //
             //     })
-
           }
         })
       })
