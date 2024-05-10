@@ -991,11 +991,12 @@ export function popUp(map,layers,features,overlay,evt,content) {
           '<h5>人口=' + ru2(prop.JINKO) + '人</h5>' +
           ru(prop.PREF_NAME) + ru(prop.CITY_NAME) + '<br>' +
           'コード=' + ru(prop.KEY_CODE) + '<br><br>' +
+          '<div style="text-align: center;">' +
           '<button class="pyramid-syochiiki-r02" year=2020 mapname="' + map.values_.target + '" cdArea="' + prop.KEY_CODE + '" syochiikiname="' + prop.S_NAME + '">2020人口ピラミッド</button><br>' +
           '<button class="pyramid-syochiiki-h27" year=2015 mapname="' + map.values_.target + '" cdArea="' + prop.KEY_CODE + '" syochiikiname="' + prop.S_NAME + '">2015人口ピラミッド</button><br>' +
           '<button class="pyramid-syochiiki-h22" year=2010 mapname="' + map.values_.target + '" cdArea="' + prop.KEY_CODE + '" syochiikiname="' + prop.S_NAME + '">2010人口ピラミッド</button><br>' +
-          '<button class="pyramid-syochiiki-h17" year=2005 mapname="' + map.values_.target + '" cdArea="' + prop.KEY_CODE + '" syochiikiname="' + prop.S_NAME + '">2005人口ピラミッド</button><br><br>' +
-
+          '<button class="pyramid-syochiiki-h17" year=2005 mapname="' + map.values_.target + '" cdArea="' + prop.KEY_CODE + '" syochiikiname="' + prop.S_NAME + '">2005人口ピラミッド</button><br>' +
+          '</div><br>' +
           streetView +
           '</div>'
       break
