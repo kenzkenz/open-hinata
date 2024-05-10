@@ -59,11 +59,9 @@ export default {
       const elements = document.querySelectorAll('.v-dialog2-div')
       const len = elements.length
       if (len>1) {
-        if (elements[len-2].style.top === '60px') {
-          elements[len-1].style.top = '100px'
-          if (window.innerWidth > 600) {
-            elements[len-1].style.left = (window.innerWidth - 600) + 'px'
-          }
+        elements[len-1].style.top = Number(elements[len-2].style.top.replace('px','')) + 40 + 'px'
+        if (window.innerWidth > 600) {
+          elements[len-1].style.left = Number(elements[len-2].style.left.replace('px','')) - 40 + 'px'
         }
       }
       // elements[len-1].style.width = '550px'
@@ -141,7 +139,7 @@ export default {
         } else {
           elements[len-1].style.width = '350px'
           width = 350 - margin.left - margin.right
-          height = 350 - margin.top - margin.bottom
+          height = 280 - margin.top - margin.bottom
           womanMargin = 185
         }
 

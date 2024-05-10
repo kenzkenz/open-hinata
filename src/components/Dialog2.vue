@@ -10,7 +10,6 @@
 
       <v-erev :item="item" :mapName="mapName" v-if="item.name === 'erev'" />
 
-
     </div>
   </div>
 </template>
@@ -35,8 +34,9 @@ export default {
   },
   methods: {
     close (item) {
-      const result = this.$store.state.base.dialogs2[this.mapName] .find(el => el.id === item.id);
-      result.style.display = 'none'
+      // const result = this.$store.state.base.dialogs2[this.mapName] .find(el => el.id === item.id);
+      // result.style.display = 'none'
+      this.$store.state.base.dialogs2[this.mapName] = this.$store.state.base.dialogs2[this.mapName].filter(v => v.id !== item.id);
     },
     dialogMouseDown (item) {
       const result = this.$store.state.base.dialogs2[this.mapName] .find(el => el.id === item.id);
