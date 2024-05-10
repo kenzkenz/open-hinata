@@ -57,7 +57,7 @@ export default {
       d3.select('#' + vm.id + ' .loadingImg').style("display","block")
       //----------------------------------------------------------------
       const dialog2DragHandle = document.querySelector('#dialog2-' + vm.item.id + ' .drag-handle')
-      dialog2DragHandle.innerHTML = vm.$store.state.base.kokuchoYear + vm.$store.state.base.syochiikiName
+      dialog2DragHandle.innerHTML = vm.$store.state.base.kokuchoYear + ' ' + vm.$store.state.base.syochiikiName
       //----------------------------------------------------------------
       d3Create (vm.$store.state.base.estatDataset)
       function d3Create (response) {

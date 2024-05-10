@@ -912,7 +912,7 @@
         const cityCode = vm.$store.state.base.cdArea.slice(0,5)
         const azaCode = vm.$store.state.base.cdArea.slice(5)
         axios
-            .get('https://kenzkenz.xsrv.jp/open-hinata/php/pyramidh27.php',{
+            .get('https://kenzkenz.xsrv.jp/open-hinata/php/pyramid2015.php',{
               params: {
                 cityCode: cityCode,
                 azaCode: azaCode,
@@ -920,6 +920,10 @@
               }
             }).then(function (response) {
           d3.select('#' + mapName + ' .loadingImg').style("display","none")
+          if (response.data.error){
+            alert('データがありません。地区変更等があったかもしれません。')
+            return
+          }
           console.log(response.data)
           const dataSet = []
           const dataSousu = []
