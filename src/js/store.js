@@ -78,6 +78,7 @@ const moduleBase = {
     syochiikiName: '',
     koureikaritu: '',
     heikinnenrei: '',
+    kokuchoYear: '',
     erevArr:[],
     drawType:'danmen',
     estatDataset:[],

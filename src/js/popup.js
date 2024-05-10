@@ -991,7 +991,11 @@ export function popUp(map,layers,features,overlay,evt,content) {
           '<h5>人口=' + ru2(prop.JINKO) + '人</h5>' +
           ru(prop.PREF_NAME) + ru(prop.CITY_NAME) + '<br>' +
           'コード=' + ru(prop.KEY_CODE) + '<br><br>' +
-          '<button class="pyramid-syochiiki" mapname="' + map.values_.target + '" cdArea="' + ru(prop.KEY_CODE) + '" syochiikiname="' + ru(prop.S_NAME) + '">人口ピラミッド</button><br><br>' +
+          '<button class="pyramid-syochiiki-r02" year=R02 mapname="' + map.values_.target + '" cdArea="' + prop.KEY_CODE + '" syochiikiname="' + prop.S_NAME + '">R02人口ピラミッド</button><br>' +
+          '<button class="pyramid-syochiiki-h27" year=H27 mapname="' + map.values_.target + '" cdArea="' + prop.KEY_CODE + '" syochiikiname="' + prop.S_NAME + '">H27人口ピラミッド</button><br>' +
+          '<button class="pyramid-syochiiki-h22" year=H22 mapname="' + map.values_.target + '" cdArea="' + prop.KEY_CODE + '" syochiikiname="' + prop.S_NAME + '">H22人口ピラミッド</button><br>' +
+          '<button class="pyramid-syochiiki-h17" year=H17 mapname="' + map.values_.target + '" cdArea="' + prop.KEY_CODE + '" syochiikiname="' + prop.S_NAME + '">H17人口ピラミッド</button><br><br>' +
+
           streetView +
           '</div>'
       break

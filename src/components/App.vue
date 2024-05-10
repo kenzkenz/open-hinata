@@ -573,12 +573,12 @@
           }
         })
       })
-      // 小地域人口ピラミッド----------------------------------------------------------------
+      // R02小地域人口ピラミッド----------------------------------------------------------------
       // const maps = ['map01','map02','map03','map04']
       maps.forEach((mapName) => {
         const olPopup = document.querySelector('#' + mapName + ' .ol-popup')
         olPopup.addEventListener('click', (e) => {
-          if (e.target && e.target.classList.contains("pyramid-syochiiki") ) {
+          if (e.target && e.target.classList.contains("pyramid-syochiiki-r02") ) {
             d3.select('#' + mapName + ' .loadingImg').style("display","block")
             this.$store.state.base.cdArea = e.target.getAttribute("cdArea")
             this.$store.state.base.syochiikiName = e.target.getAttribute("syochiikiname")
@@ -660,6 +660,7 @@
                    if (hitokuSyori === '秘匿地域') alert('秘匿地域です。人口ピラミッドは作成されません。')
                    vm.$store.state.base.koureikaritu = koureikaritu
                    vm.$store.state.base.heikinnenrei = heikinnenrei
+                   vm.$store.state.base.kokuchoYear = e.target.getAttribute("year")
 
                    vm.$store.state.base.estatDataset = data
 
@@ -901,6 +902,114 @@
             //
             //
             //     })
+          }
+        })
+      })
+      function h27syoshiiki(e,mapName){
+        d3.select('#' + mapName + ' .loadingImg').style("display","block")
+        vm.$store.state.base.cdArea = e.target.getAttribute("cdArea")
+        vm.$store.state.base.syochiikiName = e.target.getAttribute("syochiikiname")
+        const cityCode = vm.$store.state.base.cdArea.slice(0,5)
+        const azaCode = vm.$store.state.base.cdArea.slice(5)
+        axios
+            .get('https://kenzkenz.xsrv.jp/open-hinata/php/pyramidh27.php',{
+              params: {
+                cityCode: cityCode,
+                azaCode: azaCode,
+                year: e.target.getAttribute("year")
+              }
+            }).then(function (response) {
+          d3.select('#' + mapName + ' .loadingImg').style("display","none")
+          console.log(response.data)
+          const dataSet = []
+          const dataSousu = []
+          response.data.forEach((v) => {
+            dataSet.push({class: '0～4歳', man: Number(v['男0～4歳']), woman: Number(v['女0～4歳'])})
+            dataSet.push({class: '5～9歳', man: Number(v['男5～9歳']), woman: Number(v['女5～9歳'])})
+            dataSet.push({class: '10～14歳', man: Number(v['男10～14歳']), woman: Number(v['女10～14歳'])})
+            dataSet.push({class: '15～19歳', man: Number(v['男15～19歳']), woman: Number(v['女15～19歳'])})
+            dataSet.push({class: '20～24歳', man: Number(v['男20～24歳']), woman: Number(v['女20～24歳'])})
+            dataSet.push({class: '25～29歳', man: Number(v['男25～29歳']), woman: Number(v['女25～29歳'])})
+            dataSet.push({class: '30～34歳', man: Number(v['男30～34歳']), woman: Number(v['女30～34歳'])})
+            dataSet.push({class: '35～39歳', man: Number(v['男35～39歳']), woman: Number(v['女35～39歳'])})
+            dataSet.push({class: '40～44歳', man: Number(v['男40～44歳']), woman: Number(v['女40～44歳'])})
+            dataSet.push({class: '45～49歳', man: Number(v['男45～49歳']), woman: Number(v['女45～49歳'])})
+            dataSet.push({class: '50～54歳', man: Number(v['男50～54歳']), woman: Number(v['女50～54歳'])})
+            dataSet.push({class: '55～59歳', man: Number(v['男55～59歳']), woman: Number(v['女55～59歳'])})
+            dataSet.push({class: '60～64歳', man: Number(v['男60～64歳']), woman: Number(v['女60～64歳'])})
+            dataSet.push({class: '65～69歳', man: Number(v['男65～69歳']), woman: Number(v['女65～69歳'])})
+            dataSet.push({class: '70～74歳', man: Number(v['男70～74歳']), woman: Number(v['女70～74歳'])})
+            dataSet.push({class: '75～79歳', man: Number(v['男75～79歳']), woman: Number(v['女75～79歳'])})
+            dataSet.push({class: '80～84歳', man: Number(v['男80～84歳']), woman: Number(v['女80～84歳'])})
+            dataSet.push({class: '85～89歳', man: Number(v['男85～89歳']), woman: Number(v['女85～89歳'])})
+            dataSet.push({class: '90～94歳', man: Number(v['男90～94歳']), woman: Number(v['女90～94歳'])})
+            dataSet.push({class: '95～99歳', man: Number(v['男95～99歳']), woman: Number(v['女95～99歳'])})
+            dataSet.push({class: '100歳以上', man: Number(v['男100歳以上']), wpman: Number(v['女100歳以上'])})
+
+            dataSousu.push({class: '総数', 総数: Number(v['総数'])})
+            dataSousu.push({class: '総数', 総数65歳以上: Number(v['65歳以上'])})
+            dataSousu.push({class: '総数', 平均年齢: Number(v['平均年齢'])})
+            dataSousu.push({class: '総数', 秘匿処理: v['秘匿処理']})
+          })
+
+          const sousu = dataSousu[0]['総数']
+          const over65 = dataSousu[1]['総数65歳以上']
+          const heikinnenrei = dataSousu[2]['平均年齢'].toFixed(2) + '歳'
+          const koureikaritu = ((over65 / sousu) * 100).toFixed(2) + '%'
+          const hitokuSyori = dataSousu[3]['秘匿処理']
+          if (hitokuSyori === '秘匿地域') alert('秘匿地域です。人口ピラミッドは作成されません。')
+          vm.$store.state.base.koureikaritu = koureikaritu
+          vm.$store.state.base.heikinnenrei = heikinnenrei
+          vm.$store.state.base.kokuchoYear = e.target.getAttribute("year")
+
+          vm.$store.state.base.estatDataset = dataSet
+
+          vm.$store.commit('base/incrDialog2Id');
+          vm.$store.commit('base/incrDialogMaxZindex');
+          let left
+          if (window.innerWidth < 600) {
+            left = (window.innerWidth / 2 - 175) + 'px'
+          } else {
+            left = (window.innerWidth - 560) + 'px'
+          }
+          const diialog =
+              {
+                id: vm.s_dialo2Id,
+                name:'pyramid-estat',
+                style: {
+                  display: 'block',
+                  top: '60px',
+                  left:left,
+                  'z-index': vm.s_dialogMaxZindex
+                }
+              }
+          vm.$store.commit('base/pushDialogs2',{mapName: mapName, dialog: diialog})
+        })
+      }
+      // H27小地域人口ピラミッド----------------------------------------------------------------
+      maps.forEach((mapName) => {
+        const olPopup = document.querySelector('#' + mapName + ' .ol-popup')
+        olPopup.addEventListener('click', (e) => {
+          if (e.target && e.target.classList.contains("pyramid-syochiiki-h27") ) {
+            h27syoshiiki(e,mapName)
+          }
+        })
+      })
+      // H22小地域人口ピラミッド----------------------------------------------------------------
+      maps.forEach((mapName) => {
+        const olPopup = document.querySelector('#' + mapName + ' .ol-popup')
+        olPopup.addEventListener('click', (e) => {
+          if (e.target && e.target.classList.contains("pyramid-syochiiki-h22") ) {
+            h27syoshiiki(e,mapName)
+          }
+        })
+      })
+      // H17小地域人口ピラミッド----------------------------------------------------------------
+      maps.forEach((mapName) => {
+        const olPopup = document.querySelector('#' + mapName + ' .ol-popup')
+        olPopup.addEventListener('click', (e) => {
+          if (e.target && e.target.classList.contains("pyramid-syochiiki-h17") ) {
+            h27syoshiiki(e,mapName)
           }
         })
       })
