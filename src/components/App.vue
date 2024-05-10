@@ -657,7 +657,10 @@
                    const heikinnenrei = dataSousu[2]['平均年齢'].toFixed(2) + '歳'
                    const koureikaritu = ((over65 / sousu) * 100).toFixed(2) + '%'
                    const hitokuSyori = dataSousu[3]['秘匿処理']
-                   if (hitokuSyori === '秘匿地域') alert('秘匿地域です。人口ピラミッドは作成されません。')
+                   if (hitokuSyori === '秘匿地域') {
+                     alert('秘匿地域です。人口ピラミッドは作成されません。')
+                     return
+                   }
                    vm.$store.state.base.koureikaritu = koureikaritu
                    vm.$store.state.base.heikinnenrei = heikinnenrei
                    vm.$store.state.base.kokuchoYear = e.target.getAttribute("year")
@@ -961,7 +964,10 @@
           const heikinnenrei = dataSousu[2]['平均年齢'].toFixed(2) + '歳'
           const koureikaritu = ((over65 / sousu) * 100).toFixed(2) + '%'
           const hitokuSyori = dataSousu[3]['秘匿処理']
-          if (hitokuSyori === '秘匿地域') alert('秘匿地域です。人口ピラミッドは作成されません。')
+          if (hitokuSyori === '秘匿地域') {
+            alert('秘匿地域です。人口ピラミッドは作成されません。')
+            return;
+          }
           vm.$store.state.base.koureikaritu = koureikaritu
           vm.$store.state.base.heikinnenrei = heikinnenrei
           vm.$store.state.base.kokuchoYear = e.target.getAttribute("year")

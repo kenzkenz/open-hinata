@@ -141,7 +141,7 @@ export default {
         } else {
           elements[len-1].style.width = '350px'
           width = 350 - margin.left - margin.right
-          height = 200 - margin.top - margin.bottom
+          height = 350 - margin.top - margin.bottom
           womanMargin = 185
         }
 
