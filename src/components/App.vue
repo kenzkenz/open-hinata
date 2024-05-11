@@ -655,7 +655,12 @@
                    const sousu = dataSousu[0]['総数']
                    const over65 = dataSousu[1].over65
                    const heikinnenrei = dataSousu[2]['平均年齢'].toFixed(2) + '歳'
-                   const koureikaritu = ((over65 / sousu) * 100).toFixed(2) + '%'
+                   let koureikaritu
+                   if (isNaN(over65)) {
+                     koureikaritu = '0%'
+                   } else {
+                     koureikaritu = ((over65 / sousu) * 100).toFixed(2) + '%'
+                   }
                    const hitokuSyori = dataSousu[3]['秘匿処理']
                    if (hitokuSyori === '秘匿地域') {
                      alert('秘匿地域です。人口ピラミッドは作成されません。')
@@ -962,7 +967,12 @@
           const sousu = dataSousu[0]['総数']
           const over65 = dataSousu[1]['総数65歳以上']
           const heikinnenrei = dataSousu[2]['平均年齢'].toFixed(2) + '歳'
-          const koureikaritu = ((over65 / sousu) * 100).toFixed(2) + '%'
+          let koureikaritu
+          if (isNaN(over65)) {
+            koureikaritu = '0%'
+          } else {
+            koureikaritu = ((over65 / sousu) * 100).toFixed(2) + '%'
+          }
           const hitokuSyori = dataSousu[3]['秘匿処理']
           if (hitokuSyori === '秘匿地域') {
             alert('秘匿地域です。人口ピラミッドは作成されません。')

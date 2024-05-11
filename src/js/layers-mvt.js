@@ -35,6 +35,12 @@ const ru2 = string => {
 }
 const mapsStr = ['map01','map02','map03','map04'];
 //小地域------------------------------------------------------------------------------------------------
+let syochiikiMaxResolution
+if (window.innerWidth > 1000) {
+  syochiikiMaxResolution = 76.437028 //zoom11
+} else {
+  syochiikiMaxResolution = 38.218514 //zoom12
+}
 function Syochiiki2020(){
   this.name = 'syochiki2020'
   this.source = new VectorTileSource({
@@ -44,7 +50,7 @@ function Syochiiki2020(){
     url: "https://kenzkenz3.xsrv.jp/mvt/syochiiki/2020/{z}/{x}/{y}.mvt"
   });
   this.style = syochiikiStyleFunction()
-  this.maxResolution = 38.218514 //zoom12
+  this.maxResolution = syochiikiMaxResolution
   this.declutter = true
   this.overflow = true
 }

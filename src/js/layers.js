@@ -999,8 +999,9 @@ function HyougoCs50c2 () {
   this.preload = Infinity
   this.extent = transformE([134.2669714033038, 34.17797854803047,135.47241581374712, 35.783161768341444])
   this.source = new XYZ({
-    url: 'https://rinya-hyogo.geospatial.jp/2023/rinya/tile/csmap/{z}/{x}/{y}.png',
-    // crossOrigin: 'Anonymous',
+    // url: 'https://rinya-hyogo.geospatial.jp/2023/rinya/tile/csmap/{z}/{x}/{y}.png',
+    url: 'https://kenzkenz3.xsrv.jp/cs/hyougo50/{z}/{x}/{y}.png',
+    crossOrigin: 'Anonymous',
     minZoom: 8,
     maxZoom: 18
   });
@@ -13715,7 +13716,7 @@ export const Layers =
             { text: 'S35人口集中地区', data: { id: "didS35", layer: LayersMvt.didS35Obj, opacity: 1, summary: LayersMvt.didS35Summ } },
           ]},
       ]},
-    { text: '海面上昇シミュと人口ピラミッド　　　　　',
+    { text: '海面上昇シミュと人口ピラミッド',
       children: [
         // { text: '海面上昇シミュ5Mdem', data: { id: 'flood5m', layer: flood5Obj, opacity: 1, summary: floodSumm, component: {name: 'flood5m', values:[]}} },
         { text: '海面上昇シミュ（色別標高図風）', data: { id: 'flood10m', layer: flood10Obj, opacity: 1, summary: floodSumm, component: {name: 'flood10m', values:[]}} },

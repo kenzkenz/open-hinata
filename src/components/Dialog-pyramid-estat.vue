@@ -114,6 +114,15 @@ export default {
         const womanSum = d3.sum(data, function(d){ return d.woman; })
         const koureikaritu = vm.$store.state.base.koureikaritu
         const heikinnenrei = vm.$store.state.base.heikinnenrei
+
+        svg.append("line")
+            .attr("x1",width/2 -30)
+            .attr("y1",0)
+            .attr("x2",width/2 -30)
+            .attr("y2",height)
+            .attr("stroke-width",1)
+            .attr("stroke","black");
+
         svg.append("text")
             .attr("fill", "black")
             .attr("transform", "translate(" + textLeft + "," + -5 + ")")
