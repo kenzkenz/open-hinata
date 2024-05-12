@@ -1033,6 +1033,83 @@
           }
         })
       })
+      // resae人口推移----------------------------------------------------------------
+      maps.forEach((mapName) => {
+        const olPopup = document.querySelector('#' + mapName + ' .ol-popup')
+        olPopup.addEventListener('click', (e) => {
+          if (e.target && e.target.classList.contains("jinkosuii") ) {
+
+
+            //----------------------------------------------------------------
+            d3.select('#' + mapName + ' .loadingImg').style("display","block")
+            // const resasApiKey ='PhDwqQNb40trBwyOivI5CMdeyqGEx0Gcubdv1GpL'
+            const cityCode = e.target.getAttribute("citycode")
+            let cityName = e.target.getAttribute("cityName")
+            const prefCode = e.target.getAttribute("citycode").slice(0,2)
+            console.log(cityCode)
+            console.log(cityName)
+            console.log(prefCode)
+            cityName = cityName.replace('役所','').replace('役場','').replace('庁','')
+            console.log(cityName)
+            vm.$store.state.base.cityName = cityName
+            const yearRights = ['dummy']
+            async function created() {
+              const fetchData = yearRights.map((yearRight) => {
+                return axios
+                    .get(resasUrl +'population/composition/perYear',{
+                      headers:{'X-API-KEY':resasApiKey},
+                      params: {
+                        prefCode:prefCode,
+                        cityCode:cityCode,
+                      }
+                    })
+              })
+              await Promise.all([
+                ...fetchData
+              ])
+                  .then((response) => {
+                    // d3Create (response)
+                    console.log(response[0].data.result.data)
+                    vm.$store.state.base.jinkosuiiDataset = response
+                    dialogOpen()
+                    d3.select('#' + mapName + ' .loadingImg').style("display","none")
+                  })
+                  .catch(function (response) {
+                    alert('データが存在しないか又はリクエストが多くて制限がかかっています。')
+                  })
+            }
+            created()
+            //----------------------------------------------------------------
+
+            function dialogOpen() {
+              vm.$store.commit('base/incrDialog2Id');
+              vm.$store.commit('base/incrDialogMaxZindex');
+              let width
+              let left
+              if (window.innerWidth > 600) {
+                width = '550px'
+                left = (window.innerWidth - 560) + 'px'
+              } else {
+                width = '350px'
+                left = (window.innerWidth / 2 - 175) + 'px'
+              }
+              const diialog =
+                  {
+                    id: vm.s_dialo2Id,
+                    name:'jinkosuii',
+                    style: {
+                      display: 'block',
+                      width: width,
+                      top: '60px',
+                      left: left,
+                      'z-index': vm.s_dialogMaxZindex
+                    }
+                  }
+              vm.$store.commit('base/pushDialogs2',{mapName: mapName, dialog: diialog})
+            }
+          }
+        })
+      })
       // --------------------------------------------------------------
       // const vm = this
       heading = function(ol3d,leftRight){

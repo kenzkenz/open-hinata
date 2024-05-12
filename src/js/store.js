@@ -83,6 +83,7 @@ const moduleBase = {
     drawType:'danmen',
     estatDataset:[],
     resasDataset:[],
+    jinkosuiiDataset:[]
   },
   getters: {
     layerList: (state) => (mapName) => {
