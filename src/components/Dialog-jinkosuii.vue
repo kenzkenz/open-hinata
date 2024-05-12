@@ -51,8 +51,8 @@ export default {
 
       let width = 550; // グラフの幅
       const height = 300; // グラフの高さ
-      const padding = 35; // スケール表示用マージン
-      const paddingRight = 35
+      const paddingTop = 35; // スケール表示用マージン
+      const paddingRight = 45
       let paddingBottom = 30
       let paddingLeft = 70
       let fontSize = '12px'
@@ -72,16 +72,30 @@ export default {
 
       svg.append("text")
           .attr("fill", "black")
-          .attr("transform", "translate(" + (width/2) + "," + (padding-10) + ")")
+          .attr("transform", "translate(" + (width/2) + "," + (paddingTop - 15) + ")")
           // .attr("dy", "5px")
           .attr("font-size", fontSize)
           .attr("text-anchor", "middle")
-          // .attr("class", "city-name")
-          .text('棒=人口、緑色線=年少人口率、青色線=生産年齢人口率、赤色線=老年人口率');
+          .text('棒=人口、緑色=年少人口率、青色=生産年齢人口率、赤色=老年人口率');
+
+      svg.append("text")
+          .attr("fill", "black")
+          .attr("transform", "translate(" + (width-paddingRight+30) + "," + (paddingTop - 2) + ")")
+          .attr("font-size", fontSize)
+          // .attr("text-anchor", "middle")
+          .text('%');
+
+      svg.append("text")
+          .attr("fill", "black")
+          .attr("transform", "translate(" + (10) + "," + (paddingTop - 10) + ")")
+          .attr("font-size", fontSize)
+          // .attr("text-anchor", "middle")
+          .text('人');
+
 
       // 3. 軸スケールの設定
       const xScale = d3.scaleBand()
-          .rangeRound([paddingLeft, width - padding])
+          .rangeRound([paddingLeft, width - paddingRight])
           .padding(0.1)
           .domain(datasetAll.map(function(d) { return d.year; }));
 
@@ -109,7 +123,7 @@ export default {
           .attr("transform", "translate(" + paddingLeft + "," + 0 + ")")
           .call(d3.axisLeft(yScale));
       svg.append("g")
-          .attr("transform", "translate(" + (width - padding) + "," + 0 + ")")
+          .attr("transform", "translate(" + (width - paddingRight) + "," + 0 + ")")
           .call(d3.axisRight(yScaleNensyou));
       const tooltip = d3.select("body").append("div").attr("class", "d3tooltip");
       // . バーの表示
