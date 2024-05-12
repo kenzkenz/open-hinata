@@ -1037,13 +1037,18 @@
       maps.forEach((mapName) => {
         const olPopup = document.querySelector('#' + mapName + ' .ol-popup')
         olPopup.addEventListener('click', (e) => {
-          if (e.target && e.target.classList.contains("jinkosuii") ) {
-
-
+          if ((e.target && e.target.classList.contains("jinkosuii1")) ||
+              (e.target && e.target.classList.contains("jinkosuii2"))) {
             //----------------------------------------------------------------
             d3.select('#' + mapName + ' .loadingImg').style("display","block")
             // const resasApiKey ='PhDwqQNb40trBwyOivI5CMdeyqGEx0Gcubdv1GpL'
-            const cityCode = e.target.getAttribute("citycode")
+            let cityCode
+            if (e.target.classList.contains("jinkosuii2")) {
+              cityCode = '-'
+            } else {
+              cityCode = e.target.getAttribute("citycode")
+            }
+            // const cityCode = e.target.getAttribute("citycode")
             let cityName = e.target.getAttribute("cityName")
             const prefCode = e.target.getAttribute("citycode").slice(0,2)
             console.log(cityCode)

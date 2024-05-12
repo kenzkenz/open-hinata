@@ -969,7 +969,7 @@ export function popUp(map,layers,features,overlay,evt,content) {
           '所在地=' + ru(prop.P34_004) + '<br>' +
           'コード=' + ru(prop.P34_001) + '<br><br>' +
           '<button class="pyramid" mapname="' + map.values_.target + '" citycode="' + ru(prop.P34_001) + '" cityname="' + ru(prop.P34_003) + '">人口ピラミッド</button><br><br>' +
-          '<button class="jinkosuii" mapname="' + map.values_.target + '" citycode="' + ru(prop.P34_001) + '" cityname="' + ru(prop.P34_003) + '">人口推移</button><br><br>' +
+          '<button class="jinkosuii1" mapname="' + map.values_.target + '" citycode="' + ru(prop.P34_001) + '" cityname="' + ru(prop.P34_003) + '">人口推移</button><br><br>' +
           streetView +
           '</div>'
       break
@@ -981,6 +981,8 @@ export function popUp(map,layers,features,overlay,evt,content) {
           '所在地=' + ru(prop.P28_006) + '<br>' +
           'コード=' + ru(prop.P28_001) + '<br><br>' +
           '<button class="pyramid-kencho" mapname="' + map.values_.target + '" citycode="' + ru(prop.P28_001) + '" cityname="' + ru(prop.P28_005) + '">人口ピラミッド</button><br><br>' +
+          '<button class="jinkosuii2" mapname="' + map.values_.target + '" citycode="' + ru(prop.P28_001) + '" cityname="' + ru(prop.P28_005) + '">人口推移</button><br><br>' +
+
           streetView +
           '</div>'
       break
