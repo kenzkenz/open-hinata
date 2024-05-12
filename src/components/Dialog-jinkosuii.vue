@@ -1,10 +1,7 @@
 
 <template>
   <div :id="id">
-    <!--    aaaaaaa-->
-    <!--    <img class='loadingImg' src="https://kenzkenz.xsrv.jp/open-hinata/img/loading.gif" style="position: absolute;top:50%;left:50%;z-index:1;">-->
     <div class="d3-jinkosuii"></div>
-    <!--      <svg id="d3-pyramid" width="350" :height="350" style="border: 1px dotted"></svg>-->
   </div>
 </template>
 
@@ -24,13 +21,7 @@ export default {
   computed: {
     id () {
       return 'jinkosuii-' + this.item.id
-    },
-    // S_mainInfoDialog () {
-    //   return this.$store.state.base.dialogs.pyramidDialog[this.mapName]
-    // },
-    // S_cityCode () {
-    //   return this.$store.state.base.cityCode[this.mapName]
-    // },
+    }
   },
   methods: {
   },
@@ -55,15 +46,13 @@ export default {
       const datasetSeisan = vm.$store.state.base.jinkosuiiDataset[0].data.result.data[2].data
       const datasetRonen = vm.$store.state.base.jinkosuiiDataset[0].data.result.data[3].data
 
-      console.log(datasetAll)
-      console.log(datasetNensyo)
-
       const dialog2DragHandle = document.querySelector('#dialog2-' + vm.item.id + ' .drag-handle')
       dialog2DragHandle.innerHTML = vm.$store.state.base.cityName + '　人口推移'
 
       let width = 550; // グラフの幅
       const height = 300; // グラフの高さ
-      const padding = 30; // スケール表示用マージン
+      const padding = 35; // スケール表示用マージン
+      const paddingRight = 35
       let paddingBottom = 30
       let paddingLeft = 70
       let fontSize = '12px'
@@ -122,20 +111,45 @@ export default {
       svg.append("g")
           .attr("transform", "translate(" + (width - padding) + "," + 0 + ")")
           .call(d3.axisRight(yScaleNensyou));
+      const tooltip = d3.select("body").append("div").attr("class", "d3tooltip");
       // . バーの表示
       svg.append("g")
           .selectAll("rect")
           .data(datasetAll)
           .enter()
           .append("rect")
+          .on("mouseover", function(event, data) {
+            tooltip
+                .style("visibility", "visible")
+                .html("人数:" + data.value.toLocaleString() + '人');
+          })
+          .on("mousemove", function(event) {
+            let x
+            if ((window.innerWidth-300) < event.pageX) {
+              x = event.pageX - 110
+            } else {
+              x = event.pageX
+            }
+            tooltip
+                .style("top", (event.pageY - 20) + "px")
+                .style("left", (x + 10) + "px");
+          })
+          .on("mouseout", function(d) {
+            tooltip.style("visibility", "hidden");
+          })
           .attr("x", function(d) { return xScale(d.year); })
-          .attr("y", function(d) { return yScale(d.value); })
           .attr("width", xScale.bandwidth())
+          .attr("height",0)
+          .attr('y', height - paddingBottom)
+          .transition()
+          .duration(1500)
+          .delay(200)
+          .attr("y", function(d) { return yScale(d.value); })
           .attr("height", function(d) { return height - paddingBottom - yScale(d.value); })
           .attr("fill", "lightsteelblue");
 
       // . ラインの表示
-      const pathNensyou = svg.append("path")
+      const pathNensyo = svg.append("path")
           .datum(datasetNensyo)
           .attr("fill", "none")
           .attr("stroke", "green")
@@ -163,11 +177,32 @@ export default {
               .y(function(d) { return yScaleNensyou(d.rate); }))
           .attr("transform", "translate(" + xScale.bandwidth()/2 + "," + 0 + ")")
 
+      let pathNensyoTotalLength = pathNensyo.node().getTotalLength();
+      let pathSeisanTotalLength = pathSeisan.node().getTotalLength();
+      let pathRonenTotalLength = pathRonen.node().getTotalLength();
+      pathNensyo
+          .attr("stroke-dasharray", pathNensyoTotalLength + " " + pathNensyoTotalLength)
+          .attr("stroke-dashoffset", pathNensyoTotalLength)
+          .transition()
+          .duration(2000)
+          .delay(200)
+          .attr("stroke-dashoffset", 0);
+      pathSeisan
+          .attr("stroke-dasharray", pathSeisanTotalLength + " " + pathSeisanTotalLength)
+          .attr("stroke-dashoffset", pathSeisanTotalLength)
+          .transition()
+          .duration(2000)
+          .delay(200)
+          .attr("stroke-dashoffset", 0);
+      pathRonen
+          .attr("stroke-dasharray", pathRonenTotalLength + " " + pathRonenTotalLength)
+          .attr("stroke-dashoffset", pathRonenTotalLength)
+          .transition()
+          .duration(2000)
+          .delay(200)
+          .attr("stroke-dashoffset", 0);
+
     }
-
-
-    this.$watch(function () {
-    });
   }
 }
 </script>
