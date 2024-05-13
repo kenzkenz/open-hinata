@@ -869,6 +869,14 @@ export function initMap (vm) {
         }
         // 大正古地図用-----------------------------------------------------------------
         map.on('singleclick', function (evt) {
+
+            const feature = map.forEachFeatureAtPixel(evt.pixel,
+                function(feature) {
+                    return feature;
+                });
+            if (feature) return;
+
+
             //少しでも処理を早めるために古地図レイヤーがなかったら抜ける。
             const layers = map.getLayers().getArray();
             let kotizuLayer = layers.find(el => el.get('dep'));
@@ -914,6 +922,15 @@ export function initMap (vm) {
         //------------------------------------------------------------------------------------------------------
         // 米軍地形図用
         map.on('singleclick', function (evt) {
+
+
+            const feature = map.forEachFeatureAtPixel(evt.pixel,
+                function(feature) {
+                    return feature;
+                });
+            if (feature) return;
+
+
             const layers = map.getLayers().getArray();
             //  洪水浸水想定と重ねるときは動作させない
             const hazardLayers = layers.filter(el => el.get('pointer'));
@@ -951,7 +968,9 @@ export function initMap (vm) {
             const map = evt.map;
             const option = {
                 layerFilter: function (layer) {
-                    return layer.get('name') === 'Mw5center' || layer.get('name') === 'Mw20center';
+                    return layer.get('name') === 'Mw5center'
+                        || layer.get('name') === 'Mw20center'
+                        || layer.get('name') === 'drawLayer2';
                 }
             };
             const feature = map.forEachFeatureAtPixel(evt.pixel,
@@ -963,9 +982,11 @@ export function initMap (vm) {
                 const uri = prop.uri
                 const title = prop.title
                 const mwId = prop.id
-                store.commit('base/updateDialogShow',true)
-                store.commit('base/updateSuUrl', uri)
-                store.commit('base/updateMwId', mwId)
+                if (uri) {
+                    store.commit('base/updateDialogShow',true)
+                    store.commit('base/updateSuUrl', uri)
+                    store.commit('base/updateMwId', mwId)
+                }
                 return
             }
             //  洪水浸水想定と重ねるときは動作させない
@@ -1383,7 +1404,9 @@ export function watchLayer (map, thisName, newLayerList,oldLayerList) {
     // drawLayer.set("altitudeMode","clampToGround")
     map.removeLayer(drawLayer)
     map.addLayer(drawLayer)
+    map.removeLayer(drawLayer2)
     map.addLayer(drawLayer2)
+    map.removeLayer(danmenLayer)
     map.addLayer(danmenLayer)
 }
 
