@@ -8,7 +8,7 @@
 <!--          <iframe name="sendPhoto" style="width:0px;height:0px;border:0px;"></iframe>-->
 
 
-          <b-button :pressed.sync="togglePoint" class='olbtn' size="sm">{{ togglePoint ? 'ポイント描画ON' : 'ポイント描画OFF' }}</b-button>
+          <b-button :pressed.sync="s_togglePoint" class='olbtn' size="sm">{{ s_togglePoint ? 'ポイント描画ON' : 'ポイント描画OFF' }}</b-button>
           <br><br>
 
 
@@ -28,6 +28,7 @@
 <script>
     import axios from "axios";
     import * as MyMap from '../js/mymap'
+    import * as Permalink from "@/js/permalink";
 
     // import FormData from 'form-data'
 
@@ -35,14 +36,25 @@
     name: "mainInfo",
     data () {
       return {
-        togglePoint: false,
+        // togglePoint: false,
         contentSize: {'height': 'auto', 'margin': '10px', 'overflow': 'auto', 'user-select': 'text'},
       }
     },
     computed: {
       S_mainInfoDialog () {
         return this.$store.state.base.dialogs.mainInfoDialog
-      }
+      },
+      // s_togglePoint () {
+      //   return this.$store.state.base.togglePoint
+      // }
+      s_togglePoint: {
+        get() {
+          return this.$store.state.base.togglePoint
+        },
+        set(value) {
+          this.$store.state.base.togglePoint = value
+        }
+      },
     },
     methods: {
       file_upload() {
@@ -123,9 +135,9 @@
     },
     mounted () {
       this.$watch(function () {
-        return [this.togglePoint]
+        return [this.s_togglePoint]
       }, function () {
-        if (this.togglePoint) {
+        if (this.s_togglePoint) {
           this.$store.state.base.maps['map01'].addInteraction(MyMap.pointInteraction)
         } else {
           this.$store.state.base.maps['map01'].removeInteraction(MyMap.pointInteraction)

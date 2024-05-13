@@ -154,15 +154,15 @@ export default {
     },
   },
   mounted () {
-    this.$watch(function () {
-      return [this.s_togglePoint]
-    }, function () {
-      if (this.s_togglePoint) {
-        this.$store.state.base.maps['map01'].addInteraction(MyMap.pointInteraction)
-      } else {
-        this.$store.state.base.maps['map01'].removeInteraction(MyMap.pointInteraction)
-      }
-    })
+    // this.$watch(function () {
+    //   return [this.s_togglePoint]
+    // }, function () {
+    //   if (this.s_togglePoint) {
+    //     this.$store.state.base.maps['map01'].addInteraction(MyMap.pointInteraction)
+    //   } else {
+    //     this.$store.state.base.maps['map01'].removeInteraction(MyMap.pointInteraction)
+    //   }
+    // })
     this.$watch(function () {
 
     });
