@@ -4,6 +4,7 @@ import axios from 'axios'
 import figureRGB from './figureRGB'
 import {transformExtent} from "ol/proj";
 import {moveEnd} from "@/js/permalink";
+import {pointInteraction} from "@/js/mymap";
 export function popUp(map,layers,features,overlay,evt,content) {
   let cont
   let coordinate
@@ -1002,6 +1003,24 @@ export function popUp(map,layers,features,overlay,evt,content) {
           '<br>' +
           streetView +
           '</div></div>'
+      break
+    case 'drawLayer2':
+      width = 300
+      cont = '<div style=width:300px;>' +
+          '<h4>' + prop.name + '</h4>' +
+          ru(prop.setumei) + '<br>' +
+          '<img src="' + prop.src +'" style="object-fit: cover;width: 300px;"><br>' +
+          streetView +
+          '</div>'
+        if (!prop.name) cont = ''
+
+      store.state.base.editFeature = features[0]
+      console.log(features[0].getProperties())
+      store.state.base.editFeatureName = features[0].getProperties().name
+      store.state.base.editFeatureSetumei = features[0].getProperties().setumei
+      store.state.base.editFeatureSrc = features[0].getProperties().src
+      store.state.base.dialogs.dialogEdit.style.display = 'block'
+
       break
   }
 

@@ -39,6 +39,16 @@ import Profile from 'ol-ext/control/Profile.js'
 
 // ドロー関係-------------------------------------------------------------------------------
 
+export  const drawLayer2 = new VectorLayer({
+    name: 'drawLayer2',
+    source: new VectorSource({wrapX: false}),
+    style: danmenStyleFunction()
+})
+export const pointInteraction = new Draw({
+    source: drawLayer2.getSource(),
+    type: 'Point',
+})
+
 export  const danmenLayer = new VectorLayer({
     name: 'drawSource',
     source: new VectorSource({wrapX: false}),
@@ -408,6 +418,24 @@ export function initMap (vm) {
             return interaction instanceof PinchRotate;
         })[0];
         pinchRotateInteraction.setActive(false);
+
+        // ------------------------
+        pointInteraction.on('drawend', function (event) {
+            const feature = event.feature;
+            const coordAr = feature.getGeometry().getCoordinates()
+            const geoType = feature.getGeometry().getType()
+            console.log(feature)
+            console.log(store.state.base.dialogs.dialogEdit.style.display)
+            store.state.base.editFeature = feature
+            // map.removeInteraction(pointInteraction)
+            store.state.base.togglePoint = false
+            store.state.base.dialogs.dialogEdit.style.display = 'block'
+            overlay[i].setPosition(undefined)
+
+        })
+        //-----------------------
+
+
 
 
         // コントロール追加---------------------------------------------------------------------------
@@ -1352,6 +1380,7 @@ export function watchLayer (map, thisName, newLayerList,oldLayerList) {
     // drawLayer.set("altitudeMode","clampToGround")
     map.removeLayer(drawLayer)
     map.addLayer(drawLayer)
+    map.addLayer(drawLayer2)
     map.addLayer(danmenLayer)
 }
 

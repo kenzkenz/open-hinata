@@ -61,7 +61,7 @@
                     <b-button class='olbtn-red' :size="btnSize" @click="openDialog(s_dialogs[mapName])">背景</b-button>
                 </div>
                 <div class="top-right-div">
-<!--                  <b-button i v-if="mapName === 'map01'" class='olbtn' :size="btnSize" @click="openDialog(s_dialogs['mainInfoDialog'])"><i class="fa-brands fa-github"></i></b-button>-->
+                  <b-button i v-if="mapName === 'map01'" class='olbtn' :size="btnSize" @click="openDialog(s_dialogs['mainInfoDialog'])"><i class="fa-brands fa-github"></i></b-button>
                 </div>
 
                 <div class="bottom-right-div">
@@ -71,7 +71,8 @@
                 <v-dialog-info :mapName=mapName />
                 <v-dialog2 :mapName=mapName />
                 <v-dialog-menu v-if="mapName === 'map01'"/>
-<!--                <v-dialog-main-info v-if="mapName === 'map01'"/>-->
+                <v-dialog-main-info v-if="mapName === 'map01'"/>
+                <v-dialog-edit v-if="mapName === 'map01'"/>
                 <div class="zoom-div">{{ zoom[mapName] }}</div>
             </div>
         </div>
@@ -96,6 +97,8 @@
   import DialogMenu from './Dialog-menu'
   import DialogLayer from './Dialog-layer'
   import DialogMainInfo from './Dialog-main-info'
+  import DialogEdit from './Dialog-edit'
+
   import DialogPyramid from './Dialog-pyramid'
   import * as Permalink from '../js/permalink'
   import Inobounce from '../js/inobounce'
@@ -117,6 +120,7 @@
       'v-dialog-layer': DialogLayer,
       'v-dialog-menu': DialogMenu,
       'v-dialog-main-info': DialogMainInfo,
+      'v-dialog-edit': DialogEdit,
     },
     data () {
       return {
@@ -222,16 +226,16 @@
       },
       // ダイアログを開く------------------------------------------------------------------
       openDialog (dialog) {
-        this.$store.commit('base/incrDialogMaxZindex');
-        dialog.style["z-index"] = this.s_dialogMaxZindex;
-        dialog.style.display = 'block'
-        // if (dialog.style.display === 'block') {
-        //   dialog.style.display = 'none'
-        // } else {
-        //   this.$store.commit('base/incrDialogMaxZindex');
-        //   dialog.style["z-index"] = this.s_dialogMaxZindex;
-        //   dialog.style.display = 'block'
-        // }
+        // this.$store.commit('base/incrDialogMaxZindex');
+        // dialog.style["z-index"] = this.s_dialogMaxZindex;
+        // dialog.style.display = 'block'
+        if (dialog.style.display === 'block') {
+          dialog.style.display = 'none'
+        } else {
+          this.$store.commit('base/incrDialogMaxZindex');
+          dialog.style["z-index"] = this.s_dialogMaxZindex;
+          dialog.style.display = 'block'
+        }
       },
       // 分割-------------------------------------------------------------------------------------
       splitMap () {

@@ -28,6 +28,8 @@ const moduleBase = {
     },
     dialogs: {
       mainInfoDialog:{style: {top: '56px', right: '10px', 'z-index': 1, height: 'auto', 'width': '200px', display: 'none'}},
+      dialogEdit:{style: {top: '150px', left: '10px', 'z-index': 1, height: 'auto', 'width': 'auto', display: 'none'}},
+
       // pyramidDialog:{
       //   map01: {style: {top: '56px', right: '10px', 'z-index': 1, height: 'auto', 'width': '550px', display: 'block'}},
       //   map02: {style: {top: '56px', right: '10px', 'z-index': 1, height: 'auto', 'width': '550px', display: 'block'}},
@@ -83,7 +85,12 @@ const moduleBase = {
     drawType:'danmen',
     estatDataset:[],
     resasDataset:[],
-    jinkosuiiDataset:[]
+    jinkosuiiDataset:[],
+    togglePoint:false,
+    editFeature:'',
+    editFeatureName:'',
+    editFeatureSetumei:'',
+    editFeatureSrc:'',
   },
   getters: {
     layerList: (state) => (mapName) => {
