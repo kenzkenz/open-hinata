@@ -431,7 +431,7 @@ export function initMap (vm) {
             store.state.base.togglePoint = false
             store.state.base.dialogs.dialogEdit.style.display = 'block'
             overlay[i].setPosition(undefined)
-
+            moveEnd()
         })
         //-----------------------
 

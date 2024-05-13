@@ -5,7 +5,7 @@ import * as MyMap from '../js/mymap'
 import axios from "axios";
 import {drawLayer, modifyInteraction} from "../js/mymap";
 import {GeoJSON} from "ol/format";
-import {Circle,LineString,Polygon} from "ol/geom";
+import {Circle,LineString,Polygon,Point} from "ol/geom";
 import Feature from "ol/Feature";
 import * as turf from "@turf/turf";
 import OLCesium from "ol-cesium";
@@ -127,8 +127,6 @@ export function permalinkEventSet (response) {
           ol3d.getCamera().setDistance(json.distance)
           store.state.base.toggle3d[map] = true
           document.querySelector('#' + map + '-3d').style.display = 'block'
-
-
           // scene.primitives.add(Cesium.createOsmBuildings());
           // drawLayer.set('altitudeMode', 'clampToGround')
         }
@@ -152,6 +150,72 @@ export function permalinkEventSet (response) {
       //   ol3d.getCamera().setTilt(json.tilt)
       //   ol3d.getCamera().setHeading(json.heading)
       // }
+      if (key==='GJ2') {
+        const geojson = JSON.parse(obj[key])
+        if (geojson.features[0]) {
+          geojson.features.forEach((feature) => {
+            // const distance = feature.properties.distance
+            const name = feature.properties.name
+            const setumei = feature.properties.setumei
+            const src = feature.properties.src
+            if (feature.geometry.type === 'Point') {
+              console.log(feature.geometry.coordinates)
+              const coordinates =transform(feature.geometry.coordinates, "EPSG:4326", "EPSG:3857")
+
+
+
+              console.log(coordinates)
+              const point = new Point(coordinates)
+              const newFeature = new Feature(point)
+              // newFeature['properties'] = 'aaa'
+              newFeature.setProperties({name: name})
+              newFeature.setProperties({setumei: setumei})
+              newFeature.setProperties({src: src})
+
+              console.log(newFeature)
+              MyMap.drawLayer2.getSource().addFeature(newFeature)
+            } else if (feature.geometry.type === 'GeometryCollection') {
+              const center = feature.properties.center
+              const radius = feature.properties.radius
+              const circle = new Circle(center, radius)
+              const newFeature = new Feature(circle)
+              newFeature.setProperties({distance: distance})
+              MyMap.drawLayer.getSource().addFeature(newFeature)
+            } else if (feature.geometry.type === 'LineString') {
+              let coordinates = []
+              feature.geometry.coordinates.forEach((coord) => {
+                // coord = turf.toWgs84(coord)
+                coordinates.push(transform(coord, "EPSG:4326", "EPSG:3857"))
+              })
+              // const distance = feature.properties.distance
+              const lineString = new LineString(coordinates)
+              const newFeature = new Feature(lineString)
+              // newFeature.setProperties({distance: "distance"})
+              newFeature['properties'] = 'aaa'
+              newFeature.setProperties({distance: distance})
+              console.log(newFeature)
+              MyMap.drawLayer.getSource().addFeature(newFeature)
+            } else if (feature.geometry.type === 'Polygon') {
+              let coordinates = []
+              feature.geometry.coordinates[0].forEach((coord) => {
+                // coord = turf.toWgs84(coord)
+                console.log(coord)
+                coordinates.push(transform(coord, "EPSG:4326", "EPSG:3857"))
+              })
+              console.log(coordinates)
+              const polygon = new Polygon([coordinates])
+              const newFeature = new Feature(polygon)
+              newFeature['properties'] = 'aaaa'
+              newFeature.setProperties({distance: distance})
+              MyMap.drawLayer.getSource().addFeature(newFeature)
+            }
+          })
+        }
+        store.state.base.maps.map01.addInteraction(MyMap.modifyInteraction)
+        // store.state.base.maps.map01.addInteraction(MyMap.transformInteraction)
+        store.state.base.maps.map01.addLayer(MyMap.drawLayer)
+        store.state.base.maps.map01.addLayer(MyMap.drawLayer2)
+      }
       if (key==='GJ') {
         const geojson = JSON.parse(obj[key])
         if (geojson.features[0]) {
@@ -286,6 +350,7 @@ export function permalinkEventSet (response) {
 }
 
 export function moveEnd () {
+  console.log(99999)
   const features = MyMap.drawLayer.getSource().getFeatures()
   features.forEach(function(feature){
     if (feature.getGeometry().getType() === 'Circle') {
@@ -300,6 +365,18 @@ export function moveEnd () {
   });
   const geojsonT = JSON.stringify(JSON.parse(drawSourceGeojson),null,1);
   // console.log(geojsonT)
+
+  // ----------------------------------------------------------------------------------
+  const features2 = MyMap.drawLayer2.getSource().getFeatures()
+  const drawSourceGeojson2 = new GeoJSON().writeFeatures(features2, {
+    featureProjection: "EPSG:3857"
+  });
+  const geojsonT2 = JSON.stringify(JSON.parse(drawSourceGeojson2),null,1);
+  console.log(geojsonT2)
+
+
+
+
   // ----------------------------------------------------------------------------------
   const map = store.state.base.maps.map01;
   const zoom = map.getView().getZoom();
@@ -312,6 +389,7 @@ export function moveEnd () {
   let parameter = '?S=' + store.state.base.splitFlg;
   parameter += '&L=' + store.getters['base/layerLists'];
   parameter += '&GJ=' + geojsonT
+  parameter += '&GJ2=' + geojsonT2
 
   const maps = ['map01','map02','map03','map04']
   maps.forEach((map) => {

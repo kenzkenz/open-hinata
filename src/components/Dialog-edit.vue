@@ -10,9 +10,9 @@
 
 <!--      <b-button :pressed.sync="togglePoint" class='olbtn' size="sm">{{ togglePoint ? 'ポイント描画ON' : 'ポイント描画OFF' }}</b-button>-->
 <!--      <br><br>-->
-      <input style="width: 300px;" type="text" @change="changeName" v-model="s_featureName" placeholder="名称を入力（必須）">
+      <input style="width: 300px;" type="text" @input="changeName" v-model="s_featureName" placeholder="名称を入力（必須）">
       <hr>
-      <textarea rows="4" cols="36" @change="changeName" v-model="s_featureSetumei" placeholder="説明を入力"></textarea>
+      <textarea rows="4" cols="36" @input="changeName" v-model="s_featureSetumei" placeholder="説明を入力"></textarea>
       <hr>
       <img :src="s_featureSrc" style="width: 300px;">
       <form id="my_form">
@@ -32,6 +32,7 @@
 import axios from "axios";
 import * as MyMap from '../js/mymap'
 import * as d3 from "d3";
+import {moveEnd} from "@/js/permalink"
 
 // import FormData from 'form-data'
 
@@ -47,9 +48,6 @@ export default {
     S_dialogEdit () {
       return this.$store.state.base.dialogs.dialogEdit
     },
-    // s_togglePoint () {
-    //   return this.$store.state.base.togglePoint
-    // },
     s_featureName: {
       get () { return this.$store.state.base.editFeatureName },
       set (value) {
@@ -73,6 +71,7 @@ export default {
       console.log(feature)
       feature.setProperties({name: this.$store.state.base.editFeatureName})
       feature.setProperties({setumei: this.$store.state.base.editFeatureSetumei})
+      moveEnd()
     },
     file_upload() {
       const vm = this
@@ -154,15 +153,6 @@ export default {
     },
   },
   mounted () {
-    // this.$watch(function () {
-    //   return [this.s_togglePoint]
-    // }, function () {
-    //   if (this.s_togglePoint) {
-    //     this.$store.state.base.maps['map01'].addInteraction(MyMap.pointInteraction)
-    //   } else {
-    //     this.$store.state.base.maps['map01'].removeInteraction(MyMap.pointInteraction)
-    //   }
-    // })
     this.$watch(function () {
 
     });
