@@ -72,13 +72,19 @@ export function permalinkEventSet (response) {
     // 場所、ズームを復帰
     const parts = hash.split('/');
     const map = store.state.base.maps.map01;
-    if (parts.length === 3) {
-      const center = [ parseFloat(parts[1]), parseFloat(parts[2]) ];
+    // if (parts.length === 3) {
+      const center = [ parseFloa
+
+
+
+        t(parts[1]), parseFloat(parts[2]) ];
       const center3857 = transform(center,'EPSG:4326','EPSG:3857');
       map.getView().setCenter(center3857);
       // map.getView().setZoom(parseInt(parts[0], 10))
+
+      console.log(parts)
       map.getView().setZoom(parts[0])
-    }
+    // }
     // パラメータで復帰
     // まずパラメータをオブジェクトにする
     const obj = {};
@@ -160,10 +166,7 @@ export function permalinkEventSet (response) {
             const src = feature.properties.src
             if (feature.geometry.type === 'Point') {
               console.log(feature.geometry.coordinates)
-              const coordinates =transform(feature.geometry.coordinates, "EPSG:4326", "EPSG:3857")
-
-
-
+              const coordinates = transform(feature.geometry.coordinates, "EPSG:4326", "EPSG:3857")
               console.log(coordinates)
               const point = new Point(coordinates)
               const newFeature = new Feature(point)
@@ -174,47 +177,10 @@ export function permalinkEventSet (response) {
 
               console.log(newFeature)
               MyMap.drawLayer2.getSource().addFeature(newFeature)
-            } else if (feature.geometry.type === 'GeometryCollection') {
-              const center = feature.properties.center
-              const radius = feature.properties.radius
-              const circle = new Circle(center, radius)
-              const newFeature = new Feature(circle)
-              newFeature.setProperties({distance: distance})
-              MyMap.drawLayer.getSource().addFeature(newFeature)
-            } else if (feature.geometry.type === 'LineString') {
-              let coordinates = []
-              feature.geometry.coordinates.forEach((coord) => {
-                // coord = turf.toWgs84(coord)
-                coordinates.push(transform(coord, "EPSG:4326", "EPSG:3857"))
-              })
-              // const distance = feature.properties.distance
-              const lineString = new LineString(coordinates)
-              const newFeature = new Feature(lineString)
-              // newFeature.setProperties({distance: "distance"})
-              newFeature['properties'] = 'aaa'
-              newFeature.setProperties({distance: distance})
-              console.log(newFeature)
-              MyMap.drawLayer.getSource().addFeature(newFeature)
-            } else if (feature.geometry.type === 'Polygon') {
-              let coordinates = []
-              feature.geometry.coordinates[0].forEach((coord) => {
-                // coord = turf.toWgs84(coord)
-                console.log(coord)
-                coordinates.push(transform(coord, "EPSG:4326", "EPSG:3857"))
-              })
-              console.log(coordinates)
-              const polygon = new Polygon([coordinates])
-              const newFeature = new Feature(polygon)
-              newFeature['properties'] = 'aaaa'
-              newFeature.setProperties({distance: distance})
-              MyMap.drawLayer.getSource().addFeature(newFeature)
             }
           })
         }
-        store.state.base.maps.map01.addInteraction(MyMap.modifyInteraction)
-        // store.state.base.maps.map01.addInteraction(MyMap.transformInteraction)
-        store.state.base.maps.map01.addLayer(MyMap.drawLayer)
-        store.state.base.maps.map01.addLayer(MyMap.drawLayer2)
+        // store.state.base.maps.map01.addLayer(MyMap.drawLayer2)
       }
       if (key==='GJ') {
         const geojson = JSON.parse(obj[key])
@@ -346,7 +312,7 @@ export function permalinkEventSet (response) {
     }
   }
   // マップ移動時イベント------------------------------------------------------------------------
-  store.state.base.maps.map01.on('moveend', moveEnd)
+  // store.state.base.maps.map01.on('moveend', moveEnd)
 }
 
 export function moveEnd () {
@@ -372,10 +338,6 @@ export function moveEnd () {
   });
   const geojsonT2 = JSON.stringify(JSON.parse(drawSourceGeojson2),null,1);
   // console.log(geojsonT2)
-
-
-
-
   // ----------------------------------------------------------------------------------
   const map = store.state.base.maps.map01;
   const zoom = map.getView().getZoom();
@@ -404,7 +366,7 @@ export function moveEnd () {
       parameter += '&3d' + map + '=' + jsonT
     }
   })
-    // console.log(parameter)
+    console.log(hash)
   // console.log(parameter.replace(/,/g,encodeURIComponent(",")))
   // parameter = parameter.replace(/,/g,encodeURIComponent(","))
   // parameterだけエンコードする。起動時にwindow.location.hashでハッシュ値を取得するため

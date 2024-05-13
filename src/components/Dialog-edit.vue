@@ -67,6 +67,9 @@ export default {
       console.log(feature)
       feature.setProperties({name: this.$store.state.base.editFeatureName})
       feature.setProperties({setumei: this.$store.state.base.editFeatureSetumei})
+      document.querySelector('#drawLayer2-name').innerHTML = this.$store.state.base.editFeatureName
+      document.querySelector('#drawLayer2-setumei').innerHTML = this.$store.state.base.editFeatureSetumei
+
       moveEnd()
     },
     file_upload() {
@@ -92,7 +95,10 @@ export default {
 
         const feature = vm.$store.state.base.editFeature
         console.log(feature)
-        feature.setProperties({src: vm.$store.state.base.editFeatureSrc})
+
+        feature.setProperties({src: fileName})
+        document.querySelector('#drawLayer2-src').src = fileName
+
 
         document.querySelector('#map01 .loadingImg').style.display = 'none'
 

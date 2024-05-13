@@ -1041,7 +1041,7 @@ export function initMap (vm) {
         })
 
         const removeLastPoint = function(evt){
-            console.log(evt.keyCode)
+            // console.log(evt.keyCode)
             if(evt.keyCode == 27){
                 // const selectCollection = selectInteraction.getFeatures();
                 // drawLayer.getSource().removeFeature(selectCollection.item(0))
@@ -1123,6 +1123,8 @@ export function initMap (vm) {
         }
         // const win = window.navigator.userAgent.includes('Win')
         map.on('moveend', function (event) {
+            console.log(777)
+            moveEnd()
             getElevation(event)
             // map.render();
         });

@@ -1007,12 +1007,12 @@ export function popUp(map,layers,features,overlay,evt,content) {
     case 'drawLayer2':
       width = 300
       cont = '<div style=width:300px;>' +
-          '<h4>' + prop.name + '</h4>' +
-          ru(prop.setumei) + '<br>' +
-          '<img src="' + prop.src +'" style="object-fit: cover;width: 300px;"><br>' +
+          '<h4 id="drawLayer2-name">' + prop.name + '</h4>' +
+          '<span id="drawLayer2-setumei">' + ru(prop.setumei) + '</span><br>' +
+          '<img id="drawLayer2-src" src="' + prop.src +'" style="object-fit: cover;width: 300px;"><br>' +
           streetView +
           '</div>'
-        if (!prop.name) cont = ''
+        // if (!prop.name) cont = ''
 
       store.state.base.editFeature = features[0]
       console.log(features[0].getProperties())
