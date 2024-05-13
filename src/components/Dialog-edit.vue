@@ -1,15 +1,6 @@
 <template>
   <v-dialog :dialog="S_dialogEdit" id="dialog-edit">
     <div :style="contentSize">
-      <!--          <form action="https://kenzkenz.xsrv.jp/open-hinata/php/upload.php" method="POST" enctype="multipart/form-data" target="sendPhoto">-->
-      <!--            <input type="file" name="image">-->
-      <!--            <button><input type="submit" name="upload" value="送信"></button>-->
-      <!--          </form>-->
-      <!--          <iframe name="sendPhoto" style="width:0px;height:0px;border:0px;"></iframe>-->
-
-
-<!--      <b-button :pressed.sync="togglePoint" class='olbtn' size="sm">{{ togglePoint ? 'ポイント描画ON' : 'ポイント描画OFF' }}</b-button>-->
-<!--      <br><br>-->
       <input style="width: 300px;" type="text" @input="changeName" v-model="s_featureName" placeholder="名称を入力（必須）">
       <hr>
       <textarea rows="4" cols="36" @input="changeName" v-model="s_featureSetumei" placeholder="説明を入力"></textarea>
@@ -19,11 +10,8 @@
         <input type="file" name="file_1" accept="image/*" @change="file_upload()">
 <!--        <button type="button" @click="file_upload()">アップロード</button>-->
       </form>
-
-
-      <!--          <p>製作者＝kenzkenzです。</p>-->
-      <!--          <p><a href="https://github.com/kenzkenz/open-hinata" target="_blank" >github</a>です。</p>-->
-      <!--          <p><a href="https://twitter.com/kenzkenz" target="_blank">twitter</a>です。</p>-->
+      <hr>
+      <button type="button" @click="featureRemove">ポイント削除</button>
     </div>
   </v-dialog>
 </template>
@@ -33,6 +21,7 @@ import axios from "axios";
 import * as MyMap from '../js/mymap'
 import * as d3 from "d3";
 import {moveEnd} from "@/js/permalink"
+import store from "@/js/store";
 
 // import FormData from 'form-data'
 
@@ -65,6 +54,13 @@ export default {
     },
   },
   methods: {
+    featureRemove(){
+      MyMap.drawLayer2.getSource().removeFeature(this.$store.state.base.editFeature)
+      store.state.base.dialogs.dialogEdit.style.display = 'none'
+      MyMap.overlay['0'].setPosition(undefined)
+
+
+    },
     changeName(e) {
       console.log(e)
       const feature = this.$store.state.base.editFeature
@@ -101,58 +97,15 @@ export default {
         document.querySelector('#map01 .loadingImg').style.display = 'none'
 
       }, false);
-
-    },
-    uploadImage() {
-      // const FormData = require("form-data")
-      const fileInput = document.querySelector('#fileInput');
-      const file = fileInput.files[0];
-      console.log(file)
-      const FormData = require('form-data')
-      const formData = new FormData();
-      formData.append('file', file);
-
-
-      // var formData = new FormData()
-      // var file = document.getElementById("fileInput")
-      // console.log(file)
-      //
-      // formData.append('file', file.files[0])
-      // const res = await axios.post(url, params, {
-      //   headers: {
-      //     'Content-Type': 'multipart/form-data'
-      //   }
-      // })
-
-      // fetch('https://kenzkenz.xsrv.jp/open-hinata-test', { method: "POST", body: formData });
-
-
-      axios.post('https://kenzkenz.xsrv.jp/open-hinata-test', file, {
-        params: {
-          fileName: file.name
-        }
-      }).then(response => {
-        console.log('成功');
-      }).catch(error => {
-        console.error('失败', error);
-      });
-
-      // formData.append('image', file)
-      // axios.defaults.baseURL = 'https://kenzkenz.xsrv.jp';
-      // axios.defaults.headers.post['Content-Type'] = 'application/json;charset=utf-8';
-      // axios.defaults.headers.post['Access-Control-Allow-Origin'] = '*';
-      // axios.post('https://kenzkenz.xsrv.jp/open-hinata-test', formData, {
-      //   headers: {
-      //     'Content-Type': 'multipart/form-data'
-      //   }
-      // }).then(response => {
-      //   console.log('成功',response);
-      // }).catch(error => {
-      //   console.error('失敗', error);
-      // });
-    },
+    }
   },
   mounted () {
+    const dragHandle = document.querySelector('#dialog-edit .drag-handle');
+    console.log(dragHandle)
+    dragHandle.innerHTML = '編集'
+
+
+
     this.$watch(function () {
 
     });

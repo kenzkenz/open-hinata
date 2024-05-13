@@ -27,7 +27,7 @@ const moduleBase = {
       map04: []
     },
     dialogs: {
-      mainInfoDialog:{style: {top: '56px', right: '10px', 'z-index': 1, height: 'auto', 'width': '200px', display: 'none'}},
+      dialogEdit0:{style: {top: '56px', right: '10px', 'z-index': 1, height: 'auto', 'width': '200px', display: 'none'}},
       dialogEdit:{style: {top: '150px', left: '10px', 'z-index': 1, height: 'auto', 'width': 'auto', display: 'none'}},
 
       // pyramidDialog:{

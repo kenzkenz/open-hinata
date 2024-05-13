@@ -40,6 +40,7 @@ import Profile from 'ol-ext/control/Profile.js'
 // ドロー関係-------------------------------------------------------------------------------
 
 export  const drawLayer2 = new VectorLayer({
+    // pointer: true,
     name: 'drawLayer2',
     source: new VectorSource({wrapX: false}),
     style: danmenStyleFunction()
@@ -341,6 +342,7 @@ export const dialogMap = new Dialog({ hideOnClick: false, className: 'center' })
 //     alert(e.button)
 // });
 //-------------------------------------------------------------------------------------------
+export const overlay = []
 export function initMap (vm) {
     const map01 = document.getElementById('map01');
     map01.addEventListener('mouseleave', () => {
@@ -365,11 +367,12 @@ export function initMap (vm) {
         zoom: 6
     });
     for (let i in maps) {
+        console.log(i)
         //ポップアップを作る。
         const container = document.getElementById(maps[i].mapName + '-popup');
         const content = document.getElementById(maps[i].mapName  + '-popup-content');
         const closer = document.getElementById(maps[i].mapName  + '-popup-closer');
-        const overlay = []
+        // const overlay = []
         overlay[i] = new Overlay({
             element: container,
             autoPan: {

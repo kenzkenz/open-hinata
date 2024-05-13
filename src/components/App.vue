@@ -61,7 +61,7 @@
                     <b-button class='olbtn-red' :size="btnSize" @click="openDialog(s_dialogs[mapName])">背景</b-button>
                 </div>
                 <div class="top-right-div">
-                  <b-button i v-if="mapName === 'map01'" class='olbtn' :size="btnSize" @click="openDialog(s_dialogs['mainInfoDialog'])"><i class="fa-brands fa-github"></i></b-button>
+                  <b-button i v-if="mapName === 'map01'" class='olbtn' :size="btnSize" @click="openDialog(s_dialogs['dialogEdit0'])"><i class="fa-brands fa-github"></i></b-button>
                 </div>
 
                 <div class="bottom-right-div">
@@ -96,7 +96,7 @@
 <script>
   import DialogMenu from './Dialog-menu'
   import DialogLayer from './Dialog-layer'
-  import DialogMainInfo from './Dialog-main-info'
+  import DialogMainInfo from './Dialog-edit0'
   import DialogEdit from './Dialog-edit'
 
   import DialogPyramid from './Dialog-pyramid'

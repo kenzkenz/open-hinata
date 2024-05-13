@@ -350,7 +350,6 @@ export function permalinkEventSet (response) {
 }
 
 export function moveEnd () {
-  console.log(99999)
   const features = MyMap.drawLayer.getSource().getFeatures()
   features.forEach(function(feature){
     if (feature.getGeometry().getType() === 'Circle') {
@@ -372,7 +371,7 @@ export function moveEnd () {
     featureProjection: "EPSG:3857"
   });
   const geojsonT2 = JSON.stringify(JSON.parse(drawSourceGeojson2),null,1);
-  console.log(geojsonT2)
+  // console.log(geojsonT2)
 
 
 

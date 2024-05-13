@@ -1019,8 +1019,9 @@ export function popUp(map,layers,features,overlay,evt,content) {
       store.state.base.editFeatureName = features[0].getProperties().name
       store.state.base.editFeatureSetumei = features[0].getProperties().setumei
       store.state.base.editFeatureSrc = features[0].getProperties().src
-      store.state.base.dialogs.dialogEdit.style.display = 'block'
-
+      if (document.querySelector('#dialog-edit0').style.display === 'block') {
+        store.state.base.dialogs.dialogEdit.style.display = 'block'
+      }
       break
   }
 

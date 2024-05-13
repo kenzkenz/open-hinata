@@ -1,7 +1,8 @@
 <script src="../js/layers.js"></script>
 <template>
     <div class="dialog-div" :style="this.dialog.style" @mousedown="dialogMouseDown">
-        <div class="drag-handle" v-my-drag-handle></div>
+        <div class="drag-handle" v-my-drag-handle>
+        </div>
             <div>
               <div id="reset-btn" v-if="reset === 1" class="reset-btn-div" @click="resetBtn"><i class="fa-sharp fa-solid fa-trash-arrow-up hover"></i></div>
               <div class="close-btn-div" @click="closeBtn"><i class="fa-solid fa-xmark hover close-btn"></i></div>
@@ -96,6 +97,7 @@
         border-top-left-radius: 4px;
         border-top-right-radius: 4px;
         cursor: grab;
+        color: white;
         /*width: 50px;*/
     }
     .reset-btn-div{
