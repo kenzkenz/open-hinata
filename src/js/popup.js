@@ -1015,7 +1015,7 @@ export function popUp(map,layers,features,overlay,evt,content) {
       cont = '<div style=width:300px;>' +
           '<h4 id="drawLayer2-name">' + ru(prop.name) + '</h4>' +
           '<span id="drawLayer2-setumei">' + ru(prop.setumei) + '</span><br>' +
-          '<img id="drawLayer2-src" src="' + prop.src +'" style="object-fit: cover;width: 300px;"><br>' +
+          '<a id="drawLayer2-href" href="' + prop.src + '" target="_blank" ><img id="drawLayer2-src" src="' + prop.src + '" style="object-fit: cover;width: 300px;"></a><br>' +
           streetView +
           '</div>'
         // if (!prop.name) cont = ''

@@ -92,6 +92,7 @@ export default {
 
         feature.setProperties({src: fileName})
         document.querySelector('#drawLayer2-src').src = fileName
+        document.querySelector('#drawLayer2-href').href = fileName
         document.querySelector('#map01 .loadingImg').style.display = 'none'
 
       }, false);
