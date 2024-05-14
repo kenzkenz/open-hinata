@@ -138,15 +138,18 @@ export default {
                 .html("人数:" + data.value.toLocaleString() + '人');
           })
           .on("mousemove", function(event) {
-            let x
-            if ((window.innerWidth-300) < event.pageX) {
-              x = event.pageX - 110
-            } else {
-              x = event.pageX
-            }
+            // let x
+            // if ((window.innerWidth-300) < event.pageX) {
+            //   x = event.pageX - 110
+            // } else {
+            //   x = event.pageX
+            // }
+            // tooltip
+            //     .style("top", (event.pageY - 20) + "px")
+            //     .style("left", (x + 10) + "px");
             tooltip
                 .style("top", (event.pageY - 20) + "px")
-                .style("left", (x + 10) + "px");
+                .style("left", (event.pageX + 10) + "px");
           })
           .on("mouseout", function(d) {
             tooltip.style("visibility", "hidden");

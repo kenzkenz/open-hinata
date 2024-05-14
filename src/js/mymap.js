@@ -43,13 +43,58 @@ export  const drawLayer2 = new VectorLayer({
     // pointer: true,
     name: 'drawLayer2',
     source: new VectorSource({wrapX: false}),
-    style: danmenStyleFunction()
+    style: drawLayer2StyleFunction()
 })
 export const pointInteraction = new Draw({
     source: drawLayer2.getSource(),
     type: 'Point',
 })
-
+export const modifyInteraction2 = new Modify ({
+    source: drawLayer2.getSource(),
+})
+function  getZoom(resolution)  {
+    let zoom = 0;
+    let r = 156543.03390625; // resolution for zoom 0
+    while (resolution < r) {
+        r /= 2;
+        zoom++;
+        if (resolution > r) {
+            return zoom;
+        }
+    }
+    return zoom; // resolution was greater than 156543.03390625 so return 0
+}
+function drawLayer2StyleFunction() {
+    return function (feature, resolution) {
+        const zoom = getZoom(resolution);
+        const prop = feature.getProperties();
+        const styles = []
+        const iconStyle = new Style({
+            image: new Icon({
+                src: require('@/assets/icon/whitecircle.png'),
+                color: 'red',
+                scale: 1.5
+            })
+        })
+        const textStyle = new Style({
+            text: new Text({
+                font: "16px sans-serif",
+                text: prop.name,
+                offsetY: 20,
+                fill: new Fill({
+                    color: "black"
+                }),
+                stroke: new Stroke({
+                    color: "white",
+                    width: 3
+                }),
+            })
+        });
+        if(zoom>=12) styles.push(textStyle)
+        styles.push(iconStyle)
+        return styles;
+    }
+}
 export  const danmenLayer = new VectorLayer({
     name: 'drawSource',
     source: new VectorSource({wrapX: false}),
@@ -436,6 +481,9 @@ export function initMap (vm) {
             overlay[i].setPosition(undefined)
             moveEnd()
         })
+
+
+
         //-----------------------
 
 

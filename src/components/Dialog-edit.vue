@@ -3,7 +3,7 @@
     <div :style="contentSize">
       <input style="width: 300px;" type="text" @input="changeName" v-model="s_featureName" placeholder="名称を入力（必須）">
       <hr>
-      <textarea rows="4" cols="36" @input="changeName" v-model="s_featureSetumei" placeholder="説明を入力"></textarea>
+      <textarea style="width: 300px;" rows="4" cols="35" @input="changeName" v-model="s_featureSetumei" placeholder="説明を入力"></textarea>
       <hr>
       <img :src="s_featureSrc" style="width: 300px;">
       <form id="my_form">
@@ -17,20 +17,16 @@
 </template>
 
 <script>
-import axios from "axios";
 import * as MyMap from '../js/mymap'
-import * as d3 from "d3";
 import {moveEnd} from "@/js/permalink"
 import store from "@/js/store";
-
-// import FormData from 'form-data'
 
 export default {
   name: "dialog-edit",
   data () {
     return {
       togglePoint: false,
-      contentSize: {'height': 'auto', 'margin': '10px', 'overflow': 'auto', 'user-select': 'text'},
+      contentSize: {'height': 'auto', 'margin': '10px', 'overflow': 'hidden', 'user-select': 'text'},
     }
   },
   computed: {
@@ -58,13 +54,11 @@ export default {
       MyMap.drawLayer2.getSource().removeFeature(this.$store.state.base.editFeature)
       store.state.base.dialogs.dialogEdit.style.display = 'none'
       MyMap.overlay['0'].setPosition(undefined)
-
-
     },
     changeName(e) {
-      console.log(e)
+      // console.log(e)
       const feature = this.$store.state.base.editFeature
-      console.log(feature)
+      // console.log(feature)
       feature.setProperties({name: this.$store.state.base.editFeatureName})
       feature.setProperties({setumei: this.$store.state.base.editFeatureSetumei})
       document.querySelector('#drawLayer2-name').innerHTML = this.$store.state.base.editFeatureName
@@ -94,12 +88,10 @@ export default {
         vm.$store.state.base.editFeatureSrc = fileName
 
         const feature = vm.$store.state.base.editFeature
-        console.log(feature)
+        // console.log(feature)
 
         feature.setProperties({src: fileName})
         document.querySelector('#drawLayer2-src').src = fileName
-
-
         document.querySelector('#map01 .loadingImg').style.display = 'none'
 
       }, false);
@@ -107,10 +99,7 @@ export default {
   },
   mounted () {
     const dragHandle = document.querySelector('#dialog-edit .drag-handle');
-    console.log(dragHandle)
     dragHandle.innerHTML = '編集'
-
-
 
     this.$watch(function () {
 

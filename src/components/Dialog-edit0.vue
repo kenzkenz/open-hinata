@@ -46,8 +46,10 @@
       }, function () {
         if (this.s_togglePoint) {
           this.$store.state.base.maps['map01'].addInteraction(MyMap.pointInteraction)
+          // this.$store.state.base.maps['map01'].addInteraction(MyMap.modifyInteraction2)
         } else {
           this.$store.state.base.maps['map01'].removeInteraction(MyMap.pointInteraction)
+          // this.$store.state.base.maps['map01'].removeInteraction(MyMap.modifyInteraction2)
         }
       })
     }

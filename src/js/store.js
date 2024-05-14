@@ -28,7 +28,7 @@ const moduleBase = {
     },
     dialogs: {
       dialogEdit0:{style: {top: '56px', right: '10px', 'z-index': 1, height: 'auto', 'width': '200px', display: 'none'}},
-      dialogEdit:{style: {top: '250px', right: '10px', 'z-index': 1, height: 'auto', 'width': 'auto', display: 'none'}},
+      dialogEdit:{style: {top: '250px', right: '10px', 'z-index': 1, height: 'auto', 'width': '323px', display: 'none'}},
 
       // pyramidDialog:{
       //   map01: {style: {top: '56px', right: '10px', 'z-index': 1, height: 'auto', 'width': '550px', display: 'block'}},

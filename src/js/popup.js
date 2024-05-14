@@ -1006,8 +1006,14 @@ export function popUp(map,layers,features,overlay,evt,content) {
       break
     case 'drawLayer2':
       width = 300
+      // let img
+      // if (prop.src) {
+      //   img = '<img id="drawLayer2-src" src="' + prop.src +'" style="object-fit: cover;width: 300px;"><br>'
+      // } else {
+      //   img = ''
+      // }
       cont = '<div style=width:300px;>' +
-          '<h4 id="drawLayer2-name">' + prop.name + '</h4>' +
+          '<h4 id="drawLayer2-name">' + ru(prop.name) + '</h4>' +
           '<span id="drawLayer2-setumei">' + ru(prop.setumei) + '</span><br>' +
           '<img id="drawLayer2-src" src="' + prop.src +'" style="object-fit: cover;width: 300px;"><br>' +
           streetView +

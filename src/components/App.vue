@@ -61,7 +61,7 @@
                     <b-button class='olbtn-red' :size="btnSize" @click="openDialog(s_dialogs[mapName])">背景</b-button>
                 </div>
                 <div class="top-right-div">
-                  <b-button i v-if="mapName === 'map01'" class='olbtn' :size="btnSize" @click="openDialog(s_dialogs['dialogEdit0'])"><i class="fa-brands fa-github"></i></b-button>
+                  <b-button i v-if="mapName === 'map01'" class='olbtn' :size="btnSize" @click="openDialog(s_dialogs['dialogEdit0'])"><i class="fa-solid fa-pen"></i></b-button>
                 </div>
 
                 <div class="bottom-right-div">
@@ -226,15 +226,17 @@
       },
       // ダイアログを開く------------------------------------------------------------------
       openDialog (dialog) {
-        // this.$store.commit('base/incrDialogMaxZindex');
-        // dialog.style["z-index"] = this.s_dialogMaxZindex;
-        // dialog.style.display = 'block'
         if (dialog.style.display === 'block') {
           dialog.style.display = 'none'
+          // this.$store.state.base.maps['map01'].removeInteraction(MyMap.modifyInteraction2)
+
         } else {
           this.$store.commit('base/incrDialogMaxZindex');
           dialog.style["z-index"] = this.s_dialogMaxZindex;
           dialog.style.display = 'block'
+          MyMap.overlay['0'].setPosition(undefined)
+
+          // this.$store.state.base.maps['map01'].addInteraction(MyMap.modifyInteraction2)
         }
       },
       // 分割-------------------------------------------------------------------------------------

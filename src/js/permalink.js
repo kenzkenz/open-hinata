@@ -58,7 +58,7 @@ export function permalinkEventSet (response) {
   });
   if (window.location.hash !== '') {
     // const hash = decodeURIComponent(window.location.hash.replace('#', ''));
-    console.log(response)
+    // console.log(response)
     let hash
     if (response.data) {
       hash = decodeURIComponent(response.data.replace('#', ''));
@@ -73,16 +73,11 @@ export function permalinkEventSet (response) {
     const parts = hash.split('/');
     const map = store.state.base.maps.map01;
     // if (parts.length === 3) {
-      const center = [ parseFloa
-
-
-
-        t(parts[1]), parseFloat(parts[2]) ];
+      const center = [ parseFloat(parts[1]), parseFloat(parts[2]) ];
       const center3857 = transform(center,'EPSG:4326','EPSG:3857');
       map.getView().setCenter(center3857);
       // map.getView().setZoom(parseInt(parts[0], 10))
-
-      console.log(parts)
+      // console.log(parts)
       map.getView().setZoom(parts[0])
     // }
     // パラメータで復帰
@@ -366,7 +361,7 @@ export function moveEnd () {
       parameter += '&3d' + map + '=' + jsonT
     }
   })
-    console.log(hash)
+    // console.log(hash)
   // console.log(parameter.replace(/,/g,encodeURIComponent(",")))
   // parameter = parameter.replace(/,/g,encodeURIComponent(","))
   // parameterだけエンコードする。起動時にwindow.location.hashでハッシュ値を取得するため
