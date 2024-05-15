@@ -1039,346 +1039,6 @@
           }
         })
       })
-      // R02小地域人口ピラミッド----------------------------------------------------------------
-      // const maps = ['map01','map02','map03','map04']
-      // maps.forEach((mapName) => {
-      //   const olPopup = document.querySelector('#' + mapName + ' .ol-popup')
-      //   olPopup.addEventListener('click', (e) => {
-      //     if (e.target && e.target.classList.contains("pyramid-syochiiki-r02") ) {
-      //       d3.select('#' + mapName + ' .loadingImg').style("display","block")
-      //       this.$store.state.base.cdArea = e.target.getAttribute("cdArea")
-      //       this.$store.state.base.syochiikiName = e.target.getAttribute("syochiikiname")
-      //       const cityCode = this.$store.state.base.cdArea.slice(0,5)
-      //       const azaCode = this.$store.state.base.cdArea.slice(5)
-      //       axios
-      //           .get('https://kenzkenz.xsrv.jp/open-hinata/php/pyramid.php',{
-      //             params: {
-      //               cityCode: cityCode,
-      //               azaCode: azaCode
-      //             }
-      //           }).then(function (response) {
-      //         d3.select('#' + mapName + ' .loadingImg').style("display","none")
-      //         console.log(response.data)
-      //         const dataMan = []
-      //         const dataWoman = []
-      //         const dataSousu = []
-      //         response.data.forEach((v) => {
-      //           if (v.男女 === '男') {
-      //             dataMan.push({class: '0～4歳', man: Number(v['0～4歳'])})
-      //             dataMan.push({class: '5～9歳', man: Number(v['5～9歳'])})
-      //             dataMan.push({class: '10～14歳', man: Number(v['10～14歳'])})
-      //             dataMan.push({class: '15～19歳', man: Number(v['15～19歳'])})
-      //             dataMan.push({class: '20～24歳', man: Number(v['20～24歳'])})
-      //             dataMan.push({class: '25～29歳', man: Number(v['25～29歳'])})
-      //             dataMan.push({class: '30～34歳', man: Number(v['30～34歳'])})
-      //             dataMan.push({class: '35～39歳', man: Number(v['35～39歳'])})
-      //             dataMan.push({class: '40～44歳', man: Number(v['40～44歳'])})
-      //             dataMan.push({class: '45～49歳', man: Number(v['45～49歳'])})
-      //             dataMan.push({class: '50～54歳', man: Number(v['50～54歳'])})
-      //             dataMan.push({class: '55～59歳', man: Number(v['55～59歳'])})
-      //             dataMan.push({class: '60～64歳', man: Number(v['60～64歳'])})
-      //             dataMan.push({class: '65～69歳', man: Number(v['65～69歳'])})
-      //             dataMan.push({class: '70～74歳', man: Number(v['70～74歳'])})
-      //             dataMan.push({class: '75～79歳', man: Number(v['75～79歳'])})
-      //             dataMan.push({class: '80～84歳', man: Number(v['80～84歳'])})
-      //             dataMan.push({class: '85～89歳', man: Number(v['85～89歳'])})
-      //             dataMan.push({class: '90～94歳', man: Number(v['90～94歳'])})
-      //             dataMan.push({class: '95～99歳', man: Number(v['95～99歳'])})
-      //             dataMan.push({class: '100歳以上', man: Number(v['100歳以上'])})
-      //           } else if(v.男女 === '女') {
-      //             dataWoman.push({woman: Number(v['0～4歳'])})
-      //             dataWoman.push({woman: Number(v['5～9歳'])})
-      //             dataWoman.push({woman: Number(v['10～14歳'])})
-      //             dataWoman.push({woman: Number(v['15～19歳'])})
-      //             dataWoman.push({woman: Number(v['20～24歳'])})
-      //             dataWoman.push({woman: Number(v['25～29歳'])})
-      //             dataWoman.push({woman: Number(v['30～34歳'])})
-      //             dataWoman.push({woman: Number(v['35～39歳'])})
-      //             dataWoman.push({woman: Number(v['40～44歳'])})
-      //             dataWoman.push({woman: Number(v['45～49歳'])})
-      //             dataWoman.push({woman: Number(v['50～54歳'])})
-      //             dataWoman.push({woman: Number(v['55～59歳'])})
-      //             dataWoman.push({woman: Number(v['60～64歳'])})
-      //             dataWoman.push({woman: Number(v['65～69歳'])})
-      //             dataWoman.push({woman: Number(v['70～74歳'])})
-      //             dataWoman.push({woman: Number(v['75～79歳'])})
-      //             dataWoman.push({woman: Number(v['80～84歳'])})
-      //             dataWoman.push({woman: Number(v['85～89歳'])})
-      //             dataWoman.push({woman: Number(v['90～94歳'])})
-      //             dataWoman.push({woman: Number(v['95～99歳'])})
-      //             dataWoman.push({woman: Number(v['100歳以上'])})
-      //           } else if(v.男女 === '総数') {
-      //             dataSousu.push({class: '総数', 総数: Number(v['総数'])})
-      //             dataSousu.push({class: '総数', over65: Number(v['65歳以上'])})
-      //             dataSousu.push({class: '総数', 平均年齢: Number(v['平均年齢'])})
-      //             dataSousu.push({class: '総数', 秘匿処理: v['秘匿処理']})
-      //           }
-      //         })
-      //         const data = dataMan.map((v,i) =>{
-      //           return Object.assign(v, dataWoman[i]);
-      //         })
-      //         console.log(dataSousu)
-      //         const sousu = dataSousu[0]['総数']
-      //         const over65 = dataSousu[1].over65
-      //         const heikinnenrei = dataSousu[2]['平均年齢'].toFixed(2) + '歳'
-      //         let koureikaritu
-      //         if (isNaN(over65)) {
-      //           koureikaritu = '0%'
-      //         } else {
-      //           koureikaritu = ((over65 / sousu) * 100).toFixed(2) + '%'
-      //         }
-      //         const hitokuSyori = dataSousu[3]['秘匿処理']
-      //         if (hitokuSyori === '秘匿地域') {
-      //           alert('秘匿地域です。人口ピラミッドは作成されません。R02')
-      //           return
-      //         }
-      //         vm.$store.state.base.koureikaritu = koureikaritu
-      //         vm.$store.state.base.heikinnenrei = heikinnenrei
-      //         vm.$store.state.base.kokuchoYear = e.target.getAttribute("year")
-      //
-      //         vm.$store.state.base.estatDataset = data
-      //
-      //         vm.$store.commit('base/incrDialog2Id');
-      //         vm.$store.commit('base/incrDialogMaxZindex');
-      //         let left
-      //         if (window.innerWidth < 600) {
-      //           left = (window.innerWidth / 2 - 175) + 'px'
-      //         } else {
-      //           left = (window.innerWidth - 560) + 'px'
-      //         }
-      //         const diialog =
-      //             {
-      //               id: vm.s_dialo2Id,
-      //               name:'pyramid-estat',
-      //               style: {
-      //                 display: 'block',
-      //                 top: '60px',
-      //                 left:left,
-      //                 'z-index': vm.s_dialogMaxZindex
-      //               }
-      //             }
-      //         vm.$store.commit('base/pushDialogs2',{mapName: mapName, dialog: diialog})
-      //       })
-      //       // switch (prefCode) {
-      //       //   case '01':
-      //       //     statsDataId = '8003006783'
-      //       //     break
-      //       //   case '02':
-      //       //     statsDataId = '8003006747'
-      //       //     break
-      //       //   case '03':
-      //       //     statsDataId = '8003006760'
-      //       //     break
-      //       //   case '04':
-      //       //     statsDataId = '8003006765'
-      //       //     break
-      //       //   case '05':
-      //       //     statsDataId = '8003006766'
-      //       //     break
-      //       //   case '06':
-      //       //     statsDataId = '8003006791'
-      //       //     break
-      //       //   case '07':
-      //       //     statsDataId = '8003006755'
-      //       //     break
-      //       //   case '08':
-      //       //     statsDataId = '8003006756'
-      //       //     break
-      //       //   case '09':
-      //       //     statsDataId = '8003006769'
-      //       //     break
-      //       //   case '10':
-      //       //     statsDataId = '8003006778'
-      //       //     break
-      //       //   case '11':
-      //       //     statsDataId = '8003006762'
-      //       //     break
-      //       //   case '12':
-      //       //     statsDataId = '8003006752'
-      //       //     break
-      //       //   case '13':
-      //       //     statsDataId = '8003006792'
-      //       //     break
-      //       //   case '14':
-      //       //     statsDataId = '8003006761'
-      //       //     break
-      //       //   case '15':
-      //       //     statsDataId = '8003006774'
-      //       //     break
-      //       //   case '16':
-      //       //     statsDataId = '8003006784'
-      //       //     break
-      //       //   case '17':
-      //       //     statsDataId = '8003006771'
-      //       //     break
-      //       //   case '18':
-      //       //     statsDataId = '8003006753'
-      //       //     break
-      //       //   case '19':
-      //       //     statsDataId = '8003006758'
-      //       //     break
-      //       //   case '20':
-      //       //     statsDataId = '8003006775'
-      //       //     break
-      //       //   case '21':
-      //       //     statsDataId = '8003006782'
-      //       //     break
-      //       //   case '22':
-      //       //     statsDataId = '8003006767'
-      //       //     break
-      //       //   case '23':
-      //       //     statsDataId = '8003006757'
-      //       //     break
-      //       //   case '24':
-      //       //     statsDataId = '8003006776'
-      //       //     break
-      //       //   case '25':
-      //       //     statsDataId = '8003006787'
-      //       //     break
-      //       //   case '26':
-      //       //     statsDataId = '8003006764'
-      //       //     break
-      //       //   case '27':
-      //       //     statsDataId = '8003006751'
-      //       //     break
-      //       //   case '28':
-      //       //     statsDataId = '8003006777'
-      //       //     break
-      //       //   case '29':
-      //       //     statsDataId = '8003006763'
-      //       //     break
-      //       //   case '30':
-      //       //     statsDataId = '8003006772'
-      //       //     break
-      //       //   case '31':
-      //       //     statsDataId = '8003006790'
-      //       //     break
-      //       //   case '32':
-      //       //     statsDataId = '8003006754'
-      //       //     break
-      //       //   case '33':
-      //       //     statsDataId = '8003006779'
-      //       //     break
-      //       //   case '34':
-      //       //     statsDataId = '8003006785'
-      //       //     break
-      //       //   case '35':
-      //       //     statsDataId = '8003006793'
-      //       //     break
-      //       //   case '36':
-      //       //     statsDataId = '8003006759'
-      //       //     break
-      //       //   case '37':
-      //       //     statsDataId = '8003006780'
-      //       //     break
-      //       //   case '38':
-      //       //     statsDataId = '8003006781'
-      //       //     break
-      //       //   case '39':
-      //       //     statsDataId = '8003006786'
-      //       //     break
-      //       //   case '40':
-      //       //     statsDataId = '8003006768'
-      //       //     break
-      //       //   case '41':
-      //       //     statsDataId = '8003006788'
-      //       //     break
-      //       //   case '42':
-      //       //     statsDataId = '8003006749'
-      //       //     break
-      //       //   case '43':
-      //       //     statsDataId = '8003006789'
-      //       //     break
-      //       //   case '44':
-      //       //     statsDataId = '8003006770'
-      //       //     break
-      //       //   case '45':
-      //       //     statsDataId = '8003006773'
-      //       //     break
-      //       //   case '46':
-      //       //     statsDataId = '8003006750'
-      //       //     break
-      //       //   case '47':
-      //       //     statsDataId = '8003006748'
-      //       //     break
-      //       // }
-      //       // axios
-      //       //     .get('https://api.e-stat.go.jp/rest/3.0/app/json/getStatsData',{
-      //       //       params: {
-      //       //         appId:'5797c9f94cb117eca0c4e72ca1bd3dddad95c4a5',
-      //       //         // statsDataId:'8003006773', // 宮崎
-      //       //         // statsDataId: '8003006750', // 鹿児島
-      //       //         statsDataId:statsDataId,
-      //       //         // cdArea:"452011520",
-      //       //         cdArea:this.$store.state.base.cdArea
-      //       //       }
-      //       //     }).then(function (response) {
-      //       //       console.log(response.data)
-      //       //       const class0 = response.data.GET_STATS_DATA.STATISTICAL_DATA.CLASS_INF.CLASS_OBJ[0].CLASS
-      //       //       const value = response.data.GET_STATS_DATA.STATISTICAL_DATA.DATA_INF.VALUE
-      //       //       console.log(value[0]['$'])
-      //       //       console.log(value[18]['$'])
-      //       //       const koureikaritu = ((value[18]['$'] / value[0]['$']) * 100).toFixed(2) + '%'
-      //       //       console.log(koureikaritu)
-      //       //       vm.$store.state.base.koureikaritu = koureikaritu
-      //       //       const man = []
-      //       //       value.forEach((v, index) => {
-      //       //         if ((index >= 21 & index <= 35) || index === 39) {
-      //       //           man.push({class: class0[index]['@name'], man: v['$']})
-      //       //         }
-      //       //       })
-      //       //       const woman = []
-      //       //       value.forEach((v, index) => {
-      //       //         if ((index >= 41 & index <= 55) || index === 59) {
-      //       //           woman.push({class: class0[index]['@name'], woman: v['$']})
-      //       //         }
-      //       //       })
-      //       //
-      //       //       function toHalfWidth(str) {
-      //       //        // 全角英数字を半角に変換
-      //       //         str = str.replace(/[Ａ-Ｚａ-ｚ０-９]/g, function(s) {
-      //       //            return String.fromCharCode(s.charCodeAt(0) - 0xFEE0);
-      //       //         });
-      //       //         return str;
-      //       //       }
-      //       //       const estatDataset = man.map((v, i) => {
-      //       //         let class1 = toHalfWidth(v.class).replace('男','')
-      //       //         return {class: class1, man: Number(v.man), woman: Number(woman[i].woman)}
-      //       //       })
-      //       //       console.log(estatDataset)
-      //       //       console.log(vm.$store.state.base.estatDataset)
-      //       //       vm.$store.state.base.estatDataset = estatDataset
-      //       //
-      //       //   vm.$store.commit('base/incrDialog2Id');
-      //       //   vm.$store.commit('base/incrDialogMaxZindex');
-      //       //   let left
-      //       //   if (window.innerWidth < 600) {
-      //       //     left = (window.innerWidth / 2 - 175) + 'px'
-      //       //   } else {
-      //       //     left = (window.innerWidth - 560) + 'px'
-      //       //   }
-      //       //   const diialog =
-      //       //       {
-      //       //         id: vm.s_dialo2Id,
-      //       //         name:'pyramid-estat',
-      //       //         style: {
-      //       //           display: 'block',
-      //       //           top: '60px',
-      //       //           // left: '10px',
-      //       //           // right:'10px',
-      //       //           left:left,
-      //       //           'z-index': vm.s_dialogMaxZindex
-      //       //         }
-      //       //       }
-      //       //       vm.$store.state.base.resusOrEstat = 'eStat'
-      //       //       vm.$store.commit('base/pushDialogs2',{mapName: mapName, dialog: diialog})
-      //       //       vm.$store.state.base.cdArea = e.target.getAttribute("cdArea")
-      //       //
-      //       //
-      //       //     })
-      //     }
-      //   })
-      // })
       //小地域人口推移----------------------------------------------
       function r2jinkosuii(e,mapName){
         return new Promise(resolve => {
@@ -1395,56 +1055,11 @@
                 }
               }).then(function (response) {
             d3.select('#' + mapName + ' .loadingImg').style("display","none")
-            console.log(response.data)
             const dataMan = []
             const dataWoman = []
             const dataSousu = []
             response.data.forEach((v) => {
-              if (v.男女 === '男') {
-                dataMan.push({class: '0～4歳', man: Number(v['0～4歳'])})
-                dataMan.push({class: '5～9歳', man: Number(v['5～9歳'])})
-                dataMan.push({class: '10～14歳', man: Number(v['10～14歳'])})
-                dataMan.push({class: '15～19歳', man: Number(v['15～19歳'])})
-                dataMan.push({class: '20～24歳', man: Number(v['20～24歳'])})
-                dataMan.push({class: '25～29歳', man: Number(v['25～29歳'])})
-                dataMan.push({class: '30～34歳', man: Number(v['30～34歳'])})
-                dataMan.push({class: '35～39歳', man: Number(v['35～39歳'])})
-                dataMan.push({class: '40～44歳', man: Number(v['40～44歳'])})
-                dataMan.push({class: '45～49歳', man: Number(v['45～49歳'])})
-                dataMan.push({class: '50～54歳', man: Number(v['50～54歳'])})
-                dataMan.push({class: '55～59歳', man: Number(v['55～59歳'])})
-                dataMan.push({class: '60～64歳', man: Number(v['60～64歳'])})
-                dataMan.push({class: '65～69歳', man: Number(v['65～69歳'])})
-                dataMan.push({class: '70～74歳', man: Number(v['70～74歳'])})
-                dataMan.push({class: '75～79歳', man: Number(v['75～79歳'])})
-                dataMan.push({class: '80～84歳', man: Number(v['80～84歳'])})
-                dataMan.push({class: '85～89歳', man: Number(v['85～89歳'])})
-                dataMan.push({class: '90～94歳', man: Number(v['90～94歳'])})
-                dataMan.push({class: '95～99歳', man: Number(v['95～99歳'])})
-                dataMan.push({class: '100歳以上', man: Number(v['100歳以上'])})
-              } else if(v.男女 === '女') {
-                dataWoman.push({woman: Number(v['0～4歳'])})
-                dataWoman.push({woman: Number(v['5～9歳'])})
-                dataWoman.push({woman: Number(v['10～14歳'])})
-                dataWoman.push({woman: Number(v['15～19歳'])})
-                dataWoman.push({woman: Number(v['20～24歳'])})
-                dataWoman.push({woman: Number(v['25～29歳'])})
-                dataWoman.push({woman: Number(v['30～34歳'])})
-                dataWoman.push({woman: Number(v['35～39歳'])})
-                dataWoman.push({woman: Number(v['40～44歳'])})
-                dataWoman.push({woman: Number(v['45～49歳'])})
-                dataWoman.push({woman: Number(v['50～54歳'])})
-                dataWoman.push({woman: Number(v['55～59歳'])})
-                dataWoman.push({woman: Number(v['60～64歳'])})
-                dataWoman.push({woman: Number(v['65～69歳'])})
-                dataWoman.push({woman: Number(v['70～74歳'])})
-                dataWoman.push({woman: Number(v['75～79歳'])})
-                dataWoman.push({woman: Number(v['80～84歳'])})
-                dataWoman.push({woman: Number(v['85～89歳'])})
-                dataWoman.push({woman: Number(v['90～94歳'])})
-                dataWoman.push({woman: Number(v['95～99歳'])})
-                dataWoman.push({woman: Number(v['100歳以上'])})
-              } else if(v.男女 === '総数') {
+              if(v.男女 === '総数') {
                 dataSousu.push({class: '総数', 総数: Number(v['総数'])})
                 dataSousu.push({class: '総数', over65: Number(v['65歳以上'])})
                 dataSousu.push({class: '総数', 平均年齢: Number(v['平均年齢'])})
@@ -1456,7 +1071,6 @@
             const data = dataMan.map((v,i) =>{
               return Object.assign(v, dataWoman[i]);
             })
-            console.log(dataSousu)
             const sousu = dataSousu[0]['総数']
             const over65 = dataSousu[1].over65
             const heikinnenrei = dataSousu[2]['平均年齢'].toFixed(2) + '歳'
@@ -1478,9 +1092,12 @@
             const seisanRate = seisan / sousu * 100
             console.log(seisan)
             resolve(
-                {year:2020,value:sousu,ronenRate:ronenRate,nensyoRate:nensyoRate,seisanRate:seisanRate}
+                {year:2020,
+                  value:sousu,
+                  ronenRate:ronenRate,
+                  nensyoRate:nensyoRate,
+                  seisanRate:seisanRate}
             )
-
             vm.$store.state.base.koureikaritu = koureikaritu
             vm.$store.state.base.heikinnenrei = heikinnenrei
             vm.$store.state.base.kokuchoYear = e.target.getAttribute("year")
@@ -1515,9 +1132,9 @@
                   {
                     year:year,
                     value:0,
-                    ronenRate:'',
-                    nensyoRate:'',
-                    seisanRate:''
+                    ronenRate:0,
+                    nensyoRate:0,
+                    seisanRate:0
                   }
               )
               return
@@ -1568,9 +1185,6 @@
                   seisanRate:seisanRate
                 }
             )
-            // resolve(
-            //     {datasetAll:{year:year,value:sousu}}
-            // )
             vm.$store.commit('base/incrDialog2Id');
             vm.$store.commit('base/incrDialogMaxZindex');
           })
