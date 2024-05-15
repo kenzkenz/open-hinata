@@ -41,6 +41,7 @@ import Profile from 'ol-ext/control/Profile.js'
 
 export  const drawLayer2 = new VectorLayer({
     // pointer: true,
+    // className: 'drawLayer2',
     name: 'drawLayer2',
     source: new VectorSource({wrapX: false}),
     style: drawLayer2StyleFunction()
