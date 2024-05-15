@@ -331,7 +331,6 @@ danmenInteraction.on('drawend', function (event) {
     const feature = event.feature
     danmen(feature)
     history ('断面図')
-    console.log(event)
 })
 
 modifyInteraction.on('modifyend', function (event) {
@@ -412,7 +411,6 @@ export function initMap (vm) {
         zoom: 6
     });
     for (let i in maps) {
-        console.log(i)
         //ポップアップを作る。
         const container = document.getElementById(maps[i].mapName + '-popup');
         const content = document.getElementById(maps[i].mapName  + '-popup-content');
@@ -472,8 +470,6 @@ export function initMap (vm) {
             const feature = event.feature;
             const coordAr = feature.getGeometry().getCoordinates()
             const geoType = feature.getGeometry().getType()
-            console.log(feature)
-            console.log(store.state.base.dialogs.dialogEdit.style.display)
             store.state.base.editFeature = feature
             // map.removeInteraction(pointInteraction)
             store.state.base.togglePoint = false
@@ -1039,7 +1035,6 @@ export function initMap (vm) {
             }
             //  洪水浸水想定と重ねるときは動作させない
             const layers0 = map.getLayers().getArray();
-            console.log(layers0)
             const hazardLayers = layers0.filter(el => el.get('pointer'));
             if (hazardLayers.length>0) return
 

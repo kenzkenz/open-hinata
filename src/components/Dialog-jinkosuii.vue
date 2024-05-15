@@ -46,6 +46,9 @@ export default {
       const datasetSeisan = vm.$store.state.base.jinkosuiiDataset[0].data.result.data[2].data
       const datasetRonen = vm.$store.state.base.jinkosuiiDataset[0].data.result.data[3].data
 
+      console.log(datasetAll)
+
+
       const dialog2DragHandle = document.querySelector('#dialog2-' + vm.item.id + ' .drag-handle')
       dialog2DragHandle.innerHTML = vm.$store.state.base.cityName + '　人口推移'
 

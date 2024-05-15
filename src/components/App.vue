@@ -158,7 +158,6 @@
     computed: {
       s_hight: {
         get() {
-          console.log(this.$store.state.base.hight['map01'])
           return this.$store.state.base.hight['map01']
         },
         set(value) {
