@@ -86,11 +86,13 @@ const moduleBase = {
     estatDataset:[],
     resasDataset:[],
     jinkosuiiDataset:[],
+    jinkosuiiDatasetEstat:[],
     togglePoint:false,
     editFeature:'',
     editFeatureName:'',
     editFeatureSetumei:'',
     editFeatureSrc:'',
+    resasOrEstat:'',
   },
   getters: {
     layerList: (state) => (mapName) => {

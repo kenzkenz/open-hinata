@@ -1000,6 +1000,8 @@ export function popUp(map,layers,features,overlay,evt,content) {
           '<button class="pyramid-syochiiki-h27" year=2015 mapname="' + map.values_.target + '" cdArea="' + prop.KEY_CODE + '" syochiikiname="' + prop.S_NAME + '">2015人口ピラミッド</button><br>' +
           '<button class="pyramid-syochiiki-h22" year=2010 mapname="' + map.values_.target + '" cdArea="' + prop.KEY_CODE + '" syochiikiname="' + prop.S_NAME + '">2010人口ピラミッド</button><br>' +
           '<button class="pyramid-syochiiki-h17" year=2005 mapname="' + map.values_.target + '" cdArea="' + prop.KEY_CODE + '" syochiikiname="' + prop.S_NAME + '">2005人口ピラミッド</button><br>' +
+          '<button class="jinkosuii3" mapname="' + map.values_.target + '" cdArea="' + prop.KEY_CODE + '" syochiikiname="' + prop.S_NAME + '">人口推移</button><br>' +
+
           '<br>' +
           streetView +
           '</div></div>'

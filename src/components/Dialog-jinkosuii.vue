@@ -41,16 +41,35 @@ export default {
         }
       // 1. データの準備
 
-      const datasetAll = vm.$store.state.base.jinkosuiiDataset[0].data.result.data[0].data
-      const datasetNensyo = vm.$store.state.base.jinkosuiiDataset[0].data.result.data[1].data
-      const datasetSeisan = vm.$store.state.base.jinkosuiiDataset[0].data.result.data[2].data
-      const datasetRonen = vm.$store.state.base.jinkosuiiDataset[0].data.result.data[3].data
+      let datasetAll
+      let datasetNensyo
+      let datasetSeisan
+      let datasetRonen
+      if (vm.$store.state.base.resasOrEstat === 'resas') {
+        datasetAll = vm.$store.state.base.jinkosuiiDataset[0].data.result.data[0].data
+        datasetNensyo = vm.$store.state.base.jinkosuiiDataset[0].data.result.data[1].data
+        datasetSeisan = vm.$store.state.base.jinkosuiiDataset[0].data.result.data[2].data
+        datasetRonen = vm.$store.state.base.jinkosuiiDataset[0].data.result.data[3].data
+      } else {
+        datasetAll = vm.$store.state.base.jinkosuiiDatasetEstat.datasetAll
+        datasetNensyo = vm.$store.state.base.jinkosuiiDatasetEstat.datasetNensyo
+        datasetSeisan = vm.$store.state.base.jinkosuiiDatasetEstat.datasetSeisan
+        datasetRonen = vm.$store.state.base.jinkosuiiDatasetEstat.datasetRonen
+      }
+
 
       console.log(datasetAll)
+      console.log(datasetNensyo)
+      console.log(datasetRonen)
 
 
       const dialog2DragHandle = document.querySelector('#dialog2-' + vm.item.id + ' .drag-handle')
-      dialog2DragHandle.innerHTML = vm.$store.state.base.cityName + '　人口推移'
+      if (vm.$store.state.base.resasOrEstat === 'resas') {
+        dialog2DragHandle.innerHTML = vm.$store.state.base.cityName + '　人口推移'
+      } else {
+        dialog2DragHandle.innerHTML = vm.$store.state.base.syochiikiName + '　人口推移'
+      }
+
 
       let width = 550; // グラフの幅
       const height = 300; // グラフの高さ
@@ -193,7 +212,10 @@ export default {
           .attr("stroke", "red")
           .attr("stroke-width", 1.5)
           .attr("d", d3.line()
-              .x(function(d) { return xScale(d.year); })
+              .x(function(d) {
+                console.log(d.year)
+                return xScale(d.year);
+              })
               .y(function(d) { return yScaleNensyou(d.rate); }))
           .attr("transform", "translate(" + xScale.bandwidth()/2 + "," + 0 + ")")
 
