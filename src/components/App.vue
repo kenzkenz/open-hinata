@@ -1150,7 +1150,6 @@
               dataSousu.push({class: '総数', 総数15歳未満: Number(v['15歳未満'])})
               dataSousu.push({class: '総数', 総数1564歳: Number(v['15～64歳'])})
             })
-
             const sousu = dataSousu[0]['総数']
             const over65 = dataSousu[1]['総数65歳以上']
             const heikinnenrei = dataSousu[2]['平均年齢'].toFixed(2) + '歳'
@@ -1168,7 +1167,16 @@
             const seisanRate = seisan / sousu * 100
 
             if (hitokuSyori === '秘匿地域') {
-              alert('秘匿地域です。人口推移は作成されません。２')
+              alert('過去に秘匿地域でした。線グラフが０からスタートします。注意してください。')
+              resolve(
+                  {
+                    year:year,
+                    value:0,
+                    ronenRate:0,
+                    nensyoRate:0,
+                    seisanRate:0
+                  }
+              )
               return;
             }
 
@@ -1182,7 +1190,8 @@
                   value:sousu,
                   ronenRate:ronenRate,
                   nensyoRate:nensyoRate,
-                  seisanRate:seisanRate
+                  seisanRate:seisanRate,
+                  seisan:seisan
                 }
             )
             vm.$store.commit('base/incrDialog2Id');
@@ -1197,32 +1206,34 @@
           if (e.target && e.target.classList.contains("jinkosuii3") ) {
             async function sample() {
               const arr = []
-              const a2005 = await h27jinkosuii(e,mapName,2005);
+              const a2005 = await h27jinkosuii(e,mapName,2005)
               arr.push(a2005)
-              const a2010 = await h27jinkosuii(e,mapName,2010);
+              const a2010 = await h27jinkosuii(e,mapName,2010)
               arr.push(a2010)
-              const a2015 = await h27jinkosuii(e,mapName,2015);
+              const a2015 = await h27jinkosuii(e,mapName,2015)
               arr.push(a2015)
-              const a2020 = await r2jinkosuii(e,mapName);
+              const a2020 = await r2jinkosuii(e,mapName)
               arr.push(a2020)
               return arr
             }
             sample().then((response) => {
-              console.log(response); // => 70
               vm.$store.state.base.jinkosuiiDatasetEstat['datasetAll'] = response
               const ronen = response.map((value) =>{
+                if (isNaN(value.ronenRate)) value.ronenRate = 0
                 return {year:value.year,rate:value.ronenRate}
               })
               vm.$store.state.base.jinkosuiiDatasetEstat['datasetRonen'] = ronen
               const nensyo = response.map((value) =>{
+                if (isNaN(value.nensyoRate)) value.nensyoRate = 0
                 return {year:value.year,rate:value.nensyoRate}
               })
               vm.$store.state.base.jinkosuiiDatasetEstat['datasetNensyo'] = nensyo
               const seisan = response.map((value) =>{
-                return {year:value.year,rate:value.seisanRate}
+                if (isNaN(value.seisanRate)) value.seisanRate = 0
+                return {year:value.year,rate:value.seisanRate,sousu:value.value,seisan:value.seisan}
               })
               vm.$store.state.base.jinkosuiiDatasetEstat['datasetSeisan'] = seisan
-
+console.log(seisan)
 
               vm.$store.commit('base/incrDialog2Id');
               vm.$store.commit('base/incrDialogMaxZindex');

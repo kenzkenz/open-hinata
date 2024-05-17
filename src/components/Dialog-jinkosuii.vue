@@ -213,7 +213,6 @@ export default {
           .attr("stroke-width", 1.5)
           .attr("d", d3.line()
               .x(function(d) {
-                console.log(d.year)
                 return xScale(d.year);
               })
               .y(function(d) { return yScaleNensyou(d.rate); }))
