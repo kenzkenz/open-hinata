@@ -9,9 +9,7 @@
 </template>
 
 <script>
-    import axios from "axios";
     import * as MyMap from '../js/mymap'
-    import * as Permalink from "@/js/permalink";
 
     export default {
     name: "mainInfo",

@@ -3,11 +3,9 @@ import { transform } from 'ol/proj.js'
 import * as Layers from '../js/layers'
 import * as MyMap from '../js/mymap'
 import axios from "axios";
-import {drawLayer, modifyInteraction} from "../js/mymap";
 import {GeoJSON} from "ol/format";
 import {Circle,LineString,Polygon,Point} from "ol/geom";
 import Feature from "ol/Feature";
-import * as turf from "@turf/turf";
 import OLCesium from "ol-cesium";
 export function permalinkEventSet (response) {
   // 起動時の処理------------------------------------------------------------------------------

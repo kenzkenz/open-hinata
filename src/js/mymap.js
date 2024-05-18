@@ -35,7 +35,6 @@ import {moveEnd} from "./permalink"
 import Dialog from 'ol-ext/control/Dialog'
 import Icon from 'ol/style/Icon'
 import * as d3 from "d3"
-import Profile from 'ol-ext/control/Profile.js'
 
 // ドロー関係-------------------------------------------------------------------------------
 

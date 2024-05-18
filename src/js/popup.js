@@ -2,9 +2,6 @@ import store from './store'
 import { transform, fromLonLat } from 'ol/proj.js'
 import axios from 'axios'
 import figureRGB from './figureRGB'
-import {transformExtent} from "ol/proj";
-import {moveEnd} from "@/js/permalink";
-import {pointInteraction} from "@/js/mymap";
 export function popUp(map,layers,features,overlay,evt,content) {
   let cont
   let coordinate

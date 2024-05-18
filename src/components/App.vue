@@ -98,15 +98,11 @@
   import DialogLayer from './Dialog-layer'
   import DialogMainInfo from './Dialog-edit0'
   import DialogEdit from './Dialog-edit'
-
-  import DialogPyramid from './Dialog-pyramid'
   import * as Permalink from '../js/permalink'
   import Inobounce from '../js/inobounce'
   import * as MyMap from '../js/mymap'
   import axios from "axios";
-  import * as permalink from "@/js/permalink";
   import store from "@/js/store";
-  import {dialog} from "../js/mymap";
   import OLCesium from 'ol-cesium'
   import * as d3 from "d3";
 

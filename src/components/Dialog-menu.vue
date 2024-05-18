@@ -55,14 +55,9 @@
 <script>
   import axios from 'axios'
   import * as MyMap from '../js/mymap'
-  import {transform} from "ol/proj";
-  import Target from "ol-ext/control/Target";
-  import ol_control_Target from "ol-ext/control/Target";
   import {drawLayer, selectInteraction} from "../js/mymap";
   import {GPX, GeoJSON, IGC, KML, TopoJSON} from 'ol/format.js';
   import {moveEnd} from "../js/permalink";
-  import OLCesium from 'ol-cesium'
-
 
   export default {
     name: "Menu",

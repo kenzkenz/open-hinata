@@ -9,11 +9,8 @@
 import * as d3 from "d3"
 import Point from 'ol/geom/Point.js'
 import Feature from 'ol/Feature.js'
-import axios from "axios";
-// import {transform} from "ol/proj";
 import * as MyMap from '../js/mymap'
-import { transform, fromLonLat } from 'ol/proj'
-import {drawLayer} from "../js/mymap";
+import { transform} from 'ol/proj'
 
 export default {
   name: "Dialog-pyramid",
