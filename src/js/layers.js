@@ -106,8 +106,6 @@ function flood(pixels, data) {
       if (rgb) pixel[1] = rgb.g;
       if (rgb) pixel[2] = rgb.b;
       if (rgb) pixel[3] = 255
-
-
       // const c = data.colors
       // if (sinsui >= -10) {
       //   pixel[0] = c.sea10.r; pixel[1] = c.sea10.g; pixel[2] = c.sea10.b; pixel[3] = c.sea10.a*255
@@ -232,8 +230,6 @@ for (let i of mapsStr) {
   flood15Obj[i].values_['multiply'] = true
 }
 
-
-
 function DemSinple1 () {
   this.multiply = true
   this.source = new RasterSource({
@@ -277,11 +273,6 @@ for (let i of mapsStr) {
   })
   floodSinpleObj[i].values_['multiply'] = true
 }
-
-
-
-
-
 
 //dem5---------------------------------------------------------------------------------
 const elevation5 = new XYZ({
@@ -1093,472 +1084,472 @@ for (let i of mapsStr) {
 }
 const kochiRinsouSumm = '<a href="https://www.geospatial.jp/ckan/dataset/ls_standtype_kochi" target="_blank">G空間情報センター</a>';
 
-// 大阪府CS立体図 ----------------------------------------------------------------------------
-function Chihayaakasakamura () {
-  this.preload = Infinity
-  // this.extent = transformE([138.9259, 35.90926,139.6112, 35.46722])
-  this.source = new XYZ({
-    url: 'https://kenzkenz2.xsrv.jp/osaka/chihayaakasakamura/{z}/{x}/{y}.png',
-    crossOrigin: 'Anonymous',
-    minZoom: 1,
-    maxZoom: 18
-  });
-}
-const chihayaakasakamuraObj = {};
-for (let i of mapsStr) {
-  chihayaakasakamuraObj[i] = new TileLayer(new Chihayaakasakamura())
-}
-const osakaSumm = '<a href="https://www.geospatial.jp/ckan/dataset/cs" target="_blank">G空間情報センター</a>';
-
-function Tondabayashishi () {
-  this.preload = Infinity
-  // this.extent = transformE([138.9259, 35.90926,139.6112, 35.46722])
-  this.source = new XYZ({
-    url: 'https://kenzkenz2.xsrv.jp/osaka/tondabayashishi/{z}/{x}/{y}.png',
-    crossOrigin: 'Anonymous',
-    minZoom: 1,
-    maxZoom: 18
-  });
-}
-const tondabayashishiObj = {};
-for (let i of mapsStr) {
-  tondabayashishiObj[i] = new TileLayer(new Tondabayashishi())
-}
-
-function Daitoushi () {
-  this.preload = Infinity
-  // this.extent = transformE([138.9259, 35.90926,139.6112, 35.46722])
-  this.source = new XYZ({
-    url: 'https://kenzkenz2.xsrv.jp/osaka/daitoushi/{z}/{x}/{y}.png',
-    crossOrigin: 'Anonymous',
-    minZoom: 1,
-    maxZoom: 18
-  });
-}
-const daitoushiObj = {};
-for (let i of mapsStr) {
-  daitoushiObj[i] = new TileLayer(new Daitoushi())
-}
-function Hannanshi () {
-  this.preload = Infinity
-  // this.extent = transformE([138.9259, 35.90926,139.6112, 35.46722])
-  this.source = new XYZ({
-    url: 'https://kenzkenz2.xsrv.jp/osaka/hannanshi/{z}/{x}/{y}.png',
-    crossOrigin: 'Anonymous',
-    minZoom: 1,
-    maxZoom: 18
-  });
-}
-const hannanshiObj = {};
-for (let i of mapsStr) {
-  hannanshiObj[i] = new TileLayer(new Hannanshi())
-}
-function Higashiosakashi () {
-  this.preload = Infinity
-  // this.extent = transformE([138.9259, 35.90926,139.6112, 35.46722])
-  this.source = new XYZ({
-    url: 'https://kenzkenz2.xsrv.jp/osaka/higashiosakashi/{z}/{x}/{y}.png',
-    crossOrigin: 'Anonymous',
-    minZoom: 1,
-    maxZoom: 18
-  });
-}
-const higashiosakashiObj = {};
-for (let i of mapsStr) {
-  higashiosakashiObj[i] = new TileLayer(new Higashiosakashi())
-}
-function Hirakatashi () {
-  this.preload = Infinity
-  // this.extent = transformE([138.9259, 35.90926,139.6112, 35.46722])
-  this.source = new XYZ({
-    url: 'https://kenzkenz2.xsrv.jp/osaka/hirakatashi/{z}/{x}/{y}.png',
-    crossOrigin: 'Anonymous',
-    minZoom: 1,
-    maxZoom: 18
-  });
-}
-const hirakatashiObj = {};
-for (let i of mapsStr) {
-  hirakatashiObj[i] = new TileLayer(new Hirakatashi())
-}
-function Ibarakishi () {
-  this.preload = Infinity
-  // this.extent = transformE([138.9259, 35.90926,139.6112, 35.46722])
-  this.source = new XYZ({
-    url: 'https://kenzkenz2.xsrv.jp/osaka/ibarakishi/{z}/{x}/{y}.png',
-    crossOrigin: 'Anonymous',
-    minZoom: 1,
-    maxZoom: 18
-  });
-}
-const ibarakishiObj = {};
-for (let i of mapsStr) {
-  ibarakishiObj[i] = new TileLayer(new Ibarakishi())
-}
-function Ikedashi () {
-  this.preload = Infinity
-  // this.extent = transformE([138.9259, 35.90926,139.6112, 35.46722])
-  this.source = new XYZ({
-    url: 'https://kenzkenz2.xsrv.jp/osaka/ikedashi/{z}/{x}/{y}.png',
-    crossOrigin: 'Anonymous',
-    minZoom: 1,
-    maxZoom: 18
-  });
-}
-const ikedashiObj = {};
-for (let i of mapsStr) {
-  ikedashiObj[i] = new TileLayer(new Ikedashi())
-}
-function Habikinoshi () {
-  this.preload = Infinity
-  // this.extent = transformE([138.9259, 35.90926,139.6112, 35.46722])
-  this.source = new XYZ({
-    url: 'https://kenzkenz2.xsrv.jp/osaka/habikinoshi/{z}/{x}/{y}.png',
-    crossOrigin: 'Anonymous',
-    minZoom: 1,
-    maxZoom: 18
-  });
-}
-const habikinoshiObj = {};
-for (let i of mapsStr) {
-  habikinoshiObj[i] = new TileLayer(new Habikinoshi())
-}
-function Izumisanoshi () {
-  this.preload = Infinity
-  // this.extent = transformE([138.9259, 35.90926,139.6112, 35.46722])
-  this.source = new XYZ({
-    url: 'https://kenzkenz2.xsrv.jp/osaka/izumisanoshi/{z}/{x}/{y}.png',
-    crossOrigin: 'Anonymous',
-    minZoom: 1,
-    maxZoom: 18
-  });
-}
-const izumisanoshiObj = {};
-for (let i of mapsStr) {
-  izumisanoshiObj[i] = new TileLayer(new Izumisanoshi())
-}
-function Izumishi () {
-  this.preload = Infinity
-  // this.extent = transformE([138.9259, 35.90926,139.6112, 35.46722])
-  this.source = new XYZ({
-    url: 'https://kenzkenz2.xsrv.jp/osaka/izumishi/{z}/{x}/{y}.png',
-    crossOrigin: 'Anonymous',
-    minZoom: 1,
-    maxZoom: 18
-  });
-}
-const izumiObj = {};
-for (let i of mapsStr) {
-  izumiObj[i] = new TileLayer(new Izumishi())
-}
-function Kaizukashi () {
-  this.preload = Infinity
-  // this.extent = transformE([138.9259, 35.90926,139.6112, 35.46722])
-  this.source = new XYZ({
-    url: 'https://kenzkenz2.xsrv.jp/osaka/kaizukashi/{z}/{x}/{y}.png',
-    crossOrigin: 'Anonymous',
-    minZoom: 1,
-    maxZoom: 18
-  });
-}
-const kaizukashiObj = {};
-for (let i of mapsStr) {
-  kaizukashiObj[i] = new TileLayer(new Kaizukashi())
-}
-function Kashiwarashi () {
-  this.preload = Infinity
-  // this.extent = transformE([138.9259, 35.90926,139.6112, 35.46722])
-  this.source = new XYZ({
-    url: 'https://kenzkenz2.xsrv.jp/osaka/kashiwarashi/{z}/{x}/{y}.png',
-    crossOrigin: 'Anonymous',
-    minZoom: 1,
-    maxZoom: 18
-  });
-}
-const kashiwarashiObj = {};
-for (let i of mapsStr) {
-  kashiwarashiObj[i] = new TileLayer(new Kashiwarashi())
-}
-function Kananchou () {
-  this.preload = Infinity
-  // this.extent = transformE([138.9259, 35.90926,139.6112, 35.46722])
-  this.source = new XYZ({
-    url: 'https://kenzkenz2.xsrv.jp/osaka/kananchou/{z}/{x}/{y}.png',
-    crossOrigin: 'Anonymous',
-    minZoom: 1,
-    maxZoom: 18
-  });
-}
-const kananchouObj = {};
-for (let i of mapsStr) {
-  kananchouObj[i] = new TileLayer(new Kananchou())
-}
-function Katanoshi () {
-  this.preload = Infinity
-  // this.extent = transformE([138.9259, 35.90926,139.6112, 35.46722])
-  this.source = new XYZ({
-    url: 'https://kenzkenz2.xsrv.jp/osaka/katanoshi/{z}/{x}/{y}.png',
-    crossOrigin: 'Anonymous',
-    minZoom: 1,
-    maxZoom: 18
-  });
-}
-const katanoshiObj = {};
-for (let i of mapsStr) {
-  katanoshiObj[i] = new TileLayer(new Katanoshi())
-}
-function Kawachinaganoshi () {
-  this.preload = Infinity
-  // this.extent = transformE([138.9259, 35.90926,139.6112, 35.46722])
-  this.source = new XYZ({
-    url: 'https://kenzkenz2.xsrv.jp/osaka/kawachinaganoshi/{z}/{x}/{y}.png',
-    crossOrigin: 'Anonymous',
-    minZoom: 1,
-    maxZoom: 18
-  });
-}
-const kawachinaganoshiObj = {};
-for (let i of mapsStr) {
-  kawachinaganoshiObj[i] = new TileLayer(new Kawachinaganoshi())
-}
-function Kishiwadashi () {
-  this.preload = Infinity
-  // this.extent = transformE([138.9259, 35.90926,139.6112, 35.46722])
-  this.source = new XYZ({
-    url: 'https://kenzkenz2.xsrv.jp/osaka/kishiwadashi/{z}/{x}/{y}.png',
-    crossOrigin: 'Anonymous',
-    minZoom: 1,
-    maxZoom: 18
-  });
-}
-const kishiwadashiObj = {};
-for (let i of mapsStr) {
-  kishiwadashiObj[i] = new TileLayer(new Kishiwadashi())
-}
-function Kumatorichou () {
-  this.preload = Infinity
-  // this.extent = transformE([138.9259, 35.90926,139.6112, 35.46722])
-  this.source = new XYZ({
-    url: 'https://kenzkenz2.xsrv.jp/osaka/kumatorichou/{z}/{x}/{y}.png',
-    crossOrigin: 'Anonymous',
-    minZoom: 1,
-    maxZoom: 18
-  });
-}
-const kumatorichouObj = {};
-for (let i of mapsStr) {
-  kumatorichouObj[i] = new TileLayer(new Kumatorichou())
-}
-function Minoshi () {
-  this.preload = Infinity
-  // this.extent = transformE([138.9259, 35.90926,139.6112, 35.46722])
-  this.source = new XYZ({
-    url: 'https://kenzkenz2.xsrv.jp/osaka/minoshi/{z}/{x}/{y}.png',
-    crossOrigin: 'Anonymous',
-    minZoom: 1,
-    maxZoom: 18
-  });
-}
-const minoshiObj = {};
-for (let i of mapsStr) {
-  minoshiObj[i] = new TileLayer(new Minoshi())
-}
-function Misakichou () {
-  this.preload = Infinity
-  // this.extent = transformE([138.9259, 35.90926,139.6112, 35.46722])
-  this.source = new XYZ({
-    url: 'https://kenzkenz2.xsrv.jp/osaka/misakichou/{z}/{x}/{y}.png',
-    crossOrigin: 'Anonymous',
-    minZoom: 1,
-    maxZoom: 18
-  });
-}
-const misakichouObj = {};
-for (let i of mapsStr) {
-  misakichouObj[i] = new TileLayer(new Misakichou())
-}
-function Neyagawashi () {
-  this.preload = Infinity
-  // this.extent = transformE([138.9259, 35.90926,139.6112, 35.46722])
-  this.source = new XYZ({
-    url: 'https://kenzkenz2.xsrv.jp/osaka/neyagawashi/{z}/{x}/{y}.png',
-    crossOrigin: 'Anonymous',
-    minZoom: 1,
-    maxZoom: 18
-  });
-}
-const neyagawashiObj = {};
-for (let i of mapsStr) {
-  neyagawashiObj[i] = new TileLayer(new Neyagawashi())
-}
-function Nosechou () {
-  this.preload = Infinity
-  // this.extent = transformE([138.9259, 35.90926,139.6112, 35.46722])
-  this.source = new XYZ({
-    url: 'https://kenzkenz2.xsrv.jp/osaka/nosechou/{z}/{x}/{y}.png',
-    crossOrigin: 'Anonymous',
-    minZoom: 1,
-    maxZoom: 18
-  });
-}
-const nosechouObj = {};
-for (let i of mapsStr) {
-  nosechouObj[i] = new TileLayer(new Nosechou())
-}
-function Sakaishi () {
-  this.preload = Infinity
-  // this.extent = transformE([138.9259, 35.90926,139.6112, 35.46722])
-  this.source = new XYZ({
-    url: 'https://kenzkenz2.xsrv.jp/osaka/sakaishi/{z}/{x}/{y}.png',
-    crossOrigin: 'Anonymous',
-    minZoom: 1,
-    maxZoom: 18
-  });
-}
-const sakaishiObj = {};
-for (let i of mapsStr) {
-  sakaishiObj[i] = new TileLayer(new Sakaishi())
-}
-function Sennanshi () {
-  this.preload = Infinity
-  // this.extent = transformE([138.9259, 35.90926,139.6112, 35.46722])
-  this.source = new XYZ({
-    url: 'https://kenzkenz2.xsrv.jp/osaka/sennanshi/{z}/{x}/{y}.png',
-    crossOrigin: 'Anonymous',
-    minZoom: 1,
-    maxZoom: 18
-  });
-}
-const sennanshiObj = {};
-for (let i of mapsStr) {
-  sennanshiObj[i] = new TileLayer(new Sennanshi())
-}
-function Shimamotochou () {
-  this.preload = Infinity
-  // this.extent = transformE([138.9259, 35.90926,139.6112, 35.46722])
-  this.source = new XYZ({
-    url: 'https://kenzkenz2.xsrv.jp/osaka/shimamotochou/{z}/{x}/{y}.png',
-    crossOrigin: 'Anonymous',
-    minZoom: 1,
-    maxZoom: 18
-  });
-}
-const shimamotochouObj = {};
-for (let i of mapsStr) {
-  shimamotochouObj[i] = new TileLayer(new Shimamotochou())
-}
-function Sijounawateshi () {
-  this.preload = Infinity
-  // this.extent = transformE([138.9259, 35.90926,139.6112, 35.46722])
-  this.source = new XYZ({
-    url: 'https://kenzkenz2.xsrv.jp/osaka/sijounawateshi/{z}/{x}/{y}.png',
-    crossOrigin: 'Anonymous',
-    minZoom: 1,
-    maxZoom: 18
-  });
-}
-const sijounawateshiObj = {};
-for (let i of mapsStr) {
-  sijounawateshiObj[i] = new TileLayer(new Sijounawateshi())
-}
-function Suitashi () {
-  this.preload = Infinity
-  // this.extent = transformE([138.9259, 35.90926,139.6112, 35.46722])
-  this.source = new XYZ({
-    url: 'https://kenzkenz2.xsrv.jp/osaka/suitashi/{z}/{x}/{y}.png',
-    crossOrigin: 'Anonymous',
-    minZoom: 1,
-    maxZoom: 18
-  });
-}
-const suitashiObj = {};
-for (let i of mapsStr) {
-  suitashiObj[i] = new TileLayer(new Suitashi())
-}
-function Taishichou () {
-  this.preload = Infinity
-  // this.extent = transformE([138.9259, 35.90926,139.6112, 35.46722])
-  this.source = new XYZ({
-    url: 'https://kenzkenz2.xsrv.jp/osaka/taishichou/{z}/{x}/{y}.png',
-    crossOrigin: 'Anonymous',
-    minZoom: 1,
-    maxZoom: 18
-  });
-}
-const taishichouObj = {};
-for (let i of mapsStr) {
-  taishichouObj[i] = new TileLayer(new Taishichou())
-}
-function Takaishishi () {
-  this.preload = Infinity
-  // this.extent = transformE([138.9259, 35.90926,139.6112, 35.46722])
-  this.source = new XYZ({
-    url: 'https://kenzkenz2.xsrv.jp/osaka/takaishishi/{z}/{x}/{y}.png',
-    crossOrigin: 'Anonymous',
-    minZoom: 1,
-    maxZoom: 18
-  });
-}
-const takaishishiObj = {};
-for (let i of mapsStr) {
-  takaishishiObj[i] = new TileLayer(new Takaishishi())
-}
-function Takatukishi () {
-  this.preload = Infinity
-  // this.extent = transformE([138.9259, 35.90926,139.6112, 35.46722])
-  this.source = new XYZ({
-    url: 'https://kenzkenz2.xsrv.jp/osaka/takatukishi/{z}/{x}/{y}.png',
-    crossOrigin: 'Anonymous',
-    minZoom: 1,
-    maxZoom: 18
-  });
-}
-const takatukishiObj = {};
-for (let i of mapsStr) {
-  takatukishiObj[i] = new TileLayer(new Takatukishi())
-}
-function Toyonakashi () {
-  this.preload = Infinity
-  // this.extent = transformE([138.9259, 35.90926,139.6112, 35.46722])
-  this.source = new XYZ({
-    url: 'https://kenzkenz2.xsrv.jp/osaka/toyonakashi/{z}/{x}/{y}.png',
-    crossOrigin: 'Anonymous',
-    minZoom: 1,
-    maxZoom: 18
-  });
-}
-const toyonakashiObj = {};
-for (let i of mapsStr) {
-  toyonakashiObj[i] = new TileLayer(new Toyonakashi())
-}
-function Toyonochou () {
-  this.preload = Infinity
-  // this.extent = transformE([138.9259, 35.90926,139.6112, 35.46722])
-  this.source = new XYZ({
-    url: 'https://kenzkenz2.xsrv.jp/osaka/toyonochou/{z}/{x}/{y}.png',
-    crossOrigin: 'Anonymous',
-    minZoom: 1,
-    maxZoom: 18
-  });
-}
-const toyonochouObj = {};
-for (let i of mapsStr) {
-  toyonochouObj[i] = new TileLayer(new Toyonochou())
-}
-function Yaoshi () {
-  this.preload = Infinity
-  // this.extent = transformE([138.9259, 35.90926,139.6112, 35.46722])
-  this.source = new XYZ({
-    url: 'https://kenzkenz2.xsrv.jp/osaka/yaoshi/{z}/{x}/{y}.png',
-    crossOrigin: 'Anonymous',
-    minZoom: 1,
-    maxZoom: 18
-  });
-}
-const yaoshiObj = {};
-for (let i of mapsStr) {
-  yaoshiObj[i] = new TileLayer(new Yaoshi())
-}
+// // 大阪府CS立体図 ----------------------------------------------------------------------------
+// function Chihayaakasakamura () {
+//   this.preload = Infinity
+//   // this.extent = transformE([138.9259, 35.90926,139.6112, 35.46722])
+//   this.source = new XYZ({
+//     url: 'https://kenzkenz2.xsrv.jp/osaka/chihayaakasakamura/{z}/{x}/{y}.png',
+//     crossOrigin: 'Anonymous',
+//     minZoom: 1,
+//     maxZoom: 18
+//   });
+// }
+// const chihayaakasakamuraObj = {};
+// for (let i of mapsStr) {
+//   chihayaakasakamuraObj[i] = new TileLayer(new Chihayaakasakamura())
+// }
+// const osakaSumm = '<a href="https://www.geospatial.jp/ckan/dataset/cs" target="_blank">G空間情報センター</a>';
+//
+// function Tondabayashishi () {
+//   this.preload = Infinity
+//   // this.extent = transformE([138.9259, 35.90926,139.6112, 35.46722])
+//   this.source = new XYZ({
+//     url: 'https://kenzkenz2.xsrv.jp/osaka/tondabayashishi/{z}/{x}/{y}.png',
+//     crossOrigin: 'Anonymous',
+//     minZoom: 1,
+//     maxZoom: 18
+//   });
+// }
+// const tondabayashishiObj = {};
+// for (let i of mapsStr) {
+//   tondabayashishiObj[i] = new TileLayer(new Tondabayashishi())
+// }
+//
+// function Daitoushi () {
+//   this.preload = Infinity
+//   // this.extent = transformE([138.9259, 35.90926,139.6112, 35.46722])
+//   this.source = new XYZ({
+//     url: 'https://kenzkenz2.xsrv.jp/osaka/daitoushi/{z}/{x}/{y}.png',
+//     crossOrigin: 'Anonymous',
+//     minZoom: 1,
+//     maxZoom: 18
+//   });
+// }
+// const daitoushiObj = {};
+// for (let i of mapsStr) {
+//   daitoushiObj[i] = new TileLayer(new Daitoushi())
+// }
+// function Hannanshi () {
+//   this.preload = Infinity
+//   // this.extent = transformE([138.9259, 35.90926,139.6112, 35.46722])
+//   this.source = new XYZ({
+//     url: 'https://kenzkenz2.xsrv.jp/osaka/hannanshi/{z}/{x}/{y}.png',
+//     crossOrigin: 'Anonymous',
+//     minZoom: 1,
+//     maxZoom: 18
+//   });
+// }
+// const hannanshiObj = {};
+// for (let i of mapsStr) {
+//   hannanshiObj[i] = new TileLayer(new Hannanshi())
+// }
+// function Higashiosakashi () {
+//   this.preload = Infinity
+//   // this.extent = transformE([138.9259, 35.90926,139.6112, 35.46722])
+//   this.source = new XYZ({
+//     url: 'https://kenzkenz2.xsrv.jp/osaka/higashiosakashi/{z}/{x}/{y}.png',
+//     crossOrigin: 'Anonymous',
+//     minZoom: 1,
+//     maxZoom: 18
+//   });
+// }
+// const higashiosakashiObj = {};
+// for (let i of mapsStr) {
+//   higashiosakashiObj[i] = new TileLayer(new Higashiosakashi())
+// }
+// function Hirakatashi () {
+//   this.preload = Infinity
+//   // this.extent = transformE([138.9259, 35.90926,139.6112, 35.46722])
+//   this.source = new XYZ({
+//     url: 'https://kenzkenz2.xsrv.jp/osaka/hirakatashi/{z}/{x}/{y}.png',
+//     crossOrigin: 'Anonymous',
+//     minZoom: 1,
+//     maxZoom: 18
+//   });
+// }
+// const hirakatashiObj = {};
+// for (let i of mapsStr) {
+//   hirakatashiObj[i] = new TileLayer(new Hirakatashi())
+// }
+// function Ibarakishi () {
+//   this.preload = Infinity
+//   // this.extent = transformE([138.9259, 35.90926,139.6112, 35.46722])
+//   this.source = new XYZ({
+//     url: 'https://kenzkenz2.xsrv.jp/osaka/ibarakishi/{z}/{x}/{y}.png',
+//     crossOrigin: 'Anonymous',
+//     minZoom: 1,
+//     maxZoom: 18
+//   });
+// }
+// const ibarakishiObj = {};
+// for (let i of mapsStr) {
+//   ibarakishiObj[i] = new TileLayer(new Ibarakishi())
+// }
+// function Ikedashi () {
+//   this.preload = Infinity
+//   // this.extent = transformE([138.9259, 35.90926,139.6112, 35.46722])
+//   this.source = new XYZ({
+//     url: 'https://kenzkenz2.xsrv.jp/osaka/ikedashi/{z}/{x}/{y}.png',
+//     crossOrigin: 'Anonymous',
+//     minZoom: 1,
+//     maxZoom: 18
+//   });
+// }
+// const ikedashiObj = {};
+// for (let i of mapsStr) {
+//   ikedashiObj[i] = new TileLayer(new Ikedashi())
+// }
+// function Habikinoshi () {
+//   this.preload = Infinity
+//   // this.extent = transformE([138.9259, 35.90926,139.6112, 35.46722])
+//   this.source = new XYZ({
+//     url: 'https://kenzkenz2.xsrv.jp/osaka/habikinoshi/{z}/{x}/{y}.png',
+//     crossOrigin: 'Anonymous',
+//     minZoom: 1,
+//     maxZoom: 18
+//   });
+// }
+// const habikinoshiObj = {};
+// for (let i of mapsStr) {
+//   habikinoshiObj[i] = new TileLayer(new Habikinoshi())
+// }
+// function Izumisanoshi () {
+//   this.preload = Infinity
+//   // this.extent = transformE([138.9259, 35.90926,139.6112, 35.46722])
+//   this.source = new XYZ({
+//     url: 'https://kenzkenz2.xsrv.jp/osaka/izumisanoshi/{z}/{x}/{y}.png',
+//     crossOrigin: 'Anonymous',
+//     minZoom: 1,
+//     maxZoom: 18
+//   });
+// }
+// const izumisanoshiObj = {};
+// for (let i of mapsStr) {
+//   izumisanoshiObj[i] = new TileLayer(new Izumisanoshi())
+// }
+// function Izumishi () {
+//   this.preload = Infinity
+//   // this.extent = transformE([138.9259, 35.90926,139.6112, 35.46722])
+//   this.source = new XYZ({
+//     url: 'https://kenzkenz2.xsrv.jp/osaka/izumishi/{z}/{x}/{y}.png',
+//     crossOrigin: 'Anonymous',
+//     minZoom: 1,
+//     maxZoom: 18
+//   });
+// }
+// const izumiObj = {};
+// for (let i of mapsStr) {
+//   izumiObj[i] = new TileLayer(new Izumishi())
+// }
+// function Kaizukashi () {
+//   this.preload = Infinity
+//   // this.extent = transformE([138.9259, 35.90926,139.6112, 35.46722])
+//   this.source = new XYZ({
+//     url: 'https://kenzkenz2.xsrv.jp/osaka/kaizukashi/{z}/{x}/{y}.png',
+//     crossOrigin: 'Anonymous',
+//     minZoom: 1,
+//     maxZoom: 18
+//   });
+// }
+// const kaizukashiObj = {};
+// for (let i of mapsStr) {
+//   kaizukashiObj[i] = new TileLayer(new Kaizukashi())
+// }
+// function Kashiwarashi () {
+//   this.preload = Infinity
+//   // this.extent = transformE([138.9259, 35.90926,139.6112, 35.46722])
+//   this.source = new XYZ({
+//     url: 'https://kenzkenz2.xsrv.jp/osaka/kashiwarashi/{z}/{x}/{y}.png',
+//     crossOrigin: 'Anonymous',
+//     minZoom: 1,
+//     maxZoom: 18
+//   });
+// }
+// const kashiwarashiObj = {};
+// for (let i of mapsStr) {
+//   kashiwarashiObj[i] = new TileLayer(new Kashiwarashi())
+// }
+// function Kananchou () {
+//   this.preload = Infinity
+//   // this.extent = transformE([138.9259, 35.90926,139.6112, 35.46722])
+//   this.source = new XYZ({
+//     url: 'https://kenzkenz2.xsrv.jp/osaka/kananchou/{z}/{x}/{y}.png',
+//     crossOrigin: 'Anonymous',
+//     minZoom: 1,
+//     maxZoom: 18
+//   });
+// }
+// const kananchouObj = {};
+// for (let i of mapsStr) {
+//   kananchouObj[i] = new TileLayer(new Kananchou())
+// }
+// function Katanoshi () {
+//   this.preload = Infinity
+//   // this.extent = transformE([138.9259, 35.90926,139.6112, 35.46722])
+//   this.source = new XYZ({
+//     url: 'https://kenzkenz2.xsrv.jp/osaka/katanoshi/{z}/{x}/{y}.png',
+//     crossOrigin: 'Anonymous',
+//     minZoom: 1,
+//     maxZoom: 18
+//   });
+// }
+// const katanoshiObj = {};
+// for (let i of mapsStr) {
+//   katanoshiObj[i] = new TileLayer(new Katanoshi())
+// }
+// function Kawachinaganoshi () {
+//   this.preload = Infinity
+//   // this.extent = transformE([138.9259, 35.90926,139.6112, 35.46722])
+//   this.source = new XYZ({
+//     url: 'https://kenzkenz2.xsrv.jp/osaka/kawachinaganoshi/{z}/{x}/{y}.png',
+//     crossOrigin: 'Anonymous',
+//     minZoom: 1,
+//     maxZoom: 18
+//   });
+// }
+// const kawachinaganoshiObj = {};
+// for (let i of mapsStr) {
+//   kawachinaganoshiObj[i] = new TileLayer(new Kawachinaganoshi())
+// }
+// function Kishiwadashi () {
+//   this.preload = Infinity
+//   // this.extent = transformE([138.9259, 35.90926,139.6112, 35.46722])
+//   this.source = new XYZ({
+//     url: 'https://kenzkenz2.xsrv.jp/osaka/kishiwadashi/{z}/{x}/{y}.png',
+//     crossOrigin: 'Anonymous',
+//     minZoom: 1,
+//     maxZoom: 18
+//   });
+// }
+// const kishiwadashiObj = {};
+// for (let i of mapsStr) {
+//   kishiwadashiObj[i] = new TileLayer(new Kishiwadashi())
+// }
+// function Kumatorichou () {
+//   this.preload = Infinity
+//   // this.extent = transformE([138.9259, 35.90926,139.6112, 35.46722])
+//   this.source = new XYZ({
+//     url: 'https://kenzkenz2.xsrv.jp/osaka/kumatorichou/{z}/{x}/{y}.png',
+//     crossOrigin: 'Anonymous',
+//     minZoom: 1,
+//     maxZoom: 18
+//   });
+// }
+// const kumatorichouObj = {};
+// for (let i of mapsStr) {
+//   kumatorichouObj[i] = new TileLayer(new Kumatorichou())
+// }
+// function Minoshi () {
+//   this.preload = Infinity
+//   // this.extent = transformE([138.9259, 35.90926,139.6112, 35.46722])
+//   this.source = new XYZ({
+//     url: 'https://kenzkenz2.xsrv.jp/osaka/minoshi/{z}/{x}/{y}.png',
+//     crossOrigin: 'Anonymous',
+//     minZoom: 1,
+//     maxZoom: 18
+//   });
+// }
+// const minoshiObj = {};
+// for (let i of mapsStr) {
+//   minoshiObj[i] = new TileLayer(new Minoshi())
+// }
+// function Misakichou () {
+//   this.preload = Infinity
+//   // this.extent = transformE([138.9259, 35.90926,139.6112, 35.46722])
+//   this.source = new XYZ({
+//     url: 'https://kenzkenz2.xsrv.jp/osaka/misakichou/{z}/{x}/{y}.png',
+//     crossOrigin: 'Anonymous',
+//     minZoom: 1,
+//     maxZoom: 18
+//   });
+// }
+// const misakichouObj = {};
+// for (let i of mapsStr) {
+//   misakichouObj[i] = new TileLayer(new Misakichou())
+// }
+// function Neyagawashi () {
+//   this.preload = Infinity
+//   // this.extent = transformE([138.9259, 35.90926,139.6112, 35.46722])
+//   this.source = new XYZ({
+//     url: 'https://kenzkenz2.xsrv.jp/osaka/neyagawashi/{z}/{x}/{y}.png',
+//     crossOrigin: 'Anonymous',
+//     minZoom: 1,
+//     maxZoom: 18
+//   });
+// }
+// const neyagawashiObj = {};
+// for (let i of mapsStr) {
+//   neyagawashiObj[i] = new TileLayer(new Neyagawashi())
+// }
+// function Nosechou () {
+//   this.preload = Infinity
+//   // this.extent = transformE([138.9259, 35.90926,139.6112, 35.46722])
+//   this.source = new XYZ({
+//     url: 'https://kenzkenz2.xsrv.jp/osaka/nosechou/{z}/{x}/{y}.png',
+//     crossOrigin: 'Anonymous',
+//     minZoom: 1,
+//     maxZoom: 18
+//   });
+// }
+// const nosechouObj = {};
+// for (let i of mapsStr) {
+//   nosechouObj[i] = new TileLayer(new Nosechou())
+// }
+// function Sakaishi () {
+//   this.preload = Infinity
+//   // this.extent = transformE([138.9259, 35.90926,139.6112, 35.46722])
+//   this.source = new XYZ({
+//     url: 'https://kenzkenz2.xsrv.jp/osaka/sakaishi/{z}/{x}/{y}.png',
+//     crossOrigin: 'Anonymous',
+//     minZoom: 1,
+//     maxZoom: 18
+//   });
+// }
+// const sakaishiObj = {};
+// for (let i of mapsStr) {
+//   sakaishiObj[i] = new TileLayer(new Sakaishi())
+// }
+// function Sennanshi () {
+//   this.preload = Infinity
+//   // this.extent = transformE([138.9259, 35.90926,139.6112, 35.46722])
+//   this.source = new XYZ({
+//     url: 'https://kenzkenz2.xsrv.jp/osaka/sennanshi/{z}/{x}/{y}.png',
+//     crossOrigin: 'Anonymous',
+//     minZoom: 1,
+//     maxZoom: 18
+//   });
+// }
+// const sennanshiObj = {};
+// for (let i of mapsStr) {
+//   sennanshiObj[i] = new TileLayer(new Sennanshi())
+// }
+// function Shimamotochou () {
+//   this.preload = Infinity
+//   // this.extent = transformE([138.9259, 35.90926,139.6112, 35.46722])
+//   this.source = new XYZ({
+//     url: 'https://kenzkenz2.xsrv.jp/osaka/shimamotochou/{z}/{x}/{y}.png',
+//     crossOrigin: 'Anonymous',
+//     minZoom: 1,
+//     maxZoom: 18
+//   });
+// }
+// const shimamotochouObj = {};
+// for (let i of mapsStr) {
+//   shimamotochouObj[i] = new TileLayer(new Shimamotochou())
+// }
+// function Sijounawateshi () {
+//   this.preload = Infinity
+//   // this.extent = transformE([138.9259, 35.90926,139.6112, 35.46722])
+//   this.source = new XYZ({
+//     url: 'https://kenzkenz2.xsrv.jp/osaka/sijounawateshi/{z}/{x}/{y}.png',
+//     crossOrigin: 'Anonymous',
+//     minZoom: 1,
+//     maxZoom: 18
+//   });
+// }
+// const sijounawateshiObj = {};
+// for (let i of mapsStr) {
+//   sijounawateshiObj[i] = new TileLayer(new Sijounawateshi())
+// }
+// function Suitashi () {
+//   this.preload = Infinity
+//   // this.extent = transformE([138.9259, 35.90926,139.6112, 35.46722])
+//   this.source = new XYZ({
+//     url: 'https://kenzkenz2.xsrv.jp/osaka/suitashi/{z}/{x}/{y}.png',
+//     crossOrigin: 'Anonymous',
+//     minZoom: 1,
+//     maxZoom: 18
+//   });
+// }
+// const suitashiObj = {};
+// for (let i of mapsStr) {
+//   suitashiObj[i] = new TileLayer(new Suitashi())
+// }
+// function Taishichou () {
+//   this.preload = Infinity
+//   // this.extent = transformE([138.9259, 35.90926,139.6112, 35.46722])
+//   this.source = new XYZ({
+//     url: 'https://kenzkenz2.xsrv.jp/osaka/taishichou/{z}/{x}/{y}.png',
+//     crossOrigin: 'Anonymous',
+//     minZoom: 1,
+//     maxZoom: 18
+//   });
+// }
+// const taishichouObj = {};
+// for (let i of mapsStr) {
+//   taishichouObj[i] = new TileLayer(new Taishichou())
+// }
+// function Takaishishi () {
+//   this.preload = Infinity
+//   // this.extent = transformE([138.9259, 35.90926,139.6112, 35.46722])
+//   this.source = new XYZ({
+//     url: 'https://kenzkenz2.xsrv.jp/osaka/takaishishi/{z}/{x}/{y}.png',
+//     crossOrigin: 'Anonymous',
+//     minZoom: 1,
+//     maxZoom: 18
+//   });
+// }
+// const takaishishiObj = {};
+// for (let i of mapsStr) {
+//   takaishishiObj[i] = new TileLayer(new Takaishishi())
+// }
+// function Takatukishi () {
+//   this.preload = Infinity
+//   // this.extent = transformE([138.9259, 35.90926,139.6112, 35.46722])
+//   this.source = new XYZ({
+//     url: 'https://kenzkenz2.xsrv.jp/osaka/takatukishi/{z}/{x}/{y}.png',
+//     crossOrigin: 'Anonymous',
+//     minZoom: 1,
+//     maxZoom: 18
+//   });
+// }
+// const takatukishiObj = {};
+// for (let i of mapsStr) {
+//   takatukishiObj[i] = new TileLayer(new Takatukishi())
+// }
+// function Toyonakashi () {
+//   this.preload = Infinity
+//   // this.extent = transformE([138.9259, 35.90926,139.6112, 35.46722])
+//   this.source = new XYZ({
+//     url: 'https://kenzkenz2.xsrv.jp/osaka/toyonakashi/{z}/{x}/{y}.png',
+//     crossOrigin: 'Anonymous',
+//     minZoom: 1,
+//     maxZoom: 18
+//   });
+// }
+// const toyonakashiObj = {};
+// for (let i of mapsStr) {
+//   toyonakashiObj[i] = new TileLayer(new Toyonakashi())
+// }
+// function Toyonochou () {
+//   this.preload = Infinity
+//   // this.extent = transformE([138.9259, 35.90926,139.6112, 35.46722])
+//   this.source = new XYZ({
+//     url: 'https://kenzkenz2.xsrv.jp/osaka/toyonochou/{z}/{x}/{y}.png',
+//     crossOrigin: 'Anonymous',
+//     minZoom: 1,
+//     maxZoom: 18
+//   });
+// }
+// const toyonochouObj = {};
+// for (let i of mapsStr) {
+//   toyonochouObj[i] = new TileLayer(new Toyonochou())
+// }
+// function Yaoshi () {
+//   this.preload = Infinity
+//   // this.extent = transformE([138.9259, 35.90926,139.6112, 35.46722])
+//   this.source = new XYZ({
+//     url: 'https://kenzkenz2.xsrv.jp/osaka/yaoshi/{z}/{x}/{y}.png',
+//     crossOrigin: 'Anonymous',
+//     minZoom: 1,
+//     maxZoom: 18
+//   });
+// }
+// const yaoshiObj = {};
+// for (let i of mapsStr) {
+//   yaoshiObj[i] = new TileLayer(new Yaoshi())
+// }
 //----------------------
 // const osakaCsObj = {};
 // for (let i of mapsStr) {
