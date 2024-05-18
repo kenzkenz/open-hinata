@@ -29,13 +29,6 @@ const moduleBase = {
     dialogs: {
       dialogEdit0:{style: {top: '56px', right: '10px', 'z-index': 1, height: 'auto', 'width': '200px', display: 'none'}},
       dialogEdit:{style: {top: '250px', right: '10px', 'z-index': 1, height: 'auto', 'width': '323px', display: 'none'}},
-
-      // pyramidDialog:{
-      //   map01: {style: {top: '56px', right: '10px', 'z-index': 1, height: 'auto', 'width': '550px', display: 'block'}},
-      //   map02: {style: {top: '56px', right: '10px', 'z-index': 1, height: 'auto', 'width': '550px', display: 'block'}},
-      //   map03: {style: {top: '56px', right: '10px', 'z-index': 1, height: 'auto', 'width': '550px', display: 'block'}},
-      //   map04: {style: {top: '56px', right: '10px', 'z-index': 1, height: 'auto', 'width': '550px', display: 'block'}},
-      // },
       menuDialog: {style: {top: '56px', left: '10px', 'z-index': 1, height: 'auto', 'min-width': '150px', display: 'none'}},
       map01: {style: {top: '56px', left:'10px', 'z-index': 1, height: 'auto', 'min-width': '250px', display: 'none'}},
       map02: {style: {top: '56px', left:'10px', 'z-index': 1, height: 'auto', 'min-width': '250px', display: 'none'}},
@@ -94,6 +87,19 @@ const moduleBase = {
     editFeatureSetumei:'',
     editFeatureSrc:'',
     resasOrEstat:'',
+    prefId:[{pref:'北海道', id:1}, {pref:'青森県', id:2}, {pref:'岩手県', id:3}, {pref:'宮城県', id:4},
+          {pref:'秋田県', id:5}, {pref:'山形県', id:6}, {pref:'福島県', id:7}, {pref:'茨城県', id:8},
+          {pref:'栃木県', id:9}, {pref:'群馬県', id:10}, {pref:'埼玉県', id:11}, {pref:'千葉県', id:12},
+          {pref:'東京都', id:13}, {pref:'神奈川県', id:14}, {pref:'新潟県', id:15}, {pref:'富山県', id:16},
+          {pref:'石川県', id:17}, {pref:'福井県', id:18}, {pref:'山梨県', id:19}, {pref:'長野県', id:20},
+          {pref:'岐阜県', id:21}, {pref:'静岡県', id:22}, {pref:'愛知県', id:23}, {pref:'三重県', id:24},
+          {pref:'滋賀県', id:25}, {pref:'京都府', id:26}, {pref:'大阪府', id:27}, {pref:'兵庫県', id:28},
+          {pref:'奈良県', id:29}, {pref:'和歌山県', id:30}, {pref:'鳥取県', id:31}, {pref:'島根県', id:32},
+          {pref:'岡山県', id:33}, {pref:'広島県', id:34}, {pref:'山口県', id:35}, {pref:'徳島県', id:36},
+          {pref:'香川県', id:37}, {pref:'愛媛県', id:38}, {pref:'高知県', id:39}, {pref:'福岡県', id:40},
+          {pref:'佐賀県', id:41}, {pref:'長崎県', id:42}, {pref:'熊本県', id:43}, {pref:'大分県', id:44},
+          {pref:'宮崎県', id:45}, {pref:'鹿児島県', id:46}, {pref:'沖縄県', id:47}
+        ]
   },
   getters: {
     layerList: (state) => (mapName) => {
