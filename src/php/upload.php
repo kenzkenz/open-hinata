@@ -33,6 +33,7 @@ if ( $result === true ) {
     $response = array('fileName' => $image);
     echo json_encode($response);
 } else {
-    echo "UPLOAD NG";
+    $response = array('error' => 'アップロード失敗');
+    echo json_encode($response);
 }
 ?>

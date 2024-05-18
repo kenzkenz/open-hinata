@@ -7,10 +7,7 @@
 
       <v-pyramid :item="item" :mapName="mapName" v-if="item.name === 'pyramid'" />
       <v-pyramid-estat :item="item" :mapName="mapName" v-if="item.name === 'pyramid-estat'" />
-
       <v-jinkosuii :item="item" :mapName="mapName" v-if="item.name === 'jinkosuii'" />
-
-
       <v-erev :item="item" :mapName="mapName" v-if="item.name === 'erev'" />
 
     </div>

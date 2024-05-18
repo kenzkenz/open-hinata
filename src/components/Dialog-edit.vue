@@ -1,17 +1,17 @@
 <template>
-  <v-dialog :dialog="S_dialogEdit" id="dialog-edit">
+  <v-dialog :dialog="s_dialogEdit" id="dialog-edit">
     <div :style="contentSize">
-      <input style="width: 300px;" type="text" @input="changeName" v-model="s_featureName" placeholder="名称を入力（必須）">
+      <input style="width: 300px;" type="text" @input="changeName" v-model="s_featureName" placeholder="名称を入力">
       <hr>
       <textarea style="width: 300px;" rows="4" cols="35" @input="changeName" v-model="s_featureSetumei" placeholder="説明を入力"></textarea>
       <hr>
-      <img :src="s_featureSrc" style="width: 300px;">
-      <form id="my_form">
-        <input type="file" name="file_1" accept="image/*" @change="file_upload()">
-<!--        <button type="button" @click="file_upload()">アップロード</button>-->
+      <img :src="s_featureSrc" style="width: 300px;margin-bottom: 10px">
+      <form id="my_form" style="display: none">
+        <input id="my_form_input" type="file" name="file_1" accept="image/*" @change="file_upload()">
       </form>
-      <hr>
-      <button type="button" @click="featureRemove">ポイント削除</button>
+      <b-button class='olbtn' size="sm" @click="upLoad">画像</b-button>
+      <b-button style="margin-left: 10px" :pressed.sync="s_toggleModify" class='olbtn' size="sm">{{ s_toggleModify ? '移動ON' : '移動OFF' }}</b-button>
+      <b-button style="margin-left: 10px" class='olbtn' size="sm" @click="featureRemove">ポイント削除</b-button>
     </div>
   </v-dialog>
 </template>
@@ -30,7 +30,15 @@ export default {
     }
   },
   computed: {
-    S_dialogEdit () {
+    s_toggleModify: {
+      get() {
+        return this.$store.state.base.toggleModify
+      },
+      set(value) {
+        this.$store.state.base.toggleModify = value
+      }
+    },
+    s_dialogEdit () {
       return this.$store.state.base.dialogs.dialogEdit
     },
     s_featureName: {
@@ -50,20 +58,23 @@ export default {
     },
   },
   methods: {
+    upLoad(){
+      document.getElementById("my_form_input").click();
+    },
     featureRemove(){
+      const result = window.confirm('ポイントを削除しますか。');
+      if( !result ) return
+
       MyMap.drawLayer2.getSource().removeFeature(this.$store.state.base.editFeature)
       store.state.base.dialogs.dialogEdit.style.display = 'none'
       MyMap.overlay['0'].setPosition(undefined)
     },
     changeName(e) {
-      // console.log(e)
       const feature = this.$store.state.base.editFeature
-      // console.log(feature)
       feature.setProperties({name: this.$store.state.base.editFeatureName})
       feature.setProperties({setumei: this.$store.state.base.editFeatureSetumei})
       document.querySelector('#drawLayer2-name').innerHTML = this.$store.state.base.editFeatureName
       document.querySelector('#drawLayer2-setumei').innerHTML = this.$store.state.base.editFeatureSetumei
-
       moveEnd()
     },
     file_upload() {
@@ -71,9 +82,9 @@ export default {
       // d3.select('#' + mapName + ' .loadingImg').style("display","block")
       document.querySelector('#map01 .loadingImg').style.display = 'block'
       // フォームデータを取得
-      var formdata = new FormData(document.getElementById("my_form"));
+      const formdata = new FormData(document.getElementById("my_form"));
       // XMLHttpRequestによるアップロード処理
-      var xhttpreq = new XMLHttpRequest();
+      const xhttpreq = new XMLHttpRequest();
       xhttpreq.addEventListener("progress", function(e){
         var progress_data = e.loaded / e.total;
         console.log('progress:'+progress_data);
@@ -101,14 +112,25 @@ export default {
   mounted () {
     const dragHandle = document.querySelector('#dialog-edit .drag-handle');
     dragHandle.innerHTML = '編集'
-
     this.$watch(function () {
-
-    });
+      return [this.s_toggleModify]
+    }, function () {
+      if (this.s_toggleModify) {
+        this.$store.state.base.maps['map01'].addInteraction(MyMap.modifyInteraction2)
+        MyMap.overlay['0'].setPosition(undefined)
+      } else {
+        this.$store.state.base.maps['map01'].removeInteraction(MyMap.modifyInteraction2)
+      }
+    })
   }
 }
 </script>
 
 <style scoped>
-
+.olbtn{
+  background-color: rgba(0,60,136,0.5);
+}
+.olbtn:hover{
+  background-color: rgba(0,60,136,0.7);
+}
 </style>

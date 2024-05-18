@@ -88,6 +88,7 @@ const moduleBase = {
     jinkosuiiDataset:[],
     jinkosuiiDatasetEstat:[],
     togglePoint:false,
+    toggleModify:false,
     editFeature:'',
     editFeatureName:'',
     editFeatureSetumei:'',

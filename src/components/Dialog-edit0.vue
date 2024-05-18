@@ -4,11 +4,6 @@
           <b-button :pressed.sync="s_togglePoint" class='olbtn' size="sm">{{ s_togglePoint ? 'ポイント描画ON' : 'ポイント描画OFF' }}</b-button>
           <br><br>
           <p>このダイアログが開いているときに編集モードになります。</p>
-
-
-<!--          <p>製作者＝kenzkenzです。</p>-->
-<!--          <p><a href="https://github.com/kenzkenz/open-hinata" target="_blank" >github</a>です。</p>-->
-<!--          <p><a href="https://twitter.com/kenzkenz" target="_blank">twitter</a>です。</p>-->
         </div>
     </v-dialog>
 </template>
@@ -57,5 +52,10 @@
 </script>
 
 <style scoped>
-
+.olbtn{
+  background-color: rgba(0,60,136,0.5);
+}
+.olbtn:hover{
+  background-color: rgba(0,60,136,0.7);
+}
 </style>

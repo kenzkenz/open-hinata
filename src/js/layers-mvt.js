@@ -43,7 +43,7 @@ if (window.innerWidth > 1000) {
 }
 function Syochiiki2020(){
   this.name = 'syochiki2020'
-  this.className = 'syochiki2020'
+  // this.className = 'syochiki2020'
   this.source = new VectorTileSource({
     crossOrigin: 'Anonymous',
     format: new MVT(),

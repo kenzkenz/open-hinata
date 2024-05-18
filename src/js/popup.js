@@ -12,8 +12,8 @@ export function popUp(map,layers,features,overlay,evt,content) {
   const geoType = features[0].getGeometry().getType()
   const geometry = features[0].getGeometry()
   // console.log(layers[0].get('name'))
-  console.log(coordinate)
-  console.log(geoType)
+  // console.log(coordinate)
+  // console.log(geoType)
   // console.log(features[0])
   const prop = features[0].getProperties();
   console.log(prop)
@@ -25,8 +25,8 @@ export function popUp(map,layers,features,overlay,evt,content) {
     coordinate = [geometry.extent_[0],geometry.extent_[1]]
     lonLat = transform([geometry.extent_[0],geometry.extent_[1]], "EPSG:3857", "EPSG:4326")
   }
-  console.log(coordinate)
-  console.log(lonLat)
+  // console.log(coordinate)
+  // console.log(lonLat)
   const ru = string => {
     if (string === undefined) {
       return ''
