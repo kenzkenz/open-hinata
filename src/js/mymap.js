@@ -487,26 +487,17 @@ export function initMap (vm) {
 
         // コントロール追加---------------------------------------------------------------------------
 
-
-
-
-
-
-
-
-
-
-
-
         map.addControl(new ScaleLine());
         const notification = new Notification();
         map.addControl(notification);
         store.commit('base/setNotifications',{mapName:mapName, control: notification});
-        if (i==3) {
-            store.state.base.maps.map01.addInteraction(new Synchronize({ maps: [store.state.base.maps.map02,store.state.base.maps.map03,store.state.base.maps.map04]}));
-            store.state.base.maps.map02.addInteraction(new Synchronize({ maps: [store.state.base.maps.map01,store.state.base.maps.map03,store.state.base.maps.map04]}));
-            store.state.base.maps.map03.addInteraction(new Synchronize({ maps: [store.state.base.maps.map01,store.state.base.maps.map02,store.state.base.maps.map04]}));
-            store.state.base.maps.map04.addInteraction(new Synchronize({ maps: [store.state.base.maps.map01,store.state.base.maps.map02,store.state.base.maps.map03]}));
+        if (i==1) {
+            store.state.base.maps.map01.addInteraction(new Synchronize({ maps: [store.state.base.maps.map02]}));
+            store.state.base.maps.map02.addInteraction(new Synchronize({ maps: [store.state.base.maps.map01]}));
+            // store.state.base.maps.map01.addInteraction(new Synchronize({ maps: [store.state.base.maps.map02,store.state.base.maps.map03,store.state.base.maps.map04]}));
+            // store.state.base.maps.map02.addInteraction(new Synchronize({ maps: [store.state.base.maps.map01,store.state.base.maps.map03,store.state.base.maps.map04]}));
+            // store.state.base.maps.map03.addInteraction(new Synchronize({ maps: [store.state.base.maps.map01,store.state.base.maps.map02,store.state.base.maps.map04]}));
+            // store.state.base.maps.map04.addInteraction(new Synchronize({ maps: [store.state.base.maps.map01,store.state.base.maps.map02,store.state.base.maps.map03]}));
         }
         let dragAndDropInteraction;
         function setInteraction() {

@@ -2,7 +2,7 @@
     <div>
         <div class="v-dialog-info-div" v-for="item in info" :key="item.id" :style="item.style" @mousedown="dialogMouseDown(item)">
             <div class="drag-handle" v-my-drag-handle></div>
-            <div class="close-btn-div" @click="close(item)"><i style="" class="overlink fa-solid fa-xmark hover close-btn"></i></div>
+            <div class="close-btn-div" @click="close(item)"><i style="" class="fa-solid fa-xmark hover close-btn"></i></div>
             <!--なにもないとき。普通のラスターのとき-->
             <div v-if="!item.component">
                 <div class="info-content-div">
