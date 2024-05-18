@@ -1385,7 +1385,6 @@ export function watchLayer (map, thisName, newLayerList,oldLayerList) {
                 }
             }
         }
-        console.log(layer.get('multiply'))
         if (newLayerList[0][i].multipli===false) {
             layer.on("prerender", function (evt) {
                 evt.context.globalCompositeOperation = 'source-over';
