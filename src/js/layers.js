@@ -2714,20 +2714,20 @@ for (let i of mapsStr) {
 }
 
 // 日本CS立体図------------------------------------------------------------------------------
-function NihonCs () {
-  this.preload = Infinity
-  this.source = new XYZ({
-    url: 'https://main-kouapp.ssl-lolipop.jp/csmap/tile/japan/{z}/{x}/{y}.jpg',
-    // crossOrigin: 'Anonymous',
-    minZoom:9,
-    maxZoom:15
-  })
-}
-const nihonCsObj = {};
-for (let i of mapsStr) {
-  nihonCsObj[i] = new TileLayer(new NihonCs())
-}
-const nihonCsSumm = '<a href="http://kouapp.main.jp/csmap/japan/setumei.html" target="_blank">日本CS立体図</a>'
+// function NihonCs () {
+//   this.preload = Infinity
+//   this.source = new XYZ({
+//     url: 'https://main-kouapp.ssl-lolipop.jp/csmap/tile/japan/{z}/{x}/{y}.jpg',
+//     // crossOrigin: 'Anonymous',
+//     minZoom:9,
+//     maxZoom:15
+//   })
+// }
+// const nihonCsObj = {};
+// for (let i of mapsStr) {
+//   nihonCsObj[i] = new TileLayer(new NihonCs())
+// }
+// const nihonCsSumm = '<a href="http://kouapp.main.jp/csmap/japan/setumei.html" target="_blank">日本CS立体図</a>'
 // 都市圏活断層図------------------------------------------------------------------------------
 function Katudansou () {
   this.preload = Infinity
