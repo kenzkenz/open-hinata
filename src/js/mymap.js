@@ -403,8 +403,8 @@ export function initMap (vm) {
     const maps = [
         {mapName: 'map01', map:store.state.base.map01},
         {mapName: 'map02', map:store.state.base.map02},
-        {mapName: 'map03', map:store.state.base.map03},
-        {mapName: 'map04', map:store.state.base.map04}
+        // {mapName: 'map03', map:store.state.base.map03},
+        // {mapName: 'map04', map:store.state.base.map04}
     ];
     const view01 = new View({
         center: fromLonLat([140.097, 37.856]),
@@ -1223,8 +1223,8 @@ export function currentPosition () {
 
     const currentPosition1 = store.state.base.maps['map01'].overlays_.getArray()[2]
     const currentPosition2 = store.state.base.maps['map02'].overlays_.getArray()[2]
-    const currentPosition3 = store.state.base.maps['map03'].overlays_.getArray()[2]
-    const currentPosition4 = store.state.base.maps['map04'].overlays_.getArray()[2]
+    // const currentPosition3 = store.state.base.maps['map03'].overlays_.getArray()[2]
+    // const currentPosition4 = store.state.base.maps['map04'].overlays_.getArray()[2]
 
     store.commit('base/toggleCurrentPosition')
     const map = store.state.base.maps['map01'];
@@ -1239,8 +1239,8 @@ export function currentPosition () {
         });
         currentPosition1.setPosition(center)
         currentPosition2.setPosition(center)
-        currentPosition3.setPosition(center)
-        currentPosition4.setPosition(center)
+        // currentPosition3.setPosition(center)
+        // currentPosition4.setPosition(center)
     }
     const  fail = (error) =>{alert('位置情報の取得に失敗しました。エラーコード：' + error.code)}
     // let interval
@@ -1255,8 +1255,8 @@ export function currentPosition () {
         stop()
         currentPosition1.setPosition(undefined)
         currentPosition2.setPosition(undefined)
-        currentPosition3.setPosition(undefined)
-        currentPosition4.setPosition(undefined)
+        // currentPosition3.setPosition(undefined)
+        // currentPosition4.setPosition(undefined)
     }
 }
 
@@ -1272,34 +1272,34 @@ export function synch (vm) {
             })
         }
         store.state.base.maps.map02.setView(viewArr[0]);
-        store.state.base.maps.map03.setView(viewArr[1]);
-        store.state.base.maps.map04.setView(viewArr[2]);
+        // store.state.base.maps.map03.setView(viewArr[1]);
+        // store.state.base.maps.map04.setView(viewArr[2]);
         console.log(store.state.base.maps.map01.interactions)
         store.state.base.maps.map01.removeInteraction(store.state.base.maps.map01.getInteractions().array_[10])
         store.state.base.maps.map02.removeInteraction(store.state.base.maps.map02.getInteractions().array_[10])
-        store.state.base.maps.map03.removeInteraction(store.state.base.maps.map03.getInteractions().array_[10])
-        store.state.base.maps.map04.removeInteraction(store.state.base.maps.map04.getInteractions().array_[10])
+        // store.state.base.maps.map03.removeInteraction(store.state.base.maps.map03.getInteractions().array_[10])
+        // store.state.base.maps.map04.removeInteraction(store.state.base.maps.map04.getInteractions().array_[10])
         // 2回削除する。
         store.state.base.maps.map01.removeInteraction(store.state.base.maps.map01.getInteractions().array_[10])
         store.state.base.maps.map02.removeInteraction(store.state.base.maps.map02.getInteractions().array_[10])
-        store.state.base.maps.map03.removeInteraction(store.state.base.maps.map03.getInteractions().array_[10])
-        store.state.base.maps.map04.removeInteraction(store.state.base.maps.map04.getInteractions().array_[10])
+        // store.state.base.maps.map03.removeInteraction(store.state.base.maps.map03.getInteractions().array_[10])
+        // store.state.base.maps.map04.removeInteraction(store.state.base.maps.map04.getInteractions().array_[10])
     } else {
         store.state.base.maps.map02.setView(map01View);
-        store.state.base.maps.map03.setView(map01View);
-        store.state.base.maps.map04.setView(map01View)
+        // store.state.base.maps.map03.setView(map01View);
+        // store.state.base.maps.map04.setView(map01View)
         store.state.base.maps.map01.addInteraction(new Synchronize({ maps: [store.state.base.maps.map02,store.state.base.maps.map03,store.state.base.maps.map04]}));
         store.state.base.maps.map02.addInteraction(new Synchronize({ maps: [store.state.base.maps.map01,store.state.base.maps.map03,store.state.base.maps.map04]}));
-        store.state.base.maps.map03.addInteraction(new Synchronize({ maps: [store.state.base.maps.map01,store.state.base.maps.map02,store.state.base.maps.map04]}));
-        store.state.base.maps.map04.addInteraction(new Synchronize({ maps: [store.state.base.maps.map01,store.state.base.maps.map02,store.state.base.maps.map03]}));
+    //     store.state.base.maps.map03.addInteraction(new Synchronize({ maps: [store.state.base.maps.map01,store.state.base.maps.map02,store.state.base.maps.map04]}));
+    //     store.state.base.maps.map04.addInteraction(new Synchronize({ maps: [store.state.base.maps.map01,store.state.base.maps.map02,store.state.base.maps.map03]}));
     }
 }
 
 export function resize () {
     store.state.base.maps.map01.updateSize();
     store.state.base.maps.map02.updateSize();
-    store.state.base.maps.map03.updateSize();
-    store.state.base.maps.map04.updateSize()
+    // store.state.base.maps.map03.updateSize();
+    // store.state.base.maps.map04.updateSize()
 }
 
 export function history (layer,url) {

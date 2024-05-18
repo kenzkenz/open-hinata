@@ -33,7 +33,8 @@ const ru2 = string => {
     return string
   }
 }
-const mapsStr = ['map01','map02','map03','map04'];
+// const mapsStr = ['map01','map02','map03','map04'];
+const mapsStr = ['map01','map02'];
 //小地域------------------------------------------------------------------------------------------------
 let syochiikiMaxResolution
 if (window.innerWidth > 1000) {

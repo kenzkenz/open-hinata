@@ -20,7 +20,9 @@ import  * as MaskDep from './mask-dep'
 import  * as LayersMvt from './layers-mvt'
 import BingMaps from 'ol/source/BingMaps'
 import * as d3 from "d3"
-const mapsStr = ['map01','map02','map03','map04']
+// const mapsStr = ['map01','map02','map03','map04']
+const mapsStr = ['map01','map02'];
+
 const transformE = extent => {
   return transformExtent(extent,'EPSG:4326','EPSG:3857')
 }
@@ -4343,875 +4345,875 @@ const ekizyouka0Summ =   '<div style=width:300px;font-size:smaller>これまで�
                          '<br>本図は、地形が示す一般的な地盤特性に対応した相対的な液状化の発生傾向の強弱を表したものであり、特定の地震に対する液状化予測を示したものではありません。また、メッシュデータであることからメッシュの代表的な地形に対応した液状化発生傾向を示しており、個別の宅地に対応した液状化発生傾向を示したものではありません。' +
                          '<br><a href="https://www.mlit.go.jp/toshi/toshi_tobou_tk_000038.html" target="_blank">詳しい解説</a></div>';
 
-// 液状化危険度分布図（北海道）-------------------------------------------------------------------------------
-function Ekizyouka01 () {
-  this.preload = Infinity
-  this.name = 'ekizyouka01'
-  this.extent = transformE([137.6910, 46.3139, 150.1357, 40.3532])
-  this.pointer = true
-  this.source = new XYZ({
-    url: 'https://disaportal.gsi.go.jp/raster/08_03_ekijoka_pref/01_hokkai/{z}/{x}/{y}.png',
-    crossOrigin: 'Anonymous',
-    minZoom: 5,
-    maxZoom: 15
-  })
-}
-const ekizyouka01Obj = {};
-for (let i of mapsStr) {
-  ekizyouka01Obj[i] = new TileLayer(new Ekizyouka01())
-}
-// 液状化危険度分布図（青森県）-------------------------------------------------------------------------------
-function Ekizyouka02 () {
-  this.preload = Infinity
-  this.name = 'ekizyouka02'
-  this.extent = transformE([139.5370, 41.6491, 141.7808, 40.1541])
-  this.pointer = true
-  this.source = new XYZ({
-    url: 'https://disaportal.gsi.go.jp/raster/08_03_ekijoka_pref/02_aomori/{z}/{x}/{y}.png',
-    crossOrigin: 'Anonymous',
-    minZoom: 5,
-    maxZoom: 15
-  })
-}
-const ekizyouka02Obj = {};
-for (let i of mapsStr) {
-  ekizyouka02Obj[i] = new TileLayer(new Ekizyouka02())
-}
-// 液状化危険度分布図（岩手県）-------------------------------------------------------------------------------
-function Ekizyouka03 () {
-  this.preload = Infinity
-  this.name = 'ekizyouka03'
-  this.extent = transformE([140.5821, 40.4636, 142.1447, 38.6697])
-  this.pointer = true
-  this.source = new XYZ({
-    url: 'https://disaportal.gsi.go.jp/raster/08_03_ekijoka_pref/03_iwate/{z}/{x}/{y}.png',
-    crossOrigin: 'Anonymous',
-    minZoom: 5,
-    maxZoom: 15
-  })
-}
-const ekizyouka03Obj = {};
-for (let i of mapsStr) {
-  ekizyouka03Obj[i] = new TileLayer(new Ekizyouka03())
-}
-// 液状化危険度分布図（宮城県）-------------------------------------------------------------------------------
-function Ekizyouka04 () {
-  this.preload = Infinity
-  this.name = 'ekizyouka04'
-  this.extent = transformE([140.2651, 39.1124, 141.8108, 37.7088])
-  this.pointer = true
-  this.source = new XYZ({
-    url: 'https://disaportal.gsi.go.jp/raster/08_03_ekijoka_pref/04_miyagi/{z}/{x}/{y}.png',
-    crossOrigin: 'Anonymous',
-    minZoom: 5,
-    maxZoom: 15
-  })
-}
-const ekizyouka04Obj = {};
-for (let i of mapsStr) {
-  ekizyouka04Obj[i] = new TileLayer(new Ekizyouka04())
-}
-// 液状化危険度分布図（秋田県）-------------------------------------------------------------------------------
-function Ekizyouka05 () {
-  this.preload = Infinity
-  this.name = 'ekizyouka05'
-  this.extent = transformE([139.4931, 40.5570, 141.0978, 38.7591])
-  this.pointer = true
-  this.source = new XYZ({
-    url: 'https://disaportal.gsi.go.jp/raster/08_03_ekijoka_pref/05_akita/{z}/{x}/{y}.png',
-    crossOrigin: 'Anonymous',
-    minZoom: 5,
-    maxZoom: 15
-  })
-}
-const ekizyouka05Obj = {};
-for (let i of mapsStr) {
-  ekizyouka05Obj[i] = new TileLayer(new Ekizyouka05())
-}
-// 液状化危険度分布図（山形県）-------------------------------------------------------------------------------
-function Ekizyouka06 () {
-  this.preload = Infinity
-  this.name = 'ekizyouka06'
-  this.extent = transformE([139.4480, 39.2208, 140.6762, 37.6211])
-  this.pointer = true
-  this.source = new XYZ({
-    url: 'https://disaportal.gsi.go.jp/raster/08_03_ekijoka_pref/06_yamagata/{z}/{x}/{y}.png',
-    crossOrigin: 'Anonymous',
-    minZoom: 5,
-    maxZoom: 15
-  })
-}
-const ekizyouka06Obj = {};
-for (let i of mapsStr) {
-  ekizyouka06Obj[i] = new TileLayer(new Ekizyouka06())
-}
-// 液状化危険度分布図（福島県）-------------------------------------------------------------------------------
-function Ekizyouka07 () {
-  this.preload = Infinity
-  this.name = 'ekizyouka07'
-  this.extent = transformE([138.9991, 37.9656, 141.4728, 36.6989])
-  this.pointer = true
-  this.source = new XYZ({
-    url: 'https://disaportal.gsi.go.jp/raster/08_03_ekijoka_pref/07_fukushima/{z}/{x}/{y}.png',
-    crossOrigin: 'Anonymous',
-    minZoom: 5,
-    maxZoom: 15
-  })
-}
-const ekizyouka07Obj = {};
-for (let i of mapsStr) {
-  ekizyouka07Obj[i] = new TileLayer(new Ekizyouka07())
-}
-// 液状化危険度分布図（茨城県）-------------------------------------------------------------------------------
-function Ekizyouka08 () {
-  this.preload = Infinity
-  this.name = 'ekizyouka08'
-  this.extent = transformE([139.5564, 37.0056, 141.1669, 35.5497])
-  this.pointer = true
-  this.source = new XYZ({
-    url: 'https://disaportal.gsi.go.jp/raster/08_03_ekijoka_pref/08_ibaraki/{z}/{x}/{y}.png',
-    crossOrigin: 'Anonymous',
-    minZoom: 5,
-    maxZoom: 15
-  })
-}
-const ekizyouka08Obj = {};
-for (let i of mapsStr) {
-  ekizyouka08Obj[i] = new TileLayer(new Ekizyouka08())
-}
-// 液状化危険度分布図（栃木県）-------------------------------------------------------------------------------
-function Ekizyouka09 () {
-  this.preload = Infinity
-  this.name = 'ekizyouka09'
-  this.extent = transformE([139.2317, 37.1670, 140.3415, 36.1207])
-  this.pointer = true
-  this.source = new XYZ({
-    url: 'https://disaportal.gsi.go.jp/raster/08_03_ekijoka_pref/09_tochigi/{z}/{x}/{y}.png',
-    crossOrigin: 'Anonymous',
-    minZoom: 5,
-    maxZoom: 15
-  })
-}
-const ekizyouka09Obj = {};
-for (let i of mapsStr) {
-  ekizyouka09Obj[i] = new TileLayer(new Ekizyouka09())
-}
-// 液状化危険度分布図（群馬県）-------------------------------------------------------------------------------
-function Ekizyouka10 () {
-  this.preload = Infinity
-  this.name = 'ekizyouka10'
-  this.extent = transformE([138.1963, 37.0633, 139.7744, 35.8628])
-  this.pointer = true
-  this.source = new XYZ({
-    url: 'https://disaportal.gsi.go.jp/raster/08_03_ekijoka_pref/10_gumma/{z}/{x}/{y}.png',
-    crossOrigin: 'Anonymous',
-    minZoom: 5,
-    maxZoom: 15
-  })
-}
-const ekizyouka10Obj = {};
-for (let i of mapsStr) {
-  ekizyouka10Obj[i] = new TileLayer(new Ekizyouka10())
-}
-// 液状化危険度分布図（千葉県）-------------------------------------------------------------------------------
-function Ekizyouka12 () {
-  this.preload = Infinity
-  this.name = 'ekizyouka12'
-  this.extent = transformE([139.5378, 36.1762, 140.9576, 34.7437])
-  this.pointer = true
-  this.source = new XYZ({
-    url: 'https://disaportal.gsi.go.jp/raster/08_03_ekijoka_pref/12_chiba/{z}/{x}/{y}.png',
-    crossOrigin: 'Anonymous',
-    minZoom: 5,
-    maxZoom: 15
-  })
-}
-const ekizyouka12Obj = {};
-for (let i of mapsStr) {
-  ekizyouka12Obj[i] = new TileLayer(new Ekizyouka12())
-}
-// 液状化危険度分布図（東京都）-------------------------------------------------------------------------------
-function Ekizyouka13 () {
-  this.preload = Infinity
-  this.name = 'ekizyouka13'
-  this.extent = transformE([139.1580, 35.88181,139.9529, 35.42777])
-  this.pointer = true
-  this.source = new XYZ({
-    url: 'https://disaportal.gsi.go.jp/raster/08_03_ekijoka_pref/13_tokyo/{z}/{x}/{y}.png',
-    crossOrigin: 'Anonymous',
-    minZoom: 5,
-    maxZoom: 15
-  })
-}
-const ekizyouka13Obj = {};
-for (let i of mapsStr) {
-  ekizyouka13Obj[i] = new TileLayer(new Ekizyouka13())
-}
-// 液状化危険度分布図（神奈川県）-------------------------------------------------------------------------------
-function Ekizyouka14 () {
-  this.preload = Infinity
-  this.name = 'ekizyouka14'
-  this.extent = transformE([138.7795, 35.7182, 139.8748, 35.0473])
-  this.pointer = true
-  this.source = new XYZ({
-    url: 'https://disaportal.gsi.go.jp/raster/08_03_ekijoka_pref/14_kanagawa/{z}/{x}/{y}.png',
-    crossOrigin: 'Anonymous',
-    minZoom: 5,
-    maxZoom: 15
-  })
-}
-const ekizyouka14Obj = {};
-for (let i of mapsStr) {
-  ekizyouka14Obj[i] = new TileLayer(new Ekizyouka14())
-}
-// 液状化危険度分布図（富山県）-------------------------------------------------------------------------------
-function Ekizyouka16 () {
-  this.preload = Infinity
-  this.name = 'ekizyouka16'
-  this.extent = transformE([136.6693, 37.0191, 137.8538, 36.2473])
-  this.pointer = true
-  this.source = new XYZ({
-    url: 'https://disaportal.gsi.go.jp/raster/08_03_ekijoka_pref/16_toyama/{z}/{x}/{y}.png',
-    crossOrigin: 'Anonymous',
-    minZoom: 5,
-    maxZoom: 15
-  })
-}
-const ekizyouka16Obj = {};
-for (let i of mapsStr) {
-  ekizyouka16Obj[i] = new TileLayer(new Ekizyouka16())
-}
-// 液状化危険度分布図（石川県）-------------------------------------------------------------------------------
-function Ekizyouka17 () {
-  this.preload = Infinity
-  this.name = 'ekizyouka17'
-  this.extent = transformE([135.8825, 37.6381, 137.5069, 35.8833])
-  this.pointer = true
-  this.source = new XYZ({
-    url: 'https://disaportal.gsi.go.jp/raster/08_03_ekijoka_pref/17_ishikawa/{z}/{x}/{y}.png',
-    crossOrigin: 'Anonymous',
-    minZoom: 5,
-    maxZoom: 15
-  })
-}
-const ekizyouka17Obj = {};
-for (let i of mapsStr) {
-  ekizyouka17Obj[i] = new TileLayer(new Ekizyouka17())
-}
-// 液状化危険度分布図（福井県）-------------------------------------------------------------------------------
-function Ekizyouka18 () {
-  this.preload = Infinity
-  this.name = 'ekizyouka18'
-  this.extent = transformE([135.1556, 36.3475, 136.9342, 35.3285])
-  this.pointer = true
-  this.source = new XYZ({
-    url: 'https://disaportal.gsi.go.jp/raster/08_03_ekijoka_pref/18_fukui/{z}/{x}/{y}.png',
-    crossOrigin: 'Anonymous',
-    minZoom: 5,
-    maxZoom: 15
-  })
-}
-const ekizyouka18Obj = {};
-for (let i of mapsStr) {
-  ekizyouka18Obj[i] = new TileLayer(new Ekizyouka18())
-}
-// 液状化危険度分布図（山梨県）-------------------------------------------------------------------------------
-function Ekizyouka19 () {
-  this.preload = Infinity
-  this.name = 'ekizyouka19'
-  this.extent = transformE([138.0878, 35.9940, 139.1827, 35.0511])
-  this.pointer = true
-  this.source = new XYZ({
-    url: 'https://disaportal.gsi.go.jp/raster/08_03_ekijoka_pref/19_yamanashi/{z}/{x}/{y}.png',
-    crossOrigin: 'Anonymous',
-    minZoom: 5,
-    maxZoom: 15
-  })
-}
-const ekizyouka19Obj = {};
-for (let i of mapsStr) {
-  ekizyouka19Obj[i] = new TileLayer(new Ekizyouka19())
-}
-// 液状化危険度分布図（長野県）-------------------------------------------------------------------------------
-function Ekizyouka20 () {
-  this.preload = Infinity
-  this.name = 'ekizyouka20'
-  this.extent = transformE([137.3966, 37.0493, 138.8119, 35.1914])
-  this.pointer = true
-  this.source = new XYZ({
-    url: 'https://disaportal.gsi.go.jp/raster/08_03_ekijoka_pref/20_nagano/{z}/{x}/{y}.png',
-    crossOrigin: 'Anonymous',
-    minZoom: 5,
-    maxZoom: 15
-  })
-}
-const ekizyouka20Obj = {};
-for (let i of mapsStr) {
-  ekizyouka20Obj[i] = new TileLayer(new Ekizyouka20())
-}
-// 液状化危険度分布図（岐阜県）-------------------------------------------------------------------------------
-function Ekizyouka21 () {
-  this.preload = Infinity
-  this.name = 'ekizyouka21'
-  this.extent = transformE([36.2129, 36.4803, 137.7623, 35.1056])
-  this.pointer = true
-  this.source = new XYZ({
-    url: 'https://disaportal.gsi.go.jp/raster/08_03_ekijoka_pref/21_gifu/{z}/{x}/{y}.png',
-    crossOrigin: 'Anonymous',
-    minZoom: 5,
-    maxZoom: 15
-  })
-}
-const ekizyouka21Obj = {};
-for (let i of mapsStr) {
-  ekizyouka21Obj[i] = new TileLayer(new Ekizyouka21())
-}
-// 液状化危険度分布図（静岡県）-------------------------------------------------------------------------------
-function Ekizyouka22 () {
-  this.preload = Infinity
-  this.name = 'ekizyouka22'
-  this.extent = transformE([137.2620, 35.6814, 139.3122, 34.4404])
-  this.pointer = true
-  this.source = new XYZ({
-    url: 'https://disaportal.gsi.go.jp/raster/08_03_ekijoka_pref/22_shizuoka/{z}/{x}/{y}.png',
-    crossOrigin: 'Anonymous',
-    minZoom: 5,
-    maxZoom: 15
-  })
-}
-const ekizyouka22Obj = {};
-for (let i of mapsStr) {
-  ekizyouka22Obj[i] = new TileLayer(new Ekizyouka22())
-}
-// 液状化危険度分布図（愛知県）-------------------------------------------------------------------------------
-function Ekizyouka23 () {
-  this.preload = Infinity
-  this.name = 'ekizyouka23'
-  this.extent = transformE([136.5246, 35.4556, 137.9580, 34.5257])
-  this.pointer = true
-  this.source = new XYZ({
-    url: 'https://disaportal.gsi.go.jp/raster/08_03_ekijoka_pref/23_aichi/{z}/{x}/{y}.png',
-    crossOrigin: 'Anonymous',
-    minZoom: 5,
-    maxZoom: 15
-  })
-}
-const ekizyouka23Obj = {};
-for (let i of mapsStr) {
-  ekizyouka23Obj[i] = new TileLayer(new Ekizyouka23())
-}
-// 液状化危険度分布図（三重県）-------------------------------------------------------------------------------
-function Ekizyouka24 () {
-  this.preload = Infinity
-  this.name = 'ekizyouka24'
-  this.extent = transformE([135.7781, 35.2965, 137.1478, 33.5774])
-  this.pointer = true
-  this.source = new XYZ({
-    url: 'https://disaportal.gsi.go.jp/raster/08_03_ekijoka_pref/24_mie/{z}/{x}/{y}.png',
-    crossOrigin: 'Anonymous',
-    minZoom: 5,
-    maxZoom: 15
-  })
-}
-const ekizyouka24Obj = {};
-for (let i of mapsStr) {
-  ekizyouka24Obj[i] = new TileLayer(new Ekizyouka24())
-}
-// 液状化危険度分布図（滋賀県）-------------------------------------------------------------------------------
-function Ekizyouka25 () {
-  this.preload = Infinity
-  this.name = 'ekizyouka25'
-  this.extent = transformE([135.7043, 35.7083, 136.4979, 34.7547])
-  this.pointer = true
-  this.source = new XYZ({
-    url: 'https://disaportal.gsi.go.jp/raster/08_03_ekijoka_pref/25_shiga/{z}/{x}/{y}.png',
-    crossOrigin: 'Anonymous',
-    minZoom: 5,
-    maxZoom: 15
-  })
-}
-const ekizyouka25Obj = {};
-for (let i of mapsStr) {
-  ekizyouka25Obj[i] = new TileLayer(new Ekizyouka25())
-}
-// 液状化危険度分布図（京都府）-------------------------------------------------------------------------------
-function Ekizyouka26 () {
-  this.preload = Infinity
-  this.name = 'ekizyouka26'
-  this.extent = transformE([134.738, 35.8198, 136.1566, 34.6376])
-  this.pointer = true
-  this.source = new XYZ({
-    url: 'https://disaportal.gsi.go.jp/raster/08_03_ekijoka_pref/26_kyoto/{z}/{x}/{y}.png',
-    crossOrigin: 'Anonymous',
-    minZoom: 5,
-    maxZoom: 15
-  })
-}
-const ekizyouka26Obj = {};
-for (let i of mapsStr) {
-  ekizyouka26Obj[i] = new TileLayer(new Ekizyouka26())
-}
-// 液状化危険度分布図（大阪府）-------------------------------------------------------------------------------
-function Ekizyouka27 () {
-  this.preload = Infinity
-  this.name = 'ekizyouka27'
-  this.extent = transformE([134.9522, 35.1019,135.9050, 34.20368])
-  this.pointer = true
-  this.source = new XYZ({
-    url: 'https://disaportal.gsi.go.jp/raster/08_03_ekijoka_pref/27_osaka/{z}/{x}/{y}.png',
-    crossOrigin: 'Anonymous',
-    minZoom: 5,
-    maxZoom: 15
-  })
-}
-const ekizyouka27Obj = {};
-for (let i of mapsStr) {
-  ekizyouka27Obj[i] = new TileLayer(new Ekizyouka27())
-}
-// 液状化危険度分布図（兵庫県）-------------------------------------------------------------------------------
-function Ekizyouka28 () {
-  this.preload = Infinity
-  this.name = 'ekizyouka28'
-  this.extent = transformE([133.9501, 35.7554, 135.5849, 34.1116])
-  this.pointer = true
-  this.source = new XYZ({
-    url: 'https://disaportal.gsi.go.jp/raster/08_03_ekijoka_pref/28_hyogo/{z}/{x}/{y}.png',
-    crossOrigin: 'Anonymous',
-    minZoom: 5,
-    maxZoom: 15
-  })
-}
-const ekizyouka28Obj = {};
-for (let i of mapsStr) {
-  ekizyouka28Obj[i] = new TileLayer(new Ekizyouka28())
-}
-// 液状化危険度分布図（奈良県）-------------------------------------------------------------------------------
-function Ekizyouka29 () {
-  this.preload = Infinity
-  this.name = 'ekizyouka29'
-  this.extent = transformE([135.5026, 34.79412, 136.2517, 33.79113])
-  this.pointer = true
-  this.source = new XYZ({
-    url: 'https://disaportal.gsi.go.jp/raster/08_03_ekijoka_pref/29_nara/{z}/{x}/{y}.png',
-    crossOrigin: 'Anonymous',
-    minZoom: 5,
-    maxZoom: 15
-  })
-}
-const ekizyouka29Obj = {};
-for (let i of mapsStr) {
-  ekizyouka29Obj[i] = new TileLayer(new Ekizyouka29())
-}
-// 液状化危険度分布図（和歌山県）-------------------------------------------------------------------------------
-function Ekizyouka30 () {
-  this.preload = Infinity
-  this.name = 'ekizyouka30'
-  this.extent = transformE([134.9233, 34.41830, 136.18017, 33.41027])
-  this.pointer = true
-  this.source = new XYZ({
-    url: 'https://disaportal.gsi.go.jp/raster/08_03_ekijoka_pref/30_wakayama/{z}/{x}/{y}.png',
-    crossOrigin: 'Anonymous',
-    minZoom: 5,
-    maxZoom: 15
-  })
-}
-const ekizyouka30Obj = {};
-for (let i of mapsStr) {
-  ekizyouka30Obj[i] = new TileLayer(new Ekizyouka30())
-}
-// 液状化危険度分布図（鳥取県）-------------------------------------------------------------------------------
-function Ekizyouka31 () {
-  this.preload = Infinity
-  this.name = 'ekizyouka31'
-  this.extent = transformE([132.9929, 35.63032, 134.5977, 35.09431])
-  this.pointer = true
-  this.source = new XYZ({
-    url: 'https://disaportal.gsi.go.jp/raster/08_03_ekijoka_pref/31_tottori/{z}/{x}/{y}.png',
-    crossOrigin: 'Anonymous',
-    minZoom: 5,
-    maxZoom: 15
-  })
-}
-const ekizyouka31Obj = {};
-for (let i of mapsStr) {
-  ekizyouka31Obj[i] = new TileLayer(new Ekizyouka31())
-}
-// 液状化危険度分布図（島根県）-------------------------------------------------------------------------------
-function Ekizyouka32 () {
-  this.preload = Infinity
-  this.name = 'ekizyouka32'
-  this.extent = transformE([131.3381, 35.7297, 133.4505, 34.32081])
-  this.pointer = true
-  this.source = new XYZ({
-    url: 'https://disaportal.gsi.go.jp/raster/08_03_ekijoka_pref/32_shimane/{z}/{x}/{y}.png',
-    crossOrigin: 'Anonymous',
-    minZoom: 5,
-    maxZoom: 15
-  })
-}
-const ekizyouka32Obj = {};
-for (let i of mapsStr) {
-  ekizyouka32Obj[i] = new TileLayer(new Ekizyouka32())
-}
-// 液状化危険度分布図（岡山県）-------------------------------------------------------------------------------
-function Ekizyouka33 () {
-  this.preload = Infinity
-  this.name = 'ekizyouka33'
-  this.extent = transformE([133.1006, 35.37543, 134.5863, 34.26743])
-  this.pointer = true
-  this.source = new XYZ({
-    url: 'https://disaportal.gsi.go.jp/raster/08_03_ekijoka_pref/33_okayama/{z}/{x}/{y}.png',
-    crossOrigin: 'Anonymous',
-    minZoom: 5,
-    maxZoom: 15
-  })
-}
-const ekizyouka33Obj = {};
-for (let i of mapsStr) {
-  ekizyouka33Obj[i] = new TileLayer(new Ekizyouka33())
-}
-// 液状化危険度分布図（広島県）-------------------------------------------------------------------------------
-function Ekizyouka34 () {
-  this.preload = Infinity
-  this.name = 'ekizyouka34'
-  this.extent = transformE([131.7342, 35.1221, 133.6072, 34.08762])
-  this.pointer = true
-  this.source = new XYZ({
-    url: 'https://disaportal.gsi.go.jp/raster/08_03_ekijoka_pref/34_hiroshima/{z}/{x}/{y}.png',
-    crossOrigin: 'Anonymous',
-    minZoom: 5,
-    maxZoom: 15
-  })
-}
-const ekizyouka34Obj = {};
-for (let i of mapsStr) {
-  ekizyouka34Obj[i] = new TileLayer(new Ekizyouka34())
-}
-// 液状化危険度分布図（山口県）-------------------------------------------------------------------------------
-function Ekizyouka35 () {
-  this.preload = Infinity
-  this.name = 'ekizyouka35'
-  this.extent = transformE([130.7400, 34.75478, 132.5915, 33.73971])
-  this.pointer = true
-  this.source = new XYZ({
-    url: 'https://disaportal.gsi.go.jp/raster/08_03_ekijoka_pref/35_yamaguchi/{z}/{x}/{y}.png',
-    crossOrigin: 'Anonymous',
-    minZoom: 5,
-    maxZoom: 15
-  })
-}
-const ekizyouka35Obj = {};
-for (let i of mapsStr) {
-  ekizyouka35Obj[i] = new TileLayer(new Ekizyouka35())
-}
-// 液状化危険度分布図（徳島県）-------------------------------------------------------------------------------
-function Ekizyouka36 () {
-  this.preload = Infinity
-  this.name = 'ekizyouka36'
-  this.extent = transformE([133.4923, 34.28723, 134.9154, 33.35009])
-  this.pointer = true
-  this.source = new XYZ({
-    url: 'https://disaportal.gsi.go.jp/raster/08_03_ekijoka_pref/36_tokushima/{z}/{x}/{y}.png',
-    crossOrigin: 'Anonymous',
-    minZoom: 5,
-    maxZoom: 15
-  })
-}
-const ekizyouka36Obj = {};
-for (let i of mapsStr) {
-  ekizyouka36Obj[i] = new TileLayer(new Ekizyouka36())
-}
-// 液状化危険度分布図（香川県）-------------------------------------------------------------------------------
-function Ekizyouka37 () {
-  this.preload = Infinity
-  this.name = 'ekizyouka37'
-  this.extent = transformE([133.3593, 34.55734, 134.5650, 33.97935])
-  this.pointer = true
-  this.source = new XYZ({
-    url: 'https://disaportal.gsi.go.jp/raster/08_03_ekijoka_pref/37_kagawa/{z}/{x}/{y}.png',
-    crossOrigin: 'Anonymous',
-    minZoom: 5,
-    maxZoom: 15
-  })
-}
-const ekizyouka37Obj = {};
-for (let i of mapsStr) {
-  ekizyouka37Obj[i] = new TileLayer(new Ekizyouka37())
-}
-// 液状化危険度分布図（愛媛県）-------------------------------------------------------------------------------
-function Ekizyouka38 () {
-  this.preload = Infinity
-  this.name = 'ekizyouka38'
-  this.extent = transformE([131.8240, 34.33648, 133.9516, 32.77578])
-  this.pointer = true
-  this.source = new XYZ({
-    url: 'https://disaportal.gsi.go.jp/raster/08_03_ekijoka_pref/38_ehime/{z}/{x}/{y}.png',
-    crossOrigin: 'Anonymous',
-    minZoom: 5,
-    maxZoom: 15
-  })
-}
-const ekizyouka38Obj = {};
-for (let i of mapsStr) {
-  ekizyouka38Obj[i] = new TileLayer(new Ekizyouka38())
-}
-// 液状化危険度分布図（高知県）-------------------------------------------------------------------------------
-function Ekizyouka39 () {
-  this.preload = Infinity
-  this.name = 'ekizyouka39'
-  this.extent = transformE([132.1797, 33.82657, 134.5602, 32.66275])
-  this.pointer = true
-  this.source = new XYZ({
-    url: 'https://disaportal.gsi.go.jp/raster/08_03_ekijoka_pref/39_kochi/{z}/{x}/{y}.png',
-    crossOrigin: 'Anonymous',
-    minZoom: 5,
-    maxZoom: 15
-  })
-}
-const ekizyouka39Obj = {};
-for (let i of mapsStr) {
-  ekizyouka39Obj[i] = new TileLayer(new Ekizyouka39())
-}
-// 液状化危険度分布図（福岡県）-------------------------------------------------------------------------------
-function Ekizyouka40 () {
-  this.preload = Infinity
-  this.name = 'ekizyouka40'
-  this.extent = transformE([129.7837, 34.09346, 131.2663, 32.93019])
-  this.pointer = true
-  this.source = new XYZ({
-    url: 'https://disaportal.gsi.go.jp/raster/08_03_ekijoka_pref/40_fukuoka/{z}/{x}/{y}.png',
-    crossOrigin: 'Anonymous',
-    minZoom: 5,
-    maxZoom: 15
-  })
-}
-const ekizyouka40Obj = {};
-for (let i of mapsStr) {
-  ekizyouka40Obj[i] = new TileLayer(new Ekizyouka40())
-}
-// 液状化危険度分布図（佐賀県）-------------------------------------------------------------------------------
-function Ekizyouka41 () {
-  this.preload = Infinity
-  this.name = 'ekizyouka41'
-  this.extent = transformE([129.5852, 33.6536, 130.6883, 32.90807])
-  this.pointer = true
-  this.source = new XYZ({
-    url: 'https://disaportal.gsi.go.jp/raster/08_03_ekijoka_pref/41_saga/{z}/{x}/{y}.png',
-    crossOrigin: 'Anonymous',
-    minZoom: 5,
-    maxZoom: 15
-  })
-}
-const ekizyouka41Obj = {};
-for (let i of mapsStr) {
-  ekizyouka41Obj[i] = new TileLayer(new Ekizyouka41())
-}
-// 液状化危険度分布図（長崎県）-------------------------------------------------------------------------------
-function Ekizyouka42 () {
-  this.preload = Infinity
-  this.name = 'ekizyouka42'
-  this.extent = transformE([129.5427, 33.1727, 130.4444, 32.55078])
-  this.pointer = true
-  this.source = new XYZ({
-    url: 'https://disaportal.gsi.go.jp/raster/08_03_ekijoka_pref/42_nagasaki/{z}/{x}/{y}.png',
-    crossOrigin: 'Anonymous',
-    minZoom: 5,
-    maxZoom: 15
-  })
-}
-const ekizyouka42Obj = {};
-for (let i of mapsStr) {
-  ekizyouka42Obj[i] = new TileLayer(new Ekizyouka42())
-}
-// 液状化危険度分布図（熊本県）-------------------------------------------------------------------------------
-function Ekizyouka43 () {
-  this.preload = Infinity
-  this.name = 'ekizyouka43'
-  this.extent = transformE([129.9055, 33.12824, 131.1854, 32.00339])
-  this.pointer = true
-  this.source = new XYZ({
-    url: 'https://disaportal.gsi.go.jp/raster/08_03_ekijoka_pref/43_kumamoto/{z}/{x}/{y}.png',
-    crossOrigin: 'Anonymous',
-    minZoom: 5,
-    maxZoom: 15
-  })
-}
-const ekizyouka43Obj = {};
-for (let i of mapsStr) {
-  ekizyouka43Obj[i] = new TileLayer(new Ekizyouka43())
-}
-// 液状化危険度分布図（大分県）-------------------------------------------------------------------------------
-function Ekizyouka44 () {
-  this.preload = Infinity
-  this.name = 'ekizyouka44'
-  this.extent = transformE([130.7373, 33.76245, 132.1325, 32.5524])
-  this.pointer = true
-  this.source = new XYZ({
-    url: 'https://disaportal.gsi.go.jp/raster/08_03_ekijoka_pref/44_oita/{z}/{x}/{y}.png',
-    crossOrigin: 'Anonymous',
-    minZoom: 5,
-    maxZoom: 15
-  })
-}
-const ekizyouka44Obj = {};
-for (let i of mapsStr) {
-  ekizyouka44Obj[i] = new TileLayer(new Ekizyouka44())
-}
-// 液状化危険度分布図（宮崎県）-------------------------------------------------------------------------------
-function Ekizyouka45 () {
-  this.preload = Infinity
-  this.name = 'ekizyouka45'
-  this.extent = transformE([130.6439, 32.91034, 131.9101, 31.26415])
-  this.pointer = true
-  this.source = new XYZ({
-    url: 'https://disaportal.gsi.go.jp/raster/08_03_ekijoka_pref/45_miyazaki/{z}/{x}/{y}.png',
-    crossOrigin: 'Anonymous',
-    minZoom: 5,
-    maxZoom: 15
-  })
-}
-const ekizyouka45Obj = {};
-for (let i of mapsStr) {
-  ekizyouka45Obj[i] = new TileLayer(new Ekizyouka45())
-}
-// 液状化危険度分布図（鹿児島県）-------------------------------------------------------------------------------
-function Ekizyouka46 () {
-  this.preload = Infinity
-  this.name = 'ekizyouka46'
-  this.extent = transformE([129.8308, 32.41219, 131.3349, 29.82761])
-  this.pointer = true
-  this.source = new XYZ({
-    url: 'https://disaportal.gsi.go.jp/raster/08_03_ekijoka_pref/46_kagoshima/{z}/{x}/{y}.png',
-    crossOrigin: 'Anonymous',
-    minZoom: 5,
-    maxZoom: 15
-  })
-}
-const ekizyouka46Obj = {};
-for (let i of mapsStr) {
-  ekizyouka46Obj[i] = new TileLayer(new Ekizyouka46())
-}
-// 液状化危険度分布図（沖縄県）-------------------------------------------------------------------------------
-function Ekizyouka47 () {
-  this.preload = Infinity
-  this.name = 'ekizyouka47'
-  this.extent = transformE([122.5435, 27.5248, 132.9212, 22.7673])
-  this.pointer = true
-  this.source = new XYZ({
-    url: 'https://disaportal.gsi.go.jp/raster/08_03_ekijoka_pref/47_okinawa/{z}/{x}/{y}.png',
-    crossOrigin: 'Anonymous',
-    minZoom: 5,
-    maxZoom: 15
-  })
-}
-const ekizyouka47Obj = {};
-for (let i of mapsStr) {
-  ekizyouka47Obj[i] = new TileLayer(new Ekizyouka47())
-}
-const ekizyouka00Obj = {};
-for (let i of mapsStr) {
-  ekizyouka00Obj[i] = new LayerGroup({
-    layers: [
-      ekizyouka01Obj[i],
-      ekizyouka02Obj[i],
-      ekizyouka03Obj[i],
-      ekizyouka04Obj[i],
-      ekizyouka05Obj[i],
-      ekizyouka06Obj[i],
-      ekizyouka07Obj[i],
-      ekizyouka08Obj[i],
-      ekizyouka09Obj[i],
-      ekizyouka10Obj[i],
-      // ekizyouka11Obj[i],
-      ekizyouka12Obj[i],
-      ekizyouka13Obj[i],
-      ekizyouka14Obj[i],
-      // ekizyouka15Obj[i],
-      ekizyouka16Obj[i],
-      ekizyouka17Obj[i],
-      ekizyouka18Obj[i],
-      ekizyouka19Obj[i],
-      ekizyouka20Obj[i],
-      ekizyouka21Obj[i],
-      ekizyouka22Obj[i],
-      ekizyouka23Obj[i],
-      ekizyouka24Obj[i],
-      ekizyouka25Obj[i],
-      ekizyouka26Obj[i],
-      ekizyouka27Obj[i],
-      ekizyouka28Obj[i],
-      ekizyouka29Obj[i],
-      ekizyouka30Obj[i],
-      ekizyouka31Obj[i],
-      ekizyouka32Obj[i],
-      ekizyouka33Obj[i],
-      ekizyouka34Obj[i],
-      ekizyouka35Obj[i],
-      ekizyouka36Obj[i],
-      ekizyouka37Obj[i],
-      ekizyouka38Obj[i],
-      ekizyouka39Obj[i],
-      ekizyouka40Obj[i],
-      ekizyouka41Obj[i],
-      ekizyouka42Obj[i],
-      ekizyouka43Obj[i],
-      ekizyouka44Obj[i],
-      ekizyouka45Obj[i],
-      ekizyouka46Obj[i],
-      ekizyouka47Obj[i],
-    ]
-  })
-}
-for (let i of mapsStr) {
-  ekizyouka00Obj[i].values_['name'] = 'ekizyouka'
-  ekizyouka00Obj[i].values_['pointer'] = true
-}
-const ekizyoukaSumm = '出典：<br><a href="https://disaportal.gsi.go.jp/hazardmap/copyright/opendata.html" target="_blank">ハザードマップポータルサイト</a>';
-// 宮崎市ハザードマップ-------------------------------------------------------------------------------
-function MiyazakisiHm () {
-  this.preload = Infinity
-  this.source = new XYZ({
-    url: 'https://kenzkenz.github.io/hazardmap/tile/miyazakisi/{z}/{x}/{-y}.png',
-    crossOrigin: 'Anonymous',
-    minZoom: 1,
-    maxZoom: 18
-  })
-}
-const miyazakisiHmObj = {};
-for (let i of mapsStr) {
-  miyazakisiHmObj[i] = new TileLayer(new MiyazakisiHm())
-}
-const miyazakisiHmSumm = '<a href="http://www.city.miyazaki.miyazaki.jp/life/fire_department/hazard_map/1153.html" target="_blank">宮崎市洪水ハザードマップ</a>へ';
-// 都城市ハザードマップ-------------------------------------------------------------------------------
-function MiyakonozyousiHm () {
-  this.preload = Infinity
-  this.source = new XYZ({
-    url: 'https://kenzkenz.github.io/hazardmap/tile/miyakonozyousi/{z}/{x}/{-y}.png',
-    crossOrigin: 'Anonymous',
-    minZoom: 1,
-    maxZoom: 18
-  })
-}
-const miyakonozyousiHmObj = {};
-for (let i of mapsStr) {
-  miyakonozyousiHmObj[i] = new TileLayer(new MiyakonozyousiHm())
-}
-const miyakonozyousiHmSumm = '';
-// 日向市ハザードマップ-------------------------------------------------------------------------------
-function HyuugasiHm () {
-  this.preload = Infinity
-  this.source = new XYZ({
-    url: 'https://kenzkenz.github.io/hazardmap/tile/hyuugasibousai/{z}/{x}/{-y}.png',
-    crossOrigin: 'Anonymous',
-    minZoom: 1,
-    maxZoom: 18
-  })
-}
-const hyuugasiHmObj = {};
-for (let i of mapsStr) {
-  hyuugasiHmObj[i] = new TileLayer(new HyuugasiHm())
-}
-const hyuugasiHmSumm = '';
+// // 液状化危険度分布図（北海道）-------------------------------------------------------------------------------
+// function Ekizyouka01 () {
+//   this.preload = Infinity
+//   this.name = 'ekizyouka01'
+//   this.extent = transformE([137.6910, 46.3139, 150.1357, 40.3532])
+//   this.pointer = true
+//   this.source = new XYZ({
+//     url: 'https://disaportal.gsi.go.jp/raster/08_03_ekijoka_pref/01_hokkai/{z}/{x}/{y}.png',
+//     crossOrigin: 'Anonymous',
+//     minZoom: 5,
+//     maxZoom: 15
+//   })
+// }
+// const ekizyouka01Obj = {};
+// for (let i of mapsStr) {
+//   ekizyouka01Obj[i] = new TileLayer(new Ekizyouka01())
+// }
+// // 液状化危険度分布図（青森県）-------------------------------------------------------------------------------
+// function Ekizyouka02 () {
+//   this.preload = Infinity
+//   this.name = 'ekizyouka02'
+//   this.extent = transformE([139.5370, 41.6491, 141.7808, 40.1541])
+//   this.pointer = true
+//   this.source = new XYZ({
+//     url: 'https://disaportal.gsi.go.jp/raster/08_03_ekijoka_pref/02_aomori/{z}/{x}/{y}.png',
+//     crossOrigin: 'Anonymous',
+//     minZoom: 5,
+//     maxZoom: 15
+//   })
+// }
+// const ekizyouka02Obj = {};
+// for (let i of mapsStr) {
+//   ekizyouka02Obj[i] = new TileLayer(new Ekizyouka02())
+// }
+// // 液状化危険度分布図（岩手県）-------------------------------------------------------------------------------
+// function Ekizyouka03 () {
+//   this.preload = Infinity
+//   this.name = 'ekizyouka03'
+//   this.extent = transformE([140.5821, 40.4636, 142.1447, 38.6697])
+//   this.pointer = true
+//   this.source = new XYZ({
+//     url: 'https://disaportal.gsi.go.jp/raster/08_03_ekijoka_pref/03_iwate/{z}/{x}/{y}.png',
+//     crossOrigin: 'Anonymous',
+//     minZoom: 5,
+//     maxZoom: 15
+//   })
+// }
+// const ekizyouka03Obj = {};
+// for (let i of mapsStr) {
+//   ekizyouka03Obj[i] = new TileLayer(new Ekizyouka03())
+// }
+// // 液状化危険度分布図（宮城県）-------------------------------------------------------------------------------
+// function Ekizyouka04 () {
+//   this.preload = Infinity
+//   this.name = 'ekizyouka04'
+//   this.extent = transformE([140.2651, 39.1124, 141.8108, 37.7088])
+//   this.pointer = true
+//   this.source = new XYZ({
+//     url: 'https://disaportal.gsi.go.jp/raster/08_03_ekijoka_pref/04_miyagi/{z}/{x}/{y}.png',
+//     crossOrigin: 'Anonymous',
+//     minZoom: 5,
+//     maxZoom: 15
+//   })
+// }
+// const ekizyouka04Obj = {};
+// for (let i of mapsStr) {
+//   ekizyouka04Obj[i] = new TileLayer(new Ekizyouka04())
+// }
+// // 液状化危険度分布図（秋田県）-------------------------------------------------------------------------------
+// function Ekizyouka05 () {
+//   this.preload = Infinity
+//   this.name = 'ekizyouka05'
+//   this.extent = transformE([139.4931, 40.5570, 141.0978, 38.7591])
+//   this.pointer = true
+//   this.source = new XYZ({
+//     url: 'https://disaportal.gsi.go.jp/raster/08_03_ekijoka_pref/05_akita/{z}/{x}/{y}.png',
+//     crossOrigin: 'Anonymous',
+//     minZoom: 5,
+//     maxZoom: 15
+//   })
+// }
+// const ekizyouka05Obj = {};
+// for (let i of mapsStr) {
+//   ekizyouka05Obj[i] = new TileLayer(new Ekizyouka05())
+// }
+// // 液状化危険度分布図（山形県）-------------------------------------------------------------------------------
+// function Ekizyouka06 () {
+//   this.preload = Infinity
+//   this.name = 'ekizyouka06'
+//   this.extent = transformE([139.4480, 39.2208, 140.6762, 37.6211])
+//   this.pointer = true
+//   this.source = new XYZ({
+//     url: 'https://disaportal.gsi.go.jp/raster/08_03_ekijoka_pref/06_yamagata/{z}/{x}/{y}.png',
+//     crossOrigin: 'Anonymous',
+//     minZoom: 5,
+//     maxZoom: 15
+//   })
+// }
+// const ekizyouka06Obj = {};
+// for (let i of mapsStr) {
+//   ekizyouka06Obj[i] = new TileLayer(new Ekizyouka06())
+// }
+// // 液状化危険度分布図（福島県）-------------------------------------------------------------------------------
+// function Ekizyouka07 () {
+//   this.preload = Infinity
+//   this.name = 'ekizyouka07'
+//   this.extent = transformE([138.9991, 37.9656, 141.4728, 36.6989])
+//   this.pointer = true
+//   this.source = new XYZ({
+//     url: 'https://disaportal.gsi.go.jp/raster/08_03_ekijoka_pref/07_fukushima/{z}/{x}/{y}.png',
+//     crossOrigin: 'Anonymous',
+//     minZoom: 5,
+//     maxZoom: 15
+//   })
+// }
+// const ekizyouka07Obj = {};
+// for (let i of mapsStr) {
+//   ekizyouka07Obj[i] = new TileLayer(new Ekizyouka07())
+// }
+// // 液状化危険度分布図（茨城県）-------------------------------------------------------------------------------
+// function Ekizyouka08 () {
+//   this.preload = Infinity
+//   this.name = 'ekizyouka08'
+//   this.extent = transformE([139.5564, 37.0056, 141.1669, 35.5497])
+//   this.pointer = true
+//   this.source = new XYZ({
+//     url: 'https://disaportal.gsi.go.jp/raster/08_03_ekijoka_pref/08_ibaraki/{z}/{x}/{y}.png',
+//     crossOrigin: 'Anonymous',
+//     minZoom: 5,
+//     maxZoom: 15
+//   })
+// }
+// const ekizyouka08Obj = {};
+// for (let i of mapsStr) {
+//   ekizyouka08Obj[i] = new TileLayer(new Ekizyouka08())
+// }
+// // 液状化危険度分布図（栃木県）-------------------------------------------------------------------------------
+// function Ekizyouka09 () {
+//   this.preload = Infinity
+//   this.name = 'ekizyouka09'
+//   this.extent = transformE([139.2317, 37.1670, 140.3415, 36.1207])
+//   this.pointer = true
+//   this.source = new XYZ({
+//     url: 'https://disaportal.gsi.go.jp/raster/08_03_ekijoka_pref/09_tochigi/{z}/{x}/{y}.png',
+//     crossOrigin: 'Anonymous',
+//     minZoom: 5,
+//     maxZoom: 15
+//   })
+// }
+// const ekizyouka09Obj = {};
+// for (let i of mapsStr) {
+//   ekizyouka09Obj[i] = new TileLayer(new Ekizyouka09())
+// }
+// // 液状化危険度分布図（群馬県）-------------------------------------------------------------------------------
+// function Ekizyouka10 () {
+//   this.preload = Infinity
+//   this.name = 'ekizyouka10'
+//   this.extent = transformE([138.1963, 37.0633, 139.7744, 35.8628])
+//   this.pointer = true
+//   this.source = new XYZ({
+//     url: 'https://disaportal.gsi.go.jp/raster/08_03_ekijoka_pref/10_gumma/{z}/{x}/{y}.png',
+//     crossOrigin: 'Anonymous',
+//     minZoom: 5,
+//     maxZoom: 15
+//   })
+// }
+// const ekizyouka10Obj = {};
+// for (let i of mapsStr) {
+//   ekizyouka10Obj[i] = new TileLayer(new Ekizyouka10())
+// }
+// // 液状化危険度分布図（千葉県）-------------------------------------------------------------------------------
+// function Ekizyouka12 () {
+//   this.preload = Infinity
+//   this.name = 'ekizyouka12'
+//   this.extent = transformE([139.5378, 36.1762, 140.9576, 34.7437])
+//   this.pointer = true
+//   this.source = new XYZ({
+//     url: 'https://disaportal.gsi.go.jp/raster/08_03_ekijoka_pref/12_chiba/{z}/{x}/{y}.png',
+//     crossOrigin: 'Anonymous',
+//     minZoom: 5,
+//     maxZoom: 15
+//   })
+// }
+// const ekizyouka12Obj = {};
+// for (let i of mapsStr) {
+//   ekizyouka12Obj[i] = new TileLayer(new Ekizyouka12())
+// }
+// // 液状化危険度分布図（東京都）-------------------------------------------------------------------------------
+// function Ekizyouka13 () {
+//   this.preload = Infinity
+//   this.name = 'ekizyouka13'
+//   this.extent = transformE([139.1580, 35.88181,139.9529, 35.42777])
+//   this.pointer = true
+//   this.source = new XYZ({
+//     url: 'https://disaportal.gsi.go.jp/raster/08_03_ekijoka_pref/13_tokyo/{z}/{x}/{y}.png',
+//     crossOrigin: 'Anonymous',
+//     minZoom: 5,
+//     maxZoom: 15
+//   })
+// }
+// const ekizyouka13Obj = {};
+// for (let i of mapsStr) {
+//   ekizyouka13Obj[i] = new TileLayer(new Ekizyouka13())
+// }
+// // 液状化危険度分布図（神奈川県）-------------------------------------------------------------------------------
+// function Ekizyouka14 () {
+//   this.preload = Infinity
+//   this.name = 'ekizyouka14'
+//   this.extent = transformE([138.7795, 35.7182, 139.8748, 35.0473])
+//   this.pointer = true
+//   this.source = new XYZ({
+//     url: 'https://disaportal.gsi.go.jp/raster/08_03_ekijoka_pref/14_kanagawa/{z}/{x}/{y}.png',
+//     crossOrigin: 'Anonymous',
+//     minZoom: 5,
+//     maxZoom: 15
+//   })
+// }
+// const ekizyouka14Obj = {};
+// for (let i of mapsStr) {
+//   ekizyouka14Obj[i] = new TileLayer(new Ekizyouka14())
+// }
+// // 液状化危険度分布図（富山県）-------------------------------------------------------------------------------
+// function Ekizyouka16 () {
+//   this.preload = Infinity
+//   this.name = 'ekizyouka16'
+//   this.extent = transformE([136.6693, 37.0191, 137.8538, 36.2473])
+//   this.pointer = true
+//   this.source = new XYZ({
+//     url: 'https://disaportal.gsi.go.jp/raster/08_03_ekijoka_pref/16_toyama/{z}/{x}/{y}.png',
+//     crossOrigin: 'Anonymous',
+//     minZoom: 5,
+//     maxZoom: 15
+//   })
+// }
+// const ekizyouka16Obj = {};
+// for (let i of mapsStr) {
+//   ekizyouka16Obj[i] = new TileLayer(new Ekizyouka16())
+// }
+// // 液状化危険度分布図（石川県）-------------------------------------------------------------------------------
+// function Ekizyouka17 () {
+//   this.preload = Infinity
+//   this.name = 'ekizyouka17'
+//   this.extent = transformE([135.8825, 37.6381, 137.5069, 35.8833])
+//   this.pointer = true
+//   this.source = new XYZ({
+//     url: 'https://disaportal.gsi.go.jp/raster/08_03_ekijoka_pref/17_ishikawa/{z}/{x}/{y}.png',
+//     crossOrigin: 'Anonymous',
+//     minZoom: 5,
+//     maxZoom: 15
+//   })
+// }
+// const ekizyouka17Obj = {};
+// for (let i of mapsStr) {
+//   ekizyouka17Obj[i] = new TileLayer(new Ekizyouka17())
+// }
+// // 液状化危険度分布図（福井県）-------------------------------------------------------------------------------
+// function Ekizyouka18 () {
+//   this.preload = Infinity
+//   this.name = 'ekizyouka18'
+//   this.extent = transformE([135.1556, 36.3475, 136.9342, 35.3285])
+//   this.pointer = true
+//   this.source = new XYZ({
+//     url: 'https://disaportal.gsi.go.jp/raster/08_03_ekijoka_pref/18_fukui/{z}/{x}/{y}.png',
+//     crossOrigin: 'Anonymous',
+//     minZoom: 5,
+//     maxZoom: 15
+//   })
+// }
+// const ekizyouka18Obj = {};
+// for (let i of mapsStr) {
+//   ekizyouka18Obj[i] = new TileLayer(new Ekizyouka18())
+// }
+// // 液状化危険度分布図（山梨県）-------------------------------------------------------------------------------
+// function Ekizyouka19 () {
+//   this.preload = Infinity
+//   this.name = 'ekizyouka19'
+//   this.extent = transformE([138.0878, 35.9940, 139.1827, 35.0511])
+//   this.pointer = true
+//   this.source = new XYZ({
+//     url: 'https://disaportal.gsi.go.jp/raster/08_03_ekijoka_pref/19_yamanashi/{z}/{x}/{y}.png',
+//     crossOrigin: 'Anonymous',
+//     minZoom: 5,
+//     maxZoom: 15
+//   })
+// }
+// const ekizyouka19Obj = {};
+// for (let i of mapsStr) {
+//   ekizyouka19Obj[i] = new TileLayer(new Ekizyouka19())
+// }
+// // 液状化危険度分布図（長野県）-------------------------------------------------------------------------------
+// function Ekizyouka20 () {
+//   this.preload = Infinity
+//   this.name = 'ekizyouka20'
+//   this.extent = transformE([137.3966, 37.0493, 138.8119, 35.1914])
+//   this.pointer = true
+//   this.source = new XYZ({
+//     url: 'https://disaportal.gsi.go.jp/raster/08_03_ekijoka_pref/20_nagano/{z}/{x}/{y}.png',
+//     crossOrigin: 'Anonymous',
+//     minZoom: 5,
+//     maxZoom: 15
+//   })
+// }
+// const ekizyouka20Obj = {};
+// for (let i of mapsStr) {
+//   ekizyouka20Obj[i] = new TileLayer(new Ekizyouka20())
+// }
+// // 液状化危険度分布図（岐阜県）-------------------------------------------------------------------------------
+// function Ekizyouka21 () {
+//   this.preload = Infinity
+//   this.name = 'ekizyouka21'
+//   this.extent = transformE([36.2129, 36.4803, 137.7623, 35.1056])
+//   this.pointer = true
+//   this.source = new XYZ({
+//     url: 'https://disaportal.gsi.go.jp/raster/08_03_ekijoka_pref/21_gifu/{z}/{x}/{y}.png',
+//     crossOrigin: 'Anonymous',
+//     minZoom: 5,
+//     maxZoom: 15
+//   })
+// }
+// const ekizyouka21Obj = {};
+// for (let i of mapsStr) {
+//   ekizyouka21Obj[i] = new TileLayer(new Ekizyouka21())
+// }
+// // 液状化危険度分布図（静岡県）-------------------------------------------------------------------------------
+// function Ekizyouka22 () {
+//   this.preload = Infinity
+//   this.name = 'ekizyouka22'
+//   this.extent = transformE([137.2620, 35.6814, 139.3122, 34.4404])
+//   this.pointer = true
+//   this.source = new XYZ({
+//     url: 'https://disaportal.gsi.go.jp/raster/08_03_ekijoka_pref/22_shizuoka/{z}/{x}/{y}.png',
+//     crossOrigin: 'Anonymous',
+//     minZoom: 5,
+//     maxZoom: 15
+//   })
+// }
+// const ekizyouka22Obj = {};
+// for (let i of mapsStr) {
+//   ekizyouka22Obj[i] = new TileLayer(new Ekizyouka22())
+// }
+// // 液状化危険度分布図（愛知県）-------------------------------------------------------------------------------
+// function Ekizyouka23 () {
+//   this.preload = Infinity
+//   this.name = 'ekizyouka23'
+//   this.extent = transformE([136.5246, 35.4556, 137.9580, 34.5257])
+//   this.pointer = true
+//   this.source = new XYZ({
+//     url: 'https://disaportal.gsi.go.jp/raster/08_03_ekijoka_pref/23_aichi/{z}/{x}/{y}.png',
+//     crossOrigin: 'Anonymous',
+//     minZoom: 5,
+//     maxZoom: 15
+//   })
+// }
+// const ekizyouka23Obj = {};
+// for (let i of mapsStr) {
+//   ekizyouka23Obj[i] = new TileLayer(new Ekizyouka23())
+// }
+// // 液状化危険度分布図（三重県）-------------------------------------------------------------------------------
+// function Ekizyouka24 () {
+//   this.preload = Infinity
+//   this.name = 'ekizyouka24'
+//   this.extent = transformE([135.7781, 35.2965, 137.1478, 33.5774])
+//   this.pointer = true
+//   this.source = new XYZ({
+//     url: 'https://disaportal.gsi.go.jp/raster/08_03_ekijoka_pref/24_mie/{z}/{x}/{y}.png',
+//     crossOrigin: 'Anonymous',
+//     minZoom: 5,
+//     maxZoom: 15
+//   })
+// }
+// const ekizyouka24Obj = {};
+// for (let i of mapsStr) {
+//   ekizyouka24Obj[i] = new TileLayer(new Ekizyouka24())
+// }
+// // 液状化危険度分布図（滋賀県）-------------------------------------------------------------------------------
+// function Ekizyouka25 () {
+//   this.preload = Infinity
+//   this.name = 'ekizyouka25'
+//   this.extent = transformE([135.7043, 35.7083, 136.4979, 34.7547])
+//   this.pointer = true
+//   this.source = new XYZ({
+//     url: 'https://disaportal.gsi.go.jp/raster/08_03_ekijoka_pref/25_shiga/{z}/{x}/{y}.png',
+//     crossOrigin: 'Anonymous',
+//     minZoom: 5,
+//     maxZoom: 15
+//   })
+// }
+// const ekizyouka25Obj = {};
+// for (let i of mapsStr) {
+//   ekizyouka25Obj[i] = new TileLayer(new Ekizyouka25())
+// }
+// // 液状化危険度分布図（京都府）-------------------------------------------------------------------------------
+// function Ekizyouka26 () {
+//   this.preload = Infinity
+//   this.name = 'ekizyouka26'
+//   this.extent = transformE([134.738, 35.8198, 136.1566, 34.6376])
+//   this.pointer = true
+//   this.source = new XYZ({
+//     url: 'https://disaportal.gsi.go.jp/raster/08_03_ekijoka_pref/26_kyoto/{z}/{x}/{y}.png',
+//     crossOrigin: 'Anonymous',
+//     minZoom: 5,
+//     maxZoom: 15
+//   })
+// }
+// const ekizyouka26Obj = {};
+// for (let i of mapsStr) {
+//   ekizyouka26Obj[i] = new TileLayer(new Ekizyouka26())
+// }
+// // 液状化危険度分布図（大阪府）-------------------------------------------------------------------------------
+// function Ekizyouka27 () {
+//   this.preload = Infinity
+//   this.name = 'ekizyouka27'
+//   this.extent = transformE([134.9522, 35.1019,135.9050, 34.20368])
+//   this.pointer = true
+//   this.source = new XYZ({
+//     url: 'https://disaportal.gsi.go.jp/raster/08_03_ekijoka_pref/27_osaka/{z}/{x}/{y}.png',
+//     crossOrigin: 'Anonymous',
+//     minZoom: 5,
+//     maxZoom: 15
+//   })
+// }
+// const ekizyouka27Obj = {};
+// for (let i of mapsStr) {
+//   ekizyouka27Obj[i] = new TileLayer(new Ekizyouka27())
+// }
+// // 液状化危険度分布図（兵庫県）-------------------------------------------------------------------------------
+// function Ekizyouka28 () {
+//   this.preload = Infinity
+//   this.name = 'ekizyouka28'
+//   this.extent = transformE([133.9501, 35.7554, 135.5849, 34.1116])
+//   this.pointer = true
+//   this.source = new XYZ({
+//     url: 'https://disaportal.gsi.go.jp/raster/08_03_ekijoka_pref/28_hyogo/{z}/{x}/{y}.png',
+//     crossOrigin: 'Anonymous',
+//     minZoom: 5,
+//     maxZoom: 15
+//   })
+// }
+// const ekizyouka28Obj = {};
+// for (let i of mapsStr) {
+//   ekizyouka28Obj[i] = new TileLayer(new Ekizyouka28())
+// }
+// // 液状化危険度分布図（奈良県）-------------------------------------------------------------------------------
+// function Ekizyouka29 () {
+//   this.preload = Infinity
+//   this.name = 'ekizyouka29'
+//   this.extent = transformE([135.5026, 34.79412, 136.2517, 33.79113])
+//   this.pointer = true
+//   this.source = new XYZ({
+//     url: 'https://disaportal.gsi.go.jp/raster/08_03_ekijoka_pref/29_nara/{z}/{x}/{y}.png',
+//     crossOrigin: 'Anonymous',
+//     minZoom: 5,
+//     maxZoom: 15
+//   })
+// }
+// const ekizyouka29Obj = {};
+// for (let i of mapsStr) {
+//   ekizyouka29Obj[i] = new TileLayer(new Ekizyouka29())
+// }
+// // 液状化危険度分布図（和歌山県）-------------------------------------------------------------------------------
+// function Ekizyouka30 () {
+//   this.preload = Infinity
+//   this.name = 'ekizyouka30'
+//   this.extent = transformE([134.9233, 34.41830, 136.18017, 33.41027])
+//   this.pointer = true
+//   this.source = new XYZ({
+//     url: 'https://disaportal.gsi.go.jp/raster/08_03_ekijoka_pref/30_wakayama/{z}/{x}/{y}.png',
+//     crossOrigin: 'Anonymous',
+//     minZoom: 5,
+//     maxZoom: 15
+//   })
+// }
+// const ekizyouka30Obj = {};
+// for (let i of mapsStr) {
+//   ekizyouka30Obj[i] = new TileLayer(new Ekizyouka30())
+// }
+// // 液状化危険度分布図（鳥取県）-------------------------------------------------------------------------------
+// function Ekizyouka31 () {
+//   this.preload = Infinity
+//   this.name = 'ekizyouka31'
+//   this.extent = transformE([132.9929, 35.63032, 134.5977, 35.09431])
+//   this.pointer = true
+//   this.source = new XYZ({
+//     url: 'https://disaportal.gsi.go.jp/raster/08_03_ekijoka_pref/31_tottori/{z}/{x}/{y}.png',
+//     crossOrigin: 'Anonymous',
+//     minZoom: 5,
+//     maxZoom: 15
+//   })
+// }
+// const ekizyouka31Obj = {};
+// for (let i of mapsStr) {
+//   ekizyouka31Obj[i] = new TileLayer(new Ekizyouka31())
+// }
+// // 液状化危険度分布図（島根県）-------------------------------------------------------------------------------
+// function Ekizyouka32 () {
+//   this.preload = Infinity
+//   this.name = 'ekizyouka32'
+//   this.extent = transformE([131.3381, 35.7297, 133.4505, 34.32081])
+//   this.pointer = true
+//   this.source = new XYZ({
+//     url: 'https://disaportal.gsi.go.jp/raster/08_03_ekijoka_pref/32_shimane/{z}/{x}/{y}.png',
+//     crossOrigin: 'Anonymous',
+//     minZoom: 5,
+//     maxZoom: 15
+//   })
+// }
+// const ekizyouka32Obj = {};
+// for (let i of mapsStr) {
+//   ekizyouka32Obj[i] = new TileLayer(new Ekizyouka32())
+// }
+// // 液状化危険度分布図（岡山県）-------------------------------------------------------------------------------
+// function Ekizyouka33 () {
+//   this.preload = Infinity
+//   this.name = 'ekizyouka33'
+//   this.extent = transformE([133.1006, 35.37543, 134.5863, 34.26743])
+//   this.pointer = true
+//   this.source = new XYZ({
+//     url: 'https://disaportal.gsi.go.jp/raster/08_03_ekijoka_pref/33_okayama/{z}/{x}/{y}.png',
+//     crossOrigin: 'Anonymous',
+//     minZoom: 5,
+//     maxZoom: 15
+//   })
+// }
+// const ekizyouka33Obj = {};
+// for (let i of mapsStr) {
+//   ekizyouka33Obj[i] = new TileLayer(new Ekizyouka33())
+// }
+// // 液状化危険度分布図（広島県）-------------------------------------------------------------------------------
+// function Ekizyouka34 () {
+//   this.preload = Infinity
+//   this.name = 'ekizyouka34'
+//   this.extent = transformE([131.7342, 35.1221, 133.6072, 34.08762])
+//   this.pointer = true
+//   this.source = new XYZ({
+//     url: 'https://disaportal.gsi.go.jp/raster/08_03_ekijoka_pref/34_hiroshima/{z}/{x}/{y}.png',
+//     crossOrigin: 'Anonymous',
+//     minZoom: 5,
+//     maxZoom: 15
+//   })
+// }
+// const ekizyouka34Obj = {};
+// for (let i of mapsStr) {
+//   ekizyouka34Obj[i] = new TileLayer(new Ekizyouka34())
+// }
+// // 液状化危険度分布図（山口県）-------------------------------------------------------------------------------
+// function Ekizyouka35 () {
+//   this.preload = Infinity
+//   this.name = 'ekizyouka35'
+//   this.extent = transformE([130.7400, 34.75478, 132.5915, 33.73971])
+//   this.pointer = true
+//   this.source = new XYZ({
+//     url: 'https://disaportal.gsi.go.jp/raster/08_03_ekijoka_pref/35_yamaguchi/{z}/{x}/{y}.png',
+//     crossOrigin: 'Anonymous',
+//     minZoom: 5,
+//     maxZoom: 15
+//   })
+// }
+// const ekizyouka35Obj = {};
+// for (let i of mapsStr) {
+//   ekizyouka35Obj[i] = new TileLayer(new Ekizyouka35())
+// }
+// // 液状化危険度分布図（徳島県）-------------------------------------------------------------------------------
+// function Ekizyouka36 () {
+//   this.preload = Infinity
+//   this.name = 'ekizyouka36'
+//   this.extent = transformE([133.4923, 34.28723, 134.9154, 33.35009])
+//   this.pointer = true
+//   this.source = new XYZ({
+//     url: 'https://disaportal.gsi.go.jp/raster/08_03_ekijoka_pref/36_tokushima/{z}/{x}/{y}.png',
+//     crossOrigin: 'Anonymous',
+//     minZoom: 5,
+//     maxZoom: 15
+//   })
+// }
+// const ekizyouka36Obj = {};
+// for (let i of mapsStr) {
+//   ekizyouka36Obj[i] = new TileLayer(new Ekizyouka36())
+// }
+// // 液状化危険度分布図（香川県）-------------------------------------------------------------------------------
+// function Ekizyouka37 () {
+//   this.preload = Infinity
+//   this.name = 'ekizyouka37'
+//   this.extent = transformE([133.3593, 34.55734, 134.5650, 33.97935])
+//   this.pointer = true
+//   this.source = new XYZ({
+//     url: 'https://disaportal.gsi.go.jp/raster/08_03_ekijoka_pref/37_kagawa/{z}/{x}/{y}.png',
+//     crossOrigin: 'Anonymous',
+//     minZoom: 5,
+//     maxZoom: 15
+//   })
+// }
+// const ekizyouka37Obj = {};
+// for (let i of mapsStr) {
+//   ekizyouka37Obj[i] = new TileLayer(new Ekizyouka37())
+// }
+// // 液状化危険度分布図（愛媛県）-------------------------------------------------------------------------------
+// function Ekizyouka38 () {
+//   this.preload = Infinity
+//   this.name = 'ekizyouka38'
+//   this.extent = transformE([131.8240, 34.33648, 133.9516, 32.77578])
+//   this.pointer = true
+//   this.source = new XYZ({
+//     url: 'https://disaportal.gsi.go.jp/raster/08_03_ekijoka_pref/38_ehime/{z}/{x}/{y}.png',
+//     crossOrigin: 'Anonymous',
+//     minZoom: 5,
+//     maxZoom: 15
+//   })
+// }
+// const ekizyouka38Obj = {};
+// for (let i of mapsStr) {
+//   ekizyouka38Obj[i] = new TileLayer(new Ekizyouka38())
+// }
+// // 液状化危険度分布図（高知県）-------------------------------------------------------------------------------
+// function Ekizyouka39 () {
+//   this.preload = Infinity
+//   this.name = 'ekizyouka39'
+//   this.extent = transformE([132.1797, 33.82657, 134.5602, 32.66275])
+//   this.pointer = true
+//   this.source = new XYZ({
+//     url: 'https://disaportal.gsi.go.jp/raster/08_03_ekijoka_pref/39_kochi/{z}/{x}/{y}.png',
+//     crossOrigin: 'Anonymous',
+//     minZoom: 5,
+//     maxZoom: 15
+//   })
+// }
+// const ekizyouka39Obj = {};
+// for (let i of mapsStr) {
+//   ekizyouka39Obj[i] = new TileLayer(new Ekizyouka39())
+// }
+// // 液状化危険度分布図（福岡県）-------------------------------------------------------------------------------
+// function Ekizyouka40 () {
+//   this.preload = Infinity
+//   this.name = 'ekizyouka40'
+//   this.extent = transformE([129.7837, 34.09346, 131.2663, 32.93019])
+//   this.pointer = true
+//   this.source = new XYZ({
+//     url: 'https://disaportal.gsi.go.jp/raster/08_03_ekijoka_pref/40_fukuoka/{z}/{x}/{y}.png',
+//     crossOrigin: 'Anonymous',
+//     minZoom: 5,
+//     maxZoom: 15
+//   })
+// }
+// const ekizyouka40Obj = {};
+// for (let i of mapsStr) {
+//   ekizyouka40Obj[i] = new TileLayer(new Ekizyouka40())
+// }
+// // 液状化危険度分布図（佐賀県）-------------------------------------------------------------------------------
+// function Ekizyouka41 () {
+//   this.preload = Infinity
+//   this.name = 'ekizyouka41'
+//   this.extent = transformE([129.5852, 33.6536, 130.6883, 32.90807])
+//   this.pointer = true
+//   this.source = new XYZ({
+//     url: 'https://disaportal.gsi.go.jp/raster/08_03_ekijoka_pref/41_saga/{z}/{x}/{y}.png',
+//     crossOrigin: 'Anonymous',
+//     minZoom: 5,
+//     maxZoom: 15
+//   })
+// }
+// const ekizyouka41Obj = {};
+// for (let i of mapsStr) {
+//   ekizyouka41Obj[i] = new TileLayer(new Ekizyouka41())
+// }
+// // 液状化危険度分布図（長崎県）-------------------------------------------------------------------------------
+// function Ekizyouka42 () {
+//   this.preload = Infinity
+//   this.name = 'ekizyouka42'
+//   this.extent = transformE([129.5427, 33.1727, 130.4444, 32.55078])
+//   this.pointer = true
+//   this.source = new XYZ({
+//     url: 'https://disaportal.gsi.go.jp/raster/08_03_ekijoka_pref/42_nagasaki/{z}/{x}/{y}.png',
+//     crossOrigin: 'Anonymous',
+//     minZoom: 5,
+//     maxZoom: 15
+//   })
+// }
+// const ekizyouka42Obj = {};
+// for (let i of mapsStr) {
+//   ekizyouka42Obj[i] = new TileLayer(new Ekizyouka42())
+// }
+// // 液状化危険度分布図（熊本県）-------------------------------------------------------------------------------
+// function Ekizyouka43 () {
+//   this.preload = Infinity
+//   this.name = 'ekizyouka43'
+//   this.extent = transformE([129.9055, 33.12824, 131.1854, 32.00339])
+//   this.pointer = true
+//   this.source = new XYZ({
+//     url: 'https://disaportal.gsi.go.jp/raster/08_03_ekijoka_pref/43_kumamoto/{z}/{x}/{y}.png',
+//     crossOrigin: 'Anonymous',
+//     minZoom: 5,
+//     maxZoom: 15
+//   })
+// }
+// const ekizyouka43Obj = {};
+// for (let i of mapsStr) {
+//   ekizyouka43Obj[i] = new TileLayer(new Ekizyouka43())
+// }
+// // 液状化危険度分布図（大分県）-------------------------------------------------------------------------------
+// function Ekizyouka44 () {
+//   this.preload = Infinity
+//   this.name = 'ekizyouka44'
+//   this.extent = transformE([130.7373, 33.76245, 132.1325, 32.5524])
+//   this.pointer = true
+//   this.source = new XYZ({
+//     url: 'https://disaportal.gsi.go.jp/raster/08_03_ekijoka_pref/44_oita/{z}/{x}/{y}.png',
+//     crossOrigin: 'Anonymous',
+//     minZoom: 5,
+//     maxZoom: 15
+//   })
+// }
+// const ekizyouka44Obj = {};
+// for (let i of mapsStr) {
+//   ekizyouka44Obj[i] = new TileLayer(new Ekizyouka44())
+// }
+// // 液状化危険度分布図（宮崎県）-------------------------------------------------------------------------------
+// function Ekizyouka45 () {
+//   this.preload = Infinity
+//   this.name = 'ekizyouka45'
+//   this.extent = transformE([130.6439, 32.91034, 131.9101, 31.26415])
+//   this.pointer = true
+//   this.source = new XYZ({
+//     url: 'https://disaportal.gsi.go.jp/raster/08_03_ekijoka_pref/45_miyazaki/{z}/{x}/{y}.png',
+//     crossOrigin: 'Anonymous',
+//     minZoom: 5,
+//     maxZoom: 15
+//   })
+// }
+// const ekizyouka45Obj = {};
+// for (let i of mapsStr) {
+//   ekizyouka45Obj[i] = new TileLayer(new Ekizyouka45())
+// }
+// // 液状化危険度分布図（鹿児島県）-------------------------------------------------------------------------------
+// function Ekizyouka46 () {
+//   this.preload = Infinity
+//   this.name = 'ekizyouka46'
+//   this.extent = transformE([129.8308, 32.41219, 131.3349, 29.82761])
+//   this.pointer = true
+//   this.source = new XYZ({
+//     url: 'https://disaportal.gsi.go.jp/raster/08_03_ekijoka_pref/46_kagoshima/{z}/{x}/{y}.png',
+//     crossOrigin: 'Anonymous',
+//     minZoom: 5,
+//     maxZoom: 15
+//   })
+// }
+// const ekizyouka46Obj = {};
+// for (let i of mapsStr) {
+//   ekizyouka46Obj[i] = new TileLayer(new Ekizyouka46())
+// }
+// // 液状化危険度分布図（沖縄県）-------------------------------------------------------------------------------
+// function Ekizyouka47 () {
+//   this.preload = Infinity
+//   this.name = 'ekizyouka47'
+//   this.extent = transformE([122.5435, 27.5248, 132.9212, 22.7673])
+//   this.pointer = true
+//   this.source = new XYZ({
+//     url: 'https://disaportal.gsi.go.jp/raster/08_03_ekijoka_pref/47_okinawa/{z}/{x}/{y}.png',
+//     crossOrigin: 'Anonymous',
+//     minZoom: 5,
+//     maxZoom: 15
+//   })
+// }
+// const ekizyouka47Obj = {};
+// for (let i of mapsStr) {
+//   ekizyouka47Obj[i] = new TileLayer(new Ekizyouka47())
+// }
+// const ekizyouka00Obj = {};
+// for (let i of mapsStr) {
+//   ekizyouka00Obj[i] = new LayerGroup({
+//     layers: [
+//       ekizyouka01Obj[i],
+//       ekizyouka02Obj[i],
+//       ekizyouka03Obj[i],
+//       ekizyouka04Obj[i],
+//       ekizyouka05Obj[i],
+//       ekizyouka06Obj[i],
+//       ekizyouka07Obj[i],
+//       ekizyouka08Obj[i],
+//       ekizyouka09Obj[i],
+//       ekizyouka10Obj[i],
+//       // ekizyouka11Obj[i],
+//       ekizyouka12Obj[i],
+//       ekizyouka13Obj[i],
+//       ekizyouka14Obj[i],
+//       // ekizyouka15Obj[i],
+//       ekizyouka16Obj[i],
+//       ekizyouka17Obj[i],
+//       ekizyouka18Obj[i],
+//       ekizyouka19Obj[i],
+//       ekizyouka20Obj[i],
+//       ekizyouka21Obj[i],
+//       ekizyouka22Obj[i],
+//       ekizyouka23Obj[i],
+//       ekizyouka24Obj[i],
+//       ekizyouka25Obj[i],
+//       ekizyouka26Obj[i],
+//       ekizyouka27Obj[i],
+//       ekizyouka28Obj[i],
+//       ekizyouka29Obj[i],
+//       ekizyouka30Obj[i],
+//       ekizyouka31Obj[i],
+//       ekizyouka32Obj[i],
+//       ekizyouka33Obj[i],
+//       ekizyouka34Obj[i],
+//       ekizyouka35Obj[i],
+//       ekizyouka36Obj[i],
+//       ekizyouka37Obj[i],
+//       ekizyouka38Obj[i],
+//       ekizyouka39Obj[i],
+//       ekizyouka40Obj[i],
+//       ekizyouka41Obj[i],
+//       ekizyouka42Obj[i],
+//       ekizyouka43Obj[i],
+//       ekizyouka44Obj[i],
+//       ekizyouka45Obj[i],
+//       ekizyouka46Obj[i],
+//       ekizyouka47Obj[i],
+//     ]
+//   })
+// }
+// for (let i of mapsStr) {
+//   ekizyouka00Obj[i].values_['name'] = 'ekizyouka'
+//   ekizyouka00Obj[i].values_['pointer'] = true
+// }
+// const ekizyoukaSumm = '出典：<br><a href="https://disaportal.gsi.go.jp/hazardmap/copyright/opendata.html" target="_blank">ハザードマップポータルサイト</a>';
+// // 宮崎市ハザードマップ-------------------------------------------------------------------------------
+// function MiyazakisiHm () {
+//   this.preload = Infinity
+//   this.source = new XYZ({
+//     url: 'https://kenzkenz.github.io/hazardmap/tile/miyazakisi/{z}/{x}/{-y}.png',
+//     crossOrigin: 'Anonymous',
+//     minZoom: 1,
+//     maxZoom: 18
+//   })
+// }
+// const miyazakisiHmObj = {};
+// for (let i of mapsStr) {
+//   miyazakisiHmObj[i] = new TileLayer(new MiyazakisiHm())
+// }
+// const miyazakisiHmSumm = '<a href="http://www.city.miyazaki.miyazaki.jp/life/fire_department/hazard_map/1153.html" target="_blank">宮崎市洪水ハザードマップ</a>へ';
+// // 都城市ハザードマップ-------------------------------------------------------------------------------
+// function MiyakonozyousiHm () {
+//   this.preload = Infinity
+//   this.source = new XYZ({
+//     url: 'https://kenzkenz.github.io/hazardmap/tile/miyakonozyousi/{z}/{x}/{-y}.png',
+//     crossOrigin: 'Anonymous',
+//     minZoom: 1,
+//     maxZoom: 18
+//   })
+// }
+// const miyakonozyousiHmObj = {};
+// for (let i of mapsStr) {
+//   miyakonozyousiHmObj[i] = new TileLayer(new MiyakonozyousiHm())
+// }
+// const miyakonozyousiHmSumm = '';
+// // 日向市ハザードマップ-------------------------------------------------------------------------------
+// function HyuugasiHm () {
+//   this.preload = Infinity
+//   this.source = new XYZ({
+//     url: 'https://kenzkenz.github.io/hazardmap/tile/hyuugasibousai/{z}/{x}/{-y}.png',
+//     crossOrigin: 'Anonymous',
+//     minZoom: 1,
+//     maxZoom: 18
+//   })
+// }
+// const hyuugasiHmObj = {};
+// for (let i of mapsStr) {
+//   hyuugasiHmObj[i] = new TileLayer(new HyuugasiHm())
+// }
+// const hyuugasiHmSumm = '';
 // 今昔マップ-----------------------------------------------------------------------------------
 // 首都圏
 function Kz_tokyo502man () {
@@ -13730,56 +13732,56 @@ export const Layers =
         { text: '家屋倒壊等氾濫想定区域（氾濫流）', data: { id: 'toukai', layer: toukaiObj, opacity: 1, summary: toukaiSumm } },
         { text: '筑後川浸水推定図2023/7/11', data: { id: 'sinsuisuitei', layer: sinsuisuiteiObj, center:[130.61658037551376, 33.34398451546858], zoom:13, opacity: 1, summary: stdSumm } },
         { text: '地形区分に基づく液状化の発生傾向図', data: { id: 'ekizyouka', layer: ekizyoukaObj, opacity: 1, summary: ekizyouka0Summ } },
-        { text: '液状化危険度分布図',
-          children: [
-              //新潟と埼玉は作っていない。
-            { text: '<i class="fa-solid fa-layer-group"></i>液状化危険度分布図（全国）', data: { id: 'ekizyouka00', layer: ekizyouka00Obj, opacity: 1, summary: ekizyoukaSumm } },
-            { text: '液状化危険度分布図（北海道）', data: { id: 'ekizyouka01', layer: ekizyouka01Obj, opacity: 1, summary: ekizyoukaSumm } },
-            { text: '液状化危険度分布図（青森県）', data: { id: 'ekizyouka02', layer: ekizyouka02Obj, opacity: 1, summary: ekizyoukaSumm } },
-            { text: '液状化危険度分布図（岩手県）', data: { id: 'ekizyouka03', layer: ekizyouka03Obj, opacity: 1, summary: ekizyoukaSumm } },
-            { text: '液状化危険度分布図（宮城県）', data: { id: 'ekizyouka04', layer: ekizyouka04Obj, opacity: 1, summary: ekizyoukaSumm } },
-            { text: '液状化危険度分布図（秋田県）', data: { id: 'ekizyouka05', layer: ekizyouka05Obj, opacity: 1, summary: ekizyoukaSumm } },
-            { text: '液状化危険度分布図（山形県）', data: { id: 'ekizyouka06', layer: ekizyouka06Obj, opacity: 1, summary: ekizyoukaSumm } },
-            { text: '液状化危険度分布図（福島県）', data: { id: 'ekizyouka07', layer: ekizyouka07Obj, opacity: 1, summary: ekizyoukaSumm } },
-            { text: '液状化危険度分布図（茨城県）', data: { id: 'ekizyouka08', layer: ekizyouka08Obj, opacity: 1, summary: ekizyoukaSumm } },
-            { text: '液状化危険度分布図（栃木県）', data: { id: 'ekizyouka09', layer: ekizyouka09Obj, opacity: 1, summary: ekizyoukaSumm } },
-            { text: '液状化危険度分布図（群馬県）', data: { id: 'ekizyouka10', layer: ekizyouka10Obj, opacity: 1, summary: ekizyoukaSumm } },
-            { text: '液状化危険度分布図（千葉県）', data: { id: 'ekizyouka12', layer: ekizyouka12Obj, opacity: 1, summary: ekizyoukaSumm } },
-            { text: '液状化危険度分布図（東京都）', data: { id: 'ekizyouka13', layer: ekizyouka13Obj, opacity: 1, summary: ekizyoukaSumm } },
-            { text: '液状化危険度分布図（神奈川県）', data: { id: 'ekizyouka14', layer: ekizyouka14Obj, opacity: 1, summary: ekizyoukaSumm } },
-            { text: '液状化危険度分布図（富山県）', data: { id: 'ekizyouka16', layer: ekizyouka16Obj, opacity: 1, summary: ekizyoukaSumm } },
-            { text: '液状化危険度分布図（石川県）', data: { id: 'ekizyouka17', layer: ekizyouka17Obj, opacity: 1, summary: ekizyoukaSumm } },
-            { text: '液状化危険度分布図（福井県）', data: { id: 'ekizyouka18', layer: ekizyouka18Obj, opacity: 1, summary: ekizyoukaSumm } },
-            { text: '液状化危険度分布図（山梨県）', data: { id: 'ekizyouka19', layer: ekizyouka19Obj, opacity: 1, summary: ekizyoukaSumm } },
-            { text: '液状化危険度分布図（長野県）', data: { id: 'ekizyouka20', layer: ekizyouka20Obj, opacity: 1, summary: ekizyoukaSumm } },
-            { text: '液状化危険度分布図（岐阜県）', data: { id: 'ekizyouka21', layer: ekizyouka21Obj, opacity: 1, summary: ekizyoukaSumm } },
-            { text: '液状化危険度分布図（静岡県）', data: { id: 'ekizyouka22', layer: ekizyouka22Obj, opacity: 1, summary: ekizyoukaSumm } },
-            { text: '液状化危険度分布図（愛知県）', data: { id: 'ekizyouka23', layer: ekizyouka23Obj, opacity: 1, summary: ekizyoukaSumm } },
-            { text: '液状化危険度分布図（三重県）', data: { id: 'ekizyouka24', layer: ekizyouka24Obj, opacity: 1, summary: ekizyoukaSumm } },
-            { text: '液状化危険度分布図（滋賀県）', data: { id: 'ekizyouka25', layer: ekizyouka25Obj, opacity: 1, summary: ekizyoukaSumm } },
-            { text: '液状化危険度分布図（京都府）', data: { id: 'ekizyouka26', layer: ekizyouka26Obj, opacity: 1, summary: ekizyoukaSumm } },
-            { text: '液状化危険度分布図（大阪府）', data: { id: 'ekizyouka27', layer: ekizyouka27Obj, opacity: 1, summary: ekizyoukaSumm } },
-            { text: '液状化危険度分布図（兵庫県）', data: { id: 'ekizyouka28', layer: ekizyouka28Obj, opacity: 1, summary: ekizyoukaSumm } },
-            { text: '液状化危険度分布図（奈良県）', data: { id: 'ekizyouka29', layer: ekizyouka29Obj, opacity: 1, summary: ekizyoukaSumm } },
-            { text: '液状化危険度分布図（和歌山県）', data: { id: 'ekizyouka30', layer: ekizyouka30Obj, opacity: 1, summary: ekizyoukaSumm } },
-            { text: '液状化危険度分布図（鳥取県）', data: { id: 'ekizyouka31', layer: ekizyouka31Obj, opacity: 1, summary: ekizyoukaSumm } },
-            { text: '液状化危険度分布図（島根県）', data: { id: 'ekizyouka32', layer: ekizyouka32Obj, opacity: 1, summary: ekizyoukaSumm } },
-            { text: '液状化危険度分布図（岡山県）', data: { id: 'ekizyouka33', layer: ekizyouka33Obj, opacity: 1, summary: ekizyoukaSumm } },
-            { text: '液状化危険度分布図（広島県）', data: { id: 'ekizyouka34', layer: ekizyouka34Obj, opacity: 1, summary: ekizyoukaSumm } },
-            { text: '液状化危険度分布図（山口県）', data: { id: 'ekizyouka35', layer: ekizyouka35Obj, opacity: 1, summary: ekizyoukaSumm } },
-            { text: '液状化危険度分布図（徳島県）', data: { id: 'ekizyouka36', layer: ekizyouka36Obj, opacity: 1, summary: ekizyoukaSumm } },
-            { text: '液状化危険度分布図（香川県）', data: { id: 'ekizyouka37', layer: ekizyouka37Obj, opacity: 1, summary: ekizyoukaSumm } },
-            { text: '液状化危険度分布図（愛媛県）', data: { id: 'ekizyouka38', layer: ekizyouka38Obj, opacity: 1, summary: ekizyoukaSumm } },
-            { text: '液状化危険度分布図（高知県）', data: { id: 'ekizyouka39', layer: ekizyouka39Obj, opacity: 1, summary: ekizyoukaSumm } },
-            { text: '液状化危険度分布図（福岡県）', data: { id: 'ekizyouka40', layer: ekizyouka40Obj, opacity: 1, summary: ekizyoukaSumm } },
-            { text: '液状化危険度分布図（佐賀県）', data: { id: 'ekizyouka41', layer: ekizyouka41Obj, opacity: 1, summary: ekizyoukaSumm } },
-            { text: '液状化危険度分布図（長崎県）', data: { id: 'ekizyouka42', layer: ekizyouka42Obj, opacity: 1, summary: ekizyoukaSumm } },
-            { text: '液状化危険度分布図（熊本県）', data: { id: 'ekizyouka43', layer: ekizyouka43Obj, opacity: 1, summary: ekizyoukaSumm } },
-            { text: '液状化危険度分布図（大分県）', data: { id: 'ekizyouka44', layer: ekizyouka44Obj, opacity: 1, summary: ekizyoukaSumm } },
-            { text: '液状化危険度分布図（宮崎県）', data: { id: 'ekizyouka', layer: ekizyouka45Obj, opacity: 1, summary: ekizyoukaSumm } },
-            { text: '液状化危険度分布図（鹿児島県）', data: { id: 'ekizyouka46', layer: ekizyouka46Obj, opacity: 1, summary: ekizyoukaSumm } },
-            { text: '液状化危険度分布図（沖縄県）', data: { id: 'ekizyouka47', layer: ekizyouka47Obj, opacity: 1, summary: ekizyoukaSumm } },
-          ]},
+        // { text: '液状化危険度分布図',
+        //   children: [
+        //       //新潟と埼玉は作っていない。
+        //     { text: '<i class="fa-solid fa-layer-group"></i>液状化危険度分布図（全国）', data: { id: 'ekizyouka00', layer: ekizyouka00Obj, opacity: 1, summary: ekizyoukaSumm } },
+        //     { text: '液状化危険度分布図（北海道）', data: { id: 'ekizyouka01', layer: ekizyouka01Obj, opacity: 1, summary: ekizyoukaSumm } },
+        //     { text: '液状化危険度分布図（青森県）', data: { id: 'ekizyouka02', layer: ekizyouka02Obj, opacity: 1, summary: ekizyoukaSumm } },
+        //     { text: '液状化危険度分布図（岩手県）', data: { id: 'ekizyouka03', layer: ekizyouka03Obj, opacity: 1, summary: ekizyoukaSumm } },
+        //     { text: '液状化危険度分布図（宮城県）', data: { id: 'ekizyouka04', layer: ekizyouka04Obj, opacity: 1, summary: ekizyoukaSumm } },
+        //     { text: '液状化危険度分布図（秋田県）', data: { id: 'ekizyouka05', layer: ekizyouka05Obj, opacity: 1, summary: ekizyoukaSumm } },
+        //     { text: '液状化危険度分布図（山形県）', data: { id: 'ekizyouka06', layer: ekizyouka06Obj, opacity: 1, summary: ekizyoukaSumm } },
+        //     { text: '液状化危険度分布図（福島県）', data: { id: 'ekizyouka07', layer: ekizyouka07Obj, opacity: 1, summary: ekizyoukaSumm } },
+        //     { text: '液状化危険度分布図（茨城県）', data: { id: 'ekizyouka08', layer: ekizyouka08Obj, opacity: 1, summary: ekizyoukaSumm } },
+        //     { text: '液状化危険度分布図（栃木県）', data: { id: 'ekizyouka09', layer: ekizyouka09Obj, opacity: 1, summary: ekizyoukaSumm } },
+        //     { text: '液状化危険度分布図（群馬県）', data: { id: 'ekizyouka10', layer: ekizyouka10Obj, opacity: 1, summary: ekizyoukaSumm } },
+        //     { text: '液状化危険度分布図（千葉県）', data: { id: 'ekizyouka12', layer: ekizyouka12Obj, opacity: 1, summary: ekizyoukaSumm } },
+        //     { text: '液状化危険度分布図（東京都）', data: { id: 'ekizyouka13', layer: ekizyouka13Obj, opacity: 1, summary: ekizyoukaSumm } },
+        //     { text: '液状化危険度分布図（神奈川県）', data: { id: 'ekizyouka14', layer: ekizyouka14Obj, opacity: 1, summary: ekizyoukaSumm } },
+        //     { text: '液状化危険度分布図（富山県）', data: { id: 'ekizyouka16', layer: ekizyouka16Obj, opacity: 1, summary: ekizyoukaSumm } },
+        //     { text: '液状化危険度分布図（石川県）', data: { id: 'ekizyouka17', layer: ekizyouka17Obj, opacity: 1, summary: ekizyoukaSumm } },
+        //     { text: '液状化危険度分布図（福井県）', data: { id: 'ekizyouka18', layer: ekizyouka18Obj, opacity: 1, summary: ekizyoukaSumm } },
+        //     { text: '液状化危険度分布図（山梨県）', data: { id: 'ekizyouka19', layer: ekizyouka19Obj, opacity: 1, summary: ekizyoukaSumm } },
+        //     { text: '液状化危険度分布図（長野県）', data: { id: 'ekizyouka20', layer: ekizyouka20Obj, opacity: 1, summary: ekizyoukaSumm } },
+        //     { text: '液状化危険度分布図（岐阜県）', data: { id: 'ekizyouka21', layer: ekizyouka21Obj, opacity: 1, summary: ekizyoukaSumm } },
+        //     { text: '液状化危険度分布図（静岡県）', data: { id: 'ekizyouka22', layer: ekizyouka22Obj, opacity: 1, summary: ekizyoukaSumm } },
+        //     { text: '液状化危険度分布図（愛知県）', data: { id: 'ekizyouka23', layer: ekizyouka23Obj, opacity: 1, summary: ekizyoukaSumm } },
+        //     { text: '液状化危険度分布図（三重県）', data: { id: 'ekizyouka24', layer: ekizyouka24Obj, opacity: 1, summary: ekizyoukaSumm } },
+        //     { text: '液状化危険度分布図（滋賀県）', data: { id: 'ekizyouka25', layer: ekizyouka25Obj, opacity: 1, summary: ekizyoukaSumm } },
+        //     { text: '液状化危険度分布図（京都府）', data: { id: 'ekizyouka26', layer: ekizyouka26Obj, opacity: 1, summary: ekizyoukaSumm } },
+        //     { text: '液状化危険度分布図（大阪府）', data: { id: 'ekizyouka27', layer: ekizyouka27Obj, opacity: 1, summary: ekizyoukaSumm } },
+        //     { text: '液状化危険度分布図（兵庫県）', data: { id: 'ekizyouka28', layer: ekizyouka28Obj, opacity: 1, summary: ekizyoukaSumm } },
+        //     { text: '液状化危険度分布図（奈良県）', data: { id: 'ekizyouka29', layer: ekizyouka29Obj, opacity: 1, summary: ekizyoukaSumm } },
+        //     { text: '液状化危険度分布図（和歌山県）', data: { id: 'ekizyouka30', layer: ekizyouka30Obj, opacity: 1, summary: ekizyoukaSumm } },
+        //     { text: '液状化危険度分布図（鳥取県）', data: { id: 'ekizyouka31', layer: ekizyouka31Obj, opacity: 1, summary: ekizyoukaSumm } },
+        //     { text: '液状化危険度分布図（島根県）', data: { id: 'ekizyouka32', layer: ekizyouka32Obj, opacity: 1, summary: ekizyoukaSumm } },
+        //     { text: '液状化危険度分布図（岡山県）', data: { id: 'ekizyouka33', layer: ekizyouka33Obj, opacity: 1, summary: ekizyoukaSumm } },
+        //     { text: '液状化危険度分布図（広島県）', data: { id: 'ekizyouka34', layer: ekizyouka34Obj, opacity: 1, summary: ekizyoukaSumm } },
+        //     { text: '液状化危険度分布図（山口県）', data: { id: 'ekizyouka35', layer: ekizyouka35Obj, opacity: 1, summary: ekizyoukaSumm } },
+        //     { text: '液状化危険度分布図（徳島県）', data: { id: 'ekizyouka36', layer: ekizyouka36Obj, opacity: 1, summary: ekizyoukaSumm } },
+        //     { text: '液状化危険度分布図（香川県）', data: { id: 'ekizyouka37', layer: ekizyouka37Obj, opacity: 1, summary: ekizyoukaSumm } },
+        //     { text: '液状化危険度分布図（愛媛県）', data: { id: 'ekizyouka38', layer: ekizyouka38Obj, opacity: 1, summary: ekizyoukaSumm } },
+        //     { text: '液状化危険度分布図（高知県）', data: { id: 'ekizyouka39', layer: ekizyouka39Obj, opacity: 1, summary: ekizyoukaSumm } },
+        //     { text: '液状化危険度分布図（福岡県）', data: { id: 'ekizyouka40', layer: ekizyouka40Obj, opacity: 1, summary: ekizyoukaSumm } },
+        //     { text: '液状化危険度分布図（佐賀県）', data: { id: 'ekizyouka41', layer: ekizyouka41Obj, opacity: 1, summary: ekizyoukaSumm } },
+        //     { text: '液状化危険度分布図（長崎県）', data: { id: 'ekizyouka42', layer: ekizyouka42Obj, opacity: 1, summary: ekizyoukaSumm } },
+        //     { text: '液状化危険度分布図（熊本県）', data: { id: 'ekizyouka43', layer: ekizyouka43Obj, opacity: 1, summary: ekizyoukaSumm } },
+        //     { text: '液状化危険度分布図（大分県）', data: { id: 'ekizyouka44', layer: ekizyouka44Obj, opacity: 1, summary: ekizyoukaSumm } },
+        //     { text: '液状化危険度分布図（宮崎県）', data: { id: 'ekizyouka', layer: ekizyouka45Obj, opacity: 1, summary: ekizyoukaSumm } },
+        //     { text: '液状化危険度分布図（鹿児島県）', data: { id: 'ekizyouka46', layer: ekizyouka46Obj, opacity: 1, summary: ekizyoukaSumm } },
+        //     { text: '液状化危険度分布図（沖縄県）', data: { id: 'ekizyouka47', layer: ekizyouka47Obj, opacity: 1, summary: ekizyoukaSumm } },
+        //   ]},
         { text: '土砂災害',
           children: [
             { text: '<i class="fa-solid fa-layer-group"></i>土砂災害全て', data: { id: 'dosyasaigai', layer: dosyaSaigaiObj, opacity: 1,summary:dosyaSaigaiSumm} },
@@ -13823,9 +13825,9 @@ export const Layers =
         { text: '今後30年間震度6以上の確率', data: { id: 'jisin', layer: jisinObj, opacity: 1, summary: jisinSumm } },
         { text: '北海道太平洋沿岸の津波浸水想定', data: { id: "hokkaidouTunamiT", layer: LayersMvt.hokkaidouTunamiTObj, opacity: 1, summary: LayersMvt.hokkaidouTunamiTSumm } },
         { text: '北海道日本海沿岸の津波浸水想定', data: { id: "hokkaidouTunami", layer: LayersMvt.hokkaidouTunamiObj, opacity: 1, summary: LayersMvt.hokkaidouTunamiSumm } },
-        { text: '宮崎市洪水ﾊｻﾞｰﾄﾞﾏｯﾌﾟ', data: { id: 'miyazakisiHm', layer: miyazakisiHmObj, opacity: 1, zoom: 13, center: [131.42054548436312, 31.907339493919977], summary: miyazakisiHmSumm } },
-        { text: '都城市洪水ﾊｻﾞｰﾄﾞﾏｯﾌﾟ', data: { id: 'miyakonozyousiHm', layer: miyakonozyousiHmObj, opacity: 1, zoom: 13, center: [131.07797970576192, 31.78882205640913], summary: miyakonozyousiHmSumm } },
-        { text: '日向市防災ﾊｻﾞｰﾄﾞﾏｯﾌﾟ', data: { id: 'hyuugasiHm', layer: hyuugasiHmObj, opacity: 1, zoom: 13, center: [131.6400086045909, 32.395198966795306], summary: hyuugasiHmSumm } },
+        // { text: '宮崎市洪水ﾊｻﾞｰﾄﾞﾏｯﾌﾟ', data: { id: 'miyazakisiHm', layer: miyazakisiHmObj, opacity: 1, zoom: 13, center: [131.42054548436312, 31.907339493919977], summary: miyazakisiHmSumm } },
+        // { text: '都城市洪水ﾊｻﾞｰﾄﾞﾏｯﾌﾟ', data: { id: 'miyakonozyousiHm', layer: miyakonozyousiHmObj, opacity: 1, zoom: 13, center: [131.07797970576192, 31.78882205640913], summary: miyakonozyousiHmSumm } },
+        // { text: '日向市防災ﾊｻﾞｰﾄﾞﾏｯﾌﾟ', data: { id: 'hyuugasiHm', layer: hyuugasiHmObj, opacity: 1, zoom: 13, center: [131.6400086045909, 32.395198966795306], summary: hyuugasiHmSumm } },
       ]},
     { text: '遺跡、文化財等',
       children: [
@@ -13856,7 +13858,7 @@ export const Layers =
       ]},
     { text: 'その他',
       children: [
-        { text: 'テスト', data: { id: "test", layer: LayersMvt.vectorObj, opacity: 1, summary: LayersMvt.suiroSumm } },
+        // { text: 'テスト', data: { id: "test", layer: LayersMvt.vectorObj, opacity: 1, summary: LayersMvt.suiroSumm } },
         // { text: 'テスト2', data: { id: "test2", layer: bingRoadobj, opacity: 1, summary: LayersMvt.suiroSumm } },
         { text: 'ラスタータイルtest', data: { id: "dokuji", layer: dokujiObj, opacity: 1, summary: LayersMvt.busSumm, component: {name: 'dokuji', values:[]}} },
         { text: '一等三角点', data: { id: "itto", layer: LayersMvt.ittosankakutenObj, opacity: 1, summary: LayersMvt.ittosankakutenSumm } },

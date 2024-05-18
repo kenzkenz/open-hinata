@@ -228,12 +228,12 @@ export function permalinkEventSet (response) {
         // 初期レイヤーをリセット
         store.commit('base/updateList', {value: [], mapName: 'map01'});
         store.commit('base/updateList', {value: [], mapName: 'map02'});
-        store.commit('base/updateList', {value: [], mapName: 'map03'});
-        store.commit('base/updateList', {value: [], mapName: 'map04'});
+        // store.commit('base/updateList', {value: [], mapName: 'map03'});
+        // store.commit('base/updateList', {value: [], mapName: 'map04'});
         store.state.base.maps.map01.removeLayer(store.state.base.maps.map01.getLayers().getArray()[0]);
         store.state.base.maps.map02.removeLayer(store.state.base.maps.map02.getLayers().getArray()[0]);
-        store.state.base.maps.map03.removeLayer(store.state.base.maps.map03.getLayers().getArray()[0]);
-        store.state.base.maps.map04.removeLayer(store.state.base.maps.map04.getLayers().getArray()[0]);
+        // store.state.base.maps.map03.removeLayer(store.state.base.maps.map03.getLayers().getArray()[0]);
+        // store.state.base.maps.map04.removeLayer(store.state.base.maps.map04.getLayers().getArray()[0]);
         const urlLayerListArr = JSON.parse(obj[key]);
         for (let i = 0; i < urlLayerListArr.length; i++) {
           // 逆ループ

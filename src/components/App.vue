@@ -122,7 +122,8 @@
       return {
         zyougen:1,
         tiltFlg: false,
-        mapNames: ['map01','map02','map03','map04'],
+        // mapNames: ['map01','map02','map03','map04'],
+        mapNames: ['map01','map02'],
         btnSize: '',
         cp:{map01: 'map01-current-position',map02: 'map02-current-position',map03: 'map03-current-position',map04: 'map04-current-position'},
         marker:{map01: 'map01-marker',map02: 'map02-marker',map03: 'map03-marker',map04: 'map04-marker'},
@@ -312,14 +313,15 @@
           //   vm.mapSize['map03'] = {top: '50%', left: '50%', width: '50%', height: height2};
           //   vm.mapSize['map04'] = {top: 0, left: 0, width: 0, height: 0};
           //   break;
+
           // 4画面（全て縦半）
-          case 3:
-            vm.synchDivFlg = true;
-            vm.mapFlg['map02'] = true; vm.mapFlg['map03'] = true; vm.mapFlg['map04'] = true;
-            vm.mapSize['map01'] = {top: 0, left: 0, width: '50%', height: height2};
-            vm.mapSize['map02'] = {top: 0, right: 0, width: '50%', height: height2};
-            vm.mapSize['map03'] = {top: '50%', left: 0, width: '50%', height: height2};
-            vm.mapSize['map04'] = {top: '50%', left: '50%', width: '50%', height: height2}
+          // case 3:
+          //   vm.synchDivFlg = true;
+          //   vm.mapFlg['map02'] = true; vm.mapFlg['map03'] = true; vm.mapFlg['map04'] = true;
+          //   vm.mapSize['map01'] = {top: 0, left: 0, width: '50%', height: height2};
+          //   vm.mapSize['map02'] = {top: 0, right: 0, width: '50%', height: height2};
+          //   vm.mapSize['map03'] = {top: '50%', left: 0, width: '50%', height: height2};
+          //   vm.mapSize['map04'] = {top: '50%', left: '50%', width: '50%', height: height2}
         }
         this.$nextTick(function () {
           MyMap.resize ()
@@ -415,7 +417,8 @@
       const resasUrl = "https://opendata.resas-portal.go.jp/api/v1/"
       // 市区町村人口ピラミッド----------------------------------------------------------------
 
-      const maps = ['map01','map02','map03','map04']
+      // const maps = ['map01','map02','map03','map04']
+      const maps = ['map01','map02']
       maps.forEach((mapName) => {
         const olPopup = document.querySelector('#' + mapName + ' .ol-popup')
         olPopup.addEventListener('click', (e) => {

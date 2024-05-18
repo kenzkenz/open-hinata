@@ -97,15 +97,15 @@
     .close-btn-div{
       font-size:1.5em;
     }
-    .overlink{
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      text-indent: -999px;
-      z-index: 2;
-    }
+    /*.overlink{*/
+    /*  position: absolute;*/
+    /*  top: 0;*/
+    /*  left: 0;*/
+    /*  width: 100%;*/
+    /*  height: 100%;*/
+    /*  text-indent: -999px;*/
+    /*  z-index: 2;*/
+    /*}*/
     .hover:hover{
       color: blue;
     }
