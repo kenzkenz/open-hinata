@@ -1,8 +1,8 @@
 import Vue from 'vue'
 import App from './components/App'
 import store from './js/store'
-import Snotify from 'vue-snotify'
-import 'vue-snotify/styles/material.css'
+// import Snotify from 'vue-snotify'
+// import 'vue-snotify/styles/material.css'
 import Dialog from './components/Dialog'
 import DialogInfo from './components/Dialog-info'
 import Dialog2 from './components/Dialog2'
@@ -25,7 +25,7 @@ Vue.use(BootstrapVue);
 Vue.component('v-dialog', Dialog);
 Vue.component('v-dialog-info', DialogInfo);
 Vue.component('v-dialog2', Dialog2);
-Vue.use(Snotify);
+// Vue.use(Snotify);
 Vue.config.productionTip = false;
 new Vue({
     store,

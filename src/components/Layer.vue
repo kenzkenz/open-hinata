@@ -34,7 +34,7 @@
                 <div class="close-div" @click="removeLayer(item)"><i class="fa-sharp fa-solid fa-trash-arrow-up hover"></i></div>
             </div>
         </li>
-        <vue-snotify></vue-snotify>
+<!--        <vue-snotify></vue-snotify>-->
     </v-draggable>
 </template>
 
