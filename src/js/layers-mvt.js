@@ -36,18 +36,18 @@ const ru2 = string => {
 // const mapsStr = ['map01','map02','map03','map04'];
 const mapsStr = ['map01','map02'];
 
-// 1kmメッシュ
+// 1kmメッシュ-------------------------------------------------------------
 function Mesh1km(){
   this.name = 'Mesh1km'
-  // this.className = 'Mesh1km'
+  this.className = 'Mesh1km'
   this.source = new VectorTileSource({
     crossOrigin: 'Anonymous',
     format: new MVT(),
     maxZoom:13,
-    url: "https://kenzkenz3.xsrv.jp/mvt/1kmesh/{z}/{x}/{y}.mvt"
+    url: "https://kenzkenz3.xsrv.jp/mvt/1kmesh2/{z}/{x}/{y}.mvt"
   });
-  this.style = syochiikiStyleFunction()
-  this.maxResolution = syochiikiMaxResolution
+  this.style = mesh1kColorFunction()
+  this.maxResolution = 	611.496226 //zoom8
   this.declutter = true
   this.overflow = true
 }
@@ -57,6 +57,48 @@ for (let i of mapsStr) {
 }
 export const mesh1kmObjSumm = "<a href='' target='_blank'>e-StatI</a>";
 
+const mesh1kColor = d3.scaleLinear()
+    .domain([0, 20000])
+    .range(["white", "red"]);
+function mesh1kColorFunction() {
+  return function (feature, resolution) {
+    const zoom = getZoom(resolution);
+    const prop = feature.getProperties();
+    // console.log(prop.JINKO/prop.AREA*1000)
+    const styles = [];
+    // let id = prop.KEY_CODE
+    const rgb = d3.rgb(mesh1kColor(prop.jinko))
+    const rgba = "rgba(" + rgb.r + "," + rgb.g + "," + rgb.b + ",0.8)"
+    const polygonStyle = new Style({
+      fill: new Fill({
+        color: rgba
+        // color: 'rgba(0,0,0,0)'
+      }),
+      stroke: new Stroke({
+        color: zoom >= 11 ? 'red' : 'rgba(0,0,0,0)',
+        width: 1
+      })
+    })
+    const text = String(ru2(prop.jinko)) + '人'
+    const textStyle = new Style({
+      text: new Text({
+        font: "14px sans-serif",
+        text: text,
+        fill: new Fill({
+          color: "black"
+        }),
+        stroke: new Stroke({
+          color: "white",
+          width: 3
+        }),
+        exceedLength:true
+      })
+    })
+    if (prop.jinko) styles.push(polygonStyle);
+    if (zoom>=14 && prop.jinko) styles.push(textStyle);
+    return styles;
+  }
+}
 
 //小地域------------------------------------------------------------------------------------------------
 let syochiikiMaxResolution
