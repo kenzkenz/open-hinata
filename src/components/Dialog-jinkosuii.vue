@@ -130,14 +130,13 @@ export default {
       // 4. 軸の表示
       const xs = svg.append("g")
           .attr("transform", "translate(" + 0 + "," + (height - paddingBottom) + ")")
-          // .attr('transform', 'rotate(-90)')
           .call(d3.axisBottom(xScale));
       if (window.innerWidth < 600) {
         xs.selectAll('text')
-            .style('text-anchor', 'end')
-            .attr('dx', '-1em')
-            .attr('dy', '-0.7em')
-            .attr('transform', 'rotate(-90)')
+            .style('text-anchor', 'start')
+            .attr('dx', '1em')
+            .attr('dy', '-0.5em')
+            .attr('transform', 'rotate(90)')
       }
       svg.append("g")
           .attr("transform", "translate(" + paddingLeft + "," + 0 + ")")

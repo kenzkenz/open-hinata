@@ -6,13 +6,6 @@
             <div>
               <div id="reset-btn" v-if="reset === 1" class="reset-btn-div" @click="resetBtn"><i class="fa-sharp fa-solid fa-trash-arrow-up hover"></i></div>
               <div class="close-btn-div" @click="closeBtn"><i class="fa-solid fa-xmark hover close-btn"></i></div>
-<!--              <b-popover-->
-<!--                         content="座標を残してリセットします。"-->
-<!--                         target="reset-btn"-->
-<!--                         triggers="hover"-->
-<!--                         placement="bottomright"-->
-<!--                         boundary="viewport"-->
-<!--              />-->
                 <slot></slot>
             </div>
     </div>
@@ -25,17 +18,16 @@
   export default {
     name: 'Dialog',
     props: ['dialog','reset','mapName'],
-    // data () {
-    //   return {
-    //     toolTip: true,
-    //   }
-    // },
+    data () {
+      return {
+      }
+    },
     methods: {
       resetBtn () {
         store.commit('base/deleteDialogsInfo',{mapName: this.mapName})
         MyMap.history ('リセット2だ')
         const map = store.state.base.maps[this.mapName];
-        const result = this.s_layerList.filter((el) => el.id === 2);
+        // const result = this.s_layerList.filter((el) => el.id === 2);
         const removeResult = this.s_layerList.filter((el) => el.id !== 2);
         removeResult.forEach((value) =>{
           map.removeLayer(value.layer)

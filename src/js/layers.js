@@ -18,10 +18,12 @@ import Crop from 'ol-ext/filter/Crop'
 import Mask from 'ol-ext/filter/Mask'
 import  * as MaskDep from './mask-dep'
 import  * as LayersMvt from './layers-mvt'
-import BingMaps from 'ol/source/BingMaps'
+// import BingMaps from 'ol/source/BingMaps'
 import * as d3 from "d3"
 // const mapsStr = ['map01','map02','map03','map04']
+// const mapsStr = ['map01'];
 const mapsStr = ['map01','map02'];
+// const mapsStr = ['map01','map02'];
 
 const transformE = extent => {
   return transformExtent(extent,'EPSG:4326','EPSG:3857')
