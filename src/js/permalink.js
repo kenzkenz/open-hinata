@@ -330,7 +330,7 @@ export function moveEnd () {
     featureProjection: "EPSG:3857"
   });
   const geojsonT2 = JSON.stringify(JSON.parse(drawSourceGeojson2),null,1);
-  // console.log(geojsonT2)
+  console.log(geojsonT2)
   // ----------------------------------------------------------------------------------
   const map = store.state.base.maps.map01;
   const zoom = map.getView().getZoom();

@@ -13860,7 +13860,7 @@ export const Layers =
       ]},
     { text: 'その他',
       children: [
-        // { text: 'テスト', data: { id: "test", layer: LayersMvt.vectorObj, opacity: 1, summary: LayersMvt.suiroSumm } },
+        { text: 'テスト', data: { id: "test", layer: LayersMvt.mesh1kmObj, opacity: 1, summary: LayersMvt.mesh1kmObjSumm } },
         // { text: 'テスト2', data: { id: "test2", layer: bingRoadobj, opacity: 1, summary: LayersMvt.suiroSumm } },
         { text: 'ラスタータイルtest', data: { id: "dokuji", layer: dokujiObj, opacity: 1, summary: LayersMvt.busSumm, component: {name: 'dokuji', values:[]}} },
         { text: '一等三角点', data: { id: "itto", layer: LayersMvt.ittosankakutenObj, opacity: 1, summary: LayersMvt.ittosankakutenSumm } },

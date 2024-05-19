@@ -35,6 +35,29 @@ const ru2 = string => {
 }
 // const mapsStr = ['map01','map02','map03','map04'];
 const mapsStr = ['map01','map02'];
+
+// 1kmメッシュ
+function Mesh1km(){
+  this.name = 'Mesh1km'
+  // this.className = 'Mesh1km'
+  this.source = new VectorTileSource({
+    crossOrigin: 'Anonymous',
+    format: new MVT(),
+    maxZoom:13,
+    url: "https://kenzkenz3.xsrv.jp/mvt/1kmesh/{z}/{x}/{y}.mvt"
+  });
+  this.style = syochiikiStyleFunction()
+  this.maxResolution = syochiikiMaxResolution
+  this.declutter = true
+  this.overflow = true
+}
+export  const mesh1kmObj = {};
+for (let i of mapsStr) {
+  mesh1kmObj[i] = new VectorTileLayer(new Mesh1km())
+}
+export const mesh1kmObjSumm = "<a href='' target='_blank'>e-StatI</a>";
+
+
 //小地域------------------------------------------------------------------------------------------------
 let syochiikiMaxResolution
 if (window.innerWidth > 1000) {
@@ -44,7 +67,7 @@ if (window.innerWidth > 1000) {
 }
 function Syochiiki2020(){
   this.name = 'syochiki2020'
-  // this.className = 'syochiki2020'
+  this.className = 'syochiki2020'
   this.source = new VectorTileSource({
     crossOrigin: 'Anonymous',
     format: new MVT(),
@@ -61,7 +84,7 @@ for (let i of mapsStr) {
   syochiiki2020MvtObj[i] = new VectorTileLayer(new Syochiiki2020())
 }
 export const syochiiki2020Summ = "<a href='https://www.e-stat.go.jp/stat-search/files?page=1&toukei=00200521&tstat=000001136464&cycle=0&tclass1=000001136472' target='_blank'>e-StatI</a>";
-
+// -------------------------------------------------------------------
 const syochiikiColor = d3.scaleLinear()
     .domain([0, 10])
     .range(["white", "blue"]);
@@ -5678,16 +5701,6 @@ function sankakutenFunction() {
   }
 }
 
-
-// var vectorSource = new ol.source.WikiCommons({
-//   // Tile strategy load at zoom 14
-//   strategy: ol.loadingstrategy.tile(ol.tilegrid.createXYZ({ minZoom: 14, maxZoom: 14, tileSize:512  })),
-//   // Bbox strategy : reload at each move
-//   //strategy: ol.loadingstrategy.bbox,
-//   // Language
-//   lang:"fr"
-// });
-
 // Wiki---------------------------------------------------------------
 const wikiVectorSource = new WikiCommons({
   strategy: Loadingstrategy.tile(
@@ -5701,8 +5714,6 @@ function Wiki () {
   this.pointer = true
   this.source = wikiVectorSource
   this.style = wikiStileFunction()
-  // this.style = getFeatureStyle()
-  // this.maxResolution = 152.874057	//zoom10
   this.maxResolution = 76.437028 //zoom11
   // this.declutter = true
 }
@@ -5821,131 +5832,10 @@ for (let i of mapsStr) {
 
 
 
-// new VectorTile({
-//   declutter: true,
-//   source: VectorTile({
-//     format: new MVT({}),
-//     url:
-//         'https://cyberjapandata.gsi.go.jp/xyz/experimental_bvmap/{z}/{x}/{y}.pbf'
-//   }),
-//   minZoom: 5,
-//   maxZoom: 16,
-//   renderBuffer: 100,
-//   // style: stylingVectorTile //スタイリング用の関数（後述）
-// })
 
 
 
 
-
-// // 鉄道テスト---------------------------------------------------------------
-// function Railroad () {
-//   this.useInterimTilesOnError = false
-//   this.name = 'railroad'
-//   this.source = new VectorSource({
-//     url:'https://kenzkenz.xsrv.jp/open-hinata/geojson/eki5.geojson',
-//     format: new GeoJSON()
-//   });
-//   // this.style = railroadStyleFunction('black')
-// }
-// export const railroadSumm = "<a href='' target='_blank'></a>"
-// export const railroadObj = {};
-// for (let i of mapsStr) {
-//   railroadObj[i] = new VectorLayer(new Railroad())
-// }
-// function Railroadhaishi () {
-//   this.useInterimTilesOnError = false
-//   this.name = 'railroad'
-//   this.source = new VectorSource({
-//     url:'https://kenzkenz.xsrv.jp/open-hinata/geojson/railroad.geojson',
-//     format: new GeoJSON()
-//   });
-//   this.style = railroadhaisiStyleFunction()
-// }
-// export const railroadHaishiObj = {};
-// for (let i of mapsStr) {
-//   railroadHaishiObj[i] = new VectorLayer(new Railroadhaishi())
-// }
-// function railroadStyleFunction(color) {
-//   return function (feature, resolution) {
-//     const prop = feature.getProperties();
-//     const zoom = getZoom(resolution);
-//     const genzon = prop["N05_005e"];
-//     const text = prop.N05_011
-//     let strokeColor;
-//     let strokeWidth;
-//     if (genzon === '9999') {
-//       strokeColor = "mediumblue";
-//       strokeWidth = zoom > 9 ? 6 : 2
-//     } else {
-//       // strokeColor = "red";
-//       // strokeWidth = zoom>9 ? 6 :2
-//     }
-//     const styles = []
-//     const strokeStyle = new Style({
-//       stroke: new Stroke({
-//         color: strokeColor,
-//         width: strokeWidth,
-//       })
-//     });
-//     const iconStyle = new Style({
-//       image: new Icon({
-//         anchor: [0.5, 0.7],
-//         src: require('@/assets/icon/eki.png'),
-//         color: color,
-//       })
-//     });
-//     const iconStyle2 = new Style({
-//       image: new Icon({
-//         anchor: [0.5, 0.7],
-//         src: require('@/assets/icon/eki2.png'),
-//         color: color,
-//       })
-//     });
-//     const textStyle = new Style({
-//       text: new Text({
-//         font: "8px sans-serif",
-//         text: text,
-//         offsetY: 10,
-//         stroke: new Stroke({
-//           color: "white",
-//           width: 3
-//         })
-//       })
-//     });
-//     if(zoom>=14) {
-//       styles.push(iconStyle);
-//     }else{
-//       // styles.push(iconStyle2);
-//     }
-//     if(zoom>=14) {
-//       styles.push(textStyle);
-//     }
-//     styles.push(strokeStyle)
-//     return styles;
-//   }
-// }
-// function railroadhaisiStyleFunction() {
-//   return function (feature, resolution) {
-//     const zoom = getZoom(resolution);
-//     const style = new Style({
-//       stroke: new Stroke({
-//         color: 'red',
-//         width: zoom>9 ? 6 :2,
-//       })
-//     });
-//     return style;
-//   }
-// }
-// export const railroad00Obj = {};
-// for (let i of mapsStr) {
-//   railroad00Obj[i] = new LayerGroup({
-//     layers: [
-//       // railroadHaishiObj[i],
-//       railroadObj[i],
-//     ]
-//   })
-// }
 
 
 // テスト---------------------------------------------------------------
