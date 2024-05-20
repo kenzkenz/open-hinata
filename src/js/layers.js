@@ -13555,9 +13555,10 @@ export const Layers =
         { text: 'H07市町村', data: { id: "cityH07", layer: LayersMvt.cityH07Obj, opacity: 1, summary: LayersMvt.cityH07Summ } },
         { text: 'R03市町村', data: { id: "cityR03", layer: LayersMvt.cityR03Obj, opacity: 1, summary: LayersMvt.cityR03Summ } },
       ]},
-    { text: '推計人口',
+    { text: '人口と推計人口',
       children: [
-      { text: '推計人口1km', data: { id: "suikei1km", layer: LayersMvt.suikei1kmObj, opacity: 1, summary: LayersMvt.suikei1kmObjSumm } },
+        { text: '2020人口1km', data: { id: "jinko1km", layer: LayersMvt.mesh1kmObj, opacity: 1, summary: LayersMvt.mesh1kmObjSumm } },
+        { text: '推計人口1km', data: { id: "suikei1km", layer: LayersMvt.suikei1kmObj, opacity: 1, summary: LayersMvt.suikei1kmObjSumm } },
       { text: '推計人口500m', data: { id: "suikei500m", layer: LayersMvt.suikei500mObj, opacity: 1, summary: LayersMvt.suikei500mObjSumm } },
     ]},
     { text: '各種地域',
@@ -13860,7 +13861,6 @@ export const Layers =
       ]},
     { text: 'その他',
       children: [
-        { text: 'テスト', data: { id: "test", layer: LayersMvt.mesh1kmObj, opacity: 1, summary: LayersMvt.mesh1kmObjSumm } },
         // { text: 'テスト2', data: { id: "test2", layer: bingRoadobj, opacity: 1, summary: LayersMvt.suiroSumm } },
         { text: 'ラスタータイルtest', data: { id: "dokuji", layer: dokujiObj, opacity: 1, summary: LayersMvt.busSumm, component: {name: 'dokuji', values:[]}} },
         { text: '一等三角点', data: { id: "itto", layer: LayersMvt.ittosankakutenObj, opacity: 1, summary: LayersMvt.ittosankakutenSumm } },

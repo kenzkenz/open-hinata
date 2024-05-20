@@ -980,12 +980,10 @@ export function popUp(map,layers,features,overlay,evt,content) {
           'コード=' + ru(prop.P28_001) + '<br><br>' +
           '<button class="pyramid-kencho" mapname="' + map.values_.target + '" citycode="' + ru(prop.P28_001) + '" cityname="' + ru(prop.P28_005) + '">人口ピラミッド</button><br><br>' +
           '<button class="jinkosuii2" mapname="' + map.values_.target + '" citycode="' + ru(prop.P28_001) + '" cityname="' + ru(prop.P28_005) + '">人口推移</button><br><br>' +
-
           streetView +
           '</div>'
       break
     case 'syochiki2020':
-      console.log(map.values_.target)
       width = 220
       cont = '<div style=width:220px;>' +
           '<div style="text-align: center;">' +
@@ -1005,12 +1003,6 @@ export function popUp(map,layers,features,overlay,evt,content) {
       break
     case 'drawLayer2':
       width = 300
-      // let img
-      // if (prop.src) {
-      //   img = '<img id="drawLayer2-src" src="' + prop.src +'" style="object-fit: cover;width: 300px;"><br>'
-      // } else {
-      //   img = ''
-      // }
       cont = '<div style=width:300px;>' +
           '<h4 id="drawLayer2-name">' + ru(prop.name) + '</h4>' +
           '<span id="drawLayer2-setumei">' + ru(prop.setumei) + '</span><br>' +
@@ -1018,7 +1010,6 @@ export function popUp(map,layers,features,overlay,evt,content) {
           streetView +
           '</div>'
         // if (!prop.name) cont = ''
-
       store.state.base.editFeature = features[0]
       console.log(features[0].getProperties())
       store.state.base.editFeatureName = features[0].getProperties().name
@@ -1027,6 +1018,20 @@ export function popUp(map,layers,features,overlay,evt,content) {
       if (document.querySelector('#dialog-edit0').style.display === 'block') {
         store.state.base.dialogs.dialogEdit.style.display = 'block'
       }
+      break
+    case 'mesh1km':
+      const ronenritu = (prop.ronen/prop.jinko*100).toFixed(2) + '%'
+      const seisanritu = (prop.seisan/prop.jinko*100).toFixed(2) + '%'
+      const nensyoritu = (prop.nensyo/prop.jinko*100).toFixed(2) + '%'
+      console.log(ronenritu)
+      width = 220
+      cont = '<div style=width:220px;>' +
+          '<h4>人口' + prop.jinko + '人</h4>' +
+          '老年人口=' + prop.ronen + '人(' + ronenritu + ')<br>' +
+          '生産年齢人口=' + prop.seisan + '人(' + seisanritu + ')<br>' +
+          '年少人口=' + prop.nensyo + '人(' + nensyoritu + ')<br>' +
+          streetView +
+          '</div>'
       break
   }
 
