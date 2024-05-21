@@ -228,6 +228,7 @@ const moduleBase = {
     // レイヤーリスト一部更新-------------------------------------------------------------------------
     updateListPart (state, payload) {
       const result = state.layerLists[payload.mapName].find(el => el.id === payload.id);
+      // console.log(result)
       result.component.values = payload.values;
     },
     getListPart (state, payload) {
@@ -283,6 +284,12 @@ const moduleInfo = {
       map02: 0,
       map03: 0,
       map04: 0
+    },
+    jinko: {
+      map01: 35100,
+      map02: 35100,
+      map03: 35100,
+      map04: 35100
     },
     kouzi: {
       map01: 100000,
@@ -367,6 +374,9 @@ const moduleInfo = {
           break
         case 'dokuji':
           variable = 'dokujiUrl'
+          break
+        case 'jinko':
+          variable = 'jinko'
           break
       }
       state[variable][payload.mapName] = payload.value

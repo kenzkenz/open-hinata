@@ -10,17 +10,13 @@
                     <p v-html="item.summary"></p>
                 </div>
             </div>
-            <!--海面上昇シミュレーション-->
             <v-flood :item="item" :mapName="mapName" v-else-if="item.component.name === 'flood10m'"/>
             <v-flood :item="item" :mapName="mapName" v-else-if="item.component.name === 'flood15'"/>
             <v-flood :item="item" :mapName="mapName" v-else-if="item.component.name === 'floodSimple'"/>
-
-            <!--シームレス地質図-->
             <v-seamless :item="item" :mapName="mapName" v-else-if="item.component.name === 'seamless'"/>
-
             <v-kouzi :item="item" :mapName="mapName" v-else-if="item.component.name === 'kouzi'"/>
-
             <v-dokuji :item="item" :mapName="mapName" v-else-if="item.component.name === 'dokuji'"/>
+            <v-jinko :item="item" :mapName="mapName" v-else-if="item.component.name === 'jinko'"/>
 
         </div>
     </div>
@@ -31,13 +27,16 @@
   import DialogInfoSeamless from "@/components/dialog-info/Dialog-info-seamless";
   import DialogInfoKouzi from "@/components/dialog-info/Dialog-info-kouzi";
   import DialogInfoDokuji from "@/components/dialog-info/Dialog-info-dokuji";
+  import DialogInfoJinko from './dialog-info/Dialog-info-jinko'
+
   export default {
     name: "v-dialog-info",
     components: {
       'v-kouzi': DialogInfoKouzi,
       'v-seamless':DialogInfoSeamless,
       'v-flood': DialogInfoFlood,
-      'v-dokuji':DialogInfoDokuji
+      'v-dokuji':DialogInfoDokuji,
+      'v-jinko':DialogInfoJinko,
     },
     props: ['mapName'],
     computed: {

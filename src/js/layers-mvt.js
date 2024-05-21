@@ -37,7 +37,7 @@ const ru2 = string => {
 const mapsStr = ['map01','map02'];
 
 // 1kmメッシュ-------------------------------------------------------------
-function Mesh1km(){
+function Mesh1km(mapName){
   this.name = 'mesh1km'
   // this.className = 'mesh1km'
   this.source = new VectorTileSource({
@@ -46,7 +46,7 @@ function Mesh1km(){
     maxZoom:14,
     url: "https://kenzkenz3.xsrv.jp/mvt/1kmesh/{z}/{x}/{y}.mvt"
   });
-  this.style = mesh1kColorFunction()
+  this.style = mesh1kColorFunction(mapName)
   // this.style = mesh1kColorFunctionRonen()
   // this.maxResolution = 152.874057 //zoom10
   this.maxResolution = 250 //zoom9?
@@ -55,7 +55,7 @@ function Mesh1km(){
 }
 export  const mesh1kmObj = {};
 for (let i of mapsStr) {
-  mesh1kmObj[i] = new VectorTileLayer(new Mesh1km())
+  mesh1kmObj[i] = new VectorTileLayer(new Mesh1km((i)))
 }
 export const mesh1kmObjSumm = "<a href='https://www.e-stat.go.jp/gis/statmap-search?page=8&type=1&toukeiCode=00200521&toukeiYear=2020&aggregateUnit=S&serveyId=S002005112020&statsId=T001100&prefCode=01%2C02%2C03%2C04%2C05%2C06%2C07%2C08%2C09%2C10%2C11%2C12%2C13%2C14%2C15%2C16%2C17%2C18%2C19%2C20%2C21%2C22%2C23%2C24%2C25%2C26%2C27%2C28%2C29%2C30%2C31%2C32%2C33%2C34%2C35%2C36%2C37%2C38%2C39%2C40%2C41%2C42%2C43%2C44%2C45%2C46%2C47&datum=2000' target='_blank'>e-Stat</a>";
 // ---------------------------------------------------
@@ -101,14 +101,21 @@ function mesh1kColorFunctionRonen() {
   }
 }
 // -----------------------------------------------------------------------------------
-const mesh1kColor = d3.scaleLinear()
-    .domain([0,10000,20000,30000,33000])
-    .range(["white", "red","#880000",'maroon','black']);
-function mesh1kColorFunction() {
+function mesh1kColorFunction(mapName) {
   return function (feature, resolution) {
+    const jinkoMax = Number(store.state.info.jinko[mapName])
+    const mesh1kColor = d3.scaleLinear()
+        // .domain([0,10000,20000,30000,33000])
+        .domain([
+            0,
+          jinkoMax/3.5,
+          jinkoMax/1.75,
+          jinkoMax*30/35,
+          jinkoMax])
+        // .domain([0,30000])
+        .range(["white", "red","#880000",'maroon','black']);
     const zoom = getZoom(resolution);
     const prop = feature.getProperties();
-    // console.log(prop.JINKO/prop.AREA*1000)
     const styles = [];
     const rgb = d3.rgb(mesh1kColor(prop.jinko))
     const rgba = "rgba(" + rgb.r + "," + rgb.g + "," + rgb.b + ",0.7)"
@@ -125,7 +132,7 @@ function mesh1kColorFunction() {
     const text = String(ru2(prop.jinko)) + '人'
     const textStyle = new Style({
       text: new Text({
-        font: "14px sans-serif",
+        font: zoom <= 15 ? "14px sans-serif" : "20px sans-serif",
         text: text,
         fill: new Fill({
           color: "black"
@@ -134,7 +141,6 @@ function mesh1kColorFunction() {
           color: "white",
           width: 3
         }),
-        exceedLength:true
       })
     })
     if (prop.jinko) styles.push(polygonStyle);

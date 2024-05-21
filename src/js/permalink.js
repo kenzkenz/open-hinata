@@ -271,6 +271,7 @@ export function permalinkEventSet (response) {
                       // const left = Number(store.state.base.dialogs[mapName].style.left.replace(/px/,"")) + document.querySelector('#map01' + ' .dialog-div').clientWidth + 96 + 'px';
                       // const left = '355px'
                       const left = '10px'
+                      const bottom = '50px'
                       const infoDialog =
                           {
                             id: node.data.id,
@@ -288,9 +289,11 @@ export function permalinkEventSet (response) {
                           };
                       store.commit('base/pushDialogsInfo', {mapName: mapName, dialog: infoDialog});
                       const c = urlLayerListArr[i][j].c;
-                      for (let k=0; k<c.values.length;k++) {
-                        console.log(c.name,c.values[k])
-                        store.commit('info/update', {name: c.name, mapName: mapName, value: c.values[k], order: k})
+                      if (c){
+                        for (let k=0; k<c.values.length;k++) {
+                          // console.log(c.name,c.values[k])
+                          store.commit('info/update', {name: c.name, mapName: mapName, value: c.values[k], order: k})
+                        }
                       }
                     }
                     // レイヤーに設定項目があるとき。ここまで
@@ -330,7 +333,7 @@ export function moveEnd () {
     featureProjection: "EPSG:3857"
   });
   const geojsonT2 = JSON.stringify(JSON.parse(drawSourceGeojson2),null,1);
-  console.log(geojsonT2)
+  // console.log(geojsonT2)
   // ----------------------------------------------------------------------------------
   const map = store.state.base.maps.map01;
   const zoom = map.getView().getZoom();
