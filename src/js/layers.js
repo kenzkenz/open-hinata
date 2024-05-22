@@ -13876,25 +13876,24 @@ export const Layers =
         { text: 'OpenTopoMap', data: { id: "otm", layer: otmObj, opacity: 1, summary: otmSumm } },
       ]},
   ];
-// export const Layers = layers;
-let cnt = 0
-function aaa () {
-  Layers.forEach(value => {
-    // console.log(value)
-    if (!value.children) cnt++
-    function bbb (v1) {
-      if (v1.children) {
-        v1.children.forEach(v2 => {
-          // console.log(v2)
-          if (!v2.children) cnt++
-          if (v2.children) bbb(v2)
-        })
-      }
-    }
-    bbb(value)
-  })
-}
-aaa()
-console.log('背景' + cnt + '件')
+// let cnt = 0
+// function aaa () {
+//   Layers.forEach(value => {
+//     // console.log(value)
+//     if (!value.children) cnt++
+//     function bbb (v1) {
+//       if (v1.children) {
+//         v1.children.forEach(v2 => {
+//           // console.log(v2)
+//           if (!v2.children) cnt++
+//           if (v2.children) bbb(v2)
+//         })
+//       }
+//     }
+//     bbb(value)
+//   })
+// }
+// aaa()
+// console.log('背景' + cnt + '件')
 
 

@@ -37,19 +37,25 @@ const ru2 = string => {
 const mapsStr = ['map01','map02'];
 
 // 1kmメッシュ-------------------------------------------------------------
+let mesh1kMaxResolution
+if (window.innerWidth > 1000) {
+  mesh1kMaxResolution = 611.496226 //zoom8
+} else {
+  mesh1kMaxResolution = 300 //zoom9?
+  // mesh1kMaxResolution = 611.496226 //zoom8
+}
 function Mesh1km(mapName){
   this.name = 'mesh1km'
-  // this.className = 'mesh1km'
+  this.className = 'mesh1km'
   this.source = new VectorTileSource({
     crossOrigin: 'Anonymous',
     format: new MVT(),
     maxZoom:14,
-    url: "https://kenzkenz3.xsrv.jp/mvt/1kmesh/{z}/{x}/{y}.mvt"
+    url: "https://kenzkenz3.xsrv.jp/mvt/1kmesh3/{z}/{x}/{y}.mvt"
   });
   this.style = mesh1kColorFunction(mapName)
   // this.style = mesh1kColorFunctionRonen()
-  // this.maxResolution = 152.874057 //zoom10
-  this.maxResolution = 250 //zoom9?
+  this.maxResolution = mesh1kMaxResolution
   this.declutter = true
   this.overflow = true
 }
@@ -58,48 +64,6 @@ for (let i of mapsStr) {
   mesh1kmObj[i] = new VectorTileLayer(new Mesh1km((i)))
 }
 export const mesh1kmObjSumm = "<a href='https://www.e-stat.go.jp/gis/statmap-search?page=8&type=1&toukeiCode=00200521&toukeiYear=2020&aggregateUnit=S&serveyId=S002005112020&statsId=T001100&prefCode=01%2C02%2C03%2C04%2C05%2C06%2C07%2C08%2C09%2C10%2C11%2C12%2C13%2C14%2C15%2C16%2C17%2C18%2C19%2C20%2C21%2C22%2C23%2C24%2C25%2C26%2C27%2C28%2C29%2C30%2C31%2C32%2C33%2C34%2C35%2C36%2C37%2C38%2C39%2C40%2C41%2C42%2C43%2C44%2C45%2C46%2C47&datum=2000' target='_blank'>e-Stat</a>";
-// ---------------------------------------------------
-const mesh1kColorRonen = d3.scaleLinear()
-    .domain([0.25, 1])
-    .range(["white", "red"]);
-function mesh1kColorFunctionRonen() {
-  return function (feature, resolution) {
-    const zoom = getZoom(resolution);
-    const prop = feature.getProperties();
-    // console.log(prop.JINKO/prop.AREA*1000)
-    const styles = [];
-    const rgb = d3.rgb(mesh1kColorRonen(prop.ronen / prop.jinko))
-    const rgba = "rgba(" + rgb.r + "," + rgb.g + "," + rgb.b + ",0.8)"
-    const polygonStyle = new Style({
-      fill: new Fill({
-        color: rgba
-        // color: 'rgba(0,0,0,0)'
-      }),
-      stroke: new Stroke({
-        color: zoom >= 11 ? 'red' : 'rgba(0,0,0,0)',
-        width: 1
-      })
-    })
-    const text = String(ru2(prop.jinko)) + '人'
-    const textStyle = new Style({
-      text: new Text({
-        font: "14px sans-serif",
-        text: text,
-        fill: new Fill({
-          color: "black"
-        }),
-        stroke: new Stroke({
-          color: "white",
-          width: 3
-        }),
-        exceedLength: true
-      })
-    })
-    if (prop.jinko) styles.push(polygonStyle);
-    if (zoom >= 14 && prop.jinko) styles.push(textStyle);
-    return styles;
-  }
-}
 // -----------------------------------------------------------------------------------
 function mesh1kColorFunction(mapName) {
   return function (feature, resolution) {
@@ -137,13 +101,15 @@ function mesh1kColorFunction(mapName) {
         fill: new Fill({
           color: "black"
         }),
+        Placement: 'point',
+        overflow: 'true',
         stroke: new Stroke({
           color: "white",
           width: 3
         }),
       })
     })
-    if (prop.jinko) styles.push(polygonStyle);
+    styles.push(polygonStyle);
     if (zoom>=14 && prop.jinko) styles.push(textStyle);
     return styles;
   }

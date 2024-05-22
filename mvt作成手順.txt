@@ -279,6 +279,7 @@ tippecanoe -pk -pf -f -e tile zenkoku.geojson
 
 tippecanoe -pk -pf -f -e tile 1kmesh.geojson
 tippecanoe -pk -pf -f -e tile marged.geojson
+tippecanoe -pk -pf -f -e tile re.geojson
 
 
 $ cd tile

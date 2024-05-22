@@ -265,13 +265,41 @@ export function permalinkEventSet (response) {
                       store.commit('base/incrDialogMaxZindex');
                       // レイヤーダイアログを開く時は下記１行を使う。
                       // store.state.base.dialogs[mapName].style.display = 'block';
-                      const top = store.state.base.dialogs[mapName].style.top;
+
+                      // const top = store.state.base.dialogs[mapName].style.top;
+                      // console.log(store.state.base.dialogs[mapName].style)
                       // $('#map01' + ' .dialog-div')の長さがわかればいい。それぞれに必要なし
                       // document.querySelector('#map01' + ' .dialog-div').style.display = 'block';
                       // const left = Number(store.state.base.dialogs[mapName].style.left.replace(/px/,"")) + document.querySelector('#map01' + ' .dialog-div').clientWidth + 96 + 'px';
                       // const left = '355px'
-                      const left = '10px'
-                      const bottom = '50px'
+                      const c = urlLayerListArr[i][j].c;
+                      let height = ''
+                      let left
+                      let bottom
+                      let top
+                      if (window.innerWidth < 600) {
+                        left = (window.innerWidth / 2 - 125) + 'px'
+                        top  = ''
+                        bottom = '60px'
+                        // top = '60px'
+                        // left = '10px'
+                        // bottom = ''
+                        if (c) {
+                          switch (c.name) {
+                            case 'jinko':
+                              height = '180px'
+                              break
+                            case 'flood10m':
+                              height = '357px'
+                              break
+                          }
+                          console.log(c.name)
+                        }
+                      } else {
+                        top = '60px'
+                        left = '10px'
+                        bottom = ''
+                      }
                       const infoDialog =
                           {
                             id: node.data.id,
@@ -282,13 +310,15 @@ export function permalinkEventSet (response) {
                             component: node.data.component,
                             style: {
                               display: 'block',
+                              bottom: bottom,
                               top: top,
                               left: left,
+                              height: height,
                               'z-index': store.state.base.dialogMaxZindex
                             }
                           };
                       store.commit('base/pushDialogsInfo', {mapName: mapName, dialog: infoDialog});
-                      const c = urlLayerListArr[i][j].c;
+                      // const c = urlLayerListArr[i][j].c;
                       if (c){
                         for (let k=0; k<c.values.length;k++) {
                           // console.log(c.name,c.values[k])

@@ -1,13 +1,9 @@
 <template>
-  <div>
-    <div>
-      <div class="content-div">
-        <p v-html="item.title"></p><hr>
-        <div style="text-align: center;">赤色の上限値 {{ s_jinko }}人</div>
-        <input type="range" min="100" :max="35100" :step="1000" class="jinko-range" v-model.number="s_jinko" @input="inputJinko" />
-        出典 <span v-html="item.summary"></span>
-      </div>
-    </div>
+  <div class="content-div">
+    <p v-html="item.title"></p><hr>
+    <div style="text-align: center;">赤色の上限値 {{ s_jinko }}人</div>
+    <input type="range" min="100" :max="35100" :step="1000" class="jinko-range" v-model.number="s_jinko" @input="inputJinko" />
+    出典 <span v-html="item.summary"></span>
   </div>
 </template>
 
@@ -60,6 +56,7 @@ export default {
 <style scoped>
 .content-div{
   width: 250px;
+  height: 150px;
   padding: 10px;
 }
 </style>
