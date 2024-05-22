@@ -166,7 +166,7 @@ function syochiikiStyleFunction() {
     })
     let text
     if (zoom>15) {
-      text = prop.S_NAME + ' ' + String(ru2(prop.JINKO)) + '人'
+      text = prop.S_NAME + '\n' + String(ru2(prop.JINKO)) + '人'
     } else {
       text = String(ru2(prop.JINKO)) + '人'
     }
