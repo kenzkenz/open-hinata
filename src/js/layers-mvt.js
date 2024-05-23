@@ -36,6 +36,97 @@ const ru2 = string => {
 // const mapsStr = ['map01','map02','map03','map04'];
 const mapsStr = ['map01','map02'];
 
+// 100mメッシュ-------------------------------------------------------------
+let mesh100MaxResolution
+if (window.innerWidth > 1000) {
+  mesh100MaxResolution = 19.109257 //zoom13
+} else {
+  mesh100MaxResolution = 19.109257 //zoom13
+  // mesh100MaxResolution = 9.554629 //zoom14
+}
+function Mesh100(mapName){
+  this.name = 'mesh100'
+  this.className = 'mesh100'
+  this.source = new VectorTileSource({
+    crossOrigin: 'Anonymous',
+    format: new MVT(),
+    maxZoom:14,
+    url: "https://kenzkenz3.xsrv.jp/mvt/100mmesh/{z}/{x}/{y}.mvt"
+  });
+  this.style = mesh100ColorFunction(mapName)
+  this.maxResolution = mesh100MaxResolution
+  this.declutter = true
+  this.overflow = true
+}
+export  const mesh100Obj = {};
+for (let i of mapsStr) {
+  mesh100Obj[i] = new VectorTileLayer(new Mesh100((i)))
+}
+export const mesh100ObjSumm = "<div style='width: 200px;font-size: small'>" +
+    "令和2年国勢調査の250mメッシュ集計の人口を100mメッシュに按分したデータです。" +
+    "このデータは、簡易な方法で人口を按分したものであり、当該100mメッシュの実際の人口を示しているものではなく、" +
+    "広い範囲での人口分布の概要を見る目的、一定範囲の人口を建築物面積により簡易に按分集計する目的で利用して下さい。" +
+    "ライセンスはCC-BYとします。" +
+    "<br>" +
+    "<a href='https://gtfs-gis.jp/teikyo/' target='_blank'>地域分析に有用なデータの提供</a></div>";
+// -----------------------------------------------------------------------------------
+function mesh100ColorFunction(mapName) {
+  return function (feature, resolution) {
+    // const jinkoMax = Number(store.state.info.jinko[mapName])
+    const jinkoMax = 1300
+    const mesh100Color = d3.scaleLinear()
+        .domain([
+          0,
+          jinkoMax/3.5,
+          jinkoMax/1.75,
+          jinkoMax*30/35,
+          jinkoMax])
+        .range(["white", "red","#880000",'maroon','black']);
+    const zoom = getZoom(resolution);
+    const prop = feature.getProperties();
+    const styles = [];
+    const rgb = d3.rgb(mesh100Color(prop.PopT))
+    const rgba = "rgba(" + rgb.r + "," + rgb.g + "," + rgb.b + ",0.7)"
+    const polygonStyle = new Style({
+      fill: new Fill({
+        color: rgba
+      }),
+      stroke: new Stroke({
+        color: zoom >= 15 ? 'red' : 'rgba(0,0,0,0)',
+        width: 1
+      })
+    })
+    const text = Math.round(prop.PopT) + '人'
+    let font
+    if (zoom>=19) {
+      font = "26px sans-serif"
+    } else if (zoom>=18) {
+      font = "20px sans-serif"
+    } else if (zoom>=17) {
+      font = "14px sans-serif"
+    } else if (zoom >= 16) {
+      font = "8px sans-serif"
+    }
+    const textStyle = new Style({
+      text: new Text({
+        font: font,
+        text: text,
+        fill: new Fill({
+          color: "black"
+        }),
+        Placement: 'point',
+        overflow: 'true',
+        stroke: new Stroke({
+          color: "white",
+          width: 3
+        }),
+      })
+    })
+    styles.push(polygonStyle);
+    if (zoom>=16) styles.push(textStyle);
+    return styles;
+  }
+}
 // 1kmメッシュ-------------------------------------------------------------
 let mesh1kMaxResolution
 if (window.innerWidth > 1000) {
@@ -52,6 +143,8 @@ function Mesh1km(mapName){
     format: new MVT(),
     maxZoom:14,
     url: "https://kenzkenz3.xsrv.jp/mvt/1kmesh3/{z}/{x}/{y}.mvt"
+    // url: "https://kenzkenz3.xsrv.jp/mvt/100mmesh/{z}/{x}/{y}.mvt"
+
   });
   this.style = mesh1kColorFunction(mapName)
   // this.style = mesh1kColorFunctionRonen()

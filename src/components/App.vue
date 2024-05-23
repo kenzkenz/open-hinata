@@ -1497,9 +1497,11 @@ console.log(seisan)
                    '<p>国勢調査小地域の人口ピラミッドはこちら「' +
                    '<a href="https://kenzkenz.xsrv.jp/open-hinata/#s3PHDc" target="_blank">R2国勢調査小地域人口ピラミッド</a>' +
                    '」' +
-                   '<br>是非ご覧ください。' +
                    '<p>1kmメッシュの人口を追加しました。「' +
                    '<a href="https://kenzkenz.xsrv.jp/open-hinata/#scat2U" target="_blank">2020人口1km</a>' +
+                    '」' +
+                   '<p>100mメッシュの人口を追加しました。「' +
+                   '<a href="https://kenzkenz.xsrv.jp/open-hinata/#sDRNaw" target="_blank">2020人口100m(簡易)</a>' +
                     '」' +
                    '<br>是非ご覧ください。',
             title: 'お知らせ',

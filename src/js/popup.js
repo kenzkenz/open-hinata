@@ -1027,12 +1027,27 @@ export function popUp(map,layers,features,overlay,evt,content) {
       width = 220
       cont = '<div style=width:220px;>' +
           '<h4>人口' + prop.jinko + '人</h4>' +
-          '老年人口=' + prop.ronen + '人(' + ronenritu + ')<br>' +
-          '生産年齢人口=' + prop.seisan + '人(' + seisanritu + ')<br>' +
-          '年少人口=' + prop.nensyo + '人(' + nensyoritu + ')<br>' +
+          '老年人口　　= ' + prop.ronen + '人(' + ronenritu + ')<br>' +
+          '生産年齢人口= ' + prop.seisan + '人(' + seisanritu + ')<br>' +
+          '年少人口　　= ' + prop.nensyo + '人(' + nensyoritu + ')<br>' +
           streetView +
           '</div>'
       break
+    case 'mesh100':
+      const ronenritu100 = (prop.Pop65over/prop.PopT*100).toFixed(2) + '%'
+      const seisanritu100 = (prop.Pop15_64/prop.PopT*100).toFixed(2) + '%'
+      const nensyoritu100 = (prop.Pop0_14/prop.PopT*100).toFixed(2) + '%'
+      console.log(ronenritu)
+      width = 220
+      cont = '<div style=width:220px;>' +
+          '<h4>人口' + prop.PopT.toFixed(2) + '人</h4>' +
+          '老年人口　　= ' + prop.Pop65over.toFixed(2) + '人(' + ronenritu100 + ')<br>' +
+          '生産年齢人口= ' + prop.Pop15_64.toFixed(2) + '人(' + seisanritu100 + ')<br>' +
+          '年少人口　　= ' + prop.Pop0_14.toFixed(2) + '人(' + nensyoritu100 + ')<br>' +
+          streetView +
+          '</div>'
+      break
+
   }
 
   if (width) {
