@@ -13,7 +13,7 @@ import * as permalink from '../../js/permalink'
 import * as MyMap from '../../js/mymap'
 
 export default {
-  name: "Dialog-info-jinko",
+  name: "Dialog-info-jinko-1km",
   props: ['mapName', 'item'],
   components: {
   },
@@ -37,7 +37,7 @@ export default {
       permalink.moveEnd();
     },
     inputJinko () {
-      MyMap.history ('人口')
+      MyMap.history ('1kmmesh人口')
       LayersMvt.mesh1kmObj[this.mapName].getSource().changed();
       permalink.moveEnd();
       this.storeUpdate()
