@@ -4319,32 +4319,41 @@ function busteiStyleFunction() {
     }
     const iconStyle = new Style({
       image: new Icon({
-        anchor: [0.5, 1],
-        src: require('@/assets/icon/blackpinmini.png'),
+        // anchor: [0.5, 1],
+        src: require('@/assets/icon/whitecircle.png'),
+        color: 'black',
+        scale: zoom>=15 ? 1.5: 1
       })
-    });
-    const iconStyle2 = new Style({
-      image: new Icon({
-        anchor: [0.5, 1],
-        src: require('@/assets/icon/blackpin.png'),
-      })
-    });
+    })
+    // const iconStyle = new Style({
+    //   image: new Icon({
+    //     anchor: [0.5, 1],
+    //     src: require('@/assets/icon/blackpinmini.png'),
+    //   })
+    // });
+    // const iconStyle2 = new Style({
+    //   image: new Icon({
+    //     anchor: [0.5, 1],
+    //     src: require('@/assets/icon/blackpin.png'),
+    //   })
+    // });
     const textStyle = new Style({
       text: new Text({
         font: font,
         text: text,
-        offsetY: 10,
+        offsetY: 18,
         stroke: new Stroke({
           color: "white",
           width: 3
         })
       })
     });
-    if (zoom>=15) {
-      styles.push(iconStyle2);
-    } else {
-      styles.push(iconStyle);
-    }
+    // if (zoom>=15) {
+    //   styles.push(iconStyle2);
+    // } else {
+    //   styles.push(iconStyle);
+    // }]
+    styles.push(iconStyle);
     if(zoom>=15) {
       styles.push(textStyle);
     }
