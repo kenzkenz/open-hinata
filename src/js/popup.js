@@ -1040,6 +1040,7 @@ export function popUp(map,layers,features,overlay,evt,content) {
                 '年少人口　　= ' + prop.nensyo + '人(' + nensyoritu + ')<br><br>' +
                 '<button class="jinkopie1km" mapname="' + map.values_.target +
                 // '" KEY_CODE="' + prop.KEY_CODE +
+                '" jyusyo="' + response.data.results.lv01Nm +
                 '" jinko="' + prop.jinko +
                 '" ronen="' + prop.ronen +
                 '" seisan="' + prop.seisan +
@@ -1078,6 +1079,7 @@ export function popUp(map,layers,features,overlay,evt,content) {
                 '年少人口　　= ' + prop.Pop0_14.toFixed(2) + '人(' + nensyoritu100 + ')<br><br>' +
                 '<button class="jinkopie100m" mapname="' + map.values_.target +
                 '" KEY_CODE="' + prop.KEY_CODE +
+                '" jyusyo="' + response.data.results.lv01Nm +
                 '" jinko="' + prop.PopT +
                 '" ronen="' + prop.Pop65over +
                 '" seisan="' + prop.Pop15_64 +

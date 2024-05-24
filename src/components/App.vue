@@ -1374,6 +1374,7 @@
                   }
                 }
             const jinkoPieData = {
+              jyusyo:  e.target.getAttribute("jyusyo"),
               jinko:  Number(e.target.getAttribute("jinko")),
               ronen: Number(e.target.getAttribute("ronen")),
               seisan: Number(e.target.getAttribute("seisan")),
@@ -1413,6 +1414,7 @@
                   }
                 }
             const jinkoPieData = {
+              jyusyo:  e.target.getAttribute("jyusyo"),
               jinko:  Number(e.target.getAttribute("jinko")),
               ronen: Number(e.target.getAttribute("ronen")),
               seisan: Number(e.target.getAttribute("seisan")),

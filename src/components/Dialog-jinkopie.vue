@@ -38,8 +38,10 @@ export default {
         }
       }
 
+      const dialog2DragHandle = document.querySelector('#dialog2-' + vm.item.id + ' .drag-handle')
+      dialog2DragHandle.innerHTML = vm.$store.state.base.jinkoPieData.jyusyo
+
       const data = vm.$store.state.base.jinkoPieData
-      console.log(data)
       const dataset = [
         { "name": '老年人口' + (data.ronen/data.jinko*100).toFixed(2) + '%', "value": data.ronen },
         { "name": '生産年齢人口' + (data.seisan/data.jinko*100).toFixed(2) + '%', "value": data.seisan },
@@ -99,12 +101,14 @@ export default {
           .append("g")
           .attr("class", "pie");
 
-
       const text = d3.arc()
           .outerRadius(radius - 130)
           .innerRadius(radius - 30);
 
       pieGroup.append("text")
+          .transition()
+          .duration(1500)
+          .delay(1200)
           .attr("fill", "white")
           // .attr("transform", function(d) { return "translate(" + text.centroid(d) + ")"; })
           // .attr("transform", datum => `translate(${arc.centroid(datum)})`) // 扇型の中心に移動
@@ -119,9 +123,6 @@ export default {
           .attr("dy", "5px")
           .attr("font", "6px")
           .attr("text-anchor", "middle")
-          .transition()
-          .duration(1500)
-          .delay(1200)
           .text(function(d) { return d.data.name; });
 
     }
