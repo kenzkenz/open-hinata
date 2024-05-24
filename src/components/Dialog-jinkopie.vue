@@ -124,7 +124,6 @@ export default {
           .attr("font", "6px")
           .attr("text-anchor", "middle")
           .text(function(d) { return d.data.name; });
-
     }
   }
 }

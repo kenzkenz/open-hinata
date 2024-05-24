@@ -1030,7 +1030,6 @@ export function popUp(map,layers,features,overlay,evt,content) {
             const ronenritu = (prop.ronen/prop.jinko*100).toFixed(2) + '%'
             const seisanritu = (prop.seisan/prop.jinko*100).toFixed(2) + '%'
             const nensyoritu = (prop.nensyo/prop.jinko*100).toFixed(2) + '%'
-            console.log(ronenritu)
             width = 220
             cont = '<div style=width:220px;>' +
                 '<h4>' + response.data.results.lv01Nm + '</h4>' +
@@ -1055,7 +1054,6 @@ export function popUp(map,layers,features,overlay,evt,content) {
           })
           .finally(function () {
           });
-
       break
     case 'mesh100':
       axios
@@ -1066,7 +1064,7 @@ export function popUp(map,layers,features,overlay,evt,content) {
             }
           })
           .then(function (response) {
-            console.log(response.data.results.lv01Nm)
+            console.log(response.data.results)
             const ronenritu100 = (prop.Pop65over/prop.PopT*100).toFixed(2) + '%'
             const seisanritu100 = (prop.Pop15_64/prop.PopT*100).toFixed(2) + '%'
             const nensyoritu100 = (prop.Pop0_14/prop.PopT*100).toFixed(2) + '%'
@@ -1095,7 +1093,6 @@ export function popUp(map,layers,features,overlay,evt,content) {
           .finally(function () {
           });
       break
-
   }
 
   if (width) {
