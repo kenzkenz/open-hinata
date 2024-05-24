@@ -996,7 +996,6 @@ export function popUp(map,layers,features,overlay,evt,content) {
           '<button class="pyramid-syochiiki-h22" year=2010 mapname="' + map.values_.target + '" cdArea="' + prop.KEY_CODE + '" syochiikiname="' + prop.S_NAME + '">2010（H22）人口ピラミッド</button><br>' +
           '<button class="pyramid-syochiiki-h17" year=2005 mapname="' + map.values_.target + '" cdArea="' + prop.KEY_CODE + '" syochiikiname="' + prop.S_NAME + '">2005（H17）人口ピラミッド</button><br>' +
           '<button class="jinkosuii3" mapname="' + map.values_.target + '" cdArea="' + prop.KEY_CODE + '" syochiikiname="' + prop.S_NAME + '">人口推移</button><br>' +
-
           '<br>' +
           streetView +
           '</div></div>'
@@ -1043,7 +1042,14 @@ export function popUp(map,layers,features,overlay,evt,content) {
           '<h4>人口' + prop.PopT.toFixed(2) + '人</h4>' +
           '老年人口　　= ' + prop.Pop65over.toFixed(2) + '人(' + ronenritu100 + ')<br>' +
           '生産年齢人口= ' + prop.Pop15_64.toFixed(2) + '人(' + seisanritu100 + ')<br>' +
-          '年少人口　　= ' + prop.Pop0_14.toFixed(2) + '人(' + nensyoritu100 + ')<br>' +
+          '年少人口　　= ' + prop.Pop0_14.toFixed(2) + '人(' + nensyoritu100 + ')<br><br>' +
+          '<button class="jinkopie1" mapname="' + map.values_.target +
+          '" KEY_CODE="' + prop.KEY_CODE +
+          '" jinko="' + prop.PopT +
+          '" ronen="' + prop.Pop65over +
+          '" seisan="' + prop.Pop15_64 +
+          '" nensyo="' + prop.Pop0_14 +
+          '">円グラフ</button><br><br>' +
           streetView +
           '</div>'
       break

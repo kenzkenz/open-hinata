@@ -918,7 +918,6 @@
         })
       })
       function h27syoshiiki(e,mapName,year){
-
           d3.select('#' + mapName + ' .loadingImg').style("display", "block")
           vm.$store.state.base.cdArea = e.target.getAttribute("cdArea")
           vm.$store.state.base.syochiikiName = e.target.getAttribute("syochiikiname")
@@ -1198,7 +1197,7 @@
           })
         })
       }
-      // ------------------------------------------------------
+      // 小地域人口推移------------------------------------------------------
       maps.forEach((mapName) => {
         const olPopup = document.querySelector('#' + mapName + ' .ol-popup')
         olPopup.addEventListener('click', (e) => {
@@ -1232,7 +1231,7 @@
                 return {year:value.year,rate:value.seisanRate,sousu:value.value,seisan:value.seisan}
               })
               vm.$store.state.base.jinkosuiiDatasetEstat['datasetSeisan'] = seisan
-console.log(seisan)
+              console.log(seisan)
 
               vm.$store.commit('base/incrDialog2Id');
               vm.$store.commit('base/incrDialogMaxZindex');
@@ -1343,6 +1342,45 @@ console.log(seisan)
               vm.$store.state.base.resasOrEstat = 'resas'
               vm.$store.commit('base/pushDialogs2',{mapName: mapName, dialog: diialog})
             }
+          }
+        })
+      })
+      // 100mメッシュ円グラフ------------------------------------------------------
+      maps.forEach((mapName) => {
+        const olPopup = document.querySelector('#' + mapName + ' .ol-popup')
+        olPopup.addEventListener('click', (e) => {
+          if (e.target && e.target.classList.contains("jinkopie1") ) {
+            vm.$store.commit('base/incrDialog2Id');
+            vm.$store.commit('base/incrDialogMaxZindex');
+            let width
+            let left
+            if (window.innerWidth > 600) {
+              width = '400px'
+              left = (window.innerWidth - 410) + 'px'
+            } else {
+              width = '350px'
+              left = (window.innerWidth / 2 - 175) + 'px'
+            }
+            const diialog =
+                {
+                  id: vm.s_dialo2Id,
+                  name:'jinkopie',
+                  style: {
+                    display: 'block',
+                    width: width,
+                    top: '60px',
+                    left: left,
+                    'z-index': vm.s_dialogMaxZindex
+                  }
+                }
+            const jinkoPieData = {
+              jinko:  Number(e.target.getAttribute("jinko")),
+              ronen: Number(e.target.getAttribute("ronen")),
+              seisan: Number(e.target.getAttribute("seisan")),
+              nensyo: Number(e.target.getAttribute("nensyo")),
+            }
+            vm.$store.state.base.jinkoPieData = jinkoPieData
+            vm.$store.commit('base/pushDialogs2',{mapName: mapName, dialog: diialog})
           }
         })
       })

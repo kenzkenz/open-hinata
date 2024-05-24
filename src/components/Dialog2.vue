@@ -8,6 +8,7 @@
       <v-pyramid :item="item" :mapName="mapName" v-if="item.name === 'pyramid'" />
       <v-pyramid-estat :item="item" :mapName="mapName" v-if="item.name === 'pyramid-estat'" />
       <v-jinkosuii :item="item" :mapName="mapName" v-if="item.name === 'jinkosuii'" />
+      <v-jinkopie :item="item" :mapName="mapName" v-if="item.name === 'jinkopie'" />
       <v-erev :item="item" :mapName="mapName" v-if="item.name === 'erev'" />
 
     </div>
@@ -18,6 +19,7 @@
 import DialogPyramid from "@/components/Dialog-pyramid"
 import DialogPyramidEstat from "@/components/Dialog-pyramid-estat"
 import DialogJinkosuii from "@/components/Dialog-jinkosuii"
+import Dialogpie from "@/components/Dialog-jinkopie"
 import DialogErev from "@/components/Daialog-erev";
 
 export default {
@@ -26,6 +28,7 @@ export default {
     'v-pyramid': DialogPyramid,
     'v-pyramid-estat':DialogPyramidEstat,
     'v-jinkosuii':DialogJinkosuii,
+    'v-jinkopie':Dialogpie,
     'v-erev': DialogErev
   },
   props: ['mapName'],

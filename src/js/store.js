@@ -80,6 +80,12 @@ const moduleBase = {
     resasDataset:[],
     jinkosuiiDataset:[],
     jinkosuiiDatasetEstat:[],
+    jinkoPieData: {
+      jinko: 0,
+      ronen: 0,
+      seisan: 0,
+      nensyo: 0
+    },
     togglePoint:false,
     toggleModify:false,
     editFeature:'',
