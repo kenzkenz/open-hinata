@@ -289,6 +289,9 @@ export function permalinkEventSet (response) {
                             case 'jinko':
                               height = '180px'
                               break
+                            case 'jinko100m':
+                              height = '389px'
+                              break
                             case 'flood10m':
                               height = '357px'
                               break

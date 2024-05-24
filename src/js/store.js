@@ -291,6 +291,12 @@ const moduleInfo = {
       map03: 35100,
       map04: 35100
     },
+    jinko100m: {
+      map01: 1310,
+      map02: 1310,
+      map03: 1310,
+      map04: 1310
+    },
     kouzi: {
       map01: 100000,
       map02: 100000,
@@ -377,6 +383,9 @@ const moduleInfo = {
           break
         case 'jinko':
           variable = 'jinko'
+          break
+        case 'jinko100m':
+          variable = 'jinko100m'
           break
       }
       state[variable][payload.mapName] = payload.value

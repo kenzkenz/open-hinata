@@ -62,7 +62,7 @@ export  const mesh100Obj = {};
 for (let i of mapsStr) {
   mesh100Obj[i] = new VectorTileLayer(new Mesh100((i)))
 }
-export const mesh100ObjSumm = "<div style='width: 200px;font-size: small'>" +
+export const mesh100ObjSumm = "<div style='font-size: small'>" +
     "令和2年国勢調査の250mメッシュ集計の人口を100mメッシュに按分したデータです。" +
     "このデータは、簡易な方法で人口を按分したものであり、当該100mメッシュの実際の人口を示しているものではなく、" +
     "広い範囲での人口分布の概要を見る目的、一定範囲の人口を建築物面積により簡易に按分集計する目的で利用して下さい。" +
@@ -72,8 +72,8 @@ export const mesh100ObjSumm = "<div style='width: 200px;font-size: small'>" +
 // -----------------------------------------------------------------------------------
 function mesh100ColorFunction(mapName) {
   return function (feature, resolution) {
-    // const jinkoMax = Number(store.state.info.jinko[mapName])
-    const jinkoMax = 1300
+    const jinkoMax = Number(store.state.info.jinko100m[mapName])
+    // const jinkoMax = 1300
     const mesh100Color = d3.scaleLinear()
         .domain([
           0,

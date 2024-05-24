@@ -2,7 +2,7 @@
   <div class="content-div">
     <p v-html="item.title"></p><hr>
     <div style="text-align: center;">赤色の上限値 {{ s_jinko }}人</div>
-    <input type="range" min="100" :max="35100" :step="1000" class="jinko-range" v-model.number="s_jinko" @input="inputJinko" />
+    <input type="range" min="10" :max="3010" :step="100" class="jinko-range" v-model.number="s_jinko" @input="inputJinko" />
     出典 <span v-html="item.summary"></span>
   </div>
 </template>
@@ -13,7 +13,7 @@ import * as permalink from '@/js/permalink'
 import * as MyMap from '@/js/mymap'
 
 export default {
-  name: "Dialog-info-jinko1km",
+  name: "Dialog-info-jinko100m",
   props: ['mapName', 'item'],
   components: {
   },
@@ -23,10 +23,10 @@ export default {
   },
   computed: {
     s_jinko: {
-      get() { return this.$store.state.info.jinko[this.mapName] },
+      get() { return this.$store.state.info.jinko100m[this.mapName] },
       set(value) {
-        this.$store.state.info.jinko[this.mapName] = value
-        LayersMvt.mesh1kmObj[this.mapName].getSource().changed();
+        this.$store.state.info.jinko100m[this.mapName] = value
+        LayersMvt.mesh100Obj[this.mapName].getSource().changed();
       }
     },
   },
@@ -37,8 +37,8 @@ export default {
       permalink.moveEnd();
     },
     inputJinko () {
-      MyMap.history ('1kmmesh人口')
-      LayersMvt.mesh1kmObj[this.mapName].getSource().changed();
+      MyMap.history ('100mmesh人口')
+      LayersMvt.mesh100Obj[this.mapName].getSource().changed();
       permalink.moveEnd();
       this.storeUpdate()
     },
@@ -56,7 +56,7 @@ export default {
 <style scoped>
 .content-div{
   width: 250px;
-  height: 150px;
+  /*height: 150px;*/
   padding: 10px;
 }
 </style>

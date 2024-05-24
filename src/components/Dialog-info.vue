@@ -17,17 +17,19 @@
             <v-kouzi :item="item" :mapName="mapName" v-else-if="item.component.name === 'kouzi'"/>
             <v-dokuji :item="item" :mapName="mapName" v-else-if="item.component.name === 'dokuji'"/>
             <v-jinko-1km :item="item" :mapName="mapName" v-else-if="item.component.name === 'jinko'"/>
+            <v-jinko-100m :item="item" :mapName="mapName" v-else-if="item.component.name === 'jinko100m'"/>
 
         </div>
     </div>
 </template>
 
 <script>
-  import DialogInfoFlood from './dialog-info/Dialog-info-flood'
+  import DialogInfoFlood from '@/components/dialog-info/Dialog-info-flood'
   import DialogInfoSeamless from "@/components/dialog-info/Dialog-info-seamless";
   import DialogInfoKouzi from "@/components/dialog-info/Dialog-info-kouzi";
   import DialogInfoDokuji from "@/components/dialog-info/Dialog-info-dokuji";
-  import DialogInfoJinko1km from './dialog-info/Dialog-info-jinko1km'
+  import DialogInfoJinko1km from '@/components/dialog-info/Dialog-info-jinko1km'
+  import DialogInfoJinko100m from '@/components/dialog-info/Dialog-info-jinko100m'
 
   export default {
     name: "v-dialog-info",
@@ -37,6 +39,7 @@
       'v-flood': DialogInfoFlood,
       'v-dokuji':DialogInfoDokuji,
       'v-jinko-1km':DialogInfoJinko1km,
+      'v-jinko-100m':DialogInfoJinko100m,
     },
     props: ['mapName'],
     computed: {
