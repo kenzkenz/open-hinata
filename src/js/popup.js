@@ -1,7 +1,8 @@
 import store from './store'
-import { transform, fromLonLat } from 'ol/proj.js'
+import { transform } from 'ol/proj.js'
 import axios from 'axios'
 import figureRGB from './figureRGB'
+import muni from './muni'
 export function popUp(map,layers,features,overlay,evt,content) {
   let cont
   let coordinate
@@ -1027,6 +1028,7 @@ export function popUp(map,layers,features,overlay,evt,content) {
             }
           })
           .then(function (response) {
+            const splitMuni = muni[response.data.results.muniCd].split(',')
             const ronenritu = (prop.ronen/prop.jinko*100).toFixed(2) + '%'
             const seisanritu = (prop.seisan/prop.jinko*100).toFixed(2) + '%'
             const nensyoritu = (prop.nensyo/prop.jinko*100).toFixed(2) + '%'
@@ -1034,6 +1036,7 @@ export function popUp(map,layers,features,overlay,evt,content) {
             cont = '<div style=width:220px;>' +
                 '<h4>' + response.data.results.lv01Nm + '</h4>' +
                 '<h4>人口' + prop.jinko + '人</h4>' +
+                splitMuni[1] + splitMuni[3] + '<br>' +
                 '老年人口　　= ' + prop.ronen + '人(' + ronenritu + ')<br>' +
                 '生産年齢人口= ' + prop.seisan + '人(' + seisanritu + ')<br>' +
                 '年少人口　　= ' + prop.nensyo + '人(' + nensyoritu + ')<br><br>' +
@@ -1064,7 +1067,7 @@ export function popUp(map,layers,features,overlay,evt,content) {
             }
           })
           .then(function (response) {
-            console.log(response.data.results)
+            const splitMuni = muni[response.data.results.muniCd].split(',')
             const ronenritu100 = (prop.Pop65over/prop.PopT*100).toFixed(2) + '%'
             const seisanritu100 = (prop.Pop15_64/prop.PopT*100).toFixed(2) + '%'
             const nensyoritu100 = (prop.Pop0_14/prop.PopT*100).toFixed(2) + '%'
@@ -1072,6 +1075,7 @@ export function popUp(map,layers,features,overlay,evt,content) {
             cont = '<div style=width:220px;>' +
                 '<h4>' + response.data.results.lv01Nm + '</h4>' +
                 '<h4>人口' + prop.PopT.toFixed(2) + '人</h4>' +
+                splitMuni[1] + splitMuni[3] + '<br>' +
                 '老年人口　　= ' + prop.Pop65over.toFixed(2) + '人(' + ronenritu100 + ')<br>' +
                 '生産年齢人口= ' + prop.Pop15_64.toFixed(2) + '人(' + seisanritu100 + ')<br>' +
                 '年少人口　　= ' + prop.Pop0_14.toFixed(2) + '人(' + nensyoritu100 + ')<br><br>' +
