@@ -56,7 +56,7 @@ export default {
 <style scoped>
 .content-div{
   width: 250px;
-  /*height: 150px;*/
+  /*height: 390px;*/
   padding: 10px;
 }
 </style>

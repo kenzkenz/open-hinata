@@ -39,6 +39,7 @@ export default {
       }
 
       const data = vm.$store.state.base.jinkoPieData
+      console.log(data)
       const dataset = [
         { "name": '老年人口' + (data.ronen/data.jinko*100).toFixed(2) + '%', "value": data.ronen },
         { "name": '生産年齢人口' + (data.seisan/data.jinko*100).toFixed(2) + '%', "value": data.seisan },
@@ -98,16 +99,24 @@ export default {
           .append("g")
           .attr("class", "pie");
 
-      // 6. pieチャートテキストSVG要素の設定
-      // const text = d3.arc()
-      //     .outerRadius(radius - 0)
-      //     .innerRadius(radius - 0);
+
+      const text = d3.arc()
+          .outerRadius(radius - 130)
+          .innerRadius(radius - 30);
 
       pieGroup.append("text")
           .attr("fill", "white")
           // .attr("transform", function(d) { return "translate(" + text.centroid(d) + ")"; })
-          .attr("transform", datum => `translate(${arc.centroid(datum)})`) // 扇型の中心に移動
-          // .attr("dy", "5px")
+          // .attr("transform", datum => `translate(${arc.centroid(datum)})`) // 扇型の中心に移動
+          .attr('transform', (d) => {
+            let angle = ((180 / Math.PI) * (d.startAngle + d.endAngle)) / 2 - 90
+            if (angle > 90) {
+              angle = angle + 180
+            }
+            return 'translate(' + text.centroid(d) + ') ' + 'rotate(' + angle + ')'
+            // return 'translate(' + text.centroid(d) + ')' // 水平に文字を置くときはこっち
+          })
+          .attr("dy", "5px")
           .attr("font", "6px")
           .attr("text-anchor", "middle")
           .transition()

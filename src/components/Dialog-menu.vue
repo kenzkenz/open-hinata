@@ -55,8 +55,8 @@
 <script>
   import axios from 'axios'
   import * as MyMap from '../js/mymap'
-  import {drawLayer, selectInteraction} from "../js/mymap";
-  import {GPX, GeoJSON, IGC, KML, TopoJSON} from 'ol/format.js';
+  import {drawLayer} from "../js/mymap";
+  import {GeoJSON} from 'ol/format.js';
   import {moveEnd} from "../js/permalink";
 
   export default {

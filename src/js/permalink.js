@@ -290,7 +290,7 @@ export function permalinkEventSet (response) {
                               height = '180px'
                               break
                             case 'jinko100m':
-                              height = '389px'
+                              height = '385px'
                               break
                             case 'flood10m':
                               height = '357px'

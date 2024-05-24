@@ -1538,8 +1538,8 @@ export function addressSerch (name,address) {
     const map = store.state.base.maps[name];
     const marker1 = store.state.base.maps['map01'].overlays_.getArray()[1]
     const marker2 = store.state.base.maps['map02'].overlays_.getArray()[1]
-    const marker3 = store.state.base.maps['map03'].overlays_.getArray()[1]
-    const marker4 = store.state.base.maps['map04'].overlays_.getArray()[1]
+    // const marker3 = store.state.base.maps['map03'].overlays_.getArray()[1]
+    // const marker4 = store.state.base.maps['map04'].overlays_.getArray()[1]
     console.log(address)
     // 140.097, 37.856のように座標をいれた時の処理
     const splitAddress = address.split(',')
@@ -1560,8 +1560,8 @@ export function addressSerch (name,address) {
     if (address === '') {
         marker1.setPosition(undefined);
         marker2.setPosition(undefined);
-        marker3.setPosition(undefined);
-        marker4.setPosition(undefined);
+        // marker3.setPosition(undefined);
+        // marker4.setPosition(undefined);
     } else {
         axios
             .get('https://msearch.gsi.go.jp/address-search/AddressSearch?q=' + address)
@@ -1571,8 +1571,8 @@ export function addressSerch (name,address) {
                 map.getView().setZoom(14)
                 marker1.setPosition(transform(lonLat, "EPSG:4326", "EPSG:3857"));
                 marker2.setPosition(transform(lonLat, "EPSG:4326", "EPSG:3857"));
-                marker3.setPosition(transform(lonLat, "EPSG:4326", "EPSG:3857"));
-                marker4.setPosition(transform(lonLat, "EPSG:4326", "EPSG:3857"));
+            //     marker3.setPosition(transform(lonLat, "EPSG:4326", "EPSG:3857"));
+            //     marker4.setPosition(transform(lonLat, "EPSG:4326", "EPSG:3857"));
             })
             .catch(function (error) {
             })

@@ -1345,11 +1345,50 @@
           }
         })
       })
+      // 1kmメッシュ円グラフ------------------------------------------------------
+      maps.forEach((mapName) => {
+        const olPopup = document.querySelector('#' + mapName + ' .ol-popup')
+        olPopup.addEventListener('click', (e) => {
+          if (e.target && e.target.classList.contains("jinkopie1km") ) {
+            vm.$store.commit('base/incrDialog2Id');
+            vm.$store.commit('base/incrDialogMaxZindex');
+            let width
+            let left
+            if (window.innerWidth > 600) {
+              width = '400px'
+              left = (window.innerWidth - 410) + 'px'
+            } else {
+              width = '350px'
+              left = (window.innerWidth / 2 - 175) + 'px'
+            }
+            const diialog =
+                {
+                  id: vm.s_dialo2Id,
+                  name:'jinkopie',
+                  style: {
+                    display: 'block',
+                    width: width,
+                    top: '60px',
+                    left: left,
+                    'z-index': vm.s_dialogMaxZindex
+                  }
+                }
+            const jinkoPieData = {
+              jinko:  Number(e.target.getAttribute("jinko")),
+              ronen: Number(e.target.getAttribute("ronen")),
+              seisan: Number(e.target.getAttribute("seisan")),
+              nensyo: Number(e.target.getAttribute("nensyo")),
+            }
+            vm.$store.state.base.jinkoPieData = jinkoPieData
+            vm.$store.commit('base/pushDialogs2',{mapName: mapName, dialog: diialog})
+          }
+        })
+      })
       // 100mメッシュ円グラフ------------------------------------------------------
       maps.forEach((mapName) => {
         const olPopup = document.querySelector('#' + mapName + ' .ol-popup')
         olPopup.addEventListener('click', (e) => {
-          if (e.target && e.target.classList.contains("jinkopie1") ) {
+          if (e.target && e.target.classList.contains("jinkopie100m") ) {
             vm.$store.commit('base/incrDialog2Id');
             vm.$store.commit('base/incrDialogMaxZindex');
             let width
@@ -1536,10 +1575,10 @@
                    '<a href="https://kenzkenz.xsrv.jp/open-hinata/#s3PHDc" target="_blank">R2国勢調査小地域人口ピラミッド</a>' +
                    '」' +
                    '<p>1kmメッシュの人口を追加しました。「' +
-                   '<a href="https://kenzkenz.xsrv.jp/open-hinata/#scat2U" target="_blank">2020人口1km</a>' +
+                   '<a href="https://kenzkenz.xsrv.jp/open-hinata/#s0PngJ" target="_blank">2020人口1km</a>' +
                     '」' +
                    '<p>100mメッシュの人口を追加しました。「' +
-                   '<a href="https://kenzkenz.xsrv.jp/open-hinata/#sDRNaw" target="_blank">2020人口100m(簡易)</a>' +
+                   '<a href="https://kenzkenz.xsrv.jp/open-hinata/#s8KTIM" target="_blank">2020人口100m(簡易)</a>' +
                     '」' +
                    '<br>是非ご覧ください。',
             title: 'お知らせ',
