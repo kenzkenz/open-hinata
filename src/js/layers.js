@@ -23,7 +23,7 @@ import * as d3 from "d3"
 // const mapsStr = ['map01','map02','map03','map04']
 // const mapsStr = ['map01'];
 const mapsStr = ['map01','map02'];
-// const mapsStr = ['map01','map02'];
+
 
 const transformE = extent => {
   return transformExtent(extent,'EPSG:4326','EPSG:3857')
@@ -5171,51 +5171,51 @@ const ekizyouka0Summ =   '<div style=width:300px;font-size:smaller>これまで�
 //   ekizyouka00Obj[i].values_['pointer'] = true
 // }
 // const ekizyoukaSumm = '出典：<br><a href="https://disaportal.gsi.go.jp/hazardmap/copyright/opendata.html" target="_blank">ハザードマップポータルサイト</a>';
-// // 宮崎市ハザードマップ-------------------------------------------------------------------------------
-// function MiyazakisiHm () {
-//   this.preload = Infinity
-//   this.source = new XYZ({
-//     url: 'https://kenzkenz.github.io/hazardmap/tile/miyazakisi/{z}/{x}/{-y}.png',
-//     crossOrigin: 'Anonymous',
-//     minZoom: 1,
-//     maxZoom: 18
-//   })
-// }
-// const miyazakisiHmObj = {};
-// for (let i of mapsStr) {
-//   miyazakisiHmObj[i] = new TileLayer(new MiyazakisiHm())
-// }
-// const miyazakisiHmSumm = '<a href="http://www.city.miyazaki.miyazaki.jp/life/fire_department/hazard_map/1153.html" target="_blank">宮崎市洪水ハザードマップ</a>へ';
-// // 都城市ハザードマップ-------------------------------------------------------------------------------
-// function MiyakonozyousiHm () {
-//   this.preload = Infinity
-//   this.source = new XYZ({
-//     url: 'https://kenzkenz.github.io/hazardmap/tile/miyakonozyousi/{z}/{x}/{-y}.png',
-//     crossOrigin: 'Anonymous',
-//     minZoom: 1,
-//     maxZoom: 18
-//   })
-// }
-// const miyakonozyousiHmObj = {};
-// for (let i of mapsStr) {
-//   miyakonozyousiHmObj[i] = new TileLayer(new MiyakonozyousiHm())
-// }
-// const miyakonozyousiHmSumm = '';
-// // 日向市ハザードマップ-------------------------------------------------------------------------------
-// function HyuugasiHm () {
-//   this.preload = Infinity
-//   this.source = new XYZ({
-//     url: 'https://kenzkenz.github.io/hazardmap/tile/hyuugasibousai/{z}/{x}/{-y}.png',
-//     crossOrigin: 'Anonymous',
-//     minZoom: 1,
-//     maxZoom: 18
-//   })
-// }
-// const hyuugasiHmObj = {};
-// for (let i of mapsStr) {
-//   hyuugasiHmObj[i] = new TileLayer(new HyuugasiHm())
-// }
-// const hyuugasiHmSumm = '';
+// 宮崎市ハザードマップ-------------------------------------------------------------------------------
+function MiyazakisiHm () {
+  this.preload = Infinity
+  this.source = new XYZ({
+    url: 'https://kenzkenz.github.io/hazardmap/tile/miyazakisi/{z}/{x}/{-y}.png',
+    crossOrigin: 'Anonymous',
+    minZoom: 1,
+    maxZoom: 18
+  })
+}
+const miyazakisiHmObj = {};
+for (let i of mapsStr) {
+  miyazakisiHmObj[i] = new TileLayer(new MiyazakisiHm())
+}
+const miyazakisiHmSumm = '<a href="http://www.city.miyazaki.miyazaki.jp/life/fire_department/hazard_map/1153.html" target="_blank">宮崎市洪水ハザードマップ</a>へ';
+// 都城市ハザードマップ-------------------------------------------------------------------------------
+function MiyakonozyousiHm () {
+  this.preload = Infinity
+  this.source = new XYZ({
+    url: 'https://kenzkenz.github.io/hazardmap/tile/miyakonozyousi/{z}/{x}/{-y}.png',
+    crossOrigin: 'Anonymous',
+    minZoom: 1,
+    maxZoom: 18
+  })
+}
+const miyakonozyousiHmObj = {};
+for (let i of mapsStr) {
+  miyakonozyousiHmObj[i] = new TileLayer(new MiyakonozyousiHm())
+}
+const miyakonozyousiHmSumm = '';
+// 日向市ハザードマップ-------------------------------------------------------------------------------
+function HyuugasiHm () {
+  this.preload = Infinity
+  this.source = new XYZ({
+    url: 'https://kenzkenz.github.io/hazardmap/tile/hyuugasibousai/{z}/{x}/{-y}.png',
+    crossOrigin: 'Anonymous',
+    minZoom: 1,
+    maxZoom: 18
+  })
+}
+const hyuugasiHmObj = {};
+for (let i of mapsStr) {
+  hyuugasiHmObj[i] = new TileLayer(new HyuugasiHm())
+}
+const hyuugasiHmSumm = '';
 // 今昔マップ-----------------------------------------------------------------------------------
 // 首都圏
 function Kz_tokyo502man () {
@@ -13830,9 +13830,9 @@ export const Layers =
         { text: '今後30年間震度6以上の確率', data: { id: 'jisin', layer: jisinObj, opacity: 1, summary: jisinSumm } },
         { text: '北海道太平洋沿岸の津波浸水想定', data: { id: "hokkaidouTunamiT", layer: LayersMvt.hokkaidouTunamiTObj, opacity: 1, summary: LayersMvt.hokkaidouTunamiTSumm } },
         { text: '北海道日本海沿岸の津波浸水想定', data: { id: "hokkaidouTunami", layer: LayersMvt.hokkaidouTunamiObj, opacity: 1, summary: LayersMvt.hokkaidouTunamiSumm } },
-        // { text: '宮崎市洪水ﾊｻﾞｰﾄﾞﾏｯﾌﾟ', data: { id: 'miyazakisiHm', layer: miyazakisiHmObj, opacity: 1, zoom: 13, center: [131.42054548436312, 31.907339493919977], summary: miyazakisiHmSumm } },
-        // { text: '都城市洪水ﾊｻﾞｰﾄﾞﾏｯﾌﾟ', data: { id: 'miyakonozyousiHm', layer: miyakonozyousiHmObj, opacity: 1, zoom: 13, center: [131.07797970576192, 31.78882205640913], summary: miyakonozyousiHmSumm } },
-        // { text: '日向市防災ﾊｻﾞｰﾄﾞﾏｯﾌﾟ', data: { id: 'hyuugasiHm', layer: hyuugasiHmObj, opacity: 1, zoom: 13, center: [131.6400086045909, 32.395198966795306], summary: hyuugasiHmSumm } },
+        { text: '宮崎市洪水ﾊｻﾞｰﾄﾞﾏｯﾌﾟ', data: { id: 'miyazakisiHm', layer: miyazakisiHmObj, opacity: 1, zoom: 13, center: [131.42054548436312, 31.907339493919977], summary: miyazakisiHmSumm } },
+        { text: '都城市洪水ﾊｻﾞｰﾄﾞﾏｯﾌﾟ', data: { id: 'miyakonozyousiHm', layer: miyakonozyousiHmObj, opacity: 1, zoom: 13, center: [131.07797970576192, 31.78882205640913], summary: miyakonozyousiHmSumm } },
+        { text: '日向市防災ﾊｻﾞｰﾄﾞﾏｯﾌﾟ', data: { id: 'hyuugasiHm', layer: hyuugasiHmObj, opacity: 1, zoom: 13, center: [131.6400086045909, 32.395198966795306], summary: hyuugasiHmSumm } },
       ]},
     { text: '遺跡、文化財等',
       children: [

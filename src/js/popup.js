@@ -3,6 +3,7 @@ import { transform } from 'ol/proj.js'
 import axios from 'axios'
 import figureRGB from './figureRGB'
 import muni from './muni'
+import * as d3 from "d3";
 export function popUp(map,layers,features,overlay,evt,content) {
   let cont
   let coordinate
@@ -1020,6 +1021,7 @@ export function popUp(map,layers,features,overlay,evt,content) {
       }
       break
     case 'mesh1km':
+      d3.select('.loadingImg').style("display","block")
       axios
           .get('https://mreversegeocoder.gsi.go.jp/reverse-geocoder/LonLatToAddress',{
             params: {
@@ -1028,7 +1030,8 @@ export function popUp(map,layers,features,overlay,evt,content) {
             }
           })
           .then(function (response) {
-            const splitMuni = muni[response.data.results.muniCd].split(',')
+            d3.select('.loadingImg').style("display","none")
+            const splitMuni = muni[Number(response.data.results.muniCd)].split(',')
             const ronenritu = (prop.ronen/prop.jinko*100).toFixed(2) + '%'
             const seisanritu = (prop.seisan/prop.jinko*100).toFixed(2) + '%'
             const nensyoritu = (prop.nensyo/prop.jinko*100).toFixed(2) + '%'
@@ -1059,6 +1062,7 @@ export function popUp(map,layers,features,overlay,evt,content) {
           });
       break
     case 'mesh100':
+      d3.select('.loadingImg').style("display","block")
       axios
           .get('https://mreversegeocoder.gsi.go.jp/reverse-geocoder/LonLatToAddress',{
             params: {
@@ -1067,7 +1071,8 @@ export function popUp(map,layers,features,overlay,evt,content) {
             }
           })
           .then(function (response) {
-            const splitMuni = muni[response.data.results.muniCd].split(',')
+            d3.select('.loadingImg').style("display","none")
+            const splitMuni = muni[Number(response.data.results.muniCd)].split(',')
             const ronenritu100 = (prop.Pop65over/prop.PopT*100).toFixed(2) + '%'
             const seisanritu100 = (prop.Pop15_64/prop.PopT*100).toFixed(2) + '%'
             const nensyoritu100 = (prop.Pop0_14/prop.PopT*100).toFixed(2) + '%'
