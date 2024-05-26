@@ -309,6 +309,12 @@ const moduleInfo = {
       map03: 3010,
       map04: 3010
     },
+    ssdsData: {
+      map01: [],
+      map02: [],
+      map03: [],
+      map04: []
+    },
     kouzi: {
       map01: 100000,
       map02: 100000,

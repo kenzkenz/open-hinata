@@ -35,6 +35,104 @@ const ru2 = string => {
 }
 // const mapsStr = ['map01','map02','map03','map04'];
 const mapsStr = ['map01','map02'];
+// ----------------------------------------------------------------------------
+function pref (mapName) {
+  this.useInterimTilesOnError = false
+  this.name = 'kouziR04'
+  this.source = new VectorSource({
+    url:'https://kenzkenz.xsrv.jp/open-hinata/geojson/pref.geojson',
+    format: new GeoJSON()
+  });
+  this.style = ssdsStyleFunction(mapName)
+}
+export const prefSumm = "<a href='' target='_blank'></a>";
+export const ssdsPrefObj = {};
+for (let i of mapsStr) {
+  ssdsPrefObj[i] = new VectorLayer(new pref(i))
+}
+// -----------------------------------------------------------------------------------
+function ssdsStyleFunction(mapName) {
+  return function (feature, resolution) {
+    // const jinkoMax = Number(store.state.info.jinko250m[mapName])
+    // // const jinkoMax = 3000
+    // const mesh100Color = d3.scaleLinear()
+    //     .domain([
+    //       0,
+    //       jinkoMax/3.5,
+    //       jinkoMax/1.75,
+    //       jinkoMax*30/35,
+    //       jinkoMax])
+    //     .range(["white", "red","#880000",'maroon','black']);
+    let ssdsData = store.state.info.ssdsData[mapName]
+    // console.log(ssdsData)
+    ssdsData = ssdsData.filter((v) =>{
+      return v['@area'] !== '00000'
+    })
+    const max = d3.max(ssdsData, function(d){ return Number(d['$']); })
+    const min = d3.min(ssdsData, function(d){ return Number(d['$']); })
+    // console.log(min,max)
+    const d3Color2 = d3.scaleLinear()
+        .domain([min, max])
+        .range(["white", "maroon"]);
+    const zoom = getZoom(resolution);
+    const prop = feature.getProperties();
+    const area = ('00' + prop.コード).slice(-2) + "000"
+    const result = ssdsData.find((v) => {
+      return v['@area'] === area
+    })
+    let rgba = 'rgba(0,0,0,0)'
+    if (result) {
+      const value = Number(result['$'])
+      // console.log(value)
+      const rgb = d3.rgb(d3Color2(value))
+      rgba = "rgba(" + rgb.r + "," + rgb.g + "," + rgb.b + ",0.7)"
+      // console.log(rgba)
+    }
+    // console.log(area)
+    const styles = [];
+    // const rgb = d3.rgb(d3Color(prop.jinko))
+    // const rgba = "rgba(" + rgb.r + "," + rgb.g + "," + rgb.b + ",0.7)"
+    const polygonStyle = new Style({
+      fill: new Fill({
+        color: rgba
+        // color: 'red'
+      }),
+      stroke: new Stroke({
+        color: 'black',
+        width: 1
+      })
+    })
+    // const text = prop.jinko + '人'
+    let font
+    if (zoom>=18) {
+      font = "26px sans-serif"
+    } else if (zoom>=17) {
+      font = "20px sans-serif"
+    } else if (zoom>=16) {
+      font = "14px sans-serif"
+    } else if (zoom >= 15) {
+      font = "8px sans-serif"
+    }
+    const textStyle = new Style({
+      text: new Text({
+        font: font,
+        text: 'aaaaa',
+        fill: new Fill({
+          color: "black"
+        }),
+        Placement: 'point',
+        overflow: 'true',
+        stroke: new Stroke({
+          color: "white",
+          width: 3
+        }),
+      })
+    })
+    styles.push(polygonStyle);
+    if (zoom>=15) styles.push(textStyle);
+    return styles;
+  }
+}
 // 250mメッシュ-------------------------------------------------------------
 let mesh250MaxResolution
 if (window.innerWidth > 1000) {

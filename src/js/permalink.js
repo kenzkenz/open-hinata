@@ -273,7 +273,8 @@ export function permalinkEventSet (response) {
                       // const left = Number(store.state.base.dialogs[mapName].style.left.replace(/px/,"")) + document.querySelector('#map01' + ' .dialog-div').clientWidth + 96 + 'px';
                       // const left = '355px'
                       const c = urlLayerListArr[i][j].c;
-                      let height = ''
+                      let height
+                      let maxHeight
                       let left
                       let bottom
                       let top
@@ -296,6 +297,7 @@ export function permalinkEventSet (response) {
                             case 'flood10m':
                               height = '357px'
                               break
+
                           }
                           console.log(c.name)
                         }
@@ -303,6 +305,13 @@ export function permalinkEventSet (response) {
                         top = '60px'
                         left = '10px'
                         bottom = ''
+                        // if (c) {
+                        //   switch (c.name) {
+                        //     case 'ssdsPref':
+                        //       maxHeight = '400px'
+                        //       break
+                        //   }
+                        // }
                       }
                       const infoDialog =
                           {
@@ -318,6 +327,7 @@ export function permalinkEventSet (response) {
                               top: top,
                               left: left,
                               height: height,
+                              "max-height": maxHeight,
                               'z-index': store.state.base.dialogMaxZindex
                             }
                           };
