@@ -1840,9 +1840,8 @@
 </style>
 <style>
     html {
-      touch-action: manipulation;
+      touch-action: none;
     }
-
     #modal1 .vm--container{
       z-index: 10002;
     }

@@ -18,6 +18,7 @@
             <v-dokuji :item="item" :mapName="mapName" v-else-if="item.component.name === 'dokuji'"/>
             <v-jinko-1km :item="item" :mapName="mapName" v-else-if="item.component.name === 'jinko'"/>
             <v-jinko-100m :item="item" :mapName="mapName" v-else-if="item.component.name === 'jinko100m'"/>
+            <v-jinko-250m :item="item" :mapName="mapName" v-else-if="item.component.name === 'jinko250m'"/>
 
         </div>
     </div>
@@ -30,6 +31,8 @@
   import DialogInfoDokuji from "@/components/dialog-info/Dialog-info-dokuji";
   import DialogInfoJinko1km from '@/components/dialog-info/Dialog-info-jinko1km'
   import DialogInfoJinko100m from '@/components/dialog-info/Dialog-info-jinko100m'
+  import DialogInfoJinko250m from '@/components/dialog-info/Dialog-info-jinko250m'
+
 
   export default {
     name: "v-dialog-info",
@@ -40,6 +43,7 @@
       'v-dokuji':DialogInfoDokuji,
       'v-jinko-1km':DialogInfoJinko1km,
       'v-jinko-100m':DialogInfoJinko100m,
+      'v-jinko-250m':DialogInfoJinko250m,
     },
     props: ['mapName'],
     computed: {

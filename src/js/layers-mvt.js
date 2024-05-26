@@ -1,26 +1,26 @@
 import store from './store'
-import VectorTileSource from "ol/source/VectorTile";
-import MVT from "ol/format/MVT";
-import GeoJSON from "ol/format/GeoJSON";
-import {createXYZ} from "ol/tilegrid";
-import VectorTileLayer from "ol/layer/VectorTile";
-import * as d3 from "d3";
-import {Fill, Stroke, Style, Text, Circle} from "ol/style";
+import VectorTileSource from "ol/source/VectorTile"
+import MVT from "ol/format/MVT"
+import GeoJSON from "ol/format/GeoJSON"
+import {createXYZ} from "ol/tilegrid"
+import VectorTileLayer from "ol/layer/VectorTile"
+import * as d3 from "d3"
+import {Fill, Stroke, Style, Text, Circle} from "ol/style"
 import FontSymbol from 'ol-ext/style/FontSymbol'
-import {transformExtent} from "ol/proj";
-import LayerGroup from "ol/layer/Group";
-import XYZ from "ol/source/XYZ";
-import TileLayer from "ol/layer/Tile";
-import Icon from 'ol/style/Icon.js';
-import VectorSource from "ol/source/Vector";
-import VectorLayer from "ol/layer/Vector";
-import {Heatmap} from 'ol/layer.js';
-import MVTFormat from 'ol/format/MVT';
+import {transformExtent} from "ol/proj"
+import LayerGroup from "ol/layer/Group"
+import XYZ from "ol/source/XYZ"
+import TileLayer from "ol/layer/Tile"
+import Icon from 'ol/style/Icon'
+import VectorSource from "ol/source/Vector"
+import VectorLayer from "ol/layer/Vector"
+import {Heatmap} from 'ol/layer'
+import MVTFormat from 'ol/format/MVT'
 import WebGLPointsLayer from 'ol/layer/WebGLPoints'
 import WikiCommons from 'ol-ext/source/WikiCommons'
 import  * as Tilegrid from 'ol/tilegrid'
-import * as Loadingstrategy from 'ol/loadingstrategy';
-import image from "ol-ext/legend/Image";
+import * as Loadingstrategy from 'ol/loadingstrategy'
+// import image from "ol-ext/legend/Image";
 // import * as flatgeobuf from 'flatgeobuf'
 
 const transformE = extent => {
@@ -35,7 +35,91 @@ const ru2 = string => {
 }
 // const mapsStr = ['map01','map02','map03','map04'];
 const mapsStr = ['map01','map02'];
-
+// 250mメッシュ-------------------------------------------------------------
+let mesh250MaxResolution
+if (window.innerWidth > 1000) {
+  mesh250MaxResolution = 152.874057 //zoom10
+} else {
+  mesh250MaxResolution = 76.437028 //zoom11
+}
+function Mesh250(mapName){
+  this.name = 'mesh250'
+  this.className = 'mesh250'
+  this.source = new VectorTileSource({
+    crossOrigin: 'Anonymous',
+    format: new MVT(),
+    maxZoom:14,
+    url: "https://kenzkenz3.xsrv.jp/mvt/250mmesh/{z}/{x}/{y}.mvt"
+  });
+  this.style = mesh250ColorFunction(mapName)
+  this.maxResolution = mesh250MaxResolution
+  this.declutter = true
+  this.overflow = true
+}
+export  const mesh250Obj = {};
+for (let i of mapsStr) {
+  mesh250Obj[i] = new VectorTileLayer(new Mesh250((i)))
+}
+export const mesh250ObjSumm = "" +
+    "<a href='https://www.e-stat.go.jp/gis/statmap-search?page=1&type=1&toukeiCode=00200521&toukeiYear=2020&aggregateUnit=Q&serveyId=Q002005112020&statsId=T001142' target='_blank'>e-Stat</a>";
+// -----------------------------------------------------------------------------------
+function mesh250ColorFunction(mapName) {
+  return function (feature, resolution) {
+    const jinkoMax = Number(store.state.info.jinko250m[mapName])
+    // const jinkoMax = 3000
+    const mesh100Color = d3.scaleLinear()
+        .domain([
+          0,
+          jinkoMax/3.5,
+          jinkoMax/1.75,
+          jinkoMax*30/35,
+          jinkoMax])
+        .range(["white", "red","#880000",'maroon','black']);
+    const zoom = getZoom(resolution);
+    const prop = feature.getProperties();
+    const styles = [];
+    const rgb = d3.rgb(mesh100Color(prop.jinko))
+    const rgba = "rgba(" + rgb.r + "," + rgb.g + "," + rgb.b + ",0.7)"
+    const polygonStyle = new Style({
+      fill: new Fill({
+        color: rgba
+      }),
+      stroke: new Stroke({
+        color: zoom >= 14 ? 'red' : 'rgba(0,0,0,0)',
+        width: 1
+      })
+    })
+    const text = prop.jinko + '人'
+    let font
+    if (zoom>=18) {
+      font = "26px sans-serif"
+    } else if (zoom>=17) {
+      font = "20px sans-serif"
+    } else if (zoom>=16) {
+      font = "14px sans-serif"
+    } else if (zoom >= 15) {
+      font = "8px sans-serif"
+    }
+    const textStyle = new Style({
+      text: new Text({
+        font: font,
+        text: text,
+        fill: new Fill({
+          color: "black"
+        }),
+        Placement: 'point',
+        overflow: 'true',
+        stroke: new Stroke({
+          color: "white",
+          width: 3
+        }),
+      })
+    })
+    styles.push(polygonStyle);
+    if (zoom>=15) styles.push(textStyle);
+    return styles;
+  }
+}
 // 100mメッシュ-------------------------------------------------------------
 let mesh100MaxResolution
 if (window.innerWidth > 1000) {
@@ -143,8 +227,6 @@ function Mesh1km(mapName){
     format: new MVT(),
     maxZoom:14,
     url: "https://kenzkenz3.xsrv.jp/mvt/1kmesh3/{z}/{x}/{y}.mvt"
-    // url: "https://kenzkenz3.xsrv.jp/mvt/100mmesh/{z}/{x}/{y}.mvt"
-
   });
   this.style = mesh1kColorFunction(mapName)
   // this.style = mesh1kColorFunctionRonen()

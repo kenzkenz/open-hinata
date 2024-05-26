@@ -1020,6 +1020,7 @@ export function popUp(map,layers,features,overlay,evt,content) {
         store.state.base.dialogs.dialogEdit.style.display = 'block'
       }
       break
+    case 'mesh250':
     case 'mesh1km':
       d3.select('.loadingImg').style("display","block")
       axios
@@ -1055,6 +1056,7 @@ export function popUp(map,layers,features,overlay,evt,content) {
                 '</div>'
             content.innerHTML = cont
             overlay.setPosition(coordinate);
+            popupCenter()
           })
           .catch(function (error) {
           })
@@ -1095,7 +1097,8 @@ export function popUp(map,layers,features,overlay,evt,content) {
                 streetView +
                 '</div>'
             content.innerHTML = cont
-            overlay.setPosition(coordinate);
+            overlay.setPosition(coordinate)
+            popupCenter()
           })
           .catch(function (error) {
           })
@@ -1103,26 +1106,28 @@ export function popUp(map,layers,features,overlay,evt,content) {
           });
       break
   }
-
-  if (width) {
-    document.querySelector('.ol-popup').style.left = -(width / 2) - 16 + 'px'
-    const style1 = document.createElement('style')
-    const style2 = document.createElement('style')
-    style1.textContent = ".ol-popup:after{ left:" + ((width / 2) + 15) + "px;}"
-    style2.textContent = ".ol-popup:before{ left:" + ((width / 2) + 15) + "px;}"
-    document.head.appendChild(style1)
-    document.head.appendChild(style2)
-  } else {
-    document.querySelector('.ol-popup').style.left = '-50px'
-    const style1 = document.createElement('style')
-    const style2 = document.createElement('style')
-    style1.textContent = ".ol-popup:after{ left:" + 48 + "px;}"
-    style2.textContent = ".ol-popup:before{ left:" + 48 + "px;}"
-    document.head.appendChild(style1)
-    document.head.appendChild(style2)
+  function popupCenter() {
+    if (width) {
+      document.querySelector('.ol-popup').style.left = -(width / 2) - 16 + 'px'
+      const style1 = document.createElement('style')
+      const style2 = document.createElement('style')
+      style1.textContent = ".ol-popup:after{ left:" + ((width / 2) + 15) + "px;}"
+      style2.textContent = ".ol-popup:before{ left:" + ((width / 2) + 15) + "px;}"
+      document.head.appendChild(style1)
+      document.head.appendChild(style2)
+    } else {
+      document.querySelector('.ol-popup').style.left = '-50px'
+      const style1 = document.createElement('style')
+      const style2 = document.createElement('style')
+      style1.textContent = ".ol-popup:after{ left:" + 48 + "px;}"
+      style2.textContent = ".ol-popup:before{ left:" + 48 + "px;}"
+      document.head.appendChild(style1)
+      document.head.appendChild(style2)
+    }
+    document.querySelector('.center-target').style.zIndex = 0
   }
+  popupCenter()
 
-  document.querySelector('.center-target').style.zIndex = 0
 
   content.innerHTML = cont
   if (cont && cont !== undefined) overlay.setPosition(coordinate);

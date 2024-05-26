@@ -45,7 +45,7 @@ export default {
   },
   mounted ()  {
     this.$nextTick(function () {
-      LayersMvt.mesh1kmObj[this.mapName].getSource().changed();
+      LayersMvt.mesh100Obj[this.mapName].getSource().changed();
     })
   },
   watch: {
