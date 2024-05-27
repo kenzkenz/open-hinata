@@ -1,17 +1,18 @@
 <template>
-  <div class="content-div">
-    <p v-html="item.title"></p><hr>
+  <div class="content-div" id="ssds-div">
+    <p v-html="statText"></p><hr>
 <!--    <select v-model="selectNumber" :change="selectIndex(item.value)" style="width:100%;">-->
 <!--      <option v-for="item in valueList" :value="item.value">{{item.title}}</option>-->
 <!--    </select>-->
+    <div style="max-height: 400px;overflow: scroll;">
     <input type="text" placeholder="統計データを抽出します..." v-model="treeFilter" class="filter-field">
-
     <tree
         :filter="treeFilter"
         :data="treeData"
         :options="treeOptions"
         @node:selected="onNodeSelected"
     />
+    </div>
 
 <!--    <div style="text-align: center;">赤色の上限値 {{ s_jinko }}人</div>-->
 <!--    <input type="range" min="10" :max="6110" :step="100" class="jinko-range" v-model.number="s_jinko" @input="inputJinko" />-->
@@ -37,6 +38,7 @@ export default {
   },
   data () {
     return {
+      statText:'',
       treeFilter: '',
       treeData: treeDataPref,
       treeOptions: {
@@ -52,13 +54,13 @@ export default {
     }
   },
   computed: {
-    s_jinko: {
-      get() { return this.$store.state.info.jinko250m[this.mapName] },
-      set(value) {
-        this.$store.state.info.jinko250m[this.mapName] = value
-        LayersMvt.mesh250Obj[this.mapName].getSource().changed();
-      }
-    },
+    // s_jinko: {
+    //   get() { return this.$store.state.info.jinko250m[this.mapName] },
+    //   set(value) {
+    //     this.$store.state.info.jinko250m[this.mapName] = value
+    //     LayersMvt.mesh250Obj[this.mapName].getSource().changed()
+    //   }
+    // },
   },
   methods: {
     storeUpdate () {
@@ -75,8 +77,8 @@ export default {
     onNodeSelected: function (node) {
       const vm = this
       if (node.children.length === 0) {
-        console.log(node.data)
-        console.log(node.data.id)
+        console.log(node.data.text)
+        vm.statText = node.data.text
         axios
             .get('https://api.e-stat.go.jp/rest/3.0/app/json/getStatsData', {
               params: {
@@ -93,8 +95,18 @@ export default {
               console.log(response)
               const data = response.data.GET_STATS_DATA.STATISTICAL_DATA.DATA_INF.VALUE
               const maxTime = d3.max(data, function(d){ return d['@time']; })
-              const maxTimeResult = data.filter((v)=>{
+              let maxTimeResult = data.filter((v)=>{
                 return v['@time'] === maxTime
+              })
+              maxTimeResult = maxTimeResult.filter((v) =>{
+                return v['@area'] !== '00000'
+              })
+              maxTimeResult.sort(function(a, b) {
+                if (Number(a['$']) < Number(b['$'])) {
+                  return 1;
+                } else {
+                  return -1;
+                }
               })
               vm.$store.state.info.ssdsData[vm.mapName] = maxTimeResult
               LayersMvt.ssdsPrefObj[vm.mapName].getSource().changed();
@@ -104,6 +116,9 @@ export default {
   },
   mounted ()  {
     const vm = this
+    const parentElement = document.querySelector('#ssds-div').parentElement;
+    const dragHandle = parentElement.querySelector('.drag-handle')
+    dragHandle.innerHTML = '社会・人口統計体系'
     this.$nextTick(function () {
       LayersMvt.ssdsPrefObj[this.mapName].getSource().changed();
     })
@@ -120,6 +135,9 @@ export default {
   max-height: 410px;
   padding: 10px;
   overflow:auto;
+}
+.drag-handle{
+  color: white;
 }
 .tree{
   font-size: small!important;

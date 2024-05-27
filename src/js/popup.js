@@ -1105,6 +1105,13 @@ export function popUp(map,layers,features,overlay,evt,content) {
           .finally(function () {
           });
       break
+    case 'ssdsPref':
+      width = 200
+      cont = '<div style=width:200px;>' +
+          '<h4>' + prop.自治体名 + '</h4>' +
+          '<h4>' + ru(prop.value) + '</h4>' +
+          '</div>'
+      break
   }
   function popupCenter() {
     if (width) {
@@ -1127,7 +1134,6 @@ export function popUp(map,layers,features,overlay,evt,content) {
     document.querySelector('.center-target').style.zIndex = 0
   }
   popupCenter()
-
 
   content.innerHTML = cont
   if (cont && cont !== undefined) overlay.setPosition(coordinate);

@@ -13865,7 +13865,7 @@ export const Layers =
       ]},
     { text: 'その他',
       children: [
-        { text: 'テスト', data: { id: "ssdsPref", layer: LayersMvt.ssdsPrefObj, opacity: 1, summary: LayersMvt.prefSumm, component: {name: 'ssdsPref', values:[]} } },
+        { text: '社会・人口統計体系', data: { id: "ssdsPref", layer: LayersMvt.ssdsPrefObj, opacity: 1, summary: LayersMvt.prefSumm, component: {name: 'ssdsPref', values:[]} } },
 
         // { text: 'テスト2', data: { id: "test2", layer: bingRoadobj, opacity: 1, summary: LayersMvt.suiroSumm } },
         { text: 'ラスタータイルtest', data: { id: "dokuji", layer: dokujiObj, opacity: 1, summary: LayersMvt.busSumm, component: {name: 'dokuji', values:[]}} },

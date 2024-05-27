@@ -88,6 +88,7 @@
         border-top-left-radius: 4px;
         border-top-right-radius: 4px;
         cursor: grab;
+        color: white;
     }
     .close-btn-div{
         position: absolute;

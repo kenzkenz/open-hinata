@@ -36,9 +36,9 @@ const ru2 = string => {
 // const mapsStr = ['map01','map02','map03','map04'];
 const mapsStr = ['map01','map02'];
 // ----------------------------------------------------------------------------
-function pref (mapName) {
+function ssdsPref (mapName) {
   this.useInterimTilesOnError = false
-  this.name = 'kouziR04'
+  this.name = 'ssdsPref'
   this.source = new VectorSource({
     url:'https://kenzkenz.xsrv.jp/open-hinata/geojson/pref.geojson',
     format: new GeoJSON()
@@ -48,50 +48,60 @@ function pref (mapName) {
 export const prefSumm = "<a href='' target='_blank'></a>";
 export const ssdsPrefObj = {};
 for (let i of mapsStr) {
-  ssdsPrefObj[i] = new VectorLayer(new pref(i))
+  ssdsPrefObj[i] = new VectorLayer(new ssdsPref(i))
 }
 // -----------------------------------------------------------------------------------
 function ssdsStyleFunction(mapName) {
   return function (feature, resolution) {
-    // const jinkoMax = Number(store.state.info.jinko250m[mapName])
-    // // const jinkoMax = 3000
-    // const mesh100Color = d3.scaleLinear()
-    //     .domain([
-    //       0,
-    //       jinkoMax/3.5,
-    //       jinkoMax/1.75,
-    //       jinkoMax*30/35,
-    //       jinkoMax])
-    //     .range(["white", "red","#880000",'maroon','black']);
+    const zoom = getZoom(resolution)
+    const prop = feature.getProperties()
+    const area = ('00' + prop.コード).slice(-2) + "000"
     let ssdsData = store.state.info.ssdsData[mapName]
     // console.log(ssdsData)
-    ssdsData = ssdsData.filter((v) =>{
-      return v['@area'] !== '00000'
-    })
-    const max = d3.max(ssdsData, function(d){ return Number(d['$']); })
-    const min = d3.min(ssdsData, function(d){ return Number(d['$']); })
+    // ssdsData = ssdsData.filter((v) =>{
+    //   return v['@area'] !== '00000'
+    // })
+
+    // ssdsData.sort(function(a, b) {
+    //   if (Number(a['$']) > Number(b['$'])) {
+    //     return 1;
+    //   } else {
+    //     return -1;
+    //   }
+    // })
+
+    // console.log(ssdsData)
+
+
+    const jyuni = ssdsData.findIndex((v) => {
+      return v['@area'] === area
+    }) + 1
+    // console.log(jyuni)
+
+
+    const max = d3.max(ssdsData, function(d){ return Number(d['$']) })
+    const min = d3.min(ssdsData, function(d){ return Number(d['$']) })
     // console.log(min,max)
-    const d3Color2 = d3.scaleLinear()
+    const d3Color = d3.scaleLinear()
         .domain([min, max])
-        .range(["white", "maroon"]);
-    const zoom = getZoom(resolution);
-    const prop = feature.getProperties();
-    const area = ('00' + prop.コード).slice(-2) + "000"
+        .range(["white", "red"])
+
     const result = ssdsData.find((v) => {
       return v['@area'] === area
     })
     let rgba = 'rgba(0,0,0,0)'
+    let value = ''
+    let unit = ''
     if (result) {
-      const value = Number(result['$'])
+      value = Number(result['$'])
+      unit = result['@unit']
       // console.log(value)
-      const rgb = d3.rgb(d3Color2(value))
+      const rgb = d3.rgb(d3Color(value))
       rgba = "rgba(" + rgb.r + "," + rgb.g + "," + rgb.b + ",0.7)"
       // console.log(rgba)
     }
     // console.log(area)
     const styles = [];
-    // const rgb = d3.rgb(d3Color(prop.jinko))
-    // const rgba = "rgba(" + rgb.r + "," + rgb.g + "," + rgb.b + ",0.7)"
     const polygonStyle = new Style({
       fill: new Fill({
         color: rgba
@@ -102,21 +112,23 @@ function ssdsStyleFunction(mapName) {
         width: 1
       })
     })
-    // const text = prop.jinko + '人'
+    const text = jyuni + '位' + '\n' + value + unit
+    feature.setProperties({'value':text})
     let font
-    if (zoom>=18) {
-      font = "26px sans-serif"
-    } else if (zoom>=17) {
-      font = "20px sans-serif"
-    } else if (zoom>=16) {
-      font = "14px sans-serif"
-    } else if (zoom >= 15) {
-      font = "8px sans-serif"
-    }
+    font = "14px sans-serif"
+    // if (zoom>=18) {
+    //   font = "26px sans-serif"
+    // } else if (zoom>=17) {
+    //   font = "20px sans-serif"
+    // } else if (zoom>=16) {
+    //   font = "14px sans-serif"
+    // } else if (zoom >= 15) {
+    //   font = "8px sans-serif"
+    // }
     const textStyle = new Style({
       text: new Text({
         font: font,
-        text: 'aaaaa',
+        text: text,
         fill: new Fill({
           color: "black"
         }),
@@ -129,7 +141,7 @@ function ssdsStyleFunction(mapName) {
       })
     })
     styles.push(polygonStyle);
-    if (zoom>=15) styles.push(textStyle);
+    if (zoom>=8) styles.push(textStyle);
     return styles;
   }
 }
