@@ -1425,6 +1425,51 @@
           }
         })
       })
+      // ssds棒グラフ------------------------------------------------------
+      maps.forEach((mapName) => {
+        const olPopup = document.querySelector('#' + mapName + ' .ol-popup')
+        olPopup.addEventListener('click', (e) => {
+          if (e.target && e.target.classList.contains("ssdspref") ) {
+            vm.$store.commit('base/incrDialog2Id');
+            vm.$store.commit('base/incrDialogMaxZindex');
+            let width
+            let left
+            if (window.innerWidth > 1000) {
+              width = '700px'
+              left = (window.innerWidth - 710) + 'px'
+            } else {
+              width = '350px'
+              left = (window.innerWidth / 2 - 175) + 'px'
+            }
+            const diialog =
+                {
+                  id: vm.s_dialo2Id,
+                  name:'ssdsbsr',
+                  style: {
+                    display: 'block',
+                    width: width,
+                    top: '60px',
+                    left: left,
+                    'z-index': vm.s_dialogMaxZindex
+                  }
+                }
+
+            // console.log(e.target.getAttribute("area"))
+            const data00 = vm.$store.state.info.ssdsData00[mapName]
+            // console.log(data00)
+            let data = data00.filter((v) =>{
+              return v['@area'] === e.target.getAttribute("area")
+            })
+            data = data.map((v) =>{
+              return {year:v['@time'].slice(0,4),value:Number(v['$']),unit:v['@unit']}
+            })
+            console.log(data)
+            vm.$store.state.base.cityName = e.target.getAttribute("city")
+            vm.$store.state.info.ssdsDataBar = data
+            vm.$store.commit('base/pushDialogs2',{mapName: mapName, dialog: diialog})
+          }
+        })
+      })
       // --------------------------------------------------------------
       // const vm = this
       heading = function(ol3d,leftRight){

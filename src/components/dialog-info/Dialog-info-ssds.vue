@@ -4,7 +4,7 @@
 <!--    <select v-model="selectNumber" :change="selectIndex(item.value)" style="width:100%;">-->
 <!--      <option v-for="item in valueList" :value="item.value">{{item.title}}</option>-->
 <!--    </select>-->
-    <div style="max-height: 400px;overflow: scroll;">
+    <div style="max-height: 390px;overflow: auto;padding-bottom: 20px;">
     <input type="text" placeholder="統計データを抽出します..." v-model="treeFilter" class="filter-field">
     <tree
         :filter="treeFilter"
@@ -13,7 +13,6 @@
         @node:selected="onNodeSelected"
     />
     </div>
-
 <!--    <div style="text-align: center;">赤色の上限値 {{ s_jinko }}人</div>-->
 <!--    <input type="range" min="10" :max="6110" :step="100" class="jinko-range" v-model.number="s_jinko" @input="inputJinko" />-->
 <!--    出典 <span v-html="item.summary"></span>-->
@@ -78,6 +77,7 @@ export default {
       const vm = this
       if (node.children.length === 0) {
         console.log(node.data.text)
+        vm.$store.state.base.ssdsStatName = node.data.text
         vm.statText = node.data.text
         axios
             .get('https://api.e-stat.go.jp/rest/3.0/app/json/getStatsData', {
@@ -94,6 +94,7 @@ export default {
             }).then(function (response) {
               console.log(response)
               const data = response.data.GET_STATS_DATA.STATISTICAL_DATA.DATA_INF.VALUE
+              vm.$store.state.info.ssdsData00[vm.mapName] = data
               const maxTime = d3.max(data, function(d){ return d['@time']; })
               let maxTimeResult = data.filter((v)=>{
                 return v['@time'] === maxTime
@@ -132,9 +133,9 @@ export default {
 .content-div{
   width: 350px;
   /*height: 400px;*/
-  max-height: 410px;
+  max-height: 400px;
   padding: 10px;
-  overflow:auto;
+  overflow:hidden;
 }
 .drag-handle{
   color: white;

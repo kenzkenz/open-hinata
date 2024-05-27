@@ -9,6 +9,8 @@
       <v-pyramid-estat :item="item" :mapName="mapName" v-if="item.name === 'pyramid-estat'" />
       <v-jinkosuii :item="item" :mapName="mapName" v-if="item.name === 'jinkosuii'" />
       <v-jinkopie :item="item" :mapName="mapName" v-if="item.name === 'jinkopie'" />
+      <v-ssds-bar :item="item" :mapName="mapName" v-if="item.name === 'ssdsbsr'" />
+
       <v-erev :item="item" :mapName="mapName" v-if="item.name === 'erev'" />
 
     </div>
@@ -20,7 +22,8 @@ import DialogPyramid from "@/components/Dialog-pyramid"
 import DialogPyramidEstat from "@/components/Dialog-pyramid-estat"
 import DialogJinkosuii from "@/components/Dialog-jinkosuii"
 import Dialogpie from "@/components/Dialog-jinkopie"
-import DialogErev from "@/components/Daialog-erev";
+import DialogSsdsBer from "@/components/Daialog-ssds-bar"
+import DialogErev from "@/components/Daialog-erev"
 
 export default {
   name: "v-dialog2",
@@ -29,6 +32,7 @@ export default {
     'v-pyramid-estat':DialogPyramidEstat,
     'v-jinkosuii':DialogJinkosuii,
     'v-jinkopie':Dialogpie,
+    'v-ssds-bar':DialogSsdsBer,
     'v-erev': DialogErev
   },
   props: ['mapName'],

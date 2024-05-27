@@ -1110,6 +1110,10 @@ export function popUp(map,layers,features,overlay,evt,content) {
       cont = '<div style=width:200px;>' +
           '<h4>' + prop.自治体名 + '</h4>' +
           '<h4>' + ru(prop.value) + '</h4>' +
+          '<button class="ssdspref" mapname="' + map.values_.target +
+          '" area="' + ('00' + prop.コード).slice(-2) + "000" +
+          '" city="' + prop.自治体名  +
+          '">グラフ</button><br><br>' +
           '</div>'
       break
   }

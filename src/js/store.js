@@ -86,6 +86,7 @@ const moduleBase = {
       seisan: 0,
       nensyo: 0
     },
+    ssdsStatName: '',
     togglePoint:false,
     toggleModify:false,
     editFeature:'',
@@ -309,6 +310,13 @@ const moduleInfo = {
       map03: 3010,
       map04: 3010
     },
+    ssdsData00: {
+      map01: [],
+      map02: [],
+      map03: [],
+      map04: []
+    },
+    ssdsDataBar: [],
     ssdsData: {
       map01: [],
       map02: [],
