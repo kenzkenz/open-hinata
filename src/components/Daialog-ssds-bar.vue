@@ -128,9 +128,23 @@ export default {
           .transition()
           .duration(1500)
           .delay(200)
-          .attr("y", function(d) { return yScale(d.value); })
-          .attr("height", function(d) { return height - paddingBottom - yScale(d.value); })
-          .attr("fill", "lightsteelblue");
+          .attr("y", function(d) {
+            if (d.value>0) {
+              return yScale(d.value)
+            } else {
+              return yScale(0)
+            }
+          })
+          .attr("height", function(d) {
+            return  Math.abs(yScale(d.value) - yScale(0))
+          })
+          .attr("fill", function(d) {
+            if (d.value>0) {
+              return "lightsteelblue"
+            } else {
+              return "pink"
+            }
+          });
     }
   }
 }

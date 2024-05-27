@@ -57,35 +57,22 @@ function ssdsStyleFunction(mapName) {
     const prop = feature.getProperties()
     const area = ('00' + prop.コード).slice(-2) + "000"
     let ssdsData = store.state.info.ssdsData[mapName]
-    // console.log(ssdsData)
-    // ssdsData = ssdsData.filter((v) =>{
-    //   return v['@area'] !== '00000'
-    // })
-
-    // ssdsData.sort(function(a, b) {
-    //   if (Number(a['$']) > Number(b['$'])) {
-    //     return 1;
-    //   } else {
-    //     return -1;
-    //   }
-    // })
-
-    // console.log(ssdsData)
-
-
     const jyuni = ssdsData.findIndex((v) => {
       return v['@area'] === area
     }) + 1
-    // console.log(jyuni)
-
-
     const max = d3.max(ssdsData, function(d){ return Number(d['$']) })
     const min = d3.min(ssdsData, function(d){ return Number(d['$']) })
     // console.log(min,max)
-    const d3Color = d3.scaleLinear()
-        .domain([min, max])
-        .range(["white", "red"])
-
+    let d3Color
+    if (min>0) {
+      d3Color = d3.scaleLinear()
+          .domain([min, max])
+          .range(["white", "red"])
+    } else {
+      d3Color = d3.scaleLinear()
+          .domain([min,0, max])
+          .range(['blue',"white", "red"])
+    }
     const result = ssdsData.find((v) => {
       return v['@area'] === area
     })
@@ -116,15 +103,6 @@ function ssdsStyleFunction(mapName) {
     feature.setProperties({'value':text})
     let font
     font = "14px sans-serif"
-    // if (zoom>=18) {
-    //   font = "26px sans-serif"
-    // } else if (zoom>=17) {
-    //   font = "20px sans-serif"
-    // } else if (zoom>=16) {
-    //   font = "14px sans-serif"
-    // } else if (zoom >= 15) {
-    //   font = "8px sans-serif"
-    // }
     const textStyle = new Style({
       text: new Text({
         font: font,

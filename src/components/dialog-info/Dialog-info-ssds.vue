@@ -4,7 +4,7 @@
 <!--    <select v-model="selectNumber" :change="selectIndex(item.value)" style="width:100%;">-->
 <!--      <option v-for="item in valueList" :value="item.value">{{item.title}}</option>-->
 <!--    </select>-->
-    <div style="max-height: 390px;overflow: auto;padding-bottom: 20px;">
+    <div style="max-height: 400px;overflow: auto;overflow-x: hidden;margin-bottom: 10px;">
     <input type="text" placeholder="統計データを抽出します..." v-model="treeFilter" class="filter-field">
     <tree
         :filter="treeFilter"
@@ -13,6 +13,7 @@
         @node:selected="onNodeSelected"
     />
     </div>
+    e-stat
 <!--    <div style="text-align: center;">赤色の上限値 {{ s_jinko }}人</div>-->
 <!--    <input type="range" min="10" :max="6110" :step="100" class="jinko-range" v-model.number="s_jinko" @input="inputJinko" />-->
 <!--    出典 <span v-html="item.summary"></span>-->
@@ -133,7 +134,7 @@ export default {
 .content-div{
   width: 350px;
   /*height: 400px;*/
-  max-height: 400px;
+  /*max-height: 400px;*/
   padding: 10px;
   overflow:hidden;
 }
