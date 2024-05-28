@@ -27,9 +27,8 @@ import * as permalink from '@/js/permalink'
 import * as MyMap from '@/js/mymap'
 import axios from "axios";
 import * as d3 from "d3";
-import * as Layers from '@/js/layers'
-import {treeDataPref} from "@/js/treeData";
-
+import {treeDataPref} from "@/js/treeDataPref";
+import {treeDataCity} from "@/js/treeDataCity";
 export default {
   name: "Dialog-info-ssds",
   props: ['mapName', 'item'],
@@ -40,7 +39,7 @@ export default {
     return {
       statText:'',
       treeFilter: '',
-      treeData: treeDataPref,
+      // treeData: treeDataPref,
       treeOptions: {
         filter: {
           emptyText: '見つかりませんでした。'
@@ -54,6 +53,14 @@ export default {
     }
   },
   computed: {
+    treeData () {
+      if (this.item.id === 'ssdsPref') {
+        return treeDataPref
+      } else {
+        return treeDataCity
+      }
+    },
+
     // s_jinko: {
     //   get() { return this.$store.state.info.jinko250m[this.mapName] },
     //   set(value) {
@@ -110,17 +117,20 @@ export default {
                   return -1;
                 }
               })
+              console.log(maxTimeResult)
               vm.$store.state.info.ssdsData[vm.mapName] = maxTimeResult
-              LayersMvt.ssdsPrefObj[vm.mapName].getSource().changed();
+              LayersMvt.ssdsPrefObj[vm.mapName].getSource().changed()
+              LayersMvt.ssdsCityObj[vm.mapName].getSource().changed()
         })
       }
     }
   },
   mounted ()  {
+    console.log(this.item.id)
     const vm = this
     const parentElement = document.querySelector('#ssds-div').parentElement;
     const dragHandle = parentElement.querySelector('.drag-handle')
-    dragHandle.innerHTML = '社会・人口統計体系'
+    dragHandle.innerHTML = this.item.title
     this.$nextTick(function () {
       LayersMvt.ssdsPrefObj[this.mapName].getSource().changed();
     })
