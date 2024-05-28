@@ -55,6 +55,7 @@ export default {
     onNodeSelected: function (node) {
       const vm = this
       if (node.children.length === 0) {
+        d3.select('.loadingImg').style("display","block")
         console.log(node.data.text)
         vm.$store.state.base.ssdsStatName = node.data.text
         vm.statText = node.data.text
@@ -71,7 +72,7 @@ export default {
                 replaceSpChars: '0'
               }
             }).then(function (response) {
-              console.log(response)
+              // console.log(response)
               const data = response.data.GET_STATS_DATA.STATISTICAL_DATA.DATA_INF.VALUE
               vm.$store.state.info.ssdsData00[vm.mapName] = data
               const maxTime = d3.max(data, function(d){ return d['@time']; })
@@ -98,10 +99,11 @@ export default {
                   return -1;
                 }
               })
-              console.log(maxTimeResult)
+              // console.log(maxTimeResult)
               vm.$store.state.info.ssdsData[vm.mapName] = maxTimeResult
               LayersMvt.ssdsPrefObj[vm.mapName].getSource().changed()
               LayersMvt.ssdsCityObj[vm.mapName].getSource().changed()
+              d3.select('.loadingImg').style("display","none")
         })
       }
     }
@@ -123,7 +125,7 @@ export default {
 }
 .ssds-tree{
   max-height: 350px;
-  overflow-y: scroll!important;
+  overflow-y: auto;
   overflow-x: hidden;
   margin-bottom: 10px;
   -webkit-overflow-scrolling:touch;

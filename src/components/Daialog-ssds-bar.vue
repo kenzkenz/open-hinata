@@ -40,6 +40,7 @@ export default {
       // 1. データの準備
 
       const dataset = vm.$store.state.info.ssdsDataBar
+      // console.log(dataset)
 
       const dialog2DragHandle = document.querySelector('#dialog2-' + vm.item.id + ' .drag-handle')
       dialog2DragHandle.innerHTML = vm.$store.state.base.cityName + ' ' + vm.$store.state.base.ssdsStatName
@@ -51,6 +52,10 @@ export default {
       let paddingBottom = 40
       let paddingLeft = 70
       let fontSize = '12px'
+
+      if (dataset.length <= 10) {
+        width = 500
+      }
 
       if (window.innerWidth < 600) {
         width = 350

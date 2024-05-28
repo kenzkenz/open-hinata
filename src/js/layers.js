@@ -13563,7 +13563,7 @@ export const Layers =
         { text: '2020人口100m(簡易)', data: { id: "jinko100m", layer: LayersMvt.mesh100Obj, opacity: 1, summary: LayersMvt.mesh100ObjSumm, component: {name: 'jinko100m', values:[]}  } },
 
         { text: '推計人口1km', data: { id: "suikei1km", layer: LayersMvt.suikei1kmObj, opacity: 1, summary: LayersMvt.suikei1kmObjSumm } },
-      { text: '推計人口500m', data: { id: "suikei500m", layer: LayersMvt.suikei500mObj, opacity: 1, summary: LayersMvt.suikei500mObjSumm } },
+        { text: '推計人口500m', data: { id: "suikei500m", layer: LayersMvt.suikei500mObj, opacity: 1, summary: LayersMvt.suikei500mObjSumm } },
     ]},
     { text: '各種地域',
       children: [

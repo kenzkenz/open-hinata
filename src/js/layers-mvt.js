@@ -142,7 +142,7 @@ function ssdsStyleFunction(mapName,prefOrCity) {
     if (prefOrCity === 'pref') {
       if (zoom>=8) styles.push(textStyle);
     } else {
-      if (zoom>=12) styles.push(textStyle);
+      if (zoom>=11) styles.push(textStyle);
     }
     return styles;
   }
