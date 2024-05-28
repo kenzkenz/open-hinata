@@ -1,34 +1,29 @@
 <template>
   <div class="content-div" id="ssds-div">
     <p v-html="statText"></p><hr>
-<!--    <select v-model="selectNumber" :change="selectIndex(item.value)" style="width:100%;">-->
-<!--      <option v-for="item in valueList" :value="item.value">{{item.title}}</option>-->
-<!--    </select>-->
-    <div style="max-height: 400px;overflow: auto;overflow-x: hidden;margin-bottom: 10px;">
-    <input type="text" placeholder="統計データを抽出します..." v-model="treeFilter" class="filter-field">
-    <tree
-        :filter="treeFilter"
-        :data="treeData"
-        :options="treeOptions"
-        @node:selected="onNodeSelected"
-    />
+    <div class="ssds-tree">
+      <input type="text" placeholder="統計データを抽出します..." v-model="treeFilter" class="filter-field">
+      <tree
+          :filter="treeFilter"
+          :data="treeData"
+          :options="treeOptions"
+          @node:selected="onNodeSelected"
+      />
     </div>
-    e-stat
-<!--    <div style="text-align: center;">赤色の上限値 {{ s_jinko }}人</div>-->
-<!--    <input type="range" min="10" :max="6110" :step="100" class="jinko-range" v-model.number="s_jinko" @input="inputJinko" />-->
-<!--    出典 <span v-html="item.summary"></span>-->
   </div>
 </template>
 
 <script>
 import LiquorTree from 'liquor-tree'
 import * as LayersMvt from '@/js/layers-mvt'
-import * as permalink from '@/js/permalink'
-import * as MyMap from '@/js/mymap'
+// import * as permalink from '@/js/permalink'
+// import * as MyMap from '@/js/mymap'
 import axios from "axios";
 import * as d3 from "d3";
-import {treeDataPref} from "@/js/treeDataPref";
-import {treeDataCity} from "@/js/treeDataCity";
+import {treeDataPref} from "@/js/treeDataPref"
+import {treeDataCity} from "@/js/treeDataCity"
+import muni from '@/js/muni'
+
 export default {
   name: "Dialog-info-ssds",
   props: ['mapName', 'item'],
@@ -45,11 +40,6 @@ export default {
           emptyText: '見つかりませんでした。'
         }
       },
-      selectNumber: 1,
-      valueList: [
-        {title:"one", value:1},
-        {title:"two", value:2}
-      ],
     }
   },
   computed: {
@@ -60,27 +50,8 @@ export default {
         return treeDataCity
       }
     },
-
-    // s_jinko: {
-    //   get() { return this.$store.state.info.jinko250m[this.mapName] },
-    //   set(value) {
-    //     this.$store.state.info.jinko250m[this.mapName] = value
-    //     LayersMvt.mesh250Obj[this.mapName].getSource().changed()
-    //   }
-    // },
   },
   methods: {
-    storeUpdate () {
-      const jinko = this.s_jinko
-      this.$store.commit('base/updateListPart',{mapName: this.mapName, id:this.item.id, values: [jinko]});
-      permalink.moveEnd();
-    },
-    inputJinko () {
-      MyMap.history ('250mmesh人口')
-      LayersMvt.mesh250Obj[this.mapName].getSource().changed();
-      permalink.moveEnd();
-      this.storeUpdate()
-    },
     onNodeSelected: function (node) {
       const vm = this
       if (node.children.length === 0) {
@@ -108,7 +79,17 @@ export default {
                 return v['@time'] === maxTime
               })
               maxTimeResult = maxTimeResult.filter((v) =>{
+                // console.log(v['@area'],v['@area'].slice(-1))
+                let splitMuni
+                if (muni[Number(v['@area'])]) {
+                  splitMuni = muni[Number(v['@area'])].split(',')[3]
+                  if (splitMuni.slice(-1) === '区' && v['@area'].slice(0,2) !== '13') {
+                    // console.log(splitMuni)
+                    return
+                  }
+                }
                 return v['@area'] !== '00000'
+                    && v['@area'] !== '13100'
               })
               maxTimeResult.sort(function(a, b) {
                 if (Number(a['$']) < Number(b['$'])) {
@@ -131,22 +112,21 @@ export default {
     const parentElement = document.querySelector('#ssds-div').parentElement;
     const dragHandle = parentElement.querySelector('.drag-handle')
     dragHandle.innerHTML = this.item.title
-    this.$nextTick(function () {
-      LayersMvt.ssdsPrefObj[this.mapName].getSource().changed();
-    })
   },
-  watch: {
-  }
 }
 </script>
 
 <style scoped>
 .content-div{
   width: 350px;
-  /*height: 400px;*/
-  /*max-height: 400px;*/
   padding: 10px;
-  overflow:hidden;
+}
+.ssds-tree{
+  max-height: 350px;
+  overflow-y: scroll!important;
+  overflow-x: hidden;
+  margin-bottom: 10px;
+  -webkit-overflow-scrolling:touch;
 }
 .drag-handle{
   color: white;

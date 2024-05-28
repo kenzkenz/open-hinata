@@ -1106,12 +1106,19 @@ export function popUp(map,layers,features,overlay,evt,content) {
           });
       break
     case 'ssdsPref':
+      // console.log(prop.コード.length)
+      let area
+      if (prop.コード.length === 5) {
+        area = prop.コード
+      } else {
+        area = ('00' + prop.コード).slice(-2) + "000"
+      }
       width = 200
       cont = '<div style=width:200px;>' +
           '<h4>' + prop.自治体名 + '</h4>' +
           '<h4>' + ru(prop.value) + '</h4>' +
           '<button class="ssdspref" mapname="' + map.values_.target +
-          '" area="' + ('00' + prop.コード).slice(-2) + "000" +
+          '" area="' + area +
           '" city="' + prop.自治体名  +
           '">グラフ</button><br><br>' +
           '</div>'

@@ -43,7 +43,7 @@ function ssdsCity (mapName) {
     url:'https://kenzkenz.xsrv.jp/open-hinata/geojson/city.geojson',
     format: new GeoJSON()
   });
-  this.style = ssdsStyleFunction(mapName)
+  this.style = ssdsStyleFunction(mapName,'city')
 }
 export const citySumm = "<a href='' target='_blank'></a>";
 export const ssdsCityObj = {};
@@ -58,7 +58,7 @@ function ssdsPref (mapName) {
     url:'https://kenzkenz.xsrv.jp/open-hinata/geojson/pref.geojson',
     format: new GeoJSON()
   });
-  this.style = ssdsStyleFunction(mapName)
+  this.style = ssdsStyleFunction(mapName,'pref')
 }
 export const prefSumm = "<a href='' target='_blank'></a>";
 export const ssdsPrefObj = {};
@@ -66,11 +66,16 @@ for (let i of mapsStr) {
   ssdsPrefObj[i] = new VectorLayer(new ssdsPref(i))
 }
 // -----------------------------------------------------------------------------------
-function ssdsStyleFunction(mapName) {
+function ssdsStyleFunction(mapName,prefOrCity) {
   return function (feature, resolution) {
     const zoom = getZoom(resolution)
     const prop = feature.getProperties()
-    const area = ('00' + prop.コード).slice(-2) + "000"
+    let area
+    if (prefOrCity === 'pref') {
+      area = ('00' + prop.コード).slice(-2) + "000"
+    } else {
+      area = prop.コード
+    }
     let ssdsData = store.state.info.ssdsData[mapName]
     const jyuni = ssdsData.findIndex((v) => {
       return v['@area'] === area
@@ -121,7 +126,7 @@ function ssdsStyleFunction(mapName) {
     const textStyle = new Style({
       text: new Text({
         font: font,
-        text: text,
+        text: prop.自治体名 + '\n' +text,
         fill: new Fill({
           color: "black"
         }),
@@ -134,7 +139,11 @@ function ssdsStyleFunction(mapName) {
       })
     })
     styles.push(polygonStyle);
-    if (zoom>=8) styles.push(textStyle);
+    if (prefOrCity === 'pref') {
+      if (zoom>=8) styles.push(textStyle);
+    } else {
+      if (zoom>=12) styles.push(textStyle);
+    }
     return styles;
   }
 }

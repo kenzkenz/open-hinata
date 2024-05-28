@@ -79,11 +79,15 @@ export default {
           .domain(dataset.map(function(d) { return d.year; }));
 
       let min = d3.min(dataset, function(d) { return d.value; })
+      let max = d3.max(dataset, function(d) { return d.value; })
       if (min > 0) {
         min = 0
       }
+      if (max < 0) {
+        max = 0
+      }
       const yScale = d3.scaleLinear()
-          .domain([min, d3.max(dataset, function(d) { return d.value; })])
+          .domain([min, max])
           .range([height - paddingBottom, paddingBottom])
 
       // 4. 軸の表示

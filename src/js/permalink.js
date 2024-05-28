@@ -297,6 +297,7 @@ export function permalinkEventSet (response) {
                             case 'flood10m':
                               height = '357px'
                               break
+                            case 'ssdsCity':
                             case 'ssdsPref':
                               height = '440px'
                               left = (window.innerWidth / 2 - 175) + 'px'

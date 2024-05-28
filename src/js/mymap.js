@@ -1157,7 +1157,7 @@ export function initMap (vm) {
         }
         // const win = window.navigator.userAgent.includes('Win')
         map.on('moveend', function (event) {
-            console.log(777)
+            // console.log(777)
             moveEnd()
             getElevation(event)
             // map.render();
