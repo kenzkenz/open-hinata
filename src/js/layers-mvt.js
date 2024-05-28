@@ -36,6 +36,21 @@ const ru2 = string => {
 // const mapsStr = ['map01','map02','map03','map04'];
 const mapsStr = ['map01','map02'];
 // ----------------------------------------------------------------------------
+function ssdsCity (mapName) {
+  this.useInterimTilesOnError = false
+  this.name = 'ssdsPref'
+  this.source = new VectorSource({
+    url:'https://kenzkenz.xsrv.jp/open-hinata/geojson/city.geojson',
+    format: new GeoJSON()
+  });
+  this.style = ssdsStyleFunction(mapName)
+}
+export const citySumm = "<a href='' target='_blank'></a>";
+export const ssdsCityObj = {};
+for (let i of mapsStr) {
+  ssdsCityObj[i] = new VectorLayer(new ssdsCity(i))
+}
+// ----------------------------------------------------------------------------
 function ssdsPref (mapName) {
   this.useInterimTilesOnError = false
   this.name = 'ssdsPref'

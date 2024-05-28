@@ -20,7 +20,7 @@ import  * as MaskDep from './mask-dep'
 import  * as LayersMvt from './layers-mvt'
 // import BingMaps from 'ol/source/BingMaps'
 import * as d3 from "d3"
-import {ssdsPrefObj} from "./layers-mvt";
+// import {ssdsPrefObj} from "./layers-mvt";
 // const mapsStr = ['map01','map02','map03','map04']
 // const mapsStr = ['map01'];
 const mapsStr = ['map01','map02'];
@@ -13866,6 +13866,8 @@ export const Layers =
     { text: 'その他',
       children: [
         { text: '社会・人口統計体系', data: { id: "ssdsPref", layer: LayersMvt.ssdsPrefObj, opacity: 1, summary: LayersMvt.prefSumm, component: {name: 'ssdsPref', values:[]} } },
+        { text: '社会・人口統計体系テスト', data: { id: "ssdscity", layer: LayersMvt.ssdsCityObj, opacity: 1, summary: LayersMvt.prefSumm, component: {name: 'ssdsPref', values:[]} } },
+
 
         // { text: 'テスト2', data: { id: "test2", layer: bingRoadobj, opacity: 1, summary: LayersMvt.suiroSumm } },
         { text: 'ラスタータイルtest', data: { id: "dokuji", layer: dokujiObj, opacity: 1, summary: LayersMvt.busSumm, component: {name: 'dokuji', values:[]}} },
