@@ -1890,7 +1890,7 @@
 </style>
 <style>
     html {
-      /*touch-action: none;*/
+      touch-action: none;
     }
     #modal1 .vm--container{
       z-index: 10002;

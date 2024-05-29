@@ -299,8 +299,11 @@ export function permalinkEventSet (response) {
                               break
                             case 'ssdsCity':
                             case 'ssdsPref':
-                              height = '440px'
-                              left = (window.innerWidth / 2 - 175) + 'px'
+                              bottom = ''
+                              top = '60px'
+                              left = '10px'
+                              // height = '480px'
+                              // left = (window.innerWidth / 2 - 175) + 'px'
                               break
 
                           }

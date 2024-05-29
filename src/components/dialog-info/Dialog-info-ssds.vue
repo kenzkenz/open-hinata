@@ -10,6 +10,10 @@
           @node:selected="onNodeSelected"
       />
     </div>
+    <span class="estat-summary">
+      <a href="https://www.e-stat.go.jp/api/" target="_blank"> e-Stat</a>
+      「このサービスは、政府統計総合窓口(e-Stat)のAPI機能を使用していますが、サービスの内容は国によって保証されたものではありません。」
+    </span>
   </div>
 </template>
 
@@ -114,6 +118,28 @@ export default {
     const parentElement = document.querySelector('#ssds-div').parentElement;
     const dragHandle = parentElement.querySelector('.drag-handle')
     dragHandle.innerHTML = this.item.title
+
+    // let cnt = 0
+    // function aaa () {
+    //   treeDataPref.forEach(value => {
+    //     // console.log(value)
+    //     if (!value.children) cnt++
+    //     function bbb (v1) {
+    //       if (v1.children) {
+    //         v1.children.forEach(v2 => {
+    //           // console.log(v2)
+    //           if (!v2.children) cnt++
+    //           if (v2.children) bbb(v2)
+    //         })
+    //       }
+    //     }
+    //     bbb(value)
+    //   })
+    // }
+    // aaa()
+    // console.log('背景' + cnt + '件')
+
+
   },
 }
 </script>
@@ -129,6 +155,9 @@ export default {
   overflow-x: hidden;
   margin-bottom: 10px;
   -webkit-overflow-scrolling:touch;
+}
+.estat-summary{
+  font-size: small;
 }
 .drag-handle{
   color: white;

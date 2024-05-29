@@ -37,7 +37,6 @@ export default {
           elements[len-1].style.left = Number(elements[len-2].style.left.replace('px','')) - 40 + 'px'
         }
       }
-      // 1. データの準備
 
       const dataset = vm.$store.state.info.ssdsDataBar
       // console.log(dataset)
@@ -64,7 +63,6 @@ export default {
         fontSize = '9px'
       }
 
-      // 2. SVG領域の設定
       const svg = d3.select('#' + vm.id + ' .d3-ssds-bar')
           .append("svg")
           .attr("width", width)
@@ -77,7 +75,6 @@ export default {
           // .attr("text-anchor", "middle")
           .text(dataset[0].unit);
 
-      // 3. 軸スケールの設定
       const xScale = d3.scaleBand()
           .rangeRound([paddingLeft, width - paddingRight])
           .padding(0.1)
@@ -95,7 +92,6 @@ export default {
           .domain([min, max])
           .range([height - paddingBottom, paddingBottom])
 
-      // 4. 軸の表示
       const xs = svg.append("g")
           .attr("transform", "translate(" + 0 + "," + (height - paddingBottom) + ")")
           .call(d3.axisBottom(xScale));
@@ -111,7 +107,7 @@ export default {
           .call(d3.axisLeft(yScale));
 
       const tooltip = d3.select("body").append("div").attr("class", "d3tooltip");
-      // . バーの表示
+
       svg.append("g")
           .selectAll("rect")
           .data(dataset)
