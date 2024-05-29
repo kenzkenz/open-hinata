@@ -1622,7 +1622,7 @@
                 // '<a href="https://kenzkenz.xsrv.jp/open-hinata/#sotlKZ" target="_blank">広島県CS立体図（広島県0.5m）</a>' +
                 // '」' +
                 // '<br>是非ご覧ください。',
-                   '<p>システム安定化のため４分割機能を削除しました。申し訳ありません。</p>' +
+                   '<p>「統計」のカテゴリを新設しました。</p>' +
                    '<p>国勢調査小地域の人口ピラミッドはこちら「' +
                    '<a href="https://kenzkenz.xsrv.jp/open-hinata/#s3PHDc" target="_blank">R2国勢調査小地域人口ピラミッド</a>' +
                    '」' +

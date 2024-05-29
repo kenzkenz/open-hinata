@@ -12660,6 +12660,31 @@ export const Layers =
         { text: '土地利用図（1982～1983年）', data: { id: "totiriyouzu", layer: totiriyouzuObj, opacity: 1, summary: totiriyouzuSumm } },
         { text: '数値地図25000（土地条件）', data: { id: "suuti25000", layer: suuti25000Obj, opacity: 1, summary: suuti25000Summ } },
       ]},
+    { text: '<span style="color: red">統計</span>',
+      children: [
+        { text: '社会・人口統計体系',
+          children: [
+            { text: '社会・人口統計体系（都道府県）', data: { id: "ssdsPref", layer: LayersMvt.ssdsPrefObj, opacity: 1, summary: LayersMvt.prefSumm, component: {name: 'ssdsPref', values:[]} } },
+            { text: '社会・人口統計体系（市町村）', data: { id: "ssdscity", layer: LayersMvt.ssdsCityObj, opacity: 1, summary: LayersMvt.prefSumm, component: {name: 'ssdsCity', values:[]} } },
+          ]},
+        { text: '人口ピラミッド',
+          children: [
+            { text: '都道府県人口ピラミッド', data: { id: "kencho", layer: LayersMvt.kenchoObj, opacity: 1, summary: LayersMvt.kenchoSumm } },
+            { text: '市区町村人口ピラミッド', data: { id: "shikuchoson", layer: LayersMvt.shikuchosonObj, opacity: 1, summary: LayersMvt.shikuchosonSumm } },
+            { text: 'R2国勢調査小地域人口ピラミッド', data: { id: "syochiiki2020", layer: LayersMvt.syochiiki2020Obj, opacity: 1, summary: LayersMvt.syochiiki2020Summ } },
+          ]},
+        { text: '人口メッシュ',
+          children: [
+            { text: '2020人口1km', data: { id: "jinko1km", layer: LayersMvt.mesh1kmObj, opacity: 1, summary: LayersMvt.mesh1kmObjSumm, component: {name: 'jinko', values:[]} } },
+            { text: '2020人口250m', data: { id: "jinko250m", layer: LayersMvt.mesh250Obj, opacity: 1, summary: LayersMvt.mesh250ObjSumm, component: {name: 'jinko250m', values:[]} } },
+            { text: '2020人口100m(簡易)', data: { id: "jinko100m", layer: LayersMvt.mesh100Obj, opacity: 1, summary: LayersMvt.mesh100ObjSumm, component: {name: 'jinko100m', values:[]}  } },
+          ]},
+        { text: '推計人口',
+          children: [
+            { text: '推計人口1km', data: { id: "suikei1km", layer: LayersMvt.suikei1kmObj, opacity: 1, summary: LayersMvt.suikei1kmObjSumm } },
+            { text: '推計人口500m', data: { id: "suikei500m", layer: LayersMvt.suikei500mObj, opacity: 1, summary: LayersMvt.suikei500mObjSumm } },
+          ]},
+      ]},
     { text: '全国Q地図',
       children: [
         { text: '過去の地理院地図（全国Q地図）',
@@ -13556,15 +13581,6 @@ export const Layers =
         { text: 'H07市町村', data: { id: "cityH07", layer: LayersMvt.cityH07Obj, opacity: 1, summary: LayersMvt.cityH07Summ } },
         { text: 'R03市町村', data: { id: "cityR03", layer: LayersMvt.cityR03Obj, opacity: 1, summary: LayersMvt.cityR03Summ } },
       ]},
-    { text: '人口と推計人口',
-      children: [
-        { text: '2020人口1km', data: { id: "jinko1km", layer: LayersMvt.mesh1kmObj, opacity: 1, summary: LayersMvt.mesh1kmObjSumm, component: {name: 'jinko', values:[]} } },
-        { text: '2020人口250m', data: { id: "jinko250m", layer: LayersMvt.mesh250Obj, opacity: 1, summary: LayersMvt.mesh250ObjSumm, component: {name: 'jinko250m', values:[]} } },
-        { text: '2020人口100m(簡易)', data: { id: "jinko100m", layer: LayersMvt.mesh100Obj, opacity: 1, summary: LayersMvt.mesh100ObjSumm, component: {name: 'jinko100m', values:[]}  } },
-
-        { text: '推計人口1km', data: { id: "suikei1km", layer: LayersMvt.suikei1kmObj, opacity: 1, summary: LayersMvt.suikei1kmObjSumm } },
-        { text: '推計人口500m', data: { id: "suikei500m", layer: LayersMvt.suikei500mObj, opacity: 1, summary: LayersMvt.suikei500mObjSumm } },
-    ]},
     { text: '各種地域',
       children: [
         { text: '選挙区（20022年）', data: { id: "senkyoku2022", layer: LayersMvt.senkyoku2022Obj, opacity: 1, summary: LayersMvt.senkyokuSumm} },
@@ -13716,16 +13732,12 @@ export const Layers =
             { text: 'S35人口集中地区', data: { id: "didS35", layer: LayersMvt.didS35Obj, opacity: 1, summary: LayersMvt.didS35Summ } },
           ]},
       ]},
-    { text: '海面上昇シミュと人口ピラミッド',
+    { text: '海面上昇シミュレーション　　　　',
       children: [
         // { text: '海面上昇シミュ5Mdem', data: { id: 'flood5m', layer: flood5Obj, opacity: 1, summary: floodSumm, component: {name: 'flood5m', values:[]}} },
         { text: '海面上昇シミュ（色別標高図風）', data: { id: 'flood10m', layer: flood10Obj, opacity: 1, summary: floodSumm, component: {name: 'flood10m', values:[]}} },
         { text: '海面上昇シミュ（詳細）', data: { id: 'flood15', layer: flood15Obj, opacity: 1, summary: floodSumm, component: {name: 'flood15', values:[]}} },
         { text: '海面上昇シミュ（シンプル）', data: { id: 'flood10m2', layer: floodSinpleObj, opacity: 1, summary: floodSumm, component: {name: 'floodSimple', values:[]}} },
-        { text: '都道府県人口ピラミッド', data: { id: "kencho", layer: LayersMvt.kenchoObj, opacity: 1, summary: LayersMvt.kenchoSumm } },
-        { text: '市区町村人口ピラミッド', data: { id: "shikuchoson", layer: LayersMvt.shikuchosonObj, opacity: 1, summary: LayersMvt.shikuchosonSumm } },
-        { text: 'R2国勢調査小地域人口ピラミッド', data: { id: "syochiiki2020", layer: LayersMvt.syochiiki2020Obj, opacity: 1, summary: LayersMvt.syochiiki2020Summ } },
-
       ]
     },
     { text: 'ハザードマップ',
@@ -13865,10 +13877,6 @@ export const Layers =
       ]},
     { text: 'その他',
       children: [
-        { text: '社会・人口統計体系（都道府県）', data: { id: "ssdsPref", layer: LayersMvt.ssdsPrefObj, opacity: 1, summary: LayersMvt.prefSumm, component: {name: 'ssdsPref', values:[]} } },
-        { text: '社会・人口統計体系（市町村）', data: { id: "ssdscity", layer: LayersMvt.ssdsCityObj, opacity: 1, summary: LayersMvt.prefSumm, component: {name: 'ssdsCity', values:[]} } },
-
-
         // { text: 'テスト2', data: { id: "test2", layer: bingRoadobj, opacity: 1, summary: LayersMvt.suiroSumm } },
         { text: 'ラスタータイルtest', data: { id: "dokuji", layer: dokujiObj, opacity: 1, summary: LayersMvt.busSumm, component: {name: 'dokuji', values:[]}} },
         { text: '一等三角点', data: { id: "itto", layer: LayersMvt.ittosankakutenObj, opacity: 1, summary: LayersMvt.ittosankakutenSumm } },
