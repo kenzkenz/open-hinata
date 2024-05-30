@@ -282,7 +282,7 @@ tippecanoe -pk -pf -f -e tile marged.geojson
 tippecanoe -pk -pf -f -e tile re.geojson
 tippecanoe -pk -pf -f -e tile 47.geojson
 tippecanoe -pk -pf -f -e tile 100mmesh.geojson
-
+tippecanoe -pk -rg -pf -f -e tile y.geojson
 
 $ cd tile
 $ gzip -d -v -r -S .pbf *

@@ -1123,6 +1123,22 @@ export function popUp(map,layers,features,overlay,evt,content) {
           '">グラフ</button><br><br>' +
           '</div>'
       break
+    case 'yochienHoikuen':
+      let name
+      let address
+      if (prop.P29_001) { // 幼稚園
+        name = prop.P29_004
+        address = prop.P29_005
+      } else {
+        name = prop.P14_008
+        address = prop.P14_001 + prop.P14_002 + prop.P14_004
+      }
+      width = 300
+      cont = '<div style=width:300px;>' +
+          '<h4>' + name + '</h4>' +
+          '<p>' + ru(address) + '</p>' +
+          '</div>'
+      break
   }
   function popupCenter() {
     if (width) {

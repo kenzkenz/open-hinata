@@ -36,6 +36,95 @@ const ru2 = string => {
 // const mapsStr = ['map01','map02','map03','map04'];
 const mapsStr = ['map01','map02'];
 // ----------------------------------------------------------------------------
+function yochienHoikuen(){
+  this.name = 'yochienHoikuen'
+  this.className = 'yochienHoikuen'
+  this.source = new VectorTileSource({
+    crossOrigin: 'Anonymous',
+    format: new MVT(),
+    maxZoom:14,
+    url: "https://kenzkenz3.xsrv.jp/mvt/yochienhoikuen2/{z}/{x}/{y}.mvt"
+  });
+  this.style = yochienHoikuenStyleFunction()
+  this.maxResolution = 152.874057 //zoom10
+  // this.declutter = true
+  // this.overflow = true
+}
+export const yochienHoikuenSumm = "<a href='' target='_blank'></a>";
+export const yochienHoikuenMvtObj = {};
+for (let i of mapsStr) {
+  yochienHoikuenMvtObj[i] = new VectorTileLayer(new yochienHoikuen())
+}
+function yochienHoikuenRaster () {
+  this.source = new XYZ({
+    url: 'https://kenzkenz3.xsrv.jp/yochienhoikuenraster/{z}/{x}/{y}.png',
+    crossOrigin: 'Anonymous',
+    minZoom: 0,
+    maxZoom: 11
+  })
+  this.minResolution = 152.874057 //zoom10
+}
+export const yochienHoikuenRasterObj = {};
+for (let i of mapsStr) {
+  yochienHoikuenRasterObj[i] = new TileLayer(new yochienHoikuenRaster())
+}
+
+export const yochienHoikuenObj = {};
+for (let i of mapsStr) {
+  yochienHoikuenObj[i] = new LayerGroup({
+    layers: [
+      yochienHoikuenMvtObj[i],
+      yochienHoikuenRasterObj[i],
+    ]
+  })
+  yochienHoikuenObj[i].values_['pointer'] = true
+}
+//--------------------------
+function yochienHoikuenStyleFunction() {
+  return function (feature, resolution) {
+    const zoom = getZoom(resolution);
+    const prop = feature.getProperties();
+    let text
+    if (prop.P29_001) { // 幼稚園
+      text = prop.P29_004
+    } else {
+      text = prop.P14_008
+    }
+    console.log(prop.P14_008)
+    const styles = [];
+    let font
+    if (zoom >= 17) {
+      font = "20px sans-serif"
+    } else {
+      font = "14px sans-serif"
+    }
+    const iconStyle = new Style({
+      image: new Icon({
+        // anchor: [0.5, 1],
+        src: require('@/assets/icon/whitecircle.png'),
+        color: 'green',
+        scale: zoom>=15 ? 1.5: 1
+      })
+    })
+    const textStyle = new Style({
+      text: new Text({
+        font: font,
+        text: text,
+        offsetY: 18,
+        stroke: new Stroke({
+          color: "white",
+          width: 3
+        })
+      })
+    });
+    styles.push(iconStyle);
+    if(zoom>=13) {
+      styles.push(textStyle);
+    }
+    return styles;
+  }
+}
+// ----------------------------------------------------------------------------
 function ssdsCity (mapName) {
   this.useInterimTilesOnError = false
   this.name = 'ssdsPref'

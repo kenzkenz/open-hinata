@@ -2,9 +2,10 @@
   <div class="content-div" id="ssds-div">
     <p v-html="statText"></p>
     <vue-slider style="width: 90%; margin-left: 16px;"
-        v-model="sliderValue"
-        :adsorb="true"
-        :data="sliderData"
+                v-model="sliderValue"
+                :adsorb="true"
+                :drag-on-click="true"
+                :data="sliderData"
     ></vue-slider>
     <hr>
     <div class="ssds-tree">
