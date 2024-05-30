@@ -103,7 +103,7 @@ export default {
                   return -1;
                 }
               })
-              // console.log(maxTimeResult)
+              console.log(maxTimeResult)
               vm.$store.state.info.ssdsData[vm.mapName] = maxTimeResult
               LayersMvt.ssdsPrefObj[vm.mapName].getSource().changed()
               LayersMvt.ssdsCityObj[vm.mapName].getSource().changed()

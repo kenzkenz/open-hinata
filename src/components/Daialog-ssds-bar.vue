@@ -27,8 +27,8 @@ export default {
   },
   mounted () {
     const vm = this
-    resasD3()
-    function resasD3 () {
+    barD3()
+    function barD3 () {
       const elements = document.querySelectorAll('.v-dialog2-div')
       const len = elements.length
       if (len>1) {
