@@ -62,7 +62,7 @@ export default {
         d3.select('.loadingImg').style("display","block")
         console.log(node.data.text)
         vm.$store.state.base.ssdsStatName = node.data.text
-        vm.statText = node.data.text
+        // vm.statText = node.data.text
         axios
             .get('https://api.e-stat.go.jp/rest/3.0/app/json/getStatsData', {
               params: {
@@ -80,6 +80,7 @@ export default {
               const data = response.data.GET_STATS_DATA.STATISTICAL_DATA.DATA_INF.VALUE
               vm.$store.state.info.ssdsData00[vm.mapName] = data
               const maxTime = d3.max(data, function(d){ return d['@time']; })
+              vm.statText = maxTime.slice(0,4) + ' ' + node.data.text
               let maxTimeResult = data.filter((v)=>{
                 return v['@time'] === maxTime
               })
