@@ -9,13 +9,17 @@ import Dialog2 from './components/Dialog2'
 import BootstrapVue from 'bootstrap-vue'
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
-import '@fortawesome/fontawesome-free/js/fontawesome';
-import '@fortawesome/fontawesome-free/js/solid';
-import '@fortawesome/fontawesome-free/js/regular';
-import '@fortawesome/fontawesome-free/js/brands';
+import '@fortawesome/fontawesome-free/js/fontawesome'
+import '@fortawesome/fontawesome-free/js/solid'
+import '@fortawesome/fontawesome-free/js/regular'
+import '@fortawesome/fontawesome-free/js/brands'
 import drag from './js/drag'
 import VModal from 'vue-js-modal'
 import dragV from 'v-drag'
+import VueSlider from 'vue-slider-component'
+import 'vue-slider-component/theme/default.css'
+Vue.component('VueSlider', VueSlider)
+
 Vue.use(dragV, {
     // global configuration
 });

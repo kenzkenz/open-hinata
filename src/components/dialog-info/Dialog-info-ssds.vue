@@ -1,6 +1,12 @@
 <template>
   <div class="content-div" id="ssds-div">
-    <p v-html="statText"></p><hr>
+    <p v-html="statText"></p>
+    <vue-slider style="width: 90%; margin-left: 16px;"
+        v-model="sliderValue"
+        :adsorb="true"
+        :data="sliderData"
+    ></vue-slider>
+    <hr>
     <div class="ssds-tree">
       <input type="text" placeholder="統計データを抽出します..." v-model="treeFilter" class="filter-field">
       <tree
@@ -36,6 +42,11 @@ export default {
   },
   data () {
     return {
+      month:'',
+      ssdsData: [],
+      ssdsText: '',
+      sliderValue: '',
+      sliderData: [],
       statText:'',
       treeFilter: '',
       // treeData: treeDataPref,
@@ -60,8 +71,9 @@ export default {
       const vm = this
       if (node.children.length === 0) {
         d3.select('.loadingImg').style("display","block")
-        console.log(node.data.text)
-        vm.$store.state.base.ssdsStatName = node.data.text
+        vm.ssdsText = node.data.text
+        // console.log(vm.ssdsText)
+        vm.$store.state.base.ssdsStatName = vm.ssdsText
         // vm.statText = node.data.text
         axios
             .get('https://api.e-stat.go.jp/rest/3.0/app/json/getStatsData', {
@@ -77,14 +89,10 @@ export default {
               }
             }).then(function (response) {
               // console.log(response)
-              const data = response.data.GET_STATS_DATA.STATISTICAL_DATA.DATA_INF.VALUE
+              let data = response.data.GET_STATS_DATA.STATISTICAL_DATA.DATA_INF.VALUE
               vm.$store.state.info.ssdsData00[vm.mapName] = data
-              const maxTime = d3.max(data, function(d){ return d['@time']; })
-              vm.statText = maxTime.slice(0,4) + ' ' + node.data.text
-              let maxTimeResult = data.filter((v)=>{
-                return v['@time'] === maxTime
-              })
-              maxTimeResult = maxTimeResult.filter((v) =>{
+
+              data = data.filter((v) =>{
                 // console.log(v['@area'],v['@area'].slice(-1))
                 let splitMuni
                 if (muni[Number(v['@area'])]) {
@@ -97,19 +105,69 @@ export default {
                 return v['@area'] !== '00000'
                     && v['@area'] !== '13100'
               })
-              maxTimeResult.sort(function(a, b) {
+              data.sort(function(a, b) {
                 if (Number(a['$']) < Number(b['$'])) {
                   return 1;
                 } else {
                   return -1;
                 }
               })
-              console.log(maxTimeResult)
+
+              vm.ssdsData = data
+
+              // 初期時の抽出、直近の年で抽出----------------------------------------
+              const maxTime = d3.max(vm.ssdsData, function(d){ return d['@time']; })
+              vm.month = maxTime.slice(4)
+              vm.statText = maxTime.slice(0,4) + ' ' + node.data.text
+              let maxTimeResult = vm.ssdsData.filter((v)=>{
+                return v['@time'] === maxTime
+              })
               vm.$store.state.info.ssdsData[vm.mapName] = maxTimeResult
               LayersMvt.ssdsPrefObj[vm.mapName].getSource().changed()
               LayersMvt.ssdsCityObj[vm.mapName].getSource().changed()
+              // スライドバーの設定-----------------------------------------
+              const sliderData0 = data.filter((v) => {
+                if (vm.item.id === 'ssdsPref') {
+                  if (v['@area'] === '45000'){
+                    return v
+                  }
+                } else {
+                  if (v['@area'] === '45201'){
+                    return v
+                  }
+                }
+              })
+              const sliderData = sliderData0.map((v) => {
+                  return v['@time'].slice(0,4)
+              })
+              sliderData.sort(function(a, b) {
+                if (Number(a) > Number(b)) {
+                  return 1;
+                } else {
+                  return -1;
+                }
+              })
+              vm.sliderData = sliderData
+              vm.sliderValue = maxTime.slice(0,4)
+              // ----------------------------------------------------------
               d3.select('.loadingImg').style("display","none")
         })
+      }
+    }
+  },
+  watch: {
+    sliderValue : function () {
+      // スライドバーの選択年で抽出---------------------------------
+      const selectedTime = this.sliderValue
+      this.statText = selectedTime + ' ' + this.ssdsText
+      let selectedResult = this.ssdsData.filter((v)=>{
+        return v['@time'] === selectedTime + this.month
+      })
+      this.$store.state.info.ssdsData[this.mapName] = selectedResult
+      if (this.item.id === 'ssdsPref') {
+        LayersMvt.ssdsPrefObj[this.mapName].getSource().changed()
+      } else {
+        LayersMvt.ssdsCityObj[this.mapName].getSource().changed()
       }
     }
   },
@@ -139,8 +197,6 @@ export default {
     // }
     // aaa()
     // console.log('背景' + cnt + '件')
-
-
   },
 }
 </script>
@@ -165,5 +221,17 @@ export default {
 }
 .tree{
   font-size: small!important;
+}
+.vue-slider-dot-handle{
+  width: 150%!important;
+}
+</style>
+<style>
+
+@media screen and (max-width:480px) {
+  .vue-slider-dot-handle{
+    width: 150%!important;
+    border-radius:0!important;
+  }
 }
 </style>
