@@ -12685,6 +12685,21 @@ export const Layers =
             { text: '推計人口500m', data: { id: "suikei500m", layer: LayersMvt.suikei500mObj, opacity: 1, summary: LayersMvt.suikei500mObjSumm } },
           ]},
       ]},
+    { text: '<span style="color: red">小中学校、幼稚園、保育園</span>',
+      children: [
+        { text: '中学校',
+          children: [
+              { text: 'R03中学校区', data: { id: "tyuugakkouku", layer: LayersMvt.tyuugakkouku0Obj, opacity: 1, summary: LayersMvt.tyuugakkoukuSumm } },
+          ]},
+        { text: '小学校',
+          children: [
+              { text: 'R03小学校区', data: { id: "syougakkouku", layer: LayersMvt.syougakkouku0Obj, opacity: 1, summary: LayersMvt.syougakkoukuSumm } },
+          ]},
+        { text: '幼稚園、保育園',
+          children: [
+              { text: 'R03幼稚園、保育園', data: { id: "yochienhoikuen", layer: LayersMvt.yochienHoikuenObj, opacity: 1, summary: LayersMvt.yochienHoikuenSumm } },
+          ]},
+      ]},
     { text: '全国Q地図',
       children: [
         { text: '過去の地理院地図（全国Q地図）',
@@ -13568,7 +13583,6 @@ export const Layers =
         { text: '東西蝦夷山川地理取調図2', data: { id: 'ezosansen2', layer: ezosansen2Obj, opacity: 1, zoom: 8, center: [142.6944008210318, 43.241646716680606], summary: ezosansenSumm2 } },
         { text: '東京市火災動態地図大正12年', data: { id: 'tokyokasai', layer: tokyokasaiObj, opacity: 1, zoom: 13, center: [139.77487921714783, 35.688761948611315], summary: tokyokasaiSumm } },
         { text: 'ヤマシロマップ', data: { id: 'yamashiro', layer: yamashiroObj, opacity: 1, zoom: 11, center: [135.74390550133873,35.00293563827127], summary: yamashiroSumm } },
-
       ]},
     { text: '市町村、郡、地名',
       children: [
@@ -13701,21 +13715,21 @@ export const Layers =
             { text: 'H23用途地域', data: { id: "youtoH23", layer: LayersMvt.youtoH23Obj, opacity: 1, summary: LayersMvt.youtoH23Summ } },
             { text: 'R01用途地域', data: { id: "youtoR01", layer: LayersMvt.youtoR01Obj, opacity: 1, summary: LayersMvt.youtoR01Summ } },
           ]},
-        { text: '小中学校区',
-          children: [
-            { text: '小学校区',
-              children: [
-                // { text: 'H22小学校区', data: { id: "syougakkoukuH22", layer: LayersMvt.syougakkoukuH22Obj, opacity: 1, summary: LayersMvt.syougakkoukuH22Summ } },
-                // { text: 'H28小学校区', data: { id: "syougakkoukuH28", layer: LayersMvt.syougakkoukuH28Obj, opacity: 1, summary: LayersMvt.syougakkoukuH28Summ } },
-                { text: 'R03小学校区', data: { id: "syougakkouku", layer: LayersMvt.syougakkouku0Obj, opacity: 1, summary: LayersMvt.syougakkoukuSumm } },
-              ]},
-            { text: '中学校区',
-              children: [
-                // { text: 'H25中学校区', data: { id: "tyuugakkoukuH25", layer: LayersMvt.tyuugakkoukuH25Obj, opacity: 1, summary: LayersMvt.tyuugakkoukuH25Summ } },
-                // { text: 'H28中学校区', data: { id: "tyuugakkoukuH28", layer: LayersMvt.tyuugakkoukuH28Obj, opacity: 1, summary: LayersMvt.tyuugakkoukuH28Summ } },
-                { text: 'R03中学校区', data: { id: "tyuugakkouku", layer: LayersMvt.tyuugakkouku0Obj, opacity: 1, summary: LayersMvt.tyuugakkoukuSumm } },
-              ]},
-          ]},
+        // { text: '小中学校区',
+        //   children: [
+        //     { text: '小学校区',
+        //       children: [
+        //         // { text: 'H22小学校区', data: { id: "syougakkoukuH22", layer: LayersMvt.syougakkoukuH22Obj, opacity: 1, summary: LayersMvt.syougakkoukuH22Summ } },
+        //         // { text: 'H28小学校区', data: { id: "syougakkoukuH28", layer: LayersMvt.syougakkoukuH28Obj, opacity: 1, summary: LayersMvt.syougakkoukuH28Summ } },
+        //         { text: 'R03小学校区', data: { id: "syougakkouku", layer: LayersMvt.syougakkouku0Obj, opacity: 1, summary: LayersMvt.syougakkoukuSumm } },
+        //       ]},
+        //     { text: '中学校区',
+        //       children: [
+        //         // { text: 'H25中学校区', data: { id: "tyuugakkoukuH25", layer: LayersMvt.tyuugakkoukuH25Obj, opacity: 1, summary: LayersMvt.tyuugakkoukuH25Summ } },
+        //         // { text: 'H28中学校区', data: { id: "tyuugakkoukuH28", layer: LayersMvt.tyuugakkoukuH28Obj, opacity: 1, summary: LayersMvt.tyuugakkoukuH28Summ } },
+        //         { text: 'R03中学校区', data: { id: "tyuugakkouku", layer: LayersMvt.tyuugakkouku0Obj, opacity: 1, summary: LayersMvt.tyuugakkoukuSumm } },
+        //       ]},
+        //   ]},
         { text: '人口集中地区',
           children: [
             { text: 'H27人口集中地区', data: { id: "didmvt", layer: LayersMvt.didH27Obj, opacity: 1, summary: LayersMvt.didH27Summ } },
@@ -13877,7 +13891,6 @@ export const Layers =
       ]},
     { text: 'その他',
       children: [
-        { text: 'テスト', data: { id: "yochienhoikuen", layer: LayersMvt.yochienHoikuenObj, opacity: 1, summary: LayersMvt.yochienHoikuenSumm } },
         { text: 'ラスタータイルtest', data: { id: "dokuji", layer: dokujiObj, opacity: 1, summary: LayersMvt.busSumm, component: {name: 'dokuji', values:[]}} },
         { text: '一等三角点', data: { id: "itto", layer: LayersMvt.ittosankakutenObj, opacity: 1, summary: LayersMvt.ittosankakutenSumm } },
         { text: 'ウィキメディア・コモンズ', data: { id: "wiki", layer: LayersMvt.wikiObj, opacity: 1, summary: LayersMvt.wikiSumm } },

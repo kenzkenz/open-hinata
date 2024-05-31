@@ -43,14 +43,15 @@ function yochienHoikuen(){
     crossOrigin: 'Anonymous',
     format: new MVT(),
     maxZoom:14,
-    url: "https://kenzkenz3.xsrv.jp/mvt/yochienhoikuen2/{z}/{x}/{y}.mvt"
+    url: "https://kenzkenz3.xsrv.jp/mvt/yochienhoikuen/{z}/{x}/{y}.mvt"
   });
   this.style = yochienHoikuenStyleFunction()
   this.maxResolution = 152.874057 //zoom10
   // this.declutter = true
   // this.overflow = true
 }
-export const yochienHoikuenSumm = "<a href='' target='_blank'></a>";
+export const yochienHoikuenSumm = "<a href='https://nlftp.mlit.go.jp/ksj/gml/datalist/KsjTmplt-P14-v2_1.html' target='_blank'>国土数値情報</a>" +
+    "<br><a href='https://nlftp.mlit.go.jp/ksj/gml/datalist/KsjTmplt-P29-v2_0.html' target='_blank'>国土数値情報</a>";
 export const yochienHoikuenMvtObj = {};
 for (let i of mapsStr) {
   yochienHoikuenMvtObj[i] = new VectorTileLayer(new yochienHoikuen())
@@ -90,7 +91,6 @@ function yochienHoikuenStyleFunction() {
     } else {
       text = prop.P14_008
     }
-    console.log(prop.P14_008)
     const styles = [];
     let font
     if (zoom >= 17) {
@@ -118,7 +118,7 @@ function yochienHoikuenStyleFunction() {
       })
     });
     styles.push(iconStyle);
-    if(zoom>=13) {
+    if(zoom>=14) {
       styles.push(textStyle);
     }
     return styles;
