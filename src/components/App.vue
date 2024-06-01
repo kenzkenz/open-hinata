@@ -1953,6 +1953,10 @@
         border-radius: 0;
         margin-top: -12.5px;
       }
+      .vue-slider-dot-handle{
+        width: 150%!important;
+        border-radius:0!important;
+      }
     }
     input[type=range]:focus::-webkit-slider-runnable-track {
         background: #B6B6B6;

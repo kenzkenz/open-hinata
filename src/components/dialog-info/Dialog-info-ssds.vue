@@ -229,10 +229,10 @@ export default {
 </style>
 <style>
 
-@media screen and (max-width:480px) {
-  .vue-slider-dot-handle{
-    width: 150%!important;
-    border-radius:0!important;
-  }
-}
+/*@media screen and (max-width:480px) {*/
+/*  .vue-slider-dot-handle{*/
+/*    width: 150%!important;*/
+/*    border-radius:0!important;*/
+/*  }*/
+/*}*/
 </style>

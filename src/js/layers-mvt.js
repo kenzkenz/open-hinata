@@ -33,6 +33,11 @@ const ru2 = string => {
     return string
   }
 }
+String.prototype.trunc =
+    String.prototype.trunc ||
+    function (n) {
+      return this.length > n ? this.substr(0, n - 1) + '...' : this.substr(0);
+    }
 // const mapsStr = ['map01','map02','map03','map04'];
 const mapsStr = ['map01','map02'];
 // ----------------------------------------------------------------------------
@@ -97,6 +102,7 @@ function yochienHoikuenStyleFunction() {
       font = "20px sans-serif"
     } else {
       font = "14px sans-serif"
+      text = text.trunc(8)
     }
     const iconStyle = new Style({
       image: new Icon({
