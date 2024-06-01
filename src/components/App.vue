@@ -1626,11 +1626,14 @@
                    '<p>国勢調査小地域の人口ピラミッドはこちら「' +
                    '<a href="https://kenzkenz.xsrv.jp/open-hinata/#s3PHDc" target="_blank">R2国勢調査小地域人口ピラミッド</a>' +
                    '」' +
-                   '<p>1kmメッシュの人口を追加しました。「' +
-                   '<a href="https://kenzkenz.xsrv.jp/open-hinata/#s0PngJ" target="_blank">2020人口1km</a>' +
+                   '<p>幼稚園、保育園を追加しました。「' +
+                   '<a href="https://kenzkenz.xsrv.jp/open-hinata/#soQYVN" target="_blank">R03幼稚園、保育園</a>' +
                     '」' +
-                   '<p>100mメッシュの人口を追加しました。「' +
-                   '<a href="https://kenzkenz.xsrv.jp/open-hinata/#s8KTIM" target="_blank">2020人口100m(簡易)</a>' +
+                   '<p>医療機関を追加しました。「' +
+                   '<a href="https://kenzkenz.xsrv.jp/open-hinata/#sBxRw9" target="_blank">R02医療機関</a>' +
+                    '」' +
+                   '<p>大規模盛土造成地を追加しました。「' +
+                   '<a href="https://kenzkenz.xsrv.jp/open-hinata/#svIpdT" target="_blank">R05大規模盛土造成地</a>' +
                     '」' +
                    '<br>是非ご覧ください。',
             title: 'お知らせ',
@@ -1890,7 +1893,7 @@
 </style>
 <style>
     html {
-      touch-action: none;
+      touch-action: none!important;
     }
     #modal1 .vm--container{
       z-index: 10002;

@@ -1163,7 +1163,8 @@ export function popUp(map,layers,features,overlay,evt,content) {
       width = 200
       cont = '<div style=width:' + width + 'px;>' +
           '<h4>' + zoseiText + '</h4>' +
-          '<p>' + prop.A54_003 + prop.A54_006 + '</p>' +
+          '<p>' + prop.A54_003 + prop.A54_005 + '</p>' +
+          '<p>盛り土番号=' + prop.A54_006 + '</p>' +
           streetView +
           '</div>'
       break
