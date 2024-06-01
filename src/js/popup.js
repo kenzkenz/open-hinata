@@ -1139,6 +1139,33 @@ export function popUp(map,layers,features,overlay,evt,content) {
           '<p>' + ru(address) + '</p>' +
           '</div>'
       break
+    case 'iryoMvt':
+      width = 300
+      cont = '<div style=width:300px;>' +
+          '<h4>' + prop.P04_002 + '</h4>' +
+          '<p>' + prop.P04_003 + '</p>' +
+          '<p>' + prop.P04_004 + '</p>' +
+          '</div>'
+      break
+    case 'zoseiMvt':
+      let zoseiText
+      switch (prop.A54_001) {
+        case '1':
+          zoseiText = '谷埋め型'
+          break
+        case '2':
+          zoseiText = '腹付け型'
+          break
+        case '9':
+          zoseiText = '区分をしていない'
+          break
+      }
+      width = 200
+      cont = '<div style=width:' + width + 'px;>' +
+          '<h4>' + zoseiText + '</h4>' +
+          '<p>' + prop.A54_003 + prop.A54_005 + prop.A54_006 + '</p>' +
+          '</div>'
+      break
   }
   function popupCenter() {
     if (width) {

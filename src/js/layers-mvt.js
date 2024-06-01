@@ -39,7 +39,200 @@ String.prototype.trunc =
       return this.length > n ? this.substr(0, n - 1) + '...' : this.substr(0);
     }
 // const mapsStr = ['map01','map02','map03','map04'];
-const mapsStr = ['map01','map02'];
+const mapsStr = ['map01','map02']
+// 大規模盛土造成地データ-----------------------------------------------------------------------
+function zoseiMvt(){
+  this.name = 'zoseiMvt'
+  // this.className = 'zoseiMvt'
+  this.source = new VectorTileSource({
+    crossOrigin: 'Anonymous',
+    format: new MVT(),
+    maxZoom:14,
+    url: "https://kenzkenz3.xsrv.jp/mvt/zosei/{z}/{x}/{y}.mvt"
+  });
+  this.style = zoseiStyleFunction()
+  this.maxResolution = 152.874057 //zoom10
+  // this.declutter = true
+  // this.overflow = true
+}
+export const zoseiSumm = "<a href='https://nlftp.mlit.go.jp/ksj/gml/datalist/KsjTmplt-A54-2023.html' target='_blank'>国土数値情報</a>"
+export const zouseiMvtObj = {};
+for (let i of mapsStr) {
+  zouseiMvtObj[i] = new VectorTileLayer(new zoseiMvt())
+}
+// ----------------------------------------------------------------------------
+function zoseiRaster() {
+  this.preload = Infinity
+  this.source = new XYZ({
+    url: 'https://kenzkenz3.xsrv.jp/zosei/{z}/{x}/{y}.png',
+    crossOrigin: 'anonymous',
+    minZoom: 0,
+    maxZoom: 11
+  })
+  this.minResolution = 152.874057 //zoom10
+}
+// -----------------------------------------------------
+export const zoseiRasterObj = {};
+for (let i of mapsStr) {
+  zoseiRasterObj[i] = new TileLayer(new zoseiRaster())
+}
+export const zoseiObj = {};
+for (let i of mapsStr) {
+  zoseiObj[i] = new LayerGroup({
+    layers: [
+      zoseiRasterObj[i],
+      zouseiMvtObj[i]
+    ]
+  })
+  zoseiObj[i].values_['pointer'] = true
+  zoseiObj[i].values_['multiply'] = true
+}
+// -------------------------------------------------------------------
+function zoseiStyleFunction() {
+  return function (feature, resolution) {
+    const zoom = getZoom(resolution);
+    const prop = feature.getProperties();
+    const styles = [];
+    let color
+    let text
+    switch (prop.A54_001) {
+      case '1':
+        color = 'rgb(179,253,165)'
+        text = '谷埋め型'
+        break
+      case '2':
+        color = 'rgb(155,155,248)'
+        text = '腹付け型'
+        break
+      case '9':
+        color = 'rgb(0,255,0)'
+        text = '区分をしていない'
+        break
+    }
+    const polygonStyle = new Style({
+      fill: new Fill({
+        color: color
+        // color: 'rgba(0,0,0,0)'
+      }),
+      stroke: new Stroke({
+        color: "black",
+        width: 1
+      })
+    })
+    const textStyle = new Style({
+      text: new Text({
+        font: "12px sans-serif",
+        text: text,
+        fill: new Fill({
+          color: 'black'
+        }),
+        stroke: new Stroke({
+          color: "white",
+          width: 3
+        }),
+        exceedLength:true
+      })
+    });
+    styles.push(polygonStyle);
+    if (zoom >= 13)styles.push(textStyle);
+    return styles;
+  }
+}
+// ----------------------------------------------------------------------------
+function iryoMvt(){
+  this.name = 'iryoMvt'
+  this.className = 'iryoMvt'
+  this.source = new VectorTileSource({
+    crossOrigin: 'Anonymous',
+    format: new MVT(),
+    maxZoom:14,
+    url: "https://kenzkenz3.xsrv.jp/mvt/iryo/{z}/{x}/{y}.mvt"
+  });
+  this.style = iryoStyleFunction()
+  this.maxResolution = 152.874057 //zoom10
+  // this.declutter = true
+  // this.overflow = true
+}
+export const iryoSumm = "<a href='https://nlftp.mlit.go.jp/ksj/gml/datalist/KsjTmplt-P04-v3_0.html' target='_blank'>国土数値情報</a>"
+export const iryoMvtObj = {};
+for (let i of mapsStr) {
+  iryoMvtObj[i] = new VectorTileLayer(new iryoMvt())
+}
+function iryoRaster () {
+  this.source = new XYZ({
+    url: 'https://kenzkenz3.xsrv.jp/iryoraster/{z}/{x}/{y}.png',
+    crossOrigin: 'Anonymous',
+    minZoom: 0,
+    maxZoom: 11
+  })
+  this.minResolution = 152.874057 //zoom10
+}
+export const iryoRasterObj = {};
+for (let i of mapsStr) {
+  iryoRasterObj[i] = new TileLayer(new iryoRaster())
+}
+export const iryoObj = {};
+for (let i of mapsStr) {
+  iryoObj[i] = new LayerGroup({
+    layers: [
+      iryoMvtObj[i],
+      iryoRasterObj[i]
+    ]
+  })
+  iryoObj[i].values_['pointer'] = true
+}
+//--------------------------
+function iryoStyleFunction() {
+  return function (feature, resolution) {
+    const zoom = getZoom(resolution)
+    const prop = feature.getProperties()
+    let text = prop.P04_002
+    const styles = []
+    let font
+    if (zoom >= 18) {
+      font = "20px sans-serif"
+    } else {
+      font = "14px sans-serif"
+      text = text.trunc(8)
+    }
+    let color = 'red'
+    switch (prop.P04_001) {
+      case 1:
+        color = 'red'
+        break
+      case 2:
+        color = 'green'
+        break
+      case 3:
+        color = 'blue'
+        break
+    }
+    const iconStyle = new Style({
+      image: new Icon({
+        // anchor: [0.5, 1],
+        src: require('@/assets/icon/whitecircle.png'),
+        color: color,
+        scale: zoom>=15 ? 1.5: 1
+      })
+    })
+    const textStyle = new Style({
+      text: new Text({
+        font: font,
+        text: text,
+        offsetY: 18,
+        stroke: new Stroke({
+          color: "white",
+          width: 3
+        })
+      })
+    });
+    styles.push(iconStyle);
+    if(zoom>=16) {
+      styles.push(textStyle);
+    }
+    return styles;
+  }
+}
 // ----------------------------------------------------------------------------
 function yochienHoikuen(){
   this.name = 'yochienHoikuen'
@@ -98,7 +291,7 @@ function yochienHoikuenStyleFunction() {
     }
     const styles = [];
     let font
-    if (zoom >= 17) {
+    if (zoom >= 18) {
       font = "20px sans-serif"
     } else {
       font = "14px sans-serif"
@@ -124,7 +317,7 @@ function yochienHoikuenStyleFunction() {
       })
     });
     styles.push(iconStyle);
-    if(zoom>=14) {
+    if(zoom>=16) {
       styles.push(textStyle);
     }
     return styles;
@@ -524,18 +717,11 @@ for (let i of mapsStr) {
 }
 export const syochiiki2020Summ = "<a href='https://www.e-stat.go.jp/stat-search/files?page=1&toukei=00200521&tstat=000001136464&cycle=0&tclass1=000001136472' target='_blank'>e-StatI</a>";
 // -------------------------------------------------------------------
-const syochiikiColor = d3.scaleLinear()
-    .domain([0, 10])
-    .range(["white", "blue"]);
 function syochiikiStyleFunction() {
   return function (feature, resolution) {
     const zoom = getZoom(resolution);
     const prop = feature.getProperties();
-    // console.log(prop.JINKO/prop.AREA*1000)
     const styles = [];
-    // let id = prop.KEY_CODE
-    // const rgb = d3.rgb(syochiikiColor(prop.JINKO/prop.AREA*1000))
-    // const rgba = "rgba(" + rgb.r + "," + rgb.g + "," + rgb.b + ",0.8)"
     const polygonStyle = new Style({
       fill: new Fill({
         // color: rgba
@@ -571,6 +757,7 @@ function syochiikiStyleFunction() {
     return styles;
   }
 }
+// ---------------------------------------------------------------------
 function Syochiiki2020Raster () {
   this.preload = Infinity
   this.source = new XYZ({

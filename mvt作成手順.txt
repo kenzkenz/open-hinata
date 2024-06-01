@@ -284,7 +284,7 @@ tippecanoe -pk -pf -f -e tile 47.geojson
 tippecanoe -pk -pf -f -e tile 100mmesh.geojson
 tippecanoe -pk -rg -pf -f -e tile y.geojson
 tippecanoe -pk -rg -pf -f -e tile i.geojson
-
+tippecanoe -pk -pf -f -e tile z.geojson
 $ cd tile
 $ gzip -d -v -r -S .pbf *
 $ find . -type f -exec mv -v '{}' '{}'.mvt \;
