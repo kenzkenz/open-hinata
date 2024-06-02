@@ -10,6 +10,10 @@
         :interval="100"
         :tooltip-placement="'bottom'"
     ></vue-slider>
+    <div style="text-align: center;font-size: small">
+      <label for="paint-check-250m">塗りつぶし</label><input id="paint-check-250m" type="checkbox" v-model="s_paint" @change="paintChangge">
+    </div>
+    <hr>
     出典 <span v-html="item.summary"></span>
   </div>
 </template>
@@ -29,6 +33,15 @@ export default {
     }
   },
   computed: {
+    s_paint: {
+      get() {
+        return this.$store.state.info.paintCheck250m[this.mapName]
+      },
+      set(value) {
+        this.$store.state.info.paintCheck250m[this.mapName] = value
+        LayersMvt.mesh250Obj[this.mapName].getSource().changed()
+      }
+    },
     s_jinko: {
       get() { return this.$store.state.info.jinko250m[this.mapName] },
       set(value) {
@@ -38,9 +51,15 @@ export default {
     },
   },
   methods: {
+    paintChangge (value) {
+      console.log(this.s_paint)
+      LayersMvt.mesh100Obj[this.mapName].getSource().changed()
+      this.storeUpdate()
+    },
     storeUpdate () {
       const jinko = this.s_jinko
-      this.$store.commit('base/updateListPart',{mapName: this.mapName, id:this.item.id, values: [jinko]});
+      const paint = this.s_paint
+      this.$store.commit('base/updateListPart',{mapName: this.mapName, id:this.item.id, values: [jinko,paint]});
       permalink.moveEnd();
     },
     inputJinko () {

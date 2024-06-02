@@ -488,6 +488,7 @@ export const mesh250ObjSumm = "" +
 function mesh250ColorFunction(mapName) {
   return function (feature, resolution) {
     const jinkoMax = Number(store.state.info.jinko250m[mapName])
+    const paintCheck = store.state.info.paintCheck250m[mapName]
     // const jinkoMax = 3000
     const mesh100Color = d3.scaleLinear()
         .domain([
@@ -501,7 +502,8 @@ function mesh250ColorFunction(mapName) {
     const prop = feature.getProperties();
     const styles = [];
     const rgb = d3.rgb(mesh100Color(prop.jinko))
-    const rgba = "rgba(" + rgb.r + "," + rgb.g + "," + rgb.b + ",0.7)"
+    let rgba = "rgba(" + rgb.r + "," + rgb.g + "," + rgb.b + ",0.7)"
+    if (!paintCheck) rgba = 'rgba(0,0,0,0)'
     const polygonStyle = new Style({
       fill: new Fill({
         color: rgba
@@ -667,6 +669,7 @@ export const mesh1kmObjSumm = "<a href='https://www.e-stat.go.jp/gis/statmap-sea
 function mesh1kColorFunction(mapName) {
   return function (feature, resolution) {
     const jinkoMax = Number(store.state.info.jinko[mapName])
+    const paintCheck = store.state.info.paintCheck1k[mapName]
     const mesh1kColor = d3.scaleLinear()
         // .domain([0,10000,20000,30000,33000])
         .domain([
@@ -681,7 +684,8 @@ function mesh1kColorFunction(mapName) {
     const prop = feature.getProperties();
     const styles = [];
     const rgb = d3.rgb(mesh1kColor(prop.jinko))
-    const rgba = "rgba(" + rgb.r + "," + rgb.g + "," + rgb.b + ",0.7)"
+    let rgba = "rgba(" + rgb.r + "," + rgb.g + "," + rgb.b + ",0.7)"
+    if (!paintCheck) rgba = 'rgba(0,0,0,0)'
     const polygonStyle = new Style({
       fill: new Fill({
         color: rgba

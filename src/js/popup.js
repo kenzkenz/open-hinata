@@ -10,10 +10,6 @@ export function popUp(map,layers,features,overlay,evt,content) {
   let width
   const geoType = features[0].getGeometry().getType()
   const geometry = features[0].getGeometry()
-  // console.log(layers[0].get('name'))
-  // console.log(coordinate)
-  // console.log(geoType)
-  // console.log(features[0])
   const prop = features[0].getProperties();
   console.log(prop)
   let lonLat
@@ -24,8 +20,6 @@ export function popUp(map,layers,features,overlay,evt,content) {
     coordinate = [geometry.extent_[0],geometry.extent_[1]]
     lonLat = transform([geometry.extent_[0],geometry.extent_[1]], "EPSG:3857", "EPSG:4326")
   }
-  // console.log(coordinate)
-  // console.log(lonLat)
   const ru = string => {
     if (string === undefined) {
       return ''
@@ -43,13 +37,11 @@ export function popUp(map,layers,features,overlay,evt,content) {
   const lon = lonLat[0]
   const lat = lonLat[1]
   const streetView = '<a href="https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=' + lat + ',' + lon + '&hl=ja" target="_blank">Street Viewを開く</a></div>'
-  console.log(prop)
   switch (layers[0].get('name')) {
     // 小学校区
     case 'syougakkoukuH28':
     case 'syougakkoukuH22':
       width = 200
-      console.log(prop)
       if(prop.A27_001) {
         cont = '<div style=width:200px>市区町村コード＝' + prop.A27_001 + '<br>' +
             '設置主体=' + prop.A27_002 + '<br>' +

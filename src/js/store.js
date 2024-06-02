@@ -292,6 +292,18 @@ const moduleInfo = {
       map03: true,
       map04: true
     },
+    paintCheck250m: {
+      map01: true,
+      map02: true,
+      map03: true,
+      map04: true
+    },
+    paintCheck1k: {
+      map01: true,
+      map02: true,
+      map03: true,
+      map04: true
+    },
     seaLevel10m: {
       map01: 0,
       map02: 0,
@@ -414,7 +426,12 @@ const moduleInfo = {
           variable = 'dokujiUrl'
           break
         case 'jinko':
-          variable = 'jinko'
+          if (payload.order === 0) {
+            variable = 'jinko'
+          } else if (payload.order === 1){
+            variable = 'paintCheck1k'
+          }
+          // variable = 'jinko'
           break
         case 'jinko100m':
           if (payload.order === 0) {
@@ -425,7 +442,12 @@ const moduleInfo = {
           // variable = 'jinko100m'
           break
         case 'jinko250m':
-          variable = 'jinko250m'
+          if (payload.order === 0) {
+            variable = 'jinko250m'
+          } else if (payload.order === 1){
+            variable = 'paintCheck250m'
+          }
+          // variable = 'jinko250m'
           break
       }
       state[variable][payload.mapName] = payload.value

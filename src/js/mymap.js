@@ -652,14 +652,14 @@ export function initMap (vm) {
             const layersObj = [];
             //マウスがあたった箇所のレイヤーを複数取得する
             (map).forEachLayerAtPixel(pixel,function(layer, rgba){
-                console.log(layer.get('name'))
+                // console.log(layer.get('name'))
                 layersObj.push({
                     layer,
                     rgba
                 });
             })
             layersObj.forEach(object =>{
-                console.log(object.layer.get('name'))
+                // console.log(object.layer.get('name'))
                 const getColor0 =  (event,server,popup,zoom) =>{
                     let z
                     if (zoom) {
@@ -1120,7 +1120,8 @@ export function initMap (vm) {
             evt.map.forEachFeatureAtPixel(pixel,function(feature,layer){
                 features.push(feature);
                 layers.push(layer);
-            });
+            })
+            console.log(layers,features)
             if(features.length){
                 if(layers[0]) {
                     PopUp.popUp(evt.map,layers,features,overlay[i],evt,content)

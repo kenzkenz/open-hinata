@@ -10,7 +10,9 @@
         :interval="100"
         :tooltip-placement="'bottom'"
     ></vue-slider>
-    塗りつぶし<input type="checkbox" v-model="s_paint" @change="paintChangge">
+    <div style="text-align: center;font-size: small">
+      <label for="paint-check-100m">塗りつぶし</label><input id="paint-check-100m" type="checkbox" v-model="s_paint" @change="paintChangge">
+    </div>
     <hr>
     出典 <span v-html="item.summary"></span>
   </div>
