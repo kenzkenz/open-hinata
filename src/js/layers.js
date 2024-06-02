@@ -13899,6 +13899,9 @@ export const Layers =
       ]},
     { text: 'その他',
       children: [
+        { text: 'test', data: { id: "kouzuimesyu9syu", layer: LayersMvt.kozuiMesh9syuMvtObj, opacity: 1, summary: LayersMvt.kozuiMesh9syuSumm} },
+
+
         { text: 'ラスタータイルtest', data: { id: "dokuji", layer: dokujiObj, opacity: 1, summary: LayersMvt.busSumm, component: {name: 'dokuji', values:[]}} },
         { text: '一等三角点', data: { id: "itto", layer: LayersMvt.ittosankakutenObj, opacity: 1, summary: LayersMvt.ittosankakutenSumm } },
         { text: 'ウィキメディア・コモンズ', data: { id: "wiki", layer: LayersMvt.wikiObj, opacity: 1, summary: LayersMvt.wikiSumm } },

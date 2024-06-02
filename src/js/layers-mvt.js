@@ -40,6 +40,28 @@ String.prototype.trunc =
     }
 // const mapsStr = ['map01','map02','map03','map04'];
 const mapsStr = ['map01','map02']
+// メッシュ洪水-----------------------------------------------------------------------
+function kozuiMesh9syu(){
+  this.name = 'zoseiMvt'
+  // this.className = 'zoseiMvt'
+  this.source = new VectorTileSource({
+    crossOrigin: 'Anonymous',
+    format: new MVT(),
+    maxZoom:14,
+    url: "https://kenzkenz3.xsrv.jp/mvt/kozui/9syu/{z}/{x}/{y}.mvt"
+  });
+  // this.style = zoseiStyleFunction()
+  this.maxResolution = 152.874057 //zoom10
+  // this.declutter = true
+  // this.overflow = true
+}
+export const kozuiMesh9syuSumm = "<a href='l' target='_blank'>国土数値情報</a>"
+export const kozuiMesh9syuMvtObj = {};
+for (let i of mapsStr) {
+  kozuiMesh9syuMvtObj[i] = new VectorTileLayer(new kozuiMesh9syu())
+}
+
+
 // 大規模盛土造成地データ-----------------------------------------------------------------------
 function zoseiMvt(){
   this.name = 'zoseiMvt'
