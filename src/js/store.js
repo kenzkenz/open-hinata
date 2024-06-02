@@ -286,6 +286,12 @@ const moduleInfo = {
       map03: true,
       map04: true
     },
+    paintCheck100m: {
+      map01: true,
+      map02: true,
+      map03: true,
+      map04: true
+    },
     seaLevel10m: {
       map01: 0,
       map02: 0,
@@ -411,7 +417,13 @@ const moduleInfo = {
           variable = 'jinko'
           break
         case 'jinko100m':
-          variable = 'jinko100m'
+          if (payload.order === 0) {
+            variable = 'jinko100m'
+          } else if (payload.order === 1){
+            variable = 'paintCheck100m'
+          }
+          // variable = 'jinko100m'
+          break
         case 'jinko250m':
           variable = 'jinko250m'
           break

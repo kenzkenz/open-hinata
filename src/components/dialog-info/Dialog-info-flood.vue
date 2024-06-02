@@ -123,15 +123,15 @@
         }
       },
       colorChange10m () {
-        Layers.flood10Obj['map01'].getSource().changed();
-        Layers.flood10Obj['map02'].getSource().changed();
-        Layers.flood10Obj['map03'].getSource().changed();
-        Layers.flood10Obj['map04'].getSource().changed()
+        Layers.flood10Obj['map01'].getSource().changed()
+        Layers.flood10Obj['map02'].getSource().changed()
+        // Layers.flood10Obj['map03'].getSource().changed()
+        // Layers.flood10Obj['map04'].getSource().changed()
 
-        Layers.floodSinpleObj['map01'].getSource().changed();
-        Layers.floodSinpleObj['map02'].getSource().changed();
-        Layers.floodSinpleObj['map03'].getSource().changed();
-        Layers.floodSinpleObj['map04'].getSource().changed()
+        Layers.floodSinpleObj['map01'].getSource().changed()
+        Layers.floodSinpleObj['map02'].getSource().changed()
+        // Layers.floodSinpleObj['map03'].getSource().changed()
+        // Layers.floodSinpleObj['map04'].getSource().changed()
       },
       colorsShow (cororM) {
         if (this.colorM === cororM) {
@@ -145,11 +145,11 @@
       storeUpdate (dem) {
         let lebel; let selected; let land;
         if (dem === '5m') {
-          lebel = this.s_seaLevel5m;
-          selected = this.s_selected5m;
+          lebel = this.s_seaLevel5m
+          selected = this.s_selected5m
         } else {
-          lebel = this.s_seaLevel10m;
-          selected = this.s_selected10m;
+          lebel = this.s_seaLevel10m
+          selected = this.s_selected10m
           land = this.s_land
         }
         this.$store.commit('base/updateListPart',{mapName: this.mapName, id:this.item.id, values: [lebel, selected, land]});

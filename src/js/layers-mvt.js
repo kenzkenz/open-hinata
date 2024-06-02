@@ -579,6 +579,7 @@ export const mesh100ObjSumm = "<div style='font-size: small'>" +
 function mesh100ColorFunction(mapName) {
   return function (feature, resolution) {
     const jinkoMax = Number(store.state.info.jinko100m[mapName])
+    const paintCheck = store.state.info.paintCheck100m[mapName]
     // const jinkoMax = 1300
     const mesh100Color = d3.scaleLinear()
         .domain([
@@ -592,7 +593,8 @@ function mesh100ColorFunction(mapName) {
     const prop = feature.getProperties();
     const styles = [];
     const rgb = d3.rgb(mesh100Color(prop.PopT))
-    const rgba = "rgba(" + rgb.r + "," + rgb.g + "," + rgb.b + ",0.7)"
+    let rgba = "rgba(" + rgb.r + "," + rgb.g + "," + rgb.b + ",0.7)"
+    if (!paintCheck) rgba = 'rgba(0,0,0,0)'
     const polygonStyle = new Style({
       fill: new Fill({
         color: rgba

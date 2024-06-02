@@ -10,6 +10,8 @@
         :interval="100"
         :tooltip-placement="'bottom'"
     ></vue-slider>
+    塗りつぶし<input type="checkbox" v-model="s_paint" @change="paintChangge">
+    <hr>
     出典 <span v-html="item.summary"></span>
   </div>
 </template>
@@ -29,19 +31,34 @@ export default {
     }
   },
   computed: {
+    s_paint: {
+      get() {
+        return this.$store.state.info.paintCheck100m[this.mapName]
+      },
+      set(value) {
+        this.$store.state.info.paintCheck100m[this.mapName] = value
+        LayersMvt.mesh100Obj[this.mapName].getSource().changed()
+      }
+    },
     s_jinko: {
       get() { return this.$store.state.info.jinko100m[this.mapName] },
       set(value) {
         this.$store.state.info.jinko100m[this.mapName] = value
-        LayersMvt.mesh100Obj[this.mapName].getSource().changed();
+        LayersMvt.mesh100Obj[this.mapName].getSource().changed()
       }
     },
   },
   methods: {
+    paintChangge (value) {
+      console.log(this.s_paint)
+      LayersMvt.mesh100Obj[this.mapName].getSource().changed()
+      this.storeUpdate()
+    },
     storeUpdate () {
       const jinko = this.s_jinko
-      this.$store.commit('base/updateListPart',{mapName: this.mapName, id:this.item.id, values: [jinko]});
-      permalink.moveEnd();
+      const paint = this.s_paint
+      this.$store.commit('base/updateListPart',{mapName: this.mapName, id:this.item.id, values: [jinko,paint]});
+      permalink.moveEnd()
     },
     inputJinko () {
       MyMap.history ('100mmesh人口')
