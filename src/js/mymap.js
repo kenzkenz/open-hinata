@@ -645,6 +645,22 @@ export function initMap (vm) {
                     rgba
                 });
             })
+            let layerNames = layersObj.filter((object) =>{
+                console.log(object.layer.get('name'))
+                if (object.layer.get('name') === 'drawSource') return
+                if (object.layer.get('name') === 'drawLayer2') return
+                if (object.layer.get('name') === undefined) return
+                return object
+            })
+            layerNames = layerNames.map((object) =>{
+                return object.layer.get('name')
+            })
+            console.log(layerNames)
+
+
+
+
+
             layersObj.forEach(object =>{
                 // console.log(object.layer.get('name'))
                 const getColor0 =  (event,server,popup,zoom) =>{
