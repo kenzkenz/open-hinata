@@ -208,12 +208,12 @@ const moduleBase = {
     pushDialogsInfo (state,payload) {
       const dialogs = state.dialogsInfo[payload.mapName];
       dialogs.push(payload.dialog)
-      console.log(payload.dialog)
+      // console.log(payload.dialog)
     },
     pushDialogs2 (state,payload) {
       const dialogs = state.dialogs2[payload.mapName];
       dialogs.push(payload.dialog)
-      console.log(payload.dialog)
+      // console.log(payload.dialog)
     },
 
     deleteDialogsInfo (state,payload) {

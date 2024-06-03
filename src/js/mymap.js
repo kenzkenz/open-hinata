@@ -637,6 +637,7 @@ export function initMap (vm) {
             // const hazardLayers = layers0.filter(el => el.get('pointer'));
             // if (hazardLayers.length===0) return
             //-------------------------------------------------------------------------
+            d3.select('.loadingImg').style("display","block")
             const pixel = (map).getPixelFromCoordinate(evt.coordinate);
             const layersObj = [];
             //マウスがあたった箇所のレイヤーを複数取得する
@@ -648,7 +649,6 @@ export function initMap (vm) {
                 });
             })
             let layerNames = layersObj.filter((object) =>{
-                console.log(object.layer.get('name'))
                 if (object.layer.get('name') === 'drawSource') return
                 if (object.layer.get('name') === 'drawLayer2') return
                 if (object.layer.get('name') === undefined) return
@@ -657,9 +657,7 @@ export function initMap (vm) {
             layerNames = layerNames.map((object) =>{
                 return object.layer.get('name')
             })
-            console.log(layerNames)
-
-            function getColor123( rx, ry, z, server,then ) {
+            function getRgb( rx, ry, z, server) {
                 return new Promise(resolve => {
                     const x = Math.floor( rx )				// タイルX座標
                     const y = Math.floor( ry )				// タイルY座標
@@ -668,25 +666,33 @@ export function initMap (vm) {
                     const img = new Image();
                     img.crossOrigin = 'anonymous';
                     img.alt = "";
+
+                    // ----------------------------------------
+                    function load(_url){
+                        var xhr;
+                        xhr = new XMLHttpRequest();
+                        xhr.open("HEAD", _url,false);
+                        xhr.send(null);
+                        return xhr.status;
+                    }
+                    var url = server + z + '/' + x + '/' + y + '.png';
+                    if(load(url) != 200){
+                        resolve('err')
+                    }
+                    // ----------------------------------------
                     img.onload = function(){
                         const canvas = document.createElement( 'canvas' )
                         const context = canvas.getContext( '2d' )
-                        let  h = 'e'
                         canvas.width = 1;
                         canvas.height = 1;
                         context.drawImage( img, i, j, 1, 1, 0, 0, 1, 1 );
                         const rgb = context.getImageData( 0, 0, 1, 1 ).data;
-                        console.log(rgb)
                         resolve(rgb)
-                        // then( rgb );
                     }
                     img.src = server + z + '/' + x + '/' + y + '.png';
                 })
             }
-
-
-
-            async function getColor00(event,server,zoom,func) {
+            async function getRgb0(event,server,zoom,func) {
             // const getColor00 =  (event,server,zoom) =>{
                 let z
                 if (zoom) {
@@ -698,18 +704,14 @@ export function initMap (vm) {
                 const R = 6378137;// 地球の半径(m);
                 const x = ( 0.5 + coord[ 0 ] / ( 2 * R * Math.PI ) ) * Math.pow( 2, z );
                 const y = ( 0.5 - coord[ 1 ] / ( 2 * R * Math.PI ) ) * Math.pow( 2, z );
-                const e = event;
-                // const server = 'https://disaportaldata.gsi.go.jp/raster/01_flood_l2_shinsuishin/'
-                // document.querySelector('#' + mapName + ' .ol-viewport').style.cursor = "wait"
-                const result = await getColor123( x, y, z, server,   function( rgb ) {
-                    // console.log(rgb)
-                    // abc.push = rgb
-                } );
-                rgbaArr.push(result)
-                funcArr.push(func)
-                console.log(result)
+                const result = await getRgb( x, y, z, server);
+                if (result) {
+                    rgbaArr.push(result)
+                    funcArr.push(func)
+                }
             }
-            async function created() {
+            async function popupCreate() {
+                // d3.select('.loadingImg').style("display","block")
                 const fetchData = layerNames.map((layerName) => {
                     let server
                     let zoom
@@ -718,26 +720,97 @@ export function initMap (vm) {
                         case 'shinsuishin':
                             server = 'https://disaportaldata.gsi.go.jp/raster/01_flood_l2_shinsuishin/'
                             zoom = 17
-                            func = PopUp.popUpShinsuishin2
+                            func = PopUp.popUpShinsuishin
+                            break
+                        case 'shinsuishinK':
+                            server = 'https://disaportaldata.gsi.go.jp/raster/01_flood_l1_shinsuishin_newlegend_kuni_data/'
+                            zoom = 17
+                            func = PopUp.popUpShinsuishin
+                            break
+                        case 'tunami':
+                            server = 'https://disaportaldata.gsi.go.jp/raster/04_tsunami_newlegend_data/'
+                            zoom = 17
+                            func = PopUp.popUpTunami
+                            break
+                        case 'keizoku':
+                            server = 'https://disaportaldata.gsi.go.jp/raster/01_flood_l2_keizoku_kuni_data/'
+                            zoom = 17
+                            func = PopUp.popUpKeizoku
+                            break
+                        case 'takasio':
+                            server = 'https://disaportaldata.gsi.go.jp/raster/03_hightide_l2_shinsuishin_data/'
+                            zoom = 17
+                            func = PopUp.popUpTakasio
+                            break
+                        case 'tameike':
+                            server = 'https://disaportal.gsi.go.jp/data/raster/07_tameike/'
+                            zoom = 17
+                            func = PopUp.popUpTameike
+                            break
+                        case 'ekizyouka':
+                            server = 'https://disaportal.gsi.go.jp/raster/08_03_ekijoka_zenkoku/'
+                            zoom = 15
+                            func = PopUp.popUpEkizyouka
+                            break
+                        case 'dosya':
+                            server = 'https://disaportaldata.gsi.go.jp/raster/05_dosekiryukeikaikuiki/'
+                            zoom = 17
+                            func = PopUp.popUpDosya
+                            break
+                        case 'doseki':
+                            server = 'https://disaportaldata.gsi.go.jp/raster/05_dosekiryukikenkeiryu/'
+                            zoom = 17
+                            func = PopUp.popUpDoseki
+                            break
+                        case 'kyuukeisya':
+                            server = 'https://disaportaldata.gsi.go.jp/raster/05_kyukeisyachihoukai/'
+                            zoom = 17
+                            func = PopUp.popUpKyuukeisya
+                            break
+                        case 'zisuberi':
+                            server = 'https://disaportaldata.gsi.go.jp/raster/05_jisuberikikenkasyo/'
+                            zoom = 17
+                            func = PopUp.popUpZisuberi
+                            break
+                        case 'nadare':
+                            server = 'https://disaportaldata.gsi.go.jp/raster/05_nadarekikenkasyo/'
+                            zoom = 17
+                            func = PopUp.popUpNadare
+                            break
+                        case 'jisin':
+                            server = 'https://maps.gsi.go.jp/xyz/jishindo_yosoku/'
+                            zoom = 15
+                            func = PopUp.popUpJisin
+                            break
+                        case 'morido':
+                            server = 'https://disaportaldata.gsi.go.jp/raster/daikiboumoritsuzouseichi/'
+                            zoom = 15
+                            func = PopUp.popUpMorido
+                            break
+                        case 'dojyou':
+                            server = 'https://soil-inventory.rad.naro.go.jp/tile/figure/'
+                            zoom = 12
+                            func = PopUp.popUpDojyou
+                            break
+                        case 'sitti':
+                            server = 'https://cyberjapandata.gsi.go.jp/xyz/swale/'
+                            zoom = 16
+                            func = PopUp.popUpTisitu
                             break
                     }
-                    if (server) return getColor00(evt,server,zoom,func)
+                    if (server) return getRgb0(evt,server,zoom,func)
                 })
                 await Promise.all([
                     ...fetchData
                 ])
                     .then((response) => {
-
                         const aaa = rgbaArr.map((rgba,i) =>{
                             return {'layerName':layerNames[i] ,'rgba':rgba,'func':funcArr[i]}
                         })
                         let html =''
                         aaa.forEach((value) =>{
-                            html += value.func(value.rgba)
-                            // console.log(value.func(value.rgba))
+                            if (value.func(value.rgba)) html += value.func(value.rgba)
                         })
-                        console.log(html)
-
                         overlay[i].setPosition(undefined)
                         const pixel = (evt.map).getPixelFromCoordinate(evt.coordinate);
                         const features = [];
@@ -746,275 +819,22 @@ export function initMap (vm) {
                             features.push(feature);
                             layers.push(layer);
                         })
-                        console.log(layers,features)
                         if(features.length) {
                             if (layers[0]) {
                                 PopUp.popUp(evt.map, layers, features, overlay[i], evt, content, html)
                                 rgbaArr = []
-                                return
+                                funcArr = []
                             }
                         } else {
                             PopUp.popUp(evt.map,null,null,overlay[i],evt,content, html)
                             rgbaArr = []
+                            funcArr = []
                         }
-
-
-
-
-                        // PopUp.popUp(evt.map,null,null,overlay[i],evt,content,html)
-                        // rgbaArr = []
+                        d3.select('.loadingImg').style("display","none")
                     })
             }
-            created()
-
-
-
-
-
-            // ------------------------------------------------------
-            layersObj.forEach(object =>{
-                // console.log(object.layer.get('name'))
-                const getColor0 =  (event,server,popup,zoom) =>{
-                    let z
-                    if (zoom) {
-                        z= zoom
-                    } else {
-                        z = Math.floor(map.getView().getZoom());
-                    }
-                    const coord = event.coordinate
-                    const R = 6378137;// 地球の半径(m);
-                    const x = ( 0.5 + coord[ 0 ] / ( 2 * R * Math.PI ) ) * Math.pow( 2, z );
-                    const y = ( 0.5 - coord[ 1 ] / ( 2 * R * Math.PI ) ) * Math.pow( 2, z );
-                    const e = event;
-                    // const server = 'https://disaportaldata.gsi.go.jp/raster/01_flood_l2_shinsuishin/'
-                    // document.querySelector('#' + mapName + ' .ol-viewport').style.cursor = "wait"
-                    getColor( x, y, z, server,   function( rgb ) {
-                        // const coordinate = evt.coordinate;
-                        // popup(rgb,coordinate)
-                        // const cont = store.state.base.popUpCont
-                        // content.innerHTML = cont
-                        // if (cont.includes('undefined') || cont==='') {
-                        //     overlay[i].setPosition(undefined)
-                        // } else {
-                        //     overlay[i].setPosition(coordinate);
-                        // }
-                    } );
-                }
-                switch (object.layer.get('name')){
-                    // case 'tunami':
-                    case 'shinsuishin':
-                        getColor0(evt,'https://disaportaldata.gsi.go.jp/raster/01_flood_l2_shinsuishin/',PopUp.popUpShinsuishin,17)
-                        break;
-                    case 'shinsuishinK':
-                        getColor0(evt,'https://disaportaldata.gsi.go.jp/raster/01_flood_l1_shinsuishin_newlegend_kuni_data/',PopUp.popUpShinsuishin,17)
-                        break;
-                    case 'tunami':
-                        getColor0(evt,'https://disaportaldata.gsi.go.jp/raster/04_tsunami_newlegend_data/',PopUp.popUpTunami,17)
-                        break;
-                    case 'keizoku':
-                        getColor0(evt,'https://disaportaldata.gsi.go.jp/raster/01_flood_l2_keizoku_kuni_data/',PopUp.popUpKeizoku,17)
-                        break;
-                    case 'takasio':
-                        getColor0(evt,'https://disaportaldata.gsi.go.jp/raster/03_hightide_l2_shinsuishin_data/',PopUp.popUpTakasio,17)
-                        break;
-                    case 'dosya':
-                        getColor0(evt,'https://disaportaldata.gsi.go.jp/raster/05_dosekiryukeikaikuiki/',PopUp.popUpDosya,17)
-                        break;
-                    case 'doseki':
-                        getColor0(evt,'https://disaportaldata.gsi.go.jp/raster/05_dosekiryukikenkeiryu/',PopUp.popUpDoseki,17)
-                        break;
-                    case 'kyuukeisya':
-                        // PopUp.popUpKyuukeisyai(object.rgba)
-                        getColor0(evt,'https://disaportaldata.gsi.go.jp/raster/05_kyukeisyachihoukai/',PopUp.popUpKyuukeisyai,17)
-                        break;
-                    case 'zisuberi':
-                        getColor0(evt,'https://disaportaldata.gsi.go.jp/raster/05_jisuberikikenkasyo/',PopUp.popUpZisuberi,17)
-                        break;
-                    case 'nadare':
-                        getColor0(evt,'https://disaportaldata.gsi.go.jp/raster/05_nadarekikenkasyo/',PopUp.popUpNadare,17)
-                        break;
-                    case 'tameike':
-                        getColor0(evt,'https://disaportal.gsi.go.jp/data/raster/07_tameike/',PopUp.popUpTameike,17)
-                        break;
-                    case 'ekizyouka':
-                        getColor0(evt,'https://disaportal.gsi.go.jp/raster/08_03_ekijoka_zenkoku/',PopUp.popUpEkizyouka,15)
-                        break;
-                    case 'ekizyouka01':
-                        getColor0(evt,'https://disaportal.gsi.go.jp/raster/08_03_ekijoka_pref/01_hokkai/',PopUp.popUpEkizyouka01,15)
-                        break;
-                    case 'ekizyouka02':
-                        getColor0(evt,'https://disaportal.gsi.go.jp/raster/08_03_ekijoka_pref/02_aomori/',PopUp.popUpEkizyouka02,15)
-                        break;
-                    case 'ekizyouka03':
-                        getColor0(evt,'https://disaportal.gsi.go.jp/raster/08_03_ekijoka_pref/03_iwate/',PopUp.popUpEkizyouka03,15)
-                        break;
-                    case 'ekizyouka04':
-                        getColor0(evt,'https://disaportal.gsi.go.jp/raster/08_03_ekijoka_pref/04_miyagi/',PopUp.popUpEkizyouka04,15)
-                        break;
-                    case 'ekizyouka05':
-                        getColor0(evt,'https://disaportal.gsi.go.jp/raster/08_03_ekijoka_pref/05_akita/',PopUp.popUpEkizyouka05,15)
-                        break;
-                    case 'ekizyouka06':
-                        getColor0(evt,'https://disaportal.gsi.go.jp/raster/08_03_ekijoka_pref/06_yamagata/',PopUp.popUpEkizyouka06,15)
-                        break;
-                    case 'ekizyouka07':
-                        getColor0(evt,'https://disaportal.gsi.go.jp/raster/08_03_ekijoka_pref/07_fukushima/',PopUp.popUpEkizyouka07,15)
-                        break;
-                    case 'ekizyouka08':
-                        getColor0(evt,'https://disaportal.gsi.go.jp/raster/08_03_ekijoka_pref/08_ibaraki/',PopUp.popUpEkizyouka08,15)
-                        break;
-                    case 'ekizyouka09':
-                        getColor0(evt,'https://disaportal.gsi.go.jp/raster/08_03_ekijoka_pref/09_tochigi/',PopUp.popUpEkizyouka09,15)
-                        break;
-                    case 'ekizyouka10':
-                        getColor0(evt,'https://disaportal.gsi.go.jp/raster/08_03_ekijoka_pref/10_gumma/',PopUp.popUpEkizyouka10,15)
-                        break;
-                    case 'ekizyouka12':
-                        getColor0(evt,'https://disaportal.gsi.go.jp/raster/08_03_ekijoka_pref/12_chiba/',PopUp.popUpEkizyouka12,15)
-                        break;
-                    case 'ekizyouka13':
-                        getColor0(evt,'https://disaportal.gsi.go.jp/raster/08_03_ekijoka_pref/13_tokyo/',PopUp.popUpEkizyouka13,15)
-                        break;
-                    case 'ekizyouka14':
-                        getColor0(evt,'https://disaportal.gsi.go.jp/raster/08_03_ekijoka_pref/14_kanagawa/',PopUp.popUpEkizyouka14,15)
-                        break;
-                    case 'ekizyouka16':
-                        getColor0(evt,'https://disaportal.gsi.go.jp/raster/08_03_ekijoka_pref/16_toyama/',PopUp.popUpEkizyouka16,15)
-                        break;
-                    case 'ekizyouka17':
-                        getColor0(evt,'https://disaportal.gsi.go.jp/raster/08_03_ekijoka_pref/17_ishikawa/',PopUp.popUpEkizyouka17,15)
-                        break;
-                    case 'ekizyouka18':
-                        getColor0(evt,'https://disaportal.gsi.go.jp/raster/08_03_ekijoka_pref/18_fukui/',PopUp.popUpEkizyouka18,15)
-                        break;
-                    case 'ekizyouka19':
-                        getColor0(evt,'https://disaportal.gsi.go.jp/raster/08_03_ekijoka_pref/19_yamanashi/',PopUp.popUpEkizyouka19,15)
-                        break;
-                    case 'ekizyouka20':
-                        getColor0(evt,'https://disaportal.gsi.go.jp/raster/08_03_ekijoka_pref/20_nagano/',PopUp.popUpEkizyouka20,15)
-                        break;
-                    case 'ekizyouka21':
-                        getColor0(evt,'https://disaportal.gsi.go.jp/raster/08_03_ekijoka_pref/21_gifu/',PopUp.popUpEkizyouka21,15)
-                        break;
-                    case 'ekizyouka22':
-                        getColor0(evt,'https://disaportal.gsi.go.jp/raster/08_03_ekijoka_pref/22_shizuoka/',PopUp.popUpEkizyouka22,15)
-                        break;
-                    case 'ekizyouka23':
-                        getColor0(evt,'https://disaportal.gsi.go.jp/raster/08_03_ekijoka_pref/23_aichi/',PopUp.popUpEkizyouka23,15)
-                        break;
-                    case 'ekizyouka24':
-                        getColor0(evt,'https://disaportal.gsi.go.jp/raster/08_03_ekijoka_pref/24_mie/',PopUp.popUpEkizyouka24,15)
-                        break;
-                    case 'ekizyouka25':
-                        getColor0(evt,'https://disaportal.gsi.go.jp/raster/08_03_ekijoka_pref/25_shiga/',PopUp.popUpEkizyouka25,15)
-                        break;
-                    case 'ekizyouka26':
-                        getColor0(evt,'https://disaportal.gsi.go.jp/raster/08_03_ekijoka_pref/26_kyoto/',PopUp.popUpEkizyouka26,15)
-                        break;
-                    case 'ekizyouka27':
-                        getColor0(evt,'https://disaportal.gsi.go.jp/raster/08_03_ekijoka_pref/27_osaka/',PopUp.popUpEkizyouka27,15)
-                        break;
-                    case 'ekizyouka28':
-                        getColor0(evt,'https://disaportal.gsi.go.jp/raster/08_03_ekijoka_pref/28_hyogo/',PopUp.popUpEkizyouka28,15)
-                        break;
-                    case 'ekizyouka29':
-                        getColor0(evt,'https://disaportal.gsi.go.jp/raster/08_03_ekijoka_pref/29_nara/',PopUp.popUpEkizyouka29,15)
-                        break;
-                    case 'ekizyouka30':
-                        getColor0(evt,'https://disaportal.gsi.go.jp/raster/08_03_ekijoka_pref/30_wakayama/',PopUp.popUpEkizyouka30,15)
-                        break;
-                    case 'ekizyouka31':
-                        getColor0(evt,'https://disaportal.gsi.go.jp/raster/08_03_ekijoka_pref/31_tottori/',PopUp.popUpEkizyouka31,15)
-                        break;
-                    case 'ekizyouka32':
-                        getColor0(evt,'https://disaportal.gsi.go.jp/raster/08_03_ekijoka_pref/32_shimane/',PopUp.popUpEkizyouka32,15)
-                        break;
-                    case 'ekizyouka33':
-                        getColor0(evt,'https://disaportal.gsi.go.jp/raster/08_03_ekijoka_pref/33_okayama/',PopUp.popUpEkizyouka33,15)
-                        break;
-                    case 'ekizyouka34':
-                        getColor0(evt,'https://disaportal.gsi.go.jp/raster/08_03_ekijoka_pref/34_hiroshima/',PopUp.popUpEkizyouka34,15)
-                        break;
-                    case 'ekizyouka35':
-                        getColor0(evt,'https://disaportal.gsi.go.jp/raster/08_03_ekijoka_pref/35_yamaguchi/',PopUp.popUpEkizyouka35,15)
-                        break;
-                    case 'ekizyouka36':
-                        getColor0(evt,'https://disaportal.gsi.go.jp/raster/08_03_ekijoka_pref/36_tokushima/',PopUp.popUpEkizyouka36,15)
-                        break;
-                    case 'ekizyouka37':
-                        getColor0(evt,'https://disaportal.gsi.go.jp/raster/08_03_ekijoka_pref/37_kagawa/',PopUp.popUpEkizyouka37,15)
-                        break;
-                    case 'ekizyouka38':
-                        getColor0(evt,'https://disaportal.gsi.go.jp/raster/08_03_ekijoka_pref/38_ehime/',PopUp.popUpEkizyouka38,15)
-                        break;
-                    case 'ekizyouka39':
-                        getColor0(evt,'https://disaportal.gsi.go.jp/raster/08_03_ekijoka_pref/39_kochi/',PopUp.popUpEkizyouka39,15)
-                        break;
-                    case 'ekizyouka40':
-                        getColor0(evt,'https://disaportal.gsi.go.jp/raster/08_03_ekijoka_pref/40_fukuoka/',PopUp.popUpEkizyouka40,15)
-                        break;
-                    case 'ekizyouka41':
-                        getColor0(evt,'https://disaportal.gsi.go.jp/raster/08_03_ekijoka_pref/41_saga/',PopUp.popUpEkizyouka41,15)
-                        break;
-                    case 'ekizyouka42':
-                        getColor0(evt,'https://disaportal.gsi.go.jp/raster/08_03_ekijoka_pref/42_nagasaki/',PopUp.popUpEkizyouka42,15)
-                        break;
-                    case 'ekizyouka43':
-                        getColor0(evt,'https://disaportal.gsi.go.jp/raster/08_03_ekijoka_pref/43_kumamoto/',PopUp.popUpEkizyouka43,15)
-                        break;
-                    case 'ekizyouka44':
-                        getColor0(evt,'https://disaportal.gsi.go.jp/raster/08_03_ekijoka_pref/44_oita/',PopUp.popUpEkizyouka44,15)
-                        break;
-                    case 'ekizyouka45':
-                        getColor0(evt,'https://disaportal.gsi.go.jp/raster/08_03_ekijoka_pref/45_miyazaki/',PopUp.popUpEkizyouka45,15)
-                        break;
-                    case 'ekizyouka46':
-                        getColor0(evt,'https://disaportal.gsi.go.jp/raster/08_03_ekijoka_pref/46_kagoshima/',PopUp.popUpEkizyouka46,15)
-                        break;
-                    case 'ekizyouka47':
-                        getColor0(evt,'https://disaportal.gsi.go.jp/raster/08_03_ekijoka_pref/47_okinawa/',PopUp.popUpEkizyouka47,15)
-                        break;
-                    case 'jisin':
-                        getColor0(evt,'https://maps.gsi.go.jp/xyz/jishindo_yosoku/',PopUp.popUpJisin,15)
-                        break;
-                    case 'morido':
-                        getColor0(evt,'https://disaportaldata.gsi.go.jp/raster/daikiboumoritsuzouseichi/',PopUp.popUpMorido,15)
-                        break;
-                    case 'dojyou':
-                        getColor0(evt,'https://soil-inventory.rad.naro.go.jp/tile/figure/',PopUp.popUpDojyou,12)
-                        break;
-                    case 'sitti':
-                        getColor0(evt,'https://cyberjapandata.gsi.go.jp/xyz/swale/',PopUp.popUpTisitu,16)
-                        break;
-                    default:
-                }
-            })
+            popupCreate()
         })
-
-         function getColor( rx, ry, z, server,then ) {
-            // const elevServer = 'https://gsj-seamless.jp/labs/elev2/elev/'
-            // const elevServer = 'https://tiles.gsj.jp/tiles/elev/mixed/'
-            // const server = 'https://disaportaldata.gsi.go.jp/raster/01_flood_l2_shinsuishin/'
-            const x = Math.floor( rx )				// タイルX座標
-            const y = Math.floor( ry )				// タイルY座標
-            const i = ( rx - x ) * 256			// タイル内i座標
-            const j = ( ry - y ) * 256			// タイル内j座標
-            const img = new Image();
-            img.crossOrigin = 'anonymous';
-            img.alt = "";
-            img.onload = function(){
-                const canvas = document.createElement( 'canvas' )
-                const context = canvas.getContext( '2d' )
-                let  h = 'e'
-                canvas.width = 1;
-                canvas.height = 1;
-                context.drawImage( img, i, j, 1, 1, 0, 0, 1, 1 );
-                const rgb = context.getImageData( 0, 0, 1, 1 ).data;
-                console.log(rgb)
-                then( rgb );
-            }
-            img.src = server + z + '/' + x + '/' + y + '.png';
-        }
         // 大正古地図用-----------------------------------------------------------------
         map.on('singleclick', function (evt) {
 

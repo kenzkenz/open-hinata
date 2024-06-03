@@ -10,6 +10,14 @@ export function popUp(map,layers,features,overlay,evt,content,content2) {
   let coordinate
   let width
   let streetView
+  let flg = false
+  let features0 = features
+
+  if (features) {
+    if (features[0].getGeometry().getType() === 'Point') {
+      features0 = [features[0]]
+    }
+  }
 
   if (!layers) {
     coordinate = evt.coordinate
@@ -19,7 +27,7 @@ export function popUp(map,layers,features,overlay,evt,content,content2) {
     streetView = '<a href="https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=' + lat + ',' + lon + '&hl=ja" target="_blank">Street Viewを開く</a></div>'
 
   } else {
-    features.forEach((feature,i) =>{
+    features0.forEach((feature,i) =>{
       const geoType = feature.getGeometry().getType()
       const geometry = feature.getGeometry()
       const prop = feature.getProperties();
@@ -50,7 +58,6 @@ export function popUp(map,layers,features,overlay,evt,content,content2) {
       const lat = lonLat[1]
       streetView = '<a href="https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=' + lat + ',' + lon + '&hl=ja" target="_blank">Street Viewを開く</a></div>'
 
-
       switch (layers[i].get('name')) {
           // 小学校区
         case 'syougakkoukuH28':
@@ -61,14 +68,14 @@ export function popUp(map,layers,features,overlay,evt,content,content2) {
                 '設置主体=' + prop.A27_002 + '<br>' +
                 '名称＝' + prop.A27_003 + '<br>' +
                 '所在地＝' + prop.A27_004 + '<br>' +
-                '</div>'
+                '</div><hr>'
           } else {
             cont += '<div style=width:200px>市区町村コード＝' + prop.A27_005 + '<br>' +
                 '設置主体=' + prop.A27_006 + '<br>' +
                 '名称＝' + prop.A27_007 + '<br>' +
                 '所在地＝' + prop.A27_008 + '<br>' +
                 'id＝' + prop.id + '<br>'+
-                '</div>'
+                '</div><hr>'
           }
           break;
         case 'syougakkouku':
@@ -79,12 +86,12 @@ export function popUp(map,layers,features,overlay,evt,content,content2) {
                 '名称＝' + prop.A27_004 + '<br>' +
                 '所在地＝' + prop.A27_005 + '<br>'+
                 'id＝' + prop.id + '<br>'+
-                '</div>'
+                '</div><hr>'
           } else {
             cont += '<div style=width:200px>市区町村コード＝' + prop.P29_001 + '<br>' +
                 '名称＝' + prop.P29_004 + '<br>' +
                 '所在地＝' + prop.P29_005 + '<br>'+
-                '</div>'
+                '</div><hr>'
           }
           break;
           // 中学校区
@@ -96,12 +103,12 @@ export function popUp(map,layers,features,overlay,evt,content,content2) {
                 '名称＝' + prop.A32_004 + '<br>' +
                 '所在地＝' + prop.A32_005 + '<br>' +
                 'id＝' + prop.id + '<br>'+
-                '</div>'
+                '</div><hr>'
           } else {
             cont += '<div style=width:200px>市区町村コード＝' + prop.P29_001 + '<br>' +
                 '名称＝' + prop.P29_004 + '<br>' +
                 '所在地＝' + prop.P29_005 + '<br>' +
-                '</div>'
+                '</div><hr>'
           }
           break;
         case 'tyuugakkoukuH25' :
@@ -111,12 +118,12 @@ export function popUp(map,layers,features,overlay,evt,content,content2) {
                 '設置主体=' + prop.A32_002 + '<br>' +
                 '名称＝' + prop.A32_003 + '<br>' +
                 'id＝' + prop.id + '<br>'+
-                '</div>'
+                '</div><hr>'
           } else {
             cont += '<div style=width:200px>市区町村コード＝' + prop.P29_001 + '<br>' +
                 '名称＝' + prop.P29_005 + '<br>' +
                 '所在地＝' + prop.P29_006 + '<br>' +
-                '</div>'
+                '</div><hr>'
           }
           break;
         case 'tyuugakkoukuH28' :
@@ -126,13 +133,13 @@ export function popUp(map,layers,features,overlay,evt,content,content2) {
                 '設置主体=' + prop.A32_002 + '<br>' +
                 '名称＝' + prop.A32_003 + '<br>' +
                 'id＝' + prop.id + '<br>'+
-                '</div>'
+                '</div><hr>'
           } else {
             cont += '<div style=width:200px>市区町村コード＝' + prop.A32_006 + '<br>' +
                 '設置主体=' + prop.A32_007 + '<br>' +
                 '名称＝' + prop.A32_008 + '<br>' +
                 '所在地＝' + prop.A32_009 + '<br>' +
-                '</div>'
+                '</div><hr>'
           }
           break;
         case 'youtoH23' :
@@ -984,84 +991,126 @@ export function popUp(map,layers,features,overlay,evt,content,content2) {
           break
         case 'mesh250':
         case 'mesh1km':
-          d3.select('.loadingImg').style("display","block")
-          axios
-              .get('https://mreversegeocoder.gsi.go.jp/reverse-geocoder/LonLatToAddress',{
-                params: {
-                  lon: lonLat[0],
-                  lat: lonLat[1]
-                }
-              })
-              .then(function (response) {
-                d3.select('.loadingImg').style("display","none")
-                const splitMuni = muni[Number(response.data.results.muniCd)].split(',')
-                const ronenritu = (prop.ronen/prop.jinko*100).toFixed(2) + '%'
-                const seisanritu = (prop.seisan/prop.jinko*100).toFixed(2) + '%'
-                const nensyoritu = (prop.nensyo/prop.jinko*100).toFixed(2) + '%'
-                width = 220
-                cont += '<div style=width:220px;>' +
-                    '<h4>' + response.data.results.lv01Nm + '</h4>' +
-                    '<h4>人口' + prop.jinko + '人</h4>' +
-                    splitMuni[1] + splitMuni[3] + '<br>' +
-                    '老年人口　　= ' + prop.ronen + '人(' + ronenritu + ')<br>' +
-                    '生産年齢人口= ' + prop.seisan + '人(' + seisanritu + ')<br>' +
-                    '年少人口　　= ' + prop.nensyo + '人(' + nensyoritu + ')<br><br>' +
-                    '<button class="jinkopie1km" mapname="' + map.values_.target +
-                    // '" KEY_CODE="' + prop.KEY_CODE +
-                    '" jyusyo="' + response.data.results.lv01Nm +
-                    '" jinko="' + prop.jinko +
-                    '" ronen="' + prop.ronen +
-                    '" seisan="' + prop.seisan +
-                    '" nensyo="' + prop.nensyo +
-                    '">円グラフ</button><br><br>' +
-                    '</div>'
-                cont += streetView
-                content.innerHTML = cont
-                overlay.setPosition(coordinate);
-                popupCenter()
-              })
-              .catch(function (error) {
-              })
-              .finally(function () {
-              });
+          flg = true
+          const ronenritu = (prop.ronen/prop.jinko*100).toFixed(2) + '%'
+          const seisanritu = (prop.seisan/prop.jinko*100).toFixed(2) + '%'
+          const nensyoritu = (prop.nensyo/prop.jinko*100).toFixed(2) + '%'
+          width = 220
+          cont += '<div style=width:220px;>' +
+              '<h4>人口' + prop.jinko + '人</h4>' +
+              '老年人口　　= ' + prop.ronen + '人(' + ronenritu + ')<br>' +
+              '生産年齢人口= ' + prop.seisan + '人(' + seisanritu + ')<br>' +
+              '年少人口　　= ' + prop.nensyo + '人(' + nensyoritu + ')<br><br>' +
+              '<button class="jinkopie1km" mapname="' + map.values_.target +
+              // '" KEY_CODE="' + prop.KEY_CODE +
+              // '" jyusyo="' + response.data.results.lv01Nm +
+              '" jinko="' + prop.jinko +
+              '" ronen="' + prop.ronen +
+              '" seisan="' + prop.seisan +
+              '" nensyo="' + prop.nensyo +
+              '">円グラフ</button><br><br>' +
+              '</div><hr>'
+
+          // d3.select('.loadingImg').style("display","block")
+          // axios
+          //     .get('https://mreversegeocoder.gsi.go.jp/reverse-geocoder/LonLatToAddress',{
+          //       params: {
+          //         lon: lonLat[0],
+          //         lat: lonLat[1]
+          //       }
+          //     })
+          //     .then(function (response) {
+          //       d3.select('.loadingImg').style("display","none")
+          //       const splitMuni = muni[Number(response.data.results.muniCd)].split(',')
+          //       const ronenritu = (prop.ronen/prop.jinko*100).toFixed(2) + '%'
+          //       const seisanritu = (prop.seisan/prop.jinko*100).toFixed(2) + '%'
+          //       const nensyoritu = (prop.nensyo/prop.jinko*100).toFixed(2) + '%'
+          //       width = 220
+          //       cont += '<div style=width:220px;>' +
+          //           '<h4>' + response.data.results.lv01Nm + '</h4>' +
+          //           '<h4>人口' + prop.jinko + '人</h4>' +
+          //           splitMuni[1] + splitMuni[3] + '<br>' +
+          //           '老年人口　　= ' + prop.ronen + '人(' + ronenritu + ')<br>' +
+          //           '生産年齢人口= ' + prop.seisan + '人(' + seisanritu + ')<br>' +
+          //           '年少人口　　= ' + prop.nensyo + '人(' + nensyoritu + ')<br><br>' +
+          //           '<button class="jinkopie1km" mapname="' + map.values_.target +
+          //           // '" KEY_CODE="' + prop.KEY_CODE +
+          //           '" jyusyo="' + response.data.results.lv01Nm +
+          //           '" jinko="' + prop.jinko +
+          //           '" ronen="' + prop.ronen +
+          //           '" seisan="' + prop.seisan +
+          //           '" nensyo="' + prop.nensyo +
+          //           '">円グラフ</button><br><br>' +
+          //           '</div>'
+          //       cont += streetView
+          //       content.innerHTML = cont
+          //       overlay.setPosition(coordinate);
+          //       popupCenter()
+          //     })
           break
         case 'mesh100':
-          d3.select('.loadingImg').style("display","block")
-          axios
-              .get('https://mreversegeocoder.gsi.go.jp/reverse-geocoder/LonLatToAddress',{
-                params: {
-                  lon: lonLat[0],
-                  lat: lonLat[1]
-                }
-              })
-              .then(function (response) {
-                d3.select('.loadingImg').style("display","none")
-                const splitMuni = muni[Number(response.data.results.muniCd)].split(',')
-                const ronenritu100 = (prop.Pop65over/prop.PopT*100).toFixed(2) + '%'
-                const seisanritu100 = (prop.Pop15_64/prop.PopT*100).toFixed(2) + '%'
-                const nensyoritu100 = (prop.Pop0_14/prop.PopT*100).toFixed(2) + '%'
-                width = 220
-                cont += '<div style=width:220px;>' +
-                    '<h4>' + response.data.results.lv01Nm + '</h4>' +
-                    '<h4>人口' + prop.PopT.toFixed(2) + '人</h4>' +
-                    splitMuni[1] + splitMuni[3] + '<br>' +
-                    '老年人口　　= ' + prop.Pop65over.toFixed(2) + '人(' + ronenritu100 + ')<br>' +
-                    '生産年齢人口= ' + prop.Pop15_64.toFixed(2) + '人(' + seisanritu100 + ')<br>' +
-                    '年少人口　　= ' + prop.Pop0_14.toFixed(2) + '人(' + nensyoritu100 + ')<br><br>' +
-                    '<button class="jinkopie100m" mapname="' + map.values_.target +
-                    '" KEY_CODE="' + prop.KEY_CODE +
-                    '" jyusyo="' + response.data.results.lv01Nm +
-                    '" jinko="' + prop.PopT +
-                    '" ronen="' + prop.Pop65over +
-                    '" seisan="' + prop.Pop15_64 +
-                    '" nensyo="' + prop.Pop0_14 +
-                    '">円グラフ</button><br><br>' +
-                    '</div>'
-                cont += streetView
-                content.innerHTML = cont
-                overlay.setPosition(coordinate)
-                popupCenter()
-              })
+          flg = true
+
+          // const splitMuni = muni[Number(response.data.results.muniCd)].split(',')
+          const ronenritu100 = (prop.Pop65over/prop.PopT*100).toFixed(2) + '%'
+          const seisanritu100 = (prop.Pop15_64/prop.PopT*100).toFixed(2) + '%'
+          const nensyoritu100 = (prop.Pop0_14/prop.PopT*100).toFixed(2) + '%'
+          width = 220
+          cont += '<div style=width:220px;>' +
+              // '<h4>' + response.data.results.lv01Nm + '</h4>' +
+              '<h4>人口' + prop.PopT.toFixed(2) + '人</h4>' +
+              // splitMuni[1] + splitMuni[3] + '<br>' +
+              '老年人口　　= ' + prop.Pop65over.toFixed(2) + '人(' + ronenritu100 + ')<br>' +
+              '生産年齢人口= ' + prop.Pop15_64.toFixed(2) + '人(' + seisanritu100 + ')<br>' +
+              '年少人口　　= ' + prop.Pop0_14.toFixed(2) + '人(' + nensyoritu100 + ')<br><br>' +
+              '<button class="jinkopie100m" mapname="' + map.values_.target +
+              '" KEY_CODE="' + prop.KEY_CODE +
+              // '" jyusyo="' + response.data.results.lv01Nm +
+              '" jinko="' + prop.PopT +
+              '" ronen="' + prop.Pop65over +
+              '" seisan="' + prop.Pop15_64 +
+              '" nensyo="' + prop.Pop0_14 +
+              '">円グラフ</button><br><br>' +
+              '</div><hr>'
+
+
+
+          // d3.select('.loadingImg').style("display","block")
+          // axios
+          //     .get('https://mreversegeocoder.gsi.go.jp/reverse-geocoder/LonLatToAddress',{
+          //       params: {
+          //         lon: lonLat[0],
+          //         lat: lonLat[1]
+          //       }
+          //     })
+          //     .then(function (response) {
+          //       d3.select('.loadingImg').style("display","none")
+          //       const splitMuni = muni[Number(response.data.results.muniCd)].split(',')
+          //       const ronenritu100 = (prop.Pop65over/prop.PopT*100).toFixed(2) + '%'
+          //       const seisanritu100 = (prop.Pop15_64/prop.PopT*100).toFixed(2) + '%'
+          //       const nensyoritu100 = (prop.Pop0_14/prop.PopT*100).toFixed(2) + '%'
+          //       width = 220
+          //       cont += '<div style=width:220px;>' +
+          //           '<h4>' + response.data.results.lv01Nm + '</h4>' +
+          //           '<h4>人口' + prop.PopT.toFixed(2) + '人</h4>' +
+          //           splitMuni[1] + splitMuni[3] + '<br>' +
+          //           '老年人口　　= ' + prop.Pop65over.toFixed(2) + '人(' + ronenritu100 + ')<br>' +
+          //           '生産年齢人口= ' + prop.Pop15_64.toFixed(2) + '人(' + seisanritu100 + ')<br>' +
+          //           '年少人口　　= ' + prop.Pop0_14.toFixed(2) + '人(' + nensyoritu100 + ')<br><br>' +
+          //           '<button class="jinkopie100m" mapname="' + map.values_.target +
+          //           '" KEY_CODE="' + prop.KEY_CODE +
+          //           '" jyusyo="' + response.data.results.lv01Nm +
+          //           '" jinko="' + prop.PopT +
+          //           '" ronen="' + prop.Pop65over +
+          //           '" seisan="' + prop.Pop15_64 +
+          //           '" nensyo="' + prop.Pop0_14 +
+          //           '">円グラフ</button><br><br>' +
+          //           '</div>'
+          //       cont += streetView
+          //       content.innerHTML = cont
+          //       overlay.setPosition(coordinate)
+          //       popupCenter()
+          //     })
           break
         case 'ssdsPref':
           // console.log(prop.コード.length)
@@ -1128,24 +1177,49 @@ export function popUp(map,layers,features,overlay,evt,content,content2) {
       }
     })
   }
-
+  // ------------------------------------------------------------------
   if (!layers) {
-    console.log(evt.coordinate)
     coordinate = evt.coordinate
     cont = cont + content2
   } else {
-    console.log(content2)
     if (content2 !== 'undefined') cont = cont + content2
   }
+  // ------------------------------------------------------------------
+  if (flg) {
+    coordinate = evt.coordinate
+    const lonLat = transform([coordinate[0], coordinate[1]], "EPSG:3857", "EPSG:4326")
+    axios
+        .get('https://mreversegeocoder.gsi.go.jp/reverse-geocoder/LonLatToAddress', {
+          params: {
+            lon: lonLat[0],
+            lat: lonLat[1]
+          }
+        })
+        .then(function (response) {
+          // alert()
+          console.log(response.data.results.lv01Nm)
+          popupCenter()
+          let cont2 = cont + streetView
+          const splitMuni = muni[Number(response.data.results.muniCd)].split(',')
+          cont2 = splitMuni[1] + splitMuni[3] + '<h4>' + response.data.results.lv01Nm + '</h4>' + cont2
+          content.innerHTML = cont2
+          if (cont && cont !== undefined) overlay.setPosition(coordinate)
 
+          const button = document.querySelector(".jinkopie1km,.jinkopie100m")
+          button.setAttribute("jyusyo", response.data.results.lv01Nm )
 
-  popupCenter()
-  cont += streetView
-  console.log(cont)
-  content.innerHTML = cont
-  if (cont && cont !== undefined) overlay.setPosition(coordinate)
-  cont = ''
-
+          cont = ''
+          flg = false
+        })
+  } else {
+    popupCenter()
+    const cont2 = cont + streetView
+    content.innerHTML = cont2
+    if (cont && cont !== undefined) overlay.setPosition(coordinate)
+    cont = ''
+    flg = false
+  }
+  // ---------------------------------------------------------------------------------
   function popupCenter() {
     if (width) {
       document.querySelector('.ol-popup').style.left = -(width / 2) - 16 + 'px'
@@ -1203,7 +1277,7 @@ export function popupSeamless(overlay,evt,content) {
   });
 }
 //----------------------------------------------------------------------------------------
-export function popUpShinsuishin2(rgba) {
+export function popUpShinsuishin(rgba) {
   const r = rgba[0]
   const g = rgba[1]
   const b = rgba[2]
@@ -1226,41 +1300,7 @@ export function popUpShinsuishin2(rgba) {
   return cont
 }
 //----------------------------------------------------------------------------------------
-export function popUpShinsuishin(rgba,coordinate) {
-    const lonLat = transform([coordinate[0],coordinate[1]], "EPSG:3857", "EPSG:4326")
-    const lon = lonLat[0]
-    const lat = lonLat[1]
-    const streetView = '<a href="https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=' + lat + ',' + lon + '&hl=ja" target="_blank">Street Viewを開く</a></div>'
-    const r = rgba[0]
-    const g = rgba[1]
-    const b = rgba[2]
-
-    if(r===255 && g===255 && b===179 || r===248 && g===225 && b===166) {
-      cont += "<div style=width:200px>洪水浸水深　0.5m未満</div>"
-    }else if(r===247 && g===245 && b===169) {
-      cont += "<div style=width:200px>洪水浸水深　0.5m未満</div>"
-    }else if(r===255 && g===216 && b===192) {
-      cont += "<div style=width:200px>洪水浸水深　0.5〜3.0m</div>"
-    }else if(r===255 && g===183 && b===183) {
-      cont += "<div style=width:200px>洪水浸水深　3.0〜5.0m</div>"
-    }else if(r===255 && g===145 && b===145) {
-      cont += "<div style=width:200px>洪水浸水深　5.0〜10.0m</div>"
-    }else if(r===242 && g===133 && b===201) {
-      cont += "<div style=width:200px>洪水浸水深　10.0〜20.0m</div>"
-    }else if(r===220 && g===122 && b===220) {
-      cont += "<div style=width:200px>洪水浸水深　20.0m以上</div>"
-    }
-    cont += streetView
-    store.commit('base/popUpContUpdate',cont)
-    cont = ''
-}
-//----------------------------------------------------------------------------------------
-export function popUpTunami(rgba,coordinate) {
-  const lonLat = transform([coordinate[0],coordinate[1]], "EPSG:3857", "EPSG:4326")
-  const lon = lonLat[0]
-  const lat = lonLat[1]
-  const streetView = '<a href="https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=' + lat + ',' + lon + '&hl=ja" target="_blank">Street Viewを開く</a></div>'
-
+export function popUpTunami(rgba) {
   const r = rgba[0]
   const g = rgba[1]
   const b = rgba[2]
@@ -1282,8 +1322,7 @@ export function popUpTunami(rgba,coordinate) {
   }else if(r===220 && g===122 && b===220) {
     cont = "<div style=width:200px>津波浸水深　20.0m以上</div>"
   }
-  cont += streetView
-  store.commit('base/popUpContUpdate',cont)
+  return cont
 }
 //----------------------------------------------------------------------------------------
 export function popUpKeizoku(rgba) {
@@ -1306,8 +1345,8 @@ export function popUpKeizoku(rgba) {
   }else if(r===96 && g===0 && b===96) {
     cont = "<div style=width:200px>浸水継続　4週間以上~</div>"
   }
-  store.commit('base/popUpContUpdate',cont)
-  }
+  return cont
+}
 //----------------------------------------------------------------------------------------
 export function popUpTakasio(rgba) {
   const r = rgba[0]
@@ -1331,7 +1370,37 @@ export function popUpTakasio(rgba) {
   }else if(r===220 && g===122 && b===220) {
     cont = "<div style=width:200px>高潮浸水深　20.0m以上</div>"
   }
-  store.commit('base/popUpContUpdate',cont)
+  return cont
+}
+//----------------------------------------------------------------------------------------
+export function popUpTameike(rgba) {
+  const r = rgba[0]
+  const g = rgba[1]
+  const b = rgba[2]
+  let cont
+  if(r===0 && g===0 && b===255) {
+    cont = "<div style=width:300px>ため池決壊によって浸水が想定される区域</div>"
+  }
+  return cont
+}
+//----------------------------------------------------------------------------------------
+export function popUpEkizyouka(rgba) {
+  const r = rgba[0]
+  const g = rgba[1]
+  const b = rgba[2]
+  let cont
+  if(r===200 && g===0 && b===255) {
+    cont = "<div style=width:200px>埋立地や旧河道</div>"
+  }else if(r===255 && g===40 && b===0) {
+    cont = "<div style=width:200px>干拓地や自然堤防など</div>"
+  }else if(r===255 && g===170 && b===0) {
+    cont = "<div style=width:200px>緩勾配の谷底低地、緩勾配の扇状地など</div>"
+  }else if(r===255 && g===245 && b===0) {
+    cont = "<div style=width:200px>急勾配の谷底低地、急勾配の扇状地など</div>"
+  }else if(r===200 && g===200 && b===203) {
+    cont = "<div style=width:200px>山地や丘陵など</div>"
+  }
+  return cont
 }
 //----------------------------------------------------------------------------------------
 export function popUpDosya(rgba) {
@@ -1356,7 +1425,7 @@ export function popUpDosya(rgba) {
   }else if(r===226 && g===190 && b===49) {
     cont = "?"
   }
-  store.commit('base/popUpContUpdate',cont)
+  return cont
 }
 //----------------------------------------------------------------------------------------
 export function popUpDoseki(rgba) {
@@ -1367,10 +1436,10 @@ export function popUpDoseki(rgba) {
   if(r===245 && g===153 && b===101) {
     cont = "<div style=width:300px>土砂災害の危険性：土石流危険渓流（土石流の発生の危険性があり、人家等に被害を与えるおそれがある渓流）</div>"
   }
-  store.commit('base/popUpContUpdate',cont)
+  return cont
 }
 //----------------------------------------------------------------------------------------
-export function popUpKyuukeisyai(rgba) {
+export function popUpKyuukeisya(rgba) {
   const r = rgba[0]
   const g = rgba[1]
   const b = rgba[2]
@@ -1378,7 +1447,7 @@ export function popUpKyuukeisyai(rgba) {
   if(r===224 && g===224 && b===254) {
     cont = "<div style=width:300px>土砂災害の危険性：急傾斜地崩壊危険箇所（傾斜度30°かつ高さ5m以上の急傾斜地で人家等に被害を与えるおそれのある箇所）</div>"
   }
-  store.commit('base/popUpContUpdate',cont)
+  return cont
 }
 //----------------------------------------------------------------------------------------
 export function popUpZisuberi(rgba) {
@@ -1389,7 +1458,7 @@ export function popUpZisuberi(rgba) {
   if(r===255 && g===235 && b===223) {
     cont = "<div style=width:300px>土砂災害の危険性：地すべり危険箇所（地すべりが発生している又は地すべりが発生するおそれがある区域のうち、人家等に被害を与えるおそれのある箇所）</div>"
   }
-  store.commit('base/popUpContUpdate',cont)
+  return cont
 }
 //----------------------------------------------------------------------------------------
 export function popUpNadare(rgba) {
@@ -1400,38 +1469,10 @@ export function popUpNadare(rgba) {
   if(r===255 && g===255 && b===101) {
     cont = "<div style=width:300px>土砂災害の危険性：雪崩危険箇所（雪崩災害のおそれがある地域において、雪崩により人家等に被害を与えるおそれのある箇所）</div>"
   }
-  store.commit('base/popUpContUpdate',cont)
+  return cont
 }
-//----------------------------------------------------------------------------------------
-export function popUpTameike(rgba) {
-  const r = rgba[0]
-  const g = rgba[1]
-  const b = rgba[2]
-  let cont
-  if(r===0 && g===0 && b===255) {
-    cont = "<div style=width:300px>ため池決壊によって浸水が想定される区域</div>"
-  }
-  store.commit('base/popUpContUpdate',cont)
-}
-//----------------------------------------------------------------------------------------
-export function popUpEkizyouka(rgba) {
-  const r = rgba[0]
-  const g = rgba[1]
-  const b = rgba[2]
-  let cont
-  if(r===200 && g===0 && b===255) {
-    cont = "<div style=width:200px>埋立地や旧河道</div>"
-  }else if(r===255 && g===40 && b===0) {
-    cont = "<div style=width:200px>干拓地や自然堤防など</div>"
-  }else if(r===255 && g===170 && b===0) {
-    cont = "<div style=width:200px>緩勾配の谷底低地、緩勾配の扇状地など</div>"
-  }else if(r===255 && g===245 && b===0) {
-    cont = "<div style=width:200px>急勾配の谷底低地、急勾配の扇状地など</div>"
-  }else if(r===200 && g===200 && b===203) {
-    cont = "<div style=width:200px>山地や丘陵など</div>"
-  }
-  store.commit('base/popUpContUpdate',cont)
-}
+
+
 //----------------------------------------------------------------------------------------
 export function popUpEkizyouka01(rgba) {
   const r = rgba[0]
@@ -2261,7 +2302,7 @@ export function popUpJisin(rgba) {
   } else if (r === 254 && g === 254 && b === 189) {
     cont = "<div style=width:200px>やや高い 0.1%〜3%</div>"
   }
-  store.commit('base/popUpContUpdate', cont)
+  return cont
 }
 //----------------------------------------------------------------------------------------
 export function popUpMorido(rgba,coordinate) {
@@ -2283,7 +2324,7 @@ export function popUpMorido(rgba,coordinate) {
     cont = "<div style=width:200px>やや高い 0.1%〜3%</div>"
   }
   cont += streetView
-  store.commit('base/popUpContUpdate', cont)
+  return cont
 }
 //----------------------------------------------------------------------------------------
 export function popUpDojyou(rgba) {
@@ -2314,7 +2355,7 @@ export function popUpDojyou(rgba) {
         "<br>" + result[5] +
         "</div>"
   }
-  store.commit('base/popUpContUpdate', cont)
+  return cont
 }
 //----------------------------------------------------------------------------------------
 export function popUpTisitu(rgba) {
@@ -2338,16 +2379,14 @@ export function popUpTisitu(rgba) {
         [173,255,173,"茅","茅｣、｢萱｣と記された範囲。",""],
         [144,73,11,"堤防","河川の氾濫や海水の浸入を防ぐため、河岸･海岸に沿って設けた土石の構築物。",""],
       ]
-
   const result = figureRGB.find((value) =>{
     return value[0] === r && value[1] === g && value[2] === b
   })
   if (result) {
-
     cont = "<div style=width:300px;font-size:small>" +
         result[3] + "<hr>" +
         "説明＝" + result[4] +
         "</div>"
   }
-  store.commit('base/popUpContUpdate', cont)
+  return cont
 }

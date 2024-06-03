@@ -4102,6 +4102,9 @@ const kotizu00Summ = SSK
 // 洪水浸水想定（想定最大規模）-------------------------------------------------------------------------------
 function Shinsuishin () {
   this.name = 'shinsuishin'
+
+  // this.className = 'shinsuishin'
+
   this.pointer = true
   this.source = new XYZ({
     url: 'https://disaportaldata.gsi.go.jp/raster/01_flood_l2_shinsuishin/{z}/{x}/{y}.png',
@@ -4134,6 +4137,10 @@ const shinsuishinKSumm = '出典：<br><a href="https://disaportal.gsi.go.jp/haz
 // 津波浸水想定-------------------------------------------------------------------------------
 function Tsunami () {
   this.name = 'tunami'
+
+
+  // this.className = 'Tsunami'
+
   this.pointer = true
   this.source = new XYZ({
     url: 'https://disaportaldata.gsi.go.jp/raster/04_tsunami_newlegend_data/{z}/{x}/{y}.png',

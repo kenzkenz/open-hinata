@@ -2,14 +2,14 @@
   <div class="content-div">
     <p v-html="item.title"></p><hr>
     <div style="text-align: center;">赤色の上限値 {{ s_jinko }}人</div>
-<!--    <input type="range" min="100" :max="60100" :step="1000" class="jinko-range" v-model.number="s_jinko" @input="inputJinko" />-->
-    <vue-slider
-        v-model="s_jinko"
-        :min="100"
-        :max="60100"
-        :interval="1000"
-        :tooltip-placement="'bottom'"
-    ></vue-slider>
+    <input type="range" min="100" :max="60100" :step="1000" class="jinko-range" v-model.number="s_jinko" @input="inputJinko" />
+<!--    <vue-slider-->
+<!--        v-model="s_jinko"-->
+<!--        :min="100"-->
+<!--        :max="60100"-->
+<!--        :interval="1000"-->
+<!--        :tooltip-placement="'bottom'"-->
+<!--    ></vue-slider>-->
     <div style="text-align: center;font-size: small">
       <label for="paint-check-1k">塗りつぶし</label><input id="paint-check-1k" type="checkbox" v-model="s_paint" @change="paintChangge">
     </div>
