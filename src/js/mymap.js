@@ -629,21 +629,8 @@ export function initMap (vm) {
         // 洪水,津波,継続,普通のフィーチャー用-----------------------------------------------------------------
         map.on('singleclick', function (evt) {
             overlay[i].setPosition(undefined)
-            // 普通のフィーチャー用
-            // const pixel0 = (map).getPixelFromCoordinate(evt.coordinate);
-            // const features = [];
-            // const layers = [];
-            // (map).forEachFeatureAtPixel(pixel0,function(feature,layer){
-            //     features.push(feature);
-            //     layers.push(layer);
-            // });
-            // if(features.length){
-            //     PopUp.popUp(map,layers,features,overlay[i],evt,content)
-            //     return
-            // }
-            //------------------------------------------------------
             store.commit('base/popUpContReset')
-            //処理を早くするため抜ける。
+            //処理を早くするため抜ける。---------------------------------------------------
             const layers0 = map.getLayers().getArray();
             const hazardLayers = layers0.filter(el => el.get('pointer'));
             if (hazardLayers.length===0) return
