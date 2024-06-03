@@ -632,10 +632,10 @@ export function initMap (vm) {
         map.on('singleclick', function (evt) {
             overlay[i].setPosition(undefined)
             store.commit('base/popUpContReset')
-            //処理を早くするため抜ける。---------------------------------------------------
-            const layers0 = map.getLayers().getArray();
-            const hazardLayers = layers0.filter(el => el.get('pointer'));
-            if (hazardLayers.length===0) return
+            // //処理を早くするため抜ける。---------------------------------------------------
+            // const layers0 = map.getLayers().getArray();
+            // const hazardLayers = layers0.filter(el => el.get('pointer'));
+            // if (hazardLayers.length===0) return
             //-------------------------------------------------------------------------
             const pixel = (map).getPixelFromCoordinate(evt.coordinate);
             const layersObj = [];
@@ -701,7 +701,7 @@ export function initMap (vm) {
                 const e = event;
                 // const server = 'https://disaportaldata.gsi.go.jp/raster/01_flood_l2_shinsuishin/'
                 // document.querySelector('#' + mapName + ' .ol-viewport').style.cursor = "wait"
-                const result =await getColor123( x, y, z, server,   function( rgb ) {
+                const result = await getColor123( x, y, z, server,   function( rgb ) {
                     // console.log(rgb)
                     // abc.push = rgb
                 } );
@@ -719,26 +719,50 @@ export function initMap (vm) {
                             server = 'https://disaportaldata.gsi.go.jp/raster/01_flood_l2_shinsuishin/'
                             zoom = 17
                             func = PopUp.popUpShinsuishin2
-
-
+                            break
                     }
-                    return getColor00(evt,server,zoom,func)
+                    if (server) return getColor00(evt,server,zoom,func)
                 })
                 await Promise.all([
                     ...fetchData
                 ])
                     .then((response) => {
+
                         const aaa = rgbaArr.map((rgba,i) =>{
                             return {'layerName':layerNames[i] ,'rgba':rgba,'func':funcArr[i]}
                         })
+                        let html =''
                         aaa.forEach((value) =>{
-                            console.log(value.func(value.rgba))
+                            html += value.func(value.rgba)
+                            // console.log(value.func(value.rgba))
                         })
+                        console.log(html)
+
+                        overlay[i].setPosition(undefined)
+                        const pixel = (evt.map).getPixelFromCoordinate(evt.coordinate);
+                        const features = [];
+                        const layers = [];
+                        evt.map.forEachFeatureAtPixel(pixel,function(feature,layer){
+                            features.push(feature);
+                            layers.push(layer);
+                        })
+                        console.log(layers,features)
+                        if(features.length) {
+                            if (layers[0]) {
+                                PopUp.popUp(evt.map, layers, features, overlay[i], evt, content, html)
+                                rgbaArr = []
+                                return
+                            }
+                        } else {
+                            PopUp.popUp(evt.map,null,null,overlay[i],evt,content, html)
+                            rgbaArr = []
+                        }
 
 
 
 
-                        rgbaArr = []
+                        // PopUp.popUp(evt.map,null,null,overlay[i],evt,content,html)
+                        // rgbaArr = []
                     })
             }
             created()
@@ -765,16 +789,15 @@ export function initMap (vm) {
                     // const server = 'https://disaportaldata.gsi.go.jp/raster/01_flood_l2_shinsuishin/'
                     // document.querySelector('#' + mapName + ' .ol-viewport').style.cursor = "wait"
                     getColor( x, y, z, server,   function( rgb ) {
-                        const coordinate = evt.coordinate;
-                        popup(rgb,coordinate)
-                        const cont = store.state.base.popUpCont
-                        content.innerHTML = cont
-                        if (cont.includes('undefined') || cont==='') {
-                            overlay[i].setPosition(undefined)
-                        } else {
-                            overlay[i].setPosition(coordinate);
-                        }
-                        // document.querySelector('#' + mapName + ' .ol-viewport').style.cursor = "default"
+                        // const coordinate = evt.coordinate;
+                        // popup(rgb,coordinate)
+                        // const cont = store.state.base.popUpCont
+                        // content.innerHTML = cont
+                        // if (cont.includes('undefined') || cont==='') {
+                        //     overlay[i].setPosition(undefined)
+                        // } else {
+                        //     overlay[i].setPosition(coordinate);
+                        // }
                     } );
                 }
                 switch (object.layer.get('name')){
@@ -1198,27 +1221,29 @@ export function initMap (vm) {
         })
 
         // 普通のフィーチャー用------------------------------------------------------------
-        map.on('singleclick', function (evt) {
-            // moveEnd()
-            // dialogMap.show({ content: 'Hello World!', title: 'Hello'})
-            document.querySelector('.center-target').style.zIndex = 1
-            console.log(JSON.stringify(transform(evt.coordinate, "EPSG:3857", "EPSG:4326")));
-            overlay[i].setPosition(undefined)
-            const pixel = (evt.map).getPixelFromCoordinate(evt.coordinate);
-            const features = [];
-            const layers = [];
-            evt.map.forEachFeatureAtPixel(pixel,function(feature,layer){
-                features.push(feature);
-                layers.push(layer);
-            })
-            console.log(layers,features)
-            if(features.length){
-                if(layers[0]) {
-                    PopUp.popUp(evt.map,layers,features,overlay[i],evt,content)
-                    return
-                }
-            }
-        })
+
+        // map.on('singleclick', function (evt) {
+        //     // moveEnd()
+        //     // dialogMap.show({ content: 'Hello World!', title: 'Hello'})
+        //     document.querySelector('.center-target').style.zIndex = 1
+        //     // console.log(JSON.stringify(transform(evt.coordinate, "EPSG:3857", "EPSG:4326")));
+        //     overlay[i].setPosition(undefined)
+        //     const pixel = (evt.map).getPixelFromCoordinate(evt.coordinate);
+        //     const features = [];
+        //     const layers = [];
+        //     evt.map.forEachFeatureAtPixel(pixel,function(feature,layer){
+        //         features.push(feature);
+        //         layers.push(layer);
+        //     })
+        //     console.log(layers,features)
+        //     if(features.length){
+        //         if(layers[0]) {
+        //             PopUp.popUp(evt.map,layers,features,overlay[i],evt,content)
+        //             return
+        //         }
+        //     }
+        // })
+
         // シングルクリック終わり
         //----------------------------------------------------------------------------------------
         const getElevation = (event) =>{
