@@ -1188,6 +1188,29 @@ export function popupSeamless(overlay,evt,content) {
   });
 }
 //----------------------------------------------------------------------------------------
+export function popUpShinsuishin2(rgba) {
+  const r = rgba[0]
+  const g = rgba[1]
+  const b = rgba[2]
+  let cont
+  if(r===255 && g===255 && b===179 || r===248 && g===225 && b===166) {
+    cont = "<div style=width:200px>洪水浸水深　0.5m未満</div>"
+  }else if(r===247 && g===245 && b===169) {
+    cont = "<div style=width:200px>洪水浸水深　0.5m未満</div>"
+  }else if(r===255 && g===216 && b===192) {
+    cont = "<div style=width:200px>洪水浸水深　0.5〜3.0m</div>"
+  }else if(r===255 && g===183 && b===183) {
+    cont = "<div style=width:200px>洪水浸水深　3.0〜5.0m</div>"
+  }else if(r===255 && g===145 && b===145) {
+    cont = "<div style=width:200px>洪水浸水深　5.0〜10.0m</div>"
+  }else if(r===242 && g===133 && b===201) {
+    cont = "<div style=width:200px>洪水浸水深　10.0〜20.0m</div>"
+  }else if(r===220 && g===122 && b===220) {
+    cont = "<div style=width:200px>洪水浸水深　20.0m以上</div>"
+  }
+  return cont
+}
+//----------------------------------------------------------------------------------------
 export function popUpShinsuishin(rgba,coordinate) {
     const lonLat = transform([coordinate[0],coordinate[1]], "EPSG:3857", "EPSG:4326")
     const lon = lonLat[0]

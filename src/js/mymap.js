@@ -627,6 +627,8 @@ export function initMap (vm) {
         // シングルクリック------------------------------------------------------------------------------------
 
         // 洪水,津波,継続,普通のフィーチャー用-----------------------------------------------------------------
+        let rgbaArr = []
+        let funcArr = []
         map.on('singleclick', function (evt) {
             overlay[i].setPosition(undefined)
             store.commit('base/popUpContReset')
@@ -657,10 +659,95 @@ export function initMap (vm) {
             })
             console.log(layerNames)
 
+            function getColor123( rx, ry, z, server,then ) {
+                return new Promise(resolve => {
+                    const x = Math.floor( rx )				// タイルX座標
+                    const y = Math.floor( ry )				// タイルY座標
+                    const i = ( rx - x ) * 256			// タイル内i座標
+                    const j = ( ry - y ) * 256			// タイル内j座標
+                    const img = new Image();
+                    img.crossOrigin = 'anonymous';
+                    img.alt = "";
+                    img.onload = function(){
+                        const canvas = document.createElement( 'canvas' )
+                        const context = canvas.getContext( '2d' )
+                        let  h = 'e'
+                        canvas.width = 1;
+                        canvas.height = 1;
+                        context.drawImage( img, i, j, 1, 1, 0, 0, 1, 1 );
+                        const rgb = context.getImageData( 0, 0, 1, 1 ).data;
+                        console.log(rgb)
+                        resolve(rgb)
+                        // then( rgb );
+                    }
+                    img.src = server + z + '/' + x + '/' + y + '.png';
+                })
+            }
+
+
+
+            async function getColor00(event,server,zoom,func) {
+            // const getColor00 =  (event,server,zoom) =>{
+                let z
+                if (zoom) {
+                    z= zoom
+                } else {
+                    z = Math.floor(map.getView().getZoom());
+                }
+                const coord = event.coordinate
+                const R = 6378137;// 地球の半径(m);
+                const x = ( 0.5 + coord[ 0 ] / ( 2 * R * Math.PI ) ) * Math.pow( 2, z );
+                const y = ( 0.5 - coord[ 1 ] / ( 2 * R * Math.PI ) ) * Math.pow( 2, z );
+                const e = event;
+                // const server = 'https://disaportaldata.gsi.go.jp/raster/01_flood_l2_shinsuishin/'
+                // document.querySelector('#' + mapName + ' .ol-viewport').style.cursor = "wait"
+                const result =await getColor123( x, y, z, server,   function( rgb ) {
+                    // console.log(rgb)
+                    // abc.push = rgb
+                } );
+                rgbaArr.push(result)
+                funcArr.push(func)
+                console.log(result)
+            }
+            async function created() {
+                const fetchData = layerNames.map((layerName) => {
+                    let server
+                    let zoom
+                    let func
+                    switch (layerName) {
+                        case 'shinsuishin':
+                            server = 'https://disaportaldata.gsi.go.jp/raster/01_flood_l2_shinsuishin/'
+                            zoom = 17
+                            func = PopUp.popUpShinsuishin2
+
+
+                    }
+                    return getColor00(evt,server,zoom,func)
+                })
+                await Promise.all([
+                    ...fetchData
+                ])
+                    .then((response) => {
+                        const aaa = rgbaArr.map((rgba,i) =>{
+                            return {'layerName':layerNames[i] ,'rgba':rgba,'func':funcArr[i]}
+                        })
+                        aaa.forEach((value) =>{
+                            console.log(value.func(value.rgba))
+                        })
 
 
 
 
+                        rgbaArr = []
+                    })
+            }
+            created()
+
+
+
+
+
+            // ------------------------------------------------------
             layersObj.forEach(object =>{
                 // console.log(object.layer.get('name'))
                 const getColor0 =  (event,server,popup,zoom) =>{
