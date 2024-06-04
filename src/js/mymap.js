@@ -631,7 +631,8 @@ export function initMap (vm) {
         let funcArr = []
         map.on('singleclick', function (evt) {
             overlay[i].setPosition(undefined)
-            store.commit('base/popUpContReset')
+            // document.querySelector('.center-target').style.zIndex = 1
+            // store.commit('base/popUpContReset')
             // //処理を早くするため抜ける。---------------------------------------------------
             // const layers0 = map.getLayers().getArray();
             // const hazardLayers = layers0.filter(el => el.get('pointer'));
@@ -811,7 +812,7 @@ export function initMap (vm) {
                         aaa.forEach((value) =>{
                             if (value.func(value.rgba)) html += value.func(value.rgba)
                         })
-                        overlay[i].setPosition(undefined)
+                        html = '<span style="color: red">' + html + '</span>'
                         const pixel = (evt.map).getPixelFromCoordinate(evt.coordinate);
                         const features = [];
                         const layers = [];

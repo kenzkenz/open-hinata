@@ -1000,7 +1000,7 @@ export function popUp(map,layers,features,overlay,evt,content,content2) {
               '<h4>人口' + prop.jinko + '人</h4>' +
               '老年人口　　= ' + prop.ronen + '人(' + ronenritu + ')<br>' +
               '生産年齢人口= ' + prop.seisan + '人(' + seisanritu + ')<br>' +
-              '年少人口　　= ' + prop.nensyo + '人(' + nensyoritu + ')<br><br>' +
+              '年少人口　　= ' + prop.nensyo + '人(' + nensyoritu + ')<br>' +
               '<button class="jinkopie1km" mapname="' + map.values_.target +
               // '" KEY_CODE="' + prop.KEY_CODE +
               // '" jyusyo="' + response.data.results.lv01Nm +
@@ -1008,7 +1008,7 @@ export function popUp(map,layers,features,overlay,evt,content,content2) {
               '" ronen="' + prop.ronen +
               '" seisan="' + prop.seisan +
               '" nensyo="' + prop.nensyo +
-              '">円グラフ</button><br><br>' +
+              '">円グラフ</button>' +
               '</div><hr>'
 
           // d3.select('.loadingImg').style("display","block")
@@ -1062,7 +1062,7 @@ export function popUp(map,layers,features,overlay,evt,content,content2) {
               // splitMuni[1] + splitMuni[3] + '<br>' +
               '老年人口　　= ' + prop.Pop65over.toFixed(2) + '人(' + ronenritu100 + ')<br>' +
               '生産年齢人口= ' + prop.Pop15_64.toFixed(2) + '人(' + seisanritu100 + ')<br>' +
-              '年少人口　　= ' + prop.Pop0_14.toFixed(2) + '人(' + nensyoritu100 + ')<br><br>' +
+              '年少人口　　= ' + prop.Pop0_14.toFixed(2) + '人(' + nensyoritu100 + ')<br>' +
               '<button class="jinkopie100m" mapname="' + map.values_.target +
               '" KEY_CODE="' + prop.KEY_CODE +
               // '" jyusyo="' + response.data.results.lv01Nm +
@@ -1070,7 +1070,7 @@ export function popUp(map,layers,features,overlay,evt,content,content2) {
               '" ronen="' + prop.Pop65over +
               '" seisan="' + prop.Pop15_64 +
               '" nensyo="' + prop.Pop0_14 +
-              '">円グラフ</button><br><br>' +
+              '">円グラフ</button>' +
               '</div><hr>'
 
 
@@ -1169,7 +1169,7 @@ export function popUp(map,layers,features,overlay,evt,content,content2) {
           }
           width = 200
           cont += '<div style=width:' + width + 'px;>' +
-              '<h4>' + zoseiText + '</h4>' +
+              '<h4 style="color: red">' + zoseiText + '</h4>' +
               '<p>' + prop.A54_003 + prop.A54_005 + '</p>' +
               '<p>盛り土番号=' + prop.A54_006 + '</p>' +
               '</div><hr>'
@@ -1203,7 +1203,11 @@ export function popUp(map,layers,features,overlay,evt,content,content2) {
           const splitMuni = muni[Number(response.data.results.muniCd)].split(',')
           cont2 = splitMuni[1] + splitMuni[3] + '<h4>' + response.data.results.lv01Nm + '</h4>' + cont2
           content.innerHTML = cont2
-          if (cont && cont !== undefined) overlay.setPosition(coordinate)
+          if (cont && cont !== undefined) {
+            overlay.setPosition(coordinate)
+          } else {
+            document.querySelector('.center-target').style.zIndex = 1
+          }
 
           const button = document.querySelector(".jinkopie1km,.jinkopie100m")
           button.setAttribute("jyusyo", response.data.results.lv01Nm )
@@ -1215,7 +1219,11 @@ export function popUp(map,layers,features,overlay,evt,content,content2) {
     popupCenter()
     const cont2 = cont + streetView
     content.innerHTML = cont2
-    if (cont && cont !== undefined) overlay.setPosition(coordinate)
+    if (cont && cont !== undefined) {
+      overlay.setPosition(coordinate)
+    } else {
+      document.querySelector('.center-target').style.zIndex = 1
+    }
     cont = ''
     flg = false
   }

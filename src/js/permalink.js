@@ -289,10 +289,10 @@ export function permalinkEventSet (response) {
                           switch (c.name) {
                             case 'jinko250m':
                             case 'jinko':
-                              height = '200px'
+                              height = '210px'
                               break
                             case 'jinko100m':
-                              height = '415px'
+                              height = '425px'
                               break
                             case 'flood10m':
                               height = '357px'
