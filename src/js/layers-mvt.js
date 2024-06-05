@@ -387,6 +387,7 @@ function ssdsStyleFunction(mapName,prefOrCity) {
       area = prop.コード
     }
     let ssdsData = store.state.info.ssdsData[mapName]
+    // console.log(ssdsData)
     const jyuni = ssdsData.findIndex((v) => {
       return v['@area'] === area
     }) + 1

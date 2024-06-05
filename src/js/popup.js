@@ -14,7 +14,7 @@ export function popUp(map,layers,features,overlay,evt,content,content2) {
   let features0 = features
 
   if (features) {
-    if (features[0].getGeometry().getType() === 'Point') {
+    if (features[0].getGeometry().getType() === 'Point' || features[0].getGeometry().getType() === 'LineString') {
       features0 = [features[0]]
     }
   }
@@ -974,10 +974,16 @@ export function popUp(map,layers,features,overlay,evt,content,content2) {
           break
         case 'drawLayer2':
           width = 300
+          let block = 'block'
+          if (prop.src) {
+            block = 'block'
+          } else {
+            block = 'none'
+          }
           cont += '<div style=width:300px;>' +
               '<h4 id="drawLayer2-name">' + ru(prop.name) + '</h4>' +
-              '<span id="drawLayer2-setumei">' + ru(prop.setumei) + '</span><br>' +
-              '<a id="drawLayer2-href" href="' + prop.src + '" target="_blank" ><img id="drawLayer2-src" src="' + prop.src + '" style="object-fit: cover;width: 300px;"></a><br>' +
+              '<p id="drawLayer2-setumei">' + ru(prop.setumei) + '</p>' +
+              '<a style="display: ' + block + '" id="drawLayer2-href" href="' + prop.src + '" target="_blank" ><img id="drawLayer2-src" src="' + prop.src + '" style="object-fit: cover;width: 300px;"></a><br>' +
               '</div>'
           // if (!prop.name) cont += ''
           store.state.base.editFeature = features[0]
@@ -996,121 +1002,50 @@ export function popUp(map,layers,features,overlay,evt,content,content2) {
           const seisanritu = (prop.seisan/prop.jinko*100).toFixed(2) + '%'
           const nensyoritu = (prop.nensyo/prop.jinko*100).toFixed(2) + '%'
           width = 220
-          cont += '<div style=width:220px;>' +
-              '<h4>人口' + prop.jinko + '人</h4>' +
-              '老年人口　　= ' + prop.ronen + '人(' + ronenritu + ')<br>' +
-              '生産年齢人口= ' + prop.seisan + '人(' + seisanritu + ')<br>' +
-              '年少人口　　= ' + prop.nensyo + '人(' + nensyoritu + ')<br>' +
-              '<button class="jinkopie1km" mapname="' + map.values_.target +
-              // '" KEY_CODE="' + prop.KEY_CODE +
-              // '" jyusyo="' + response.data.results.lv01Nm +
-              '" jinko="' + prop.jinko +
-              '" ronen="' + prop.ronen +
-              '" seisan="' + prop.seisan +
-              '" nensyo="' + prop.nensyo +
-              '">円グラフ</button>' +
-              '</div><hr>'
-
-          // d3.select('.loadingImg').style("display","block")
-          // axios
-          //     .get('https://mreversegeocoder.gsi.go.jp/reverse-geocoder/LonLatToAddress',{
-          //       params: {
-          //         lon: lonLat[0],
-          //         lat: lonLat[1]
-          //       }
-          //     })
-          //     .then(function (response) {
-          //       d3.select('.loadingImg').style("display","none")
-          //       const splitMuni = muni[Number(response.data.results.muniCd)].split(',')
-          //       const ronenritu = (prop.ronen/prop.jinko*100).toFixed(2) + '%'
-          //       const seisanritu = (prop.seisan/prop.jinko*100).toFixed(2) + '%'
-          //       const nensyoritu = (prop.nensyo/prop.jinko*100).toFixed(2) + '%'
-          //       width = 220
-          //       cont += '<div style=width:220px;>' +
-          //           '<h4>' + response.data.results.lv01Nm + '</h4>' +
-          //           '<h4>人口' + prop.jinko + '人</h4>' +
-          //           splitMuni[1] + splitMuni[3] + '<br>' +
-          //           '老年人口　　= ' + prop.ronen + '人(' + ronenritu + ')<br>' +
-          //           '生産年齢人口= ' + prop.seisan + '人(' + seisanritu + ')<br>' +
-          //           '年少人口　　= ' + prop.nensyo + '人(' + nensyoritu + ')<br><br>' +
-          //           '<button class="jinkopie1km" mapname="' + map.values_.target +
-          //           // '" KEY_CODE="' + prop.KEY_CODE +
-          //           '" jyusyo="' + response.data.results.lv01Nm +
-          //           '" jinko="' + prop.jinko +
-          //           '" ronen="' + prop.ronen +
-          //           '" seisan="' + prop.seisan +
-          //           '" nensyo="' + prop.nensyo +
-          //           '">円グラフ</button><br><br>' +
-          //           '</div>'
-          //       cont += streetView
-          //       content.innerHTML = cont
-          //       overlay.setPosition(coordinate);
-          //       popupCenter()
-          //     })
+          if (cont.indexOf('h4-1k') === -1) {
+            cont += '<div style=width:220px;>' +
+                '<p class="p-1k">_</p>' +
+                '<h4 class="h4-1k">_</h4>' +
+                '<h4>人口' + prop.jinko + '人</h4>' +
+                '老年人口　　= ' + prop.ronen + '人(' + ronenritu + ')<br>' +
+                '生産年齢人口= ' + prop.seisan + '人(' + seisanritu + ')<br>' +
+                '年少人口　　= ' + prop.nensyo + '人(' + nensyoritu + ')<br>' +
+                '<button class="jinkopie1km" mapname="' + map.values_.target +
+                // '" KEY_CODE="' + prop.KEY_CODE +
+                // '" jyusyo="' + response.data.results.lv01Nm +
+                '" jinko="' + prop.jinko +
+                '" ronen="' + prop.ronen +
+                '" seisan="' + prop.seisan +
+                '" nensyo="' + prop.nensyo +
+                '">円グラフ</button>' +
+                '</div><hr>'
+          }
           break
         case 'mesh100':
           flg = true
-
-          // const splitMuni = muni[Number(response.data.results.muniCd)].split(',')
           const ronenritu100 = (prop.Pop65over/prop.PopT*100).toFixed(2) + '%'
           const seisanritu100 = (prop.Pop15_64/prop.PopT*100).toFixed(2) + '%'
           const nensyoritu100 = (prop.Pop0_14/prop.PopT*100).toFixed(2) + '%'
           width = 220
-          cont += '<div style=width:220px;>' +
-              // '<h4>' + response.data.results.lv01Nm + '</h4>' +
-              '<h4>人口' + prop.PopT.toFixed(2) + '人</h4>' +
-              // splitMuni[1] + splitMuni[3] + '<br>' +
-              '老年人口　　= ' + prop.Pop65over.toFixed(2) + '人(' + ronenritu100 + ')<br>' +
-              '生産年齢人口= ' + prop.Pop15_64.toFixed(2) + '人(' + seisanritu100 + ')<br>' +
-              '年少人口　　= ' + prop.Pop0_14.toFixed(2) + '人(' + nensyoritu100 + ')<br>' +
-              '<button class="jinkopie100m" mapname="' + map.values_.target +
-              '" KEY_CODE="' + prop.KEY_CODE +
-              // '" jyusyo="' + response.data.results.lv01Nm +
-              '" jinko="' + prop.PopT +
-              '" ronen="' + prop.Pop65over +
-              '" seisan="' + prop.Pop15_64 +
-              '" nensyo="' + prop.Pop0_14 +
-              '">円グラフ</button>' +
-              '</div><hr>'
-
-
-
-          // d3.select('.loadingImg').style("display","block")
-          // axios
-          //     .get('https://mreversegeocoder.gsi.go.jp/reverse-geocoder/LonLatToAddress',{
-          //       params: {
-          //         lon: lonLat[0],
-          //         lat: lonLat[1]
-          //       }
-          //     })
-          //     .then(function (response) {
-          //       d3.select('.loadingImg').style("display","none")
-          //       const splitMuni = muni[Number(response.data.results.muniCd)].split(',')
-          //       const ronenritu100 = (prop.Pop65over/prop.PopT*100).toFixed(2) + '%'
-          //       const seisanritu100 = (prop.Pop15_64/prop.PopT*100).toFixed(2) + '%'
-          //       const nensyoritu100 = (prop.Pop0_14/prop.PopT*100).toFixed(2) + '%'
-          //       width = 220
-          //       cont += '<div style=width:220px;>' +
-          //           '<h4>' + response.data.results.lv01Nm + '</h4>' +
-          //           '<h4>人口' + prop.PopT.toFixed(2) + '人</h4>' +
-          //           splitMuni[1] + splitMuni[3] + '<br>' +
-          //           '老年人口　　= ' + prop.Pop65over.toFixed(2) + '人(' + ronenritu100 + ')<br>' +
-          //           '生産年齢人口= ' + prop.Pop15_64.toFixed(2) + '人(' + seisanritu100 + ')<br>' +
-          //           '年少人口　　= ' + prop.Pop0_14.toFixed(2) + '人(' + nensyoritu100 + ')<br><br>' +
-          //           '<button class="jinkopie100m" mapname="' + map.values_.target +
-          //           '" KEY_CODE="' + prop.KEY_CODE +
-          //           '" jyusyo="' + response.data.results.lv01Nm +
-          //           '" jinko="' + prop.PopT +
-          //           '" ronen="' + prop.Pop65over +
-          //           '" seisan="' + prop.Pop15_64 +
-          //           '" nensyo="' + prop.Pop0_14 +
-          //           '">円グラフ</button><br><br>' +
-          //           '</div>'
-          //       cont += streetView
-          //       content.innerHTML = cont
-          //       overlay.setPosition(coordinate)
-          //       popupCenter()
-          //     })
+          if (cont.indexOf('h4-100m') === -1) {
+            cont += '<div style=width:220px;>' +
+                '<p class="p-100m">_</p>' +
+                '<h4 class="h4-100m">_</h4>' +
+                '<h4>人口' + prop.PopT.toFixed(2) + '人</h4>' +
+                // splitMuni[1] + splitMuni[3] + '<br>' +
+                '老年人口　　= ' + prop.Pop65over.toFixed(2) + '人(' + ronenritu100 + ')<br>' +
+                '生産年齢人口= ' + prop.Pop15_64.toFixed(2) + '人(' + seisanritu100 + ')<br>' +
+                '年少人口　　= ' + prop.Pop0_14.toFixed(2) + '人(' + nensyoritu100 + ')<br>' +
+                '<button class="jinkopie100m" mapname="' + map.values_.target +
+                '" KEY_CODE="' + prop.KEY_CODE +
+                // '" jyusyo="' + response.data.results.lv01Nm +
+                '" jinko="' + prop.PopT +
+                '" ronen="' + prop.Pop65over +
+                '" seisan="' + prop.Pop15_64 +
+                '" nensyo="' + prop.Pop0_14 +
+                '">円グラフ</button>' +
+                '</div><hr>'
+          }
           break
         case 'ssdsPref':
           // console.log(prop.コード.length)
@@ -1201,16 +1136,24 @@ export function popUp(map,layers,features,overlay,evt,content,content2) {
           popupCenter()
           let cont2 = cont + streetView
           const splitMuni = muni[Number(response.data.results.muniCd)].split(',')
-          cont2 = splitMuni[1] + splitMuni[3] + '<h4>' + response.data.results.lv01Nm + '</h4>' + cont2
+          // cont2 = splitMuni[1] + splitMuni[3] + '<h4>' + response.data.results.lv01Nm + '</h4>' + cont2
+
           content.innerHTML = cont2
+
           if (cont && cont !== undefined) {
             overlay.setPosition(coordinate)
           } else {
             document.querySelector('.center-target').style.zIndex = 1
+            overlay.setPosition(undefined)
           }
 
           const button = document.querySelector(".jinkopie1km,.jinkopie100m")
           button.setAttribute("jyusyo", response.data.results.lv01Nm )
+
+          const h4 = document.querySelector(".h4-100m,.h4-1k")
+          h4.innerHTML = response.data.results.lv01Nm
+          const p = document.querySelector(".p-100m,.p-1k")
+          p.innerHTML = splitMuni[1] + splitMuni[3]
 
           cont = ''
           flg = false
@@ -1223,6 +1166,7 @@ export function popUp(map,layers,features,overlay,evt,content,content2) {
       overlay.setPosition(coordinate)
     } else {
       document.querySelector('.center-target').style.zIndex = 1
+      overlay.setPosition(undefined)
     }
     cont = ''
     flg = false

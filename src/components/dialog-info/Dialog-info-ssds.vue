@@ -113,7 +113,6 @@ export default {
                   return -1;
                 }
               })
-
               vm.ssdsData = data
 
               // 初期時の抽出、直近の年で抽出----------------------------------------
@@ -122,6 +121,13 @@ export default {
               vm.statText = maxTime.slice(0,4) + ' ' + node.data.text
               let maxTimeResult = vm.ssdsData.filter((v)=>{
                 return v['@time'] === maxTime
+              })
+              maxTimeResult.sort(function(a, b) {
+                if (Number(a['$']) < Number(b['$'])) {
+                  return 1;
+                } else {
+                  return -1;
+                }
               })
               vm.$store.state.info.ssdsData[vm.mapName] = maxTimeResult
               LayersMvt.ssdsPrefObj[vm.mapName].getSource().changed()
@@ -163,6 +169,13 @@ export default {
       this.statText = selectedTime + ' ' + this.ssdsText
       let selectedResult = this.ssdsData.filter((v)=>{
         return v['@time'] === selectedTime + this.month
+      })
+      selectedResult.sort(function(a, b) {
+        if (Number(a['$']) < Number(b['$'])) {
+          return 1;
+        } else {
+          return -1;
+        }
       })
       this.$store.state.info.ssdsData[this.mapName] = selectedResult
       if (this.item.id === 'ssdsPref') {
@@ -229,10 +242,4 @@ export default {
 </style>
 <style>
 
-/*@media screen and (max-width:480px) {*/
-/*  .vue-slider-dot-handle{*/
-/*    width: 150%!important;*/
-/*    border-radius:0!important;*/
-/*  }*/
-/*}*/
 </style>

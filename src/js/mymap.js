@@ -812,7 +812,7 @@ export function initMap (vm) {
                         aaa.forEach((value) =>{
                             if (value.func(value.rgba)) html += value.func(value.rgba)
                         })
-                        html = '<span style="color: red">' + html + '</span>'
+                        if (html) html = '<span style="color: red">' + html + '</span>'
                         const pixel = (evt.map).getPixelFromCoordinate(evt.coordinate);
                         const features = [];
                         const layers = [];
