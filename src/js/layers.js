@@ -2786,7 +2786,9 @@ function Jinsoku () {
   this.preload = Infinity
   this.extent = transformE([138.954453,34.86946,140.8793163,36.45969967])
   this.source = new XYZ({
-    url: 'https://habs.rad.naro.go.jp/rapid16/{z}/{x}/{-y}.png',
+    url: 'https://boiledorange73.sakura.ne.jp/ws/tile/Kanto_Rapid-900913/{z}/{x}/{y}.png', // 応急処置
+    // url: 'https://boiledorange73.sakura.ne.jp/ws/tile/Kanto_Rapid-900913/{z}/{x}/{y}.jpg', // 応急処置
+    // url: 'https://habs.rad.naro.go.jp/rapid16/{z}/{x}/{-y}.png',// 正
     // url: 'https://habs.rad.naro.go.jp/rapid16/{z}/{x}/{-y}.png',
     // url: 'https://aginfo.cgk.affrc.go.jp/ws/tmc/1.0.0/Kanto_Rapid-900913-L/{z}/{x}/{y}.png',
     crossOrigin: 'Anonymous',
@@ -12684,6 +12686,7 @@ export const Layers =
         { text: '人口メッシュ',
           children: [
             { text: '2020人口1km', data: { id: "jinko1km", layer: LayersMvt.mesh1kmObj, opacity: 1, summary: LayersMvt.mesh1kmObjSumm, component: {name: 'jinko', values:[]} } },
+            { text: '2020人口500m', data: { id: "jinko500m", layer: LayersMvt.mesh500Obj, opacity: 1, summary: LayersMvt.mesh500ObjSumm, component: {name: 'jinko500m', values:[]} } },
             { text: '2020人口250m', data: { id: "jinko250m", layer: LayersMvt.mesh250Obj, opacity: 1, summary: LayersMvt.mesh250ObjSumm, component: {name: 'jinko250m', values:[]} } },
             { text: '2020人口100m(簡易)', data: { id: "jinko100m", layer: LayersMvt.mesh100Obj, opacity: 1, summary: LayersMvt.mesh100ObjSumm, component: {name: 'jinko100m', values:[]}  } },
           ]},
@@ -13897,7 +13900,7 @@ export const Layers =
       children: [
         { text: '五街道', data: { id: "gokaido", layer: LayersMvt.gokaidoObj, opacity: 1, summary: LayersMvt.gokaidoSumm} },
         { text: '明治期における国道の比定路線', data: { id: "meijikokudo", layer: LayersMvt.meijikokudoObj, opacity: 1, summary: LayersMvt.meijikokudoSumm} },
-        { text: '鉄道（廃線は赤色）', data: { id: "rosen", layer: LayersMvt.rosen0Obj, opacity: 1, summary: LayersMvt.rosenSumm} },
+        { text: 'R05鉄道（廃線は赤色）', data: { id: "rosen", layer: LayersMvt.rosen0Obj, opacity: 1, summary: LayersMvt.rosenSumm} },
 
         // { text: 'test', data: { id: "railroad", layer: LayersMvt.railroadObj, opacity: 1, summary: LayersMvt.railroadSumm} },
 

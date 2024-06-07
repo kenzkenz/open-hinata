@@ -298,6 +298,12 @@ const moduleInfo = {
       map03: true,
       map04: true
     },
+    paintCheck500m: {
+      map01: true,
+      map02: true,
+      map03: true,
+      map04: true
+    },
     paintCheck1k: {
       map01: true,
       map02: true,
@@ -327,6 +333,12 @@ const moduleInfo = {
       map02: 3010,
       map03: 3010,
       map04: 3010
+    },
+    jinko500m: {
+      map01: 15000,
+      map02: 15000,
+      map03: 15000,
+      map04: 15000
     },
     ssdsData00: {
       map01: [],
@@ -431,7 +443,6 @@ const moduleInfo = {
           } else if (payload.order === 1){
             variable = 'paintCheck1k'
           }
-          // variable = 'jinko'
           break
         case 'jinko100m':
           if (payload.order === 0) {
@@ -439,7 +450,6 @@ const moduleInfo = {
           } else if (payload.order === 1){
             variable = 'paintCheck100m'
           }
-          // variable = 'jinko100m'
           break
         case 'jinko250m':
           if (payload.order === 0) {
@@ -447,7 +457,13 @@ const moduleInfo = {
           } else if (payload.order === 1){
             variable = 'paintCheck250m'
           }
-          // variable = 'jinko250m'
+          break
+        case 'jinko500m':
+          if (payload.order === 0) {
+            variable = 'jinko500m'
+          } else if (payload.order === 1){
+            variable = 'paintCheck500m'
+          }
           break
       }
       state[variable][payload.mapName] = payload.value

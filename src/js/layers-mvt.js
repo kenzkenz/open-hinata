@@ -458,6 +458,93 @@ function ssdsStyleFunction(mapName,prefOrCity) {
     return styles;
   }
 }
+// 500mメッシュ-------------------------------------------------------------
+let mesh500MaxResolution
+if (window.innerWidth > 1000) {
+  mesh500MaxResolution = 305.748113 //zoom9
+} else {
+  mesh500MaxResolution = 152.874057 //zoom10
+}
+function Mesh500(mapName){
+  this.name = 'mesh500'
+  this.className = 'mesh500'
+  this.source = new VectorTileSource({
+    crossOrigin: 'Anonymous',
+    format: new MVT(),
+    maxZoom:14,
+    url: "https://kenzkenz3.xsrv.jp/mvt/500mmesh/{z}/{x}/{y}.mvt"
+  });
+  this.style = mesh500ColorFunction(mapName)
+  this.maxResolution = mesh500MaxResolution
+  this.declutter = true
+  this.overflow = true
+}
+export  const mesh500Obj = {};
+for (let i of mapsStr) {
+  mesh500Obj[i] = new VectorTileLayer(new Mesh500((i)))
+}
+export const mesh500ObjSumm = "" +
+    "<a href='https://www.e-stat.go.jp/gis/statmap-search?page=8&type=1&toukeiCode=00200521&toukeiYear=2020&aggregateUnit=H&serveyId=H002005112020&statsId=T001141&datum=2011' target='_blank'>e-Stat</a>";
+// -----------------------------------------------------------------------------------
+function mesh500ColorFunction(mapName) {
+  return function (feature, resolution) {
+    const jinkoMax = Number(store.state.info.jinko500m[mapName])
+    const paintCheck = store.state.info.paintCheck500m[mapName]
+    // const jinkoMax = 15000
+    const mesh100Color = d3.scaleLinear()
+        .domain([
+          0,
+          jinkoMax/3.5,
+          jinkoMax/1.75,
+          jinkoMax*30/35,
+          jinkoMax])
+        .range(["white", "red","#880000",'maroon','black']);
+    const zoom = getZoom(resolution);
+    const prop = feature.getProperties();
+    const styles = [];
+    const rgb = d3.rgb(mesh100Color(prop.jinko))
+    let rgba = "rgba(" + rgb.r + "," + rgb.g + "," + rgb.b + ",0.7)"
+    if (!paintCheck) rgba = 'rgba(0,0,0,0)'
+    const polygonStyle = new Style({
+      fill: new Fill({
+        color: rgba
+      }),
+      stroke: new Stroke({
+        color: zoom >= 14 ? 'red' : 'rgba(0,0,0,0)',
+        width: 1
+      })
+    })
+    const text = prop.jinko + '人'
+    let font
+    if (zoom>=18) {
+      font = "26px sans-serif"
+    } else if (zoom>=16) {
+      font = "20px sans-serif"
+    } else if (zoom>=15) {
+      font = "14px sans-serif"
+    } else if (zoom >= 14) {
+      font = "8px sans-serif"
+    }
+    const textStyle = new Style({
+      text: new Text({
+        font: font,
+        text: text,
+        fill: new Fill({
+          color: "black"
+        }),
+        Placement: 'point',
+        overflow: 'true',
+        stroke: new Stroke({
+          color: "white",
+          width: 3
+        }),
+      })
+    })
+    styles.push(polygonStyle)
+    if (zoom>=14) styles.push(textStyle)
+    return styles
+  }
+}
 // 250mメッシュ-------------------------------------------------------------
 let mesh250MaxResolution
 if (window.innerWidth > 1000) {
@@ -4562,16 +4649,18 @@ for (let i of mapsStr) {
     ]
   })
 }
-
+// ----------------------------------------------------------------------------------------
 const source =  new VectorTileSource({
   format: new MVT(),
-  maxZoom: 13,
-  url: "https://kenzkenz.github.io/rosen/{z}/{x}/{y}.mvt"
+  maxZoom: 14,
+  // url: "https://kenzkenz.github.io/rosen/{z}/{x}/{y}.mvt"
+  url: 'https://kenzkenz3.xsrv.jp/mvt/tetsudo/{z}/{x}/{y}.mvt'
 });
 const source2 = new VectorTileSource({
   format: new MVT(),
-  maxZoom: 13,
-  url: "https://kenzkenz.github.io/eki/{z}/{x}/{y}.mvt"
+  maxZoom: 14,
+  // url: "https://kenzkenz.github.io/eki/{z}/{x}/{y}.mvt"
+  url: 'https://kenzkenz3.xsrv.jp/mvt/eki/{z}/{x}/{y}.mvt'
 });
 
 function Rosen() {
@@ -4586,11 +4675,12 @@ export const rosenObj = {};
 for (let i of mapsStr) {
   rosenObj[i] = new VectorTileLayer(new Rosen())
 }
-export const rosenSumm = "<a href='https://nlftp.mlit.go.jp/ksj/gml/datalist/KsjTmplt-N05-v2_0.html' target='_blank'>国土数値情報　鉄道データ</a>"
+export const rosenSumm = "<a href='https://nlftp.mlit.go.jp/ksj/gml/datalist/KsjTmplt-N05-2023.html' target='_blank'>国土数値情報　鉄道データ</a>"
 
 function Rosenxyz () {
   this.source = new XYZ({
-    url: 'https://kenzkenz3.xsrv.jp/rosen/{z}/{x}/{y}.png',
+    // url: 'https://kenzkenz3.xsrv.jp/rosen/{z}/{x}/{y}.png',
+    url: 'https://kenzkenz3.xsrv.jp/tetsudo/{z}/{x}/{y}.png',
     crossOrigin: 'Anonymous',
     minZoom: 1,
     maxZoom: 11

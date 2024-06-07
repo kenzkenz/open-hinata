@@ -694,7 +694,6 @@ export function initMap (vm) {
                 })
             }
             async function getRgb0(event,server,zoom,func) {
-            // const getColor00 =  (event,server,zoom) =>{
                 let z
                 if (zoom) {
                     z= zoom
@@ -880,6 +879,7 @@ export function initMap (vm) {
                     kotizuLayer.setZIndex(undefined)
                 }
             }
+            drawLayer2.setZIndex(maxZndex)
         })
         //--------------------------------------------------------------------------------
         // シームレス地質図ポップアップ用
@@ -928,6 +928,9 @@ export function initMap (vm) {
                         }
                     }
                 }
+
+                drawLayer2.setZIndex(maxZndex)
+
             }
         })
 
@@ -1005,6 +1008,9 @@ export function initMap (vm) {
                         }
                     }
                 }
+
+                drawLayer2.setZIndex(maxZndex)
+
             }
         })
 

@@ -287,6 +287,8 @@ tippecanoe -pk -rg -pf -f -e tile i.geojson
 tippecanoe -pk -pf -f -e tile z.geojson
 tippecanoe -pk -pf -f -e tile 9.geojson
 tippecanoe -pk -pf -f -e tile 500m.geojson
+tippecanoe -pk -pf -f -e tile t.geojson
+tippecanoe -pk -rg -pf -f -e ekitile e.geojson
 
 
 $ cd tile

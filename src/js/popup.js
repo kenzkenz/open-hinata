@@ -13,8 +13,10 @@ export function popUp(map,layers,features,overlay,evt,content,content2) {
   let flg = false
   let features0 = features
 
+  // console.log(features[0].getGeometry().getType())
+
   if (features) {
-    if (features[0].getGeometry().getType() === 'Point' || features[0].getGeometry().getType() === 'LineString') {
+    if (features[0].getGeometry().getType() === 'Point' || features[0].getGeometry().getType() === 'LineString' || features[0].getGeometry().getType() === 'MultiLineString') {
       features0 = [features[0]]
     }
   }
@@ -33,7 +35,7 @@ export function popUp(map,layers,features,overlay,evt,content,content2) {
       const prop = feature.getProperties();
       console.log(prop)
       let lonLat
-      if (geoType === 'Polygon' || geoType === 'MultiPolygon' || geoType === 'LineString') {
+      if (geoType === 'Polygon' || geoType === 'MultiPolygon' || geoType === 'LineString' || geoType === 'MultiLineString') {
         coordinate = evt.coordinate
         lonLat = transform([coordinate[0],coordinate[1]], "EPSG:3857", "EPSG:4326")
       } else {
@@ -957,20 +959,22 @@ export function popUp(map,layers,features,overlay,evt,content,content2) {
               '</div>'
           break
         case 'syochiki2020':
-          width = 220
-          cont += '<div style=width:220px;>' +
-              '<div style="text-align: center;">' +
-              '<h4>' + prop.S_NAME + '</h4>' +
-              '<h5>人口=' + ru2(prop.JINKO) + '人</h5>' +
-              ru(prop.PREF_NAME) + ru(prop.CITY_NAME) + '<br>' +
-              'コード=' + ru(prop.KEY_CODE) + '<br><br>' +
-              '<button class="pyramid-syochiiki-r02" year=2020 mapname="' + map.values_.target + '" cdArea="' + prop.KEY_CODE + '" syochiikiname="' + prop.S_NAME + '">2020（R02）人口ピラミッド</button><br>' +
-              '<button class="pyramid-syochiiki-h27" year=2015 mapname="' + map.values_.target + '" cdArea="' + prop.KEY_CODE + '" syochiikiname="' + prop.S_NAME + '">2015（H27）人口ピラミッド</button><br>' +
-              '<button class="pyramid-syochiiki-h22" year=2010 mapname="' + map.values_.target + '" cdArea="' + prop.KEY_CODE + '" syochiikiname="' + prop.S_NAME + '">2010（H22）人口ピラミッド</button><br>' +
-              '<button class="pyramid-syochiiki-h17" year=2005 mapname="' + map.values_.target + '" cdArea="' + prop.KEY_CODE + '" syochiikiname="' + prop.S_NAME + '">2005（H17）人口ピラミッド</button><br>' +
-              '<button class="jinkosuii3" mapname="' + map.values_.target + '" cdArea="' + prop.KEY_CODE + '" syochiikiname="' + prop.S_NAME + '">人口推移</button><br>' +
-              '<br>' +
-              '</div></div><hr>'
+          if (cont.indexOf('pyramid-syochiiki-r02') === -1) {
+            width = 220
+            cont += '<div style=width:220px;>' +
+                '<div style="text-align: center;">' +
+                '<h4>' + prop.S_NAME + '</h4>' +
+                '<h5>人口=' + ru2(prop.JINKO) + '人</h5>' +
+                ru(prop.PREF_NAME) + ru(prop.CITY_NAME) + '<br>' +
+                'コード=' + ru(prop.KEY_CODE) + '<br>' +
+                '<button class="pyramid-syochiiki-r02" year=2020 mapname="' + map.values_.target + '" cdArea="' + prop.KEY_CODE + '" syochiikiname="' + prop.S_NAME + '">2020（R02）人口ピラミッド</button><br>' +
+                '<button class="pyramid-syochiiki-h27" year=2015 mapname="' + map.values_.target + '" cdArea="' + prop.KEY_CODE + '" syochiikiname="' + prop.S_NAME + '">2015（H27）人口ピラミッド</button><br>' +
+                '<button class="pyramid-syochiiki-h22" year=2010 mapname="' + map.values_.target + '" cdArea="' + prop.KEY_CODE + '" syochiikiname="' + prop.S_NAME + '">2010（H22）人口ピラミッド</button><br>' +
+                '<button class="pyramid-syochiiki-h17" year=2005 mapname="' + map.values_.target + '" cdArea="' + prop.KEY_CODE + '" syochiikiname="' + prop.S_NAME + '">2005（H17）人口ピラミッド</button><br>' +
+                '<button class="jinkosuii3" mapname="' + map.values_.target + '" cdArea="' + prop.KEY_CODE + '" syochiikiname="' + prop.S_NAME + '">人口推移</button><br>' +
+                '' +
+                '</div></div><hr>'
+          }
           break
         case 'drawLayer2':
           width = 300
@@ -995,14 +999,15 @@ export function popUp(map,layers,features,overlay,evt,content,content2) {
             store.state.base.dialogs.dialogEdit.style.display = 'block'
           }
           break
+        case 'mesh500':
         case 'mesh250':
         case 'mesh1km':
           flg = true
           const ronenritu = (prop.ronen/prop.jinko*100).toFixed(2) + '%'
           const seisanritu = (prop.seisan/prop.jinko*100).toFixed(2) + '%'
           const nensyoritu = (prop.nensyo/prop.jinko*100).toFixed(2) + '%'
-          width = 220
           if (cont.indexOf('h4-1k') === -1) {
+            width = 220
             cont += '<div style=width:220px;>' +
                 '<p class="p-1k">_</p>' +
                 '<h4 class="h4-1k">_</h4>' +
@@ -1026,8 +1031,8 @@ export function popUp(map,layers,features,overlay,evt,content,content2) {
           const ronenritu100 = (prop.Pop65over/prop.PopT*100).toFixed(2) + '%'
           const seisanritu100 = (prop.Pop15_64/prop.PopT*100).toFixed(2) + '%'
           const nensyoritu100 = (prop.Pop0_14/prop.PopT*100).toFixed(2) + '%'
-          width = 220
           if (cont.indexOf('h4-100m') === -1) {
+            width = 220
             cont += '<div style=width:220px;>' +
                 '<p class="p-100m">_</p>' +
                 '<h4 class="h4-100m">_</h4>' +
@@ -1090,24 +1095,26 @@ export function popUp(map,layers,features,overlay,evt,content,content2) {
               '</div>'
           break
         case 'zoseiMvt':
-          let zoseiText
-          switch (prop.A54_001) {
-            case '1':
-              zoseiText = '谷埋め型'
-              break
-            case '2':
-              zoseiText = '腹付け型'
-              break
-            case '9':
-              zoseiText = '区分をしていない'
-              break
+          if (cont.indexOf('zosei') === -1) {
+            let zoseiText
+            switch (prop.A54_001) {
+              case '1':
+                zoseiText = '谷埋め型'
+                break
+              case '2':
+                zoseiText = '腹付け型'
+                break
+              case '9':
+                zoseiText = '区分をしていない'
+                break
+            }
+            width = 200
+            cont += '<div class="zosei" style=width:' + width + 'px;>' +
+                '<h4 style="color: red">' + zoseiText + '</h4>' +
+                '<p>' + prop.A54_003 + prop.A54_005 + '</p>' +
+                '<p>盛り土番号=' + prop.A54_006 + '</p>' +
+                '</div><hr>'
           }
-          width = 200
-          cont += '<div style=width:' + width + 'px;>' +
-              '<h4 style="color: red">' + zoseiText + '</h4>' +
-              '<p>' + prop.A54_003 + prop.A54_005 + '</p>' +
-              '<p>盛り土番号=' + prop.A54_006 + '</p>' +
-              '</div><hr>'
           break
       }
     })

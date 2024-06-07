@@ -53,7 +53,7 @@ export default {
   methods: {
     paintChangge (value) {
       console.log(this.s_paint)
-      LayersMvt.mesh100Obj[this.mapName].getSource().changed()
+      LayersMvt.mesh250Obj[this.mapName].getSource().changed()
       this.storeUpdate()
     },
     storeUpdate () {

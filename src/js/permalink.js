@@ -287,6 +287,7 @@ export function permalinkEventSet (response) {
                         // bottom = ''
                         if (c) {
                           switch (c.name) {
+                            case 'jinko500m':
                             case 'jinko250m':
                             case 'jinko':
                               height = '210px'
