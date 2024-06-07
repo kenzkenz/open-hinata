@@ -551,24 +551,24 @@ export function popUp(map,layers,features,overlay,evt,content,content2) {
         case 'railroad':
           width = 200
           if (geoType === 'LineString') {
-            cont += '<div style=width:200px>運営会社=' + prop.N05_003 + '<hr>' +
+            cont += '<div style=width:200px>運営会社=' + prop.N05_003 + '<br>' +
                 '路線名=' + prop.N05_002 + '</div>'
           } else {
             cont += '<div style=width:200px>' +
-                '駅名=' + prop.N05_011 + '</div>'
+                '駅名=' + prop.N05_011 + '</div><hr>'
           }
           break
         case 'rosen':
-          width = 200
-          cont += '<div style=width:200px>運営会社=' + prop.N05_003 + '<hr>' +
-              '路線名=' + prop.N05_002 + '</div>'
+          width = 300
+          cont += '<div style=width:300px>運営会社=' + prop.N05_003 + '<br>' +
+              '路線名　=' + prop.N05_002 + '</div><hr>'
           break
         case 'eki':
-          width = 250
-          cont += '<div style=width:250px>' +
+          width = 300
+          cont += '<div style=width:300px>' +
               '<h4>' + prop.N05_011 + '</h4>' +
-              '運営会社=' + prop.N05_003 + '<hr>' +
-              '路線名=' + prop.N05_002 + '<hr>' +
+              '運営会社=' + prop.N05_003 + '<br>' +
+              '路線名　=' + prop.N05_002 + '<hr>' +
               '</div>'
           break
         case 'bus':

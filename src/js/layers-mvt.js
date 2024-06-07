@@ -4664,9 +4664,9 @@ const source2 = new VectorTileSource({
 });
 
 function Rosen() {
-  this.name = "rosen";
+  this.name = "rosen"
   this.className = 'rosen'
-  this.style = rosenStyleFunction();
+  this.style = rosenStyleFunction()
   this.source =source
   this.maxResolution = 152.874058 //zoom10
   this.declutter = true
@@ -4695,14 +4695,14 @@ for (let i of mapsStr) {
 // ------------------------------------
 function rosenStyleFunction() {
   return function (feature, resolution) {
-    const prop = feature.getProperties();
-    const zoom = getZoom(resolution);
-    const genzon = prop["N05_005e"];
-    let strokeColor;
-    let strokeWidth;
+    const prop = feature.getProperties()
+    const zoom = getZoom(resolution)
+    const genzon = prop["N05_005e"]
+    let strokeColor
+    let strokeWidth
     if (genzon === '9999') {
-      strokeColor = "mediumblue";
-      strokeWidth = zoom>9 ? 6 :2
+      strokeColor = "mediumblue"
+      strokeWidth = zoom > 9 ? 6 : 2
     }
     const styles = []
     const lineStyle = new Style({
@@ -4736,7 +4736,7 @@ function Rosenhaisi() {
   this.name = "rosen";
   this.style = rosenhaisiStyleFunction();
   this.source =source
-  this.maxResolution = 76.437029 //zoom11
+  this.maxResolution = 152.874058 //zoom10
 }
 export  const rosenhaisiObj = {};
 for (let i of mapsStr) {
