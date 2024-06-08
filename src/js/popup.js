@@ -147,13 +147,15 @@ export function popUp(map,layers,features,overlay,evt,content,content2) {
         case 'youtoH23' :
         case 'youtoR01' :
           width = 200
-          cont += '<div style=width:200px>都道府県名＝' + prop.A29_002 + '<br>' +
-              '市区町村名=' + prop.A29_003 + '<br>' +
-              '用途地域分類＝' + prop.A29_004 + '<br>' +
-              '用途地域名＝' + prop.A29_005 + '<br>' +
-              '建ぺい率＝' + prop.A29_006 + '<br>' +
-              '容積率＝' + prop.A29_007 + '<br>' +
-              '</div>'
+          if (cont.indexOf('youtoR01') === -1) {
+            cont += '<div class="youtoR01" style=width:200px>都道府県名＝' + prop.A29_002 + '<br>' +
+                '市区町村名=' + prop.A29_003 + '<br>' +
+                '用途地域分類＝' + prop.A29_004 + '<br>' +
+                '用途地域名＝' + prop.A29_005 + '<br>' +
+                '建ぺい率＝' + prop.A29_006 + '<br>' +
+                '容積率＝' + prop.A29_007 + '<br>' +
+                '</div><hr>'
+          }
           break;
         case 'tosiH30' :
           width = 100

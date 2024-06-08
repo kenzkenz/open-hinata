@@ -1722,6 +1722,7 @@ function YoutoH23(){
     maxZoom:13,
     url: "https://kenzkenz.github.io/youto_h23/{z}/{x}/{y}.mvt"
   });
+  this.maxResolution = '152.874057' //zoom10
   this.style = youtotiikiStyleFunction();
 }
 export  const youtoH23Obj = {};
@@ -1738,6 +1739,7 @@ function YoutoR01(){
     maxZoom:13,
     url: "https://kenzkenz.github.io/youto_r01/{z}/{x}/{y}.mvt"
   });
+  this.maxResolution = '152.874057' //zoom10
   this.style = youtotiikiStyleFunction();
 }
 export  const youtoR01Obj = {};
