@@ -12686,6 +12686,8 @@ export const Layers =
         { text: '人口メッシュ',
           children: [
             { text: '2020人口1km', data: { id: "jinko1km", layer: LayersMvt.mesh1kmObj, opacity: 1, summary: LayersMvt.mesh1kmObjSumm, component: {name: 'jinko', values:[]} } },
+            { text: '2020人口1km65歳以上人口割合', data: { id: "jinkoRonen1km", layer: LayersMvt.mesh1kmRonenObj, opacity: 1, summary: LayersMvt.mesh1kmObjSumm } },
+
             { text: '2020人口500m', data: { id: "jinko500m", layer: LayersMvt.mesh500Obj, opacity: 1, summary: LayersMvt.mesh500ObjSumm, component: {name: 'jinko500m', values:[]} } },
             { text: '2020人口250m', data: { id: "jinko250m", layer: LayersMvt.mesh250Obj, opacity: 1, summary: LayersMvt.mesh250ObjSumm, component: {name: 'jinko250m', values:[]} } },
             { text: '2020人口100m(簡易)', data: { id: "jinko100m", layer: LayersMvt.mesh100Obj, opacity: 1, summary: LayersMvt.mesh100ObjSumm, component: {name: 'jinko100m', values:[]}  } },
