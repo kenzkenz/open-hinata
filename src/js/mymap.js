@@ -35,6 +35,7 @@ import {moveEnd} from "./permalink"
 import Dialog from 'ol-ext/control/Dialog'
 import Icon from 'ol/style/Icon'
 import * as d3 from "d3"
+import width from "ol-ext/util/input/Width";
 
 // ドロー関係-------------------------------------------------------------------------------
 
@@ -712,8 +713,26 @@ export function initMap (vm) {
                 }
             }
             // -------------------------------------------------------------------------------
-
-
+            function popupSeamless(evt) {
+                return new Promise(resolve => {
+                    const coordinate = evt.coordinate;
+                    const coord4326 = transform(coordinate, "EPSG:3857", "EPSG:4326");
+                    const point = coord4326[1] + "," + coord4326[0];
+                    const url = 'https://gbank.gsj.jp/seamless/v2/api/1.2/legend.json'
+                    axios.get(url, {
+                        params: {
+                            point:point
+                        }
+                    }) .then(function (response) {
+                        console.log(response.data)
+                        const cont =
+                            '<div style=width:300px>形成時代 = ' + response.data["formationAge_ja"] +
+                            '<hr>グループ = '+ response.data["group_ja"] +
+                            '<hr>岩相 = ' + response.data["lithology_ja"] + '</div><hr>'
+                        resolve(cont)
+                    });
+                })
+            }
             // -------------------------------------------------------------------------------
             async function popupCreate() {
                 // d3.select('.loadingImg').style("display","block")
@@ -805,19 +824,28 @@ export function initMap (vm) {
                     }
                     if (server) return getRgb0(evt,server,zoom,func)
                 })
+                // ----------------------------------------------------
+                const layers0 = map.getLayers().getArray();
+                const seamlessLayer = layers0.find(el => el.get('name') === 'seamless');
+                if (seamlessLayer) fetchData.push(popupSeamless(evt))
+                // ------------------------------------------------------
                 console.log(fetchData)
                 await Promise.all([
                     ...fetchData
                 ])
                     .then((response) => {
-                        let html =''
+                        console.log(response)
+                        let html = ''
+                        if (response[response.length-1]) html += response[response.length-1]
+
                         const aaa = rgbaArr.map((rgba,i) =>{
                             return {'layerName':layerNames[i] ,'rgba':rgba,'func':funcArr[i]}
                         })
                         aaa.forEach((value) =>{
                             if (value.func(value.rgba)) html += value.func(value.rgba)
                         })
-                        if (html) html = '<span style="color: red">' + html + '</span>'
+                        if (html) html += '<hr>'
+                        // if (html) html = '<span style="color: red">' + html + '</span>'
                         const pixel = (evt.map).getPixelFromCoordinate(evt.coordinate);
                         const features = [];
                         const layers = [];
@@ -890,9 +918,9 @@ export function initMap (vm) {
         //--------------------------------------------------------------------------------
         // シームレス地質図ポップアップ用
         map.on('singleclick', function (evt) {
-            const layers0 = map.getLayers().getArray();
-            const seamlessLayer = layers0.find(el => el.get('name') === 'seamless');
-            if (seamlessLayer) PopUp.popupSeamless(overlay[i],evt,content)
+            // const layers0 = map.getLayers().getArray();
+            // const seamlessLayer = layers0.find(el => el.get('name') === 'seamless');
+            // if (seamlessLayer) PopUp.popupSeamless(overlay[i],evt,content)
         })
         //------------------------------------------------------------------------------------------------------
         // 米軍地形図用

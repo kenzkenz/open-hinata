@@ -1142,7 +1142,7 @@ export function popUp(map,layers,features,overlay,evt,content,content2) {
         .then(function (response) {
           // alert()
           console.log(response.data.results.lv01Nm)
-          popupCenter()
+          popupCenter(cont)
           let cont2 = cont + streetView
           const splitMuni = muni[Number(response.data.results.muniCd)].split(',')
           // cont2 = splitMuni[1] + splitMuni[3] + '<h4>' + response.data.results.lv01Nm + '</h4>' + cont2
@@ -1168,7 +1168,7 @@ export function popUp(map,layers,features,overlay,evt,content,content2) {
           flg = false
         })
   } else {
-    popupCenter()
+    popupCenter(cont)
     const cont2 = cont + streetView
     content.innerHTML = cont2
     if (cont && cont !== undefined) {
@@ -1181,13 +1181,23 @@ export function popUp(map,layers,features,overlay,evt,content,content2) {
     flg = false
   }
   // ---------------------------------------------------------------------------------
-  function popupCenter() {
-    if (width) {
-      document.querySelector('.ol-popup').style.left = -(width / 2) - 16 + 'px'
+  function popupCenter(cont) {
+    const result = cont.match(/width:(.*?)px/g)
+    const widthAr = []
+    if (result != null) {
+      result.forEach((width)=>{
+        widthAr.push(width.match(/width:(.*?)px/)[1])
+      })
+    }
+    const maxWidth = d3.max(widthAr, function(d) { return Number(d); })
+    console.log(maxWidth)
+
+    if (maxWidth) {
+      document.querySelector('.ol-popup').style.left = -(maxWidth / 2) - 16 + 'px'
       const style1 = document.createElement('style')
       const style2 = document.createElement('style')
-      style1.textContent = ".ol-popup:after{ left:" + ((width / 2) + 15) + "px;}"
-      style2.textContent = ".ol-popup:before{ left:" + ((width / 2) + 15) + "px;}"
+      style1.textContent = ".ol-popup:after{ left:" + ((maxWidth / 2) + 15) + "px;}"
+      style2.textContent = ".ol-popup:before{ left:" + ((maxWidth / 2) + 15) + "px;}"
       document.head.appendChild(style1)
       document.head.appendChild(style2)
     } else {
@@ -1212,50 +1222,30 @@ export function popUp(map,layers,features,overlay,evt,content,content2) {
 
 
 //----------------------------------------------------------------------------------------
-export function popupSeamless２(overlay,evt,content) {
-  const coordinate = evt.coordinate;
-  const coord4326 = transform(coordinate, "EPSG:3857", "EPSG:4326");
-  const point = coord4326[1] + "," + coord4326[0];
-  console.log("https://gbank.gsj.jp/seamless/v2/api/1.2/legend.json/?point=" + point);
-  const url = 'https://gbank.gsj.jp/seamless/v2/api/1.2/legend.json'
-  axios.get(url, {
-    params: {
-      point:point
-    }
-  }) .then(function (response) {
-    console.log(response.data)
-    const cont =
-        '<div style=width:300px>形成時代 = ' + response.data["formationAge_ja"] +
-        '<hr>グループ = '+ response.data["group_ja"] +
-        '<hr>岩相 = ' + response.data["lithology_ja"] + '</div><hr>'
-    return cont
-  });
-}
-//----------------------------------------------------------------------------------------
-export function popupSeamless(overlay,evt,content) {
-  const coordinate = evt.coordinate;
-  const coord4326 = transform(coordinate, "EPSG:3857", "EPSG:4326");
-  const point = coord4326[1] + "," + coord4326[0];
-  console.log("https://gbank.gsj.jp/seamless/v2/api/1.2/legend.json/?point=" + point);
-  const url = 'https://gbank.gsj.jp/seamless/v2/api/1.2/legend.json'
-  axios.get(url, {
-    params: {
-      point:point
-    }
-  }) .then(function (response) {
-    console.log(response.data)
-    const cont =
-        '<div style=width:300px>形成時代 = ' + response.data["formationAge_ja"] +
-        '<hr>グループ = '+ response.data["group_ja"] +
-        '<hr>岩相 = ' + response.data["lithology_ja"] + '</div>'
-    content.innerHTML = cont
-    if (response.data.symbol) {
-      overlay.setPosition(coordinate)
-    } else {
-      overlay.setPosition(undefined);
-    }
-  });
-}
+// export function popupSeamless(overlay,evt,content) {
+//   const coordinate = evt.coordinate;
+//   const coord4326 = transform(coordinate, "EPSG:3857", "EPSG:4326");
+//   const point = coord4326[1] + "," + coord4326[0];
+//   console.log("https://gbank.gsj.jp/seamless/v2/api/1.2/legend.json/?point=" + point);
+//   const url = 'https://gbank.gsj.jp/seamless/v2/api/1.2/legend.json'
+//   axios.get(url, {
+//     params: {
+//       point:point
+//     }
+//   }) .then(function (response) {
+//     console.log(response.data)
+//     const cont =
+//         '<div style=width:300px>形成時代 = ' + response.data["formationAge_ja"] +
+//         '<hr>グループ = '+ response.data["group_ja"] +
+//         '<hr>岩相 = ' + response.data["lithology_ja"] + '</div>'
+//     content.innerHTML = cont
+//     if (response.data.symbol) {
+//       overlay.setPosition(coordinate)
+//     } else {
+//       overlay.setPosition(undefined);
+//     }
+//   });
+// }
 //----------------------------------------------------------------------------------------
 export function popUpShinsuishin(rgba) {
   const r = rgba[0]
@@ -1277,6 +1267,7 @@ export function popUpShinsuishin(rgba) {
   }else if(r===220 && g===122 && b===220) {
     cont = "<div style=width:200px>洪水浸水深　20.0m以上</div>"
   }
+  if (cont) cont = '<span style="color: red">' + cont + '</span>'
   return cont
 }
 //----------------------------------------------------------------------------------------
@@ -1302,6 +1293,7 @@ export function popUpTunami(rgba) {
   }else if(r===220 && g===122 && b===220) {
     cont = "<div style=width:200px>津波浸水深　20.0m以上</div>"
   }
+  if (cont) cont = '<span style="color: red">' + cont + '</span>'
   return cont
 }
 //----------------------------------------------------------------------------------------
@@ -1325,6 +1317,7 @@ export function popUpKeizoku(rgba) {
   }else if(r===96 && g===0 && b===96) {
     cont = "<div style=width:200px>浸水継続　4週間以上~</div>"
   }
+  if (cont) cont = '<span style="color: red">' + cont + '</span>'
   return cont
 }
 //----------------------------------------------------------------------------------------
@@ -1350,6 +1343,7 @@ export function popUpTakasio(rgba) {
   }else if(r===220 && g===122 && b===220) {
     cont = "<div style=width:200px>高潮浸水深　20.0m以上</div>"
   }
+  if (cont) cont = '<span style="color: red">' + cont + '</span>'
   return cont
 }
 //----------------------------------------------------------------------------------------
@@ -1361,6 +1355,7 @@ export function popUpTameike(rgba) {
   if(r===0 && g===0 && b===255) {
     cont = "<div style=width:300px>ため池決壊によって浸水が想定される区域</div>"
   }
+  if (cont) cont = '<span style="color: red">' + cont + '</span>'
   return cont
 }
 //----------------------------------------------------------------------------------------
@@ -1380,6 +1375,7 @@ export function popUpEkizyouka(rgba) {
   }else if(r===200 && g===200 && b===203) {
     cont = "<div style=width:200px>山地や丘陵など</div>"
   }
+  if (cont) cont = '<span style="color: red">' + cont + '</span>'
   return cont
 }
 //----------------------------------------------------------------------------------------
@@ -1405,6 +1401,7 @@ export function popUpDosya(rgba) {
   }else if(r===226 && g===190 && b===49) {
     cont = "?"
   }
+  if (cont) cont = '<span style="color: red">' + cont + '</span>'
   return cont
 }
 //----------------------------------------------------------------------------------------
@@ -1416,6 +1413,7 @@ export function popUpDoseki(rgba) {
   if(r===245 && g===153 && b===101) {
     cont = "<div style=width:300px>土砂災害の危険性：土石流危険渓流（土石流の発生の危険性があり、人家等に被害を与えるおそれがある渓流）</div>"
   }
+  if (cont) cont = '<span style="color: red">' + cont + '</span>'
   return cont
 }
 //----------------------------------------------------------------------------------------
@@ -1427,6 +1425,7 @@ export function popUpKyuukeisya(rgba) {
   if(r===224 && g===224 && b===254) {
     cont = "<div style=width:300px>土砂災害の危険性：急傾斜地崩壊危険箇所（傾斜度30°かつ高さ5m以上の急傾斜地で人家等に被害を与えるおそれのある箇所）</div>"
   }
+  if (cont) cont = '<span style="color: red">' + cont + '</span>'
   return cont
 }
 //----------------------------------------------------------------------------------------
@@ -1438,6 +1437,7 @@ export function popUpZisuberi(rgba) {
   if(r===255 && g===235 && b===223) {
     cont = "<div style=width:300px>土砂災害の危険性：地すべり危険箇所（地すべりが発生している又は地すべりが発生するおそれがある区域のうち、人家等に被害を与えるおそれのある箇所）</div>"
   }
+  if (cont) cont = '<span style="color: red">' + cont + '</span>'
   return cont
 }
 //----------------------------------------------------------------------------------------
@@ -1449,6 +1449,7 @@ export function popUpNadare(rgba) {
   if(r===255 && g===255 && b===101) {
     cont = "<div style=width:300px>土砂災害の危険性：雪崩危険箇所（雪崩災害のおそれがある地域において、雪崩により人家等に被害を与えるおそれのある箇所）</div>"
   }
+  if (cont) cont = '<span style="color: red">' + cont + '</span>'
   return cont
 }
 
@@ -2303,7 +2304,7 @@ export function popUpMorido(rgba,coordinate) {
   } else if (r === 254 && g === 254 && b === 189) {
     cont = "<div style=width:200px>やや高い 0.1%〜3%</div>"
   }
-  cont += streetView
+  if (cont) cont = '<span style="color: red">' + cont + '</span>'
   return cont
 }
 //----------------------------------------------------------------------------------------
