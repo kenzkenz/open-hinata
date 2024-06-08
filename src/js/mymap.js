@@ -693,6 +693,7 @@ export function initMap (vm) {
                     img.src = server + z + '/' + x + '/' + y + '.png';
                 })
             }
+            //-----------------------------------------------------------------------------------
             async function getRgb0(event,server,zoom,func) {
                 let z
                 if (zoom) {
@@ -710,6 +711,10 @@ export function initMap (vm) {
                     funcArr.push(func)
                 }
             }
+            // -------------------------------------------------------------------------------
+
+
+            // -------------------------------------------------------------------------------
             async function popupCreate() {
                 // d3.select('.loadingImg').style("display","block")
                 const fetchData = layerNames.map((layerName) => {
@@ -800,14 +805,15 @@ export function initMap (vm) {
                     }
                     if (server) return getRgb0(evt,server,zoom,func)
                 })
+                console.log(fetchData)
                 await Promise.all([
                     ...fetchData
                 ])
                     .then((response) => {
+                        let html =''
                         const aaa = rgbaArr.map((rgba,i) =>{
                             return {'layerName':layerNames[i] ,'rgba':rgba,'func':funcArr[i]}
                         })
-                        let html =''
                         aaa.forEach((value) =>{
                             if (value.func(value.rgba)) html += value.func(value.rgba)
                         })

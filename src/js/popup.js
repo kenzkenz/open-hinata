@@ -1211,7 +1211,26 @@ export function popUp(map,layers,features,overlay,evt,content,content2) {
 
 
 
-
+//----------------------------------------------------------------------------------------
+export function popupSeamless２(overlay,evt,content) {
+  const coordinate = evt.coordinate;
+  const coord4326 = transform(coordinate, "EPSG:3857", "EPSG:4326");
+  const point = coord4326[1] + "," + coord4326[0];
+  console.log("https://gbank.gsj.jp/seamless/v2/api/1.2/legend.json/?point=" + point);
+  const url = 'https://gbank.gsj.jp/seamless/v2/api/1.2/legend.json'
+  axios.get(url, {
+    params: {
+      point:point
+    }
+  }) .then(function (response) {
+    console.log(response.data)
+    const cont =
+        '<div style=width:300px>形成時代 = ' + response.data["formationAge_ja"] +
+        '<hr>グループ = '+ response.data["group_ja"] +
+        '<hr>岩相 = ' + response.data["lithology_ja"] + '</div><hr>'
+    return cont
+  });
+}
 //----------------------------------------------------------------------------------------
 export function popupSeamless(overlay,evt,content) {
   const coordinate = evt.coordinate;
