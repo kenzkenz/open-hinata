@@ -1118,6 +1118,55 @@ export function popUp(map,layers,features,overlay,evt,content,content2) {
                 '</div><hr>'
           }
           break
+        case 'mesh100mTochiriyo':
+          if (cont.indexOf('mesh100mTochiriyo') === -1) {
+            let text
+            switch (prop.土地利用種別) {
+              case '0100': // 田
+                text = '田'
+                break
+              case '0200': // その他の農用地
+                text = 'その他の農用地'
+                break
+              case '0500': // 森林
+                text = '森林'
+                break
+              case '0600': // 荒地
+                text = '荒地'
+                break
+              case '0700': // 建物用地
+                text = '建物用地'
+                break
+              case '0901': // 道路
+                text = '道路'
+                break
+              case '0902': // 鉄道
+                text = '鉄道'
+                break
+              case '1000': // その他の用地
+                text = 'その他の用地'
+                break
+              case '1100': // 河川地及び湖沼
+                text = '河川地及び湖沼'
+                break
+              case '1400': // 海浜
+                text = '海浜'
+                break
+              case '1500': // 海水域
+                text = '海水域'
+                break
+              case '1600': // ゴルフ場
+                text = 'ゴルフ場'
+                break
+            }
+            width = 300
+            cont += '<div class="mesh100mTochiriyo" style=width:' + width + 'px;>' +
+                '<h4>' + text + '</h4>' +
+                '<p>コード=' + prop.細分メッシュコード + '</p>' +
+                '<p>衛星写真撮影年月日=' + prop.衛星写真撮影年月日 + '</p>' +
+                '</div><hr>'
+          }
+          break
       }
     })
   }

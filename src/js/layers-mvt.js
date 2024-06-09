@@ -40,6 +40,152 @@ String.prototype.trunc =
     }
 // const mapsStr = ['map01','map02','map03','map04'];
 const mapsStr = ['map01','map02']
+// ---------------------------------------------------------------------------------
+let mesh100mTochiriyoMaxResolution
+if (window.innerWidth > 1000) {
+  // mesh100mTochiriyoMaxResolution = 78271.52 //zoom1
+  mesh100mTochiriyoMaxResolution = 19.109257 //zoom13
+} else {
+  mesh100mTochiriyoMaxResolution = 19.109257 //zoom13
+}
+function Mesh100mTochiriyo(url){
+  this.name = 'mesh100mTochiriyo'
+  this.className = 'mesh100mTochiriyo'
+  this.source = new VectorTileSource({
+    crossOrigin: 'Anonymous',
+    format: new MVT(),
+    maxZoom:14,
+    url: url
+  });
+  this.style = mesh100mTochiriyoColorFunction()
+  this.maxResolution = mesh100mTochiriyoMaxResolution
+  this.declutter = true
+  this.overflow = true
+}
+export  const mesh100mTochiriyo1Obj = {};
+for (let i of mapsStr) {
+  mesh100mTochiriyo1Obj[i] = new VectorTileLayer(new Mesh100mTochiriyo("https://kenzkenz3.xsrv.jp/mvt/tochiriyo100mmesh/9syu/{z}/{x}/{y}.mvt"))
+}
+export  const mesh100mTochiriyo2Obj = {};
+for (let i of mapsStr) {
+  mesh100mTochiriyo2Obj[i] = new VectorTileLayer(new Mesh100mTochiriyo("https://kenzkenz3.xsrv.jp/mvt/tochiriyo100mmesh/marged2/{z}/{x}/{y}.mvt"))
+}
+export  const mesh100mTochiriyo3Obj = {};
+for (let i of mapsStr) {
+  mesh100mTochiriyo3Obj[i] = new VectorTileLayer(new Mesh100mTochiriyo("https://kenzkenz3.xsrv.jp/mvt/tochiriyo100mmesh/marged3/{z}/{x}/{y}.mvt"))
+}
+export  const mesh100mTochiriyo4Obj = {};
+for (let i of mapsStr) {
+  mesh100mTochiriyo4Obj[i] = new VectorTileLayer(new Mesh100mTochiriyo("https://kenzkenz3.xsrv.jp/mvt/tochiriyo100mmesh/marged4/{z}/{x}/{y}.mvt"))
+}
+export  const mesh100mTochiriyo5Obj = {};
+for (let i of mapsStr) {
+  mesh100mTochiriyo5Obj[i] = new VectorTileLayer(new Mesh100mTochiriyo("https://kenzkenz3.xsrv.jp/mvt/tochiriyo100mmesh/marged5/{z}/{x}/{y}.mvt"))
+}
+export const mesh100mTochiriyoObj = {}
+for (let i of mapsStr) {
+  mesh100mTochiriyoObj[i] = new LayerGroup({
+    layers: [
+      mesh100mTochiriyo1Obj[i],
+      mesh100mTochiriyo2Obj[i],
+      mesh100mTochiriyo3Obj[i],
+      mesh100mTochiriyo4Obj[i],
+      mesh100mTochiriyo5Obj[i],
+    ]
+  })
+  mesh100mTochiriyoObj[i].values_['pointer'] = true
+}
+
+
+
+function mesh100mTochiriyoColorFunction() {
+  return function (feature, resolution) {
+    const zoom = getZoom(resolution);
+    const prop = feature.getProperties();
+    const styles = [];
+    let rgba
+    let text
+    // console.log(prop.土地利用種別)
+    switch (prop.土地利用種別) {
+      case '0100': // 田
+        text = '田'
+        rgba = 'rgba(255,255,0,0.8)'
+        break
+      case '0200': // その他の農用地
+        text = 'その他の農用地'
+        rgba = 'rgba(255,204,153,0.8)'
+        break
+      case '0500': // 森林
+        text = '森林'
+        rgba = 'rgba(0,170,0,0.8)'
+        break
+      case '0600': // 荒地
+        text = '荒地'
+        rgba = 'rgba(0,255,153,0.8)'
+        break
+      case '0700': // 建物用地
+        text = '建物用地'
+        rgba = 'rgba(255,0,0,0.8)'
+        break
+      case '0901': // 道路
+        text = '道路'
+        rgba = 'rgba(140,140,140,0.8)'
+        break
+      case '0902': // 鉄道
+        text = '鉄道'
+        rgba = 'rgba(180,180,180,0.8)'
+        break
+      case '1000': // その他の用地
+        text = 'その他の用地'
+        rgba = 'rgba(200,70,15,0.8)'
+        break
+      case '1100': // 河川地及び湖沼
+        text = '河川地及び湖沼'
+        rgba = 'rgba(0,0,255,0.8)'
+        break
+      case '1400': // 海浜
+        text = '海浜'
+        rgba = 'rgba(255,255,153,0.8)'
+        break
+      case '1500': // 海水域
+        text = '海水域'
+        rgba = 'rgba(0,204,255,0.8)'
+        break
+      case '1600': // ゴルフ場
+        text = 'ゴルフ場'
+        rgba = 'rgba(0,204,255,0.8)'
+        break
+    }
+    const polygonStyle = new Style({
+      fill: new Fill({
+        color: rgba
+      }),
+      // stroke: new Stroke({
+      //   color: zoom >= 12 ? 'white' : 'rgba(0,0,0,0)',
+      //   width: 1
+      // })
+    })
+    const textStyle = new Style({
+      text: new Text({
+        font: zoom <= 18 ? "12px sans-serif" : "20px sans-serif",
+        text: text,
+        fill: new Fill({
+          color: "black"
+        }),
+        Placement: 'point',
+        overflow: 'true',
+        stroke: new Stroke({
+          color: "white",
+          width: 3
+        }),
+      })
+    })
+    styles.push(polygonStyle);
+    if (zoom>=17) styles.push(textStyle);
+    return styles;
+  }
+}
+
 // メッシュ洪水-----------------------------------------------------------------------
 function kozuiMesh9syu(){
   this.name = 'zoseiMvt'
@@ -638,7 +784,6 @@ if (window.innerWidth > 1000) {
   mesh100MaxResolution = 19.109257 //zoom13
 } else {
   mesh100MaxResolution = 19.109257 //zoom13
-  // mesh100MaxResolution = 9.554629 //zoom14
 }
 function Mesh100(mapName){
   this.name = 'mesh100'
@@ -876,8 +1021,6 @@ function mesh1kRonenColorFunction(mapName) {
     return styles;
   }
 }
-
-
 //小地域------------------------------------------------------------------------------------------------
 let syochiikiMaxResolution
 if (window.innerWidth > 1000) {
