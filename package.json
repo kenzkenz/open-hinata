@@ -13,6 +13,7 @@
     "axios": "^0.27.2",
     "babel-polyfill": "^6.26.0",
     "bootstrap-vue": "^2.0.0-rc.11",
+    "color-classifier": "^0.0.1",
     "d3": "^7.6.1",
     "liquor-tree": "^0.2.47",
     "ol": "^6.15.1",
