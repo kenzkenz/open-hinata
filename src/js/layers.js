@@ -13903,7 +13903,11 @@ export const Layers =
         { text: '明治期における国道の比定路線', data: { id: "meijikokudo", layer: LayersMvt.meijikokudoObj, opacity: 1, summary: LayersMvt.meijikokudoSumm} },
         { text: 'R05鉄道（廃線は赤色）', data: { id: "rosen", layer: LayersMvt.rosen0Obj, opacity: 1, summary: LayersMvt.rosenSumm} },
 
-        { text: 'R05高速道路時系列', data: { id: "kosoku", layer: LayersMvt.kosoku2023Obj, opacity: 1, summary: LayersMvt.kosoku2023Summ} },
+
+
+        { text: 'R05(2023)高速道路時系列', data: { id: "kosoku", layer: LayersMvt.kosoku2023Obj, opacity: 1, summary: LayersMvt.kosoku2023Summ, component: {name: 'kosoku', values:[]}} },
+
+
 
 
         // { text: 'test', data: { id: "railroad", layer: LayersMvt.railroadObj, opacity: 1, summary: LayersMvt.railroadSumm} },

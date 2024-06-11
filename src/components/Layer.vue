@@ -110,7 +110,7 @@
                 'z-index': this.s_dialogMaxZindex
               }
             }
-          this.$store.commit('base/deketeDialogsInfo',{mapName: this.mapName})
+          // this.$store.commit('base/deketeDialogsInfo',{mapName: this.mapName})
           this.$store.commit('base/pushDialogsInfo',{mapName: this.mapName, dialog: infoDialog})
         } else {
           // 既に存在しているときは表示のみ。データを変更せずにスタイルを直接書き換えている。

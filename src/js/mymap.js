@@ -729,7 +729,7 @@ export function initMap (vm) {
                         const cont =
                             '<div style=width:300px>形成時代 = ' + response.data["formationAge_ja"] +
                             '<hr>グループ = '+ response.data["group_ja"] +
-                            '<hr>岩相 = ' + response.data["lithology_ja"] + '</div><hr>'
+                            '<hr>岩相 = ' + response.data["lithology_ja"] + '</div>'
                         resolve(cont)
                     });
                 })
@@ -829,12 +829,12 @@ export function initMap (vm) {
                 const seamlessLayer = layers0.find(el => el.get('name') === 'seamless');
                 if (seamlessLayer) fetchData.push(popupSeamless(evt))
                 // ------------------------------------------------------
-                console.log(fetchData)
+                // console.log(fetchData)
                 await Promise.all([
                     ...fetchData
                 ])
                     .then((response) => {
-                        console.log(response)
+                        // console.log(response)
                         let html = ''
                         if (response[response.length-1]) html += response[response.length-1]
 

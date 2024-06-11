@@ -41,29 +41,105 @@ String.prototype.trunc =
 // const mapsStr = ['map01','map02','map03','map04'];
 const mapsStr = ['map01','map02']
 // 高速道路時系列---------------------------------------------------------------
-function Kosoku () {
+function Kosoku (mapName) {
   this.name = 'kosoku'
   this.source = new VectorSource({
-    url:'https://kenzkenz.xsrv.jp/open-hinata/geojson/kosoku.geojson',
+    url:'https://kenzkenz.xsrv.jp/open-hinata/geojson/kosokumarged.geojson',
     format: new GeoJSON()
   });
-  // this.style = tokyobunkazaiFunction()
+  this.style = kosokuStyleFunction(mapName)
 }
 export const kosoku2023Summ = "<a href='https://nlftp.mlit.go.jp/ksj/gml/datalist/KsjTmplt-N06-2023.html' target='_blank'>国土数値情報</a>"
-export const kosoku202301Obj = {};
+export const kosoku2023Obj = {};
 for (let i of mapsStr) {
-  kosoku202301Obj[i] = new VectorLayer(new Kosoku())
+  kosoku2023Obj[i] = new VectorLayer(new Kosoku(i))
 }
-export const kosoku2023Obj = {}
-for (let i of mapsStr) {
-  kosoku2023Obj[i] = new LayerGroup({
-    layers: [
-      kosoku202301Obj[i],
-    ]
-  })
-  kosoku2023Obj[i].values_['pointer'] = true
-}
+// export const kosoku2023Obj = {}
+// for (let i of mapsStr) {
+//   kosoku2023Obj[i] = new LayerGroup({
+//     layers: [
+//       kosoku202301Obj[i],
+//     ]
+//   })
+//   kosoku2023Obj[i].values_['pointer'] = true
+// }
+// ------------------------------------
+function kosokuStyleFunction(mapName) {
+  return function (feature, resolution) {
+    const kaishinen0 = store.state.info.kosoku[mapName]
+    const prop = feature.getProperties()
+    const geoType = feature.getGeometry().getType()
+    const zoom = getZoom(resolution)
+    const kaishinen = prop.N06_001
+    const kaishinenJoint = prop.N06_012
+    let strokeColor
+    const strokeWidth = 8
+    let jointColor
+    // strokeWidth = zoom > 9 ? 6 : 2
+    if (kaishinen === kaishinen0) {
+      strokeColor = "red"
+    } else if (kaishinen < kaishinen0) {
+      strokeColor = "green"
+    } else {
+      strokeColor = "rgba(0,0,0,0)"
+    }
+    if (kaishinenJoint === kaishinen0) {
+      jointColor = "red"
+    } else if (kaishinenJoint < kaishinen0) {
+      jointColor = "black"
+    } else {
+      jointColor = "rgba(0,0,0,0)"
+    }
+    const styles = []
+    const pointStyle = new Style({
+      image: new Icon({
+        // anchor: [0.5, 1],
+        src: require('@/assets/icon/whitecircle.png'),
+        color: jointColor
+      }),
+      stroke: new Stroke({
+        color: "white",
+        width: 1
+      }),
+      text: new Text({
+        font: "20px sans-serif",
+        text: prop.N06_018,
+        offsetY: 16,
+        stroke: new Stroke({
+          color: "white",
+          width: 3
+        })
+      })
+    })
 
+    const lineStyle = new Style({
+      stroke: new Stroke({
+        color: strokeColor,
+        width: strokeWidth,
+      }),
+      placement: 'line'
+    })
+    const textStyle = new Style({
+      text: new Text({
+        font: "20px sans-serif",
+        text: prop.N06_007,
+        offsetY: 10,
+        fill:  new Fill({
+          color:"black"
+        }),
+        stroke: new Stroke({
+          color: "white",
+          width: 3
+        }),
+        placement: 'line'
+      })
+    })
+    if (zoom >= 13 && kaishinen <= kaishinen0) styles.push(textStyle)
+    if (zoom >= 13 && kaishinenJoint <= kaishinen0 && geoType === 'Point') styles.push(pointStyle)
+    styles.push(lineStyle)
+    return styles;
+  }
+}
 // ---------------------------------------------------------------------------------
 let mesh100mTochiriyoMaxResolution
 if (window.innerWidth > 1000) {
@@ -4940,6 +5016,8 @@ function rosenStyleFunction() {
     if (genzon === '9999') {
       strokeColor = "mediumblue"
       strokeWidth = zoom > 9 ? 6 : 2
+    } else {
+      strokeColor = "rgba(0,0,0,0)"
     }
     const styles = []
     const lineStyle = new Style({

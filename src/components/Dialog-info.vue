@@ -19,11 +19,11 @@
             <v-jinko-1km :item="item" :mapName="mapName" v-else-if="item.component.name === 'jinko'"/>
             <v-jinko-100m :item="item" :mapName="mapName" v-else-if="item.component.name === 'jinko100m'"/>
             <v-jinko-250m :item="item" :mapName="mapName" v-else-if="item.component.name === 'jinko250m'"/>
-
             <v-jinko-500m :item="item" :mapName="mapName" v-else-if="item.component.name === 'jinko500m'"/>
-
             <v-ssds-pref :item="item" :mapName="mapName" v-else-if="item.component.name === 'ssdsPref'"/>
             <v-ssds-pref :item="item" :mapName="mapName" v-else-if="item.component.name === 'ssdsCity'"/>
+
+            <v-kosoku :item="item" :mapName="mapName" v-else-if="item.component.name === 'kosoku'"/>
 
         </div>
     </div>
@@ -39,6 +39,7 @@
   import DialogInfoJinko250m from '@/components/dialog-info/Dialog-info-jinko250m'
   import DialogInfoJinko500m from '@/components/dialog-info/Dialog-info-jinko500m'
   import DialogInfoSsdsPref from '@/components/dialog-info/Dialog-info-ssds'
+  import DialogInfoKosoku from '@/components/dialog-info/Dialog-info-kosoku'
 
   export default {
     name: "v-dialog-info",
@@ -52,6 +53,7 @@
       'v-jinko-250m':DialogInfoJinko250m,
       'v-jinko-500m':DialogInfoJinko500m,
       'v-ssds-pref':DialogInfoSsdsPref,
+      'v-kosoku':DialogInfoKosoku,
     },
     props: ['mapName'],
     computed: {

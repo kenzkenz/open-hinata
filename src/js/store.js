@@ -340,6 +340,12 @@ const moduleInfo = {
       map03: 15000,
       map04: 15000
     },
+    kosoku: {
+      map01: 2024,
+      map02: 2024,
+      map03: 2024,
+      map04: 2024
+    },
     ssdsData00: {
       map01: [],
       map02: [],
@@ -409,7 +415,7 @@ const moduleInfo = {
     updateColors (state,payload) {
       state.colors[payload.colorM] = payload.value.rgba
     },
-    // 重要
+    // 重要!!!!------------------------------------------------------
     update (state,payload) {
       let variable;
       switch (payload.name) {
@@ -464,6 +470,9 @@ const moduleInfo = {
           } else if (payload.order === 1){
             variable = 'paintCheck500m'
           }
+          break
+        case 'kosoku':
+          variable = 'kosoku'
           break
       }
       state[variable][payload.mapName] = payload.value

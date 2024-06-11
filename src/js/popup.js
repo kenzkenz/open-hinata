@@ -1088,7 +1088,6 @@ export function popUp(map,layers,features,overlay,evt,content,content2) {
               '</div>'
           break
         case 'iryoMvt':
-          width = 300
           cont += '<div style=width:300px;>' +
               '<h4>' + prop.P04_002 + '</h4>' +
               '<p>' + prop.P04_003 + '</p>' +
@@ -1163,6 +1162,19 @@ export function popUp(map,layers,features,overlay,evt,content,content2) {
                 '<h4>' + text + '</h4>' +
                 '<p>コード=' + prop.細分メッシュコード + '</p>' +
                 '<p>衛星写真撮影年月日=' + prop.衛星写真撮影年月日 + '</p>' +
+                '</div><hr>'
+          }
+          break
+        case 'kosoku':
+          if (geoType === 'MultiLineString') {
+            cont += '<div style=width:300px;>' +
+                '<h4>' + prop.N06_007 + '</h4>' +
+                '<p>供用開始年' + prop.N06_001 + '年</p>' +
+                '</div><hr>'
+          } else {
+            cont += '<div style=width:300px;>' +
+                '<h4>' + prop.N06_018 + '</h4>' +
+                '<p>供用開始年' + prop.N06_012 + '年</p>' +
                 '</div><hr>'
           }
           break
