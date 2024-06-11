@@ -294,6 +294,9 @@ tippecanoe -pk -pf -f -e marged2tile marged2.geojson
 tippecanoe -pk -pf -f -e marged3tile marged3.geojson
 tippecanoe -pk -pf -f -e marged4tile marged4.geojson
 tippecanoe -pk -pf -f -e marged5tile marged5.geojson
+tippecanoe -pk -pf -f -e tile t.geojson
+tippecanoe -Z13 -z13 -pk -pf -f -e tile13 t.geojson
+
 
 $ cd tile
 $ gzip -d -v -r -S .pbf *

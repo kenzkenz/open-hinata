@@ -632,6 +632,7 @@ export function initMap (vm) {
         let funcArr = []
         map.on('singleclick', function (evt) {
             overlay[i].setPosition(undefined)
+            document.querySelector('#' + mapName + ' .ol-viewport').style.cursor = "wait"
             // document.querySelector('.center-target').style.zIndex = 1
             // store.commit('base/popUpContReset')
             // //処理を早くするため抜ける。---------------------------------------------------
@@ -639,7 +640,7 @@ export function initMap (vm) {
             // const hazardLayers = layers0.filter(el => el.get('pointer'));
             // if (hazardLayers.length===0) return
             //-------------------------------------------------------------------------
-            d3.select('.loadingImg').style("display","block")
+            // d3.select('.loadingImg').style("display","block")
             const pixel = (map).getPixelFromCoordinate(evt.coordinate);
             const layersObj = [];
             //マウスがあたった箇所のレイヤーを複数取得する
@@ -735,7 +736,6 @@ export function initMap (vm) {
             }
             // -------------------------------------------------------------------------------
             async function popupCreate() {
-                // d3.select('.loadingImg').style("display","block")
                 const fetchData = layerNames.map((layerName) => {
                     let server
                     let zoom
@@ -864,7 +864,9 @@ export function initMap (vm) {
                             rgbaArr = []
                             funcArr = []
                         }
-                        d3.select('.loadingImg').style("display","none")
+                        // d3.select('.loadingImg').style("display","none")
+                        document.querySelector('#' + mapName + ' .ol-viewport').style.cursor = "default"
+
                     })
             }
             popupCreate()

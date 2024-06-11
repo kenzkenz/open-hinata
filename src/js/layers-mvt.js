@@ -40,6 +40,30 @@ String.prototype.trunc =
     }
 // const mapsStr = ['map01','map02','map03','map04'];
 const mapsStr = ['map01','map02']
+// 高速道路時系列---------------------------------------------------------------
+function Kosoku () {
+  this.name = 'kosoku'
+  this.source = new VectorSource({
+    url:'https://kenzkenz.xsrv.jp/open-hinata/geojson/kosoku.geojson',
+    format: new GeoJSON()
+  });
+  // this.style = tokyobunkazaiFunction()
+}
+export const kosoku2023Summ = "<a href='https://nlftp.mlit.go.jp/ksj/gml/datalist/KsjTmplt-N06-2023.html' target='_blank'>国土数値情報</a>"
+export const kosoku202301Obj = {};
+for (let i of mapsStr) {
+  kosoku202301Obj[i] = new VectorLayer(new Kosoku())
+}
+export const kosoku2023Obj = {}
+for (let i of mapsStr) {
+  kosoku2023Obj[i] = new LayerGroup({
+    layers: [
+      kosoku202301Obj[i],
+    ]
+  })
+  kosoku2023Obj[i].values_['pointer'] = true
+}
+
 // ---------------------------------------------------------------------------------
 let mesh100mTochiriyoMaxResolution
 if (window.innerWidth > 1000) {
@@ -50,47 +74,43 @@ if (window.innerWidth > 1000) {
 }
 function Mesh100mTochiriyo(url){
   this.name = 'mesh100mTochiriyo'
-  this.className = 'mesh100mTochiriyo'
+  // this.className = 'mesh100mTochiriyo'
   this.source = new VectorTileSource({
     crossOrigin: 'Anonymous',
     format: new MVT(),
-    maxZoom:14,
+    maxZoom:13,
     url: url
   });
   this.style = mesh100mTochiriyoColorFunction()
   this.maxResolution = mesh100mTochiriyoMaxResolution
-  this.declutter = true
-  this.overflow = true
+  // this.declutter = true
+  // this.overflow = true
 }
 export  const mesh100mTochiriyo1Obj = {};
 for (let i of mapsStr) {
-  mesh100mTochiriyo1Obj[i] = new VectorTileLayer(new Mesh100mTochiriyo("https://kenzkenz3.xsrv.jp/mvt/tochiriyo100mmesh/9syu/{z}/{x}/{y}.mvt"))
+  mesh100mTochiriyo1Obj[i] = new VectorTileLayer(new Mesh100mTochiriyo("https://kenzkenz3.xsrv.jp/mvt/tochiriyo100mmesh/{z}/{x}/{y}.mvt"))
 }
-export  const mesh100mTochiriyo2Obj = {};
-for (let i of mapsStr) {
-  mesh100mTochiriyo2Obj[i] = new VectorTileLayer(new Mesh100mTochiriyo("https://kenzkenz3.xsrv.jp/mvt/tochiriyo100mmesh/marged2/{z}/{x}/{y}.mvt"))
-}
-export  const mesh100mTochiriyo3Obj = {};
-for (let i of mapsStr) {
-  mesh100mTochiriyo3Obj[i] = new VectorTileLayer(new Mesh100mTochiriyo("https://kenzkenz3.xsrv.jp/mvt/tochiriyo100mmesh/marged3/{z}/{x}/{y}.mvt"))
-}
-export  const mesh100mTochiriyo4Obj = {};
-for (let i of mapsStr) {
-  mesh100mTochiriyo4Obj[i] = new VectorTileLayer(new Mesh100mTochiriyo("https://kenzkenz3.xsrv.jp/mvt/tochiriyo100mmesh/marged4/{z}/{x}/{y}.mvt"))
-}
-export  const mesh100mTochiriyo5Obj = {};
-for (let i of mapsStr) {
-  mesh100mTochiriyo5Obj[i] = new VectorTileLayer(new Mesh100mTochiriyo("https://kenzkenz3.xsrv.jp/mvt/tochiriyo100mmesh/marged5/{z}/{x}/{y}.mvt"))
-}
+// export  const mesh100mTochiriyo2Obj = {};
+// for (let i of mapsStr) {
+//   mesh100mTochiriyo2Obj[i] = new VectorTileLayer(new Mesh100mTochiriyo("https://kenzkenz3.xsrv.jp/mvt/tochiriyo100mmesh/marged2/{z}/{x}/{y}.mvt"))
+// }
+// export  const mesh100mTochiriyo3Obj = {};
+// for (let i of mapsStr) {
+//   mesh100mTochiriyo3Obj[i] = new VectorTileLayer(new Mesh100mTochiriyo("https://kenzkenz3.xsrv.jp/mvt/tochiriyo100mmesh/marged3/{z}/{x}/{y}.mvt"))
+// }
+// export  const mesh100mTochiriyo4Obj = {};
+// for (let i of mapsStr) {
+//   mesh100mTochiriyo4Obj[i] = new VectorTileLayer(new Mesh100mTochiriyo("https://kenzkenz3.xsrv.jp/mvt/tochiriyo100mmesh/marged4/{z}/{x}/{y}.mvt"))
+// }
+// export  const mesh100mTochiriyo5Obj = {};
+// for (let i of mapsStr) {
+//   mesh100mTochiriyo5Obj[i] = new VectorTileLayer(new Mesh100mTochiriyo("https://kenzkenz3.xsrv.jp/mvt/tochiriyo100mmesh/marged5/{z}/{x}/{y}.mvt"))
+// }
 export const mesh100mTochiriyoObj = {}
 for (let i of mapsStr) {
   mesh100mTochiriyoObj[i] = new LayerGroup({
     layers: [
       mesh100mTochiriyo1Obj[i],
-      mesh100mTochiriyo2Obj[i],
-      mesh100mTochiriyo3Obj[i],
-      mesh100mTochiriyo4Obj[i],
-      mesh100mTochiriyo5Obj[i],
     ]
   })
   mesh100mTochiriyoObj[i].values_['pointer'] = true
@@ -105,7 +125,6 @@ function mesh100mTochiriyoColorFunction() {
     const styles = [];
     let rgba
     let text
-    // console.log(prop.土地利用種別)
     switch (prop.土地利用種別) {
       case '0100': // 田
         text = '田'
@@ -4626,30 +4645,31 @@ function hinanzyoStyleFunction(color) {
   return function (feature, resolution) {
     const zoom = getZoom(resolution);
     const prop = feature.getProperties();
-    const text = prop.name
+    let text = prop.name
+    let font
+    let scale
     const styles = [];
+    if (zoom<=16) {
+      text = text.trunc(8)
+      font = "16px sans-serif"
+      scale = 1
+    } else {
+      font = "20px sans-serif"
+      scale = 1.5
+    }
     const iconStyle = new Style({
       image: new Icon({
-        anchor: [0.5, 1],
-        src: require('@/assets/icon/whitepinlarge.png'),
-        color: color
+        // anchor: [0.5, 1.2],
+        src: require('@/assets/icon/whitecircle.png'),
+        color: color,
+        scale: scale
       })
-      // image: new Circle({
-      //   radius: 8,
-      //   fill: new Fill({
-      //     color: color
-      //   }),
-      //   stroke: new Stroke({
-      //     color: "white",
-      //     width: 1
-      //   })
-      // })
-    });
+    })
     const textStyle = new Style({
       text: new Text({
-        font: "12px sans-serif",
+        font: font,
         text: text,
-        offsetY: 10,
+        offsetY: 18,
         stroke: new Stroke({
           color: "white",
           width: 3

@@ -13903,6 +13903,9 @@ export const Layers =
         { text: '明治期における国道の比定路線', data: { id: "meijikokudo", layer: LayersMvt.meijikokudoObj, opacity: 1, summary: LayersMvt.meijikokudoSumm} },
         { text: 'R05鉄道（廃線は赤色）', data: { id: "rosen", layer: LayersMvt.rosen0Obj, opacity: 1, summary: LayersMvt.rosenSumm} },
 
+        { text: 'R05高速道路時系列', data: { id: "kosoku", layer: LayersMvt.kosoku2023Obj, opacity: 1, summary: LayersMvt.kosoku2023Summ} },
+
+
         // { text: 'test', data: { id: "railroad", layer: LayersMvt.railroadObj, opacity: 1, summary: LayersMvt.railroadSumm} },
 
         { text: '道の駅', data: { id: "mitinoekiH30", layer: LayersMvt.mitinoekiH30Obj, opacity: 1, summary: LayersMvt.mitinoekiH30Summ } },
@@ -13910,8 +13913,7 @@ export const Layers =
       ]},
     { text: 'その他',
       children: [
-        { text: '100m土地利用細分メッシュ', data: { id: "tochiriyosaibun", layer: LayersMvt.mesh100mTochiriyoObj, opacity: 1, summary: LayersMvt.mesh1kmObjSumm } },
-
+        { text: '2021土地利用細分メッシュ(100m)', data: { id: "tochiriyosaibun", layer: LayersMvt.mesh100mTochiriyoObj, opacity: 1, summary: LayersMvt.mesh1kmObjSumm } },
         { text: 'test', data: { id: "kouzuimesyu9syu", layer: LayersMvt.kozuiMesh9syuMvtObj, opacity: 1, summary: LayersMvt.kozuiMesh9syuSumm} },
         { text: 'ラスタータイルtest', data: { id: "dokuji", layer: dokujiObj, opacity: 1, summary: LayersMvt.busSumm, component: {name: 'dokuji', values:[]}} },
         { text: '一等三角点', data: { id: "itto", layer: LayersMvt.ittosankakutenObj, opacity: 1, summary: LayersMvt.ittosankakutenSumm } },

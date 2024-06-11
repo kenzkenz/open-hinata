@@ -505,7 +505,6 @@ export function popUp(map,layers,features,overlay,evt,content,content2) {
         case 'hinanzyo04':
         case 'hinanzyo05':
         case 'hinanzyo06':
-          width = 200
           let cont1 = ''
           const array = [
             {disaster:'disaster1', cont:'洪水　'},
@@ -524,9 +523,9 @@ export function popUp(map,layers,features,overlay,evt,content,content2) {
                 }
               }
           );
-          cont += '<div style=width:200px>名称=' + prop.name + '<hr>' +
+          cont += '<div style=width:300px>名称=' + prop.name + '<hr>' +
               '所在地=' + prop.address + '<hr>' +
-              '対応している災害の種別＝<br>' + cont1 + '</div>'
+              '対応している災害の種別＝<br>' + cont1 + '</div><hr>'
           break
         case 'gunbakumatu':
         case 'gunkuni':
@@ -535,7 +534,7 @@ export function popUp(map,layers,features,overlay,evt,content,content2) {
           cont += '<div style=width:130px>' +
               '<h4>' + prop.GUN + '</h4>' +
               '国=' + prop.KUNI + '<br>' +
-              '県=' + prop.PREF + '</div>'
+              '県=' + prop.PREF + '</div><hr>'
           break
         case 'kansui':
           width = 200
@@ -544,11 +543,11 @@ export function popUp(map,layers,features,overlay,evt,content,content2) {
           console.log(str.match(pattern)[0])
           cont += '<div style=width:200px>' + prop.name + '<hr>' +
               '<a href=' + str.match(pattern)[0] + ' target="_blank">箇所表</a>'+ '<hr>' +
-              '</div>'
+              '</div><hr>'
           break
         case 'kiseikukan':
           width = 200
-          cont += '<div style=width:200px>' + prop.A1 + prop.A2 + '</div>'
+          cont += '<div style=width:200px>' + prop.A1 + prop.A2 + '</div><hr>'
           break
         case 'railroad':
           width = 200
@@ -1239,8 +1238,6 @@ export function popUp(map,layers,features,overlay,evt,content,content2) {
       })
     }
     const maxWidth = d3.max(widthAr, function(d) { return Number(d); })
-    console.log(maxWidth)
-
     if (maxWidth) {
       document.querySelector('.ol-popup').style.left = -(maxWidth / 2) - 16 + 'px'
       const style1 = document.createElement('style')
