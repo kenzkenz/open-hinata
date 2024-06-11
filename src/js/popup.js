@@ -4,7 +4,7 @@ import axios from 'axios'
 import figureRGB from './figureRGB'
 import muni from './muni'
 import * as d3 from "d3"
-import ColorClassifier, { Palette, AlgorithmTypes } from "color-classifier"
+import ColorClassifier from "color-classifier"
 let cont = ''
 export function popUp(map,layers,features,overlay,evt,content,content2) {
   // let cont = ''
@@ -1181,7 +1181,7 @@ export function popUp(map,layers,features,overlay,evt,content,content2) {
         case 'nantora':
           if (cont.indexOf('nantora') === -1) {
             cont += '<div class="nantora" style=width:300px;>' +
-                '<h4>最大浸水深 = ' + prop.最大浸水深 + 'm</h4>' +
+                '<h4 style="color: red">津波浸水深 = ' + prop.最大浸水深 + 'm</h4>' +
                 '</div><hr>'
           }
           break
@@ -2441,11 +2441,9 @@ export function popUpNantora(rgba) {
   let r = rgba[0]
   let g = rgba[1]
   let b = rgba[2]
-
+  let a = rgba[3]
+  if (a === 0) return
   console.log("rgb(" + r + "," + g + "," + b + ")")
-
-  // const palette = ['rgb(0,255,0)', 'rgb(255,230,0)','rgb(255,153,0)','rgb(239,117,152)',
-  //   'rgb(255,40,0)','rgb(180,0,104)','rgb(128,0,255)'];
   const palette = [
     {r: 0, g: 255, b: 0},
     {r: 255, g: 230, b: 0},
@@ -2454,15 +2452,13 @@ export function popUpNantora(rgba) {
     {r: 255, g: 40, b: 0},
     {r: 180, g: 0, b: 104},
     {r: 128,   g: 0,   b: 255}
-  ];
-  // const palette = ['#fff', '#000'];
-  const colorClassifier = new ColorClassifier(palette, AlgorithmTypes.RGB);
+  ]
+  const colorClassifier = new ColorClassifier(palette);
   const color = colorClassifier.classify({r: r, g: g, b: b});
   console.log(color)
   r = color.r
   g = color.g
   b = color.b
-
   let cont
   if (r === 0 && g === 255 && b === 0) {
     cont = "<div style=width:200px>津波浸水深 0.3m未満</div>"

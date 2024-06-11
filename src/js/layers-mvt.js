@@ -61,7 +61,7 @@ function NantoraMvt(){
   // this.declutter = true
   // this.overflow = true
 }
-export const nantoraSumm = "<a href='' target='_blank'>/a>"
+export const nantoraSumm = "<a href='https://data.bodik.jp/dataset/450006_1081/resource/4d71d06b-7ba1-437f-809c-bbd1fadfda2a' target='_blank'>津波浸水想定（南トラR元）</a>"
 export  const nantoraMvtObj = {};
 for (let i of mapsStr) {
   nantoraMvtObj[i] = new VectorTileLayer(new NantoraMvt())
