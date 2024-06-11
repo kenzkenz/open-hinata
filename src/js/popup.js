@@ -285,55 +285,45 @@ export function popUp(map,layers,features,overlay,evt,content,content2) {
           cont += '<div style=width:100px>' + prop.A38c_001 + '</div>'
           break
         case 'suikei1km':
-          width = 200
           if (prop.PTN_2015) {
             cont += '<div style=width:200px>2020年人口＝' + prop.PTN_2020 +
                 '<br>2050年人口＝' + prop.PTN_2050 +
                 '<br>2050/2020＝' + Math.floor(prop.PTN_2050 / prop.PTN_2020 * 100) + '%</div>'
           } else {
-            cont += '<div style=width:200px>' + prop.text + '</div>'
+            cont += '<div style=width:200px>' + prop.text + '</div><hr>'
           }
           break
         case 'nougyou':
-          width = 100
           if (prop.LAYER_NO === 5) {
-            cont += '<div style=width:100px>' + '農業地域 ' + '</div>'
+            cont += '<div style=width:200px>' + '農業地域 ' + '</div><hr>'
           } else {
-            cont += '<div style=width:100px>' + '農用地区域' + '</div>'
+            cont += '<div style=width:200px>' + '農用地区域' + '</div><hr>'
           }
           break
         case 'damh26':
-          width = 150
-          cont += '<div style=width:150px>ダム名＝' + prop.W01_001 + '</div>'
+          cont += '<div style=width:200px>ダム名＝' + prop.W01_001 + '</div><hr>'
           break
         case 'city':
-          width = 100
-          cont += '<div style=width:100px>' + prop.N03_004 + '</div>'
+          cont += '<div style=width:200px>' + prop.N03_004 + '</div><hr>'
           break
         case 'kyoukai':
-          width = 100
-          cont += '<div style=width:100px>' + prop.RCOM_NAME + '</div>'
+          cont += '<div style=width:200px>' + prop.RCOM_NAME + '</div><hr>'
           break
         case 'kosyou':
-          width = 150
-          cont += '<div style=width:150px>' + prop.W09_001 + '</div>'
+          cont += '<div style=width:200px>' + prop.W09_001 + '</div><hr>'
           break
         case 'chyouzyuu':
-          width = 100
-          cont += '<div style=width:100px>' + prop.A15_001 + '</div>'
+          cont += '<div style=width:200px>' + prop.A15_001 + '</div><hr>'
           break
         case 'tatumaki':
-          width = 250
           cont += '<div style=width:250px>' + prop.A30b_005 + prop.A30b_006 + prop.A30b_007 +
               '<br>' + prop.A30b_002 +
-              '<br>発生日時' + prop.A30b_003 + '</div>'
+              '<br>発生日時' + prop.A30b_003 + '</div><hr>'
           break
         case 'mitinoeki':
-          width = 150
-          cont += "<div style=width:150px><a href=" + prop.P35_007 + " target='_blank'>" + prop.P35_006 + "</a></div>"
+          cont += "<div style=width:200px><a href=" + prop.P35_007 + " target='_blank'>" + prop.P35_006 + "</a></div><hr>"
           break
         case 'tokyoZisin':
-          width = 300
           cont += '<div style=width:300px>地区名＝' + prop.区市町村名 + prop.町丁目名 +
               '<br>建物倒壊危険度ランク＝' + prop.建物_ラ +
               '<br>建物倒壊危険度順位＝' + prop.建物_順 +
@@ -342,7 +332,7 @@ export function popUp(map,layers,features,overlay,evt,content,content2) {
               '<br>総合危険度ランク＝' + prop.総合_ラ +
               '<br>総合危険度順位＝' + prop.総合_順 +
               '<br>災害時活動困難係数＝' + prop.災害_係 + '<br>' +
-              '</div>'
+              '</div><hr>'
           break
         case 'tokutei':
           width = 120
