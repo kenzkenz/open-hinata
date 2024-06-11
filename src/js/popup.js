@@ -560,17 +560,26 @@ export function popUp(map,layers,features,overlay,evt,content,content2) {
           }
           break
         case 'rosen':
-          width = 300
+          let haishinen = ''
+          if (prop.N05_005e !== '9999') {
+            haishinen = '<span style="color:red;">変更・廃止年 = ' + (Number(prop.N05_005e) + 1) + '年</span>'
+          }
           cont += '<div style=width:300px>運営会社=' + prop.N05_003 + '<br>' +
-              '路線名　=' + prop.N05_002 + '</div><hr>'
+              '路線名　=' + prop.N05_002 + '<br>' +
+              haishinen +
+              '</div><hr>'
           break
         case 'eki':
-          width = 300
+          let haishinenEki = ''
+          if (prop.N05_005e !== '9999') {
+            haishinenEki = '<span style="color:red;">変更・廃止年 = ' + (Number(prop.N05_005e) + 1) + '年</span>'
+          }
           cont += '<div style=width:300px>' +
               '<h4>' + prop.N05_011 + '</h4>' +
               '運営会社=' + prop.N05_003 + '<br>' +
-              '路線名　=' + prop.N05_002 + '<hr>' +
-              '</div>'
+              '路線名　=' + prop.N05_002 + '<br>' +
+              haishinenEki +
+              '</div><hr>'
           break
         case 'bus':
           width = 200

@@ -725,7 +725,7 @@ export function initMap (vm) {
                             point:point
                         }
                     }) .then(function (response) {
-                        console.log(response.data)
+                        // console.log(response.data)
                         const cont =
                             '<div style=width:300px>形成時代 = ' + response.data["formationAge_ja"] +
                             '<hr>グループ = '+ response.data["group_ja"] +
