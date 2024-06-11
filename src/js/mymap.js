@@ -709,6 +709,7 @@ export function initMap (vm) {
                 const y = ( 0.5 - coord[ 1 ] / ( 2 * R * Math.PI ) ) * Math.pow( 2, z );
                 const result = await getRgb( x, y, z, server);
                 if (result) {
+                    console.log(result)
                     rgbaArr.push(result)
                     funcArr.push(func)
                 }
@@ -820,6 +821,11 @@ export function initMap (vm) {
                             server = 'https://cyberjapandata.gsi.go.jp/xyz/swale/'
                             zoom = 16
                             func = PopUp.popUpTisitu
+                            break
+                        case 'nantoraraster':
+                            server = 'https://kenzkenz3.xsrv.jp/mvt/miyazaki/nantoraraster/'
+                            zoom = 12
+                            func = PopUp.popUpNantora
                             break
                     }
                     if (server) return getRgb0(evt,server,zoom,func)

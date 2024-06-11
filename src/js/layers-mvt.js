@@ -43,9 +43,9 @@ const mapsStr = ['map01','map02']
 // 宮崎南海トラフ---------------------------------------------------------------------------------
 let nantoraMaxResolution
 if (window.innerWidth > 1000) {
-  nantoraMaxResolution = 9.554629 //zoom14
+  nantoraMaxResolution = 2.388657	 //zoom16
 } else {
-  nantoraMaxResolution = 9.554629 //zoom14
+  nantoraMaxResolution = 2.388657	 //zoom16
 }
 function NantoraMvt(){
   this.name = 'nantora'
@@ -53,7 +53,7 @@ function NantoraMvt(){
   this.source = new VectorTileSource({
     crossOrigin: 'Anonymous',
     format: new MVT(),
-    maxZoom:13,
+    maxZoom:16,
     url: "https://kenzkenz3.xsrv.jp/mvt/miyazaki/nantora/{z}/{x}/{y}.mvt"
   });
   this.style = nantoraStyleFunction()
@@ -68,6 +68,7 @@ for (let i of mapsStr) {
 }
 // ----------------------------------------------------------------------------
 function nantoraRaster() {
+  this.name = 'nantoraraster'
   this.preload = Infinity
   this.source = new XYZ({
     url: 'https://kenzkenz3.xsrv.jp/mvt/miyazaki/nantoraraster/{z}/{x}/{y}.png',
@@ -75,7 +76,7 @@ function nantoraRaster() {
     minZoom: 0,
     maxZoom: 14
   })
-  this.minResolution = 9.554629 //zoom14
+  this.minResolution = 4.777314 //zoom15
 }
 export const nantoraRasterObj = {};
 for (let i of mapsStr) {
