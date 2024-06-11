@@ -1177,6 +1177,13 @@ export function popUp(map,layers,features,overlay,evt,content,content2) {
                 '</div><hr>'
           }
           break
+        case 'nantora':
+          if (cont.indexOf('nantora') === -1) {
+            cont += '<div class="nantora" style=width:300px;>' +
+                '<h4>最大浸水深 = ' + prop.最大浸水深 + 'm</h4>' +
+                '</div><hr>'
+          }
+          break
       }
     })
   }

@@ -40,6 +40,116 @@ String.prototype.trunc =
     }
 // const mapsStr = ['map01','map02','map03','map04'];
 const mapsStr = ['map01','map02']
+// 宮崎南海トラフ---------------------------------------------------------------------------------
+let nantoraMaxResolution
+if (window.innerWidth > 1000) {
+  nantoraMaxResolution = 9.554629 //zoom14
+} else {
+  nantoraMaxResolution = 9.554629 //zoom14
+}
+function NantoraMvt(){
+  this.name = 'nantora'
+  // this.className = 'nantora'
+  this.source = new VectorTileSource({
+    crossOrigin: 'Anonymous',
+    format: new MVT(),
+    maxZoom:13,
+    url: "https://kenzkenz3.xsrv.jp/mvt/miyazaki/nantora/{z}/{x}/{y}.mvt"
+  });
+  this.style = nantoraStyleFunction()
+  this.maxResolution = nantoraMaxResolution
+  // this.declutter = true
+  // this.overflow = true
+}
+export const nantoraSumm = "<a href='' target='_blank'>/a>"
+export  const nantoraMvtObj = {};
+for (let i of mapsStr) {
+  nantoraMvtObj[i] = new VectorTileLayer(new NantoraMvt())
+}
+// ----------------------------------------------------------------------------
+function nantoraRaster() {
+  this.preload = Infinity
+  this.source = new XYZ({
+    url: 'https://kenzkenz3.xsrv.jp/mvt/miyazaki/nantoraraster/{z}/{x}/{y}.png',
+    crossOrigin: 'anonymous',
+    minZoom: 0,
+    maxZoom: 14
+  })
+  this.minResolution = 9.554629 //zoom14
+}
+export const nantoraRasterObj = {};
+for (let i of mapsStr) {
+  nantoraRasterObj[i] = new TileLayer(new nantoraRaster())
+}
+export const nantoraObj = {}
+for (let i of mapsStr) {
+  nantoraObj[i] = new LayerGroup({
+    layers: [
+      nantoraMvtObj[i],
+      nantoraRasterObj[i]
+    ]
+  })
+  nantoraObj[i].values_['pointer'] = true
+}
+function nantoraStyleFunction() {
+  return function (feature, resolution) {
+    const zoom = getZoom(resolution)
+    const prop = feature.getProperties()
+    const maxShinsui = prop.最大浸水深
+    const styles = [];
+    let rgba
+    let text
+
+    if (maxShinsui < 0.3) {
+      rgba = "rgba(0,255,0,1)";
+    } else if (maxShinsui < 1) {
+      rgba = "rgba(255,230,0,1)";
+    } else if (maxShinsui < 2) {
+      rgba = "rgba(255,153,0,1)";
+    } else if (maxShinsui < 5) {
+      rgba = "rgba(239,117,152,1)";
+    } else if (maxShinsui < 10) {
+      rgba = "rgba(255,40,0,1)";
+    } else if (maxShinsui < 20) {
+      rgba = "rgba(180,0,104,1)";
+    } else {
+      rgba = "rgba(128,0,255,1)";
+    }
+
+    const polygonStyle = new Style({
+      fill: new Fill({
+        color: rgba
+      }),
+      // stroke: new Stroke({
+      //   color: zoom >= 12 ? 'white' : 'rgba(0,0,0,0)',
+      //   width: 1
+      // })
+    })
+    const textStyle = new Style({
+      text: new Text({
+        font: zoom <= 18 ? "12px sans-serif" : "20px sans-serif",
+        text: text,
+        fill: new Fill({
+          color: "black"
+        }),
+        Placement: 'point',
+        overflow: 'true',
+        stroke: new Stroke({
+          color: "white",
+          width: 3
+        }),
+      })
+    })
+    styles.push(polygonStyle);
+    if (zoom>=17) styles.push(textStyle);
+    return styles;
+  }
+}
+
+
+
+
+
 // 高速道路時系列---------------------------------------------------------------
 function Kosoku (mapName) {
   this.name = 'kosoku'
@@ -111,7 +221,6 @@ function kosokuStyleFunction(mapName) {
         })
       })
     })
-
     const lineStyle = new Style({
       stroke: new Stroke({
         color: strokeColor,
@@ -143,7 +252,6 @@ function kosokuStyleFunction(mapName) {
 // ---------------------------------------------------------------------------------
 let mesh100mTochiriyoMaxResolution
 if (window.innerWidth > 1000) {
-  // mesh100mTochiriyoMaxResolution = 78271.52 //zoom1
   mesh100mTochiriyoMaxResolution = 19.109257 //zoom13
 } else {
   mesh100mTochiriyoMaxResolution = 19.109257 //zoom13
@@ -166,22 +274,6 @@ export  const mesh100mTochiriyo1Obj = {};
 for (let i of mapsStr) {
   mesh100mTochiriyo1Obj[i] = new VectorTileLayer(new Mesh100mTochiriyo("https://kenzkenz3.xsrv.jp/mvt/tochiriyo100mmesh/{z}/{x}/{y}.mvt"))
 }
-// export  const mesh100mTochiriyo2Obj = {};
-// for (let i of mapsStr) {
-//   mesh100mTochiriyo2Obj[i] = new VectorTileLayer(new Mesh100mTochiriyo("https://kenzkenz3.xsrv.jp/mvt/tochiriyo100mmesh/marged2/{z}/{x}/{y}.mvt"))
-// }
-// export  const mesh100mTochiriyo3Obj = {};
-// for (let i of mapsStr) {
-//   mesh100mTochiriyo3Obj[i] = new VectorTileLayer(new Mesh100mTochiriyo("https://kenzkenz3.xsrv.jp/mvt/tochiriyo100mmesh/marged3/{z}/{x}/{y}.mvt"))
-// }
-// export  const mesh100mTochiriyo4Obj = {};
-// for (let i of mapsStr) {
-//   mesh100mTochiriyo4Obj[i] = new VectorTileLayer(new Mesh100mTochiriyo("https://kenzkenz3.xsrv.jp/mvt/tochiriyo100mmesh/marged4/{z}/{x}/{y}.mvt"))
-// }
-// export  const mesh100mTochiriyo5Obj = {};
-// for (let i of mapsStr) {
-//   mesh100mTochiriyo5Obj[i] = new VectorTileLayer(new Mesh100mTochiriyo("https://kenzkenz3.xsrv.jp/mvt/tochiriyo100mmesh/marged5/{z}/{x}/{y}.mvt"))
-// }
 export const mesh100mTochiriyoObj = {}
 for (let i of mapsStr) {
   mesh100mTochiriyoObj[i] = new LayerGroup({
@@ -191,9 +283,6 @@ for (let i of mapsStr) {
   })
   mesh100mTochiriyoObj[i].values_['pointer'] = true
 }
-
-
-
 function mesh100mTochiriyoColorFunction() {
   return function (feature, resolution) {
     const zoom = getZoom(resolution);
@@ -280,7 +369,6 @@ function mesh100mTochiriyoColorFunction() {
     return styles;
   }
 }
-
 // メッシュ洪水-----------------------------------------------------------------------
 function kozuiMesh9syu(){
   this.name = 'zoseiMvt'
