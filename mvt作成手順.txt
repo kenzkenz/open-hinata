@@ -299,6 +299,7 @@ tippecanoe -Z13 -z13 -pk -pf -f -e tile13 t.geojson
 tippecanoe -pk -pf -f -e tile n.geojson
 tippecanoe -Z15 -z15 -pk -pf -f -e tile15 n.geojson
 tippecanoe -Z16 -z16 -pk -pf -f -e tile16 n.geojson
+tippecanoe -pk -pf -f -e tile t.geojson
 
 $ cd tile
 $ gzip -d -v -r -S .pbf *

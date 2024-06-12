@@ -1318,19 +1318,19 @@ export function popUpShinsuishin(rgba) {
   const b = rgba[2]
   let cont
   if(r===255 && g===255 && b===179 || r===248 && g===225 && b===166) {
-    cont = "<div style=width:200px>洪水浸水深　0.5m未満</div>"
+    cont = "<h4 style=width:300px>洪水浸水深　0.5m未満</h4>"
   }else if(r===247 && g===245 && b===169) {
-    cont = "<div style=width:200px>洪水浸水深　0.5m未満</div>"
+    cont = "<h4 style=width:300px>洪水浸水深　0.5m未満</h4>"
   }else if(r===255 && g===216 && b===192) {
-    cont = "<div style=width:200px>洪水浸水深　0.5〜3.0m</div>"
+    cont = "<h4 style=width:300px>洪水浸水深　0.5〜3.0m</h4>"
   }else if(r===255 && g===183 && b===183) {
-    cont = "<div style=width:200px>洪水浸水深　3.0〜5.0m</div>"
+    cont = "<h4 style=width:300px>洪水浸水深　3.0〜5.0m</h4>"
   }else if(r===255 && g===145 && b===145) {
-    cont = "<div style=width:200px>洪水浸水深　5.0〜10.0m</div>"
+    cont = "<h4 style=width:300px>洪水浸水深　5.0〜10.0m</h4>"
   }else if(r===242 && g===133 && b===201) {
-    cont = "<div style=width:200px>洪水浸水深　10.0〜20.0m</div>"
+    cont = "<h4 style=width:300px>洪水浸水深　10.0〜20.0m</h4>"
   }else if(r===220 && g===122 && b===220) {
-    cont = "<div style=width:200px>洪水浸水深　20.0m以上</div>"
+    cont = "<h4 style=width:300px>洪水浸水深　20.0m以上</h4>"
   }
   if (cont) cont = '<span style="color: red">' + cont + '</span>'
   return cont
@@ -1342,21 +1342,21 @@ export function popUpTunami(rgba) {
   const b = rgba[2]
   let cont
   if(r===255 && g===255 && b===179) {
-    cont = "<div style=width:200px>津波浸水深　0.3m未満</div>"
+    cont = "<h4 style=width:300px>津波浸水深　0.3m未満</h4>"
   }else if(r===247 && g===245 && b===169) {
-    cont = "<div style=width:200px>津波浸水深　0.3~0.5m</div>"
+    cont = "<h4 style=width:300px>津波浸水深　0.3~0.5m</h4>"
   }else if(r===248 && g===225 && b===166) {
-    cont = "<div style=width:200px>津波浸水深　0.5~1.0m</div>"
+    cont = "<h4 style=width:300px>津波浸水深　0.5~1.0m</h4>"
   }else if(r===255 && g===216 && b===192) {
-    cont = "<div style=width:200px>津波浸水深　1.0~3.0m</div>"
+    cont = "<h4 style=width:300px>津波浸水深　1.0~3.0m</h4>"
   }else if(r===255 && g===183 && b===183) {
-    cont = "<div style=width:200px>津波浸水深　3.0~5.0m</div>"
+    cont = "<h4 style=width:300px>津波浸水深　3.0~5.0m</h4>"
   }else if(r===255 && g===145 && b===145) {
-    cont = "<div style=width:200px>津波浸水深　5.0~10.0m</div>"
+    cont = "<h4 style=width:300px>津波浸水深　5.0~10.0m</h4>"
   }else if(r===242 && g===133 && b===201) {
-    cont = "<div style=width:200px>津波浸水深　10.0~20.0m</div>"
+    cont = "<h4 style=width:300px>津波浸水深　10.0~20.0m</h4>"
   }else if(r===220 && g===122 && b===220) {
-    cont = "<div style=width:200px>津波浸水深　20.0m以上</div>"
+    cont = "<h4 style=width:300px>津波浸水深　20.0m以上</h4>"
   }
   if (cont) cont = '<span style="color: red">' + cont + '</span>'
   return cont
