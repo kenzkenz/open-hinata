@@ -2461,19 +2461,19 @@ export function popUpNantora(rgba) {
   b = color.b
   let cont
   if (r === 0 && g === 255 && b === 0) {
-    cont = "<div style=width:200px>津波浸水深 0.3m未満</div>"
+    cont = "<h4 style=width:300px>津波浸水深 0.3m未満</h4>"
   } else if (r === 255 && g === 230 && b === 0) {
-    cont = "<div style=width:200px>津波浸水深 0〜1m</div>"
+    cont = "<h4 style=width:300px>津波浸水深 0〜1m</h4>"
   } else if (r === 255 && g === 153 && b === 0) {
-    cont = "<div style=width:200px>津波浸水深 1〜2m</div>"
+    cont = "<h4 style=width:300px>津波浸水深 1〜2m</h4>"
   } else if (r === 239 && g === 117 && b === 152) {
-    cont = "<div style=width:200px>津波浸水深 2〜5m</div>"
+    cont = "<h4 style=width:300px>津波浸水深 2〜5m</h4>"
   } else if (r === 255 && g === 40 && b === 0) {
-    cont = "<div style=width:200px>津波浸水深 5〜10m</div>"
+    cont = "<h4 style=width:300px>津波浸水深 5〜10m</h4>"
   } else if (r === 180 && g === 0 && b === 104) {
-    cont = "<div style=width:200px>津波浸水深 10〜20m</div>"
+    cont = "<h4 style=width:300px>津波浸水深 10〜20m</h4>"
   } else if (r === 128 && g === 0 && b === 255) {
-    cont = "<div style=width:200px>津波浸水深 20m〜</div>"
+    cont = "<h4 style=width:300px>津波浸水深 20m〜</h4>"
   }
   if (cont) cont = '<span style="color: red">' + cont + '</span>'
   return cont

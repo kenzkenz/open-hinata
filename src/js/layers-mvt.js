@@ -44,8 +44,10 @@ const mapsStr = ['map01','map02']
 let nantoraMaxResolution
 if (window.innerWidth > 1000) {
   nantoraMaxResolution = 2.388657	 //zoom16
+  // nantoraMaxResolution = 4.777314	 //zoom15
 } else {
   nantoraMaxResolution = 2.388657	 //zoom16
+  // nantoraMaxResolution = 4.777314	 //zoom15
 }
 function NantoraMvt(){
   this.name = 'nantora'
@@ -76,7 +78,8 @@ function nantoraRaster() {
     minZoom: 0,
     maxZoom: 14
   })
-  this.minResolution = 4.777314 //zoom15
+  // this.minResolution = 4.777314 //zoom15
+  this.minResolution = 2.388657 //zoom16
 }
 export const nantoraRasterObj = {};
 for (let i of mapsStr) {
@@ -99,24 +102,34 @@ function nantoraStyleFunction() {
     const maxShinsui = prop.最大浸水深
     const styles = [];
     let rgba
-    let text
-
+    let font
+    const text = prop.最大浸水深 + 'm'
     if (maxShinsui < 0.3) {
-      rgba = "rgba(0,255,0,1)";
+      rgba = "rgba(0,255,0,1)"
     } else if (maxShinsui < 1) {
-      rgba = "rgba(255,230,0,1)";
+      rgba = "rgba(255,230,0,1)"
     } else if (maxShinsui < 2) {
-      rgba = "rgba(255,153,0,1)";
+      rgba = "rgba(255,153,0,1)"
     } else if (maxShinsui < 5) {
-      rgba = "rgba(239,117,152,1)";
+      rgba = "rgba(239,117,152,1)"
     } else if (maxShinsui < 10) {
-      rgba = "rgba(255,40,0,1)";
+      rgba = "rgba(255,40,0,1)"
     } else if (maxShinsui < 20) {
-      rgba = "rgba(180,0,104,1)";
+      rgba = "rgba(180,0,104,1)"
     } else {
-      rgba = "rgba(128,0,255,1)";
+      rgba = "rgba(128,0,255,1)"
     }
-
+    // if (zoom <= 20) {
+    //   font = "12px sans-serif"
+    // } else if (zoom <= 21) {
+    //   font = "14px sans-serif"
+    // } else if (zoom <= 22) {
+    //   font = "16px sans-serif"
+    // } else if (zoom <= 23) {
+    //   font = "18px sans-serif"
+    // }else {
+    //   font = "22px sans-serif"
+    // }
     const polygonStyle = new Style({
       fill: new Fill({
         color: rgba
@@ -128,7 +141,7 @@ function nantoraStyleFunction() {
     })
     const textStyle = new Style({
       text: new Text({
-        font: zoom <= 18 ? "12px sans-serif" : "20px sans-serif",
+        font: font,
         text: text,
         fill: new Fill({
           color: "black"
@@ -141,9 +154,9 @@ function nantoraStyleFunction() {
         }),
       })
     })
-    styles.push(polygonStyle);
-    if (zoom>=17) styles.push(textStyle);
-    return styles;
+    styles.push(polygonStyle)
+    // if (zoom>=19) styles.push(textStyle)
+    return styles
   }
 }
 
