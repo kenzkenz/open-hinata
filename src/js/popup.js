@@ -1207,7 +1207,6 @@ export function popUp(map,layers,features,overlay,evt,content,content2) {
           }
         })
         .then(function (response) {
-          // alert()
           console.log(response.data.results.lv01Nm)
           popupCenter(cont)
           let cont2 = cont + streetView
@@ -1318,13 +1317,13 @@ export function popUpShinsuishin(rgba) {
   const b = rgba[2]
   let cont
   if(r===255 && g===255 && b===179 || r===248 && g===225 && b===166) {
-    cont = "<h4 style=width:300px>洪水浸水深　0.5m未満</h4>"
+    cont = "<h4 style=width:300px>洪水浸水深 0.5m未満</h4>"
   }else if(r===247 && g===245 && b===169) {
-    cont = "<h4 style=width:300px>洪水浸水深　0.5m未満</h4>"
+    cont = "<h4 style=width:300px>洪水浸水深 0.5m未満</h4>"
   }else if(r===255 && g===216 && b===192) {
-    cont = "<h4 style=width:300px>洪水浸水深　0.5〜3.0m</h4>"
+    cont = "<h4 style=width:300px>洪水浸水深 0.5〜3.0m</h4>"
   }else if(r===255 && g===183 && b===183) {
-    cont = "<h4 style=width:300px>洪水浸水深　3.0〜5.0m</h4>"
+    cont = "<h4 style=width:300px>洪水浸水深 3.0〜5.0m</h4>"
   }else if(r===255 && g===145 && b===145) {
     cont = "<h4 style=width:300px>洪水浸水深　5.0〜10.0m</h4>"
   }else if(r===242 && g===133 && b===201) {
@@ -1342,15 +1341,15 @@ export function popUpTunami(rgba) {
   const b = rgba[2]
   let cont
   if(r===255 && g===255 && b===179) {
-    cont = "<h4 style=width:300px>津波浸水深　0.3m未満</h4>"
+    cont = "<h4 style=width:300px>津波浸水深 0.3m未満</h4>"
   }else if(r===247 && g===245 && b===169) {
-    cont = "<h4 style=width:300px>津波浸水深　0.3~0.5m</h4>"
+    cont = "<h4 style=width:300px>津波浸水深 0.3~0.5m</h4>"
   }else if(r===248 && g===225 && b===166) {
-    cont = "<h4 style=width:300px>津波浸水深　0.5~1.0m</h4>"
+    cont = "<h4 style=width:300px>津波浸水深 0.5~1.0m</h4>"
   }else if(r===255 && g===216 && b===192) {
-    cont = "<h4 style=width:300px>津波浸水深　1.0~3.0m</h4>"
+    cont = "<h4 style=width:300px>津波浸水深 1.0~3.0m</h4>"
   }else if(r===255 && g===183 && b===183) {
-    cont = "<h4 style=width:300px>津波浸水深　3.0~5.0m</h4>"
+    cont = "<h4 style=width:300px>津波浸水深 3.0~5.0m</h4>"
   }else if(r===255 && g===145 && b===145) {
     cont = "<h4 style=width:300px>津波浸水深　5.0~10.0m</h4>"
   }else if(r===242 && g===133 && b===201) {
@@ -1368,19 +1367,19 @@ export function popUpKeizoku(rgba) {
   const b = rgba[2]
   let cont
   if(r===160 && g===210 && b===255) {
-    cont = "<div style=width:200px>浸水継続　12時間未満</div>"
+    cont = "<div style=width:300px>浸水継続 12時間未満</div>"
   }else if(r===0 && g===65 && b===255) {
-    cont = "<div style=width:200px>浸水継続　12時間~1日未満</div>"
+    cont = "<div style=width:300px>浸水継続 12時間~1日未満</div>"
   }else if(r===250 && g===245 && b===0) {
-    cont = "<div style=width:200px>浸水継続　1日~3日未満</div>"
+    cont = "<div style=width:300px>浸水継続 1日~3日未満</div>"
   }else if(r===255 && g===153 && b===0) {
-    cont = "<div style=width:200px>浸水継続　3日~1週間未満</div>"
+    cont = "<div style=width:300px>浸水継続 3日~1週間未満</div>"
   }else if(r===255 && g===40 && b===0) {
-    cont = "<div style=width:200px>浸水継続　1週間~2週間未満</div>"
+    cont = "<div style=width:300px>浸水継続 1週間~2週間未満</div>"
   }else if(r===180 && g===0 && b===104) {
-    cont = "<div style=width:200px>浸水継続　2週間~4週間未満</div>"
+    cont = "<div style=width:300px>浸水継続 2週間~4週間未満</div>"
   }else if(r===96 && g===0 && b===96) {
-    cont = "<div style=width:200px>浸水継続　4週間以上~</div>"
+    cont = "<div style=width:300px>浸水継続 4週間以上~</div>"
   }
   if (cont) cont = '<span style="color: red">' + cont + '</span>'
   return cont
@@ -1392,21 +1391,21 @@ export function popUpTakasio(rgba) {
   const b = rgba[2]
   let cont
   if(r===255 && g===255 && b===179) {
-    cont = "<div style=width:200px>高潮浸水深　0.3m未満</div>"
+    cont = "<h4 style=width:300px>高潮浸水深 0.3m未満</h4>"
   }else if(r===247 && g===245 && b===169) {
-    cont = "<div style=width:200px>高潮浸水深　0.3~0.5m</div>"
+    cont = "<h4 style=width:300px>高潮浸水深 0.3~0.5m</h4>"
   }else if(r===248 && g===225 && b===166) {
-    cont = "<div style=width:200px>高潮浸水深　0.5~1.0m</div>"
+    cont = "<h4 style=width:300px>高潮浸水深 0.5~1.0m</h4>"
   }else if(r===255 && g===216 && b===192) {
-    cont = "<div style=width:200px>高潮浸水深　1.0~3.0m</div>"
+    cont = "<h4 style=width:300px>高潮浸水深 1.0~3.0m</h4>"
   }else if(r===255 && g===183 && b===183) {
-    cont = "<div style=width:200px>高潮浸水深　3.0~5.0m</div>"
+    cont = "<h4 style=width:300px>高潮浸水深 3.0~5.0m</h4>"
   }else if(r===255 && g===145 && b===145) {
-    cont = "<div style=width:200px>高潮浸水深　5.0~10.0m</div>"
+    cont = "<h4 style=width:300px>高潮浸水深 5.0~10.0m</h4>"
   }else if(r===242 && g===133 && b===201) {
-    cont = "<div style=width:200px>高潮浸水深　10.0~20.0m</div>"
+    cont = "<h4 style=width:300px>高潮浸水深 10.0~20.0m</h4>"
   }else if(r===220 && g===122 && b===220) {
-    cont = "<div style=width:200px>高潮浸水深　20.0m以上</div>"
+    cont = "<h4 style=width:300px>高潮浸水深 20.0m以上</h4>"
   }
   if (cont) cont = '<span style="color: red">' + cont + '</span>'
   return cont
@@ -1418,7 +1417,7 @@ export function popUpTameike(rgba) {
   const b = rgba[2]
   let cont
   if(r===0 && g===0 && b===255) {
-    cont = "<div style=width:300px>ため池決壊によって浸水が想定される区域</div>"
+    cont = "<h4 style=width:300px>ため池決壊によって浸水が想定される区域</h4>"
   }
   if (cont) cont = '<span style="color: red">' + cont + '</span>'
   return cont
@@ -1430,15 +1429,15 @@ export function popUpEkizyouka(rgba) {
   const b = rgba[2]
   let cont
   if(r===200 && g===0 && b===255) {
-    cont = "<div style=width:200px>埋立地や旧河道</div>"
+    cont = "<h4 style=width:300px>埋立地や旧河道</h4>"
   }else if(r===255 && g===40 && b===0) {
-    cont = "<div style=width:200px>干拓地や自然堤防など</div>"
+    cont = "<h4 style=width:300px>干拓地や自然堤防など</h4>"
   }else if(r===255 && g===170 && b===0) {
-    cont = "<div style=width:200px>緩勾配の谷底低地、緩勾配の扇状地など</div>"
+    cont = "<h4 style=width:300px>緩勾配の谷底低地、緩勾配の扇状地など</h4>"
   }else if(r===255 && g===245 && b===0) {
-    cont = "<div style=width:200px>急勾配の谷底低地、急勾配の扇状地など</div>"
+    cont = "<h4 style=width:300px>急勾配の谷底低地、急勾配の扇状地など</h4>"
   }else if(r===200 && g===200 && b===203) {
-    cont = "<div style=width:200px>山地や丘陵など</div>"
+    cont = "<h4 style=width:300px>山地や丘陵など</h4>"
   }
   if (cont) cont = '<span style="color: red">' + cont + '</span>'
   return cont

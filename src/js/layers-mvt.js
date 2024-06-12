@@ -76,7 +76,7 @@ function nantoraRaster() {
     url: 'https://kenzkenz3.xsrv.jp/mvt/miyazaki/nantoraraster/{z}/{x}/{y}.png',
     crossOrigin: 'anonymous',
     minZoom: 0,
-    maxZoom: 14
+    maxZoom: 15
   })
   // this.minResolution = 4.777314 //zoom15
   this.minResolution = 2.388657 //zoom16
@@ -4518,8 +4518,9 @@ function Sizentikei0(name,minzoom,maxzoom,url){
     }),
     url:url
   });
-  this.style = sizentikeiStyleFunction(name);
+  this.style = sizentikeiStyleFunction(name)
   this.useInterimTilesOnError = false
+  this.pointer = true
 }
 export  const sizentikei0Obj = {};
 for (let i of mapsStr) {

@@ -824,7 +824,7 @@ export function initMap (vm) {
                             break
                         case 'nantoraraster':
                             server = 'https://kenzkenz3.xsrv.jp/mvt/miyazaki/nantoraraster/'
-                            zoom = 13
+                            zoom = 15
                             func = PopUp.popUpNantora
                             break
                     }
