@@ -604,6 +604,17 @@ export function initMap (vm) {
             }
             // ----------------------------------
             // 特定のラスターでカーソルを変える
+
+
+
+
+
+
+
+
+
+
+
             // OL6ではバグのため動かない。無理やり動かすにはlayer.jsのレイヤーにthis.className = 'hoge'と
             // 入れるといいが今度は合成が効かなくなる
             // const pixel = (map).getPixelFromCoordinate(evt.coordinate);
