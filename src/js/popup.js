@@ -147,7 +147,6 @@ export function popUp(map,layers,features,overlay,evt,content,content2) {
           break;
         case 'youtoH23' :
         case 'youtoR01' :
-          width = 200
           if (cont.indexOf('youtoR01') === -1) {
             cont += '<div class="youtoR01" style=width:200px>都道府県名＝' + prop.A29_002 + '<br>' +
                 '市区町村名=' + prop.A29_003 + '<br>' +
@@ -159,37 +158,38 @@ export function popUp(map,layers,features,overlay,evt,content,content2) {
           }
           break;
         case 'tosiH30' :
-          width = 100
           switch (prop.layer_no) {
             case 1://市街化区域
-              cont += "<div style=width:100px>市街化区域</div>";
+              cont += "<h4 style=width:200px>市街化区域</h4>";
               break;
             case 2://市街化調整区域
-              cont += "<div style=width:100px>市街化調整区域</div>";
+              cont += "<h4 style=width:200px>市街化調整区域</h4>";
               break;
             case 3://その他用途地域
-              cont += "<div style=width:100px>その他用途地域</div>";
+              cont += "<h4 style=width:200px>その他用途地域</h4>";
               break;
             case 4://用途未設定
-              cont += "<div style=width:100px>用途未設定</div>";
+              cont += "<h4 style=width:200px>用途未設定</h4>";
               break;
           }
+          cont += '<hr>'
+          break;
         case 'tosiH18' :
-          width = 100
           switch (prop.A09_003) {
             case '1'://市街化区域
-              cont += "<div style=width:100px>市街化区域</div>";
+              cont += "<h4 style=width:200px>市街化区域</h4>";
               break;
             case '2'://市街化調整区域
-              cont += "<div style=width:100px>市街化調整区域</div>";
+              cont += "<h4 style=width:200px>市街化調整区域</h4>";
               break;
             case '3'://その他用途地域
-              cont += "<div style=width:100px>その他用途地域</div>";
+              cont += "<h4 style=width:200px>その他用途地域</h4>";
               break;
             case '4':
-              cont += "<div style=width:100px>用途未設定</div>";
+              cont += "<h4 style=width:200px>用途未設定</h4>";
               break;
           }
+          cont += '<hr>'
           break;
         case 'kasoS45' :
         case 'kasoS60' :

@@ -159,11 +159,108 @@ function nantoraStyleFunction() {
     return styles
   }
 }
+// 鉄道時系列---------------------------------------------------------------
+function Tetsudoujikeiretsu(mapName){
+  this.name = 'tetsudojikeiretsu'
+  // this.className = 'tetsudojikeiretsu'
+  this.source = new VectorTileSource({
+    crossOrigin: 'Anonymous',
+    format: new MVT(),
+    maxZoom:16,
+    url: "https://kenzkenz3.xsrv.jp/mvt/tetsudojikeiretsu/{z}/{x}/{y}.mvt",
+  });
+  this.style = tetsudojikeiretsuStyleFunction(mapName)
+  // this.maxResolution = nantoraMaxResolution
+  // this.declutter = true
+  // this.overflow = true
+}
+export const tetsudojikeiretsuSumm = "<a href='https://nlftp.mlit.go.jp/ksj/gml/datalist/KsjTmplt-N05-2023.html' target='_blank'>国土数値情報</a>"
+export const tetsudojikeiretsuObj = {};
+for (let i of mapsStr) {
+  tetsudojikeiretsuObj[i] = new VectorTileLayer(new Tetsudoujikeiretsu(i))
+}
+// ------------------------------------
+function tetsudojikeiretsuStyleFunction(mapName) {
+  return function (feature, resolution) {
+    const kaishinen0 = store.state.info.tetsudoJikeiretsu[mapName]
+    const prop = feature.getProperties()
+    const geoType = feature.getGeometry().getType()
+    const zoom = getZoom(resolution)
+    const kaishinen = Number(prop.N05_004)
+    const syuryonen = Number(prop.N05_005e)
+    // console.log(kaishinen0,kaishinen,syuryonen)
+    const kaishinenJoint = prop.N06_012
+    let strokeColor
+    const strokeWidth = zoom > 9 ? 8 : 2
+    let jointColor
+    // strokeWidth = zoom > 9 ? 6 : 2
+    // if (kaishinen === kaishinen0) {
+    //   strokeColor = "red"
+    // } else if (syuryonen === kaishinen0) {
+    //     strokeColor = "blue"
+    if (kaishinen < kaishinen0 && syuryonen > kaishinen0) {
+      strokeColor = "blue"
+    } else {
+      strokeColor = "rgba(0,0,0,0)"
+    }
 
 
-
-
-
+    if (kaishinenJoint === kaishinen0) {
+      jointColor = "red"
+    } else if (kaishinenJoint < kaishinen0) {
+      jointColor = "black"
+    } else {
+      jointColor = "rgba(0,0,0,0)"
+    }
+    const styles = []
+    const pointStyle = new Style({
+      image: new Icon({
+        // anchor: [0.5, 1],
+        src: require('@/assets/icon/whitecircle.png'),
+        color: jointColor
+      }),
+      stroke: new Stroke({
+        color: "white",
+        width: 1
+      }),
+      text: new Text({
+        font: "20px sans-serif",
+        text: prop.N06_018,
+        offsetY: 16,
+        stroke: new Stroke({
+          color: "white",
+          width: 3
+        })
+      })
+    })
+    const lineStyle = new Style({
+      stroke: new Stroke({
+        color: strokeColor,
+        width: strokeWidth,
+      }),
+      placement: 'line'
+    })
+    const textStyle = new Style({
+      text: new Text({
+        font: "20px sans-serif",
+        text: prop.N06_007,
+        offsetY: 10,
+        fill:  new Fill({
+          color:"black"
+        }),
+        stroke: new Stroke({
+          color: "white",
+          width: 3
+        }),
+        placement: 'line'
+      })
+    })
+    if (zoom >= 13 && kaishinen <= kaishinen0) styles.push(textStyle)
+    if (zoom >= 13 && kaishinenJoint <= kaishinen0 && geoType === 'Point') styles.push(pointStyle)
+    styles.push(lineStyle)
+    return styles;
+  }
+}
 // 高速道路時系列---------------------------------------------------------------
 function Kosoku (mapName) {
   this.name = 'kosoku'
@@ -178,15 +275,6 @@ export const kosoku2023Obj = {};
 for (let i of mapsStr) {
   kosoku2023Obj[i] = new VectorLayer(new Kosoku(i))
 }
-// export const kosoku2023Obj = {}
-// for (let i of mapsStr) {
-//   kosoku2023Obj[i] = new LayerGroup({
-//     layers: [
-//       kosoku202301Obj[i],
-//     ]
-//   })
-//   kosoku2023Obj[i].values_['pointer'] = true
-// }
 // ------------------------------------
 function kosokuStyleFunction(mapName) {
   return function (feature, resolution) {
@@ -5151,8 +5239,9 @@ function rosenStyleFunction() {
   }
 }
 function Rosenhaisi() {
-  this.name = "rosen";
-  this.style = rosenhaisiStyleFunction();
+  this.name = "rosen"
+  this.className = 'rosen'
+  this.style = rosenhaisiStyleFunction()
   this.source =source
   this.maxResolution = 152.874058 //zoom10
 }
@@ -5175,8 +5264,9 @@ function rosenhaisiStyleFunction() {
   }
 }
 function Eki() {
-  this.name = "eki";
-  this.style = ekiStyleFunction('blue',true);
+  this.name = "eki"
+  this.className = 'eki'
+  this.style = ekiStyleFunction('blue',true)
   this.source = source2
   this.maxResolution = 38.218514 //zoom12
 }
@@ -5185,8 +5275,9 @@ for (let i of mapsStr) {
   ekiObj[i] = new VectorTileLayer(new Eki())
 }
 function Ekihaisi() {
-  this.name = "eki";
-  this.style = ekiStyleFunction('red');
+  this.name = "eki"
+  this.className = 'eki'
+  this.style = ekiStyleFunction('red')
   this.source = source2
   this.maxResolution = 38.218514 //zoom12
 }
@@ -5229,14 +5320,14 @@ function ekiStyleFunction(color,genzonEki) {
     styles.push(iconStyle)
     styles.push(textStyle)
     if (genzonEki) {
-      if (genzon === '9999') return styles;
+      if (genzon === '9999') return styles
     } else {
-      return styles;
+      return styles
     }
   }
 }
 
-export const rosen0Obj = {};
+export const rosen0Obj = {}
 for (let i of mapsStr) {
   rosen0Obj[i] = new LayerGroup({
     layers: [
@@ -5251,8 +5342,8 @@ for (let i of mapsStr) {
 }
 //----------------------
 function Bus() {
-  this.name = "bus";
-  this.style = busStyleFunction();
+  this.name = "bus"
+  this.style = busStyleFunction()
   this.source = new VectorTileSource({
     format: new MVT(),
     maxZoom: 13,
@@ -5261,7 +5352,7 @@ function Bus() {
   this.maxResolution = 76.437029 //zoom11
 }
 export const busSumm = "<a href='https://nlftp.mlit.go.jp/ksj/gml/datalist/KsjTmplt-N07-v2_0.html' target='_blank'>国土数値情報　バスデータ</a>"
-export  const busObj = {};
+export  const busObj = {}
 for (let i of mapsStr) {
   busObj[i] = new VectorTileLayer(new Bus())
 }
@@ -5275,7 +5366,7 @@ function Busxyz () {
   })
   this.minResolution = 76.437029 //zoom11
 }
-export const busXyz0Obj = {};
+export const busXyz0Obj = {}
 for (let i of mapsStr) {
   busXyz0Obj[i] = new TileLayer(new Busxyz())
 }
@@ -5283,7 +5374,7 @@ for (let i of mapsStr) {
 // ------------------------------------
 function busStyleFunction() {
   return function (feature, resolution) {
-    const zoom = getZoom(resolution);
+    const zoom = getZoom(resolution)
     let width
     if (zoom <= 12) {
       width = 2
@@ -5299,7 +5390,7 @@ function busStyleFunction() {
         width:width,
       })
     });
-    return style;
+    return style
   }
 }
 //----------------------

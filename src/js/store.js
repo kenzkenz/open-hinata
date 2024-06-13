@@ -346,6 +346,12 @@ const moduleInfo = {
       map03: 2024,
       map04: 2024
     },
+    tetsudoJikeiretsu: {
+      map01: 2024,
+      map02: 2024,
+      map03: 2024,
+      map04: 2024
+    },
     ssdsData00: {
       map01: [],
       map02: [],
@@ -473,6 +479,9 @@ const moduleInfo = {
           break
         case 'kosoku':
           variable = 'kosoku'
+          break
+        case 'tetsudoJikeiretsu':
+          variable = 'tetsudoJikeiretsu'
           break
       }
       state[variable][payload.mapName] = payload.value

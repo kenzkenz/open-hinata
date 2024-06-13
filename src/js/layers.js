@@ -13886,6 +13886,10 @@ export const Layers =
         { text: '五街道', data: { id: "gokaido", layer: LayersMvt.gokaidoObj, opacity: 1, summary: LayersMvt.gokaidoSumm} },
         { text: '明治期における国道の比定路線', data: { id: "meijikokudo", layer: LayersMvt.meijikokudoObj, opacity: 1, summary: LayersMvt.meijikokudoSumm} },
         { text: 'R05鉄道（廃線は赤色）', data: { id: "rosen", layer: LayersMvt.rosen0Obj, opacity: 1, summary: LayersMvt.rosenSumm} },
+
+        { text: 'R05(2023)鉄道時系列', data: { id: "tetsudojikeiretsu", layer: LayersMvt.tetsudojikeiretsuObj, opacity: 1, summary: LayersMvt.tetsudojikeiretsuSumm, component: {name: 'tetsudoJikeiretsu', values:[]}} },
+
+
         { text: 'R05(2023)高速道路時系列', data: { id: "kosoku", layer: LayersMvt.kosoku2023Obj, opacity: 1, summary: LayersMvt.kosoku2023Summ, component: {name: 'kosoku', values:[]}} },
         // { text: 'test', data: { id: "railroad", layer: LayersMvt.railroadObj, opacity: 1, summary: LayersMvt.railroadSumm} },
         { text: '道の駅', data: { id: "mitinoekiH30", layer: LayersMvt.mitinoekiH30Obj, opacity: 1, summary: LayersMvt.mitinoekiH30Summ } },
