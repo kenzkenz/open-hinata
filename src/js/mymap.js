@@ -763,6 +763,7 @@ export function initMap (vm) {
             rgbaArr = []
             funcArr = []
             overlay[i].setPosition(undefined)
+            d3.select('#' + mapName + ' .loadingImg').style("display","block")
             document.querySelector('#' + mapName + ' .ol-viewport').style.cursor = "wait"
             // document.querySelector('.center-target').style.zIndex = 1
             // store.commit('base/popUpContReset')
@@ -955,6 +956,7 @@ export function initMap (vm) {
                             rgbaArr = []
                             funcArr = []
                         }
+                        d3.select('#' + mapName + ' .loadingImg').style("display","none")
                         document.querySelector('#' + mapName + ' .ol-viewport').style.cursor = "default"
                     })
             }
