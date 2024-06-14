@@ -729,7 +729,7 @@ export function initMap (vm) {
                         funcArr = []
                     })
             }
-            pointerCreate()
+            if (window.innerWidth > 1000) pointerCreate()
 
 
 
@@ -760,6 +760,8 @@ export function initMap (vm) {
 
 
         map.on('singleclick', function (evt) {
+            rgbaArr = []
+            funcArr = []
             overlay[i].setPosition(undefined)
             document.querySelector('#' + mapName + ' .ol-viewport').style.cursor = "wait"
             // document.querySelector('.center-target').style.zIndex = 1
@@ -922,16 +924,19 @@ export function initMap (vm) {
                 ])
                     .then((response) => {
                         // console.log(response)
+                        console.log(rgbaArr,funcArr)
                         let html = ''
                         if (response[response.length-1]) html += response[response.length-1]
 
                         const aaa = rgbaArr.map((rgba,i) =>{
                             return {'layerName':layerNames[i] ,'rgba':rgba,'func':funcArr[i]}
                         })
+                        console.log(aaa)
                         aaa.forEach((value) =>{
                             if (value.func(value.rgba)) html += value.func(value.rgba)
                         })
                         if (html) html += '<hr>'
+                        console.log(html)
                         const pixel = (evt.map).getPixelFromCoordinate(evt.coordinate);
                         const features = [];
                         const layers = [];
@@ -1296,21 +1301,9 @@ function getRgb( rx, ry, z, server) {
         // ----------------------------------------
 
 
-        img.src = server + z + '/' + x + '/' + y + '.png';
-        try {
-            img.decode()
-            const canvas = document.createElement( 'canvas' )
-            const context = canvas.getContext( '2d' )
-            canvas.width = 1;
-            canvas.height = 1;
-            context.drawImage( img, i, j, 1, 1, 0, 0, 1, 1 );
-            const rgb = context.getImageData( 0, 0, 1, 1 ).data;
-            resolve(rgb)
-        }catch(encodingError){
-            resolve('err')
-        }
-
-        // img.onload = function(){
+        // img.src = server + z + '/' + x + '/' + y + '.png';
+        // try {
+        //     img.decode()
         //     const canvas = document.createElement( 'canvas' )
         //     const context = canvas.getContext( '2d' )
         //     canvas.width = 1;
@@ -1318,11 +1311,23 @@ function getRgb( rx, ry, z, server) {
         //     context.drawImage( img, i, j, 1, 1, 0, 0, 1, 1 );
         //     const rgb = context.getImageData( 0, 0, 1, 1 ).data;
         //     resolve(rgb)
-        // }
-        // img.onerror = function(){
+        // }catch(encodingError){
         //     resolve('err')
         // }
-        // img.src = server + z + '/' + x + '/' + y + '.png';
+
+        img.onload = function(){
+            const canvas = document.createElement( 'canvas' )
+            const context = canvas.getContext( '2d' )
+            canvas.width = 1;
+            canvas.height = 1;
+            context.drawImage( img, i, j, 1, 1, 0, 0, 1, 1 );
+            const rgb = context.getImageData( 0, 0, 1, 1 ).data;
+            resolve(rgb)
+        }
+        img.onerror = function(){
+            resolve('err')
+        }
+        img.src = server + z + '/' + x + '/' + y + '.png';
     })
 }
 //-----------------------------------------------------------------------------------
