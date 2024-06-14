@@ -287,6 +287,7 @@ export function permalinkEventSet (response) {
                         // bottom = ''
                         if (c) {
                           switch (c.name) {
+                            case 'tetsudoJikeiretsu':
                             case 'kosoku':
                             case 'jinko500m':
                             case 'jinko250m':

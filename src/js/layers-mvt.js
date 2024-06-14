@@ -166,7 +166,7 @@ function Tetsudoujikeiretsu(mapName){
   this.source = new VectorTileSource({
     crossOrigin: 'Anonymous',
     format: new MVT(),
-    maxZoom:16,
+    maxZoom:14,
     url: "https://kenzkenz3.xsrv.jp/mvt/tetsudojikeiretsu/{z}/{x}/{y}.mvt",
   });
   this.style = tetsudojikeiretsuStyleFunction(mapName)
@@ -185,29 +185,28 @@ function tetsudojikeiretsuStyleFunction(mapName) {
     const kaishinen0 = store.state.info.tetsudoJikeiretsu[mapName]
     const prop = feature.getProperties()
     const geoType = feature.getGeometry().getType()
+    // console.log(geoType)
     const zoom = getZoom(resolution)
-    const kaishinen = Number(prop.N05_004)
+    // const kaishinen = Number(prop.N05_004)
+    // const syuryonen = Number(prop.N05_005e)
+
+    const kaishinen = Number(prop.N05_005b)
     const syuryonen = Number(prop.N05_005e)
-    // console.log(kaishinen0,kaishinen,syuryonen)
-    const kaishinenJoint = prop.N06_012
+
+    // const kaishinenJoint = Number(prop.N05_004)
+    // const syuryonenJoint = Number(prop.N05_005e)
+
+    const kaishinenJoint = Number(prop.N05_005b)
+    const syuryonenJoint = Number(prop.N05_005e)
     let strokeColor
     const strokeWidth = zoom > 9 ? 8 : 2
     let jointColor
-    // strokeWidth = zoom > 9 ? 6 : 2
-    // if (kaishinen === kaishinen0) {
-    //   strokeColor = "red"
-    // } else if (syuryonen === kaishinen0) {
-    //     strokeColor = "blue"
-    if (kaishinen < kaishinen0 && syuryonen > kaishinen0) {
+    if (kaishinen <= kaishinen0 && syuryonen >= kaishinen0) {
       strokeColor = "blue"
     } else {
       strokeColor = "rgba(0,0,0,0)"
     }
-
-
-    if (kaishinenJoint === kaishinen0) {
-      jointColor = "red"
-    } else if (kaishinenJoint < kaishinen0) {
+    if (kaishinenJoint <= kaishinen0) {
       jointColor = "black"
     } else {
       jointColor = "rgba(0,0,0,0)"
@@ -217,7 +216,8 @@ function tetsudojikeiretsuStyleFunction(mapName) {
       image: new Icon({
         // anchor: [0.5, 1],
         src: require('@/assets/icon/whitecircle.png'),
-        color: jointColor
+        color: jointColor,
+        scale: 1.5
       }),
       stroke: new Stroke({
         color: "white",
@@ -225,7 +225,7 @@ function tetsudojikeiretsuStyleFunction(mapName) {
       }),
       text: new Text({
         font: "20px sans-serif",
-        text: prop.N06_018,
+        text: prop.N05_011,
         offsetY: 16,
         stroke: new Stroke({
           color: "white",
@@ -243,7 +243,7 @@ function tetsudojikeiretsuStyleFunction(mapName) {
     const textStyle = new Style({
       text: new Text({
         font: "20px sans-serif",
-        text: prop.N06_007,
+        text: prop.N05_002,
         offsetY: 10,
         fill:  new Fill({
           color:"black"
@@ -255,8 +255,8 @@ function tetsudojikeiretsuStyleFunction(mapName) {
         placement: 'line'
       })
     })
-    if (zoom >= 13 && kaishinen <= kaishinen0) styles.push(textStyle)
-    if (zoom >= 13 && kaishinenJoint <= kaishinen0 && geoType === 'Point') styles.push(pointStyle)
+    if (zoom >= 13 && kaishinen <= kaishinen0 && syuryonen >= kaishinen0 && geoType === 'LineString') styles.push(textStyle)
+    if (zoom >= 13 && kaishinenJoint <= kaishinen0 && syuryonenJoint >= kaishinen0  && geoType === 'Point')styles.push(pointStyle)
     styles.push(lineStyle)
     return styles;
   }
@@ -286,8 +286,8 @@ function kosokuStyleFunction(mapName) {
     const kaishinenJoint = prop.N06_012
     let strokeColor
     const strokeWidth = 8
+    // const strokeWidth = zoom > 9 ? 8 : 2
     let jointColor
-    // strokeWidth = zoom > 9 ? 6 : 2
     if (kaishinen === kaishinen0) {
       strokeColor = "red"
     } else if (kaishinen < kaishinen0) {
@@ -307,7 +307,8 @@ function kosokuStyleFunction(mapName) {
       image: new Icon({
         // anchor: [0.5, 1],
         src: require('@/assets/icon/whitecircle.png'),
-        color: jointColor
+        color: jointColor,
+        scale: 1.5
       }),
       stroke: new Stroke({
         color: "white",

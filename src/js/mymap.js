@@ -602,11 +602,120 @@ export function initMap (vm) {
             if (feature) {
                 document.querySelector('#' + mapName + ' .ol-viewport').style.cursor = "pointer"
             }
-            // ----------------------------------
-            // 特定のラスターでカーソルを変える
-
-
-
+            // // --------------------------------------------------------------------------------
+            // // 特定のラスターでカーソルを変える
+            //
+            // const pixel = (map).getPixelFromCoordinate(evt.coordinate);
+            // const layersObj = [];
+            // //マウスがあたった箇所のレイヤーを複数取得する
+            // (map).forEachLayerAtPixel(pixel,function(layer, rgba){
+            //     // console.log(layer.get('name'))
+            //     layersObj.push({
+            //         layer,
+            //         rgba
+            //     });
+            // })
+            // // let layerNames = layersObj.filter((object) =>{
+            // //     if (object.layer.get('name') === 'drawSource') return
+            // //     if (object.layer.get('name') === 'drawLayer2') return
+            // //     if (object.layer.get('name') === undefined) return
+            // //     return object
+            // // })
+            // const layerNames = layersObj.map((object) =>{
+            //     return object.layer.get('name')
+            // })
+            // async function pointerCreate() {
+            //     const fetchData = layerNames.map((layerName) => {
+            //         let server
+            //         let zoom
+            //         switch (layerName) {
+            //             case 'shinsuishin':
+            //                 server = 'https://disaportaldata.gsi.go.jp/raster/01_flood_l2_shinsuishin/'
+            //                 zoom = 17
+            //                 break
+            //             case 'shinsuishinK':
+            //                 server = 'https://disaportaldata.gsi.go.jp/raster/01_flood_l1_shinsuishin_newlegend_kuni_data/'
+            //                 zoom = 17
+            //                 break
+            //             case 'tunami':
+            //                 server = 'https://disaportaldata.gsi.go.jp/raster/04_tsunami_newlegend_data/'
+            //                 zoom = 17
+            //                 break
+            //             case 'keizoku':
+            //                 server = 'https://disaportaldata.gsi.go.jp/raster/01_flood_l2_keizoku_kuni_data/'
+            //                 zoom = 17
+            //                 break
+            //             case 'takasio':
+            //                 server = 'https://disaportaldata.gsi.go.jp/raster/03_hightide_l2_shinsuishin_data/'
+            //                 zoom = 17
+            //                 break
+            //             case 'tameike':
+            //                 server = 'https://disaportal.gsi.go.jp/data/raster/07_tameike/'
+            //                 zoom = 17
+            //                 break
+            //             case 'ekizyouka':
+            //                 server = 'https://disaportal.gsi.go.jp/raster/08_03_ekijoka_zenkoku/'
+            //                 zoom = 15
+            //                 break
+            //             case 'dosya':
+            //                 server = 'https://disaportaldata.gsi.go.jp/raster/05_dosekiryukeikaikuiki/'
+            //                 zoom = 17
+            //                 break
+            //             case 'doseki':
+            //                 server = 'https://disaportaldata.gsi.go.jp/raster/05_dosekiryukikenkeiryu/'
+            //                 zoom = 17
+            //                 break
+            //             case 'kyuukeisya':
+            //                 server = 'https://disaportaldata.gsi.go.jp/raster/05_kyukeisyachihoukai/'
+            //                 zoom = 17
+            //                 break
+            //             case 'zisuberi':
+            //                 server = 'https://disaportaldata.gsi.go.jp/raster/05_jisuberikikenkasyo/'
+            //                 zoom = 17
+            //                 break
+            //             case 'nadare':
+            //                 server = 'https://disaportaldata.gsi.go.jp/raster/05_nadarekikenkasyo/'
+            //                 zoom = 17
+            //                 break
+            //             case 'jisin':
+            //                 server = 'https://maps.gsi.go.jp/xyz/jishindo_yosoku/'
+            //                 zoom = 15
+            //                 break
+            //             case 'morido':
+            //                 server = 'https://disaportaldata.gsi.go.jp/raster/daikiboumoritsuzouseichi/'
+            //                 zoom = 15
+            //                 break
+            //             case 'dojyou':
+            //                 server = 'https://soil-inventory.rad.naro.go.jp/tile/figure/'
+            //                 zoom = 12
+            //                 break
+            //             case 'sitti':
+            //                 server = 'https://cyberjapandata.gsi.go.jp/xyz/swale/'
+            //                 zoom = 16
+            //                 break
+            //             case 'nantoraraster':
+            //                 server = 'https://kenzkenz3.xsrv.jp/mvt/miyazaki/nantoraraster/'
+            //                 zoom = 15
+            //                 break
+            //         }
+            //         if (server) return getRgb0(evt,server,zoom)
+            //     })
+            //     // console.log(fetchData)
+            //     await Promise.all([
+            //         ...fetchData
+            //     ])
+            //         .then((response) => {
+            //             console.log(rgbaArr,rgbaArr[0])
+            //             rgbaArr = []
+            //             funcArr = []
+            //             if (rgbaArr[0] !== 'err') {
+            //                 document.querySelector('#' + mapName + ' .ol-viewport').style.cursor = "pointer"
+            //             } else {
+            //                 document.querySelector('#' + mapName + ' .ol-viewport').style.cursor = "default"
+            //             }
+            //         })
+            // }
+            // pointerCreate()
 
 
 
@@ -639,8 +748,8 @@ export function initMap (vm) {
         // シングルクリック------------------------------------------------------------------------------------
 
         // 洪水,津波,継続,普通のフィーチャー用-----------------------------------------------------------------
-        let rgbaArr = []
-        let funcArr = []
+
+
         map.on('singleclick', function (evt) {
             overlay[i].setPosition(undefined)
             document.querySelector('#' + mapName + ' .ol-viewport').style.cursor = "wait"
@@ -671,61 +780,7 @@ export function initMap (vm) {
             layerNames = layerNames.map((object) =>{
                 return object.layer.get('name')
             })
-            function getRgb( rx, ry, z, server) {
-                return new Promise(resolve => {
-                    const x = Math.floor( rx )				// タイルX座標
-                    const y = Math.floor( ry )				// タイルY座標
-                    const i = ( rx - x ) * 256			// タイル内i座標
-                    const j = ( ry - y ) * 256			// タイル内j座標
-                    const img = new Image();
-                    img.crossOrigin = 'anonymous';
-                    img.alt = "";
-
-                    // ----------------------------------------
-                    function load(_url){
-                        var xhr;
-                        xhr = new XMLHttpRequest();
-                        xhr.open("HEAD", _url,false);
-                        xhr.send(null);
-                        return xhr.status;
-                    }
-                    var url = server + z + '/' + x + '/' + y + '.png';
-                    if(load(url) != 200){
-                        resolve('err')
-                    }
-                    // ----------------------------------------
-                    img.onload = function(){
-                        const canvas = document.createElement( 'canvas' )
-                        const context = canvas.getContext( '2d' )
-                        canvas.width = 1;
-                        canvas.height = 1;
-                        context.drawImage( img, i, j, 1, 1, 0, 0, 1, 1 );
-                        const rgb = context.getImageData( 0, 0, 1, 1 ).data;
-                        resolve(rgb)
-                    }
-                    img.src = server + z + '/' + x + '/' + y + '.png';
-                })
-            }
-            //-----------------------------------------------------------------------------------
-            async function getRgb0(event,server,zoom,func) {
-                let z
-                if (zoom) {
-                    z= zoom
-                } else {
-                    z = Math.floor(map.getView().getZoom());
-                }
-                const coord = event.coordinate
-                const R = 6378137;// 地球の半径(m);
-                const x = ( 0.5 + coord[ 0 ] / ( 2 * R * Math.PI ) ) * Math.pow( 2, z );
-                const y = ( 0.5 - coord[ 1 ] / ( 2 * R * Math.PI ) ) * Math.pow( 2, z );
-                const result = await getRgb( x, y, z, server);
-                if (result) {
-                    console.log(result)
-                    rgbaArr.push(result)
-                    funcArr.push(func)
-                }
-            }
-            // -------------------------------------------------------------------------------
+            // シームレス地質図-------------------------------------------------------------------------------
             function popupSeamless(evt) {
                 return new Promise(resolve => {
                     const coordinate = evt.coordinate;
@@ -737,12 +792,16 @@ export function initMap (vm) {
                             point:point
                         }
                     }) .then(function (response) {
-                        // console.log(response.data)
-                        const cont =
-                            '<div style=width:300px>形成時代 = ' + response.data["formationAge_ja"] +
-                            '<hr>グループ = '+ response.data["group_ja"] +
-                            '<hr>岩相 = ' + response.data["lithology_ja"] + '</div>'
-                        resolve(cont)
+                        // console.log(response.data.symbol)
+                        if (response.data.symbol) {
+                            const cont =
+                                '<div style=width:300px>形成時代 = ' + response.data["formationAge_ja"] +
+                                '<hr>グループ = ' + response.data["group_ja"] +
+                                '<hr>岩相 = ' + response.data["lithology_ja"] + '</div>'
+                            resolve(cont)
+                        } else {
+                            resolve('')
+                        }
                     });
                 })
             }
@@ -862,7 +921,6 @@ export function initMap (vm) {
                             if (value.func(value.rgba)) html += value.func(value.rgba)
                         })
                         if (html) html += '<hr>'
-                        // if (html) html = '<span style="color: red">' + html + '</span>'
                         const pixel = (evt.map).getPixelFromCoordinate(evt.coordinate);
                         const features = [];
                         const layers = [];
@@ -881,9 +939,7 @@ export function initMap (vm) {
                             rgbaArr = []
                             funcArr = []
                         }
-                        // d3.select('.loadingImg').style("display","none")
                         document.querySelector('#' + mapName + ' .ol-viewport').style.cursor = "default"
-
                     })
             }
             popupCreate()
@@ -1200,6 +1256,63 @@ export function initMap (vm) {
             // console.log(elevServer + z + '/' + y + '/' + x + '.png?res=cm')
             img.src = elevServer + z + '/' + y + '/' + x + '.png?res=cm';
         }
+    }
+}
+// -------------------------------------------------------------------------------------
+let rgbaArr = []
+let funcArr = []
+function getRgb( rx, ry, z, server) {
+    return new Promise(resolve => {
+        const x = Math.floor( rx )				// タイルX座標
+        const y = Math.floor( ry )				// タイルY座標
+        const i = ( rx - x ) * 256			// タイル内i座標
+        const j = ( ry - y ) * 256			// タイル内j座標
+        const img = new Image();
+        img.crossOrigin = 'anonymous';
+        img.alt = "";
+
+        // ----------------------------------------
+        function load(_url){
+            var xhr;
+            xhr = new XMLHttpRequest();
+            xhr.open("HEAD", _url,false);
+            xhr.send(null);
+            return xhr.status;
+        }
+        var url = server + z + '/' + x + '/' + y + '.png';
+        if(load(url) != 200){
+            resolve('err')
+        }
+        // ----------------------------------------
+        img.onload = function(){
+            const canvas = document.createElement( 'canvas' )
+            const context = canvas.getContext( '2d' )
+            canvas.width = 1;
+            canvas.height = 1;
+            context.drawImage( img, i, j, 1, 1, 0, 0, 1, 1 );
+            const rgb = context.getImageData( 0, 0, 1, 1 ).data;
+            resolve(rgb)
+        }
+        img.src = server + z + '/' + x + '/' + y + '.png';
+    })
+}
+//-----------------------------------------------------------------------------------
+async function getRgb0(event,server,zoom,func) {
+    let z
+    if (zoom) {
+        z= zoom
+    // } else {
+    //     z = Math.floor(map.getView().getZoom());
+    }
+    const coord = event.coordinate
+    const R = 6378137;// 地球の半径(m);
+    const x = ( 0.5 + coord[ 0 ] / ( 2 * R * Math.PI ) ) * Math.pow( 2, z );
+    const y = ( 0.5 - coord[ 1 ] / ( 2 * R * Math.PI ) ) * Math.pow( 2, z );
+    const result = await getRgb( x, y, z, server);
+    if (result) {
+        console.log(result)
+        rgbaArr.push(result)
+        funcArr.push(func)
     }
 }
 

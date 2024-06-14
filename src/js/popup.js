@@ -541,7 +541,6 @@ export function popUp(map,layers,features,overlay,evt,content,content2) {
           cont += '<div style=width:200px>' + prop.A1 + prop.A2 + '</div><hr>'
           break
         case 'railroad':
-          width = 200
           if (geoType === 'LineString') {
             cont += '<div style=width:200px>運営会社=' + prop.N05_003 + '<br>' +
                 '路線名=' + prop.N05_002 + '</div>'
@@ -550,15 +549,31 @@ export function popUp(map,layers,features,overlay,evt,content,content2) {
                 '駅名=' + prop.N05_011 + '</div><hr>'
           }
           break
+        case 'tetsudojikeiretsu':
         case 'rosen':
-          let haishinen = ''
-          if (prop.N05_005e !== '9999') {
-            haishinen = '<span style="color:red;">変更・廃止年 = ' + (Number(prop.N05_005e) + 1) + '年</span>'
+          if (geoType === 'LineString') {
+            let haishinen = ''
+            if (prop.N05_005e !== '9999') {
+              haishinen = '<span style="color:red;">変更・廃止年 = ' + (Number(prop.N05_005e) + 1) + '年</span>'
+            }
+            cont += '<div style=width:300px>運営会社=' + prop.N05_003 + '<br>' +
+                '路線名　=' + prop.N05_002 + '<br>' +
+                '供用開始年　=' + prop.N05_004 + '<br>' +
+                '設置開始　=' + prop.N05_005b + '<br>' +
+                haishinen +
+                '</div><hr>'
+          } else {
+            let haishinenEki = ''
+            if (prop.N05_005e !== '9999') {
+              haishinenEki = '<span style="color:red;">変更・廃止年 = ' + (Number(prop.N05_005e) + 1) + '年</span>'
+            }
+            cont += '<div style=width:300px>' +
+                '<h4>' + prop.N05_011 + '</h4>' +
+                '運営会社=' + prop.N05_003 + '<br>' +
+                '路線名　=' + prop.N05_002 + '<br>' +
+                haishinenEki +
+                '</div><hr>'
           }
-          cont += '<div style=width:300px>運営会社=' + prop.N05_003 + '<br>' +
-              '路線名　=' + prop.N05_002 + '<br>' +
-              haishinen +
-              '</div><hr>'
           break
         case 'eki':
           let haishinenEki = ''
@@ -818,12 +833,11 @@ export function popUp(map,layers,features,overlay,evt,content,content2) {
               syubetu = '不明'
               break;
           }
-          width = 200
           cont += '<div style=width:200px;>' +
               '<h4>' + prop.W05_004 + '</h4>' +
               '水系=' + prop.suikei + '<br>' +
               '区間種別=' + syubetu + '<br>' +
-              '</div>'
+              '</div><hr>'
           break
         case 'qSign':
         case 'qFootbridge':
@@ -2429,7 +2443,7 @@ export function popUpTisitu(rgba) {
   })
   if (result) {
     cont = "<div style=width:300px;font-size:small>" +
-        result[3] + "<hr>" +
+        '<h4>' + result[3] + "</h4>" +
         "説明＝" + result[4] +
         "</div>"
   }
