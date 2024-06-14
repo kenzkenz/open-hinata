@@ -2013,6 +2013,9 @@
       mix-blend-mode: multiply;
       filter: grayScale(1);
     }
+    .ol-title .ol-closebox {
+      font-size: x-large;
+    }
     .ol-popup {
       position: absolute;
       background-color: white;

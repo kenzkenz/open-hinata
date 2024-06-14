@@ -901,9 +901,11 @@ export function initMap (vm) {
                     if (server) return getRgb0(evt,server,zoom,func)
                 })
                 // ----------------------------------------------------
-                const layers0 = map.getLayers().getArray();
-                const seamlessLayer = layers0.find(el => el.get('name') === 'seamless');
-                if (seamlessLayer) fetchData.push(popupSeamless(evt))
+                const layers0 = map.getLayers().getArray()
+                const seamlessLayer = layers0.find(el => el.get('name') === 'seamless')
+                if (seamlessLayer) {
+                    if (seamlessLayer.getVisible()) fetchData.push(popupSeamless(evt))
+                }
                 // ------------------------------------------------------
                 // console.log(fetchData)
                 await Promise.all([
