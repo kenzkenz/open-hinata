@@ -953,29 +953,26 @@ export function popUp(map,layers,features,overlay,evt,content,content2) {
           break
         case 'shikuchoson':
           console.log(map.values_.target)
-          width = 200
           cont += '<div style=width:200px;>' +
               '<h4>' + prop.P34_003 + '</h4>' +
               '所在地=' + ru(prop.P34_004) + '<br>' +
-              'コード=' + ru(prop.P34_001) + '<br><br>' +
-              '<button class="pyramid" mapname="' + map.values_.target + '" citycode="' + ru(prop.P34_001) + '" cityname="' + ru(prop.P34_003) + '">人口ピラミッド</button><br><br>' +
-              '<button class="jinkosuii1" mapname="' + map.values_.target + '" citycode="' + ru(prop.P34_001) + '" cityname="' + ru(prop.P34_003) + '">人口推移</button><br><br>' +
-              '</div>'
+              'コード=' + ru(prop.P34_001) + '<br>' +
+              '<button class="pyramid" mapname="' + map.values_.target + '" citycode="' + ru(prop.P34_001) + '" cityname="' + ru(prop.P34_003) + '">人口ピラミッド</button><br>' +
+              '<button class="jinkosuii1" mapname="' + map.values_.target + '" citycode="' + ru(prop.P34_001) + '" cityname="' + ru(prop.P34_003) + '">人口推移</button><br>' +
+              '</div><hr>'
           break
         case 'kencho':
           console.log(map.values_.target)
-          width = 200
           cont += '<div style=width:200px;>' +
               '<h4>' + prop.P28_005 + '</h4>' +
               '所在地=' + ru(prop.P28_006) + '<br>' +
-              'コード=' + ru(prop.P28_001) + '<br><br>' +
-              '<button class="pyramid-kencho" mapname="' + map.values_.target + '" citycode="' + ru(prop.P28_001) + '" cityname="' + ru(prop.P28_005) + '">人口ピラミッド</button><br><br>' +
-              '<button class="jinkosuii2" mapname="' + map.values_.target + '" citycode="' + ru(prop.P28_001) + '" cityname="' + ru(prop.P28_005) + '">人口推移</button><br><br>' +
-              '</div>'
+              'コード=' + ru(prop.P28_001) + '<br>' +
+              '<button class="pyramid-kencho" mapname="' + map.values_.target + '" citycode="' + ru(prop.P28_001) + '" cityname="' + ru(prop.P28_005) + '">人口ピラミッド</button><br>' +
+              '<button class="jinkosuii2" mapname="' + map.values_.target + '" citycode="' + ru(prop.P28_001) + '" cityname="' + ru(prop.P28_005) + '">人口推移</button><br>' +
+              '</div><hr>'
           break
         case 'syochiki2020':
           if (cont.indexOf('pyramid-syochiiki-r02') === -1) {
-            width = 220
             cont += '<div style=width:220px;>' +
                 '<div style="text-align: center;">' +
                 '<h4>' + prop.S_NAME + '</h4>' +

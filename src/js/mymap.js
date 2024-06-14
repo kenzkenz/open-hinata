@@ -586,136 +586,168 @@ export function initMap (vm) {
             // const layers00 = evt.map.getLayers().getArray();
             // let mw5 = layers00.find(el => el.get('mw'));
             // if (mw5) return //ここで抜ける
-            //----------------------------------------------------------
-            document.querySelector('#' + mapName + ' .ol-viewport').style.cursor = "default"
+
+
+
+            //ここを復活----------------------------------------------------------
+            // document.querySelector('#' + mapName + ' .ol-viewport').style.cursor = "default"
             const map = evt.map;
             // const option = {
             //   layerFilter: function (layer) {
             //     return layer.get('name') === 'Mw5center' || layer.get('name') === 'Mw20center';
             //   }
             // };
-            const feature = map.forEachFeatureAtPixel(evt.pixel,
-                function(feature) {
-                    return feature;
-                });
-            // },option);
-            if (feature) {
-                document.querySelector('#' + mapName + ' .ol-viewport').style.cursor = "pointer"
-            }
-            // // --------------------------------------------------------------------------------
-            // // 特定のラスターでカーソルを変える
-            //
-            // const pixel = (map).getPixelFromCoordinate(evt.coordinate);
-            // const layersObj = [];
-            // //マウスがあたった箇所のレイヤーを複数取得する
-            // (map).forEachLayerAtPixel(pixel,function(layer, rgba){
-            //     // console.log(layer.get('name'))
-            //     layersObj.push({
-            //         layer,
-            //         rgba
-            //     });
+            // const feature = map.forEachFeatureAtPixel(evt.pixel, function(feature) {
+            //     return feature;
             // })
-            // // let layerNames = layersObj.filter((object) =>{
-            // //     if (object.layer.get('name') === 'drawSource') return
-            // //     if (object.layer.get('name') === 'drawLayer2') return
-            // //     if (object.layer.get('name') === undefined) return
-            // //     return object
-            // // })
-            // const layerNames = layersObj.map((object) =>{
-            //     return object.layer.get('name')
-            // })
-            // async function pointerCreate() {
-            //     const fetchData = layerNames.map((layerName) => {
-            //         let server
-            //         let zoom
-            //         switch (layerName) {
-            //             case 'shinsuishin':
-            //                 server = 'https://disaportaldata.gsi.go.jp/raster/01_flood_l2_shinsuishin/'
-            //                 zoom = 17
-            //                 break
-            //             case 'shinsuishinK':
-            //                 server = 'https://disaportaldata.gsi.go.jp/raster/01_flood_l1_shinsuishin_newlegend_kuni_data/'
-            //                 zoom = 17
-            //                 break
-            //             case 'tunami':
-            //                 server = 'https://disaportaldata.gsi.go.jp/raster/04_tsunami_newlegend_data/'
-            //                 zoom = 17
-            //                 break
-            //             case 'keizoku':
-            //                 server = 'https://disaportaldata.gsi.go.jp/raster/01_flood_l2_keizoku_kuni_data/'
-            //                 zoom = 17
-            //                 break
-            //             case 'takasio':
-            //                 server = 'https://disaportaldata.gsi.go.jp/raster/03_hightide_l2_shinsuishin_data/'
-            //                 zoom = 17
-            //                 break
-            //             case 'tameike':
-            //                 server = 'https://disaportal.gsi.go.jp/data/raster/07_tameike/'
-            //                 zoom = 17
-            //                 break
-            //             case 'ekizyouka':
-            //                 server = 'https://disaportal.gsi.go.jp/raster/08_03_ekijoka_zenkoku/'
-            //                 zoom = 15
-            //                 break
-            //             case 'dosya':
-            //                 server = 'https://disaportaldata.gsi.go.jp/raster/05_dosekiryukeikaikuiki/'
-            //                 zoom = 17
-            //                 break
-            //             case 'doseki':
-            //                 server = 'https://disaportaldata.gsi.go.jp/raster/05_dosekiryukikenkeiryu/'
-            //                 zoom = 17
-            //                 break
-            //             case 'kyuukeisya':
-            //                 server = 'https://disaportaldata.gsi.go.jp/raster/05_kyukeisyachihoukai/'
-            //                 zoom = 17
-            //                 break
-            //             case 'zisuberi':
-            //                 server = 'https://disaportaldata.gsi.go.jp/raster/05_jisuberikikenkasyo/'
-            //                 zoom = 17
-            //                 break
-            //             case 'nadare':
-            //                 server = 'https://disaportaldata.gsi.go.jp/raster/05_nadarekikenkasyo/'
-            //                 zoom = 17
-            //                 break
-            //             case 'jisin':
-            //                 server = 'https://maps.gsi.go.jp/xyz/jishindo_yosoku/'
-            //                 zoom = 15
-            //                 break
-            //             case 'morido':
-            //                 server = 'https://disaportaldata.gsi.go.jp/raster/daikiboumoritsuzouseichi/'
-            //                 zoom = 15
-            //                 break
-            //             case 'dojyou':
-            //                 server = 'https://soil-inventory.rad.naro.go.jp/tile/figure/'
-            //                 zoom = 12
-            //                 break
-            //             case 'sitti':
-            //                 server = 'https://cyberjapandata.gsi.go.jp/xyz/swale/'
-            //                 zoom = 16
-            //                 break
-            //             case 'nantoraraster':
-            //                 server = 'https://kenzkenz3.xsrv.jp/mvt/miyazaki/nantoraraster/'
-            //                 zoom = 15
-            //                 break
-            //         }
-            //         if (server) return getRgb0(evt,server,zoom)
-            //     })
-            //     // console.log(fetchData)
-            //     await Promise.all([
-            //         ...fetchData
-            //     ])
-            //         .then((response) => {
-            //             console.log(rgbaArr,rgbaArr[0])
-            //             rgbaArr = []
-            //             funcArr = []
-            //             if (rgbaArr[0] !== 'err') {
-            //                 document.querySelector('#' + mapName + ' .ol-viewport').style.cursor = "pointer"
-            //             } else {
-            //                 document.querySelector('#' + mapName + ' .ol-viewport').style.cursor = "default"
-            //             }
-            //         })
+            // if (feature) {
+            //     document.querySelector('#' + mapName + ' .ol-viewport').style.cursor = "pointer"
             // }
-            // pointerCreate()
+            // // --------------------------------------------------------------------------------
+
+
+
+            // // 特定のラスターでカーソルを変える
+
+            // const server = 'https://disaportaldata.gsi.go.jp/raster/01_flood_l2_shinsuishin/'
+            // const zoom = 17
+            // getRgb0(evt, server, zoom).then(r  =>{
+            //
+            // })
+            rgbaArr = []
+            funcArr = []
+
+
+            const pixel = (map).getPixelFromCoordinate(evt.coordinate);
+            const layersObj = [];
+            //マウスがあたった箇所のレイヤーを複数取得する
+            (map).forEachLayerAtPixel(pixel,function(layer, rgba){
+                // console.log(layer.get('name'))
+                layersObj.push({
+                    layer,
+                    rgba
+                });
+            })
+            // let layerNames = layersObj.filter((object) =>{
+            //     if (object.layer.get('name') === 'drawSource') return
+            //     if (object.layer.get('name') === 'drawLayer2') return
+            //     if (object.layer.get('name') === undefined) return
+            //     return object
+            // })
+            const layerNames = layersObj.map((object) =>{
+                return object.layer.get('name')
+            })
+            // console.log(layerNames)
+            async function pointerCreate() {
+                const fetchData = layerNames.map((layerName) => {
+                    let server
+                    let zoom
+                    // console.log(layerName)
+                    switch (layerName) {
+                        case 'shinsuishin':
+                            server = 'https://disaportaldata.gsi.go.jp/raster/01_flood_l2_shinsuishin/'
+                            zoom = 17
+                            break
+                        case 'shinsuishinK':
+                            server = 'https://disaportaldata.gsi.go.jp/raster/01_flood_l1_shinsuishin_newlegend_kuni_data/'
+                            zoom = 17
+                            break
+                        case 'tunami':
+                            server = 'https://disaportaldata.gsi.go.jp/raster/04_tsunami_newlegend_data/'
+                            zoom = 17
+                            break
+                        case 'keizoku':
+                            server = 'https://disaportaldata.gsi.go.jp/raster/01_flood_l2_keizoku_kuni_data/'
+                            zoom = 17
+                            break
+                        case 'takasio':
+                            server = 'https://disaportaldata.gsi.go.jp/raster/03_hightide_l2_shinsuishin_data/'
+                            zoom = 17
+                            break
+                        case 'tameike':
+                            server = 'https://disaportal.gsi.go.jp/data/raster/07_tameike/'
+                            zoom = 17
+                            break
+                        case 'ekizyouka':
+                            server = 'https://disaportal.gsi.go.jp/raster/08_03_ekijoka_zenkoku/'
+                            zoom = 15
+                            break
+                        case 'dosya':
+                            server = 'https://disaportaldata.gsi.go.jp/raster/05_dosekiryukeikaikuiki/'
+                            zoom = 17
+                            break
+                        case 'doseki':
+                            server = 'https://disaportaldata.gsi.go.jp/raster/05_dosekiryukikenkeiryu/'
+                            zoom = 17
+                            break
+                        case 'kyuukeisya':
+                            server = 'https://disaportaldata.gsi.go.jp/raster/05_kyukeisyachihoukai/'
+                            zoom = 17
+                            break
+                        case 'zisuberi':
+                            server = 'https://disaportaldata.gsi.go.jp/raster/05_jisuberikikenkasyo/'
+                            zoom = 17
+                            break
+                        case 'nadare':
+                            server = 'https://disaportaldata.gsi.go.jp/raster/05_nadarekikenkasyo/'
+                            zoom = 17
+                            break
+                        case 'jisin':
+                            server = 'https://maps.gsi.go.jp/xyz/jishindo_yosoku/'
+                            zoom = 15
+                            break
+                        case 'morido':
+                            server = 'https://disaportaldata.gsi.go.jp/raster/daikiboumoritsuzouseichi/'
+                            zoom = 15
+                            break
+                        case 'dojyou':
+                            server = 'https://soil-inventory.rad.naro.go.jp/tile/figure/'
+                            zoom = 12
+                            break
+                        case 'sitti':
+                            server = 'https://cyberjapandata.gsi.go.jp/xyz/swale/'
+                            zoom = 16
+                            break
+                        case 'nantoraraster':
+                            server = 'https://kenzkenz3.xsrv.jp/mvt/miyazaki/nantoraraster/'
+                            zoom = 15
+                            break
+                    }
+                    if (server) return getRgb0(evt,server,zoom)
+                })
+                // console.log(fetchData)
+                await Promise.all([
+                    ...fetchData
+                ])
+                    .then((response) => {
+                        // console.log(response)
+                        let flg = false
+                        // console.log(rgbaArr[0][3],rgbaArr[0])
+                        // console.log(rgbaArr)
+                        rgbaArr.forEach((v) =>{
+                            // console.log(v[3])
+                            // console.log(v)
+                            if (v[3]) flg = true
+                        })
+                        // console.log(flg)
+                        if (flg) {
+                            document.querySelector('#' + mapName + ' .ol-viewport').style.cursor = "pointer"
+                        } else {
+                            document.querySelector('#' + mapName + ' .ol-viewport').style.cursor = "default"
+                            const feature = map.forEachFeatureAtPixel(evt.pixel, function(feature) {
+                                return feature;
+                            })
+                            if (feature) {
+                                document.querySelector('#' + mapName + ' .ol-viewport').style.cursor = "pointer"
+                            } else {
+                                document.querySelector('#' + mapName + ' .ol-viewport').style.cursor = "default"
+                            }
+                        }
+                        rgbaArr = []
+                        funcArr = []
+                    })
+            }
+            pointerCreate()
 
 
 
@@ -1274,19 +1306,21 @@ function getRgb( rx, ry, z, server) {
         img.alt = "";
 
         // ----------------------------------------
-        function load(_url){
-            var xhr;
-            xhr = new XMLHttpRequest();
-            xhr.open("HEAD", _url,false);
-            xhr.send(null);
-            return xhr.status;
-        }
-        var url = server + z + '/' + x + '/' + y + '.png';
-        if(load(url) != 200){
-            resolve('err')
-        }
+        // function load(_url){
+        //     var xhr;
+        //     xhr = new XMLHttpRequest();
+        //     xhr.open("HEAD", _url,false);
+        //     xhr.send(null);
+        //     return xhr.status;
+        // }
+        // var url = server + z + '/' + x + '/' + y + '.png';
+        // if(load(url) != 200){
+        //     resolve('err')
+        // }
         // ----------------------------------------
-        img.onload = function(){
+        img.src = server + z + '/' + x + '/' + y + '.png';
+        try {
+            img.decode()
             const canvas = document.createElement( 'canvas' )
             const context = canvas.getContext( '2d' )
             canvas.width = 1;
@@ -1294,8 +1328,25 @@ function getRgb( rx, ry, z, server) {
             context.drawImage( img, i, j, 1, 1, 0, 0, 1, 1 );
             const rgb = context.getImageData( 0, 0, 1, 1 ).data;
             resolve(rgb)
+        }catch(encodingError){
+            resolve('err')
         }
-        img.src = server + z + '/' + x + '/' + y + '.png';
+
+
+
+        // img.onload = function(){
+        //     const canvas = document.createElement( 'canvas' )
+        //     const context = canvas.getContext( '2d' )
+        //     canvas.width = 1;
+        //     canvas.height = 1;
+        //     context.drawImage( img, i, j, 1, 1, 0, 0, 1, 1 );
+        //     const rgb = context.getImageData( 0, 0, 1, 1 ).data;
+        //     resolve(rgb)
+        // }
+        // img.onerror = function(){
+        //     resolve('err')
+        // }
+        // img.src = server + z + '/' + x + '/' + y + '.png';
     })
 }
 //-----------------------------------------------------------------------------------
@@ -1312,7 +1363,7 @@ async function getRgb0(event,server,zoom,func) {
     const y = ( 0.5 - coord[ 1 ] / ( 2 * R * Math.PI ) ) * Math.pow( 2, z );
     const result = await getRgb( x, y, z, server);
     if (result) {
-        console.log(result)
+        // console.log(result)
         rgbaArr.push(result)
         funcArr.push(func)
     }
@@ -1376,7 +1427,7 @@ export function synch (vm) {
         store.state.base.maps.map02.setView(viewArr[0]);
         // store.state.base.maps.map03.setView(viewArr[1]);
         // store.state.base.maps.map04.setView(viewArr[2]);
-        console.log(store.state.base.maps.map01.interactions)
+        // console.log(store.state.base.maps.map01.interactions)
         store.state.base.maps.map01.removeInteraction(store.state.base.maps.map01.getInteractions().array_[10])
         store.state.base.maps.map02.removeInteraction(store.state.base.maps.map02.getInteractions().array_[10])
         // store.state.base.maps.map03.removeInteraction(store.state.base.maps.map03.getInteractions().array_[10])
