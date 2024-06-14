@@ -628,7 +628,7 @@ export function initMap (vm) {
                 return object.layer.get('name')
             })
             async function pointerCreate() {
-                const fetchData = layerNames.map((layerName) => {
+                let fetchData = layerNames.map((layerName) => {
                     let server
                     let zoom
                     // console.log(layerName)
@@ -704,14 +704,24 @@ export function initMap (vm) {
                     }
                     if (server) return getRgb0(evt,server,zoom)
                 })
+                fetchData = fetchData.filter((v) =>{
+                    return v
+                })
                 await Promise.all([
                     ...fetchData
                 ])
                     .then((response) => {
+                        // console.log(response)
                         let flg = false
-                        rgbaArr.forEach((v) =>{
+                        // console.log(rgbaArr)
+                        // rgbaArr.forEach((v) =>{
+                        //     if (v[3]) flg = true
+                        // })
+                        response.forEach((v) =>{
+                            // console.log(v)
                             if (v[3]) flg = true
                         })
+
                         if (flg) {
                             document.querySelector('#' + mapName + ' .ol-viewport').style.cursor = "pointer"
                         } else {
@@ -925,19 +935,18 @@ export function initMap (vm) {
                 ])
                     .then((response) => {
                         // console.log(response)
-                        console.log(rgbaArr,funcArr)
+                        // console.log(rgbaArr,funcArr)
                         let html = ''
-                        if (response[response.length-1]) html += response[response.length-1]
-
                         const aaa = rgbaArr.map((rgba,i) =>{
                             return {'layerName':layerNames[i] ,'rgba':rgba,'func':funcArr[i]}
                         })
-                        console.log(aaa)
+                        // console.log(html)
                         aaa.forEach((value) =>{
                             if (value.func(value.rgba)) html += value.func(value.rgba)
                         })
+                        if (seamlessLayer) html += response[response.length-1]
                         if (html) html += '<hr>'
-                        console.log(html)
+                        // console.log(html)
                         const pixel = (evt.map).getPixelFromCoordinate(evt.coordinate);
                         const features = [];
                         const layers = [];
@@ -1303,6 +1312,25 @@ function getRgb( rx, ry, z, server) {
         // ----------------------------------------
 
 
+        // const loadImage = async() => {
+        //     const img = new Image();
+        //     img.src = server + z + '/' + x + '/' + y + '.png';
+        //     try {
+        //         await img.decode()
+        //         const canvas = document.createElement( 'canvas' )
+        //         const context = canvas.getContext( '2d' )
+        //         canvas.width = 1;
+        //         canvas.height = 1;
+        //         context.drawImage( img, i, j, 1, 1, 0, 0, 1, 1 );
+        //         const rgb = context.getImageData( 0, 0, 1, 1 ).data;
+        //         resolve(rgb)
+        //     }catch(encodingError){
+        //         resolve('err')
+        //     }
+        // }
+        // loadImage()
+
+
         // img.src = server + z + '/' + x + '/' + y + '.png';
         // try {
         //     img.decode()
@@ -1317,6 +1345,7 @@ function getRgb( rx, ry, z, server) {
         //     resolve('err')
         // }
 
+
         img.onload = function(){
             const canvas = document.createElement( 'canvas' )
             const context = canvas.getContext( '2d' )
@@ -1330,6 +1359,7 @@ function getRgb( rx, ry, z, server) {
             resolve('err')
         }
         img.src = server + z + '/' + x + '/' + y + '.png';
+
     })
 }
 //-----------------------------------------------------------------------------------
@@ -1349,7 +1379,9 @@ async function getRgb0(event,server,zoom,func) {
         // console.log(result)
         rgbaArr.push(result)
         funcArr.push(func)
+        return result
     }
+
 }
 
 //現在地取得

@@ -3,8 +3,7 @@
         <!--map01からmap04をループで作成-->
         <div v-for="mapName in mapNames" :key="mapName">
             <div :id=mapName :style="mapSize[mapName]" v-show="mapFlg[mapName]">
-              <img class='loadingImg' src="https://kenzkenz.xsrv.jp/open-hinata/img/loading3.gif" style="width:40px;display:none;position: absolute;top:50%;left:50%;z-index:1;">
-
+              <img class='loadingImg' src="https://kenzkenz.xsrv.jp/open-hinata/img/loading3.gif">
               <div :id="div3d[mapName]" class="cesium-btn-div">
                 <div class="cesiun-btn-container">
                   <button type="button" class="cesium-btn-up btn olbtn" @pointerdown.stop="upMousedown(mapName)" @pointerup="leftMouseup"><i class='fa fa-arrow-up fa-lg hover'></i></button>
@@ -1873,6 +1872,14 @@
       width:30px;
       background:rgba(0,0,0,0);
       border:none;
+    }
+    .loadingImg {
+      width:40px;
+      display:none;
+      position: absolute;
+      top:calc(50% - 20px);
+      left:calc(50% - 20px);
+      z-index:1;
     }
 </style>
 <style>
