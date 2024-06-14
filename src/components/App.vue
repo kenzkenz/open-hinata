@@ -1609,19 +1609,17 @@
                    '<p>国勢調査小地域の人口ピラミッドはこちら「' +
                    '<a href="https://kenzkenz.xsrv.jp/open-hinata/#s3PHDc" target="_blank">R2国勢調査小地域人口ピラミッド</a>' +
                    '」' +
-                   '<p>幼稚園、保育園を追加しました。「' +
-                   '<a href="https://kenzkenz.xsrv.jp/open-hinata/#soQYVN" target="_blank">R03幼稚園、保育園</a>' +
-                    '」' +
-                   '<p>医療機関を追加しました。「' +
-                   '<a href="https://kenzkenz.xsrv.jp/open-hinata/#sBxRw9" target="_blank">R02医療機関</a>' +
-                    '」' +
                    '<p>大規模盛土造成地を追加しました。「' +
                    '<a href="https://kenzkenz.xsrv.jp/open-hinata/#svIpdT" target="_blank">R05大規模盛土造成地</a>' +
                     '」' +
                    '<p>高速道路時系列データを追加しました。「' +
                    '<a href="https://kenzkenz.xsrv.jp/open-hinata/#sohl2C" target="_blank">R05高速道路時系列</a>' +
                    '」' +
-                   '<br>是非ご覧ください。',
+                   '<p>鉄道時系列データを追加しました。「' +
+                   '<a href="https://kenzkenz.xsrv.jp/open-hinata/#s8dal9" target="_blank">R05鉄道時系列</a>' +
+                   '」' +
+                   '<p><a href="https://www.facebook.com/profile.php?id=61560911254669" target="_blank">フェイスブック</a>始めました。</p>' +
+                   '<p>是非ご覧ください。</p>',
             title: 'お知らせ',
             // buttons:{ ok:'hello', cancel:'nope' }
           })

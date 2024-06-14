@@ -608,16 +608,6 @@ export function initMap (vm) {
 
 
             // // 特定のラスターでカーソルを変える
-
-            // const server = 'https://disaportaldata.gsi.go.jp/raster/01_flood_l2_shinsuishin/'
-            // const zoom = 17
-            // getRgb0(evt, server, zoom).then(r  =>{
-            //
-            // })
-            rgbaArr = []
-            funcArr = []
-
-
             const pixel = (map).getPixelFromCoordinate(evt.coordinate);
             const layersObj = [];
             //マウスがあたった箇所のレイヤーを複数取得する
@@ -637,7 +627,6 @@ export function initMap (vm) {
             const layerNames = layersObj.map((object) =>{
                 return object.layer.get('name')
             })
-            // console.log(layerNames)
             async function pointerCreate() {
                 const fetchData = layerNames.map((layerName) => {
                     let server
@@ -715,21 +704,14 @@ export function initMap (vm) {
                     }
                     if (server) return getRgb0(evt,server,zoom)
                 })
-                // console.log(fetchData)
                 await Promise.all([
                     ...fetchData
                 ])
                     .then((response) => {
-                        // console.log(response)
                         let flg = false
-                        // console.log(rgbaArr[0][3],rgbaArr[0])
-                        // console.log(rgbaArr)
                         rgbaArr.forEach((v) =>{
-                            // console.log(v[3])
-                            // console.log(v)
                             if (v[3]) flg = true
                         })
-                        // console.log(flg)
                         if (flg) {
                             document.querySelector('#' + mapName + ' .ol-viewport').style.cursor = "pointer"
                         } else {
@@ -748,11 +730,6 @@ export function initMap (vm) {
                     })
             }
             pointerCreate()
-
-
-
-
-
 
 
 
@@ -1304,7 +1281,6 @@ function getRgb( rx, ry, z, server) {
         const img = new Image();
         img.crossOrigin = 'anonymous';
         img.alt = "";
-
         // ----------------------------------------
         // function load(_url){
         //     var xhr;
@@ -1318,6 +1294,8 @@ function getRgb( rx, ry, z, server) {
         //     resolve('err')
         // }
         // ----------------------------------------
+
+
         img.src = server + z + '/' + x + '/' + y + '.png';
         try {
             img.decode()
@@ -1331,8 +1309,6 @@ function getRgb( rx, ry, z, server) {
         }catch(encodingError){
             resolve('err')
         }
-
-
 
         // img.onload = function(){
         //     const canvas = document.createElement( 'canvas' )
