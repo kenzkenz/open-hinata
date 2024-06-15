@@ -13760,6 +13760,11 @@ export const Layers =
     { text: 'ハザードマップ',
       children: [
         { text: '宮崎県南海トラフ津波浸水想定', data: { id: 'miyazakinantora', layer: LayersMvt.nantoraObj, opacity: 1, summary: LayersMvt.nantoraSumm } },
+
+
+        { text: '宮崎県南海トラフ地震液状化想定', data: { id: 'miyazakinantoraekijyoka', layer: LayersMvt.nantoraEkijyokaMvtObj, opacity: 1, summary: LayersMvt.nantoraEkijyokaSumm } },
+
+
         { text: '洪水浸水想定（想定最大規模）', data: { id: 'shinsuishin', layer: shinsuishinObj, opacity: 1, summary: shinsuishinSumm } },
         { text: '洪水浸水想定（計画規模）', data: { id: 'shinsuishinK', layer: shinsuishinKObj, opacity: 1, summary: shinsuishinKSumm } },
         { text: '津波浸水想定', data: { id: 'tunami', layer: tsunamiObj, opacity: 1, summary: tunamiSumm } },

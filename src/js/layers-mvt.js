@@ -40,6 +40,129 @@ String.prototype.trunc =
     }
 // const mapsStr = ['map01','map02','map03','map04'];
 const mapsStr = ['map01','map02']
+
+// 宮崎南海トラフ液状化---------------------------------------------------------------------------------
+let nantoraEkijyokaMaxResolution
+if (window.innerWidth > 1000) {
+  nantoraEkijyokaMaxResolution = 9.554629	 //zoom14
+  // nantoraMaxResolution = 4.777314	 //zoom15
+} else {
+  nantoraEkijyokaMaxResolution = 9.554629	 //zoom14
+  // nantoraMaxResolution = 4.777314	 //zoom15
+}
+function NantoraEkijyokaMvt(){
+  this.name = 'nantoraEkijyoka'
+  // this.className = 'nantoraEkijyoka'
+  this.source = new VectorTileSource({
+    crossOrigin: 'Anonymous',
+    format: new MVT(),
+    maxZoom:16,
+    url: "https://kenzkenz3.xsrv.jp/mvt/miyazaki/nantoraekijyoka/{z}/{x}/{y}.mvt"
+  });
+  this.style = nantoraEkijyokaStyleFunction()
+  this.maxResolution = nantoraEkijyokaMaxResolution
+  // this.declutter = true
+  // this.overflow = true
+}
+export const nantoraEkijyokaSumm = "<a href='https://data.bodik.jp/dataset/450006_1083/resource/3f34234b-d2aa-4e6d-a3cb-02ee056fb879' target='_blank'>地震液状化想定（南トラH25）</a>"
+export  const nantoraEkijyokaMvtObj = {};
+for (let i of mapsStr) {
+  nantoraEkijyokaMvtObj[i] = new VectorTileLayer(new NantoraEkijyokaMvt())
+}
+// ----------------------------------------------------------------------------
+function nantoraEkijyokaRaster() {
+  this.name = 'nantoraEkijyokaRaster'
+  this.preload = Infinity
+  this.source = new XYZ({
+    url: 'https://kenzkenz3.xsrv.jp/mvt/miyazaki/nantoraekijyokaraster/{z}/{x}/{y}.png',
+    crossOrigin: 'anonymous',
+    minZoom: 0,
+    maxZoom: 15
+  })
+  // this.minResolution = 4.777314 //zoom15
+  this.minResolution = 2.388657 //zoom16
+}
+export const nantoraEkijyokaRasterObj = {};
+for (let i of mapsStr) {
+  nantoraEkijyokaRasterObj[i] = new TileLayer(new nantoraEkijyokaRaster())
+}
+export const nantoraEkijyokaObj = {}
+for (let i of mapsStr) {
+  nantoraEkijyokaObj[i] = new LayerGroup({
+    layers: [
+      nantoraEkijyokaMvtObj[i],
+      // nantoraRasterObj[i]
+    ]
+  })
+  nantoraEkijyokaObj[i].values_['pointer'] = true
+}
+function nantoraEkijyokaStyleFunction() {
+  return function (feature, resolution) {
+    const zoom = getZoom(resolution)
+    const prop = feature.getProperties()
+    const maxShindo = prop.JMA独自
+    const styles = [];
+    let rgb
+    let font
+    const text = String(prop.JMA独自)
+    if (maxShindo < 3.5) { //3
+      rgb = "rgb(211,235,249)"
+    } else if (maxShindo < 4.5) { //4
+      rgb = "rgb(117,251,253)"
+    } else if (maxShindo < 5.0) { //5弱
+      rgb = "rgb(0,0,245)"
+    } else if (maxShindo < 5.5) { //5強
+      rgb = "rgb(117,251,76)"
+    } else if (maxShindo < 6.0) { //6弱
+      rgb = "rgb(255,255,84)"
+    } else if (maxShindo < 6.5) { //6強
+      rgb = "rgb(239,135,51)"
+    } else if (maxShindo >= 6.5) { //7
+      rgb = "rgb(188,39,27)"
+    }
+    // if (zoom <= 20) {
+    //   font = "12px sans-serif"
+    // } else if (zoom <= 21) {
+    //   font = "14px sans-serif"
+    // } else if (zoom <= 22) {
+    //   font = "16px sans-serif"
+    // } else if (zoom <= 23) {
+    //   font = "18px sans-serif"
+    // }else {
+    //   font = "22px sans-serif"
+    // }
+    const polygonStyle = new Style({
+      fill: new Fill({
+        color: rgb
+      }),
+      // stroke: new Stroke({
+      //   color: zoom >= 12 ? 'white' : 'rgba(0,0,0,0)',
+      //   width: 1
+      // })
+    })
+    const textStyle = new Style({
+      text: new Text({
+        font: font,
+        text: text,
+        fill: new Fill({
+          color: "black"
+        }),
+        Placement: 'point',
+        overflow: 'true',
+        stroke: new Stroke({
+          color: "white",
+          width: 3
+        }),
+      })
+    })
+    styles.push(polygonStyle)
+    // if (zoom>=19) styles.push(textStyle)
+    return styles
+  }
+}
+
+
+
 // 宮崎南海トラフ---------------------------------------------------------------------------------
 let nantoraMaxResolution
 if (window.innerWidth > 1000) {

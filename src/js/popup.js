@@ -1192,7 +1192,14 @@ export function popUp(map,layers,features,overlay,evt,content,content2) {
         case 'nantora':
           if (cont.indexOf('nantora') === -1) {
             cont += '<div class="nantora" style=width:300px;>' +
-                '<h4 style="color: red">津波浸水深 = ' + prop.最大浸水深 + 'm</h4>' +
+                '<h5 style="color: red">南海トラフ津波浸水深 = ' + prop.最大浸水深 + 'm</h5>' +
+                '</div><hr>'
+          }
+          break
+        case 'nantoraEkijyoka':
+          if (cont.indexOf('nantoraEkijyoka') === -1) {
+            cont += '<div class="nantoraEkijyoka" style=width:300px;>' +
+                '<h4 style="color: red">南海トラフ震度 = ' + prop.JMA独自 + '</h4>' +
                 '</div><hr>'
           }
           break
