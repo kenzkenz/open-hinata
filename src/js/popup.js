@@ -1216,7 +1216,7 @@ export function popUp(map,layers,features,overlay,evt,content,content2) {
           }
           if (cont.indexOf('nantoraShindo') === -1) {
             cont += '<div class="nantoraShindo" style=width:300px;>' +
-                '<h4 style="color: red">南海トラフ震度=' + shindo + '(' + prop.JMA独自 + ')</h4>' +
+                '<h4 style="color: red">南海トラフ 震度' + shindo + '(' + prop.JMA独自 + ')</h4>' +
                 '</div><hr>'
           }
           break
@@ -2549,19 +2549,19 @@ export function popUpNantoraShindo(rgba) {
   b = color.b
   let cont
   if (r === 211 && g === 255 && b === 249) {
-    cont = "<h5 style=width:300px>南海トラフ震度 3</h5>"
+    cont = "<h5 style=width:300px>南海トラフ 震度3</h5>"
   } else if (r === 117 && g === 251 && b === 253) {
-    cont = "<h5 style=width:300px>南海トラフ震度 4</h5>"
+    cont = "<h5 style=width:300px>南海トラフ 震度4</h5>"
   } else if (r === 0 && g === 0 && b === 245) {
-    cont = "<h5 style=width:300px>南海トラフ震度 5弱</h5>"
+    cont = "<h5 style=width:300px>南海トラフ 震度5弱</h5>"
   } else if (r === 117 && g === 251 && b === 76) {
-    cont = "<h5 style=width:300px>南海トラフ震度 5強</h5>"
+    cont = "<h5 style=width:300px>南海トラフ 震度5強</h5>"
   } else if (r === 255 && g === 255 && b === 84) {
-    cont = "<h5 style=width:300px>南海トラフ震度 6弱</h5>"
+    cont = "<h5 style=width:300px>南海トラフ 震度6弱</h5>"
   } else if (r === 239 && g === 135 && b === 51) {
-    cont = "<h5 style=width:300px>南海トラフ震度 6強</h5>"
+    cont = "<h5 style=width:300px>南海トラフ 震度6強</h5>"
   } else if (r === 188 && g === 39 && b === 27) {
-    cont = "<h5 style=width:300px>南海トラフ震度 7</h5>"
+    cont = "<h5 style=width:300px>南海トラフ 震度7</h5>"
   }
   if (cont) cont = '<span style="color: red">' + cont + '</span>'
   return cont

@@ -59,8 +59,6 @@ function NantoraShindoMvt(){
   });
   this.style = nantoraShindoStyleFunction()
   this.maxResolution = nantoraShindMaxResolution
-  // this.declutter = true
-  // this.overflow = true
 }
 export const nantoraShindoSumm = "<a href='https://data.bodik.jp/dataset/450006_1083/resource/3f34234b-d2aa-4e6d-a3cb-02ee056fb879' target='_blank'>地震液状化想定（南トラH25）</a>" +
     "<br>震度は「JMA独自」を使用"
@@ -78,7 +76,6 @@ function nantoraShindoRaster() {
     minZoom: 0,
     maxZoom: 14
   })
-  // this.minResolution = 4.777314 //zoom15
   this.minResolution = 9.554629 //zoom14
 }
 export const nantoraShindoRasterObj = {};
@@ -102,8 +99,6 @@ function nantoraShindoStyleFunction() {
     const maxShindo = prop.JMA独自
     const styles = [];
     let rgb
-    let font
-    const text = String(prop.JMA独自)
     if (maxShindo < 3.5) { //3
       rgb = "rgb(211,235,249)"
     } else if (maxShindo < 4.5) { //4
@@ -119,43 +114,12 @@ function nantoraShindoStyleFunction() {
     } else if (maxShindo < 10) { //7
       rgb = "rgb(188,39,27)"
     }
-    // if (zoom <= 20) {
-    //   font = "12px sans-serif"
-    // } else if (zoom <= 21) {
-    //   font = "14px sans-serif"
-    // } else if (zoom <= 22) {
-    //   font = "16px sans-serif"
-    // } else if (zoom <= 23) {
-    //   font = "18px sans-serif"
-    // }else {
-    //   font = "22px sans-serif"
-    // }
     const polygonStyle = new Style({
       fill: new Fill({
         color: rgb
       }),
-      // stroke: new Stroke({
-      //   color: zoom >= 12 ? 'white' : 'rgba(0,0,0,0)',
-      //   width: 1
-      // })
-    })
-    const textStyle = new Style({
-      text: new Text({
-        font: font,
-        text: text,
-        fill: new Fill({
-          color: "black"
-        }),
-        Placement: 'point',
-        overflow: 'true',
-        stroke: new Stroke({
-          color: "white",
-          width: 3
-        }),
-      })
     })
     styles.push(polygonStyle)
-    // if (zoom>=19) styles.push(textStyle)
     return styles
   }
 }
