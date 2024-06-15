@@ -2467,7 +2467,7 @@ export function popUpNantora(rgba) {
   let b = rgba[2]
   let a = rgba[3]
   if (a === 0) return
-  console.log("rgb(" + r + "," + g + "," + b + ")")
+  // console.log("rgb(" + r + "," + g + "," + b + ")")
   const palette = [
     {r: 0, g: 255, b: 0},
     {r: 255, g: 230, b: 0},
@@ -2479,25 +2479,25 @@ export function popUpNantora(rgba) {
   ]
   const colorClassifier = new ColorClassifier(palette);
   const color = colorClassifier.classify({r: r, g: g, b: b});
-  console.log(color)
+  // console.log(color)
   r = color.r
   g = color.g
   b = color.b
   let cont
   if (r === 0 && g === 255 && b === 0) {
-    cont = "<h4 style=width:300px>津波浸水深 0.3m未満</h4>"
+    cont = "<h5 style=width:300px>南海トラフ津波浸水深 0.3m未満</h5>"
   } else if (r === 255 && g === 230 && b === 0) {
-    cont = "<h4 style=width:300px>津波浸水深 0〜1m</h4>"
+    cont = "<h5 style=width:300px>南海トラフ津波浸水深 0〜1m</h5>"
   } else if (r === 255 && g === 153 && b === 0) {
-    cont = "<h4 style=width:300px>津波浸水深 1〜2m</h4>"
+    cont = "<h5 style=width:300px>南海トラフ津波浸水深 1〜2m</h5>"
   } else if (r === 239 && g === 117 && b === 152) {
-    cont = "<h4 style=width:300px>津波浸水深 2〜5m</h4>"
+    cont = "<h5 style=width:300px>南海トラフ津波浸水深 2〜5m</h5>"
   } else if (r === 255 && g === 40 && b === 0) {
-    cont = "<h4 style=width:300px>津波浸水深 5〜10m</h4>"
+    cont = "<h5 style=width:300px>南海トラフ津波浸水深 5〜10m</h5>"
   } else if (r === 180 && g === 0 && b === 104) {
-    cont = "<h4 style=width:300px>津波浸水深 10〜20m</h4>"
+    cont = "<h5 style=width:300px>南海トラフ津波浸水深 10〜20m</h5>"
   } else if (r === 128 && g === 0 && b === 255) {
-    cont = "<h4 style=width:300px>津波浸水深 20m〜</h4>"
+    cont = "<h5 style=width:300px>南海トラフ津波浸水深 20m〜</h5>"
   }
   if (cont) cont = '<span style="color: red">' + cont + '</span>'
   return cont
