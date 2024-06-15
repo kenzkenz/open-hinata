@@ -42,61 +42,61 @@ String.prototype.trunc =
 const mapsStr = ['map01','map02']
 
 // 宮崎南海トラフ液状化---------------------------------------------------------------------------------
-let nantoraEkijyokaMaxResolution
+let nantoraShindMaxResolution
 if (window.innerWidth > 1000) {
-  nantoraEkijyokaMaxResolution = 9.554629	 //zoom14
+  nantoraShindMaxResolution = 9.554629	 //zoom14
   // nantoraMaxResolution = 4.777314	 //zoom15
 } else {
-  nantoraEkijyokaMaxResolution = 9.554629	 //zoom14
+  nantoraShindMaxResolution = 9.554629	 //zoom14
   // nantoraMaxResolution = 4.777314	 //zoom15
 }
-function NantoraEkijyokaMvt(){
-  this.name = 'nantoraEkijyoka'
-  // this.className = 'nantoraEkijyoka'
+function NantoraShindoMvt(){
+  this.name = 'nantoraShindo'
+  // this.className = 'nantoraShindo'
   this.source = new VectorTileSource({
     crossOrigin: 'Anonymous',
     format: new MVT(),
     maxZoom:16,
-    url: "https://kenzkenz3.xsrv.jp/mvt/miyazaki/nantoraekijyoka/{z}/{x}/{y}.mvt"
+    url: "https://kenzkenz3.xsrv.jp/mvt/miyazaki/nantorashindo/{z}/{x}/{y}.mvt"
   });
-  this.style = nantoraEkijyokaStyleFunction()
-  this.maxResolution = nantoraEkijyokaMaxResolution
+  this.style = nantoraShindoStyleFunction()
+  this.maxResolution = nantoraShindMaxResolution
   // this.declutter = true
   // this.overflow = true
 }
-export const nantoraEkijyokaSumm = "<a href='https://data.bodik.jp/dataset/450006_1083/resource/3f34234b-d2aa-4e6d-a3cb-02ee056fb879' target='_blank'>地震液状化想定（南トラH25）</a>"
-export  const nantoraEkijyokaMvtObj = {};
+export const nantoraShindoSumm = "<a href='https://data.bodik.jp/dataset/450006_1083/resource/3f34234b-d2aa-4e6d-a3cb-02ee056fb879' target='_blank'>地震液状化想定（南トラH25）</a>"
+export  const nantoraShindoMvtObj = {};
 for (let i of mapsStr) {
-  nantoraEkijyokaMvtObj[i] = new VectorTileLayer(new NantoraEkijyokaMvt())
+  nantoraShindoMvtObj[i] = new VectorTileLayer(new NantoraShindoMvt())
 }
 // ----------------------------------------------------------------------------
-function nantoraEkijyokaRaster() {
-  this.name = 'nantoraEkijyokaRaster'
+function nantoraShindoRaster() {
+  this.name = 'nantorashindraster'
   this.preload = Infinity
   this.source = new XYZ({
-    url: 'https://kenzkenz3.xsrv.jp/mvt/miyazaki/nantoraekijyokaraster/{z}/{x}/{y}.png',
+    url: 'https://kenzkenz3.xsrv.jp/mvt/miyazaki/nantorashindoraster/{z}/{x}/{y}.png',
     crossOrigin: 'anonymous',
     minZoom: 0,
-    maxZoom: 15
+    maxZoom: 14
   })
   // this.minResolution = 4.777314 //zoom15
-  this.minResolution = 2.388657 //zoom16
+  this.minResolution = 9.554629 //zoom14
 }
-export const nantoraEkijyokaRasterObj = {};
+export const nantoraShindoRasterObj = {};
 for (let i of mapsStr) {
-  nantoraEkijyokaRasterObj[i] = new TileLayer(new nantoraEkijyokaRaster())
+  nantoraShindoRasterObj[i] = new TileLayer(new nantoraShindoRaster())
 }
-export const nantoraEkijyokaObj = {}
+export const nantoraShindoObj = {}
 for (let i of mapsStr) {
-  nantoraEkijyokaObj[i] = new LayerGroup({
+  nantoraShindoObj[i] = new LayerGroup({
     layers: [
-      nantoraEkijyokaMvtObj[i],
-      // nantoraRasterObj[i]
+      nantoraShindoMvtObj[i],
+      nantoraShindoRasterObj[i]
     ]
   })
-  nantoraEkijyokaObj[i].values_['pointer'] = true
+  nantoraShindoObj[i].values_['pointer'] = true
 }
-function nantoraEkijyokaStyleFunction() {
+function nantoraShindoStyleFunction() {
   return function (feature, resolution) {
     const zoom = getZoom(resolution)
     const prop = feature.getProperties()
@@ -117,7 +117,7 @@ function nantoraEkijyokaStyleFunction() {
       rgb = "rgb(255,255,84)"
     } else if (maxShindo < 6.5) { //6強
       rgb = "rgb(239,135,51)"
-    } else if (maxShindo >= 6.5) { //7
+    } else if (maxShindo < 10) { //7
       rgb = "rgb(188,39,27)"
     }
     // if (zoom <= 20) {

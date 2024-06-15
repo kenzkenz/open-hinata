@@ -919,6 +919,11 @@ export function initMap (vm) {
                             zoom = 15
                             func = PopUp.popUpNantora
                             break
+                        case 'nantorashindraster':
+                            server = 'https://kenzkenz3.xsrv.jp/mvt/miyazaki/nantorashindoraster/'
+                            zoom = 10
+                            func = PopUp.popUpNantoraShindo
+                            break
                     }
                     if (server) return getRgb0(evt,server,zoom,func)
                 })

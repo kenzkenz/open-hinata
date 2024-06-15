@@ -20,6 +20,7 @@ import  * as MaskDep from './mask-dep'
 import  * as LayersMvt from './layers-mvt'
 // import BingMaps from 'ol/source/BingMaps'
 import * as d3 from "d3"
+import {nantoraShindoObj} from "./layers-mvt";
 // import {ssdsPrefObj} from "./layers-mvt";
 // const mapsStr = ['map01','map02','map03','map04']
 // const mapsStr = ['map01'];
@@ -13762,7 +13763,7 @@ export const Layers =
         { text: '宮崎県南海トラフ津波浸水想定', data: { id: 'miyazakinantora', layer: LayersMvt.nantoraObj, opacity: 1, summary: LayersMvt.nantoraSumm } },
 
 
-        { text: '宮崎県南海トラフ地震液状化想定', data: { id: 'miyazakinantoraekijyoka', layer: LayersMvt.nantoraEkijyokaMvtObj, opacity: 1, summary: LayersMvt.nantoraEkijyokaSumm } },
+        { text: '宮崎県南海トラフ地震液状化想定', data: { id: 'miyazakinantoraekijyoka', layer: LayersMvt.nantoraShindoObj, opacity: 1, summary: LayersMvt.nantoraShindoSumm } },
 
 
         { text: '洪水浸水想定（想定最大規模）', data: { id: 'shinsuishin', layer: shinsuishinObj, opacity: 1, summary: shinsuishinSumm } },

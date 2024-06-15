@@ -554,23 +554,23 @@ export function popUp(map,layers,features,overlay,evt,content,content2) {
           if (geoType === 'LineString') {
             let haishinen = ''
             if (prop.N05_005e !== '9999') {
-              haishinen = '<span style="color:red;">変更・廃止年 = ' + (Number(prop.N05_005e) + 1) + '年</span>'
+              haishinen = '<span style="color:red;">変更・廃止年=' + (Number(prop.N05_005e) + 1) + '年</span>'
             }
             cont += '<div style=width:300px>運営会社=' + prop.N05_003 + '<br>' +
-                '路線名　=' + prop.N05_002 + '<br>' +
-                '供用開始年　=' + prop.N05_004 + '<br>' +
-                '設置開始　=' + prop.N05_005b + '<br>' +
+                '路線名=' + prop.N05_002 + '<br>' +
+                '供用開始年=' + prop.N05_004 + '<br>' +
+                '設置開始=' + prop.N05_005b + '<br>' +
                 haishinen +
                 '</div><hr>'
           } else {
             let haishinenEki = ''
             if (prop.N05_005e !== '9999') {
-              haishinenEki = '<span style="color:red;">変更・廃止年 = ' + (Number(prop.N05_005e) + 1) + '年</span>'
+              haishinenEki = '<span style="color:red;">変更・廃止年=' + (Number(prop.N05_005e) + 1) + '年</span>'
             }
             cont += '<div style=width:300px>' +
                 '<h4>' + prop.N05_011 + '</h4>' +
                 '運営会社=' + prop.N05_003 + '<br>' +
-                '路線名　=' + prop.N05_002 + '<br>' +
+                '路線名=' + prop.N05_002 + '<br>' +
                 haishinenEki +
                 '</div><hr>'
           }
@@ -1196,10 +1196,27 @@ export function popUp(map,layers,features,overlay,evt,content,content2) {
                 '</div><hr>'
           }
           break
-        case 'nantoraEkijyoka':
-          if (cont.indexOf('nantoraEkijyoka') === -1) {
-            cont += '<div class="nantoraEkijyoka" style=width:300px;>' +
-                '<h4 style="color: red">南海トラフ震度 = ' + prop.JMA独自 + '</h4>' +
+        case 'nantoraShindo':
+          const maxShindo = prop.JMA独自
+          let shindo
+          if (maxShindo < 3.5) { //3
+            shindo = '3'
+          } else if (maxShindo < 4.5) { //4
+            shindo = '4'
+          } else if (maxShindo < 5.0) { //5弱
+            shindo = '5弱'
+          } else if (maxShindo < 5.5) { //5強
+            shindo = '5強'
+          } else if (maxShindo < 6.0) { //6弱
+            shindo = '6弱'
+          } else if (maxShindo < 6.5) { //6強
+            shindo = '6強'
+          } else if (maxShindo < 10) { //7
+            shindo = '7'
+          }
+          if (cont.indexOf('nantoraShindo') === -1) {
+            cont += '<div class="nantoraShindo" style=width:300px;>' +
+                '<h4 style="color: red">南海トラフ震度=' + shindo + '(' + prop.JMA独自 + ')</h4>' +
                 '</div><hr>'
           }
           break
@@ -2505,6 +2522,46 @@ export function popUpNantora(rgba) {
     cont = "<h5 style=width:300px>南海トラフ津波浸水深 10〜20m</h5>"
   } else if (r === 128 && g === 0 && b === 255) {
     cont = "<h5 style=width:300px>南海トラフ津波浸水深 20m〜</h5>"
+  }
+  if (cont) cont = '<span style="color: red">' + cont + '</span>'
+  return cont
+}
+//----------------------------------------------------------------------------------------
+export function popUpNantoraShindo(rgba) {
+  let r = rgba[0]
+  let g = rgba[1]
+  let b = rgba[2]
+  let a = rgba[3]
+  if (a === 0) return
+  const palette = [
+    {r: 211, g: 235, b: 249},
+    {r: 117, g: 251, b: 253},
+    {r: 0, g: 0, b: 245},
+    {r: 117, g: 251, b: 76},
+    {r: 255, g: 255, b: 84},
+    {r: 239, g: 135, b: 51},
+    {r: 188,   g: 39,   b: 27}
+  ]
+  const colorClassifier = new ColorClassifier(palette);
+  const color = colorClassifier.classify({r: r, g: g, b: b});
+  r = color.r
+  g = color.g
+  b = color.b
+  let cont
+  if (r === 211 && g === 255 && b === 249) {
+    cont = "<h5 style=width:300px>南海トラフ震度 3</h5>"
+  } else if (r === 117 && g === 251 && b === 253) {
+    cont = "<h5 style=width:300px>南海トラフ震度 4</h5>"
+  } else if (r === 0 && g === 0 && b === 245) {
+    cont = "<h5 style=width:300px>南海トラフ震度 5弱</h5>"
+  } else if (r === 117 && g === 251 && b === 76) {
+    cont = "<h5 style=width:300px>南海トラフ震度 5強</h5>"
+  } else if (r === 255 && g === 255 && b === 84) {
+    cont = "<h5 style=width:300px>南海トラフ震度 6弱</h5>"
+  } else if (r === 239 && g === 135 && b === 51) {
+    cont = "<h5 style=width:300px>南海トラフ震度 6強</h5>"
+  } else if (r === 188 && g === 39 && b === 27) {
+    cont = "<h5 style=width:300px>南海トラフ震度 7</h5>"
   }
   if (cont) cont = '<span style="color: red">' + cont + '</span>'
   return cont
