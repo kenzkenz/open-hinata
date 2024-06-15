@@ -701,6 +701,10 @@ export function initMap (vm) {
                             server = 'https://kenzkenz3.xsrv.jp/mvt/miyazaki/nantoraraster/'
                             zoom = 15
                             break
+                        case 'nantorashindraster':
+                            server = 'https://kenzkenz3.xsrv.jp/mvt/miyazaki/nantorashindoraster/'
+                            zoom = 13
+                            break
                     }
                     if (server) return getRgb0(evt,server,zoom)
                 })
@@ -711,17 +715,10 @@ export function initMap (vm) {
                     ...fetchData
                 ])
                     .then((response) => {
-                        // console.log(response)
                         let flg = false
-                        // console.log(rgbaArr)
-                        // rgbaArr.forEach((v) =>{
-                        //     if (v[3]) flg = true
-                        // })
                         response.forEach((v) =>{
-                            // console.log(v)
                             if (v[3]) flg = true
                         })
-
                         if (flg) {
                             document.querySelector('#' + mapName + ' .ol-viewport').style.cursor = "pointer"
                         } else {
@@ -921,7 +918,7 @@ export function initMap (vm) {
                             break
                         case 'nantorashindraster':
                             server = 'https://kenzkenz3.xsrv.jp/mvt/miyazaki/nantorashindoraster/'
-                            zoom = 10
+                            zoom = 13
                             func = PopUp.popUpNantoraShindo
                             break
                     }

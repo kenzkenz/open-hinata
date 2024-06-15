@@ -56,7 +56,7 @@ function NantoraShindoMvt(){
   this.source = new VectorTileSource({
     crossOrigin: 'Anonymous',
     format: new MVT(),
-    maxZoom:16,
+    maxZoom:14,
     url: "https://kenzkenz3.xsrv.jp/mvt/miyazaki/nantorashindo/{z}/{x}/{y}.mvt"
   });
   this.style = nantoraShindoStyleFunction()
@@ -64,7 +64,8 @@ function NantoraShindoMvt(){
   // this.declutter = true
   // this.overflow = true
 }
-export const nantoraShindoSumm = "<a href='https://data.bodik.jp/dataset/450006_1083/resource/3f34234b-d2aa-4e6d-a3cb-02ee056fb879' target='_blank'>地震液状化想定（南トラH25）</a>"
+export const nantoraShindoSumm = "<a href='https://data.bodik.jp/dataset/450006_1083/resource/3f34234b-d2aa-4e6d-a3cb-02ee056fb879' target='_blank'>地震液状化想定（南トラH25）</a>" +
+    "<br>震度は「JMA独自」を使用"
 export  const nantoraShindoMvtObj = {};
 for (let i of mapsStr) {
   nantoraShindoMvtObj[i] = new VectorTileLayer(new NantoraShindoMvt())
