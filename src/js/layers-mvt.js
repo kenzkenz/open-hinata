@@ -493,6 +493,104 @@ for (let i of mapsStr) {
   kozuiMesh9syuMvtObj[i] = new VectorTileLayer(new kozuiMesh9syu())
 }
 
+// 砂防指定地データ-----------------------------------------------------------------------
+function sabuMvt(){
+  this.name = 'saboMvt'
+  // this.className = 'saboMvt'
+  this.source = new VectorTileSource({
+    crossOrigin: 'Anonymous',
+    format: new MVT(),
+    maxZoom:14,
+    url: "https://kenzkenz3.xsrv.jp/mvt/sabo/{z}/{x}/{y}.mvt"
+  });
+  this.style = saboStyleFunction()
+  this.maxResolution = 152.874057 //zoom10
+  // this.declutter = true
+  // this.overflow = true
+}
+export const saboSumm = "<a href='https://nlftp.mlit.go.jp/ksj/gml/datalist/KsjTmplt-A52-2023.html' target='_blank'>国土数値情報</a>"
+export const saboMvtObj = {};
+for (let i of mapsStr) {
+  saboMvtObj[i] = new VectorTileLayer(new sabuMvt())
+}
+// ----------------------------------------------------------------------------
+function saboRaster() {
+  this.preload = Infinity
+  this.source = new XYZ({
+    url: 'https://kenzkenz3.xsrv.jp/sabo/{z}/{x}/{y}.png',
+    crossOrigin: 'anonymous',
+    minZoom: 0,
+    maxZoom: 10
+  })
+  this.minResolution = 152.874057 //zoom10
+}
+// -----------------------------------------------------
+export const saboRasterObj = {};
+for (let i of mapsStr) {
+  saboRasterObj[i] = new TileLayer(new saboRaster())
+}
+export const saboObj = {};
+for (let i of mapsStr) {
+  saboObj[i] = new LayerGroup({
+    layers: [
+      saboRasterObj[i],
+      saboMvtObj[i]
+    ]
+  })
+  saboObj[i].values_['pointer'] = true
+  saboObj[i].values_['multiply'] = true
+}
+// -------------------------------------------------------------------
+function saboStyleFunction() {
+  return function (feature, resolution) {
+    const zoom = getZoom(resolution);
+    const prop = feature.getProperties();
+    const styles = [];
+    let color = 'rgb(239,134,131)'
+    let text
+    // switch (prop.A54_001) {
+    //   case '1':
+    //     color = 'rgb(179,253,165)'
+    //     text = '谷埋め型'
+    //     break
+    //   case '2':
+    //     color = 'rgb(155,155,248)'
+    //     text = '腹付け型'
+    //     break
+    //   case '9':
+    //     color = 'rgb(0,255,0)'
+    //     text = '区分をしていない'
+    //     break
+    // }
+    const polygonStyle = new Style({
+      fill: new Fill({
+        color: color
+      }),
+      stroke: new Stroke({
+        color: "black",
+        width: 1
+      })
+    })
+    const textStyle = new Style({
+      text: new Text({
+        font: "12px sans-serif",
+        text: text,
+        fill: new Fill({
+          color: 'black'
+        }),
+        stroke: new Stroke({
+          color: "white",
+          width: 3
+        }),
+        exceedLength:true
+      })
+    });
+    styles.push(polygonStyle);
+    if (zoom >= 13)styles.push(textStyle);
+    return styles;
+  }
+}
+
 
 // 大規模盛土造成地データ-----------------------------------------------------------------------
 function zoseiMvt(){
@@ -566,7 +664,6 @@ function zoseiStyleFunction() {
     const polygonStyle = new Style({
       fill: new Fill({
         color: color
-        // color: 'rgba(0,0,0,0)'
       }),
       stroke: new Stroke({
         color: "black",

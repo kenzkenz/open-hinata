@@ -6,7 +6,7 @@ import Overlay from 'ol/Overlay';
 import View from 'ol/View'
 import { transform, fromLonLat } from 'ol/proj'
 import { ScaleLine } from 'ol/control';
-import Toggle from 'ol-ext/control/Toggle'
+// import Toggle from 'ol-ext/control/Toggle'
 import Colorize from 'ol-ext/filter/Colorize'
 import Synchronize from 'ol-ext/interaction/Synchronize'
 import Lego from 'ol-ext/filter/Lego'
@@ -1047,7 +1047,7 @@ export function initMap (vm) {
             if (resultUsaAll || resultUsatokyoall) {
                 if (resultUsaAll) gLayers = Layers.usaall[mapName].values_.layers.array_;
                 if (resultUsatokyoall) gLayers = Layers.usatokyoall[mapName].values_.layers.array_;
-                console.log(gLayers.length)
+                // console.log(gLayers.length)
                 const lon = evt.coordinate[0], lat = evt.coordinate[1];
                 for (let i in gLayers) {
                     const extent2 = gLayers[i].values_['extent2'];

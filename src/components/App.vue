@@ -1795,7 +1795,7 @@
       position:absolute;
       top:60%;
       right:0px;
-      z-index:999999999;
+      z-index:1;
       display:none;
       height:145px;
       width:145px;
@@ -2014,6 +2014,9 @@
 </style>
 <style>
     /*ol関係のスタイル*/
+    .ol-overlaycontainer-stopevent{
+      z-index: 2!important;
+    }
     .gray-scale {
       mix-blend-mode: multiply;
       filter: grayScale(1);
@@ -2031,8 +2034,6 @@
       bottom: 12px;
       left: -50px;
       user-select: text!important;
-      /*min-width: 400px;*/
-      /*width:200px;*/
     }
     .ol-popup:after, .ol-popup:before {
       top: 100%;

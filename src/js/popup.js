@@ -1196,6 +1196,20 @@ export function popUp(map,layers,features,overlay,evt,content,content2) {
                 '</div><hr>'
           }
           break
+        case 'saboMvt':
+          if (cont.indexOf('saboMvt') === -1) {
+            cont += '<div class="saboMvt" style=width:300px;>' +
+                '<p>市町村名=' + prop.A52_003 + '</p>' +
+                '<p>河川渓流名=' + ru(prop.A52_004) + '</p>' +
+                '<p>支渓名=' + ru(prop.A52_005) + '</p>' +
+                '<p>告示年月日=' + ru(prop.A52_006) + '</p>' +
+                '<p>告示番号=' + ru(prop.A52_007) + '</p>' +
+                '<p>指定面積(ha)=' + ru(prop.A52_008) + '</p>' +
+                '<p>整理番号=' + ru(prop.A52_009) + '</p>' +
+                '<p>指定方法=' + ru(prop.A52_010) + '</p>' +
+                '</div><hr>'
+          }
+          break
       }
     })
   }

@@ -13613,6 +13613,8 @@ export const Layers =
       ]},
     { text: '各種地域',
       children: [
+        { text: '砂防指定地', data: { id: "sabo", layer: LayersMvt.saboObj, opacity: 1, summary: LayersMvt.saboSumm} },
+
         { text: '選挙区（20022年）', data: { id: "senkyoku2022", layer: LayersMvt.senkyoku2022Obj, opacity: 1, summary: LayersMvt.senkyokuSumm} },
         { text: '郵便区（区域調整版）', data: { id: "yubinku", layer: LayersMvt.yubinkuObj, opacity: 1, summary: LayersMvt.yubinkuSumm} },
         { text: '鳥獣保護区', data: { id: "chyouzyuuh27", layer: LayersMvt.chyouzyuuH27Obj, opacity: 1, summary: LayersMvt.chyouzyuuH27Summ } },
