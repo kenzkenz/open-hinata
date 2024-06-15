@@ -45,10 +45,8 @@ const mapsStr = ['map01','map02']
 let nantoraShindMaxResolution
 if (window.innerWidth > 1000) {
   nantoraShindMaxResolution = 9.554629	 //zoom14
-  // nantoraMaxResolution = 4.777314	 //zoom15
 } else {
   nantoraShindMaxResolution = 9.554629	 //zoom14
-  // nantoraMaxResolution = 4.777314	 //zoom15
 }
 function NantoraShindoMvt(){
   this.name = 'nantoraShindo'
