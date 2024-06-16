@@ -1236,7 +1236,7 @@ export function popUp(map,layers,features,overlay,evt,content,content2) {
           }
           if (cont.indexOf('nantoraEkijyoka') === -1) {
             cont += '<div class="nantoraEkijyoka" style=width:300px;>' +
-                '<h5 style="color: red">南海トラフ 液状化可能性 ' + kanosei + '(' + prop.PL独自 + ')</h5>' +
+                '<h5 style="color: red">南海トラフ 液状化可能性 ' + kanosei + '(PL=' + prop.PL独自 + ')</h5>' +
                 '</div><hr>'
           }
           break

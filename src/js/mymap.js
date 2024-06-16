@@ -707,7 +707,7 @@ export function initMap (vm) {
                             break
                         case 'nantoraekijyokaraster':
                             server = 'https://kenzkenz3.xsrv.jp/mvt/miyazaki/nantoraekijyokaraster/'
-                            zoom = 9
+                            zoom = 13
                             break
                     }
                     if (server) return getRgb0(evt,server,zoom)
@@ -927,7 +927,7 @@ export function initMap (vm) {
                             break
                         case 'nantoraekijyokaraster':
                             server = 'https://kenzkenz3.xsrv.jp/mvt/miyazaki/nantoraekijyokaraster/'
-                            zoom = 9
+                            zoom = 13
                             func = PopUp.popUpNantoraEkijyoka
                             break
                     }

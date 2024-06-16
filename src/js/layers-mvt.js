@@ -61,7 +61,7 @@ function NantoraShindoMvt(){
   this.maxResolution = nantoraShindMaxResolution
 }
 export const nantoraShindoSumm = "<a href='https://data.bodik.jp/dataset/450006_1083/resource/3f34234b-d2aa-4e6d-a3cb-02ee056fb879' target='_blank'>地震液状化想定（南トラH25）</a>" +
-    "<br>震度は「JMA独自」を使用"
+    "<br>震度は「JMA独自」を使用。<br>液状化可能性は「PL独自」を使用。"
 export  const nantoraShindoMvtObj = {};
 for (let i of mapsStr) {
   nantoraShindoMvtObj[i] = new VectorTileLayer(new NantoraShindoMvt())
@@ -189,12 +189,10 @@ function nantoraEkijyokatyleFunction() {
         color: rgb
       }),
     })
-    styles.push(polygonStyle)
+    if (maxPl >= 0) styles.push(polygonStyle)
     return styles
   }
 }
-
-
 // 宮崎南海トラフ---------------------------------------------------------------------------------
 let nantoraMaxResolution
 if (window.innerWidth > 1000) {
