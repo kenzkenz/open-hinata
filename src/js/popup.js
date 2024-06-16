@@ -1287,7 +1287,7 @@ export function popUp(map,layers,features,overlay,evt,content,content2) {
           if (cont && cont !== undefined) {
             overlay.setPosition(coordinate)
           } else {
-            document.querySelector('.center-target').style.zIndex = 1
+            // document.querySelector('.center-target').style.zIndex = 1
             overlay.setPosition(undefined)
           }
 
@@ -1309,7 +1309,7 @@ export function popUp(map,layers,features,overlay,evt,content,content2) {
     if (cont && cont !== undefined) {
       overlay.setPosition(coordinate)
     } else {
-      document.querySelector('.center-target').style.zIndex = 1
+      // document.querySelector('.center-target').style.zIndex = 1
       overlay.setPosition(undefined)
     }
     cont = ''
@@ -1342,7 +1342,7 @@ export function popUp(map,layers,features,overlay,evt,content,content2) {
       document.head.appendChild(style1)
       document.head.appendChild(style2)
     }
-    document.querySelector('.center-target').style.zIndex = 0
+    // document.querySelector('.center-target').style.zIndex = 0
   }
 }
 // ------------------------------------------------
@@ -2556,7 +2556,7 @@ export function popUpNantora(rgba) {
   } else if (r === 248 && g === 225 && b === 166) {
     cont = "<h5 style=width:300px>南海トラフ津波浸水深 0〜1m</h5>"
   } else if (r === 255 && g === 216 && b === 192) {
-    cont = "<h5 style=width:300px>南海トラフ津波浸 1〜3m</h5>"
+    cont = "<h5 style=width:300px>南海トラフ津波浸水深 1〜3m</h5>"
   } else if (r === 255 && g === 183 && b === 183) {
     cont = "<h5 style=width:300px>南海トラフ津波浸水深 3〜5m</h5>"
   } else if (r === 255 && g === 145 && b === 145) {
