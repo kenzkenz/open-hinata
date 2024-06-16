@@ -41,7 +41,7 @@ String.prototype.trunc =
 // const mapsStr = ['map01','map02','map03','map04'];
 const mapsStr = ['map01','map02']
 
-// 宮崎南海トラフ液状化---------------------------------------------------------------------------------
+// 宮崎南海トラフ震度---------------------------------------------------------------------------------
 let nantoraShindMaxResolution
 if (window.innerWidth > 1000) {
   nantoraShindMaxResolution = 9.554629	 //zoom14
@@ -123,7 +123,76 @@ function nantoraShindoStyleFunction() {
     return styles
   }
 }
-
+// 宮崎南海トラフ液状化---------------------------------------------------------------------------------
+function NantoraEkijyokaMvt(){
+  this.name = 'nantoraEkijyoka'
+  // this.className = 'nantoraEkijyoka'
+  this.source = new VectorTileSource({
+    crossOrigin: 'Anonymous',
+    format: new MVT(),
+    maxZoom:14,
+    url: "https://kenzkenz3.xsrv.jp/mvt/miyazaki/nantorashindo/{z}/{x}/{y}.mvt"
+  });
+  this.style = nantoraEkijyokatyleFunction()
+  this.maxResolution = nantoraShindMaxResolution
+}
+export  const nantoraEkijyokaMvtObj = {};
+for (let i of mapsStr) {
+  nantoraEkijyokaMvtObj[i] = new VectorTileLayer(new NantoraEkijyokaMvt())
+}
+// ----------------------------------------------------------------------------
+function nantoraEkijyokaRaster() {
+  this.name = 'nantoraekijyokaraster'
+  this.preload = Infinity
+  this.source = new XYZ({
+    url: 'https://kenzkenz3.xsrv.jp/mvt/miyazaki/nantoraekijyokaraster/{z}/{x}/{y}.png',
+    crossOrigin: 'anonymous',
+    minZoom: 0,
+    maxZoom: 14
+  })
+  this.minResolution = 9.554629 //zoom14
+}
+export const nantoraEkijyokaRasterObj = {};
+for (let i of mapsStr) {
+  nantoraEkijyokaRasterObj[i] = new TileLayer(new nantoraEkijyokaRaster())
+}
+export const nantoraEkijyokaObj = {}
+for (let i of mapsStr) {
+  nantoraEkijyokaObj[i] = new LayerGroup({
+    layers: [
+      nantoraEkijyokaMvtObj[i],
+      nantoraEkijyokaRasterObj[i]
+    ]
+  })
+  nantoraEkijyokaObj[i].values_['pointer'] = true
+}
+function nantoraEkijyokatyleFunction() {
+  return function (feature, resolution) {
+    const zoom = getZoom(resolution)
+    const prop = feature.getProperties()
+    const styles = []
+    const maxPl = prop.PL独自
+    let rgb
+    if (maxPl < 0) { //
+      rgb = "rgba(0,0,0,0)"
+    } else if (maxPl === 0) { // なし
+      rgb = "rgb(192,192,192)"
+    } else if (maxPl <= 5) { // 小
+      rgb = "rgb(116,249,75)"
+    } else if (maxPl <= 15) { // 中
+      rgb = "rgb(255,255,84)"
+    } else if (maxPl > 15) { // 大
+      rgb = "rgb(234,51,35)"
+    }
+    const polygonStyle = new Style({
+      fill: new Fill({
+        color: rgb
+      }),
+    })
+    styles.push(polygonStyle)
+    return styles
+  }
+}
 
 
 // 宮崎南海トラフ---------------------------------------------------------------------------------

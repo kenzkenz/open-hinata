@@ -1220,6 +1220,26 @@ export function popUp(map,layers,features,overlay,evt,content,content2) {
                 '</div><hr>'
           }
           break
+        case 'nantoraEkijyoka':
+          const maxPl = prop.PL独自
+          let kanosei
+          if (maxPl < 0) { //
+            break
+          } else if (maxPl === 0) { // なし
+            kanosei = 'なし'
+          } else if (maxPl <= 5) { // 小
+            kanosei = '小'
+          } else if (maxPl <= 15) { // 中
+            kanosei = '中'
+          } else if (maxPl > 15) { // 大
+            kanosei = '大'
+          }
+          if (cont.indexOf('nantoraEkijyoka') === -1) {
+            cont += '<div class="nantoraEkijyoka" style=width:300px;>' +
+                '<h5 style="color: red">南海トラフ 液状化可能性 ' + kanosei + '(' + prop.PL独自 + ')</h5>' +
+                '</div><hr>'
+          }
+          break
         case 'saboMvt':
           if (cont.indexOf('saboMvt') === -1) {
             cont += '<div class="saboMvt" style=width:300px;>' +
@@ -2562,6 +2582,38 @@ export function popUpNantoraShindo(rgba) {
     cont = "<h5 style=width:300px>南海トラフ 震度6強</h5>"
   } else if (r === 188 && g === 39 && b === 27) {
     cont = "<h5 style=width:300px>南海トラフ 震度7</h5>"
+  }
+  if (cont) cont = '<span style="color: red">' + cont + '</span>'
+  return cont
+}
+//----------------------------------------------------------------------------------------
+export function popUpNantoraEkijyoka(rgba) {
+  let r = rgba[0]
+  let g = rgba[1]
+  let b = rgba[2]
+  let a = rgba[3]
+  if (a === 0) return
+  const palette = [
+    {r: 0, g: 0, b: 0},
+    {r: 192, g: 192, b: 192},
+    {r: 116, g: 249, b: 75},
+    {r: 255, g: 255, b: 84},
+    {r: 234, g: 51, b: 35}
+  ]
+  const colorClassifier = new ColorClassifier(palette);
+  const color = colorClassifier.classify({r: r, g: g, b: b});
+  r = color.r
+  g = color.g
+  b = color.b
+  let cont
+  if (r === 192 && g === 192 && b === 192) {
+    cont = "<h5 style=width:300px>南海トラフ 液状化可能性 なし </h5>"
+  } else if (r === 116 && g === 249 && b === 75) {
+    cont = "<h5 style=width:300px>南海トラフ 液状化可能性 小 </h5>"
+  } else if (r === 255 && g === 255 && b === 84) {
+    cont = "<h5 style=width:300px>南海トラフ 液状化可能性 中 </h5>"
+  } else if (r === 234 && g === 51 && b === 35) {
+    cont = "<h5 style=width:300px>南海トラフ 液状化可能性 大 </h5>"
   }
   if (cont) cont = '<span style="color: red">' + cont + '</span>'
   return cont

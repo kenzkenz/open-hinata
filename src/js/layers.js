@@ -13760,8 +13760,15 @@ export const Layers =
     },
     { text: 'ハザードマップ',
       children: [
-        { text: '宮崎県南海トラフ津波浸水想定', data: { id: 'miyazakinantora', layer: LayersMvt.nantoraObj, opacity: 1, summary: LayersMvt.nantoraSumm } },
-        { text: '宮崎県南海トラフ地震震度分布', data: { id: 'miyazakinantorashindo', layer: LayersMvt.nantoraShindoObj, opacity: 1, summary: LayersMvt.nantoraShindoSumm } },
+        { text: '宮崎県',
+          children: [
+            { text: '宮崎県南海トラフ津波浸水想定', data: { id: 'miyazakinantora', layer: LayersMvt.nantoraObj, opacity: 1, summary: LayersMvt.nantoraSumm } },
+            { text: '宮崎県南海トラフ地震震度分布', data: { id: 'miyazakinantorashindo', layer: LayersMvt.nantoraShindoObj, opacity: 1, summary: LayersMvt.nantoraShindoSumm } },
+            { text: '宮崎県南海トラフ地震液状化可能性', data: { id: 'miyazakinantoraekijyoka', layer: LayersMvt.nantoraEkijyokaObj, opacity: 1, summary: LayersMvt.nantoraShindoSumm } },
+            { text: '宮崎市洪水ハザードマップﾟ', data: { id: 'miyazakisiHm', layer: miyazakisiHmObj, opacity: 1, zoom: 13, center: [131.42054548436312, 31.907339493919977], summary: miyazakisiHmSumm } },
+            { text: '都城市洪水ハザードマップﾟ', data: { id: 'miyakonozyousiHm', layer: miyakonozyousiHmObj, opacity: 1, zoom: 13, center: [131.07797970576192, 31.78882205640913], summary: miyakonozyousiHmSumm } },
+            { text: '日向市防災ハザードマップﾟ', data: { id: 'hyuugasiHm', layer: hyuugasiHmObj, opacity: 1, zoom: 13, center: [131.6400086045909, 32.395198966795306], summary: hyuugasiHmSumm } },
+          ]},
         { text: '洪水浸水想定（想定最大規模）', data: { id: 'shinsuishin', layer: shinsuishinObj, opacity: 1, summary: shinsuishinSumm } },
         { text: '洪水浸水想定（計画規模）', data: { id: 'shinsuishinK', layer: shinsuishinKObj, opacity: 1, summary: shinsuishinKSumm } },
         { text: '津波浸水想定', data: { id: 'tunami', layer: tsunamiObj, opacity: 1, summary: tunamiSumm } },
@@ -13864,10 +13871,7 @@ export const Layers =
         { text: '今後30年間震度6以上の確率', data: { id: 'jisin', layer: jisinObj, opacity: 1, summary: jisinSumm } },
         { text: '北海道太平洋沿岸の津波浸水想定', data: { id: "hokkaidouTunamiT", layer: LayersMvt.hokkaidouTunamiTObj, opacity: 1, summary: LayersMvt.hokkaidouTunamiTSumm } },
         { text: '北海道日本海沿岸の津波浸水想定', data: { id: "hokkaidouTunami", layer: LayersMvt.hokkaidouTunamiObj, opacity: 1, summary: LayersMvt.hokkaidouTunamiSumm } },
-        { text: 'R05大規模盛土造成地', data: { id: 'zosei', layer: LayersMvt.zoseiObj, opacity: 1, summary: LayersMvt.zoseiSumm } },
-        { text: '宮崎市洪水ﾊｻﾞｰﾄﾞﾏｯﾌﾟ', data: { id: 'miyazakisiHm', layer: miyazakisiHmObj, opacity: 1, zoom: 13, center: [131.42054548436312, 31.907339493919977], summary: miyazakisiHmSumm } },
-        { text: '都城市洪水ﾊｻﾞｰﾄﾞﾏｯﾌﾟ', data: { id: 'miyakonozyousiHm', layer: miyakonozyousiHmObj, opacity: 1, zoom: 13, center: [131.07797970576192, 31.78882205640913], summary: miyakonozyousiHmSumm } },
-        { text: '日向市防災ﾊｻﾞｰﾄﾞﾏｯﾌﾟ', data: { id: 'hyuugasiHm', layer: hyuugasiHmObj, opacity: 1, zoom: 13, center: [131.6400086045909, 32.395198966795306], summary: hyuugasiHmSumm } },
+        { text: 'R05大規模盛土造成地', data: { id: 'zosei', layer: LayersMvt.zoseiObj, opacity: 1, summary: LayersMvt.zoseiSumm } }
       ]},
     { text: '遺跡、文化財等',
       children: [

@@ -705,6 +705,10 @@ export function initMap (vm) {
                             server = 'https://kenzkenz3.xsrv.jp/mvt/miyazaki/nantorashindoraster/'
                             zoom = 13
                             break
+                        case 'nantoraekijyokaraster':
+                            server = 'https://kenzkenz3.xsrv.jp/mvt/miyazaki/nantoraekijyokaraster/'
+                            zoom = 9
+                            break
                     }
                     if (server) return getRgb0(evt,server,zoom)
                 })
@@ -920,6 +924,11 @@ export function initMap (vm) {
                             server = 'https://kenzkenz3.xsrv.jp/mvt/miyazaki/nantorashindoraster/'
                             zoom = 13
                             func = PopUp.popUpNantoraShindo
+                            break
+                        case 'nantoraekijyokaraster':
+                            server = 'https://kenzkenz3.xsrv.jp/mvt/miyazaki/nantoraekijyokaraster/'
+                            zoom = 9
+                            func = PopUp.popUpNantoraEkijyoka
                             break
                     }
                     if (server) return getRgb0(evt,server,zoom,func)
