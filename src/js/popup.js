@@ -2511,15 +2511,36 @@ export function popUpNantora(rgba) {
   let b = rgba[2]
   let a = rgba[3]
   if (a === 0) return
-  // console.log("rgb(" + r + "," + g + "," + b + ")")
+
+
+  // if (maxShinsui < 0.3) { // 津波浸水深 0.3m未満
+  //   rgb = "rgb(255,255,179)"
+  // } else if (maxShinsui < 0.5) { // 津波浸水深 0.3~0.5m
+  //   rgb = "rgb(247,245,169)"
+  // } else if (maxShinsui < 1) { // 津波浸水深 0.5~1.0m
+  //   rgb = "rgb(248,225,166)"
+  // } else if (maxShinsui < 3) { // 津波浸水深 1.0~3.0m
+  //   rgb = "rgb(255,216,192)"
+  // } else if (maxShinsui < 5) { // 津波浸水深 3.0~5.0m
+  //   rgb = "rgb(255,183,183)"
+  // } else if (maxShinsui < 10) { // 津波浸水深 5.0~10.0m
+  //   rgb = "rgb(255,145,145)"
+  // } else if (maxShinsui < 20) { // 津波浸水深 10.0~20.0m
+  //   rgb = "rgb(242,133,201)"
+  // } else if (maxShinsui >= 20) { // 津波浸水深 20.0m以上
+  //   rgb = "rgb(220,122,220)"
+  // }
+
+
   const palette = [
-    {r: 0, g: 255, b: 0},
-    {r: 255, g: 230, b: 0},
-    {r: 255, g: 153, b: 0},
-    {r: 239, g: 117, b: 152},
-    {r: 255, g: 40, b: 0},
-    {r: 180, g: 0, b: 104},
-    {r: 128,   g: 0,   b: 255}
+    {r: 255, g: 255, b: 179},
+    {r: 247, g: 245, b: 169},
+    {r: 248, g: 225, b: 166},
+    {r: 255, g: 216, b: 192},
+    {r: 255, g: 183, b: 183},
+    {r: 255, g: 145, b: 145},
+    {r: 242, g: 133, b: 201},
+    {r: 220, g: 122, b: 220}
   ]
   const colorClassifier = new ColorClassifier(palette);
   const color = colorClassifier.classify({r: r, g: g, b: b});
@@ -2528,19 +2549,21 @@ export function popUpNantora(rgba) {
   g = color.g
   b = color.b
   let cont
-  if (r === 0 && g === 255 && b === 0) {
+  if (r === 255 && g === 255 && b === 179) {
     cont = "<h5 style=width:300px>南海トラフ津波浸水深 0.3m未満</h5>"
-  } else if (r === 255 && g === 230 && b === 0) {
+  } else if (r === 247 && g === 245 && b === 169) {
+    cont = "<h5 style=width:300px>南海トラフ津波浸水深 0.3~0.5m</h5>"
+  } else if (r === 248 && g === 225 && b === 166) {
     cont = "<h5 style=width:300px>南海トラフ津波浸水深 0〜1m</h5>"
-  } else if (r === 255 && g === 153 && b === 0) {
-    cont = "<h5 style=width:300px>南海トラフ津波浸水深 1〜2m</h5>"
-  } else if (r === 239 && g === 117 && b === 152) {
-    cont = "<h5 style=width:300px>南海トラフ津波浸水深 2〜5m</h5>"
-  } else if (r === 255 && g === 40 && b === 0) {
+  } else if (r === 255 && g === 216 && b === 192) {
+    cont = "<h5 style=width:300px>南海トラフ津波浸 1〜3m</h5>"
+  } else if (r === 255 && g === 183 && b === 183) {
+    cont = "<h5 style=width:300px>南海トラフ津波浸水深 3〜5m</h5>"
+  } else if (r === 255 && g === 145 && b === 145) {
     cont = "<h5 style=width:300px>南海トラフ津波浸水深 5〜10m</h5>"
-  } else if (r === 180 && g === 0 && b === 104) {
+  } else if (r === 242 && g === 133 && b === 201) {
     cont = "<h5 style=width:300px>南海トラフ津波浸水深 10〜20m</h5>"
-  } else if (r === 128 && g === 0 && b === 255) {
+  } else if (r === 220 && g === 122 && b === 220) {
     cont = "<h5 style=width:300px>南海トラフ津波浸水深 20m〜</h5>"
   }
   if (cont) cont = '<span style="color: red">' + cont + '</span>'

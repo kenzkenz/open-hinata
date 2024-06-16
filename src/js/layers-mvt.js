@@ -212,7 +212,8 @@ function NantoraMvt(){
   this.style = nantoraStyleFunction()
   this.maxResolution = nantoraMaxResolution
 }
-export const nantoraSumm = "<a href='https://data.bodik.jp/dataset/450006_1081/resource/4d71d06b-7ba1-437f-809c-bbd1fadfda2a' target='_blank'>津波浸水想定（南トラR元）</a>"
+export const nantoraSumm = "<a href='https://data.bodik.jp/dataset/450006_1081/resource/4d71d06b-7ba1-437f-809c-bbd1fadfda2a' target='_blank'>津波浸水想定（南トラR元）</a>" +
+    "<br><img src='https://kenzkenz.xsrv.jp/open-hinata/img/shinsui_legend_popup.png' width='250px'>"
 export  const nantoraMvtObj = {};
 for (let i of mapsStr) {
   nantoraMvtObj[i] = new VectorTileLayer(new NantoraMvt())
@@ -222,7 +223,7 @@ function nantoraRaster() {
   this.name = 'nantoraraster'
   this.preload = Infinity
   this.source = new XYZ({
-    url: 'https://kenzkenz3.xsrv.jp/mvt/miyazaki/nantoraraster/{z}/{x}/{y}.png',
+    url: 'https://kenzkenz3.xsrv.jp/mvt/miyazaki/nantoraraster2/{z}/{x}/{y}.png',
     crossOrigin: 'anonymous',
     minZoom: 0,
     maxZoom: 15
@@ -250,22 +251,43 @@ function nantoraStyleFunction() {
     const prop = feature.getProperties()
     const maxShinsui = prop.最大浸水深
     const styles = [];
-    let rgba
+    let rgb
 
-    if (maxShinsui < 0.3) {
-      rgba = "rgba(0,255,0,1)"
-    } else if (maxShinsui < 1) {
-      rgba = "rgba(255,230,0,1)"
-    } else if (maxShinsui < 2) {
-      rgba = "rgba(255,153,0,1)"
-    } else if (maxShinsui < 5) {
-      rgba = "rgba(239,117,152,1)"
-    } else if (maxShinsui < 10) {
-      rgba = "rgba(255,40,0,1)"
-    } else if (maxShinsui < 20) {
-      rgba = "rgba(180,0,104,1)"
-    } else {
-      rgba = "rgba(128,0,255,1)"
+
+    // if(r===255 && g===255 && b===179) {
+    //   cont = "<h4 style=width:300px>津波浸水深 0.3m未満</h4>"
+    // }else if(r===247 && g===245 && b===169) {
+    //   cont = "<h4 style=width:300px>津波浸水深 0.3~0.5m</h4>"
+    // }else if(r===248 && g===225 && b===166) {
+    //   cont = "<h4 style=width:300px>津波浸水深 0.5~1.0m</h4>"
+    // }else if(r===255 && g===216 && b===192) {
+    //   cont = "<h4 style=width:300px>津波浸水深 1.0~3.0m</h4>"
+    // }else if(r===255 && g===183 && b===183) {
+    //   cont = "<h4 style=width:300px>津波浸水深 3.0~5.0m</h4>"
+    // }else if(r===255 && g===145 && b===145) {
+    //   cont = "<h4 style=width:300px>津波浸水深　5.0~10.0m</h4>"
+    // }else if(r===242 && g===133 && b===201) {
+    //   cont = "<h4 style=width:300px>津波浸水深　10.0~20.0m</h4>"
+    // }else if(r===220 && g===122 && b===220) {
+    //   cont = "<h4 style=width:300px>津波浸水深　20.0m以上</h4>"
+    // }
+
+    if (maxShinsui < 0.3) { // 津波浸水深 0.3m未満
+      rgb = "rgb(255,255,179)"
+    } else if (maxShinsui < 0.5) { // 津波浸水深 0.3~0.5m
+      rgb = "rgb(247,245,169)"
+    } else if (maxShinsui < 1) { // 津波浸水深 0.5~1.0m
+      rgb = "rgb(248,225,166)"
+    } else if (maxShinsui < 3) { // 津波浸水深 1.0~3.0m
+      rgb = "rgb(255,216,192)"
+    } else if (maxShinsui < 5) { // 津波浸水深 3.0~5.0m
+      rgb = "rgb(255,183,183)"
+    } else if (maxShinsui < 10) { // 津波浸水深 5.0~10.0m
+      rgb = "rgb(255,145,145)"
+    } else if (maxShinsui < 20) { // 津波浸水深 10.0~20.0m
+      rgb = "rgb(242,133,201)"
+    } else if (maxShinsui >= 20) { // 津波浸水深 20.0m以上
+      rgb = "rgb(220,122,220)"
     }
 
 
@@ -287,7 +309,7 @@ function nantoraStyleFunction() {
     // }
     const polygonStyle = new Style({
       fill: new Fill({
-        color: rgba
+        color: rgb
       }),
     })
     styles.push(polygonStyle)

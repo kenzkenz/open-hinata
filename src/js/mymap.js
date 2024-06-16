@@ -698,8 +698,8 @@ export function initMap (vm) {
                             zoom = 16
                             break
                         case 'nantoraraster':
-                            server = 'https://kenzkenz3.xsrv.jp/mvt/miyazaki/nantoraraster/'
-                            zoom = 15
+                            server = 'https://kenzkenz3.xsrv.jp/mvt/miyazaki/nantoraraster2/'
+                            zoom = 12
                             break
                         case 'nantorashindraster':
                             server = 'https://kenzkenz3.xsrv.jp/mvt/miyazaki/nantorashindoraster/'
@@ -916,8 +916,8 @@ export function initMap (vm) {
                             func = PopUp.popUpTisitu
                             break
                         case 'nantoraraster':
-                            server = 'https://kenzkenz3.xsrv.jp/mvt/miyazaki/nantoraraster/'
-                            zoom = 15
+                            server = 'https://kenzkenz3.xsrv.jp/mvt/miyazaki/nantoraraster2/'
+                            zoom = 12
                             func = PopUp.popUpNantora
                             break
                         case 'nantorashindraster':
