@@ -197,10 +197,8 @@ function nantoraEkijyokatyleFunction() {
 let nantoraMaxResolution
 if (window.innerWidth > 1000) {
   nantoraMaxResolution = 2.388657	 //zoom16
-  // nantoraMaxResolution = 4.777314	 //zoom15
 } else {
   nantoraMaxResolution = 2.388657	 //zoom16
-  // nantoraMaxResolution = 4.777314	 //zoom15
 }
 function NantoraMvt(){
   this.name = 'nantora'
@@ -213,8 +211,6 @@ function NantoraMvt(){
   });
   this.style = nantoraStyleFunction()
   this.maxResolution = nantoraMaxResolution
-  // this.declutter = true
-  // this.overflow = true
 }
 export const nantoraSumm = "<a href='https://data.bodik.jp/dataset/450006_1081/resource/4d71d06b-7ba1-437f-809c-bbd1fadfda2a' target='_blank'>津波浸水想定（南トラR元）</a>"
 export  const nantoraMvtObj = {};
@@ -255,8 +251,7 @@ function nantoraStyleFunction() {
     const maxShinsui = prop.最大浸水深
     const styles = [];
     let rgba
-    let font
-    const text = prop.最大浸水深 + 'm'
+
     if (maxShinsui < 0.3) {
       rgba = "rgba(0,255,0,1)"
     } else if (maxShinsui < 1) {
@@ -272,43 +267,30 @@ function nantoraStyleFunction() {
     } else {
       rgba = "rgba(128,0,255,1)"
     }
-    // if (zoom <= 20) {
-    //   font = "12px sans-serif"
-    // } else if (zoom <= 21) {
-    //   font = "14px sans-serif"
-    // } else if (zoom <= 22) {
-    //   font = "16px sans-serif"
-    // } else if (zoom <= 23) {
-    //   font = "18px sans-serif"
-    // }else {
-    //   font = "22px sans-serif"
+
+
+
+    // if (maxShinsui < 0.3) {
+    //   rgba = "rgba(0,255,0,1)"
+    // } else if (maxShinsui < 1) {
+    //   rgba = "rgba(255,230,0,1)"
+    // } else if (maxShinsui < 2) {
+    //   rgba = "rgba(255,153,0,1)"
+    // } else if (maxShinsui < 5) {
+    //   rgba = "rgba(239,117,152,1)"
+    // } else if (maxShinsui < 10) {
+    //   rgba = "rgba(255,40,0,1)"
+    // } else if (maxShinsui < 20) {
+    //   rgba = "rgba(180,0,104,1)"
+    // } else {
+    //   rgba = "rgba(128,0,255,1)"
     // }
     const polygonStyle = new Style({
       fill: new Fill({
         color: rgba
       }),
-      // stroke: new Stroke({
-      //   color: zoom >= 12 ? 'white' : 'rgba(0,0,0,0)',
-      //   width: 1
-      // })
-    })
-    const textStyle = new Style({
-      text: new Text({
-        font: font,
-        text: text,
-        fill: new Fill({
-          color: "black"
-        }),
-        Placement: 'point',
-        overflow: 'true',
-        stroke: new Stroke({
-          color: "white",
-          width: 3
-        }),
-      })
     })
     styles.push(polygonStyle)
-    // if (zoom>=19) styles.push(textStyle)
     return styles
   }
 }
