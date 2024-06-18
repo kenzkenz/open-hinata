@@ -5379,8 +5379,10 @@ function Kansui(){
     }),
     url: "https://disaportal.gsi.go.jp/data/vector/10_kansui/{z}/{x}/{y}.geojson"
   });
-  this.style = hinanzyoStyleFunction('orange');
+  this.style = kansuiStyleFunction()
   this.useInterimTilesOnError = false
+  this.declutter = true
+  this.overflow = true
 }
 export const kansuiObj = {};
 for (let i of mapsStr) {
@@ -5391,9 +5393,10 @@ function Kansui0 () {
     url:  "https://disaportal.gsi.go.jp/data/raster/10_kansui/{z}/{x}/{y}.png",
     crossOrigin: 'Anonymous',
     minZoom: 1,
-    maxZoom: 15
+    maxZoom: 14
   })
   this.useInterimTilesOnError = false
+  this.minResolution = 4.777314	 //zoom15
 }
 export const kansui0Obj = {};
 for (let i of mapsStr) {
@@ -5407,6 +5410,45 @@ for (let i of mapsStr) {
       kansuiObj[i],
     ]
   })
+}
+//--------------------------
+function kansuiStyleFunction() {
+  return function (feature, resolution) {
+    const zoom = getZoom(resolution);
+    const prop = feature.getProperties();
+    let text = prop.name
+    let font
+    let scale
+    const styles = [];
+    if (zoom<=16) {
+      text = text.trunc(8)
+      font = "16px sans-serif"
+      scale = 0.05
+    } else {
+      font = "16px sans-serif"
+      scale = 0.05
+    }
+    const iconStyle = new Style({
+      image: new Icon({
+        src: require('@/assets/icon/hazard.png'),
+        scale: scale
+      })
+    })
+    const textStyle = new Style({
+      text: new Text({
+        font: font,
+        text: text,
+        offsetY: 37,
+        stroke: new Stroke({
+          color: "white",
+          width: 3
+        })
+      })
+    });
+    if(zoom>=10) styles.push(iconStyle);
+    if(zoom>=14) styles.push(textStyle);
+    return styles;
+  }
 }
 // ----------------------------------------------------------------------------------------
 const source =  new VectorTileSource({

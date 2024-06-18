@@ -528,12 +528,11 @@ export function popUp(map,layers,features,overlay,evt,content,content2) {
               '県=' + prop.PREF + '</div><hr>'
           break
         case 'kansui':
-          width = 200
           const str = prop.description;
           const pattern = new RegExp( '(?<= href=).*?(?=target)' );
           console.log(str.match(pattern)[0])
-          cont += '<div style=width:200px>' + prop.name + '<hr>' +
-              '<a href=' + str.match(pattern)[0] + ' target="_blank">箇所表</a>'+ '<hr>' +
+          cont += '<div style=width:200px>' + prop.name + '<br>' +
+              '<a href=' + str.match(pattern)[0] + ' target="_blank">箇所表</a>' +
               '</div><hr>'
           break
         case 'kiseikukan':
@@ -671,33 +670,32 @@ export function popUp(map,layers,features,overlay,evt,content,content2) {
               '</div>'
           break
         case 'bunkazaidb':
-          width = 300
           cont += '<div style=width:300px;font-size:small;>' +
-              '台帳ID=' + prop.台帳ID + '<hr>' +
-              '管理対象ID=' + prop.管理対象ID + '<hr>' +
-              '名称=<a href="https://kunishitei.bunka.go.jp/heritage/detail/' + prop.台帳ID  + '/' + prop.管理対象ID + '" target="_blank" >' + prop.名称 + '</a><hr>' +
-              '文化財種類=' + prop.文化財種類 + '<hr>' +
-              '種別1=' + prop.種別1 + '<hr>' +
-              '種別2=' + prop.種別2 + '<hr>' +
-              '重文指定年月日=' + prop.重文指定年月日 + '<hr>' +
-              '都道府県=' + prop.都道府県 + '<hr>' +
-              '所在地=' + prop.所在地 + '<hr>' +
-              '</div>'
+              '台帳ID=' + prop.台帳ID + '<br>' +
+              '管理対象ID=' + prop.管理対象ID + '<br>' +
+              '名称=<a href="https://kunishitei.bunka.go.jp/heritage/detail/' + prop.台帳ID  + '/' + prop.管理対象ID + '" target="_blank" >' + prop.名称 + '</a><br>' +
+              '文化財種類=' + prop.文化財種類 + '<br>' +
+              '種別1=' + prop.種別1 + '<br>' +
+              '種別2=' + prop.種別2 + '<br>' +
+              '重文指定年月日=' + prop.重文指定年月日 + '<br>' +
+              '都道府県=' + prop.都道府県 + '<br>' +
+              '所在地=' + prop.所在地  +
+              '</div><hr>'
           break
         case 'toyamamaibun':
           cont += '<div style=width:300px;font-size:small;>' +
-              '名称=' + prop.名称 + '<hr>' +
-              'かな=' + prop.かな + '<hr>' +
-              '市町村=' + prop.市町村 + '<hr>' +
-              '所在地=' + prop.所在地 + '<hr>' +
-              '文献=' + prop.文献 + '<hr>' +
-              '旧称等=' + prop.旧称等 + '<hr>' +
-              '現況=' + prop.現況 + '<hr>' +
-              '番号=' + prop.番号 + '<hr>' +
-              '発掘=' + prop.発掘 + '<hr>' +
-              '立地=' + prop.立地 + '<hr>' +
-              '面積=' + prop.面積 + '<hr>' +
-              '</div>'
+              '名称=' + prop.名称 + '<br>' +
+              'かな=' + prop.かな + '<br>' +
+              '市町村=' + prop.市町村 + '<br>' +
+              '所在地=' + prop.所在地 + '<br>' +
+              '文献=' + prop.文献 + '<br>' +
+              '旧称等=' + prop.旧称等 + '<br>' +
+              '現況=' + prop.現況 + '<br>' +
+              '番号=' + prop.番号 + '<br>' +
+              '発掘=' + prop.発掘 + '<br>' +
+              '立地=' + prop.立地 + '<br>' +
+              '面積=' + prop.面積 + '<br>' +
+              '</div><hr>'
           break
         case 'hokkaidoumaibun':
           cont += '<div style=width:300px;font-size:small;>' +

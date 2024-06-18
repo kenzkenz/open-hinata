@@ -12599,7 +12599,22 @@ const dsmMiyazakiobj = {};
 for (let i of mapsStr) {
   dsmMiyazakiobj[i] = new TileLayer(new DsmMiyazaki())
 }
-
+// 北海道実測切図-----------------------------------------------------------------------
+function Jissokusetsuzu() {
+  // this.extent = transformE([139.58528152735363,35.46939934433827, 139.6614082402578,35.42134925811986])
+  this.preload = Infinity
+  this.source = new XYZ({
+    url: 'https://kenzkenz3.xsrv.jp/jissoku/{z}/{x}/{y}.png',
+    crossOrigin: 'anonymous',
+    maxZoom: 14
+  })
+}
+const jissokuSumm = '<div style="width: 200px;"><a href="https://ckan.hoda.jp/dataset/hokkaidojisoku/resource/9e500d9a-1047-453c-8d31-a0acdbcacda3" target="_blank">北海道オープンデータプラットフォーム</a><br>' +
+    '「北海道実測切図」は、北海道庁が1886（明治19）年からおよそ10年をかけて行った地形測量事業の成果として、1890（明治23）年から順次印刷・刊行された20万分の1地図（全32枚）である。</div>'
+const jissokusetsuzuobj = {};
+for (let i of mapsStr) {
+  jissokusetsuzuobj[i] = new TileLayer(new Jissokusetsuzu())
+}
 // // Bing-----------------------------------------------------------------------
 // const bingStyles = [
 //   'RoadOnDemand',
@@ -13598,6 +13613,10 @@ export const Layers =
         { text: '承応年間飫肥城下図(宮崎県)', data: { id: 'obi', layer: obiObj, opacity: 1, zoom: 15, center: [131.3502,31.6289], summary: obiSumm } },
         { text: '東西蝦夷山川地理取調図', data: { id: 'ezosansen', layer: ezosansenObj, opacity: 1, zoom: 8, center: [142.6944008210318, 43.241646716680606], summary: ezosansenSumm } },
         { text: '東西蝦夷山川地理取調図2', data: { id: 'ezosansen2', layer: ezosansen2Obj, opacity: 1, zoom: 8, center: [142.6944008210318, 43.241646716680606], summary: ezosansenSumm2 } },
+
+        { text: '北海道実測切図', data: { id: 'jissoku', layer: jissokusetsuzuobj, opacity: 1, zoom: 8, center: [142.6944008210318, 43.241646716680606], summary: jissokuSumm } },
+
+
         { text: '東京市火災動態地図大正12年', data: { id: 'tokyokasai', layer: tokyokasaiObj, opacity: 1, zoom: 13, center: [139.77487921714783, 35.688761948611315], summary: tokyokasaiSumm } },
         { text: 'ヤマシロマップ', data: { id: 'yamashiro', layer: yamashiroObj, opacity: 1, zoom: 11, center: [135.74390550133873,35.00293563827127], summary: yamashiroSumm } },
       ]},
