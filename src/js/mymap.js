@@ -771,6 +771,7 @@ export function initMap (vm) {
 
 
         map.on('singleclick', function (evt) {
+            console.log(JSON.stringify(transform(evt.coordinate, "EPSG:3857", "EPSG:4326")))
             rgbaArr = []
             funcArr = []
             overlay[i].setPosition(undefined)

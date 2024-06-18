@@ -302,6 +302,7 @@ tippecanoe -Z16 -z16 -pk -pf -f -e tile16 n.geojson
 tippecanoe -pk -pf -f -e tile -rg t.geojson
 tippecanoe -pk -pf -f -e tile s.geojson
 tippecanoe -pk -pf -f -e tile e.geojson
+tippecanoe -Z13 -z16 -pk -pf -f -e tile ht.geojson
 
 
 $ cd tile
