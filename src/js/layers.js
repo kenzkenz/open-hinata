@@ -12712,7 +12712,7 @@ export const Layers =
         { text: '土地利用図（1982～1983年）', data: { id: "totiriyouzu", layer: totiriyouzuObj, opacity: 1, summary: totiriyouzuSumm } },
         { text: '数値地図25000（土地条件）', data: { id: "suuti25000", layer: suuti25000Obj, opacity: 1, summary: suuti25000Summ } },
       ]},
-    { text: '<span style="color: red">統計</span>',
+    { text:'統計',
       children: [
         { text: '社会・人口統計体系',
           children: [
@@ -12739,7 +12739,7 @@ export const Layers =
             { text: '推計人口500m', data: { id: "suikei500m", layer: LayersMvt.suikei500mObj, opacity: 1, summary: LayersMvt.suikei500mObjSumm } },
           ]},
       ]},
-    { text: '<span style="color: red">小中学校、幼稚園、保育園、医療機関</span>',
+    { text: '小中学校、幼稚園、保育園、医療機関',
       children: [
         { text: '中学校',
           children: [
@@ -13807,9 +13807,12 @@ export const Layers =
       children: [
         { text: '宮崎県',
           children: [
-            { text: '宮崎県南海トラフ津波浸水想定', data: { id: 'miyazakinantora', layer: LayersMvt.nantoraObj, opacity: 1, summary: LayersMvt.nantoraSumm } },
+            { text: '宮崎県南海トラフ地震津波浸水想定', data: { id: 'miyazakinantora', layer: LayersMvt.nantoraObj, opacity: 1, summary: LayersMvt.nantoraSumm } },
             { text: '宮崎県南海トラフ地震震度分布', data: { id: 'miyazakinantorashindo', layer: LayersMvt.nantoraShindoObj, opacity: 1, summary: LayersMvt.nantoraShindoSumm } },
             { text: '宮崎県南海トラフ地震液状化可能性', data: { id: 'miyazakinantoraekijyoka', layer: LayersMvt.nantoraEkijyokaObj, opacity: 1, summary: LayersMvt.nantoraShindoSumm } },
+            { text: '宮崎県日向灘沖地震津波浸水想定', data: { id: 'hyugatsunami', layer: LayersMvt.hyugaTsunamiObj, opacity: 1, summary: LayersMvt.hyugaTsunamiSumm } },
+
+
             { text: '宮崎市洪水ハザードマップﾟ', data: { id: 'miyazakisiHm', layer: miyazakisiHmObj, opacity: 1, zoom: 13, center: [131.42054548436312, 31.907339493919977], summary: miyazakisiHmSumm } },
             { text: '都城市洪水ハザードマップﾟ', data: { id: 'miyakonozyousiHm', layer: miyakonozyousiHmObj, opacity: 1, zoom: 13, center: [131.07797970576192, 31.78882205640913], summary: miyakonozyousiHmSumm } },
             { text: '日向市防災ハザードマップﾟ', data: { id: 'hyuugasiHm', layer: hyuugasiHmObj, opacity: 1, zoom: 13, center: [131.6400086045909, 32.395198966795306], summary: hyuugasiHmSumm } },

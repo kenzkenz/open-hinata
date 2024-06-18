@@ -1187,6 +1187,13 @@ export function popUp(map,layers,features,overlay,evt,content,content2) {
                 '</div><hr>'
           }
           break
+        case 'hyugatsunamimvt':
+          if (cont.indexOf('hyugatsunamimvt') === -1) {
+            cont += '<div class="hyugatsunamimvt" style=width:300px;>' +
+                '<h5 style="color: red">日向灘沖地震津波浸水深 = ' + prop.最大浸水深 + 'm</h5>' +
+                '</div><hr>'
+          }
+          break
         case 'nantora':
           if (cont.indexOf('nantora') === -1) {
             cont += '<div class="nantora" style=width:300px;>' +
@@ -1275,7 +1282,7 @@ export function popUp(map,layers,features,overlay,evt,content,content2) {
         })
         .then(function (response) {
           console.log(response.data.results.lv01Nm)
-          popupCenter(cont)
+          // popupCenter(cont)
           let cont2 = cont + streetView
           const splitMuni = muni[Number(response.data.results.muniCd)].split(',')
           // cont2 = splitMuni[1] + splitMuni[3] + '<h4>' + response.data.results.lv01Nm + '</h4>' + cont2
@@ -1283,6 +1290,7 @@ export function popUp(map,layers,features,overlay,evt,content,content2) {
           content.innerHTML = cont2
 
           if (cont && cont !== undefined) {
+            popupCenter(cont)
             overlay.setPosition(coordinate)
           } else {
             // document.querySelector('.center-target').style.zIndex = 1
@@ -1301,10 +1309,11 @@ export function popUp(map,layers,features,overlay,evt,content,content2) {
           flg = false
         })
   } else {
-    popupCenter(cont)
+    // popupCenter(cont)
     const cont2 = cont + streetView
     content.innerHTML = cont2
     if (cont && cont !== undefined) {
+      popupCenter(cont)
       overlay.setPosition(coordinate)
     } else {
       // document.querySelector('.center-target').style.zIndex = 1
@@ -1315,6 +1324,7 @@ export function popUp(map,layers,features,overlay,evt,content,content2) {
   }
   // ---------------------------------------------------------------------------------
   function popupCenter(cont) {
+    console.log(map.values_.target)
     const result = cont.match(/width:(.*?)px/g)
     const widthAr = []
     if (result != null) {
@@ -1324,7 +1334,7 @@ export function popUp(map,layers,features,overlay,evt,content,content2) {
     }
     const maxWidth = d3.max(widthAr, function(d) { return Number(d); })
     if (maxWidth) {
-      document.querySelector('.ol-popup').style.left = -(maxWidth / 2) - 16 + 'px'
+      document.querySelector('#' + map.values_.target + ' .ol-popup').style.left = -(maxWidth / 2) - 16 + 'px'
       const style1 = document.createElement('style')
       const style2 = document.createElement('style')
       style1.textContent = ".ol-popup:after{ left:" + ((maxWidth / 2) + 15) + "px;}"
@@ -2635,6 +2645,50 @@ export function popUpNantoraEkijyoka(rgba) {
     cont = "<h5 style=width:300px>南海トラフ 液状化可能性 中 </h5>"
   } else if (r === 234 && g === 51 && b === 35) {
     cont = "<h5 style=width:300px>南海トラフ 液状化可能性 大 </h5>"
+  }
+  if (cont) cont = '<span style="color: red">' + cont + '</span>'
+  return cont
+}
+//----------------------------------------------------------------------------------------
+export function popUpHyugaTsunami(rgba) {
+  let r = rgba[0]
+  let g = rgba[1]
+  let b = rgba[2]
+  let a = rgba[3]
+  if (a === 0) return
+  const palette = [
+    {r: 255, g: 255, b: 179},
+    {r: 247, g: 245, b: 169},
+    {r: 248, g: 225, b: 166},
+    {r: 255, g: 216, b: 192},
+    {r: 255, g: 183, b: 183},
+    {r: 255, g: 145, b: 145},
+    {r: 242, g: 133, b: 201},
+    {r: 220, g: 122, b: 220}
+  ]
+  const colorClassifier = new ColorClassifier(palette);
+  const color = colorClassifier.classify({r: r, g: g, b: b});
+  // console.log(color)
+  r = color.r
+  g = color.g
+  b = color.b
+  let cont
+  if (r === 255 && g === 255 && b === 179) {
+    cont = "<h5 style=width:300px>日向灘沖地震津波浸水深 0.3m未満</h5>"
+  } else if (r === 247 && g === 245 && b === 169) {
+    cont = "<h5 style=width:300px>日向灘沖地震津波浸水深 0.3~0.5m</h5>"
+  } else if (r === 248 && g === 225 && b === 166) {
+    cont = "<h5 style=width:300px>日向灘沖地震津波浸水深 0〜1m</h5>"
+  } else if (r === 255 && g === 216 && b === 192) {
+    cont = "<h5 style=width:300px>日向灘沖地震津波浸水深 1〜3m</h5>"
+  } else if (r === 255 && g === 183 && b === 183) {
+    cont = "<h5 style=width:300px>日向灘沖地震津波浸水深 3〜5m</h5>"
+  } else if (r === 255 && g === 145 && b === 145) {
+    cont = "<h5 style=width:300px>日向灘沖地震津波浸水深 5〜10m</h5>"
+  } else if (r === 242 && g === 133 && b === 201) {
+    cont = "<h5 style=width:300px>日向灘沖地震津波浸水深 10〜20m</h5>"
+  } else if (r === 220 && g === 122 && b === 220) {
+    cont = "<h5 style=width:300px>日向灘沖地震津波浸水深 20m〜</h5>"
   }
   if (cont) cont = '<span style="color: red">' + cont + '</span>'
   return cont
