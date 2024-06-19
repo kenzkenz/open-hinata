@@ -40,7 +40,82 @@ String.prototype.trunc =
     }
 // const mapsStr = ['map01','map02','map03','map04'];
 const mapsStr = ['map01','map02']
-
+// 宮崎南日向灘沖地震震度---------------------------------------------------------------------------------
+function HyuganadaShindoMvt(){
+  this.name = 'hyuganadaShindo'
+  // this.className = 'hyuganadaShindo'
+  this.source = new VectorTileSource({
+    crossOrigin: 'Anonymous',
+    format: new MVT(),
+    maxZoom:14,
+    url: "https://kenzkenz3.xsrv.jp/mvt/miyazaki/hyuganadashindo/{z}/{x}/{y}.mvt"
+  });
+  this.style = hyuganadaShindoStyleFunction()
+  this.maxResolution = 9.554629	 //zoom14
+}
+export const hyuganadaShindoSumm = "<a href='https://data.bodik.jp/dataset/450006_1087' target='_blank'>震度分布 （日向灘地震）</a>" +
+    "<br>震度は「最大JMA」を使用。"
+export  const hyuganadaShindoMvtObj = {};
+for (let i of mapsStr) {
+  hyuganadaShindoMvtObj[i] = new VectorTileLayer(new HyuganadaShindoMvt())
+}
+// ----------------------------------------------------------------------------
+function hyuganadaShindoRaster() {
+  this.name = 'hyuganadashindraster'
+  this.preload = Infinity
+  this.source = new XYZ({
+    url: 'https://kenzkenz3.xsrv.jp/mvt/miyazaki/hyuganadashindoraster/{z}/{x}/{y}.png',
+    crossOrigin: 'anonymous',
+    minZoom: 0,
+    maxZoom: 14
+  })
+  this.minResolution = 9.554629 //zoom14
+}
+export const hyuganadaShindoRasterObj = {};
+for (let i of mapsStr) {
+  hyuganadaShindoRasterObj[i] = new TileLayer(new hyuganadaShindoRaster())
+}
+export const hyuganadaShindoObj = {}
+for (let i of mapsStr) {
+  hyuganadaShindoObj[i] = new LayerGroup({
+    layers: [
+      hyuganadaShindoMvtObj[i],
+      hyuganadaShindoRasterObj[i]
+    ]
+  })
+  hyuganadaShindoObj[i].values_['pointer'] = true
+}
+function hyuganadaShindoStyleFunction() {
+  return function (feature, resolution) {
+    const zoom = getZoom(resolution)
+    const prop = feature.getProperties()
+    const maxShindo = prop.最大JMA
+    const styles = [];
+    let rgb
+    if (maxShindo < 3.5) { //3
+      rgb = "rgb(211,235,249)"
+    } else if (maxShindo < 4.5) { //4
+      rgb = "rgb(117,251,253)"
+    } else if (maxShindo < 5.0) { //5弱
+      rgb = "rgb(0,0,245)"
+    } else if (maxShindo < 5.5) { //5強
+      rgb = "rgb(117,251,76)"
+    } else if (maxShindo < 6.0) { //6弱
+      rgb = "rgb(255,255,84)"
+    } else if (maxShindo < 6.5) { //6強
+      rgb = "rgb(239,135,51)"
+    } else if (maxShindo < 10) { //7
+      rgb = "rgb(188,39,27)"
+    }
+    const polygonStyle = new Style({
+      fill: new Fill({
+        color: rgb
+      }),
+    })
+    styles.push(polygonStyle)
+    return styles
+  }
+}
 // 宮崎見日向灘沖地震津波---------------------------------------------------------------------------------
 function HyugatsunamiMvt(){
   this.name = 'hyugatsunamimvt'
@@ -123,12 +198,6 @@ function hyugaTsunamiStyleFunction() {
 
 
 // 宮崎南海トラフ震度---------------------------------------------------------------------------------
-let nantoraShindMaxResolution
-if (window.innerWidth > 1000) {
-  nantoraShindMaxResolution = 9.554629	 //zoom14
-} else {
-  nantoraShindMaxResolution = 9.554629	 //zoom14
-}
 function NantoraShindoMvt(){
   this.name = 'nantoraShindo'
   // this.className = 'nantoraShindo'
@@ -139,7 +208,7 @@ function NantoraShindoMvt(){
     url: "https://kenzkenz3.xsrv.jp/mvt/miyazaki/nantorashindo/{z}/{x}/{y}.mvt"
   });
   this.style = nantoraShindoStyleFunction()
-  this.maxResolution = nantoraShindMaxResolution
+  this.maxResolution = 9.554629	 //zoom14
 }
 export const nantoraShindoSumm = "<a href='https://data.bodik.jp/dataset/450006_1083/resource/3f34234b-d2aa-4e6d-a3cb-02ee056fb879' target='_blank'>地震液状化想定（南トラH25）</a>" +
     "<br>震度は「JMA独自」を使用。<br>液状化可能性は「PL独自」を使用。"
@@ -215,7 +284,7 @@ function NantoraEkijyokaMvt(){
     url: "https://kenzkenz3.xsrv.jp/mvt/miyazaki/nantorashindo/{z}/{x}/{y}.mvt"
   });
   this.style = nantoraEkijyokatyleFunction()
-  this.maxResolution = nantoraShindMaxResolution
+  this.maxResolution = 9.554629	 //zoom14
 }
 export  const nantoraEkijyokaMvtObj = {};
 for (let i of mapsStr) {

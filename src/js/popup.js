@@ -2693,3 +2693,43 @@ export function popUpHyugaTsunami(rgba) {
   if (cont) cont = '<span style="color: red">' + cont + '</span>'
   return cont
 }
+//----------------------------------------------------------------------------------------
+export function popUpHyugaShindo(rgba) {
+  let r = rgba[0]
+  let g = rgba[1]
+  let b = rgba[2]
+  let a = rgba[3]
+  if (a === 0) return
+  const palette = [
+    {r: 211, g: 235, b: 249},
+    {r: 117, g: 251, b: 253},
+    {r: 0, g: 0, b: 245},
+    {r: 117, g: 251, b: 76},
+    {r: 255, g: 255, b: 84},
+    {r: 239, g: 135, b: 51},
+    {r: 188,   g: 39,   b: 27}
+  ]
+  const colorClassifier = new ColorClassifier(palette);
+  const color = colorClassifier.classify({r: r, g: g, b: b});
+  r = color.r
+  g = color.g
+  b = color.b
+  let cont
+  if (r === 211 && g === 255 && b === 249) {
+    cont = "<h5 style=width:300px>日向灘沖地震 震度3</h5>"
+  } else if (r === 117 && g === 251 && b === 253) {
+    cont = "<h5 style=width:300px>日向灘沖地震 震度4</h5>"
+  } else if (r === 0 && g === 0 && b === 245) {
+    cont = "<h5 style=width:300px>日向灘沖地震 震度5弱</h5>"
+  } else if (r === 117 && g === 251 && b === 76) {
+    cont = "<h5 style=width:300px>日向灘沖地震 震度5強</h5>"
+  } else if (r === 255 && g === 255 && b === 84) {
+    cont = "<h5 style=width:300px>日向灘沖地震 震度6弱</h5>"
+  } else if (r === 239 && g === 135 && b === 51) {
+    cont = "<h5 style=width:300px>日向灘沖地震 震度6強</h5>"
+  } else if (r === 188 && g === 39 && b === 27) {
+    cont = "<h5 style=width:300px>日向灘沖地震 震度7</h5>"
+  }
+  if (cont) cont = '<span style="color: red">' + cont + '</span>'
+  return cont
+}
