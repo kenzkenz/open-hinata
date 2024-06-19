@@ -303,6 +303,8 @@ tippecanoe -pk -pf -f -e tile -rg t.geojson
 tippecanoe -pk -pf -f -e tile s.geojson
 tippecanoe -pk -pf -f -e tile e.geojson
 tippecanoe -pk -pf -f -e tile hs.geojson
+tippecanoe -pk -pf -f -e tile houmusyo2024.geojson
+
 
 
 $ cd tile

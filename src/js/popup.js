@@ -219,8 +219,11 @@ export function popUp(map,layers,features,overlay,evt,content,content2) {
           if(map.getView().getZoom()>7) cont += '<div style=width:150px>明るさレベル＝' +  prop.light +'</div>'
           break
         case 'didh27':
-          width = 150
-          cont += '<div style=width:150px>人口=' + prop.人口.toLocaleString() + '人</div>'
+          if (cont.indexOf('didh27') === -1) {
+            cont += '<div class="didh27" style=width:200px>' +
+                '<h4>人口=' + prop.人口.toLocaleString() + '人</h4>' +
+                '</div><hr>'
+          }
           break
         case 'dids40':
         case 'dids50':
@@ -233,15 +236,16 @@ export function popUp(map,layers,features,overlay,evt,content,content2) {
         case 'dids45':
         case 'dids35':
         case 'didh22':
-          width = 150
-          cont += '<div style=width:150px>人口=' + Number(prop.A16_005).toLocaleString() + '人</div>'
+          if (cont.indexOf('did') === -1) {
+            cont += '<div class="did" style=width:200px>' +
+                '<h4>人口=' + Number(prop.A16_005).toLocaleString() + '人</h4>' +
+                '</div><hr>'
+          }
           break
         case 'suiro':
-          width = 250
           cont += '<div style=width:250px>区分＝' + prop.rivCtg + '<br>タイプ＝' + prop.type + '</div>'
           break
         case 'hinan':
-          width = 200
           if (prop.P20_005 !== -1) {
             cont += '<div style=width:200px>' + prop.P20_002 + '<br>' + prop.P20_003 + '<br>収容人数：' + prop.P20_005 + '人</div>'
           } else {
@@ -249,41 +253,33 @@ export function popUp(map,layers,features,overlay,evt,content,content2) {
           }
           break
         case 'kouziR04':
-          width = 200
           cont += '<div style=width:200px>' + prop.L01_024 +'<br>公示価格＝' + Number(prop.L01_100).toLocaleString() + '円</div>'
           break
         case 'kouziH25':
         case 'kouziH19':
-          width = 200
           cont += '<div style=width:200px>' + prop.L01_019 +'<br>公示価格＝' + Number(prop.L01_006).toLocaleString() + '円</div>'
           break
         case 'kouziH30':
-          width = 200
           cont += '<div style=width:200px>' + prop.L01_023 +'<br>公示価格＝' + Number(prop.L01_091).toLocaleString() + '円</div>'
           break
         case 'hude':
-          width = 50
           if (prop.land_type === 100) {
-            cont += '<div style=width:50px>' + '田</div>'
+            cont += '<div style=width:200px>' + '田</div>'
           } else {
-            cont += '<div style=width:50px>' + '畑</div>'
+            cont += '<div style=width:200px>' + '畑</div>'
           }
           break
         case 'sanson':
-          width = 100
-          cont += '<div style=width:100px>' + prop.A24_003 + prop.A24_006 + '</div>'
+          cont += '<div style=width:200px>' + prop.A24_003 + prop.A24_006 + '</div>'
           break
         case 'iryouken1zi':
-          width = 100
-          cont += '<div style=width:100px>' + prop.A38a_002 + '</div>'
+          cont += '<div style=width:200px>' + prop.A38a_002 + '</div>'
           break
         case 'iryouken2zi':
-          width = 100
-          cont += '<div style=width:100px>' +prop.A38b_004 + '</div>'
+          cont += '<div style=width:200px>' +prop.A38b_004 + '</div>'
           break
         case 'iryouken3zi':
-          width = 100
-          cont += '<div style=width:100px>' + prop.A38c_001 + '</div>'
+          cont += '<div style=width:200px>' + prop.A38c_001 + '</div>'
           break
         case 'suikei1km':
           if (prop.PTN_2015) {
@@ -336,7 +332,6 @@ export function popUp(map,layers,features,overlay,evt,content,content2) {
               '</div><hr>'
           break
         case 'tokutei':
-          width = 120
           cont += '<div style=width:120px>' + prop.A25_003 + prop.A25_006 + '</div>'
           break
         case 'houmusyo':
@@ -469,7 +464,6 @@ export function popUp(map,layers,features,overlay,evt,content,content2) {
               break;
             }
           }
-          width = 300
           cont += '<div style=width:300px>' +
               '<h4>分類名=' + landFormName + '</h4>' +
               '成り立ち=' + naritachi + '<hr>' +
@@ -477,7 +471,6 @@ export function popUp(map,layers,features,overlay,evt,content,content2) {
               '</div>'
           break
         case 'densyou':
-          width = 350
           // const lonLat1 = transform([prop.geometry.extent_[0],prop.geometry.extent_[1]], "EPSG:3857", "EPSG:4326")
           // const lon1 = lonLat1[0]
           // const lat1 = lonLat1[1]
@@ -1190,7 +1183,31 @@ export function popUp(map,layers,features,overlay,evt,content,content2) {
         case 'hyugatsunamimvt':
           if (cont.indexOf('hyugatsunamimvt') === -1) {
             cont += '<div class="hyugatsunamimvt" style=width:300px;>' +
-                '<h5 style="color: red">日向灘沖地震津波浸水深 = ' + prop.最大浸水深 + 'm</h5>' +
+                '<h5 style="color: red">日向灘地震津波浸水深 = ' + prop.最大浸水深 + 'm</h5>' +
+                '</div><hr>'
+          }
+          break
+        case 'hyuganadaShindo':
+          const maxShindoH = prop.最大JMA
+          let shindoH
+          if (maxShindoH < 3.5) { //3
+            shindoH = '3'
+          } else if (maxShindoH < 4.5) { //4
+            shindoH = '4'
+          } else if (maxShindoH < 5.0) { //5弱
+            shindoH = '5弱'
+          } else if (maxShindoH < 5.5) { //5強
+            shindoH = '5強'
+          } else if (maxShindoH < 6.0) { //6弱
+            shindoH = '6弱'
+          } else if (maxShindoH < 6.5) { //6強
+            shindoH = '6強'
+          } else if (maxShindoH < 10) { //7
+            shindoH = '7'
+          }
+          if (cont.indexOf('hyuganadaShindo') === -1) {
+            cont += '<div class="hyuganadaShindo" style=width:300px;>' +
+                '<h4 style="color: red">日向灘地震 震度' + shindoH + '(' + prop.最大JMA + ')</h4>' +
                 '</div><hr>'
           }
           break
@@ -1282,7 +1299,6 @@ export function popUp(map,layers,features,overlay,evt,content,content2) {
         })
         .then(function (response) {
           console.log(response.data.results.lv01Nm)
-          // popupCenter(cont)
           let cont2 = cont + streetView
           const splitMuni = muni[Number(response.data.results.muniCd)].split(',')
           // cont2 = splitMuni[1] + splitMuni[3] + '<h4>' + response.data.results.lv01Nm + '</h4>' + cont2
@@ -1309,7 +1325,6 @@ export function popUp(map,layers,features,overlay,evt,content,content2) {
           flg = false
         })
   } else {
-    // popupCenter(cont)
     const cont2 = cont + streetView
     content.innerHTML = cont2
     if (cont && cont !== undefined) {
@@ -2674,21 +2689,21 @@ export function popUpHyugaTsunami(rgba) {
   b = color.b
   let cont
   if (r === 255 && g === 255 && b === 179) {
-    cont = "<h5 style=width:300px>日向灘沖地震津波浸水深 0.3m未満</h5>"
+    cont = "<h5 style=width:300px>日向灘地震津波浸水深 0.3m未満</h5>"
   } else if (r === 247 && g === 245 && b === 169) {
-    cont = "<h5 style=width:300px>日向灘沖地震津波浸水深 0.3~0.5m</h5>"
+    cont = "<h5 style=width:300px>日向灘地震津波浸水深 0.3~0.5m</h5>"
   } else if (r === 248 && g === 225 && b === 166) {
-    cont = "<h5 style=width:300px>日向灘沖地震津波浸水深 0〜1m</h5>"
+    cont = "<h5 style=width:300px>日向灘地震津波浸水深 0〜1m</h5>"
   } else if (r === 255 && g === 216 && b === 192) {
-    cont = "<h5 style=width:300px>日向灘沖地震津波浸水深 1〜3m</h5>"
+    cont = "<h5 style=width:300px>日向灘地震津波浸水深 1〜3m</h5>"
   } else if (r === 255 && g === 183 && b === 183) {
-    cont = "<h5 style=width:300px>日向灘沖地震津波浸水深 3〜5m</h5>"
+    cont = "<h5 style=width:300px>日向灘地震津波浸水深 3〜5m</h5>"
   } else if (r === 255 && g === 145 && b === 145) {
-    cont = "<h5 style=width:300px>日向灘沖地震津波浸水深 5〜10m</h5>"
+    cont = "<h5 style=width:300px>日向灘地震津波浸水深 5〜10m</h5>"
   } else if (r === 242 && g === 133 && b === 201) {
-    cont = "<h5 style=width:300px>日向灘沖地震津波浸水深 10〜20m</h5>"
+    cont = "<h5 style=width:300px>日向灘地震津波浸水深 10〜20m</h5>"
   } else if (r === 220 && g === 122 && b === 220) {
-    cont = "<h5 style=width:300px>日向灘沖地震津波浸水深 20m〜</h5>"
+    cont = "<h5 style=width:300px>日向灘地震津波浸水深 20m〜</h5>"
   }
   if (cont) cont = '<span style="color: red">' + cont + '</span>'
   return cont
@@ -2716,19 +2731,19 @@ export function popUpHyugaShindo(rgba) {
   b = color.b
   let cont
   if (r === 211 && g === 255 && b === 249) {
-    cont = "<h5 style=width:300px>日向灘沖地震 震度3</h5>"
+    cont = "<h5 style=width:300px>日向灘地震 震度3</h5>"
   } else if (r === 117 && g === 251 && b === 253) {
-    cont = "<h5 style=width:300px>日向灘沖地震 震度4</h5>"
+    cont = "<h5 style=width:300px>日向灘地震 震度4</h5>"
   } else if (r === 0 && g === 0 && b === 245) {
-    cont = "<h5 style=width:300px>日向灘沖地震 震度5弱</h5>"
+    cont = "<h5 style=width:300px>日向灘地震 震度5弱</h5>"
   } else if (r === 117 && g === 251 && b === 76) {
-    cont = "<h5 style=width:300px>日向灘沖地震 震度5強</h5>"
+    cont = "<h5 style=width:300px>日向灘地震 震度5強</h5>"
   } else if (r === 255 && g === 255 && b === 84) {
-    cont = "<h5 style=width:300px>日向灘沖地震 震度6弱</h5>"
+    cont = "<h5 style=width:300px>日向灘地震 震度6弱</h5>"
   } else if (r === 239 && g === 135 && b === 51) {
-    cont = "<h5 style=width:300px>日向灘沖地震 震度6強</h5>"
+    cont = "<h5 style=width:300px>日向灘地震 震度6強</h5>"
   } else if (r === 188 && g === 39 && b === 27) {
-    cont = "<h5 style=width:300px>日向灘沖地震 震度7</h5>"
+    cont = "<h5 style=width:300px>日向灘地震 震度7</h5>"
   }
   if (cont) cont = '<span style="color: red">' + cont + '</span>'
   return cont
