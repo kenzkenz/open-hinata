@@ -7,14 +7,11 @@ import * as d3 from "d3"
 import ColorClassifier from "color-classifier"
 let cont = ''
 export function popUp(map,layers,features,overlay,evt,content,content2) {
-  // let cont = ''
   let coordinate
   let width
   let streetView
   let flg = false
   let features0 = features
-
-  // console.log(features[0].getGeometry().getType())
 
   if (features) {
     if (features[0].getGeometry().getType() === 'Point' || features[0].getGeometry().getType() === 'LineString' || features[0].getGeometry().getType() === 'MultiLineString') {
@@ -27,7 +24,9 @@ export function popUp(map,layers,features,overlay,evt,content,content2) {
     const lonLat = transform([coordinate[0],coordinate[1]], "EPSG:3857", "EPSG:4326")
     const lon = lonLat[0]
     const lat = lonLat[1]
-    streetView = '<a href="https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=' + lat + ',' + lon + '&hl=ja" target="_blank">Street Viewを開く</a></div>'
+    streetView = '<a href="https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=' + lat + ',' + lon + '&hl=ja" target="_blank">Street View</a> ' +
+        ' <a href="https://www.google.co.jp/maps?q=' + lat + ',' + lon + '&hl=ja" target="_blank">GoogleMap</a>' +
+        '</div>'
 
   } else {
     features0.forEach((feature,i) =>{
@@ -59,13 +58,13 @@ export function popUp(map,layers,features,overlay,evt,content,content2) {
       }
       const lon = lonLat[0]
       const lat = lonLat[1]
-      streetView = '<a href="https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=' + lat + ',' + lon + '&hl=ja" target="_blank">Street Viewを開く</a></div>'
-
+      streetView = '<a href="https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=' + lat + ',' + lon + '&hl=ja" target="_blank">StreetView</a>' +
+          ' <a href="https://www.google.co.jp/maps?q=' + lat + ',' + lon + '&hl=ja" target="_blank">GoogleMap</a>' +
+          '</div>'
       switch (layers[i].get('name')) {
           // 小学校区
         case 'syougakkoukuH28':
         case 'syougakkoukuH22':
-          width = 200
           if(prop.A27_001) {
             cont += '<div style=width:200px>市区町村コード＝' + prop.A27_001 + '<br>' +
                 '設置主体=' + prop.A27_002 + '<br>' +
@@ -82,7 +81,6 @@ export function popUp(map,layers,features,overlay,evt,content,content2) {
           }
           break;
         case 'syougakkouku':
-          width = 200
           if(prop.A27_001) {
             cont += '<div style=width:200px>市区町村コード＝' + prop.A27_001 + '<br>' +
                 '設置主体=' + prop.A27_002 + '<br>' +
@@ -99,7 +97,6 @@ export function popUp(map,layers,features,overlay,evt,content,content2) {
           break;
           // 中学校区
         case 'tyuugakkouku' :
-          width = 200
           if(prop.A32_001) {
             cont += '<div style=width:200px>市区町村コード＝' + prop.A32_001 + '<br>' +
                 '設置主体=' + prop.A32_002 + '<br>' +
@@ -1276,6 +1273,15 @@ export function popUp(map,layers,features,overlay,evt,content,content2) {
                 '</div><hr>'
           }
           break
+        case 'homusyomiyazaki2024':
+          if (cont.indexOf('homusyo') === -1) {
+            flg = true
+            cont += '<div class="homusyo" style=width:370px;>' +
+                '<h5>番地=' + ru(prop.市区町村名) + ru(prop.大字名) + ru(prop.丁目名) + ru(prop.地番) + '</h5>' +
+                '住所=<span class="p-100m">_</span><span class="h4-100m">_</span>' +
+                '</div><hr>'
+          }
+          break
       }
     })
   }
@@ -1314,7 +1320,7 @@ export function popUp(map,layers,features,overlay,evt,content,content2) {
           }
 
           const button = document.querySelector(".jinkopie1km,.jinkopie100m")
-          button.setAttribute("jyusyo", response.data.results.lv01Nm )
+          if (button) button.setAttribute("jyusyo", response.data.results.lv01Nm )
 
           const h4 = document.querySelector(".h4-100m,.h4-1k")
           h4.innerHTML = response.data.results.lv01Nm

@@ -26,6 +26,13 @@ import * as Loadingstrategy from 'ol/loadingstrategy'
 const transformE = extent => {
   return transformExtent(extent,'EPSG:4326','EPSG:3857')
 }
+const ru = string => {
+  if (string === undefined) {
+    return ''
+  } else {
+    return string
+  }
+}
 const ru2 = string => {
   if (string === undefined || string === 0) {
     return '-'
@@ -40,6 +47,110 @@ String.prototype.trunc =
     }
 // const mapsStr = ['map01','map02','map03','map04'];
 const mapsStr = ['map01','map02']
+// 法務省宮崎市2024---------------------------------------------------------------------------------
+function Homusyomiyazaki2024(){
+  this.name = 'homusyomiyazaki2024'
+  this.className = 'homusyomiyazaki2024'
+  this.source = new VectorTileSource({
+    crossOrigin: 'Anonymous',
+    format: new MVT(),
+    maxZoom:16,
+    url: "https://kenzkenz3.xsrv.jp/mvt/miyazaki/homusyo/miyazakishi/2024/{z}/{x}/{y}.mvt"
+  });
+  this.style = homusyoStyleFunction()
+  // this.maxResolution = 9.554629	 //zoom14
+  this.maxResolution = 4.777314		 //zoom15
+  this.declutter = true
+  this.overflow = true
+}
+export const homusyomiyazaki2024Summ = "<a href='https://front.geospatial.jp/moj-chizu-shp-download/' target='_blank'>G空間情報センター</a><br>" +
+    "2024年6月版"
+export  const homusyomiyazaki2024MvtObj = {};
+for (let i of mapsStr) {
+  homusyomiyazaki2024MvtObj[i] = new VectorTileLayer(new Homusyomiyazaki2024())
+}
+// ----------------------------------------------------------------------------
+function Homusyomiyazaki2024Raster() {
+  // this.name = 'hyuganadashindraster'
+  this.preload = Infinity
+  this.source = new XYZ({
+    url: "https://kenzkenz3.xsrv.jp/mvt/miyazaki/homusyo/miyazakishi/2024raster/{z}/{x}/{y}.png",
+    crossOrigin: 'anonymous',
+    minZoom: 0,
+    maxZoom: 15
+  })
+  // this.minResolution = 9.554629 //zoom14
+  this.minResolution = 4.777314	 //zoom15
+}
+export const homusyomiyazaki2024RasterObj = {};
+for (let i of mapsStr) {
+  homusyomiyazaki2024RasterObj[i] = new TileLayer(new Homusyomiyazaki2024Raster())
+}
+export const homusyomiyazaki2024Obj = {}
+for (let i of mapsStr) {
+  homusyomiyazaki2024Obj[i] = new LayerGroup({
+    layers: [
+      homusyomiyazaki2024MvtObj[i],
+      homusyomiyazaki2024RasterObj[i]
+    ]
+  })
+  homusyomiyazaki2024Obj[i].values_['pointer'] = true
+}
+function homusyoStyleFunction() {
+  return function (feature, resolution) {
+    const zoom = getZoom(resolution)
+    const prop = feature.getProperties()
+    const styles = []
+    let font
+    let text
+    if (zoom<=16) {
+      font = "6px sans-serif"
+    } else if (zoom <=18) {
+      font = "8px sans-serif"
+    } else if (zoom <=19) {
+      font = "10px sans-serif"
+    } else if (zoom <=20) {
+      font = "14px sans-serif"
+    } else if (zoom <=21) {
+      font = "18px sans-serif"
+    } else if (zoom <=22) {
+      font = "22px sans-serif"
+    } else {
+      font = "26px sans-serif"
+    }
+    if (prop.丁目名) {
+      text = ru(prop.大字名) + '\n' + ru(prop.丁目名) + '\n' + ru(prop.地番)
+    } else {
+      text = ru(prop.大字名) + '\n' + ru(prop.地番)
+    }
+    const polygonStyle = new Style({
+      fill: new Fill({
+        color: 'rgba(0,0,0,0)'
+      }),
+      stroke: new Stroke({
+        color: "green",
+        width: 4
+      }),
+    })
+    const textStyle = new Style({
+      text: new Text({
+        font: font,
+        text: text,
+        fill:  new Fill({
+          color:"black"
+        }),
+        stroke: new Stroke({
+          color: "white",
+          width: 3
+        }),
+        // placement: 'line'
+      })
+    })
+    styles.push(textStyle)
+    styles.push(polygonStyle)
+    return styles
+  }
+}
 // 宮崎南日向灘沖地震震度---------------------------------------------------------------------------------
 function HyuganadaShindoMvt(){
   this.name = 'hyuganadaShindo'
@@ -195,8 +306,6 @@ function hyugaTsunamiStyleFunction() {
     return styles
   }
 }
-
-
 // 宮崎南海トラフ震度---------------------------------------------------------------------------------
 function NantoraShindoMvt(){
   this.name = 'nantoraShindo'

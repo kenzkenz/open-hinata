@@ -20,7 +20,7 @@ import  * as MaskDep from './mask-dep'
 import  * as LayersMvt from './layers-mvt'
 // import BingMaps from 'ol/source/BingMaps'
 import * as d3 from "d3"
-import {hyuganadaShindoSumm, nantoraShindoObj} from "./layers-mvt";
+import {homusyomiyazaki2024Summ, hyuganadaShindoSumm, nantoraShindoObj} from "./layers-mvt";
 // import {ssdsPrefObj} from "./layers-mvt";
 // const mapsStr = ['map01','map02','map03','map04']
 // const mapsStr = ['map01'];
@@ -13951,9 +13951,9 @@ export const Layers =
       ]},
     { text: 'その他',
       children: [
+        { text: '登記所備付地図データ(宮崎市)', data: { id: "homusyomiyazakishi", layer: LayersMvt.homusyomiyazaki2024Obj, opacity: 1, summary: LayersMvt.homusyomiyazaki2024Summ } },
         { text: '2021土地利用細分メッシュ(100m)', data: { id: "tochiriyosaibun", layer: LayersMvt.mesh100mTochiriyoObj, opacity: 1, summary: LayersMvt.mesh1kmObjSumm } },
-        { text: 'test', data: { id: "kouzuimesyu9syu", layer: LayersMvt.kozuiMesh9syuMvtObj, opacity: 1, summary: LayersMvt.kozuiMesh9syuSumm} },
-        { text: 'ラスタータイルtest', data: { id: "dokuji", layer: dokujiObj, opacity: 1, summary: LayersMvt.busSumm, component: {name: 'dokuji', values:[]}} },
+        // { text: 'test', data: { id: "kouzuimesyu9syu", layer: LayersMvt.kozuiMesh9syuMvtObj, opacity: 1, summary: LayersMvt.kozuiMesh9syuSumm} },
         { text: '一等三角点', data: { id: "itto", layer: LayersMvt.ittosankakutenObj, opacity: 1, summary: LayersMvt.ittosankakutenSumm } },
         { text: 'ウィキメディア・コモンズ', data: { id: "wiki", layer: LayersMvt.wikiObj, opacity: 1, summary: LayersMvt.wikiSumm } },
         { text: '気象庁予報区（一次細分区域等 ）', data: { id: "yohouku1", layer: LayersMvt.yohouku1Obj, opacity: 1, summary: LayersMvt.yohoukuSumm } },
@@ -13964,6 +13964,7 @@ export const Layers =
         { text: '湖沼', data: { id: "kosyouH17", layer: LayersMvt.kosyouH17Obj, opacity: 1, summary: LayersMvt.kosyouH17Summ } },
         // { text: '法務省地図', data: { id: "houmusyou", layer: houmusyouObj, opacity: 1, summary: houmusyouSumm } },
         { text: 'OpenTopoMap', data: { id: "otm", layer: otmObj, opacity: 1, summary: otmSumm } },
+        { text: 'ラスタータイルtest', data: { id: "dokuji", layer: dokujiObj, opacity: 1, summary: LayersMvt.busSumm, component: {name: 'dokuji', values:[]}} },
       ]},
   ];
 // let cnt = 0
