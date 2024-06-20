@@ -21,7 +21,6 @@ import WikiCommons from 'ol-ext/source/WikiCommons'
 import  * as Tilegrid from 'ol/tilegrid'
 import * as Loadingstrategy from 'ol/loadingstrategy'
 // import image from "ol-ext/legend/Image";
-// import * as flatgeobuf from 'flatgeobuf'
 
 const transformE = extent => {
   return transformExtent(extent,'EPSG:4326','EPSG:3857')
@@ -47,6 +46,31 @@ String.prototype.trunc =
     }
 // const mapsStr = ['map01','map02','map03','map04'];
 const mapsStr = ['map01','map02']
+
+// const fsource = new VectorSource({
+//   loader: async function () {
+//     // Fetch the flatgeobuffer
+//     const response = await fetch('https://wata909.github.io/fudepoly47/fude_tsukuba.fgb')
+//     // ...and parse all its features
+//     for await (let feature of flatgeobuf.deserialize(response.body)) {
+//       feature.getGeometry().transform('EPSG:4326', 'EPSG:3857')
+//       // add each feature to the map, after projecting it to
+//       this.addFeature(feature)
+//     }
+//   }
+// });
+// function fgb () {
+//   this.name = 'kosoku'
+//   this.source = fsource
+//   // this.style = kosokuStyleFunction(mapName)
+// }
+// export const fgbObj = {};
+// for (let i of mapsStr) {
+//   fgbObj[i] = new VectorLayer(new fgb())
+// }
+// -----
+
+
 // 法務省宮崎市2024---------------------------------------------------------------------------------
 function Homusyomiyazaki2024(){
   this.name = 'homusyomiyazaki2024'
