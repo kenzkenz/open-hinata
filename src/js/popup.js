@@ -775,12 +775,12 @@ export function popUp(map,layers,features,overlay,evt,content,content2) {
           break
         case 'yubinku':
           cont += '<div style=width:200px;>' +
-              '郵便番号=' + prop.fullcode + '<br>' +
+              '<h4>郵便番号=' + prop.fullcode + '</h4>' +
               '郵便区名=' + prop.name + '<br>' +
               '読み=' + prop.yomi + '<br>' +
               '都道府県=' + prop.ken + '<br>' +
               '地域=' + prop.area +
-              '</div>'
+              '</div><hr>'
           break
         case 'gokaido' :
         case 'meijikokudo':

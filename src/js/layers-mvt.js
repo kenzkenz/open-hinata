@@ -6757,12 +6757,14 @@ const yubinkuColor = d3.scaleOrdinal(d3.schemeCategory10);
 function yubinkuColorStyleFunction() {
   return function (feature, resolution) {
     const prop = feature.getProperties();
-    const rgb = yubinkuColor(prop.ken)
+    // const rgb = yubinkuColor(prop.ken)
+    const rgb = d3.rgb(yubinkuColor(prop.ken))
+    const rgba = "rgba(" + rgb.r + "," + rgb.g + "," + rgb.b + ",0.7)"
     const zoom = getZoom(resolution);
     const styles = []
     const fillStyle = new Style({
       fill: new Fill({
-        color: rgb
+        color: rgba
       }),
       stroke: new Stroke({
         color: "black",

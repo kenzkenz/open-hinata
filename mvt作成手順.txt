@@ -306,6 +306,8 @@ tippecanoe -pk -pf -f -e tile hs.geojson
 tippecanoe -pk -pf -f -e tile houmusyo2024.geojson
 tippecanoe -Z15 -z16 -pk -pf -f -e tile15 houmusyo2024.geojson
 tippecanoe -Z0 -z16 -pk -pf -f -e tile ht.geojson
+tippecanoe-decode 1 -z 15 -Z 15 -c > 1.geojson
+tippecanoe-decode 2 -z 15 -Z 15 -c > 2.geojson
 
 
 $ cd tile

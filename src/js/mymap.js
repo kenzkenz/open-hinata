@@ -36,9 +36,7 @@ import Dialog from 'ol-ext/control/Dialog'
 import Icon from 'ol/style/Icon'
 import * as d3 from "d3"
 
-
 // ドロー関係-------------------------------------------------------------------------------
-
 export  const drawLayer2 = new VectorLayer({
     // pointer: true,
     // className: 'drawLayer2',
