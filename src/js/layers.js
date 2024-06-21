@@ -13812,6 +13812,7 @@ export const Layers =
             { text: '宮崎県南海トラフ地震液状化可能性', data: { id: 'miyazakinantoraekijyoka', layer: LayersMvt.nantoraEkijyokaObj, opacity: 1, summary: LayersMvt.nantoraShindoSumm } },
             { text: '宮崎県日向灘地震津波浸水想定', data: { id: 'hyugatsunami', layer: LayersMvt.hyugaTsunamiObj, opacity: 1, summary: LayersMvt.hyugaTsunamiSumm } },
             { text: '宮崎県日向灘地震震度分布', data: { id: 'hyugashindo', layer: LayersMvt.hyuganadaShindoObj, opacity: 1, summary: LayersMvt.hyuganadaShindoSumm } },
+            { text: '宮崎県日向灘地震津波到達時間', data: { id: 'hyugatotatsu', layer: LayersMvt. hyuganadaTsunamiTotatsu, opacity: 1, summary: LayersMvt.hyuganadaTsunamiTotatsuSumm } },
 
 
             { text: '宮崎市洪水ハザードマップﾟ', data: { id: 'miyazakisiHm', layer: miyazakisiHmObj, opacity: 1, zoom: 13, center: [131.42054548436312, 31.907339493919977], summary: miyazakisiHmSumm } },

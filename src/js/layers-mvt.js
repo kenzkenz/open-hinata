@@ -47,6 +47,9 @@ String.prototype.trunc =
 // const mapsStr = ['map01','map02','map03','map04'];
 const mapsStr = ['map01','map02']
 
+
+
+
 // const fsource = new VectorSource({
 //   loader: async function () {
 //     // Fetch the flatgeobuffer
@@ -92,6 +95,80 @@ export const homusyomiyazaki2024Summ = "<a href='https://front.geospatial.jp/moj
 export  const homusyomiyazaki2024MvtObj = {};
 for (let i of mapsStr) {
   homusyomiyazaki2024MvtObj[i] = new VectorTileLayer(new Homusyomiyazaki2024())
+}
+
+
+// 宮崎見日向灘津波到達時間---------------------------------------------------------------------------------
+function HyuganaqdaTsunamiTotatsuMvt(){
+  this.name = 'hyuganadatsunamitototatsu'
+  // this.className = 'hyugatsunamimvt'
+  this.source = new VectorTileSource({
+    crossOrigin: 'Anonymous',
+    format: new MVT(),
+    maxZoom:16,
+    url: "https://kenzkenz3.xsrv.jp/mvt/miyazaki/hyuganadatotatsu//{z}/{x}/{y}.mvt"
+  });
+  this.style = hyuganadaTsunamiTotatsuStyleFunction()
+  this.maxResolution = 2.388657	 //zoom16
+}
+export const hyuganadaTsunamiTotatsuSumm = "<a href='https://data.bodik.jp/dataset/450006_1086' target='_blank'>津波浸水開始時間 （日向灘地震）</a>"
+export  const hyuganadaTsunamiTotatsuMvtObj = {};
+for (let i of mapsStr) {
+  hyuganadaTsunamiTotatsuMvtObj[i] = new VectorTileLayer(new HyuganaqdaTsunamiTotatsuMvt())
+}
+// ----------------------------------------------------------------------------
+function hyuganadaTsunamiTotasuRaster() {
+  this.name = 'hyuganadatsunamitotatsu'
+  this.preload = Infinity
+  this.source = new XYZ({
+    url: 'https://kenzkenz3.xsrv.jp/mvt/miyazaki/hyuganadatotatsuraster/{z}/{x}/{y}.png',
+    crossOrigin: 'anonymous',
+    minZoom: 0,
+    maxZoom: 15
+  })
+  // this.minResolution = 4.777314 //zoom15
+  this.minResolution = 2.388657 //zoom16
+}
+export const hyuganadaTsunamiTotatsuRasterObj = {};
+for (let i of mapsStr) {
+  hyuganadaTsunamiTotatsuRasterObj[i] = new TileLayer(new hyuganadaTsunamiTotasuRaster())
+}
+export const  hyuganadaTsunamiTotatsu = {}
+for (let i of mapsStr) {
+  hyuganadaTsunamiTotatsu[i] = new LayerGroup({
+    layers: [
+      hyuganadaTsunamiTotatsuMvtObj[i],
+      hyuganadaTsunamiTotatsuRasterObj[i]
+    ]
+  })
+  hyuganadaTsunamiTotatsu[i].values_['pointer'] = true
+}
+function hyuganadaTsunamiTotatsuStyleFunction() {
+  return function (feature, resolution) {
+    const zoom = getZoom(resolution)
+    const prop = feature.getProperties()
+    const seconds = prop.到達時間
+    const styles = [];
+    let rgb
+    if (seconds < 900 ) { // 15分
+      rgb = "rgb(192,21,27)"
+    } else if (seconds < 1200) { // 15分〜20分
+      rgb = "rgb(241,74,55)"
+    } else if (seconds < 1500) { // 20 25
+      rgb = "rgb(251,124,92)"
+    } else if (seconds < 1800) { // 25 30
+      rgb = "rgb(252,179,152)"
+    } else if (seconds < 900000) { // 30
+      rgb = "rgb(254,227,214)"
+    }
+    const polygonStyle = new Style({
+      fill: new Fill({
+        color: rgb
+      }),
+    })
+    if (seconds < 900000 )styles.push(polygonStyle)
+    return styles
+  }
 }
 // ----------------------------------------------------------------------------
 function Homusyomiyazaki2024Raster() {

@@ -750,25 +750,23 @@ export function popUp(map,layers,features,overlay,evt,content,content2) {
           break
         case 'dobokuisan':
         case 'draganddrop':
-          // cont += '<div style=width:300px;max-height:500px;overflow-y:scroll;overflow-x:hidden;font-size:small;>'
           cont += '<div style=width:300px;font-size:small;>'
           Object.keys(prop).forEach(function(key) {
             if (key !== 'geometry') {
               cont += key + '=' + prop[key] + '<br>'
             }
           })
-          cont += '<div>'
+          cont += '<div><hr>'
           break
         case 'nihonisanheatmap':
         case 'nihonisan':
-          width = 300
           cont += '<div style=width:300px;font-size:small;>' +
               '<h4><a href="https://japan-heritage.bunka.go.jp/ja/stories/story' +  ('000' + prop.jhno).slice(-3) + '/" target="_blank" >' + prop.name + '</a></h4>' +
               '読み=' + prop.yomi + '<br>' +
               '所在地=' + prop.spot + '<br>' +
               '指定等=' + prop.status + '<br>' +
               '<a href="' + prop.image + '" target="_blank"><img height="200px" src="' + prop.image + '"></a><hr>' +
-              '</div>'
+              '</div><hr>'
           break
         case 'senkyoku':
           cont += '<div style=width:150px;>' +
@@ -854,7 +852,6 @@ export function popUp(map,layers,features,overlay,evt,content,content2) {
               syubetu2 = '門型標識等'
               break
           }
-          width = 300
           cont += '<div style=width:300px;>' +
               '<h4>' + prop._html + '</h4>' +
               'よみ=' + ru(prop.No1) + '<br>' +
@@ -868,7 +865,7 @@ export function popUp(map,layers,features,overlay,evt,content,content2) {
               '点検実施年度=' + ru(prop.No9) + '<br>' +
               '判定区分=' + ru(prop.No10) + '<br>' +
               'Ｑ地図管理ID=' + ru(prop.No14) + '<br>' +
-              '</div>'
+              '</div><hr>'
           break
         case 'qTameike':
           cont += '<div style=width:300px;>' +
@@ -890,7 +887,7 @@ export function popUp(map,layers,features,overlay,evt,content,content2) {
               'ため池届出=' + ru(prop.No17) + '<br>' +
               '防災重点ため池=' + ru(prop.No18) + '<br>' +
               '特定農業用ため池=' + ru(prop.No19) + '<br>' +
-              '</div>'
+              '</div><hr>'
           break
         case 'jinjya':
           let description
@@ -911,7 +908,7 @@ export function popUp(map,layers,features,overlay,evt,content,content2) {
               '<h4>' + prop.Name + '</h4>' +
               '住所=' + ru(ru(description[2]).split('　')[1]) + '<br>' +
               href +
-              '</div>'
+              '</div><hr>'
           break
         case 'chimei':
           cont += '<div style=width:300px;>' +
@@ -920,24 +917,22 @@ export function popUp(map,layers,features,overlay,evt,content,content2) {
               '上位地名=' + ru(prop.上位地名) + '<br>' +
               '出典住所=' + ru(prop.出典住所) + ru(prop.No5) + '<br>' +
               '緯度 経度=' + ru(prop.緯度) + ',' +  ru(prop.経度) + '<br>' +
-              '</div>'
+              '</div><hr>'
           break
         case 'ittosankakuten':
-          width = 300
           cont += '<div style=width:300px;>' +
               '<h4>' + prop.Name + '</h4>' +
               ru(prop.description) +
-              '</div>'
+              '</div><hr>'
           break
         case 'wiki':
-          width = 330
           cont += '<div style="width:330px;height:330px;">' +
               '<h4>' + prop.title + '</h4>' +
               '<img src="https://kenzkenz.xsrv.jp/open-hinata/img/loading.gif" style="position: absolute;top:50%;left:20%;z-index:1;">' +
               '<div style="position:absolute;z-index: 2;"><a href="' + prop.url + '" target="_blank"><img style="object-fit: cover;width: 330px;height:200px;" src="' + ru(prop.thumbnail) + '"></a>' +
               '<br>' +
               '<p style="margin-top: 10px!important;"><a href="' + prop.descriptionurl + '?uselang=ja" target="_blank">wikiMwdiaへ</a></p>' +
-              '</div></div>'
+              '</div></div><hr>'
           break
         case 'shikuchoson':
           console.log(map.values_.target)
@@ -1007,7 +1002,6 @@ export function popUp(map,layers,features,overlay,evt,content,content2) {
           const seisanritu = (prop.seisan/prop.jinko*100).toFixed(2) + '%'
           const nensyoritu = (prop.nensyo/prop.jinko*100).toFixed(2) + '%'
           if (cont.indexOf('h4-1k') === -1) {
-            width = 220
             cont += '<div style=width:220px;>' +
                 '<p class="p-1k">_</p>' +
                 '<h4 class="h4-1k">_</h4>' +
@@ -1032,7 +1026,6 @@ export function popUp(map,layers,features,overlay,evt,content,content2) {
           const seisanritu100 = (prop.Pop15_64/prop.PopT*100).toFixed(2) + '%'
           const nensyoritu100 = (prop.Pop0_14/prop.PopT*100).toFixed(2) + '%'
           if (cont.indexOf('h4-100m') === -1) {
-            width = 220
             cont += '<div style=width:220px;>' +
                 '<p class="p-100m">_</p>' +
                 '<h4 class="h4-100m">_</h4>' +
@@ -1060,7 +1053,6 @@ export function popUp(map,layers,features,overlay,evt,content,content2) {
           } else {
             area = ('00' + prop.コード).slice(-2) + "000"
           }
-          width = 200
           cont += '<div style=width:200px;>' +
               '<h4>' + prop.自治体名 + '</h4>' +
               '<h4>' + ru(prop.value) + '</h4>' +
@@ -1068,7 +1060,7 @@ export function popUp(map,layers,features,overlay,evt,content,content2) {
               '" area="' + area +
               '" city="' + prop.自治体名  +
               '">グラフ</button><br><br>' +
-              '</div>'
+              '</div><hr>'
           break
         case 'yochienHoikuen':
           let name
@@ -1084,14 +1076,14 @@ export function popUp(map,layers,features,overlay,evt,content,content2) {
           cont += '<div style=width:300px;>' +
               '<h4>' + name + '</h4>' +
               '<p>' + ru(address) + '</p>' +
-              '</div>'
+              '</div><hr>'
           break
         case 'iryoMvt':
           cont += '<div style=width:300px;>' +
               '<h4>' + prop.P04_002 + '</h4>' +
               '<p>' + prop.P04_003 + '</p>' +
               '<p>' + prop.P04_004 + '</p>' +
-              '</div>'
+              '</div><hr>'
           break
         case 'zoseiMvt':
           if (cont.indexOf('zosei') === -1) {
@@ -1107,7 +1099,6 @@ export function popUp(map,layers,features,overlay,evt,content,content2) {
                 zoseiText = '区分をしていない'
                 break
             }
-            width = 200
             cont += '<div class="zosei" style=width:' + width + 'px;>' +
                 '<h4 style="color: red">' + zoseiText + '</h4>' +
                 '<p>' + prop.A54_003 + prop.A54_005 + '</p>' +
@@ -1156,7 +1147,6 @@ export function popUp(map,layers,features,overlay,evt,content,content2) {
                 text = 'ゴルフ場'
                 break
             }
-            width = 300
             cont += '<div class="mesh100mTochiriyo" style=width:' + width + 'px;>' +
                 '<h4>' + text + '</h4>' +
                 '<p>コード=' + prop.細分メッシュコード + '</p>' +
@@ -1279,6 +1269,15 @@ export function popUp(map,layers,features,overlay,evt,content,content2) {
             cont += '<div class="homusyo" style=width:370px;>' +
                 '<h5>番地=' + ru(prop.市区町村名) + ru(prop.大字名) + ru(prop.丁目名) + ru(prop.地番) + '</h5>' +
                 '住所=<span class="p-100m">_</span><span class="h4-100m">_</span>' +
+                '</div><hr>'
+          }
+          break
+        case 'hyuganadatsunamitototatsu':
+          if (cont.indexOf('hyuganadatsunamitototatsu') === -1) {
+            const m = Math.floor(prop.到達時間/60)
+            const s = (prop.到達時間 - 60*m).toFixed(2)
+            cont += '<div class="hyuganadatsunamitototatsu" style=width:300px;>' +
+                '<h5 style="color: red">日向灘地震津波浸水開始時間(地震発生後) = ' + m + '分' + s + '秒</h5>' +
                 '</div><hr>'
           }
           break
@@ -2750,6 +2749,40 @@ export function popUpHyugaShindo(rgba) {
     cont = "<h5 style=width:300px>日向灘地震 震度6強</h5>"
   } else if (r === 188 && g === 39 && b === 27) {
     cont = "<h5 style=width:300px>日向灘地震 震度7</h5>"
+  }
+  if (cont) cont = '<span style="color: red">' + cont + '</span>'
+  return cont
+}
+//----------------------------------------------------------------------------------------
+export function popUpHyuganadaToutatsu(rgba) {
+  let r = rgba[0]
+  let g = rgba[1]
+  let b = rgba[2]
+  let a = rgba[3]
+  if (a === 0) return
+  const palette = [
+    {r: 192, g: 21, b: 27},
+    {r: 241, g: 74, b: 55},
+    {r: 251, g: 124, b: 92},
+    {r: 252, g: 179, b: 152},
+    {r: 254, g: 227, b: 214},
+  ]
+  const colorClassifier = new ColorClassifier(palette);
+  const color = colorClassifier.classify({r: r, g: g, b: b});
+  r = color.r
+  g = color.g
+  b = color.b
+  let cont
+  if (r === 192 && g === 21 && b === 27) {
+    cont = "<h5 style=width:300px>日向灘地震津波浸水開始時間(地震発生後) ～15分</h5>"
+  } else if (r === 241 && g === 74 && b === 55) {
+    cont = "<h5 style=width:300px>日向灘地震津波浸水開始時間(地震発生後) 15分～20分</h5>"
+  } else if (r === 251 && g === 124 && b === 92) {
+    cont = "<h5 style=width:300px>日向灘地震津波浸水開始時間(地震発生後) 20分～25分</h5>"
+  } else if (r === 252 && g === 179 && b === 152) {
+    cont = "<h5 style=width:300px>日向灘地震津波浸水開始時間(地震発生後) 25分～30分</h5>"
+  } else if (r === 254 && g === 227 && b === 214) {
+    cont = "<h5 style=width:300px>日向灘地震津波浸水開始時間(地震発生後) 30分～</h5>"
   }
   if (cont) cont = '<span style="color: red">' + cont + '</span>'
   return cont

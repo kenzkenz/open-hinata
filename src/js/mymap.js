@@ -24,19 +24,18 @@ import Transform from 'ol-ext/interaction/Transform'
 import DragAndDrop from 'ol/interaction/DragAndDrop.js'
 import PinchRotate from 'ol/interaction/PinchRotate'
 import {GPX, GeoJSON, IGC, KML, TopoJSON} from 'ol/format.js'
-import {standardFunction} from "@/js/layers-mvt";
+// import {standardFunction} from "@/js/layers-mvt";
 import {Fill, Stroke, Style, Text} from "ol/style"
 import * as turf from '@turf/turf';
 import Select from 'ol/interaction/Select.js'
-import {click, pointerMove, altKeyOnly} from 'ol/events/condition.js';
+// import {click, pointerMove, altKeyOnly} from 'ol/events/condition.js';
 import {Circle, LineString} from "ol/geom"
 import Feature from 'ol/Feature'
 import {moveEnd} from "./permalink"
 import Dialog from 'ol-ext/control/Dialog'
 import Icon from 'ol/style/Icon'
 import * as d3 from "d3"
-import width from "ol-ext/util/input/Width";
-import {popUpHyugaShindo} from "./popup";
+
 
 // ドロー関係-------------------------------------------------------------------------------
 
@@ -718,6 +717,10 @@ export function initMap (vm) {
                             server = 'https://kenzkenz3.xsrv.jp/mvt/miyazaki/hyuganadashindoraster/'
                             zoom = 13
                             break
+                        case 'hyuganadatsunamitotatsu':
+                            server = 'https://kenzkenz3.xsrv.jp/mvt/miyazaki/hyuganadatotatsuraster/'
+                            zoom = 15
+                            break
                     }
                     if (server) return getRgb0(evt,server,zoom)
                 })
@@ -945,10 +948,10 @@ export function initMap (vm) {
                             zoom = 15
                             func = PopUp.popUpHyugaTsunami
                             break
-                        case 'hyuganadashindraster':
-                            server = 'https://kenzkenz3.xsrv.jp/mvt/miyazaki/hyuganadashindoraster/'
-                            zoom = 13
-                            func = PopUp.popUpHyugaShindo
+                        case 'hyuganadatsunamitotatsu':
+                            server = 'https://kenzkenz3.xsrv.jp/mvt/miyazaki/hyuganadatotatsuraster/'
+                            zoom = 15
+                            func = PopUp.popUpHyuganadaToutatsu
                             break
                     }
                     if (server) return getRgb0(evt,server,zoom,func)
