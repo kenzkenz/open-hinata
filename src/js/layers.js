@@ -12743,12 +12743,13 @@ export const Layers =
       children: [
         { text: '中学校',
           children: [
-              { text: 'R03中学校区', data: { id: "tyuugakkouku", layer: LayersMvt.tyuugakkouku0Obj, opacity: 1, summary: LayersMvt.tyuugakkoukuSumm } },
+            { text: 'R05中学校区', data: { id: "tyuugakkoukur05", layer: LayersMvt.tyugakkokuR05Obj, opacity: 1, summary: LayersMvt.tyugakkokuR05Summ } },
+
+            { text: 'R03中学校区', data: { id: "tyuugakkouku", layer: LayersMvt.tyuugakkouku0Obj, opacity: 1, summary: LayersMvt.tyuugakkoukuSumm } },
           ]},
         { text: '小学校',
           children: [
             { text: 'R05小学校区', data: { id: "syougakkoukur05", layer: LayersMvt.syougakkoukuR05Obj, opacity: 1, summary: LayersMvt.syougakkoukuR05Summ } },
-
             { text: 'R03小学校区', data: { id: "syougakkouku", layer: LayersMvt.syougakkouku0Obj, opacity: 1, summary: LayersMvt.syougakkoukuSumm } },
 
           ]},

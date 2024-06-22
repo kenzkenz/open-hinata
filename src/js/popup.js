@@ -14,6 +14,17 @@ export function popUp(map,layers,features,overlay,evt,content,content2) {
   let features0 = features
 
   if (features) {
+    let i = 0
+    for(let feature of features){
+      if (feature.getGeometry().getType() === 'Point') {
+        features0 = [features[i]]
+        break
+      }
+      i ++
+    }
+  }
+
+  if (features) {
     if (features[0].getGeometry().getType() === 'Point' || features[0].getGeometry().getType() === 'LineString' || features[0].getGeometry().getType() === 'MultiLineString') {
       features0 = [features[0]]
     }
@@ -81,34 +92,42 @@ export function popUp(map,layers,features,overlay,evt,content,content2) {
           }
           break;
         case 'syougakkouku':
-          if(prop.A27_001) {
-            cont += '<div style=width:200px>市区町村コード＝' + prop.A27_001 + '<br>' +
-                '設置主体=' + prop.A27_002 + '<br>' +
-                '名称＝' + prop.A27_004 + '<br>' +
-                '所在地＝' + prop.A27_005 + '<br>'+
-                'id＝' + prop.id + '<br>'+
-                '</div><hr>'
-          } else {
-            cont += '<div style=width:200px>市区町村コード＝' + prop.P29_001 + '<br>' +
-                '名称＝' + prop.P29_004 + '<br>' +
-                '所在地＝' + prop.P29_005 + '<br>'+
-                '</div><hr>'
+          if (cont.indexOf('syougakkouku') === -1) {
+            if(prop.A27_001) {
+              cont += '<div class="syougakkouku" style=width:300px>' +
+                  '<h4>小学校区＝' + prop.A27_004 + '</h4>' +
+                  '市区町村コード＝' + prop.A27_001 + '<br>' +
+                  '設置主体=' + prop.A27_002 + '<br>' +
+                  '所在地＝' + prop.A27_005 + '<br>'+
+                  'id＝' + prop.id + '<br>'+
+                  '</div><hr>'
+            } else {
+              cont += '<div class="syougakkouku" style=width:300px>' +
+                  '<h5>小学校名＝' + prop.P29_004 + '</h5>' +
+                  '市区町村コード＝' + prop.P29_001 + '<br>' +
+                  '所在地＝' + prop.P29_005 + '<br>'+
+                  '</div><hr>'
+            }
           }
           break;
           // 中学校区
         case 'tyuugakkouku' :
-          if(prop.A32_001) {
-            cont += '<div style=width:200px>市区町村コード＝' + prop.A32_001 + '<br>' +
-                '設置主体=' + prop.A32_002 + '<br>' +
-                '名称＝' + prop.A32_004 + '<br>' +
-                '所在地＝' + prop.A32_005 + '<br>' +
-                'id＝' + prop.id + '<br>'+
-                '</div><hr>'
-          } else {
-            cont += '<div style=width:200px>市区町村コード＝' + prop.P29_001 + '<br>' +
-                '名称＝' + prop.P29_004 + '<br>' +
-                '所在地＝' + prop.P29_005 + '<br>' +
-                '</div><hr>'
+          if (cont.indexOf('tyuugakkouku') === -1) {
+            if(prop.A32_001) {
+              cont += '<div class="tyuugakkouku" style=width:300px>' +
+                  '<h4>中学校区＝' + prop.A32_004 + '</h4>' +
+                  '市区町村コード＝' + prop.A32_001 + '<br>' +
+                  '設置主体=' + prop.A32_002 + '<br>' +
+                  '所在地＝' + prop.A32_005 + '<br>' +
+                  'id＝' + prop.id + '<br>'+
+                  '</div><hr>'
+            } else {
+              cont += '<div class="tyuugakkouku" style=width:300px>' +
+                  '<h5>中学校名＝' + prop.P29_004 + '</h5>' +
+                  '市区町村コード＝' + prop.P29_001 + '<br>' +
+                  '所在地＝' + prop.P29_005 + '<br>' +
+                  '</div><hr>'
+            }
           }
           break;
         case 'tyuugakkoukuH25' :

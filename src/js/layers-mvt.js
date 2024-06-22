@@ -2020,6 +2020,7 @@ for (let i of mapsStr) {
 //R03小学校区------------------------------------------------------------------------------------------------
 function Syougakkouku(){
   this.name = 'syougakkouku'
+  this.className = 'syuogakuR03'
   this.source = new VectorTileSource({
     format: new MVT(),
     maxZoom:15,
@@ -2027,8 +2028,8 @@ function Syougakkouku(){
   });
   this.style = syougakkoukuStyleFunction(3);
   this.maxResolution = 611.496226 //zoom8
-  this.declutter = true
-  this.overflow = true
+  // this.declutter = true
+  // this.overflow = true
 }
 export  const syougakkoukuObj = {};
 for (let i of mapsStr) {
@@ -2063,6 +2064,7 @@ for (let i of mapsStr) {
 //R05小学校区------------------------------------------------------------------------------------------------
 function SyougakkoukuR05(){
   this.name = 'syougakkouku'
+  this.className = 'syuogakuR05'
   this.source = new VectorTileSource({
     format: new MVT(),
     maxZoom:15,
@@ -2070,8 +2072,8 @@ function SyougakkoukuR05(){
   });
   this.style = syougakkoukuStyleFunction(3);
   this.maxResolution = 611.496226 //zoom8
-  this.declutter = true
-  this.overflow = true
+  // this.declutter = true
+  // this.overflow = true
 }
 export  const syougakkoukuR05MvtObj = {};
 for (let i of mapsStr) {
@@ -2167,8 +2169,8 @@ function syougakkoukuStyleFunction(year) {
         if (zoom < 12) break;
         style = new Style({
           image: new Icon({
-            anchor: [0.5, 1],
-            src: require('@/assets/icon/whitepin.png'),
+            // anchor: [0.5, 1],
+            src: require('@/assets/icon/whitecircle.png'),
             color: 'black'
           }),
           stroke: new Stroke({
@@ -2178,7 +2180,7 @@ function syougakkoukuStyleFunction(year) {
           text: new Text({
             font: font,
             text: text,
-            offsetY: 10,
+            offsetY: 16,
             stroke: new Stroke({
               color: "white",
               width: 3
@@ -2248,13 +2250,16 @@ function syougakkoukuStyleFunction(year) {
 //R03中学校区---------------------------------------------------------------------------------------
 function Tyuugakkouku(){
   this.name = 'tyuugakkouku'
+  this.className = 'tyuugakkoukuR03'
   this.source = new VectorTileSource({
     format: new MVT(),
     maxZoom:15,
-    url: "https://kenzkenz.github.io/tyuugaku/{z}/{x}/{y}.mvt"
+    url: "https://kenzkenz3.xsrv.jp/tyugakko/gakku/r05/{z}/{x}/{y}.mvt"
   });
   this.style = syougakkoukuStyleFunction(30);
   this.maxResolution = 611.496226 //zoom8
+  // this.declutter = true
+  // this.overflow = true
 }
 export  const tyuugakkoukuObj = {};
 for (let i of mapsStr) {
@@ -2264,7 +2269,7 @@ export const tyuugakkoukuSumm = "<a href='http://nlftp.mlit.go.jp/ksj/gml/datali
 
 function CyuugakkoukuR03xyz () {
   this.source = new XYZ({
-    url: 'https://kenzkenz3.xsrv.jp/gakku/cyuugakkou-r03/{z}/{x}/{y}.png',
+    url: 'https://kenzkenz3.xsrv.jp/tyugakko/gakkuraster/r05/{z}/{x}/{y}.png',
     crossOrigin: 'Anonymous',
     minZoom: 0,
     maxZoom: 8
@@ -2287,7 +2292,51 @@ for (let i of mapsStr) {
   })
   tyuugakkouku0Obj[i].values_['pointer'] = true
 }
+//R05中学校区---------------------------------------------------------------------------------------
+function TyuugakkoukuMvt(){
+  this.name = 'tyuugakkouku'
+  this.className = 'tyuugakkoukuR05'
+  this.source = new VectorTileSource({
+    format: new MVT(),
+    maxZoom:15,
+    url: "https://kenzkenz.github.io/tyuugaku/{z}/{x}/{y}.mvt"
+  });
+  this.style = syougakkoukuStyleFunction(30);
+  this.maxResolution = 611.496226 //zoom8
+  // this.declutter = true
+  // this.overflow = true
+}
+export  const tyugakkokuR05MvtObj = {};
+for (let i of mapsStr) {
+  tyugakkokuR05MvtObj[i] = new VectorTileLayer(new TyuugakkoukuMvt())
+}
+export const tyugakkokuR05Summ = "<a href='https://nlftp.mlit.go.jp/ksj/gml/datalist/KsjTmplt-A32-2023.html' target='_blank'>国土数値情報　中学校区データ</a>";
 
+function CyugakkokuR05Raster () {
+  this.source = new XYZ({
+    url: 'https://kenzkenz3.xsrv.jp/gakku/cyuugakkou-r03/{z}/{x}/{y}.png',
+    crossOrigin: 'Anonymous',
+    minZoom: 0,
+    maxZoom: 8
+  })
+  this.minResolution = 611.496226 //zoom8
+  // this.minResolution = 38.218514 //zoom12
+}
+export const tyugakkokuR05RasterObj = {};
+for (let i of mapsStr) {
+  tyugakkokuR05RasterObj[i] = new TileLayer(new CyugakkokuR05Raster())
+}
+
+export const tyugakkokuR05Obj = {};
+for (let i of mapsStr) {
+  tyugakkokuR05Obj[i] = new LayerGroup({
+    layers: [
+      tyugakkokuR05MvtObj[i],
+      tyugakkokuR05RasterObj[i],
+    ]
+  })
+  tyugakkokuR05Obj[i].values_['pointer'] = true
+}
 
 
 
