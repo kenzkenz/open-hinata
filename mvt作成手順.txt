@@ -309,6 +309,9 @@ tippecanoe -Z0 -z16 -pk -pf -f -e tile ht.geojson
 tippecanoe-decode 1 -z 15 -Z 15 -c > 1.geojson
 tippecanoe-decode 2 -z 15 -Z 15 -c > 2.geojson
 tippecanoe -rg -pk -pf -f -e tile s.geojson
+tippecanoe -rg -pk -pf -f -e tile t.geojson
+
+
 
 $ cd tile
 $ gzip -d -v -r -S .pbf *
