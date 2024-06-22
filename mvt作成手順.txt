@@ -311,6 +311,8 @@ tippecanoe-decode 2 -z 15 -Z 15 -c > 2.geojson
 tippecanoe -rg -pk -pf -f -e tile s.geojson
 tippecanoe -rg -pk -pf -f -e tile t.geojson
 tippecanoe -rg -pk -pf -f -e tile2 s2.geojson
+tippecanoe -rg -pk -pf -f -e tile2 t2.geojson
+
 
 
 $ cd tile

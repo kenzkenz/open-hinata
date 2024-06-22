@@ -98,8 +98,15 @@ export function popUp(map,layers,features,overlay,evt,content,content2) {
                   '<h4>小学校区＝' + prop.A27_004 + '</h4>' +
                   '市区町村コード＝' + prop.A27_001 + '<br>' +
                   '設置主体=' + prop.A27_002 + '<br>' +
-                  '所在地＝' + prop.A27_005 + '<br>'+
-                  'id＝' + prop.id + '<br>'+
+                  '所在地＝' + prop.A27_005 + '<br>' +
+                  'id＝' + prop.id + '<br>' +
+                  '</div><hr>'
+            } else if (prop.校区名) {
+              cont += '<div class="syougakkouku" style=width:300px>' +
+                  '<h4>小学校区＝' + prop.校区名 + '</h4>' +
+                  '区=' + prop.区 + '<br>' +
+                  '所在＝' + prop.所在 + '<br>' +
+                  '' + prop.注意事項 + '<br>' +
                   '</div><hr>'
             } else {
               cont += '<div class="syougakkouku" style=width:300px>' +

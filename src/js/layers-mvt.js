@@ -2068,7 +2068,7 @@ function SyougakkoukuR05(){
   this.source = new VectorTileSource({
     format: new MVT(),
     maxZoom:15,
-    url: "https://kenzkenz3.xsrv.jp/syogakko/gakku/r05/{z}/{x}/{y}.mvt"
+    url: "https://kenzkenz3.xsrv.jp/syogakko/gakku/r0502/{z}/{x}/{y}.mvt"
   });
   this.style = syougakkoukuStyleFunction(3);
   this.maxResolution = 611.496226 //zoom8
@@ -2083,7 +2083,7 @@ export const syougakkoukuR05Summ = "<a href='https://nlftp.mlit.go.jp/ksj/gml/da
 
 function SyougakkoukuR05Raster () {
   this.source = new XYZ({
-    url: 'https://kenzkenz3.xsrv.jp/syogakko/gakkuraster/r05/{z}/{x}/{y}.png',
+    url: 'https://kenzkenz3.xsrv.jp/syogakko/gakkuraster/r0502/{z}/{x}/{y}.png',
     crossOrigin: 'Anonymous',
     minZoom: 0,
     maxZoom: 11
@@ -2147,7 +2147,7 @@ function syougakkoukuStyleFunction(year) {
     }
     let rgb
     let rgba
-    if (prop["A27_005"] || prop["A32_005"] || prop["A32_006"]) {
+    if (prop["A27_005"] || prop["A32_005"] || prop["A32_006"] || prop["校区名"]) {
       const id = Math.round(Number(prop["id"].toString().slice(-3)))
       // const id = Number(prop["id"])
       // rgb = d3.rgb(d3syougakkoukuColor(Number(prop["id"])));
