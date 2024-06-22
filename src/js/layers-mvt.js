@@ -2058,7 +2058,47 @@ for (let i of mapsStr) {
   })
   syougakkouku0Obj[i].values_['pointer'] = true
 }
+//R05小学校区------------------------------------------------------------------------------------------------
+function SyougakkoukuR05(){
+  this.name = 'syougakkouku'
+  this.source = new VectorTileSource({
+    format: new MVT(),
+    maxZoom:15,
+    url: "https://kenzkenz3.xsrv.jp/syogakko/gakku/{z}/{x}/{y}.mvt"
+  });
+  this.style = syougakkoukuStyleFunction(3);
+  this.maxResolution = 611.496226 //zoom8
+}
+export  const syougakkoukuR05MvtObj = {};
+for (let i of mapsStr) {
+  syougakkoukuR05MvtObj[i] = new VectorTileLayer(new SyougakkoukuR05())
+}
+export const syougakkoukuR05Summ = "<a href='https://nlftp.mlit.go.jp/ksj/gml/datalist/KsjTmplt-A27-2023.html' target='_blank'>国土数値情報　小学校区データ</a>";
 
+function SyougakkoukuR05Raster () {
+  this.source = new XYZ({
+    url: 'https://kenzkenz3.xsrv.jp/syogakko/gakkuraster/{z}/{x}/{y}.png',
+    crossOrigin: 'Anonymous',
+    minZoom: 0,
+    maxZoom: 11
+  })
+  this.minResolution = 611.496226 //zoom8
+}
+export const syougakkoukuR05RasterObj = {};
+for (let i of mapsStr) {
+  syougakkoukuR05RasterObj[i] = new TileLayer(new SyougakkoukuR05Raster())
+}
+
+export const syougakkoukuR05Obj = {};
+for (let i of mapsStr) {
+  syougakkoukuR05Obj[i] = new LayerGroup({
+    layers: [
+      syougakkoukuR05MvtObj[i],
+      syougakkoukuR05RasterObj[i],
+    ]
+  })
+  syougakkoukuR05Obj[i].values_['pointer'] = true
+}
 // ----------------------------------------------------------------------
 // 0から100の配列を作成する。
 const domain = [...Array(1000)].map((_, i) => i)

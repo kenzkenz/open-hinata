@@ -12747,7 +12747,10 @@ export const Layers =
           ]},
         { text: '小学校',
           children: [
-              { text: 'R03小学校区', data: { id: "syougakkouku", layer: LayersMvt.syougakkouku0Obj, opacity: 1, summary: LayersMvt.syougakkoukuSumm } },
+            { text: 'R05小学校区', data: { id: "syougakkoukur05", layer: LayersMvt.syougakkoukuR05Obj, opacity: 1, summary: LayersMvt.syougakkoukuR05Summ } },
+
+            { text: 'R03小学校区', data: { id: "syougakkouku", layer: LayersMvt.syougakkouku0Obj, opacity: 1, summary: LayersMvt.syougakkoukuSumm } },
+
           ]},
         { text: '幼稚園、保育園',
           children: [

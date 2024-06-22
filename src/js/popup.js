@@ -301,7 +301,11 @@ export function popUp(map,layers,features,overlay,evt,content,content2) {
           cont += '<div style=width:200px>' + prop.N03_004 + '</div><hr>'
           break
         case 'kyoukai':
-          cont += '<div style=width:200px>' + prop.RCOM_NAME + '</div><hr>'
+          if (cont.indexOf('kyoukai') === -1) {
+            cont += '<div class="kyoukai" style=width:200px>' +
+                '<h4>' + prop.RCOM_NAME + '</h4>' +
+                '</div><hr>'
+          }
           break
         case 'kosyou':
           cont += '<div style=width:200px>' + prop.W09_001 + '</div><hr>'
