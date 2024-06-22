@@ -2027,6 +2027,8 @@ function Syougakkouku(){
   });
   this.style = syougakkoukuStyleFunction(3);
   this.maxResolution = 611.496226 //zoom8
+  this.declutter = true
+  this.overflow = true
 }
 export  const syougakkoukuObj = {};
 for (let i of mapsStr) {
@@ -2064,10 +2066,12 @@ function SyougakkoukuR05(){
   this.source = new VectorTileSource({
     format: new MVT(),
     maxZoom:15,
-    url: "https://kenzkenz3.xsrv.jp/syogakko/gakku/{z}/{x}/{y}.mvt"
+    url: "https://kenzkenz3.xsrv.jp/syogakko/gakku/r05/{z}/{x}/{y}.mvt"
   });
   this.style = syougakkoukuStyleFunction(3);
   this.maxResolution = 611.496226 //zoom8
+  this.declutter = true
+  this.overflow = true
 }
 export  const syougakkoukuR05MvtObj = {};
 for (let i of mapsStr) {
@@ -2077,7 +2081,7 @@ export const syougakkoukuR05Summ = "<a href='https://nlftp.mlit.go.jp/ksj/gml/da
 
 function SyougakkoukuR05Raster () {
   this.source = new XYZ({
-    url: 'https://kenzkenz3.xsrv.jp/syogakko/gakkuraster/{z}/{x}/{y}.png',
+    url: 'https://kenzkenz3.xsrv.jp/syogakko/gakkuraster/r05/{z}/{x}/{y}.png',
     crossOrigin: 'Anonymous',
     minZoom: 0,
     maxZoom: 11
