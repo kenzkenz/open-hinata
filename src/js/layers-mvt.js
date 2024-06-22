@@ -2083,7 +2083,7 @@ export const syougakkoukuR05Summ = "<a href='https://nlftp.mlit.go.jp/ksj/gml/da
 
 function SyougakkoukuR05Raster () {
   this.source = new XYZ({
-    url: 'https://kenzkenz3.xsrv.jp/syogakko/gakkuraster/r0502/{z}/{x}/{y}.png',
+    url: 'https://kenzkenz3.xsrv.jp/syogakko/gakkuraster/r05/{z}/{x}/{y}.png',
     crossOrigin: 'Anonymous',
     minZoom: 0,
     maxZoom: 11
@@ -2254,7 +2254,7 @@ function Tyuugakkouku(){
   this.source = new VectorTileSource({
     format: new MVT(),
     maxZoom:15,
-    url: "https://kenzkenz3.xsrv.jp/tyugakko/gakku/r05/{z}/{x}/{y}.mvt"
+    url: "https://kenzkenz.github.io/tyuugaku/{z}/{x}/{y}.mvt"
   });
   this.style = syougakkoukuStyleFunction(30);
   this.maxResolution = 611.496226 //zoom8
@@ -2269,7 +2269,7 @@ export const tyuugakkoukuSumm = "<a href='http://nlftp.mlit.go.jp/ksj/gml/datali
 
 function CyuugakkoukuR03xyz () {
   this.source = new XYZ({
-    url: 'https://kenzkenz3.xsrv.jp/tyugakko/gakkuraster/r05/{z}/{x}/{y}.png',
+    url: 'https://kenzkenz3.xsrv.jp/gakku/cyuugakkou-r03/{z}/{x}/{y}.png',
     crossOrigin: 'Anonymous',
     minZoom: 0,
     maxZoom: 8
@@ -2299,7 +2299,8 @@ function TyuugakkoukuMvt(){
   this.source = new VectorTileSource({
     format: new MVT(),
     maxZoom:15,
-    url: "https://kenzkenz.github.io/tyuugaku/{z}/{x}/{y}.mvt"
+    // url: "https://kenzkenz.github.io/tyuugaku/{z}/{x}/{y}.mvt"
+    url: "https://kenzkenz3.xsrv.jp/tyugakko/gakku/r0502/{z}/{x}/{y}.mvt"
   });
   this.style = syougakkoukuStyleFunction(30);
   this.maxResolution = 611.496226 //zoom8
@@ -2314,7 +2315,8 @@ export const tyugakkokuR05Summ = "<a href='https://nlftp.mlit.go.jp/ksj/gml/data
 
 function CyugakkokuR05Raster () {
   this.source = new XYZ({
-    url: 'https://kenzkenz3.xsrv.jp/gakku/cyuugakkou-r03/{z}/{x}/{y}.png',
+    // url: 'https://kenzkenz3.xsrv.jp/gakku/cyuugakkou-r03/{z}/{x}/{y}.png',
+    url: 'https://kenzkenz3.xsrv.jp/tyugakko/gakkuraster/r0502/{z}/{x}/{y}.png',
     crossOrigin: 'Anonymous',
     minZoom: 0,
     maxZoom: 8
