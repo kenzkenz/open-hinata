@@ -81,15 +81,12 @@ export default {
       },
       set(value) {
         this.paintGetSet = value
-        console.log(value)
-        // LayersMvt.syougakkoukuR05MvtObj[this.mapName].getSource().changed()
         this.layer.getSource().changed()
       }
     },
   },
   methods: {
     paintChange (value) {
-      console.log(this.layer)
       this.layer.getSource().changed()
       this.storeUpdate()
     },
