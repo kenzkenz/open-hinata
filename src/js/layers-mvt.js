@@ -2224,6 +2224,10 @@ function syougakkoukuStyleFunction(year,mapName,componentName) {
             fill: new Fill({
               color: rgba
             }),
+            stroke: new Stroke({
+              color: "black",
+              width: 1
+            }),
             zIndex: 0
           });
         }
