@@ -294,6 +294,12 @@ export function permalinkEventSet (response) {
                             case 'jinko':
                               height = '210px'
                               break
+                            case 'syogakkoR05':
+                            case 'syogakkoR03':
+                            case 'tyugakkoR05':
+                            case 'tyugakkoR05':
+                              height = '170px'
+                              break
                             case 'jinko100m':
                               height = '425px'
                               break

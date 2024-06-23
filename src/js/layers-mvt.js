@@ -2018,7 +2018,7 @@ for (let i of mapsStr) {
 // export const syougakkoukuH22Summ = "<a href='http://nlftp.mlit.go.jp/ksj/gml/datalist/KsjTmplt-A27-v2_1.html' target='_blank'>国土数値情報　小学校区データ</a>";
 
 //R03小学校区------------------------------------------------------------------------------------------------
-function Syougakkouku(){
+function Syougakkouku(mapName){
   this.name = 'syougakkouku'
   this.className = 'syuogakuR03'
   this.source = new VectorTileSource({
@@ -2026,16 +2026,16 @@ function Syougakkouku(){
     maxZoom:15,
     url: "https://kenzkenz.github.io/syougaku/{z}/{x}/{y}.mvt"
   });
-  this.style = syougakkoukuStyleFunction(3);
+  this.style = syougakkoukuStyleFunction(3,mapName,'syogakkoR03');
   this.maxResolution = 611.496226 //zoom8
   // this.declutter = true
   // this.overflow = true
 }
 export  const syougakkoukuObj = {};
 for (let i of mapsStr) {
-  syougakkoukuObj[i] = new VectorTileLayer(new Syougakkouku())
+  syougakkoukuObj[i] = new VectorTileLayer(new Syougakkouku(i))
 }
-export const syougakkoukuSumm = "<a href='http://nlftp.mlit.go.jp/ksj/gml/datalist/KsjTmplt-A27-v2_1.html' target='_blank'>国土数値情報　小学校区データ</a>";
+export const syougakkoukuSumm = "<a href='http://nlftp.mlit.go.jp/ksj/gml/datalist/KsjTmplt-A27-v2_1.html' target='_blank'>国土数値情報</a>";
 
 function SyougakkoukuR03xyz () {
   this.source = new XYZ({
@@ -2062,7 +2062,7 @@ for (let i of mapsStr) {
   syougakkouku0Obj[i].values_['pointer'] = true
 }
 //R05小学校区------------------------------------------------------------------------------------------------
-function SyougakkoukuR05(){
+function SyougakkoukuR05(mapName){
   this.name = 'syougakkouku'
   this.className = 'syuogakuR05'
   this.source = new VectorTileSource({
@@ -2070,16 +2070,16 @@ function SyougakkoukuR05(){
     maxZoom:15,
     url: "https://kenzkenz3.xsrv.jp/syogakko/gakku/r0502/{z}/{x}/{y}.mvt"
   });
-  this.style = syougakkoukuStyleFunction(3);
+  this.style = syougakkoukuStyleFunction(3,mapName,'syogakkoR05');
   this.maxResolution = 611.496226 //zoom8
   // this.declutter = true
   // this.overflow = true
 }
 export  const syougakkoukuR05MvtObj = {};
 for (let i of mapsStr) {
-  syougakkoukuR05MvtObj[i] = new VectorTileLayer(new SyougakkoukuR05())
+  syougakkoukuR05MvtObj[i] = new VectorTileLayer(new SyougakkoukuR05(i))
 }
-export const syougakkoukuR05Summ = "<a href='https://nlftp.mlit.go.jp/ksj/gml/datalist/KsjTmplt-A27-2023.html' target='_blank'>国土数値情報　小学校区データ</a>";
+export const syougakkoukuR05Summ = "<a href='https://nlftp.mlit.go.jp/ksj/gml/datalist/KsjTmplt-A27-2023.html' target='_blank'>国土数値情報</a>";
 
 function SyougakkoukuR05Raster () {
   this.source = new XYZ({
@@ -2128,11 +2128,28 @@ const d3OridinalColor = d3.scaleOrdinal()
       , "darkviolet", "yellowgreen", "darkmagenta", "cyan"
 
     ]);
-function syougakkoukuStyleFunction(year) {
+function syougakkoukuStyleFunction(year,mapName,componentName) {
   return function (feature, resolution) {
     const prop = feature.getProperties()
     const geoType = feature.getGeometry().getType()
     const zoom = getZoom(resolution)
+    let paintCheck
+    switch (componentName) {
+      case 'syogakkoR05':
+        paintCheck = store.state.info.paintCheckSyogakkoR05[mapName]
+        break
+      case 'syogakkoR03':
+        paintCheck = store.state.info.paintCheckSyogakkoR03[mapName]
+        break
+      case 'tyugakkoR05':
+        paintCheck = store.state.info.paintCheckTyugakkoR05[mapName]
+        break
+      case 'tyugakkoR03':
+        paintCheck = store.state.info.paintCheckTyugakkoR03[mapName]
+        break
+    }
+    // console.log(componentName,paintCheck)
+    // const paintCheck = store.state.info.paintCheckSyogakkoR05[mapName]
     let text = ''
     if (year === 22 || year === 28) {
       text = prop["A27_003"];
@@ -2156,6 +2173,7 @@ function syougakkoukuStyleFunction(year) {
     } else {
       rgba = "rgba(255,255,255,0)"
     }
+    if (!paintCheck) rgba = "rgba(255,255,255,0)"
     let font
     if (zoom <= 14) {
       font = "12px sans-serif"
@@ -2248,7 +2266,7 @@ function syougakkoukuStyleFunction(year) {
 // export const tyuugakkoukuH25Summ = "<a href='http://nlftp.mlit.go.jp/ksj/gml/datalist/KsjTmplt-A32-v2_0.html' target='_blank'>国土数値情報　中学校区データ</a>";
 
 //R03中学校区---------------------------------------------------------------------------------------
-function Tyuugakkouku(){
+function Tyuugakkouku(mapName){
   this.name = 'tyuugakkouku'
   this.className = 'tyuugakkoukuR03'
   this.source = new VectorTileSource({
@@ -2256,16 +2274,16 @@ function Tyuugakkouku(){
     maxZoom:15,
     url: "https://kenzkenz.github.io/tyuugaku/{z}/{x}/{y}.mvt"
   });
-  this.style = syougakkoukuStyleFunction(30);
+  this.style = syougakkoukuStyleFunction(30,mapName,'tyugakkoR03');
   this.maxResolution = 611.496226 //zoom8
   // this.declutter = true
   // this.overflow = true
 }
 export  const tyuugakkoukuObj = {};
 for (let i of mapsStr) {
-  tyuugakkoukuObj[i] = new VectorTileLayer(new Tyuugakkouku())
+  tyuugakkoukuObj[i] = new VectorTileLayer(new Tyuugakkouku(i))
 }
-export const tyuugakkoukuSumm = "<a href='http://nlftp.mlit.go.jp/ksj/gml/datalist/KsjTmplt-A32-v2_0.html' target='_blank'>国土数値情報　中学校区データ</a>";
+export const tyuugakkoukuSumm = "<a href='http://nlftp.mlit.go.jp/ksj/gml/datalist/KsjTmplt-A32-v2_0.html' target='_blank'>国土数値情報</a>";
 
 function CyuugakkoukuR03xyz () {
   this.source = new XYZ({
@@ -2293,7 +2311,7 @@ for (let i of mapsStr) {
   tyuugakkouku0Obj[i].values_['pointer'] = true
 }
 //R05中学校区---------------------------------------------------------------------------------------
-function TyuugakkoukuMvt(){
+function TyuugakkoukuMvt(mapName){
   this.name = 'tyuugakkouku'
   this.className = 'tyuugakkoukuR05'
   this.source = new VectorTileSource({
@@ -2302,16 +2320,16 @@ function TyuugakkoukuMvt(){
     // url: "https://kenzkenz.github.io/tyuugaku/{z}/{x}/{y}.mvt"
     url: "https://kenzkenz3.xsrv.jp/tyugakko/gakku/r0502/{z}/{x}/{y}.mvt"
   });
-  this.style = syougakkoukuStyleFunction(30);
+  this.style = syougakkoukuStyleFunction(30,mapName,'tyugakkoR05');
   this.maxResolution = 611.496226 //zoom8
   // this.declutter = true
   // this.overflow = true
 }
 export  const tyugakkokuR05MvtObj = {};
 for (let i of mapsStr) {
-  tyugakkokuR05MvtObj[i] = new VectorTileLayer(new TyuugakkoukuMvt())
+  tyugakkokuR05MvtObj[i] = new VectorTileLayer(new TyuugakkoukuMvt(i))
 }
-export const tyugakkokuR05Summ = "<a href='https://nlftp.mlit.go.jp/ksj/gml/datalist/KsjTmplt-A32-2023.html' target='_blank'>国土数値情報　中学校区データ</a>";
+export const tyugakkokuR05Summ = "<a href='https://nlftp.mlit.go.jp/ksj/gml/datalist/KsjTmplt-A32-2023.html' target='_blank'>国土数値情報</a>";
 
 function CyugakkokuR05Raster () {
   this.source = new XYZ({

@@ -23,8 +23,10 @@
             <v-ssds-pref :item="item" :mapName="mapName" v-else-if="item.component.name === 'ssdsPref'"/>
             <v-ssds-pref :item="item" :mapName="mapName" v-else-if="item.component.name === 'ssdsCity'"/>
             <v-kosoku :item="item" :mapName="mapName" v-else-if="item.component.name === 'kosoku'"/>
-
             <v-tetsudojikeirertsu :item="item" :mapName="mapName" v-else-if="item.component.name === 'tetsudoJikeiretsu'"/>
+
+            <v-paint :item="item" :mapName="mapName" v-else-if="item.component.name === 'syogakkoR05' || item.component.name === 'syogakkoR03' || item.component.name === 'tyugakkoR05' || item.component.name === 'tyugakkoR03'"/>
+
 
         </div>
     </div>
@@ -39,6 +41,7 @@
   import DialogInfoJinko100m from '@/components/dialog-info/Dialog-info-jinko100m'
   import DialogInfoJinko250m from '@/components/dialog-info/Dialog-info-jinko250m'
   import DialogInfoJinko500m from '@/components/dialog-info/Dialog-info-jinko500m'
+  import DialogInfoPaint from '@/components/dialog-info/Dialog-info-paint'
   import DialogInfoSsdsPref from '@/components/dialog-info/Dialog-info-ssds'
   import DialogInfoKosoku from '@/components/dialog-info/Dialog-info-kosoku'
   import DialogInfoteTetudojikeiretsu from '@/components/dialog-info/Dialog-info-tetsudojikeirertsu'
@@ -54,6 +57,7 @@
       'v-jinko-100m':DialogInfoJinko100m,
       'v-jinko-250m':DialogInfoJinko250m,
       'v-jinko-500m':DialogInfoJinko500m,
+      'v-paint':DialogInfoPaint,
       'v-ssds-pref':DialogInfoSsdsPref,
       'v-kosoku':DialogInfoKosoku,
       'v-tetsudojikeirertsu':DialogInfoteTetudojikeiretsu,

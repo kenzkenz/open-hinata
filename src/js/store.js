@@ -310,6 +310,10 @@ const moduleInfo = {
       map03: true,
       map04: true
     },
+    paintCheckSyogakkoR05: {map01: true, map02: true, map03: true, map04: true},
+    paintCheckSyogakkoR03: {map01: true, map02: true, map03: true, map04: true},
+    paintCheckTyugakkoR05: {map01: true, map02: true, map03: true, map04: true},
+    paintCheckTyugakkoR03: {map01: true, map02: true, map03: true, map04: true},
     seaLevel10m: {
       map01: 0,
       map02: 0,
@@ -476,6 +480,18 @@ const moduleInfo = {
           } else if (payload.order === 1){
             variable = 'paintCheck500m'
           }
+          break
+        case 'syogakkoR05':
+          variable = 'paintCheckSyogakkoR05'
+          break
+        case 'syogakkoR03':
+          variable = 'paintCheckSyogakkoR03'
+          break
+        case 'tyugakkoR05':
+          variable = 'paintCheckTyugakkoR05'
+          break
+        case 'tyugakkoR03':
+          variable = 'paintCheckTyugakkoR03'
           break
         case 'kosoku':
           variable = 'kosoku'
