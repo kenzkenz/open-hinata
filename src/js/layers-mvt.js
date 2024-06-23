@@ -2067,7 +2067,7 @@ function SyougakkoukuR05(mapName){
   this.className = 'syuogakuR05'
   this.source = new VectorTileSource({
     format: new MVT(),
-    maxZoom:15,
+    maxZoom:14,
     url: "https://kenzkenz3.xsrv.jp/syogakko/gakku/r0502/{z}/{x}/{y}.mvt"
   });
   this.style = syougakkoukuStyleFunction(3,mapName,'syogakkoR05');
@@ -2134,18 +2134,23 @@ function syougakkoukuStyleFunction(year,mapName,componentName) {
     const geoType = feature.getGeometry().getType()
     const zoom = getZoom(resolution)
     let paintCheck
+    let textCheck
     switch (componentName) {
       case 'syogakkoR05':
         paintCheck = store.state.info.paintCheckSyogakkoR05[mapName]
+        textCheck = store.state.info.textCheckSyogakkoR05[mapName]
         break
       case 'syogakkoR03':
         paintCheck = store.state.info.paintCheckSyogakkoR03[mapName]
+        textCheck = store.state.info.textCheckSyogakkoR03[mapName]
         break
       case 'tyugakkoR05':
         paintCheck = store.state.info.paintCheckTyugakkoR05[mapName]
+        textCheck = store.state.info.textCheckTyugakkoR05[mapName]
         break
       case 'tyugakkoR03':
         paintCheck = store.state.info.paintCheckTyugakkoR03[mapName]
+        textCheck = store.state.info.textCheckTyugakkoR03[mapName]
         break
     }
     // console.log(componentName,paintCheck)
@@ -2162,6 +2167,12 @@ function syougakkoukuStyleFunction(year,mapName,componentName) {
     } else {
       text = prop["P29_005"];
     }
+    if(text) {
+      const result = text.match(/.*市立|.*町立|.*区立/gi);
+      text = text.replace(result,'')
+      // text = text.match(/(?<=市立).*|(?<=町立).*|(?<=区立).*/gi)[0]
+    }
+    if (!textCheck) text = ''
     let rgb
     let rgba
     if (prop["A27_005"] || prop["A32_005"] || prop["A32_006"] || prop["校区名"]) {
@@ -2320,7 +2331,7 @@ function TyuugakkoukuMvt(mapName){
   this.className = 'tyuugakkoukuR05'
   this.source = new VectorTileSource({
     format: new MVT(),
-    maxZoom:15,
+    maxZoom:14,
     // url: "https://kenzkenz.github.io/tyuugaku/{z}/{x}/{y}.mvt"
     url: "https://kenzkenz3.xsrv.jp/tyugakko/gakku/r0502/{z}/{x}/{y}.mvt"
   });

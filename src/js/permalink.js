@@ -296,7 +296,7 @@ export function permalinkEventSet (response) {
                               break
                             case 'syogakkoR05':
                             case 'syogakkoR03':
-                            case 'tyugakkoR05':
+                            case 'tyugakkoR03':
                             case 'tyugakkoR05':
                               height = '170px'
                               break
@@ -352,7 +352,7 @@ export function permalinkEventSet (response) {
                       // const c = urlLayerListArr[i][j].c;
                       if (c){
                         for (let k=0; k<c.values.length;k++) {
-                          // console.log(c.name,c.values[k])
+                          console.log(c.name,c.values[k])
                           store.commit('info/update', {name: c.name, mapName: mapName, value: c.values[k], order: k})
                         }
                       }

@@ -314,6 +314,12 @@ const moduleInfo = {
     paintCheckSyogakkoR03: {map01: true, map02: true, map03: true, map04: true},
     paintCheckTyugakkoR05: {map01: true, map02: true, map03: true, map04: true},
     paintCheckTyugakkoR03: {map01: true, map02: true, map03: true, map04: true},
+
+    textCheckSyogakkoR05: {map01: true, map02: true, map03: true, map04: true},
+    textCheckSyogakkoR03: {map01: true, map02: true, map03: true, map04: true},
+    textCheckTyugakkoR05: {map01: true, map02: true, map03: true, map04: true},
+    textCheckTyugakkoR03: {map01: true, map02: true, map03: true, map04: true},
+
     seaLevel10m: {
       map01: 0,
       map02: 0,
@@ -482,17 +488,32 @@ const moduleInfo = {
           }
           break
         case 'syogakkoR05':
-          variable = 'paintCheckSyogakkoR05'
+          if (payload.order === 0) {
+            variable = 'paintCheckSyogakkoR05'
+          } else if (payload.order === 1){
+            variable = 'textCheckSyogakkoR05'
+          }
           break
         case 'syogakkoR03':
-          variable = 'paintCheckSyogakkoR03'
+          if (payload.order === 0) {
+            variable = 'paintCheckSyogakkoR03'
+          } else if (payload.order === 1){
+            variable = 'textCheckSyogakkoR03'
+          }
           break
         case 'tyugakkoR05':
-          variable = 'paintCheckTyugakkoR05'
+          if (payload.order === 0) {
+            variable = 'paintCheckTyugakkoR05'
+          } else if (payload.order === 1){
+            variable = 'textCheckTyugakkoR05'
+          }
           break
         case 'tyugakkoR03':
-          variable = 'paintCheckTyugakkoR03'
-          break
+          if (payload.order === 0) {
+            variable = 'paintCheckTyugakkoR03'
+          } else if (payload.order === 1){
+            variable = 'textCheckTyugakkoR03'
+          }
         case 'kosoku':
           variable = 'kosoku'
           break
