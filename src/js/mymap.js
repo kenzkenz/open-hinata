@@ -602,28 +602,11 @@ export function initMap (vm) {
             //     document.querySelector('#' + mapName + ' .ol-viewport').style.cursor = "pointer"
             // }
             // // --------------------------------------------------------------------------------
-
-
-
-            // // 特定のラスターでカーソルを変える
-            const pixel = (map).getPixelFromCoordinate(evt.coordinate);
-            const layersObj = [];
-            //マウスがあたった箇所のレイヤーを複数取得する
-            (map).forEachLayerAtPixel(pixel,function(layer, rgba){
-                // console.log(layer.get('name'))
-                layersObj.push({
-                    layer,
-                    rgba
-                });
+            const layers = map.getLayers().getArray().filter((layer) => {
+                return layer.getVisible()
             })
-            // let layerNames = layersObj.filter((object) =>{
-            //     if (object.layer.get('name') === 'drawSource') return
-            //     if (object.layer.get('name') === 'drawLayer2') return
-            //     if (object.layer.get('name') === undefined) return
-            //     return object
-            // })
-            const layerNames = layersObj.map((object) =>{
-                return object.layer.get('name')
+            const layerNames = layers.map((v) => {
+                return v.get('name')
             })
             async function pointerCreate() {
                 let fetchData = layerNames.map((layerName) => {
@@ -795,24 +778,11 @@ export function initMap (vm) {
             // if (hazardLayers.length===0) return
             //-------------------------------------------------------------------------
             // d3.select('.loadingImg').style("display","block")
-            const pixel = (map).getPixelFromCoordinate(evt.coordinate);
-            const layersObj = [];
-            //マウスがあたった箇所のレイヤーを複数取得する
-            (map).forEachLayerAtPixel(pixel,function(layer, rgba){
-                // console.log(layer.get('name'))
-                layersObj.push({
-                    layer,
-                    rgba
-                });
+            const layers = map.getLayers().getArray().filter((layer) => {
+                return layer.getVisible()
             })
-            let layerNames = layersObj.filter((object) =>{
-                if (object.layer.get('name') === 'drawSource') return
-                if (object.layer.get('name') === 'drawLayer2') return
-                if (object.layer.get('name') === undefined) return
-                return object
-            })
-            layerNames = layerNames.map((object) =>{
-                return object.layer.get('name')
+            const layerNames = layers.map((v) => {
+                return v.get('name')
             })
             // シームレス地質図-------------------------------------------------------------------------------
             function popupSeamless(evt) {
@@ -1003,52 +973,60 @@ export function initMap (vm) {
             }
             popupCreate()
         })
-        // 大正古地図用-----------------------------------------------------------------
-        map.on('singleclick', function (evt) {
+        // // 大正古地図用-----------------------------------------------------------------
+        // map.on('singleclick', function (evt) {
+        //
+        //     const feature = map.forEachFeatureAtPixel(evt.pixel,
+        //         function(feature) {
+        //             return feature;
+        //         });
+        //     if (feature) return;
+        //
+        //
+        //     //少しでも処理を早めるために古地図レイヤーがなかったら抜ける。
+        //     const layers = map.getLayers().getArray();
+        //     let kotizuLayer = layers.find(el => el.get('dep'));
+        //     if (!kotizuLayer) return //ここで抜ける
+        //
+        //     //  洪水浸水想定と重ねるときは動作させない
+        //     const layers0 = map.getLayers().getArray();
+        //     const hazardLayers = layers0.filter(el => el.get('pointer'));
+        //     if (hazardLayers.length>0) return
+        //     // ここまで
+        //
+        //     // ここから本番
+        //     const pixel = (map).getPixelFromCoordinate(evt.coordinate);
+        //     const clickedLayers = [];
+        //     //クリックされた箇所のレイヤーを複数取得する
+        //     (map).forEachLayerAtPixel(pixel,function(layer){
+        //         clickedLayers.push(layer);
+        //     });
+        //
+        //     const layers00 = map.getLayers().getArray().filter((layer) => {
+        //         return layer.getVisible()
+        //     })
+        //     console.log(layers00)
+        //     console.log(clickedLayers)
+        //
+        //     // クリックされたレイヤーのうちdepを持っているレイヤーだけ抽出する。
+        //     kotizuLayer = clickedLayers.find(el => el.values_.dep);
+        //     if (kotizuLayer) {
+        //         const dep = kotizuLayer.values_.dep
+        //         if (kotizuLayer.getFilters().length >0) {
+        //             // 3回削除する必要がある。
+        //             kotizuLayer.removeFilter()
+        //             kotizuLayer.removeFilter()
+        //             kotizuLayer.removeFilter()
+        //             maxZndex++
+        //             kotizuLayer.setZIndex(maxZndex)
+        //         } else {
+        //             Layers.mask(dep,kotizuLayer)
+        //             kotizuLayer.setZIndex(undefined)
+        //         }
+        //     }
+        //     drawLayer2.setZIndex(maxZndex)
+        // })
 
-            const feature = map.forEachFeatureAtPixel(evt.pixel,
-                function(feature) {
-                    return feature;
-                });
-            if (feature) return;
-
-
-            //少しでも処理を早めるために古地図レイヤーがなかったら抜ける。
-            const layers = map.getLayers().getArray();
-            let kotizuLayer = layers.find(el => el.get('dep'));
-            if (!kotizuLayer) return //ここで抜ける
-
-            //  洪水浸水想定と重ねるときは動作させない
-            const layers0 = map.getLayers().getArray();
-            const hazardLayers = layers0.filter(el => el.get('pointer'));
-            if (hazardLayers.length>0) return
-            // ここまで
-
-            // ここから本番
-            const pixel = (map).getPixelFromCoordinate(evt.coordinate);
-            const clickedLayers = [];
-            //クリックされた箇所のレイヤーを複数取得する
-            (map).forEachLayerAtPixel(pixel,function(layer){
-                clickedLayers.push(layer);
-            });
-            // クリックされたレイヤーのうちdepを持っているレイヤーだけ抽出する。
-            kotizuLayer = clickedLayers.find(el => el.values_.dep);
-            if (kotizuLayer) {
-                const dep = kotizuLayer.values_.dep
-                if (kotizuLayer.getFilters().length >0) {
-                    // 3回削除する必要がある。
-                    kotizuLayer.removeFilter()
-                    kotizuLayer.removeFilter()
-                    kotizuLayer.removeFilter()
-                    maxZndex++
-                    kotizuLayer.setZIndex(maxZndex)
-                } else {
-                    Layers.mask(dep,kotizuLayer)
-                    kotizuLayer.setZIndex(undefined)
-                }
-            }
-            drawLayer2.setZIndex(maxZndex)
-        })
         //--------------------------------------------------------------------------------
         // シームレス地質図ポップアップ用
         map.on('singleclick', function (evt) {
