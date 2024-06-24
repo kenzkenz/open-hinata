@@ -761,8 +761,6 @@ export function initMap (vm) {
         // シングルクリック------------------------------------------------------------------------------------
 
         // 洪水,津波,継続,普通のフィーチャー用-----------------------------------------------------------------
-
-
         map.on('singleclick', function (evt) {
             console.log(JSON.stringify(transform(evt.coordinate, "EPSG:3857", "EPSG:4326")))
             rgbaArr = []
