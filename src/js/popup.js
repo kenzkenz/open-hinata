@@ -619,51 +619,51 @@ export function popUp(map,layers,features,overlay,evt,content,content2) {
               '備考=' + prop.N07_002 + '</div>'
           break
         case 'bustei':
-          width = 200
           cont += '<div style=width:200px>事業者名=' + prop.P11_002 + '<hr>' +
               'バス停名=' + prop.P11_001 + '<hr>' +
               // 'バス系統=' + prop.P11_003_01 + '<hr>' +
               '</div>'
           break
         case 'okayamamai':
-          width = 300
-          cont += '<div style=width:300px;font-size:small;>' +
-              '遺跡名=' + prop.遺跡名 + '<hr>' +
-              '所在地=' + prop.所在地 + '<hr>' +
-              '代表的な=' + prop.代表的な + '<hr>' +
-              '詳細な種=' + prop.詳細な種 + '<hr>' +
-              '主な時代=' + prop.主な時代 + '<hr>' +
-              '主な出土=' + prop.主な出土 + '<hr>' +
-              '遺跡の残=' + prop.遺跡の残 + '<hr>' +
-              '遺跡概_1=' + prop.遺跡概_1 + '<hr>' +
-              '</div>'
+          if (cont.indexOf('okayamamai') === -1) {
+            cont += '<div class="okayamamai" style=width:300px;font-size:small;>' +
+                '遺跡名=' + prop.遺跡名 + '<br>' +
+                '所在地=' + prop.所在地 + '<br>' +
+                '代表的な=' + prop.代表的な + '<br>' +
+                '詳細な種=' + prop.詳細な種 + '<br>' +
+                '主な時代=' + prop.主な時代 + '<br>' +
+                '主な出土=' + prop.主な出土 + '<br>' +
+                '遺跡の残=' + prop.遺跡の残 + '<br>' +
+                '遺跡概_1=' + prop.遺跡概_1 + '<br>' +
+                '</div><hr>'
+          }
           break
         case 'kumamotomai':
-          width = 300
-          if(!prop["ITM01_NAME"]) {
-            cont += '<div style=width:300px;font-size:small;>' +
-                '遺跡番号=' + prop.m_cont1 + '<hr>' +
-                '遺跡名称=' + prop.m_cont2 + '<hr>' +
-                '所在地=' + prop.m_cont3 + '<hr>' +
-                '時代=' + prop.m_cont4 + '<hr>' +
-                '種別=' + prop.m_cont5 + '<hr>' +
-                '指定分類=' + prop.m_cont6 + '<hr>' +
-                '概要=' + prop.m_cont7 + '<hr>' +
-                // '<a href="https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=' + lat + ',' + lon + '&hl=ja" target="_blank">Street Viewを開く</a></div>'
-                '</div>'
-          } else {
-            cont += '<div style=width:300px;font-size:small;>' +
-                '遺跡番号=' + prop.ITM01_VAL + '<hr>' +
-                '遺跡名称=' + prop.ITM02_VAL + '<hr>' +
-                '備考1=' + prop.ITM03_VAL + '<hr>' +
-                '備考2=' + prop.ITM04_VAL + '<hr>' +
-                '備考3=' + prop.ITM05_VAL + '<hr>' +
-                '指定分類=' + prop.ITM06_VAL + '<hr>' +
-                '</div>'
+          if (cont.indexOf('kumamotomai') === -1) {
+            if(!prop["ITM01_NAME"]) {
+              cont += '<div class="kumamotomai" style=width:300px;font-size:small;>' +
+                  '遺跡番号=' + prop.m_cont1 + '<br>' +
+                  '遺跡名称=' + prop.m_cont2 + '<br>' +
+                  '所在地=' + prop.m_cont3 + '<br>' +
+                  '時代=' + prop.m_cont4 + '<br>' +
+                  '種別=' + prop.m_cont5 + '<br>' +
+                  '指定分類=' + prop.m_cont6 + '<br>' +
+                  '概要=' + prop.m_cont7 + '<br>' +
+                  // '<a href="https://www.google.com/maps/@?api=1&map_action=pano&viewpoint=' + lat + ',' + lon + '&hl=ja" target="_blank">Street Viewを開く</a></div>'
+                  '</div><hr>'
+            } else {
+              cont += '<div class="kumamotomai" style=width:300px;font-size:small;>' +
+                  '遺跡番号=' + prop.ITM01_VAL + '<br>' +
+                  '遺跡名称=' + prop.ITM02_VAL + '<br>' +
+                  '備考1=' + prop.ITM03_VAL + '<br>' +
+                  '備考2=' + prop.ITM04_VAL + '<br>' +
+                  '備考3=' + prop.ITM05_VAL + '<br>' +
+                  '指定分類=' + prop.ITM06_VAL + '<br>' +
+                  '</div><hr>'
+            }
           }
           break
         case 'tokyobunkazai':
-          width = 300
           cont += '<div style=width:300px;font-size:small;>' +
               '名称=' + prop.名称 + '<hr>' +
               '住所=' + prop.住所 + '<hr>' +
@@ -682,7 +682,6 @@ export function popUp(map,layers,features,overlay,evt,content,content2) {
               html = html + value + '=' + prop[value] + '<br>'
             }
           })
-          width = 300
           cont += '<div style=width:300px;font-size:small;>' +
               '<h4>' + prop.遺跡名 + '</h4>' +
               '読み方=' + ru(prop.遺跡名読み方) + '<br>' +
